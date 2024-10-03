@@ -1,0 +1,17 @@
+{
+    "name": "phisyx/cfoulatech",
+    "autoload": {
+        "psr-4": {
+            "Domain\\": "src/Domain",
+            "Infrastructure\\": "src/Infrastructure",
+            "Framework\\": "lib/Framework"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mike 'PhiSyX' S.",
+            "email": "738010+PhiSyX@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
