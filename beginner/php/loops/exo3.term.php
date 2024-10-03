@@ -1,5 +1,11 @@
 <?php
 
+require __DIR__ . "/../utils/instruction.php";
+echo instruction("
+    Créer une application qui demande d'afficher des mots dans la console.
+    Le programme DOIT s'arrêter lorsque le mot 'stop' est envoyé.
+", input: true);
+
 $user_word = "";
 $stop_word = "stop";
 

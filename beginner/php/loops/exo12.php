@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/../utils/instruction.php";
+
 /**
  * Pour cet exercice je n'utilise que des boucles "POUR CHAQUE" (foreach).
  * 
@@ -52,6 +54,11 @@ $class = [
         "notes" => [7, 19, 5]
     ]
 ];
+
+echo instruction("
+    Afficher tous les éléments de cette classe d'élèves.
+    Calculer la moyenne des notes des élèves.
+", data: $class, output: true);
 
 foreach ($class as $student) {
     foreach ($student as $student_key => $student_value) {

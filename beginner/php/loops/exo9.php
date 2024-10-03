@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/../utils/instruction.php";
+
 $months = [
     "Janvier",
     "Février",
@@ -14,8 +16,12 @@ $months = [
     "Novembre",
     "Décembre"
 ];
-
 $months_len = sizeof($months);
+
+echo instruction("
+    Afficher les mois séparés par des tirets en utilisant une boucle foreach.
+    NOTE: Il NE DOIT PAS y avoir un tiret à la suite de décembre.
+", data: $months, output: true);
 
 // v1. C'est une possibilité, quand on sait exactement ce que le tableau comporte.
 
