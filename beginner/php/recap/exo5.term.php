@@ -8,9 +8,9 @@ echo instruction(
     input: true,
 );
 
+$total_user_words = 0;
 $quit_word = "fin";
 $is_running = true;
-$total_user_words = 0;
 
 while ($is_running) {
     $user_word = readline("Entrez un mot (écrivez '$quit_word' pour arrêter): ");

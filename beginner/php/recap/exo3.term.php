@@ -13,10 +13,10 @@ $maybe_user_number = readline("Entrez un nombre : ");
 echo display_output();
 
 if (!is_numeric($maybe_user_number)) {
-    exit("Vous n'avez pas introduit un nombre.");
+    exit("Vous n'avez pas introduit un nombre valide.");
 }
 
-$user_number = $maybe_user_number;
+$user_number = (int) $maybe_user_number;
 $is_pair = $user_number % 2 === 0;
 if ($is_pair) {
     echo "Le nombre que vous avez entré est pair.\n";

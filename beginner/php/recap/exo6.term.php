@@ -13,7 +13,7 @@ $amount_min = 100;
 $amount_max = 200;
 
 if ($maybe_user_amount === false || !is_numeric($maybe_user_amount)) {
-    die("Tu DOIS entrer un montant valide (une valeur entière ou décimale).");
+    exit("Tu DOIS entrer un montant valide (une valeur entière ou décimale).");
 }
 
 $user_amount = (float)$maybe_user_amount;

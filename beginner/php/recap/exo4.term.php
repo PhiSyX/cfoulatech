@@ -2,9 +2,9 @@
 
 require_once __DIR__ . "/../utils/instruction.php";
 
-// 4. Afficher les mots entrés par l'utilisateur depuis la console et les afficher.
+// 4. Afficher les mots entrés par l'utilisateur depuis la console.
 echo instruction(
-    "Afficher les mots entrés par l'utilisateur depuis la console et les afficher",
+    "Afficher les mots entrés par l'utilisateur depuis la console.",
     input: true,
 );
 
