@@ -1,6 +1,11 @@
 <?php
 
-function instruction(string $text, mixed $data = null, bool $input = false, bool $output = false)
+function instruction(
+    string $text,
+    mixed $data = null,
+    bool $input = false,
+    bool $output = false
+)
 {
     $trimmed_text = trim($text);
     $instruction = <<<INSTRUCTION
@@ -8,7 +13,7 @@ function instruction(string $text, mixed $data = null, bool $input = false, bool
     | Instruction |
     '-------------'
 
-        $trimmed_text
+    $trimmed_text
     \n
     INSTRUCTION;
 
@@ -19,7 +24,7 @@ function instruction(string $text, mixed $data = null, bool $input = false, bool
         | Données |
         '---------'
 
-            $json
+        $json
         \n
         INSTRUCTION;
     }
@@ -40,12 +45,13 @@ function instruction(string $text, mixed $data = null, bool $input = false, bool
     return $instruction;
 }
 
-function display_output()
+function display_output(string $before = "", string $after = PHP_EOL)
 {
     return <<<INSTRUCTION
+        $before
     .--------.
     | Sortie |
     '--------'
-        \n
+        $after
     INSTRUCTION;
 }
