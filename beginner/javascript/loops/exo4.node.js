@@ -21,3 +21,6 @@ if (has_number_been_found) {
 }
 
 readline.close();
+
+// NOTE: typescript casse les bonbons ;)
+export {};

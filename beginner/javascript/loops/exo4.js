@@ -19,3 +19,6 @@ export function is_in_list_numbers(user_number) {
 
 	return has_number_been_found;
 }
+
+// NOTE: typescript casse les bonbons ;)
+export {};

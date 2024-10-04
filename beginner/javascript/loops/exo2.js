@@ -6,3 +6,6 @@ for (let i = numbers_len - 1; i >= 0; i--) {
 	let number = numbers[i];
 	console.log(number);
 }
+
+// NOTE: typescript casse les bonbons ;)
+export {};

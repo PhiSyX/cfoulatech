@@ -8,3 +8,6 @@ if (has_number_been_found) {
 } else {
 	alert(`${user_number} n'existe pas dans le tableau.`);
 }
+
+// NOTE: typescript casse les bonbons ;)
+export {};

@@ -17,3 +17,6 @@ console.log(
 	highest_number,
 	numbers
 );
+
+// NOTE: typescript casse les bonbons ;)
+export {};
