@@ -6,3 +6,6 @@ a = b;
 b = temp;
 
 console.log(a, b);
+
+// NOTE: typescript casse les bonbons ;)
+export {};

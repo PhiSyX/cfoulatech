@@ -11,3 +11,6 @@ console.log(
 	vehicle[0],
 	vehicle[1],
 );
+
+// NOTE: typescript casse les bonbons ;)
+export {};
