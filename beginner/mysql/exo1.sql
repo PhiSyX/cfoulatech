@@ -1,7 +1,7 @@
 -- Ajouter une colonne dans une table.
 ALTER TABLE users ADD weight_kg INT(5) NOT NULL;
 
--- Modifier le poids de chaque utilisateurs. Le premier et le second DOIVENT
+-- Modifier le poids de chaque utilisateurs. Le premier et le dernier DOIVENT
 -- avoir le même poids.
 UPDATE users SET weight_kg = 80  WHERE id_user = 1 OR id_user = 8;
 UPDATE users SET weight_kg = 60  WHERE id_user = 2;
