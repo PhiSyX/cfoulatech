@@ -14,12 +14,22 @@ interface ArticleRepository
     function all(): array;
 
     /**
-     * Trouve un article en fonction de l'ID
+     * Supprime un article en fonction d'un ID.
      */
-    function find_by_id(string $id): ?Article;
+    function delete(int $id): bool;
+
+    /**
+     * Récupère un article en fonction de l'ID
+     */
+    function get(int $id): ?Article;
 
     /**
      * Insère un nouvel article.
      */
-    function insert(Article $entity): void;
+    function insert(Article $entity): bool;
+
+    /**
+     * Met à jour un article.
+     */
+    function update(Article $entity): bool;
 }

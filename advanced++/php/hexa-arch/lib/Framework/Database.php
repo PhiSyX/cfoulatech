@@ -56,11 +56,39 @@ class Database
     }
 
     /**
+     * Supprime une ligne d'une requête SQL, si trouvé.
+     */
+    public function delete(string $query, array $data): bool
+    {
+        $query = $this->pdo->prepare($query);
+        return $query->execute($data);
+    }
+
+    /**
+     * Retourne une ligne d'une requête SQL, si trouvé.
+     */
+    public function fetch_one(string $query, array $data)
+    {
+        $query = $this->pdo->prepare($query);
+        $query->execute($data);
+        return $query->fetch();
+    }
+
+    /**
      * Insère des données en base de données.
      */
     public function insert(string $query, array $data)
     {
         $query = $this->pdo->prepare($query);
-        $query->execute($data);
+        return $query->execute($data);
+    }
+
+    /**
+     * Met à jour des données en base de données.
+     */
+    public function update(string $query, array $data)
+    {
+        $query = $this->pdo->prepare($query);
+        return $query->execute($data);
     }
 }

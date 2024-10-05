@@ -50,7 +50,7 @@ class Kernel
                 break;
             }
 
-            [$ctrl, $ctrl_method] = $route;
+            [$ctrl, $ctrl_method, $args] = $route;
 
             // FIXME: à améliorer, récursivement
             $refl = new ReflectionClass($ctrl);
@@ -66,9 +66,9 @@ class Kernel
 
             $res = null;
             if (count($params) > 0) {
-                $res = (new $ctrl(...$params))->$ctrl_method($req);
+                $res = (new $ctrl(...$params))->$ctrl_method($req, ...$args);
             } else {
-                $res = (new $ctrl())->$ctrl_method($req);
+                $res = (new $ctrl())->$ctrl_method($req, ...$args);
             }
 
             echo $res;
@@ -81,5 +81,10 @@ class Kernel
     {
         $this->providers = $providers;
         return $this;
+    }
+
+    private function fill_args()
+    {
+        
     }
 }

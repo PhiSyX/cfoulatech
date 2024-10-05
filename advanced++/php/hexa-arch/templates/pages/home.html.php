@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'accueil</title>
-    <link rel="stylesheet" href="/cfoulatech/public/css/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>/public/css/style.css">
 </head>
 
 <body>
@@ -14,10 +14,10 @@
     <h2>Aller à</h2>
     <ul>
         <li>
-            <a href="./admin/blog/article">la création d'article</a>
+            <a href="<?= ROOT_URL; ?>/admin/blog/article/create">la création d'article</a>
         </li>
         <li>
-            <a href="./blog">la liste des articles</a>
+            <a href="<?= ROOT_URL; ?>/admin/blog/article">la liste des articles</a>
         </li>
     </ul>
 </body>

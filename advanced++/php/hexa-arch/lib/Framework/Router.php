@@ -40,14 +40,17 @@ class Router
                 if (!($route->eq($method) && $route->eq($url_path))) {
                     continue;
                 }
-                return $route->maps[$method->name];
+
+                unset($route->args[0]);
+                $args = $route->args;
+                return [...$route->maps[$method->name], $args];
             }
         }
 
         return null;
     }
 
-   /**
+    /**
      * Vérifie qu'une route en fonction de la méthode, et de l'URL existe dans
      * la liste des routes.
      */

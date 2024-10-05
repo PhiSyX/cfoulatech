@@ -10,14 +10,19 @@ use Framework\Request;
 
 class CreateArticleController extends Controller
 {
-    public function __construct(private ArticleRepository $article_repository) {}
+    private CreateArticleAction $action;
+
+    public function __construct(ArticleRepository $article_repository)
+    {
+        $this->action = new CreateArticleAction($article_repository);
+    }
 
     /**
      * GET Handler
      */
     public function view()
     {
-        return $this->render("blog/create_article");
+        return $this->render("blog/admin/create_article");
     }
 
     /**
@@ -31,7 +36,8 @@ class CreateArticleController extends Controller
             (bool) $req->field("publish_now") ?: false,
         );
 
-        $action = new CreateArticleAction($this->article_repository);
-        $action->save($create_article_dto);
+        $this->action->save($create_article_dto);
+
+        return $this->redirect("/admin/blog/article");
     }
 }

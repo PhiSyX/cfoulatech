@@ -2,14 +2,13 @@
 
 namespace Domain\Blog\Action;
 
-use Domain\Blog\DTO\CreateArticleDTO;
 use Domain\Blog\Repository\ArticleRepository;
 
 /**
- * Action de créer un article.
+ * Action de récupération d'un article.
  */
 
-class CreateArticleAction
+class ShowArticleAction
 {
     /**
      * Notre action a besoin de l'interface ArticleRepository de notre domaine.
@@ -17,15 +16,13 @@ class CreateArticleAction
      * L'injecteur de dépendance va automatiquement injecter la bonne classe
      * concrète, si elle existe. Dans le cas contraire, une erreur se produira.
      */
-    public function __construct(private ArticleRepository $article_repository) {}
+    public function __construct(protected ArticleRepository $article_repository) {}
 
     /**
-     * Action de sauvegarde.
+     * Récupère un article e fonction de l'ID.
      */
-    public function save(CreateArticleDTO $dto)
+    public function get(int $id)
     {
-        // TODO: Valider les données...
-        $article = $dto->to_entity();
-        $this->article_repository->insert($article);
+        return $this->article_repository->get($id);
     }
 }

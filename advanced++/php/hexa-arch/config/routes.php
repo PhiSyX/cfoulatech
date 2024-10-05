@@ -3,8 +3,10 @@
 use Framework\Route;
 use Framework\Router;
 use Infrastructure\Blog\Controller\Admin\CreateArticleController;
+use Infrastructure\Blog\Controller\Admin\DeleteArticleController;
 use Infrastructure\Blog\Controller\Admin\EditArticleController;
-use Infrastructure\Blog\Controller\ListingArticleController;
+use Infrastructure\Blog\Controller\Admin\ListingArticleController;
+use Infrastructure\Blog\Controller\Admin\ShowArticleController;
 use Infrastructure\Pages\Controller\HomeController;
 
 return (new Router())
@@ -13,17 +15,22 @@ return (new Router())
             ->get(HomeController::class, "view")
     )
     ->add(
-        Route::path("/blog")
-            ->get(ListingArticleController::class, "view")
-    )
-    ->add(
         Route::path("/admin/blog/article")
-            ->get(CreateArticleController::class, "view")
+            ->get(ListingArticleController::class, "view")
             ->post(CreateArticleController::class, "handle"),
     )
     ->add(
-        Route::path("/admin/blog/article/:id")
+        Route::path("/admin/blog/article/create")
+            ->get(CreateArticleController::class, "view")
+    )
+    ->add(
+        Route::path("/admin/blog/article/edit/:id")
             ->get(EditArticleController::class, "view")
-            ->post(EditArticleController::class, "handle")
+    )
+    ->add(
+        Route::path("/admin/blog/article/:id")
+            ->get(ShowArticleController::class, "view")
+            ->delete(DeleteArticleController::class, "handle")
+            ->put(EditArticleController::class, "handle")
     )
 ;

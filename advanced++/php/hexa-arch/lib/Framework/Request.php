@@ -9,6 +9,9 @@ class Request
      */
     public function method(): HttpMethod
     {
+        if ($this->field("_method")) {
+            return HttpMethod::from($this->field("_method"));
+        }
         return HttpMethod::from($_SERVER["REQUEST_METHOD"]);
     }
 
