@@ -1,0 +1,13 @@
+selector {
+	property: value;
+}
+
+/* A deux fois le caractère : */
+selector::pseudo-element {
+}
+
+/* A une seule fois le caractère : */
+selector:pseudo-class {
+}
+selector:pseudo-class( arg ) {
+}
