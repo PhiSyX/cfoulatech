@@ -1,0 +1,76 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	font-size: 40px;
+}
+
+section {
+	margin: auto;
+	overflow-x: hidden;
+	max-width: 80ch;
+	height: 100vh;
+}
+
+.box {
+	display: grid;
+	place-items: center;
+}
+.box1 {
+	background-color: green;
+}
+
+.box2 {
+	background-color: red;
+}
+
+.box3 {
+	background-color: blue;
+}
+
+.grid-1 {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 200px auto 100px;
+}
+.grid-2 {
+	display: grid;
+	gap: 16px;
+	grid-template-rows: 200px auto 100px;
+}
+.grid-3 {
+	display: grid;
+	gap: 16px;
+	grid-template-rows: repeat(3, 1fr);
+}
+.grid-4 {
+	display: grid;
+	gap: 16px;
+	height: 100vh;
+
+	grid-template-areas:
+		"A A A A"
+		"C C C C"
+		"B B B B";
+}
+
+.grid-4 .box1 {
+	grid-area: A;
+}
+
+.grid-4 .box2 {
+	grid-area: B;
+}
+
+.grid-4 .box3 {
+	grid-area: C;
+}
