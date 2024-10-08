@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page d'incription - Université de C Fou la Tech</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="signup">
+    <!-- 
+	    	4. une page "inscription" : Formulaire d'inscription qui comprend
+	    	   les informations : Nom et prénom,  Adresse, date de Naissances,
+	    	   Etat civil, Genre, la faculté souhaitée et un bouton "Envoyer".
+		-->
+
+    <header class="header-nav">
+        <div class="logo">
+            <figure>
+                <img src="https://fastly.picsum.photos/id/430/536/354.jpg?hmac=uxrNCXgJuycp2JMZ9jpZb5ThTsZIplRTSPuc4ybMyws"
+                    alt="Logo" />
+                <figcaption>
+                    <a href="./index.html" title="Université C Fou la Tech">
+                        C Fou la Tech
+                    </a>
+                </figcaption>
+            </figure>
+        </div>
+
+        <nav role="navigation">
+            <a href="./about.html">À propos de nous</a>
+            <a href="./contact.html">Nous contacter</a>
+            <a href="./faculties.html">Nos facultés</a>
+        </nav>
+
+        <nav role="navigation">
+            <a href="./registration.html">S'inscrire</a>
+        </nav>
+    </header>
+
+    <main role="main">
+        <h1>Page d'inscription</h1>
+
+        <form action="#" method="POST" autocomplete="off">
+            <fieldset>
+                <div class="text-input">
+                    <label for="lastname" required>Votre nom :</label>
+                    <input id="lastname" type="text" name="lastname" placeholder="Doe" />
+                </div>
+
+                <div class="text-input">
+                    <label for="firstname" required>Votre prénom :</label>
+                    <input id="firstname" type="text" name="firstname" placeholder="John" />
+                </div>
+
+                <div class="text-input">
+                    <label for="email">Votre adresse :</label>
+                    <input id="address" type="text" name="address" placeholder="Rue de C Fou la Tech, 10" />
+                </div>
+
+                <div class="text-input">
+                    <label for="date_of_birth">Date de naissance :</label>
+                    <input id="date_of_birth" type="date" name="date_of_birth" placeholder="01 01 1991" />
+                </div>
+
+                <div class="text-input">
+                    <label for="marital_status">État civil :</label>
+                    <input id="marital_status" type="search" name="marital_status"
+                        placeholder="Mari(é), Fiancé(e), Célibataire, ..." list="marital_status_list" />
+
+                    <datalist id="marital_status_list">
+                        <option value="married">Marié(e)</option>
+                        <option value="separate">Séparé(e)</option>
+                        <option value="single">Célibataire</option>
+                        <option value="windowed">Veuve / veuf</option>
+                        <option value="cohabit">En comcubinage</option>
+                    </datalist>
+                </div>
+
+                <div class="text-input">
+                    <label for="gender">Votre genre :</label>
+                    <input id="gender" type="search" name="gender" placeholder="Femme, Homme, ..." list="gender_list" />
+
+                    <datalist id="gender_list">
+                        <option value="women">Femme</option>
+                        <option value="men">Homme</option>
+                        <option value="other">Autre</option>
+                    </datalist>
+                </div>
+            </fieldset>
+
+            <button type="submit">Nous contacter maintenant</button>
+        </form>
+    </main>
+</body>
+
+</html>
