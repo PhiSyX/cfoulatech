@@ -1,0 +1,133 @@
+:root {
+	--space: 8px;
+	--default-border-radius: 8px;
+	--full-border-radius: 50%;
+	--header-size: 60px;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	scroll-behavior: smooth;
+	scroll-padding: calc(var(--header-size) + var(--space) * 2);
+}
+
+body {
+	margin: var(--space) auto;
+	max-width: 80ch;
+}
+
+body > header {
+	text-align: center;
+	margin-top: calc(var(--header-size) + var(--space) * 4);
+}
+
+body > header > img {
+	border-radius: var(--full-border-radius);
+	box-shadow: 2px 2px 2px black;
+}
+
+a {
+	color: LinkText;
+}
+
+nav {
+	overflow-y: hidden;
+	overflow-x: auto;
+
+	position: fixed;
+	top: var(--space);
+	/* max-height: var(--header-size);
+    min-height: var(--header-size); */
+	margin-inline: var(--space);
+
+	display: flex;
+	align-items: center;
+	gap: var(--space);
+
+	background-color: rgb(255, 255, 255, 0.75);
+	border: 1px solid;
+	border-radius: var(--default-border-radius);
+
+	z-index: 1;
+}
+
+nav a {
+	display: inline-block;
+	padding: calc(var(--space) * 2);
+	flex-shrink: 0;
+	text-decoration: none;
+	color: black;
+}
+nav a:hover {
+	color: LinkText;
+}
+
+section {
+	height: 100vh;
+	margin-top: calc(var(--header-size) + var(--space));
+}
+
+section {
+	border: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+	overflow: auto;
+}
+
+section > h1 {
+	position: sticky;
+	top: 0;
+	padding: calc(var(--space) * 2);
+	background-color: #f5f5f5;
+}
+
+#details {
+	padding: var(--space);
+	border-radius: var(--default-border-radius);
+}
+
+#details > div {
+	display: grid;
+	grid-template-columns: 100px auto;
+	gap: var(--space);
+}
+#details > div > p {
+	padding: 0;
+	padding-block: 4px;
+	margin: 0;
+}
+#details > div > p:first-of-type {
+	font-weight: bold;
+}
+
+#xp {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--space) * 4);
+}
+
+#xp article {
+	padding-inline: var(--space);
+	display: flex;
+	flex-direction: column;
+}
+
+#xp article > header {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--space);
+}
+
+#xp article > header strong {
+	flex-grow: 1;
+}
+
+#xp article > header time {
+	color: gray;
+}
+
+#xp p {
+	hyphens: auto;
+	margin-block: var(--space);
+}
