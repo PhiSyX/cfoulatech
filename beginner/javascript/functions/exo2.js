@@ -1,16 +1,5 @@
-/**
- * Calcule la surface d'une longueur et largeur.
- *
- * @param {string|null} height
- * @param {string|null} width
- *
- * @returns {number}
- */
-export function calculate_rect_area_input(height = "0", width = "0") {
-	let h = Number(height);
-	let w = Number(width);
-	return calculate_rect_area(h, w);
-}
+import { alert } from "../utils/alert.js";
+import { prompt_number } from "../utils/prompt.js";
 
 /**
  * La formule est: L * l ou autrement dit la longueur fois la largeur.
@@ -23,3 +12,10 @@ export function calculate_rect_area_input(height = "0", width = "0") {
 export function calculate_rect_area(L, l) {
 	return L * l;
 }
+
+let user_height_str = await prompt_number("Quelle est votre longueur ?");
+let user_width_str = await prompt_number("Quelle est votre largeur ?");
+
+let rect_area = calculate_rect_area(user_height_str, user_width_str);
+
+alert(`La surface est de ${rect_area}`);
