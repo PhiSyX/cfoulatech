@@ -1,4 +1,10 @@
 /**
+ * Invite l'utilisateur de confirmer ou non une demande en fonction de
+ * l'environnement:
+ *
+ *	- Navigateur = window.confirm
+ *  - Node.js    = readline 
+ *
  * @param {string} ask - Question à demander l'utilisateur.
  * @returns {Promise<boolean>}
  */

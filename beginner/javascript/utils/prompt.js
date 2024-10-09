@@ -1,8 +1,16 @@
 /**
- * Invite l'utilisateur à entrer un mot, une phrase...
- * 
+ * Invite l'utilisateur à entrer un mot, une phrase... en fonction de
+ * l'environnement :
+ *
+ *  - Navigateur = window.prompt
+ *  - Node.js    = readline
+ *
+ * NOTE: cette fonction a besoin d'être asynchrone parce que l'API de Node.js
+ * sur readline l'est. De plus l'API version callback de readline est moins
+ * intuitive.
+ *
  * @param {string} ask - Question à demander l'utilisateur.
- * @param {string|null} [def=null] - valeur par défaut
+ * @param {null|{toString(): string}} [def=null] - valeur par défaut
  * @returns {Promise<string|null>}
  */
 export async function prompt(ask, def) {
@@ -15,10 +23,10 @@ export async function prompt(ask, def) {
 		let response;
 
 		do {
-			response = globalThis.prompt(ask, def || "");
+			response = globalThis.prompt(ask, def?.toString() || "");
 
 			if (required && !response) {
-				response = def;
+				response = def?.toString() || null;
 			}
 		} while (typeof response !== "string");
 
@@ -34,31 +42,21 @@ export async function prompt(ask, def) {
 		output: stdout,
 	});
 
-	let def_s = def && def !== "0" ? `[${def} par défaut] ` : "";
+	let def_s =
+		def && def.toString() !== "0" ? `[${def.toString()} par défaut] ` : "";
 
 	let response;
 
 	do {
 		response = await readline
 			.question(`${ask} ${def_s}`)
-			.catch((_) => def || "");
+			.catch((_) => def?.toString() || "");
 		if (required && !response) {
-			response = def;
+			response = def?.toString() || null;
 		}
 	} while (typeof response !== "string");
 
 	readline.close();
 
 	return response;
-}
-
-/**
- * Invite l'utilisateur à entrer un chiffre, nombre...
- * 
- * @param {string} ask - Question à demander l'utilisateur.
- * @param {number|null} [def] - valeur par défaut
- * @returns {Promise<number>}
- */
-export async function prompt_number(ask, def = null) {
-	return prompt(ask, def?.toString()).then(Number);
 }

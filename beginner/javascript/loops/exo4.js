@@ -1,8 +1,8 @@
 import { alert } from "../utils/alert.js";
-import { prompt_number } from "../utils/prompt.js";
+import { prompt } from "../utils/prompt.js";
 
 let numbers = [3, 7, 12, 22, 34, 125, 56, 45, 4558, 41, 100];
-let user_number = await prompt_number("Quel est votre nombre ?");
+let user_number = Number(await prompt("Quel est votre nombre ?"));
 let numbers_len = numbers.length;
 let has_number_been_found = false;
 
@@ -19,6 +19,3 @@ if (has_number_been_found) {
 } else {
 	alert(`Le nombre ${user_number} N'EXISTE PAS dans le tableau.`);
 }
-
-// NOTE: typescript casse les bonbons ;)
-export {};
