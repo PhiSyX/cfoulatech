@@ -45,23 +45,23 @@
         <form action="#" method="POST" autocomplete="off">
             <fieldset>
                 <div class="text-input">
-                    <label for="lastname" required>Votre nom :</label>
-                    <input id="lastname" type="text" name="lastname" placeholder="Doe" />
+                    <label for="lastname">Votre nom :</label>
+                    <input id="lastname" type="text" name="lastname" required placeholder="Doe" />
                 </div>
 
                 <div class="text-input">
-                    <label for="firstname" required>Votre prénom :</label>
-                    <input id="firstname" type="text" name="firstname" placeholder="John" />
+                    <label for="firstname">Votre prénom :</label>
+                    <input id="firstname" type="text" name="firstname" required placeholder="John" />
                 </div>
 
                 <div class="text-input">
                     <label for="email">Votre adresse :</label>
-                    <input id="address" type="text" name="address" placeholder="Rue de C Fou la Tech, 10" />
+                    <input id="address" type="text" name="address" required placeholder="Rue de C Fou la Tech, 10" />
                 </div>
 
                 <div class="text-input">
                     <label for="date_of_birth">Date de naissance :</label>
-                    <input id="date_of_birth" type="date" name="date_of_birth" placeholder="01 01 1991" />
+                    <input id="date_of_birth" type="date" name="date_of_birth" required placeholder="01 01 1991" />
                 </div>
 
                 <div class="text-input">
@@ -74,13 +74,14 @@
                         <option value="separate">Séparé(e)</option>
                         <option value="single">Célibataire</option>
                         <option value="windowed">Veuve / veuf</option>
-                        <option value="cohabit">En comcubinage</option>
+                        <option value="cohabit">En concubinage</option>
                     </datalist>
                 </div>
 
                 <div class="text-input">
                     <label for="gender">Votre genre :</label>
-                    <input id="gender" type="search" name="gender" placeholder="Femme, Homme, ..." list="gender_list" />
+                    <input id="gender" type="search" name="gender" required placeholder="Femme, Homme, ..."
+                        list="gender_list" />
 
                     <datalist id="gender_list">
                         <option value="women">Femme</option>
@@ -90,7 +91,25 @@
                 </div>
             </fieldset>
 
-            <button type="submit">Nous contacter maintenant</button>
+            <fieldset>
+                <div class="text-input">
+                    <label for="email">Votre adresse mail :</label>
+                    <input id="email" type="email" name="email" required />
+                </div>
+
+                <div class="text-input">
+                    <label for="password">Votre mot de passe :</label>
+                    <input id="password" type="password" name="password" minlength="8" maxlength="64" required />
+                </div>
+
+                <div class="text-input">
+                    <label for="password_confirmation">Confirmer le mot de passe :</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" minlength="8"
+                        maxlength="64" required />
+                </div>
+            </fieldset>
+
+            <button type="submit">S'inscrire</button>
         </form>
     </main>
 </body>
