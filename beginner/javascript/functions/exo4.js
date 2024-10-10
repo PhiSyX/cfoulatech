@@ -3,9 +3,8 @@ import { prompt } from "../utils/prompt.js";
 
 /**
  * Pour calculer la TVA, il faut: prix fois la TVA divisé par 100.
- *
- * @param {number} price_excl
- * @param {number} tva_rate
+ * @param {number} price_excl - Prix HT
+ * @param {number} tva_rate  - Le taux de la TVA
  * @return {number} Le montant TVA
  */
 export function calculate_tva(price_excl, tva_rate) {

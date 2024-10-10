@@ -4,9 +4,14 @@
  * - Navigateur = window.alert
  * - Node.js    = console.info
  *
- * @param {{ toString(): string }} text - Texte à afficher
+ * @param {{ toString(): string }|null|undefined} text - Texte à afficher
  */
 export function alert(text) {
+	if (!text) {
+		console.warn("Undefined alert text");
+		return;
+	}
+
 	if (Object.hasOwn(globalThis, "alert")) {
 		// NOTE: Utilise la fonction alert globale du navigateur.
 		globalThis.alert(text.toString());

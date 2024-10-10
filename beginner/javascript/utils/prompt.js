@@ -11,7 +11,7 @@
  *
  * @param {string} ask - Question à demander l'utilisateur.
  * @param {null|{toString(): string}} [def=null] - valeur par défaut
- * @returns {Promise<string|null>}
+ * @returns {Promise<string>}
  */
 export async function prompt(ask, def) {
 	let required = def === undefined ? true : def !== null;

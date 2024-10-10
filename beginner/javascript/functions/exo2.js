@@ -6,10 +6,9 @@ import { prompt } from "../utils/prompt.js";
  *
  * @param {number} L - Longueur
  * @param {number} l - Largeur
- *
  * @returns {number} La surface du rectangle
  */
-export function calculate_rect_area(L, l) {
+function calculate_rect_area(L, l) {
 	return L * l;
 }
 
