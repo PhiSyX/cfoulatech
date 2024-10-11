@@ -14,10 +14,11 @@
  * NOTE: Le résultat `null` est envoyé lorsque l'utilisateur ANNULE la demande
  * depuis l'interface.
  *
- * Le paramètre `instruction` prend en argument une valeur de type String. La
- * fonction retourne une valeur de type String ou de type null.
+ * @param {String} instruction - Instruction à donner au prompt.
+ * @param {Function} validation_fonction - Fonction Callback qui sert de validation.
+ * @returns {String|Number|null} La saisie utilisateur.
  */
-function prompt_en_boucle(instruction) {
+function prompt_en_boucle(instruction, validation_fonction) {
 	let valeur;
 
 	do {
@@ -29,16 +30,21 @@ function prompt_en_boucle(instruction) {
 		if (saisie_utilisateur !== "") {
 			// 2.1. On applique la valeur de la saisie utilisateur comme valeur
 			//      de retour dans résultat. Étant donné qu'on a un résultat, on
-			//      sort de cette boucle, grâce à la condition en 3.
+			//      sort de cette boucle, grâce à la condition en point 4.
 			valeur = saisie_utilisateur;
 		}
+
+		// 3. Applique une condition de validation si existe.
+		if (valeur && validation_fonction) {
+			valeur = validation_fonction(valeur);
+		}
 	} while (
-		// 3. On vérifie que la condition est correcte. On sort de cette boucle
-		//    lorsque la valeur est une chaîne de caractères, ou lorsque
-		//    l'utilisateur à appuyer sur le bouton ANNULER (= null). Sinon on
-		//    revient au point 1. plus-haut...
-		typeof valeur !== "string" &&
-		valeur !== null
+		// 4. On vérifie que la condition est correcte. On sort de cette boucle
+		//    lorsque la valeur est une chaîne de caractères ou un nombre, ou
+		//    lorsque l'utilisateur à appuyer sur le bouton ANNULER (= null).
+		//    Sinon on revient au point 1. plus-haut...
+		!(typeof valeur === "string" || typeof valeur === "number") &&
+		!(valeur === null)
 	);
 
 	return valeur;
@@ -46,91 +52,71 @@ function prompt_en_boucle(instruction) {
 
 /**
  * Invite l'utilisateur à entrer un nombre entier ou décimal (nombre à virgule).
- *
- * La fonction retourne une valeur de type entier (entier ou entier décimale) ou
- * la valeur booléenne fausse (false).
+ * @param {String} instruction - Instruction à donner au prompt.
+ * @returns {Number|null} Nombre converti choisi par l'utilisateur.
  */
 function prompt_nombre(instruction) {
-	// 1. On demande à l'utilisateur d'entrer une valeur. La valeur de retour de
-	//    la fonction `prompt_en_boucle` est sauvegardé dans `nombre_en_chaine`.
-	let nombre_en_chaine = prompt_en_boucle(instruction);
-
-	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
-	//    Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
-	if (nombre_en_chaine === null) {
-		// 2.1. On retourne une valeur booléenne fausse pour indiquer que nous
-		// 		ne voulons plus continuer le script, on va gérer ça plus tard...
-		return false;
-	}
-
-	// 3: On converti la chaîne entrée par l'utilisateur en nombre entier ou
-	//    décimal via la fonction native `Number()` ou `parseFloat()`.
-	let nombre = Number.parseFloat(nombre_en_chaine);
-
 	/**
-	 * Vérifie si le nombre est valide.
-	 *
-	 * = `Number.isNaN(nombre)`
+	 * Fonction de pré-validation de la saisie utilisateur.
 	 */
-	const verifie_nombre_invalide = (nombre) => {
-		return !nombre && nombre !== 0;
+	const valider_la_saisie = (chaine) => {
+		// 1.1. on converti la chaîne entrée par l'utilisateur en nombre entier
+		//    	ou décimal via la fonction native `Number()` ou `parseFloat()`.
+		let n = Number.parseFloat(chaine);
+
+		// 1.2. On vérifie que le nombre converti est valide, parce que la
+		// 		conversion peut échouer. Par exemple lorsque la valeur de
+		// 		l'utilisateur `nombre` vaut "abcd".
+		//
+		//if (Number.isNaN(nombre)) {
+		if (n <= 0 || n >= 0) {
+			// 1.2.1. On retourne cette valeur à notre variable `nombre`
+			// 		  plus-bas.
+			return n;
+		}
+
+		// 1.3. On notifie l'utilisateur de son erreur.
+		erreur("Il ne s'agit pas d'un nombre valide, recommencez...");
 	};
 
-	// 4. On vérifie que le nombre converti n'est pas valide via `isNaN()`, qui
-	//    veut dire "NaN = Not a Number", si ça n'est pas le cas, on entre dans
-	//    cette condition.
-	if (verifie_nombre_invalide(nombre)) {
-		// 4.1. On notifie l'utilisateur de son erreur.
-		erreur("Il ne s'agit pas d'un nombre valide, recommencez...");
-
-		// 4.2. On retourne une valeur booléenne fausse pour indiquer que nous
-		// 		ne voulons plus continuer le script, on va gérer ça plus tard...
-		return false;
-	}
-
-	// 5. On retourne ce nombre valide à nos variables indépendantes.
-	return nombre;
+	// 1. On demande à l'utilisateur d'entrer un nombre et on retourne ce
+	//    nombre, validé depuis la fonction de validation ci-haut, à nos
+	//    variables.
+	return prompt_en_boucle(instruction, valider_la_saisie);
 }
 
 /**
- * Invite l'utilisateur à entrer un des opérateurs arithmétiques supportés:
+ * Invite l'utilisateur à entrer un des opérateurs arithmétiques supportés.
  *
- * Les opérateurs supportés:
+ * Les opérateurs supportés sont:
  *
  * - '*'
  * - '/'
  * - '+'
  * - '-'
  *
- * La fonction retourne l'opérateur valide ou false.
+ * @param {String} instruction - Instruction à donner au prompt.
+ * @returns {String|null} L'opérateur arithmétique choisie par l'utilisateur.
  */
 function prompt_operateur_arithmetique(instruction) {
-	// 1. On demande à l'utilisateur d'entrer une valeur.
-	let op = prompt_en_boucle(instruction);
+	/**
+	 * Valide la saisie utilisateur.
+	 */
+	const valider_la_saisie_utilisateur = (op) => {
+		// 1.1. On entre dans cette condition s'il s'agit d'un opérateur
+		// 		supporté.
+		if (op === "*" || op === "/" || op === "+" || op === "-") {
+			// On retourne la valeur à notre variable operateur.
+			return op;
+		}
 
-	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
-	//    Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
-	if (op === null) {
-		// 2.1. On retourne une valeur booléenne fausse pour indiquer que nous
-		//      ne voulons plus continuer le script, on va gérer ça plus tard...
-		return false;
-	}
-
-	// 3. On entre dans cette condition si ce qui a été envoyé par l'utilisateur
-	//    n'est pas un des opérateurs arithmétiques supportés.
-	//    Sinon c'est que l'utilisateur à entrer un opérateur supporté et on
-	//    passe au point 4.
-	if (!(op === "*" || op === "/" || op === "+" || op === "-")) {
-		// 3.1. On notifie l'utilisateur de son erreur.
+		// 1.2. On notifie l'utilisateur de son erreur.
 		erreur("L'opérateur est invalide, choisissez entre * / + ou -");
+	};
 
-		// 3.2. On retourne une valeur booléenne fausse pour indiquer que nous
-		// 		ne voulons plus continuer le script, plus tard...
-		return false;
-	}
-
-	// 4. On retourne cette opérateur à notre variable.
-	return op;
+	// 1. On demande à l'utilisateur d'entrer une valeur et on retourne cet
+	//    opérateur à notre variable.
+	return prompt_en_boucle(instruction, valider_la_saisie_utilisateur);
 }
 
 /**
@@ -143,9 +129,10 @@ function evenement_calculer_operation() {
 	let operande_gauche = prompt_nombre("Quel est le premier nombre");
 
 	// 1.1. On ne veut plus continuer le script si la valeur de l'opérande de
-	// 		gauche est fausse.
-	if (operande_gauche === false) {
-		// Stop la fonction.
+	// 		gauche est nulle.
+	if (operande_gauche === null) {
+		// 1.1.1. Annule l'opération.
+		operation_annuler();
 		return false;
 	}
 
@@ -153,13 +140,14 @@ function evenement_calculer_operation() {
 	//    retour de la fonction `prompt_operator` est sauvegardée dans la
 	//    variable `operateur`.
 	let operateur = prompt_operateur_arithmetique(
-		"Quel est est l'opérateur (*, /, +, -)",
+		"Quel est l'opérateur (*, /, +, -)",
 	);
 
 	// 2.1. On ne veut plus continuer le script si la valeur de l'opérateur est
 	// 		fausse.
-	if (operateur === false) {
-		// Stop la fonction.
+	if (operateur === null) {
+		// 2.1.1. Annule l'opération.
+		operation_annuler();
 		return false;
 	}
 
@@ -167,8 +155,12 @@ function evenement_calculer_operation() {
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_droite`.
 	let operande_droite = prompt_nombre("Quel est le second nombre");
+
+	// 3.1. On ne veut plus continuer le script si la valeur de l'opérande de
+	// 		droite est nulle.
 	if (operande_droite === null) {
-		// Stop la fonction.
+		// 3.1.1. Annule l'opération.
+		operation_annuler();
 		return false;
 	}
 
@@ -178,8 +170,8 @@ function evenement_calculer_operation() {
 		operateur,
 		operande_droite,
 	);
-	// 4.1. On entre dans condition si le resultat est en fait une erreur. Et on
-	// 		s'arrête là.
+
+	// 4.1. On entre dans condition si le resultat est une erreur.
 	if (typeof resultat === "string") {
 		// 4.1.1. On notifie à l'utilisateur de son erreur.
 		erreur(resultat);
@@ -201,23 +193,21 @@ function evenement_calculer_operation() {
  */
 function erreur(message_erreur) {
 	alert(`Erreur: ${message_erreur}`);
-	return false;
+}
+
+/**
+ * Notifie l'utilisateur que la calculatrice en cours a été annulée.
+ */
+function operation_annuler() {
+	alert("L'opération a été annulée.");
 }
 
 /**
  * Calcule l'opération.
- *
- * operande_gauche est un entier, qui correspond au chiffre de gauche dans une
- * opération arithmétique.
- *
- * operateur est une chaine, qui correspond au symbole d'une opération
- * arithmétique.
- *
- * operande_droite est un entier, qui correspond au chiffre de droite dans une
- * opération arithmétique.
- *
- * Cette fonction retourne le résultat de l'opérateur (entier) ou
- * une erreur (chaine).
+ * @param {Number} operande_gauche - Nombre de gauche d'une opération arithmétique.
+ * @param {String} operateur - Symbole d'une opération arithmétique.
+ * @param {Number} operande_droite - Nombre de droite d'une opération arithmétique.
+ * @returns {String|Number} L'opération calculée ou une erreur.
  */
 function calculer_operation(operande_gauche, operateur, operande_droite) {
 	let resultat = null;
