@@ -126,7 +126,7 @@ function evenement_calculer_operation() {
 	// 1. On demande le premier nombre à l'utilisateur. La valeur de retour de
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_gauche`.
-	let operande_gauche = prompt_nombre("Quel est le premier nombre");
+	let operande_gauche = prompt_nombre("Etape 1/3:\nQuel est le premier nombre");
 
 	// 1.1. On ne veut plus continuer le script si la valeur de l'opérande de
 	// 		gauche est nulle.
@@ -140,7 +140,7 @@ function evenement_calculer_operation() {
 	//    retour de la fonction `prompt_operator` est sauvegardée dans la
 	//    variable `operateur`.
 	let operateur = prompt_operateur_arithmetique(
-		"Quel est l'opérateur (*, /, +, -)",
+		"Étape 2/3:\nQuel est l'opérateur (*, /, +, -)",
 	);
 
 	// 2.1. On ne veut plus continuer le script si la valeur de l'opérateur est
@@ -154,7 +154,7 @@ function evenement_calculer_operation() {
 	// 3. On demande le second nombre à l'utilisateur. La valeur de retour de
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_droite`.
-	let operande_droite = prompt_nombre("Quel est le second nombre");
+	let operande_droite = prompt_nombre("Étape 3/3:\nQuel est le second nombre");
 
 	// 3.1. On ne veut plus continuer le script si la valeur de l'opérande de
 	// 		droite est nulle.
