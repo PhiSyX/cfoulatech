@@ -1,0 +1,38 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	place-items: center;
+	place-content: center;
+	font-family: Arial;
+}
+
+#calculatrice {
+	padding: 16px;
+	width: 350px;
+	text-align: center;
+	border: 1px solid #d5d0d0;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+}
+
+#calculatrice h1 {
+	margin-block: 24px;
+}
+
+#calculatrice button {
+	width: 100%;
+	padding: 16px;
+	border: 1px solid #d5d0d0;
+	background: #f9f9f9;
+	font-size: 24px;
+	cursor: pointer;
+}
