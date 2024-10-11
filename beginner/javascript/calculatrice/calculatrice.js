@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /**
  * Exercice faire une calculatrice simple. Sur la base de connaissances que nous
  * avons vu en cours.
@@ -12,15 +14,15 @@
  * NOTE: Le résultat `null` est envoyé lorsque l'utilisateur ANNULE la demande
  * depuis l'interface.
  *
- * Le paramètre `texte` prend en argument une valeur de type String. La fonction
- * retourne une valeur de type String ou de type null.
+ * Le paramètre `instruction` prend en argument une valeur de type String. La
+ * fonction retourne une valeur de type String ou de type null.
  */
-function prompt_en_boucle(texte) {
+function prompt_en_boucle(instruction) {
 	let resultat;
 
 	do {
 		// 1. On demande à l'utilisateur d'entrer une valeur depuis l'interface.
-		let saisie_utilisateur = prompt(texte);
+		let saisie_utilisateur = prompt(instruction);
 
 		// 2. On entre dans cette condition si l'utilisateur n'envoie pas du
 		//    vide.
@@ -48,10 +50,10 @@ function prompt_en_boucle(texte) {
  * La fonction retourne une valeur de type entier (entier ou entier décimale) ou
  * la valeur booléenne fausse (false).
  */
-function prompt_nombre(texte) {
+function prompt_nombre(instruction) {
 	// 1. On demande à l'utilisateur d'entrer une valeur. La valeur de retour
 	// de la fonction `prompt_en_boucle` est sauvegardé dans `nombre_en_chaine`.
-	let nombre_en_chaine = prompt_en_boucle(texte);
+	let nombre_en_chaine = prompt_en_boucle(instruction);
 
 	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
 	// 2. Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
@@ -90,9 +92,9 @@ function prompt_nombre(texte) {
  *
  * La fonction retourne l'opérateur valide ou false.
  */
-function prompt_operator(texte) {
+function prompt_operator(instruction) {
 	// 1. On demande à l'utilisateur d'entrer une valeur.
-	let op = prompt_en_boucle(texte);
+	let op = prompt_en_boucle(instruction);
 
 	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
 	// 2. Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
@@ -132,7 +134,7 @@ function evenement_calculer_operation() {
 	// 		gauche est fausse.
 	if (operande_gauche === false) {
 		// Stop la fonction.
-		return;
+		return false;
 	}
 
 	// 2. On demande l'opérateur arithmétique à l'utilisateur. La valeur de
@@ -144,7 +146,7 @@ function evenement_calculer_operation() {
 	// 		fausse.
 	if (operateur === false) {
 		// Stop la fonction.
-		return;
+		return false;
 	}
 
 	// 3. On demande le second nombre à l'utilisateur. La valeur de retour de
@@ -153,7 +155,7 @@ function evenement_calculer_operation() {
 	let operande_droite = prompt_nombre("Quel est le second nombre");
 	if (operande_droite === null) {
 		// Stop la fonction.
-		return;
+		return false;
 	}
 
 	// 4. On fait le calcule des opérations.
@@ -169,7 +171,7 @@ function evenement_calculer_operation() {
 		erreur(resultat);
 
 		// Stop la fonction.
-		return;
+		return false;
 	}
 
 	// 4.2. On entre dans condition si le resultat est réalisée avec succès.
@@ -255,3 +257,5 @@ const div = (a, b) => {
 const add = (a, b) => a + b;
 
 const sub = (a, b) => a - b;
+
+export {};
