@@ -14,6 +14,18 @@
  * NOTE: Le résultat `null` est envoyé lorsque l'utilisateur ANNULE la demande
  * depuis l'interface.
  *
+ * Dans cette partie que nous voyons :
+ *
+ *  - Appel de fonction. Récupération de son retour.
+ *  - Fonction de callback.
+ * 	- Initialisation d'une variable à undefined
+ *  - Déclaration variable via let
+ *  - Boucle do while
+ *  - Condition if
+ *  - Opérateur de comparaison ===, !==
+ *  - Opérateur logique &&, ||
+ *  - typeof
+ *
  * @param {String} instruction - Instruction à donner au prompt.
  * @param {Function} validation_fonction - Fonction Callback qui sert de validation.
  * @returns {String|Number|null} La saisie utilisateur.
@@ -52,6 +64,17 @@ function prompt_en_boucle(instruction, validation_fonction) {
 
 /**
  * Invite l'utilisateur à entrer un nombre entier ou décimal (nombre à virgule).
+ *
+ * Dans cette fonction que nous voyons :
+ *
+ *  - Déclaration variable via let, const
+ *  - Fonction anonyme/fléchée
+ *  - Appel de fonction. Récupération de son retour.
+ *  - Une conversion d'une chaine vers un nombre décimal
+ *  - Condition if
+ *  - Opérateur de comparaison <=, >=
+ *  - Opérateur logique ||
+ *
  * @param {String} instruction - Instruction à donner au prompt.
  * @returns {Number|null} Nombre converti choisi par l'utilisateur.
  */
@@ -95,6 +118,15 @@ function prompt_nombre(instruction) {
  * - '+'
  * - '-'
  *
+ * Dans cette fonction que nous voyons :
+ *
+ *  - Déclaration variable via const
+ *  - Fonction anonyme/fléchée
+ *  - Appel de fonction. Récupération de son retour.
+ *  - Condition if
+ *  - Opérateur de comparaison ===
+ *  - Opérateur logique ||
+ *
  * @param {String} instruction - Instruction à donner au prompt.
  * @returns {String|null} L'opérateur arithmétique choisie par l'utilisateur.
  */
@@ -121,12 +153,25 @@ function prompt_operateur_arithmetique(instruction) {
 
 /**
  * Événement utilisée lors du CLICK.
+ *
+ * Dans cette fonction que nous voyons :
+ *
+ *  - Déclaration variable via let
+ *  - Fonction anonyme/fléchée
+ *  - Appel de fonction. Récupération de son retour.
+ *  - Condition if
+ *  - Opérateur de comparaison ===, !==s
+ *  - Opérateur logique ||
+ *  - typeof
+ *
  */
 function evenement_calculer_operation() {
 	// 1. On demande le premier nombre à l'utilisateur. La valeur de retour de
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_gauche`.
-	let operande_gauche = prompt_nombre("Etape 1/3:\nQuel est le premier nombre");
+	let operande_gauche = prompt_nombre(
+		"Etape 1/3:\nQuel est le premier nombre",
+	);
 
 	// 1.1. On ne veut plus continuer le script si la valeur de l'opérande de
 	// 		gauche est nulle.
@@ -154,7 +199,9 @@ function evenement_calculer_operation() {
 	// 3. On demande le second nombre à l'utilisateur. La valeur de retour de
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_droite`.
-	let operande_droite = prompt_nombre("Étape 3/3:\nQuel est le second nombre");
+	let operande_droite = prompt_nombre(
+		"Étape 3/3:\nQuel est le second nombre",
+	);
 
 	// 3.1. On ne veut plus continuer le script si la valeur de l'opérande de
 	// 		droite est nulle.
@@ -189,21 +236,15 @@ function evenement_calculer_operation() {
 }
 
 /**
- * Notifie l'utilisateur avec un message erreur.
- */
-function erreur(message_erreur) {
-	alert(`Erreur: ${message_erreur}`);
-}
-
-/**
- * Notifie l'utilisateur que la calculatrice en cours a été annulée.
- */
-function operation_annuler() {
-	alert("L'opération a été annulée.");
-}
-
-/**
  * Calcule l'opération.
+ *
+ * Dans cette fonction que nous voyons :
+ *
+ *  - Déclaration variable via let
+ *  - Switch case
+ *  - Appel de fonction. Récupération de son retour.
+ *
+ *
  * @param {Number} operande_gauche - Nombre de gauche d'une opération arithmétique.
  * @param {String} operateur - Symbole d'une opération arithmétique.
  * @param {Number} operande_droite - Nombre de droite d'une opération arithmétique.
@@ -242,6 +283,20 @@ function calculer_operation(operande_gauche, operateur, operande_droite) {
 
 	// 2. On retourne le résultat de l'opération à nos variables.
 	return resultat;
+}
+
+/**
+ * Notifie l'utilisateur avec un message erreur.
+ */
+function erreur(message_erreur) {
+	alert(`Erreur: ${message_erreur}`);
+}
+
+/**
+ * Notifie l'utilisateur que la calculatrice en cours a été annulée.
+ */
+function operation_annuler() {
+	alert("L'opération a été annulée.");
 }
 
 /**
