@@ -18,7 +18,7 @@
  * fonction retourne une valeur de type String ou de type null.
  */
 function prompt_en_boucle(instruction) {
-	let resultat;
+	let valeur;
 
 	do {
 		// 1. On demande à l'utilisateur d'entrer une valeur depuis l'interface.
@@ -30,18 +30,18 @@ function prompt_en_boucle(instruction) {
 			// 2.1. On applique la valeur de la saisie utilisateur comme valeur
 			//      de retour dans résultat. Étant donné qu'on a un résultat, on
 			//      sort de cette boucle, grâce à la condition en 3.
-			resultat = saisie_utilisateur;
+			valeur = saisie_utilisateur;
 		}
 	} while (
 		// 3. On vérifie que la condition est correcte. On sort de cette boucle
-		//    lorsque le résultat est une chaîne de caractères, ou lorsque
-		//    l'utilisateur à appuyer sur ANNULER (null). Sinon on revient au
-		//    point 1. plus-haut...
-		typeof resultat !== "string" &&
-		resultat !== null
+		//    lorsque la valeur est une chaîne de caractères, ou lorsque
+		//    l'utilisateur à appuyer sur le bouton ANNULER (= null). Sinon on
+		//    revient au point 1. plus-haut...
+		typeof valeur !== "string" &&
+		valeur !== null
 	);
 
-	return resultat;
+	return valeur;
 }
 
 /**
@@ -51,12 +51,12 @@ function prompt_en_boucle(instruction) {
  * la valeur booléenne fausse (false).
  */
 function prompt_nombre(instruction) {
-	// 1. On demande à l'utilisateur d'entrer une valeur. La valeur de retour
-	// de la fonction `prompt_en_boucle` est sauvegardé dans `nombre_en_chaine`.
+	// 1. On demande à l'utilisateur d'entrer une valeur. La valeur de retour de
+	//    la fonction `prompt_en_boucle` est sauvegardé dans `nombre_en_chaine`.
 	let nombre_en_chaine = prompt_en_boucle(instruction);
 
 	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
-	// 2. Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
+	//    Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
 	if (nombre_en_chaine === null) {
 		// 2.1. On retourne une valeur booléenne fausse pour indiquer que nous
 		// 		ne voulons plus continuer le script, on va gérer ça plus tard...
@@ -64,11 +64,22 @@ function prompt_nombre(instruction) {
 	}
 
 	// 3: On converti la chaîne entrée par l'utilisateur en nombre entier ou
-	// décimal via la fonction `Number` ou `parseFloat`.
+	//    décimal via la fonction native `Number()` ou `parseFloat()`.
 	let nombre = Number.parseFloat(nombre_en_chaine);
 
-	// 4. On vérifie que ce nom est valide.
-	if (Number.isNaN(nombre)) {
+	/**
+	 * Vérifie si le nombre est valide.
+	 *
+	 * = `Number.isNaN(nombre)`
+	 */
+	const verifie_nombre_invalide = (nombre) => {
+		return !nombre && nombre !== 0;
+	};
+
+	// 4. On vérifie que le nombre converti n'est pas valide via `isNaN()`, qui
+	//    veut dire "NaN = Not a Number", si ça n'est pas le cas, on entre dans
+	//    cette condition.
+	if (verifie_nombre_invalide(nombre)) {
 		// 4.1. On notifie l'utilisateur de son erreur.
 		erreur("Il ne s'agit pas d'un nombre valide, recommencez...");
 
@@ -85,19 +96,20 @@ function prompt_nombre(instruction) {
  * Invite l'utilisateur à entrer un des opérateurs arithmétiques supportés:
  *
  * Les opérateurs supportés:
- * 	  - '*'
- *    - '/'
- * 	  - '+'
- * 	  - '-'
+ *
+ * - '*'
+ * - '/'
+ * - '+'
+ * - '-'
  *
  * La fonction retourne l'opérateur valide ou false.
  */
-function prompt_operator(instruction) {
+function prompt_operateur_arithmetique(instruction) {
 	// 1. On demande à l'utilisateur d'entrer une valeur.
 	let op = prompt_en_boucle(instruction);
 
 	// 2. On entre dans cette condition si l'utilisateur à appuyer sur annuler.
-	// 2. Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
+	//    Sinon c'est que l'utilisateur à appuyer sur Ok et on passe au point 3.
 	if (op === null) {
 		// 2.1. On retourne une valeur booléenne fausse pour indiquer que nous
 		//      ne voulons plus continuer le script, on va gérer ça plus tard...
@@ -106,7 +118,7 @@ function prompt_operator(instruction) {
 
 	// 3. On entre dans cette condition si ce qui a été envoyé par l'utilisateur
 	//    n'est pas un des opérateurs arithmétiques supportés.
-	// 3. Sinon c'est que l'utilisateur à entrer un opérateur supporté et on
+	//    Sinon c'est que l'utilisateur à entrer un opérateur supporté et on
 	//    passe au point 4.
 	if (!(op === "*" || op === "/" || op === "+" || op === "-")) {
 		// 3.1. On notifie l'utilisateur de son erreur.
@@ -140,7 +152,9 @@ function evenement_calculer_operation() {
 	// 2. On demande l'opérateur arithmétique à l'utilisateur. La valeur de
 	//    retour de la fonction `prompt_operator` est sauvegardée dans la
 	//    variable `operateur`.
-	let operateur = prompt_operator("Quel est est l'opérateur (*, /, +, -)");
+	let operateur = prompt_operateur_arithmetique(
+		"Quel est est l'opérateur (*, /, +, -)",
+	);
 
 	// 2.1. On ne veut plus continuer le script si la valeur de l'opérateur est
 	// 		fausse.
