@@ -14,7 +14,7 @@
  * NOTE: Le résultat `null` est envoyé lorsque l'utilisateur ANNULE la demande
  * depuis l'interface.
  *
- * Dans cette partie que nous voyons :
+ * Dans cette partie que voyons-nous :
  *
  *  - Appel de fonction. Récupération de son retour.
  *  - Fonction de callback.
@@ -65,7 +65,7 @@ function prompt_en_boucle(instruction, validation_fonction) {
 /**
  * Invite l'utilisateur à entrer un nombre entier ou décimal (nombre à virgule).
  *
- * Dans cette fonction que nous voyons :
+ * Dans cette fonction que voyons-nous :
  *
  *  - Déclaration variable via let, const
  *  - Fonction anonyme/fléchée
@@ -91,7 +91,7 @@ function prompt_nombre(instruction) {
 		// 		conversion peut échouer. Par exemple lorsque la valeur de
 		// 		l'utilisateur `nombre` vaut "abcd".
 		//
-		//if (Number.isNaN(nombre)) {
+		//if (Number.isNaN(nombre)) { // <- Pas encore vu.
 		if (n <= 0 || n >= 0) {
 			// 1.2.1. On retourne cette valeur à notre variable `nombre`
 			// 		  plus-bas.
@@ -118,7 +118,7 @@ function prompt_nombre(instruction) {
  * - '+'
  * - '-'
  *
- * Dans cette fonction que nous voyons :
+ * Dans cette fonction que voyons-nous :
  *
  *  - Déclaration variable via const
  *  - Fonction anonyme/fléchée
@@ -152,20 +152,20 @@ function prompt_operateur_arithmetique(instruction) {
 }
 
 /**
- * Événement utilisée lors du CLICK.
+ * Fonction d'événement utilisée lors du CLICK.
  *
- * Dans cette fonction que nous voyons :
+ * Dans cette fonction que voyons-nous :
  *
  *  - Déclaration variable via let
  *  - Fonction anonyme/fléchée
  *  - Appel de fonction. Récupération de son retour.
  *  - Condition if
- *  - Opérateur de comparaison ===, !==s
+ *  - Opérateur de comparaison ===, !==
  *  - Opérateur logique ||
  *  - typeof
  *
  */
-function evenement_calculer_operation() {
+function evenement_lancer_calculatrice() {
 	// 1. On demande le premier nombre à l'utilisateur. La valeur de retour de
 	//    la fonction `prompt_nombre` est sauvegardée dans la variable
 	//    `operande_gauche`.
@@ -177,7 +177,7 @@ function evenement_calculer_operation() {
 	// 		gauche est nulle.
 	if (operande_gauche === null) {
 		// 1.1.1. Annule l'opération.
-		operation_annuler();
+		operation_annuler(1);
 		return false;
 	}
 
@@ -192,7 +192,7 @@ function evenement_calculer_operation() {
 	// 		fausse.
 	if (operateur === null) {
 		// 2.1.1. Annule l'opération.
-		operation_annuler();
+		operation_annuler(2);
 		return false;
 	}
 
@@ -207,7 +207,7 @@ function evenement_calculer_operation() {
 	// 		droite est nulle.
 	if (operande_droite === null) {
 		// 3.1.1. Annule l'opération.
-		operation_annuler();
+		operation_annuler(3);
 		return false;
 	}
 
@@ -236,14 +236,13 @@ function evenement_calculer_operation() {
 }
 
 /**
- * Calcule l'opération.
+ * Calcule l'opération de 2 opérandes données en fonction de l'opérateur donné.
  *
- * Dans cette fonction que nous voyons :
+ * Dans cette fonction que voyons-nous :
  *
  *  - Déclaration variable via let
  *  - Switch case
  *  - Appel de fonction. Récupération de son retour.
- *
  *
  * @param {Number} operande_gauche - Nombre de gauche d'une opération arithmétique.
  * @param {String} operateur - Symbole d'une opération arithmétique.
@@ -294,9 +293,10 @@ function erreur(message_erreur) {
 
 /**
  * Notifie l'utilisateur que la calculatrice en cours a été annulée.
+ * @param {number} step 
  */
-function operation_annuler() {
-	alert("L'opération a été annulée.");
+function operation_annuler(step) {
+	alert(`L'opération a été annulée à l'étape ${step}.`);
 }
 
 /**

@@ -1,3 +1,11 @@
+:root {
+	--space: 8px;
+	--light-gray-bg: #f9f9f9;
+	--light-gray-button: #efefef;
+	--light-gray-border-color: #d8d8d8;
+	--gray-border-color: #5f5f5f;
+}
+
 *,
 *::after,
 *::before {
@@ -9,30 +17,39 @@ html,
 body {
 	height: 100%;
 	width: 100%;
+
 	display: flex;
+	flex-direction: column;
 	place-items: center;
 	place-content: center;
+
 	font-family: Arial;
 }
 
 #calculatrice {
-	padding: 16px;
-	width: 350px;
+	padding: 2rem;
 	text-align: center;
-	border: 1px solid #d5d0d0;
-	border-radius: 8px;
-	background-color: #f9f9f9;
+	border: 2px solid var(--light-gray-border-color);
+	border-radius: 18px;
+	background-color: var(--light-gray-bg);
 }
 
 #calculatrice h1 {
-	margin-block: 24px;
+	margin-block: 2rem;
+	font-size: 2.5rem;
 }
 
 #calculatrice button {
-	width: 100%;
-	padding: 16px;
-	border: 1px solid #d5d0d0;
-	background: #f9f9f9;
-	font-size: 24px;
+	padding: calc(var(--space) * 2);
+	font-size: 2rem;
 	cursor: pointer;
+	border: 2px ridge var(--light-gray-border-color);
+	border-radius: 4px;
+	background: #efefef;
+}
+#calculatrice button:hover {
+	border-style: outset;
+}
+#calculatrice button:active {
+	border-style: inset;
 }
