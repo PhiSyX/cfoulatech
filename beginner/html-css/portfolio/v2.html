@@ -18,14 +18,14 @@
             </div>
         </header>
 
-        <nav role="navigation">
-            <a href="#about" class="is-active">À propos de moi</a>
-            <a href="#projects">Projets</a>
-            <a href="#contact">Contact</a>
+        <nav role="navigation,tablist">
+            <a id="about-tab" href="#about" class="is-active">À propos de moi</a>
+            <a id="projects-tab" href="#projects">Projets</a>
+            <a id="contact-tab" href="#contact">Contact</a>
         </nav>
 
         <main>
-            <section id="about">
+            <section id="about" aria-labelledby="about-tab" role="tabpanel">
                 <h1>À propos de moi</h1>
 
 
@@ -204,7 +204,7 @@
                 </article>
             </section>
 
-            <section id="projects">
+            <section id="projects" aria-labelledby="projects-tab" role="tabpanel">
                 <h1>Mes projets</h1>
 
                 <table>
@@ -258,7 +258,7 @@
                 </table>
             </section>
 
-            <section id="contact">
+            <section id="contact" aria-labelledby="contact-tab" role="tabpanel">
                 <form action="#" method="POST" autocomplete="off">
                     <fieldset>
                         <legend>Formulaire de contact</legend>

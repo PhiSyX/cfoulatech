@@ -74,7 +74,7 @@ header[role="heading"] img {
 
 /* Navigation */
 
-nav[role="navigation"] {
+nav[role^="navigation"] {
 	display: flex;
 	gap: var(--space);
 	justify-content: center;
@@ -87,7 +87,7 @@ nav[role="navigation"] {
 	background-color: #fff;
 }
 
-nav[role="navigation"] > a {
+nav[role^="navigation"] > a {
 	padding-block: var(--space);
 	padding-inline: calc(var(--space) * 2);
 	border-bottom: 4px solid transparent;
@@ -95,9 +95,9 @@ nav[role="navigation"] > a {
 	color: inherit;
 }
 
-body:has(#about:target) nav[role="navigation"] > a[href="#about"],
-body:has(#projects:target) nav[role="navigation"] > a[href="#projects"],
-body:has(#contact:target) nav[role="navigation"] > a[href="#contact"] {
+body:has(#about:target) nav[role^="navigation"] > a[href="#about"],
+body:has(#projects:target) nav[role^="navigation"] > a[href="#projects"],
+body:has(#contact:target) nav[role^="navigation"] > a[href="#contact"] {
 	font-weight: bold;
 	border-color: #ad6bf1 !important;
 }
@@ -121,7 +121,7 @@ main[role="main"] > main > section {
 	flex-shrink: 0;
 	width: 100%;
 	max-width: -moz-available;
-	max-width: -wekbit-fill-available;
+	max-width: -webkit-fill-available;
 	max-height: 80ch;
 	padding: calc(var(--space) * 3);
 	border-radius: var(--rounded);
@@ -253,7 +253,7 @@ td {
 	padding: var(--space);
 	border-radius: 4px;
 	border: 0;
-	background-color: #e4e5f1;
+	background: linear-gradient(to right, #f5e7fd, #dfe7f5);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: calc(var(--space) * 2);
 }
