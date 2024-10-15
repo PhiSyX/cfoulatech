@@ -1,44 +1,19 @@
 <?php
 
-function hello1(string $name = null)
+/**
+ * Salue un nom donné.
+ * @param string $name Nom à saluer.
+ * @return string Le message de salutation.
+ */
+function hello(string $name): string
 {
-    if ($name === null) {
-        return "Hello World";
-    }
-    return "Hello $name";
+    return "Hello $name !!!";
 }
 
-function hello2(string $name = "World")
-{
-    return "Hello $name";
+$first_names = ["Zakaria", "Clovis", "Julien", "Olga", "Say"];
+
+foreach ($first_names as $firstname) {
+    // NOTE: c'est ici que l'on affiche le retour de la fonction hello, pas
+    // directement dans la fonction hello.
+    echo hello($firstname) . "\n";
 }
-
-function hello3(string $name = null)
-{
-    $n = $name;
-    $n ??= "World";
-
-    if ($name === null) {
-        //...
-    }
-
-    return "Hello $n";
-}
-
-echo hello1();
-echo "\n";
-echo hello1("Mike");
-
-echo "\n";
-echo "\n";
-
-echo hello2();
-echo "\n";
-echo hello2("Mike");
-
-echo "\n";
-echo "\n";
-
-echo hello3();
-echo "\n";
-echo hello3("Mike");

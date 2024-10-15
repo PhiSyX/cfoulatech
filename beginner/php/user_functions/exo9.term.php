@@ -34,8 +34,7 @@ function display_result_operation(
     string $word,
     int $b,
     string | int $result
-)
-{
+) {
     if (is_numeric($result)) {
         return "$a $word $b donne $result";
     }
@@ -58,6 +57,8 @@ $b = $operands[1];
 echo display_result_operation($a, "multiplié à", $b, mul($a, $b)) . "\n";
 
 $is_error = true;
+$max = 10;
+$i = 0;
 do {
     $operands = prompt_operands("Division");
     $a = $operands[0];
@@ -65,4 +66,5 @@ do {
     $div_output = display_result_operation($a, "divisé à", $b, div($a, $b));
     $is_error = str_starts_with($div_output, "Erreur:");
     echo $div_output . "\n";
-} while ($is_error);
+    $i++;
+} while ($i <= $max && $is_error);

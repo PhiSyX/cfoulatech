@@ -1,13 +1,18 @@
 <?php
 
-hello();
-
-/**
- * Salue le monde en l'affichant.
- */
-function hello(): void
+function is_adult(int $age): bool
 {
-    echo "Hello World !!!\n";
+    return $age >= 18;
 }
 
-hello();
+function display_adult_sentence(int $age)
+{
+    if (is_adult($age)) {
+        echo "Vous êtes majeur";
+    } else {
+        echo "Vous êtes mineur";
+    }
+}
+
+$age_utilisateur = (int) readline("Entrez votre âge : ");
+display_adult_sentence($age_utilisateur);

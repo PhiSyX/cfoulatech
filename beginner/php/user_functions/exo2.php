@@ -1,16 +1,13 @@
 <?php
 
+hello();
+
 /**
- * Salue un nom donné et l'affiche.
- * @param string $name Nom à saluer.
+ * Salue le monde en l'affichant.
  */
-function hello(string $name): void
+function hello(): void
 {
-    echo "Hello $name !!!\n";
+    echo "Hello World !!!\n";
 }
 
-hello("Zakaria");
-hello("Clovis");
-hello("Julien");
-hello("Olga");
-hello("Say");
+hello();

@@ -1,24 +1,44 @@
 <?php
 
-function hello1($firstname = null)
+function hello1(string $name = null)
 {
-    // Double égale
-    if ($firstname == null) {
-        return "Hello World \n";
+    if ($name === null) {
+        return "Hello World";
     }
-
-    return "Hello $firstname \n";
+    return "Hello $name";
 }
 
-function hello2($firstname)
+function hello2(string $name = "World")
 {
-    if (strlen($firstname) === 0) {
-        return "Hello World \n";
-    }
-
-    return "Hello $firstname \n";
+    return "Hello $name";
 }
 
-$user_firstname = readline("Entrez votre prénom : ");
-echo hello1($user_firstname);
-echo hello2($user_firstname);
+function hello3(string $name = null)
+{
+    $n = $name;
+    $n ??= "World";
+
+    if ($name === null) {
+        //...
+    }
+
+    return "Hello $n";
+}
+
+echo hello1();
+echo "\n";
+echo hello1("Mike");
+
+echo "\n";
+echo "\n";
+
+echo hello2();
+echo "\n";
+echo hello2("Mike");
+
+echo "\n";
+echo "\n";
+
+echo hello3();
+echo "\n";
+echo hello3("Mike");

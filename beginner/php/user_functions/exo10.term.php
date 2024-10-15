@@ -44,9 +44,8 @@ $ops = [
     ]
 ];
 
-[$a, $b] = prompt_operands($op["name"]);
-
 foreach ($ops as $op) {
+    [$a, $b] = prompt_operands($op["name"]);
     echo display_result_operation($a, $op["term"], $b, $op["calc"]) . "\n";
 }
 

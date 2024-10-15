@@ -9,8 +9,8 @@ function hello(string $name): void
     echo "Hello $name !!!\n";
 }
 
-$first_names = ["Zakaria", "Clovis", "Julien", "Olga", "Say"];
-
-foreach ($first_names as $firstname) {
-    hello($firstname);
-}
+hello("Zakaria");
+hello("Clovis");
+hello("Julien");
+hello("Olga");
+hello("Say");
