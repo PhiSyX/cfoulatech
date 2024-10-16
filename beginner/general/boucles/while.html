@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La boucle WHILE</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajaxs/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <template id="tpl-infinite-loop">
+        <pre><code>while (true) {</code></pre>
+        <div class="circle-outline infinite-loop">
+            <pre>echo "Bonjour les gens\n";</pre>
+            <span>Bonjour les gens</span>
+        </div>
+        <pre><code>}</code></pre>
+    </template>
+
+    <template id="tpl-while-break">
+        <pre data-ignore-after="10"><code>while (true) {</code></pre>
+        <div class="circle-outline while-10" data-count="10 itérations" data-ignore-after="11">
+            <pre><code class="">$compteur += 1;
+<span data-unignore-after="10">if ($compteur === 10) {
+$resultat = $compteur * 2;
+break;
+}</span></code></pre>
+        </div>
+        <pre data-ignore-after="10"><code>}</code></pre>
+        <span data-show-after="11">Le résultat est 20</span>
+    </template>
+
+    <template id="tpl-while-cond">
+        <pre data-ignore-after="10"><code>while ($compteur &lt; 10) {</code></pre>
+        <div class="circle-outline while-10" data-count="10 itérations" data-ignore-after="10">
+            <pre><code>$compteur += 1;
+$resultat = $compteur * 2;</code></pre>
+        </div>
+        <pre data-ignore-after="10"><code>}</code></pre>
+        <span data-show-after="11">Le résultat est 20</span>
+    </template>
+</head>
+
+<body>
+    <main role="main">
+        <a href="index.html">Retour à la page des boucles</a>
+
+        <section id="boucle-while">
+            <article role="article">
+                <h1>La boucle <code>while</code> en <code>PHP</code></h1>
+
+                <p>
+                    Nous appelons cette boucle <code>TANT QUE</code> en français
+                    quand nous y faisons référence, mais les autres traductions
+                    de <code>while</code> vers le français sont tout aussi
+                    correctes.
+                </p>
+
+                <h3>Syntaxe</h3>
+
+                <h4>Celle principalement utilisée:</h4>
+                <pre><code>&lt;?php
+
+while ( CONDITION ) {
+    // Instruction PHP.
+}</code></pre>
+
+                <h4>Utilisée lorsque le PHP ET l'HTML sont mélangées:</h4>
+                <pre><code>&lt;?php while ( CONDITION ) : ?>
+    // Balise HTML + PHP. 
+&lt;?php endwhile; ?>
+</code></pre>
+
+                <h2>De quoi a besoin cette boucle pour exécuter son code ?</h2>
+                <p>
+                    Comme avec une condition <code>if</code>, la valeur DOIT
+                    être vraie pour que le code dans sa branche puisse être
+                    exécuté par PHP. Cependant, à la différence d'une condition
+                    <code>if</code>, tant que la condition est vraie, la boucle
+                    tourne. Pour rappel
+                    <code>vraie</code> est une valeur de type
+                    <code>boolean</code> à
+                    <code>true</code>. Elle s'arrêtera donc lorsque la condition
+                    deviendra fausse, c'est-à-dire, lorsqu'elle sera une valeur
+                    booléenne <code>false</code>.
+                </p>
+
+                <h2>Rappel condition <code>if</code></h2>
+                <pre><code>&lt;?php</code><code data-ignore-after="0">if ( false ) {
+    echo "Au revoir les gens\n";
+}</code><code title="Ce code est utilisé par PHP">if ( true ) {
+    echo "Bonjour les gens\n";
+}
+
+echo "On continue la suite des instructions\n";</code></pre>
+
+                <p>
+                    Dans cet exemple, ce qui sera exécuté dans notre page est la
+                    seconde condition l'instruction <code>echo "Bonjour les
+                    gens\n";</code>
+                    car la condition est vraie, plus la suite du code
+                    <code>echo "On continue la suite des
+                    instructions\n";</code>. Jusque là, tout va bien. Maintenant
+                    faisons la même chose en mettant une boucle
+                    <code>while</code> à la place de <code>if</code>.
+                </p>
+
+                <h2>Exemple <code>while</code></h2>
+                <pre><code>&lt;?php</code><code data-ignore-after="0">while ( false ) {
+    echo "Au revoir les gens\n";
+}</code><code title="Ce code est utilisé par PHP">while ( true ) {
+    echo "Bonjour les gens\n";
+}</code><code data-ignore-after="0">echo "On continue la suite des instructions\n";</code></pre>
+
+                <p>
+                    Quand nous exécutons ce programme, nous voyons
+                    <code>Bonjour les gens</code> s'afficher encore et encore en
+                    continu jusqu'à ce qu'on arrête le programme manuellement.
+                    La plupart des terminaux utilisent un raccourci clavier,
+                    <code>ctrl-c</code> ou
+                    <code>command+c</code> sur Mac, pour arrêter un programme
+                    qui est bloqué dans une boucle infinie. Dans un navigateur,
+                    la page se charge, mais indéfiniment.
+                </p>
+
+                <div class="demo" is="tpl-infinite-loop">
+                    <button type="reset">Rejouer</button>
+                </div>
+
+                <p>
+                    Heureusement, <code>PHP</code> fournit aussi un autre
+                    moyen de sortir d'une boucle en utilisant du code. On
+                    peut ajouter le mot-clé
+                    <code>break</code> à l'intérieur de la boucle pour
+                    demander au programme d'arrêter la boucle.
+                </p>
+
+                <pre><code>&lt;?php
+
+$compteur = 0; // Valeur initiale à 0. On aurait pu mettre n'importe quel entier.
+$resultat = 0; // Valeur initiale à 0. On aurait pu mettre n'importe quel entier.
+
+while (true) {
+    // Incrémente de 1 le compteur à chaque tour de la boucle.
+    $compteur += 1;
+    // à la 10ème itération, nous cassons la boucle avec le mot-clé `break`.
+    if ($compteur === 10) {
+        $resultat = $compteur * 2;
+        break;
+    }
+}
+
+echo "Le résultat est " . $resultat;</code></pre>
+
+                <div class="demo" is="tpl-while-break">
+                    <button type="reset">Rejouer</button>
+                </div>
+
+                <p>
+                    Mais nous pouvons laisser PHP terminer cette boucle
+                    d'elle-même en y mettant une condition basée sur la valeur
+                    de nos variables.
+                </p>
+
+                <div class="demo" is="tpl-while-cond">
+                    <button type="reset">Rejouer</button>
+                </div>
+
+                <h2>Quand est-ce qu'il faut l'utiliser?</h2>
+
+                <p>
+                    Quand on n'est pas certains du nombre d'itérations qu'il
+                    peut y avoir.
+
+                    Par exemple, lorsqu'on demande à l'utilisateur
+                    d'entrer au clavier des mots, et que ces mots ne doivent pas
+                    être vides.
+                </p>
+
+                <p>
+                    À titre personnel, je ne recommande pas d'utiliser la boucle
+                    <code>while</code> pour parcourir les éléments d'un tableau,
+                    bien qu'on puisse le faire. Dans la plupart des cas
+                    <code><a href="foreach.html">foreach</a></code> est la voix
+                    pour les tableaux.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
