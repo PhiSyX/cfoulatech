@@ -89,9 +89,11 @@ class Tokenizer {
 					break;
 				}
 
-				if (
-					Number.isSafeInteger(Number.parseInt(peek_next_ch, 10)) ||
-					peek_next_ch === "."
+				if ([".", ","].includes(peek_next_ch)) {
+					this.expr.shift();
+					numeric += ".";
+				} else if (
+					Number.isSafeInteger(Number.parseInt(peek_next_ch, 10))
 				) {
 					numeric += this.expr.shift();
 				} else if (peek_next_ch === "(") {
@@ -332,7 +334,9 @@ class Parser {
  * @returns {number}
  */
 function evaluation(expression) {
-	let parser = new Parser(expression.replaceAll(" ", ""));
+	let parser = new Parser(
+		expression.replaceAll(" ", "").replaceAll(",", "."),
+	);
 	let ast = parser.parse();
 
 	/**
@@ -371,21 +375,53 @@ function evaluation(expression) {
  */
 let $calc_form = document.querySelector("#calculator form");
 
-$calc_form?.addEventListener("submit", event_calculator);
+/**
+ * @type {HTMLInputElement|null}
+ */
+let $calc_input = document.querySelector("#calculator input");
 
+/**
+ * @type {HTMLOutputElement|null}
+ */
 let $calc_output = document.querySelector("#calculator output");
 
 /**
- * @param {SubmitEvent} evt - Événement Submit
+ * @type {NodeListOf<HTMLButtonElement>}
+ */
+let $calc_ops = document.querySelectorAll(
+	'#calculator .ops button[type="button"]',
+);
+
+/**
+ * @type {NodeListOf<HTMLButtonElement>}
+ */
+let $calc_numbers = document.querySelectorAll(
+	'#calculator .numbers button[type="button"]',
+);
+
+$calc_form?.addEventListener("submit", event_submit_calculator);
+
+for (let $calc_op of Array.from($calc_ops)) {
+	$calc_op.addEventListener("click", event_button_add_to_calculator);
+}
+
+for (let $calc_number of Array.from($calc_numbers)) {
+	$calc_number.addEventListener("click", event_button_add_to_calculator);
+}
+
+document.addEventListener("keydown", event_add_to_calculator_with_keyboard);
+
+/**
+ * @param {Event} evt - Événement Submit
  * @this {HTMLFormElement}
  */
-function event_calculator(evt) {
+function event_submit_calculator(evt) {
 	evt.preventDefault();
 
 	let data = new FormData(this);
 	let full_operation = data.get("full_operation");
 	if (!full_operation) {
-		alert("La clé du formulaire full_operation DOIT être présente");
+		alert("Une entrée du formulaire (full_operation) est requise");
 		return;
 	}
 
@@ -399,4 +435,99 @@ function event_calculator(evt) {
 	} catch (err) {
 		alert(`Error: ${err.message}`);
 	}
+}
+
+/**
+ * @param {Event} evt
+ * @this {HTMLButtonElement}
+ */
+function event_button_add_to_calculator(evt) {
+	evt.preventDefault();
+	add_to_calculator(this.textContent || "");
+}
+
+/**
+ * @param {{toString(): string}} n
+ */
+function add_to_calculator(n) {
+	if (!$calc_input) {
+		return;
+	}
+	$calc_input.value += n;
+}
+
+function remove_number_to_calculator() {
+	if (!$calc_input) {
+		return;
+	}
+	$calc_input.value = $calc_input.value.slice(0, -1);
+}
+
+/**
+ * @param {KeyboardEvent} evt
+ */
+function event_add_to_calculator_with_keyboard(evt) {
+	/**
+	 * @type {HTMLElement|null}
+	 */
+	// @ts-expect-error - HTMLElement|null
+	let target = evt.target;
+
+	if (target?.tagName === "INPUT") {
+		return;
+	}
+
+	switch (evt.code) {
+		case "Backspace":
+			{
+				remove_number_to_calculator();
+			}
+			return;
+
+		case "Enter":
+			return;
+
+		case "Digit0":
+		case "Digit1":
+		case "Digit2":
+		case "Digit3":
+		case "Digit4":
+		case "Digit5":
+		case "Digit6":
+		case "Digit7":
+		case "Digit8":
+		case "Digit9":
+			break;
+
+		case "Space":
+			{
+				if (target?.tagName === "BUTTON") {
+					return;
+				}
+			}
+			break;
+
+		default:
+			{
+				if (evt.shiftKey && evt.key === "/") {
+					break;
+				}
+
+				if (evt.shiftKey || evt.ctrlKey || evt.key.length > 1) {
+					return;
+				}
+			}
+			break;
+	}
+
+	evt.preventDefault();
+
+	let number = Number.parseFloat(evt.key);
+
+	if (!Number.isNaN(number)) {
+		add_to_calculator(number);
+		return;
+	}
+
+	add_to_calculator(evt.key);
 }
