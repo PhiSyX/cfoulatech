@@ -1,3 +1,5 @@
+import { write } from "../utils/write.js";
+
 /**
  * @param {string} str
  * @returns {string}
@@ -35,7 +37,7 @@ export function natively(str) {
 let output_1 = via_for("Salut");
 let expected_output_1 = "tulaS";
 
-console.log(
+write(
 	output_1,
 	"est équivalent de",
 	expected_output_1,
@@ -46,7 +48,7 @@ console.log(
 let output_2 = recursively("Bonjour");
 let expected_output_2 = "ruojnoB";
 
-console.log(
+write(
 	output_2,
 	"est équivalent de",
 	expected_output_2,
@@ -56,7 +58,7 @@ console.log(
 
 let output_3 = natively("Bonjour");
 let expected_output_3 = "ruojnoB";
-console.log(
+write(
 	output_3,
 	"est équivalent de",
 	expected_output_3,

@@ -1,3 +1,5 @@
+import { write } from "../utils/write.js";
+
 const EXPECTED_NUMBER = 10;
 
 // Une première solution
@@ -9,7 +11,7 @@ while (counter !== EXPECTED_NUMBER) {
 	numbers.push(++counter);
 }
 
-console.log("Les nombres de 1 à 10:", numbers);
+write("Les nombres de 1 à 10:", numbers);
 
 // Une second solution
 numbers = [];
@@ -18,7 +20,7 @@ while (numbers.length !== EXPECTED_NUMBER) {
 	numbers.push(numbers.length + 1);
 }
 
-console.log("Les nombres de 1 à 10:", numbers);
+write("Les nombres de 1 à 10:", numbers);
 
 // Une tierce solution
 counter = 0;
@@ -28,7 +30,4 @@ do {
 	numbers.push(++counter);
 } while (counter !== EXPECTED_NUMBER);
 
-console.log("Les nombres de 1 à 10:", numbers);
-
-// NOTE: typescript casse les bonbons ;)
-export {};
+write("Les nombres de 1 à 10:", numbers);

@@ -12,8 +12,8 @@ function calculate_rect_area(L, l) {
 	return L * l;
 }
 
-let user_height = Number(await prompt("Quelle est votre longueur ?"));
-let user_width = Number(await prompt("Quelle est votre largeur ?"));
+let user_height = Number.parseInt(await prompt("Quelle est votre longueur ?"), 10);
+let user_width = Number.parseInt(await prompt("Quelle est votre largeur ?"), 10);
 
 let rect_area = calculate_rect_area(user_height, user_width);
 

@@ -11,8 +11,8 @@ export function calculate_tva(price_excl, tva_rate) {
 	return (price_excl * tva_rate) / 100;
 }
 
-let user_price_excl = Number(await prompt("Quel est votre PRIX (HT)"));
-let user_tva_rate = Number(await prompt("Quel est la TVA?", 21));
+let user_price_excl = Number.parseFloat(await prompt("Quel est votre PRIX (HT)"));
+let user_tva_rate = Number.parseInt(await prompt("Quel est la TVA?", 21), 10);
 
 let amount = calculate_tva(user_price_excl, user_tva_rate);
 

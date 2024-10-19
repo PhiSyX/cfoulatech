@@ -1,3 +1,5 @@
+import { alert } from "../utils/alert.js";
+
 let vehicles = [
 	["Audi", "Grise"],
 	["Fiat", "Noire"],
@@ -6,11 +8,4 @@ let vehicles = [
 
 let vehicle = vehicles[2];
 
-console.log(
-	"Le model de ma voiture est %s et de couleur %s",
-	vehicle[0],
-	vehicle[1],
-);
-
-// NOTE: typescript casse les bonbons ;)
-export {};
+alert(`Le model de ma voiture est ${vehicle[0]} et de couleur ${vehicle[1]}`);

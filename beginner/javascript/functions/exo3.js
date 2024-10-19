@@ -10,7 +10,7 @@ function calculate_perimeter(S) {
 	return S * 4;
 }
 
-let user_sides = Number(await prompt("Combien de côtés ?"));
+let user_sides = Number.parseInt(await prompt("Combien de côtés ?"), 10);
 let perimeter = calculate_perimeter(user_sides);
 
 alert(`Le périmètre de ${user_sides} est: ${perimeter}`);

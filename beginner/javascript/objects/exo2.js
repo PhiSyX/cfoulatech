@@ -1,3 +1,5 @@
+import { alert } from "../utils/alert.js";
+
 export function Personne() {
 	this.firstname = "John";
 	this.lastname = "Doe";
@@ -5,12 +7,12 @@ export function Personne() {
 }
 
 Personne.say_goodbye = function () {
-	console.log("Au revoir");
+	alert("Au revoir");
 };
 
 Personne.prototype.say_hello = function () {
-	console.log(
-		`Salut je suis ${this.firstname} ${this.lastname}, j'ai ${this.age} ans!`,
+	alert(
+		`Salut je suis ${this.firstname} ${this.lastname}, j'ai ${this.age} ans!`
 	);
 };
 

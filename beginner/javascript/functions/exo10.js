@@ -12,6 +12,6 @@ function display_message_after_delay(text, seconds) {
 }
 
 let user_text = await prompt("Quel est le texte à afficher ?");
-let user_secs = Number(await prompt("En combien de seconde ?", 1));
+let user_secs = Number.parseInt(await prompt("En combien de seconde ?", 1), 10);
 
 display_message_after_delay(user_text, user_secs);

@@ -1,7 +1,6 @@
+import { alert } from "../utils/alert.js";
+
 let a = 5;
 let b = 3;
 let somme = a + b;
-console.log(somme);
-
-// NOTE: typescript casse les bonbons ;)
-export {};
+alert(somme);

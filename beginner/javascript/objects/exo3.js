@@ -1,3 +1,5 @@
+import { alert } from "../utils/alert.js";
+
 /**
  * Classe Utilisateur.
  *
@@ -99,40 +101,40 @@ export class SuperAdmin extends Admin {
 	constructor(
 		name,
 		email,
-		permissions = ["user:readwrite", "admin:readwrite"],
+		permissions = ["user:readwrite", "admin:readwrite"]
 	) {
 		super(name, email, permissions);
 	}
 }
 
 let user = new User("John", "john@example.org");
-console.log(user.display_info());
-console.log(user.say_hello());
-console.log({
+alert(user.display_info());
+alert(user.say_hello());
+console.log(user, {
 	is_user: user instanceof User,
 	is_admin: user instanceof Admin,
 	is_superadmin: user instanceof SuperAdmin,
 });
 
-console.log("-----------");
+alert("-----------");
 
 let admin = new Admin("Doe", "doe@example.org");
-console.log(admin.display_info());
-console.log(admin.say_hello());
-console.log(admin.display_permissions());
-console.log({
+alert(admin.display_info());
+alert(admin.say_hello());
+alert(admin.display_permissions());
+console.log(admin, {
 	is_user: admin instanceof User,
 	is_admin: admin instanceof Admin,
 	is_superadmin: admin instanceof SuperAdmin,
 });
 
-console.log("-----------");
+alert("-----------");
 
 let superadmin = new SuperAdmin("John Doe", "john.doe@example.org");
-console.log(superadmin.display_info());
-console.log(superadmin.say_hello());
-console.log(superadmin.display_permissions());
-console.log({
+alert(superadmin.display_info());
+alert(superadmin.say_hello());
+alert(superadmin.display_permissions());
+console.log(superadmin, {
 	is_user: superadmin instanceof User,
 	is_admin: superadmin instanceof Admin,
 	is_superadmin: superadmin instanceof SuperAdmin,

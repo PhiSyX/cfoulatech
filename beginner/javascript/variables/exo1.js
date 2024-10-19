@@ -1,5 +1,4 @@
-let firstname = "Alice";
-console.log(firstname);
+import { alert } from "../utils/alert.js";
 
-// NOTE: typescript casse les bonbons ;)
-export {};
+let firstname = "Alice";
+alert(firstname);

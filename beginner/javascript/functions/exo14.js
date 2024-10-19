@@ -10,4 +10,4 @@ function via_math_max(a, b, c) {
 	return Math.max(a, b, c);
 }
 
-write(via_math_max(10, 3, 42));
+write("Le maximum est de", via_math_max(10, 3, 42));

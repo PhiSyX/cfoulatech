@@ -1,3 +1,5 @@
+import { write } from "../utils/write.js";
+
 let numbers = [5, 12, 8, 130, 44];
 
 let numbers_len = numbers.length;
@@ -12,11 +14,8 @@ for (let index = 1; index < numbers_len; index++) {
 	}
 }
 
-console.log(
+write(
 	"%s est le nombre le plus grand parmi la liste des nombres:",
 	highest_number,
 	numbers
 );
-
-// NOTE: typescript casse les bonbons ;)
-export {};

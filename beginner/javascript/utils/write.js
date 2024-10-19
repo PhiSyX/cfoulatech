@@ -7,7 +7,7 @@
 export function write(...text) {
 	if (Object.hasOwn(globalThis, "document")) {
 		let par = document.createElement("p");
-		par.append(...text.map((t) => t.toString()));
+		par.append(...text.map((t) => " " + t.toString()));
 		document.body.append(par);
 		return;
 	}
