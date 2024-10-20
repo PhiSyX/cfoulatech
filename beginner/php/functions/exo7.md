@@ -5,35 +5,37 @@
 Trier un tableau de manière croissante et décroissante en utilisant les
 fonctions natives de PHP.
 
-## Exemple des `<notes>`
+## Exemple des données
 
-| indice | valeur |
-| ------ | ------ |
-| 0      | 18     |
-| 1      | 13     |
-| 2      | 5      |
-| 3      | 9      |
-| 4      | 10     |
+### Tableau `<notes>`
 
-## Exemple des `<notes_croissantes>`
+| indice | note |
+| ------ | ---- |
+| 0      | 18   |
+| 1      | 13   |
+| 2      | 5    |
+| 3      | 9    |
+| 4      | 10   |
 
-| indice | valeur |
-| ------ | ------ |
-| 1      | 5      |
-| 2      | 9      |
-| 3      | 10     |
-| 4      | 13     |
-| 5      | 18     |
+### Tableau `<notes_croissantes>`
 
-## Exemple des `<notes_décroissantes>`
+| indice | note |
+| ------ | ---- |
+| 1      | 5    |
+| 2      | 9    |
+| 3      | 10   |
+| 4      | 13   |
+| 5      | 18   |
 
-| indice | valeur |
-| ------ | ------ |
-| 0      | 18     |
-| 1      | 13     |
-| 2      | 10     |
-| 3      | 9      |
-| 4      | 5      |
+### Tableau `<notes_décroissantes>`
+
+| indice | note |
+| ------ | ---- |
+| 0      | 18   |
+| 1      | 13   |
+| 2      | 10   |
+| 3      | 9    |
+| 4      | 5    |
 
 ## Réflexion
 
@@ -62,4 +64,4 @@ Et j'affiche la sortie attendue avec un `foreach`
 
 1. > 5 9 10 13 18
 
-2. > 18 13 10 9 5  
+2. > 18 13 10 9 5

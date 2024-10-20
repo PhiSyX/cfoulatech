@@ -1,9 +1,8 @@
 <?php
 
-$user__number = (int) readline("Entrez un nombre (0 pour arrêter) : ");
+$user_number = 0;
 
-while ($user__number !== 0) {
-    echo "Voici votre nombre : $user__number\n";
-
-    $user__number = (int) readline("Entrez un nombre (0 pour arrêter) : ");
-}
+do {
+    $user_number = (int) readline("Entrez un nombre (0 pour arrêter) : ");
+    echo "Voici votre nombre : $user_number\n";
+} while ($user_number !== 0);

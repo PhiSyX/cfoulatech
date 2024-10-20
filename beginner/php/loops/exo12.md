@@ -1,33 +1,57 @@
-# Exo 12
+# Exercice 12
 
-Pour cet exercice je n'utilise que des boucles "POUR CHAQUE" (foreach).
+## Instruction
 
-## Les étapes:
+Afficher tous les éléments de cette classe d'élèves. Calculer la moyenne des
+notes des élèves.
 
-1. Je crée une boucle `foreach` `$class` as `$élève`
+## Exemple des données
 
-2. A l'intérieur de la première boucle, je crée une nouvelle boucle `foreach`
-   `$élève` où je récupère sa clé (`$élève_cle`) et sa valeur (`$élève_valeur`)
+### Tableau `<classes>`
 
-3. Je vérifie que la clé `$élève_cle` est "notes" et que sa valeur est un
-   tableau via la fonction `is_array($élève_valeur)`.
+| indice | prénom      | nom        | notes       | moyenne attendu |
+| ------ | ----------- | ---------- | ----------- | --------------- |
+| 0      | "Julien"    | "Dunia"    | [8, 15, 12] | 11.666666666667 |
+| 1      | "Hakima"    | "Darmouch" | [18, 5, 10] | 11              |
+| 2      | "Christian" | "Bale"     | [7, 19, 5]  | 10.333333333333 |
 
-   1. Je crée une variable `$notes` à laquelle j'attribue la valeur
-      `$élève_valeur`.
+## Réflexion
 
-   2. Je crée une variable `$somme` à laquelle j'attribute la valeur `0`.
+On a vu comment utiliser la structure de contrôle [while](https://www.php.net/manual/fr/control-structures.while.php)
+et [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
 
-   3. Je crée une boucle `foreach`, `$notes` as `$note`
+On a vu que la fonction [`is_array`](https://www.php.net/manual/fr/function.is-array.php)
+servait à savoir si l'argument donné est un tableau ou non.
 
-   4. J'ajoute `$note` à la variable `$somme` via l'opérateur d'affection
-      arithmétique après addition.
+On a vu comment on pouvait comparer des valeurs avec des [opérateurs de comparaisons](https://www.php.net/manual/fr/language.operators.comparison.php).
 
-   5. Je crée une variable `$moyenne`.
+On a vu les [opérateurs arithmétiques](https://www.php.net/manual/fr/language.operators.arithmetic.php)
+qui nous permettent entre autres d'additionner (`+`) et de diviser (`/`)
 
-   6. J'affiche `$élève_cle . " : Moyenne " . $moyenne`;
+## Plan d'action
 
-4. Je crée une condition SINON (else)
+Étant donné que j'utilise une boucle foreach sur le tableau `<classes>`  
+Et que je veux récupérer chaque valeur `<élève>`  
+Et étant donné que j'utilise une boucle foreach sur le tableau `<élève>`  
+Et que je veux récupérer chaque clé `<élève_clé>` et chaque valeur `<élève_valeur>`  
+Et que la valeur `<élève_valeur>` n'est pas un tableau  
+Alors je veux afficher "`<élève_clé>`: `<élève_valeur>`"  
+Sinon je renomme `<élève_valeur>` par `<notes>`  
+Et je fais la somme des `<notes>` en le parcourant avec un `foreach`  
+Ensuite je divise la somme par le total des éléments des `<notes>`  
+Afin d'obtenir la moyenne `<moyenne attendu>` s
+Et j'affiche "`<élève_clé>`: moyenne `<moyenne attendu>`"
 
-   1. J'affiche `$élève_cle . " : " . $élève_valeurs`;
+## Sortie attendue:
 
-5. J'affiche une fin de ligne à la fin de la première boucle.
+1. > firstname : Julien  
+   > lastname : Dunia  
+   > notes : Moyenne 11.666666666667
+
+2. > firstname : Hakima  
+   > lastname : Darmouch  
+   > notes : Moyenne 11
+
+3. > firstname : Christian  
+   > lastname : Bale  
+   > notes : Moyenne 10.3333333333

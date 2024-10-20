@@ -1,43 +1,42 @@
-# Exo 11
+# Exercice 11
 
-Pour cet exercice j'utilise deux boucles:
+## Instruction
 
-1.  Une pour ajouter des mots dans un tableau de mots.
-2.  Une pour afficher le tableau des mots.
+Inviter l'utilisateur à entrer des mots et les afficher séparés par des virgules.
+**NOTE**: Le mot "stop" arrête l'enregistrement des mots, il ne doit pas être affiché.
 
-## Les étapes:
+## Exemple des données
 
-La première boucle que j'ai utilisé est une boucle "TANT QUE" (while).
+| mot (readline) |
+| -------------- |
+| "hello"        |
+| "world"        |
+| "ça va"        |
+| "super"        |
+| "stop"         |
 
-1.  Je crée une variable `$mots` au pluriel qui va nous servir à ajouter les
-    futurs mots, à laquelle je lui attribue comme valeur un tableau vide.
+### Résultat attendu `<mots>`
 
-2.  Je crée une variable `$encours` à laquelle je lui attribue la valeur
-    booléenne VRAIE (`true`). Cette variable va nous permettre de quitter la
-    boucle TANT QUE lorsqu'elle sera assignée à la valeur booléenne FAUSSE
-    (`false`).
+| indice | mot attendu |
+| ------ | ----------- |
+| 0      | "hello"     |
+| 1      | "world"     |
+| 2      | "ça va"     |
+| 3      | "super"     |
 
-3.  Je crée la boucle TANT QUE (`while`) avec comme condition `$encours`.
+## Réflexion
 
-4.  À l'intérieur de cette boucle:
+On a vu comment utiliser la structure de contrôle [while](https://www.php.net/manual/fr/control-structures.while.php)
+et [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
 
-    1. Je crée une variable `$mot` au singulier, à laquelle j'appelle la
-       fonction
-       [`readline`](https://www.php.net/manual/fr/function.readline.php) avec le
-       texte donné.
+## Plan d'action
 
-    2. Je modifie la variable `$encours`, pour mettre la condition `$mot` n'est
-       pas strictement égal à la chaîne de caractères `stop`.
+Lorsqu'on invite utilisateur à entrer un mot `<mot>`  
+Alors s'il ne s'agit pas du mot `stop`, j'enregistre le mot `<mot>` dans le tableau `<mots>`  
+Ensuite je parcours le tableau `<mots>` via une boucle `foreach`  
+Dans lequel je récupère chaque valeur `<mot>`  
+Et que j'affiche "`<mot>`, "
 
-    3. Je vérifie avec une condition SI (`if`) que la `$encours` est VRAIE
-       (`true`).
+## Sortie attendue:
 
-       1. J'ajoute `$mot` au singulier au tableau des mots, `$mots` au pluriel.
-
-La seconde boucle que j'ai utilisé est une boucle "POUR CHAQUE" (`foreach`)
-
-1. "POUR CHAQUE" (`foreach`) `$mots` au pluriel AS `$mot` au singulier
-
-2. J'appelle la fonction `echo` `$mot` au singulier suivi d'une concaténation
-   d'une chaîne de caractères composant d'une virgule et d'un espace pour
-   séparer le tout.
+> hello, world, ça va, super,

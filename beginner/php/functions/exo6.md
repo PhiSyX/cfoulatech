@@ -4,7 +4,9 @@
 
 Inverser un tableau en utilisant les fonctions natives de PHP.
 
-## Exemple des `<notes>`
+## Exemple des données 
+
+### Tableau `<notes>`
 
 | indice | valeur |
 | ------ | ------ |
@@ -14,7 +16,7 @@ Inverser un tableau en utilisant les fonctions natives de PHP.
 | 3      | 9      |
 | 4      | 10     |
 
-## Exemple des `<notes_inversées>`
+## Tableau `<notes_inversées>`
 
 | indice | valeur |
 | ------ | ------ |

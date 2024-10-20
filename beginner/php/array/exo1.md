@@ -4,19 +4,27 @@
 
 Calculer la `<moyenne>` du tableau des `<notes>`.
 
-## Exemple des `<notes>`
+## Exemple des données
 
-| indice | valeur |
-| ------ | ------ |
-| 0      | 18     |
-| 1      | 13     |
-| 2      | 5      |
-| 3      | 9      |
-| 4      | 10     |
+### Tableau `<notes>`
 
-| taille des notes | somme attendu | moyenne attendu |
-| ---------------- | ------------- | --------------- |
-| 5                | 55            | 11              |
+| indice | note |
+| ------ | ---- |
+| 0      | 18   |
+| 1      | 13   |
+| 2      | 5    |
+| 3      | 9    |
+| 4      | 10   |
+
+| taille des notes |
+| ---------------- |
+| 5                |
+
+### Résultat attendu
+
+| somme attendu | moyenne attendu |
+| ------------- | --------------- |
+| 55            | 11              |
 
 ## Réflexion
 

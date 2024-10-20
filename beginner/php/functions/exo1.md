@@ -5,15 +5,19 @@
 Trouver la valeur minimale et maximale d'un tableau de `<notes>` en utilisant
 les fonctions natives de PHP.
 
-## Exemple des `<notes>`
+## Exemple des données
 
-| indice | valeur |
-| ------ | ------ |
-| 0      | 18     |
-| 1      | 13     |
-| 2      | 5      |
-| 3      | 9      |
-| 4      | 10     |
+### Tableau `<notes>`
+
+| indice | note |
+| ------ | ---- |
+| 0      | 18   |
+| 1      | 13   |
+| 2      | 5    |
+| 3      | 9    |
+| 4      | 10   |
+
+### Résultat attendus
 
 | minimale attendu | maximale attendu |
 | ---------------- | ---------------- |

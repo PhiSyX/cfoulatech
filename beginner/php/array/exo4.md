@@ -5,9 +5,9 @@
 Afficher tous les éléments du tableau, mais n'afficher uniquement le jour d'hier
 en sachant qu'aujourd'hui nous somme `Vendredi`.
 
-## Exemple de `<tab2dim>` et `<jours de la semaine>`
+## Exemple des données
 
-### `<tab2dim>`
+### Tableau `<tab2dim>`
 
 | indice | valeur                  |
 | ------ | ----------------------- |
@@ -18,7 +18,7 @@ en sachant qu'aujourd'hui nous somme `Vendredi`.
 | 4      | `<jours de la semaine>` |
 | 5      | "Londres"               |
 
-### `<jours de la semaine>`
+### Tableau `<jours de la semaine>`
 
 | indice | jour       |
 | ------ | ---------- |
@@ -30,9 +30,11 @@ en sachant qu'aujourd'hui nous somme `Vendredi`.
 | 5      | "samedi"   |
 | 6      | "dimanche" |
 
+### Résultat attendu
+
 | prénom attendu | nom attendu | genre attendu | date naissance attendu | jour hier attendu | ville attendu |
 | -------------- | ----------- | ------------- | ---------------------- | ----------------- | ------------- |
-| "James"        | "Bond"      | "M"           | "07-7-2007"            | "jeudi"           | "Londres"     |
+| "James"        | "Bond"      | "M"           | "07-07-2007"           | "jeudi"           | "Londres"     |
 
 ## Réflexion
 

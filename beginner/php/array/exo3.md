@@ -6,7 +6,9 @@ Créer un tableau des jours de la semaine commençant à `lundi` et se terminant
 `dimanche` et afficher le jour d'aujourd'hui, d'hier et de demain, sachant
 qu'aujourd'hui nous somme `lundi`.
 
-## Exemple de `<jours de la semaine>`
+## Exemple des données
+
+### Tableau `<jours de la semaine>`
 
 | indice | jour       |
 | ------ | ---------- |
@@ -17,6 +19,8 @@ qu'aujourd'hui nous somme `lundi`.
 | 4      | "vendredi" |
 | 5      | "samedi"   |
 | 6      | "dimanche" |
+
+### Résultat attendu
 
 | jour ajd attendu | jour hier attendu | jour demain attendu |
 | ---------------- | ----------------- | ------------------- |

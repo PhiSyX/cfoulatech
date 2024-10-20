@@ -1,40 +1,40 @@
-# Exo 10
+# Exercice 10
 
-Pour cet exercice j'utilise la boucle "POUR CHAQUE" (`foreach`)
+## Instruction
 
-## Les étapes:
+Afficher un message différent en fonction des notes
 
-1.  Je crée une variable `$score`, à laquelle je lui attribue la valeur entière
-    (`int`) de 20.
+## Exemple des données
 
-2.  Je crée une variable `$moitié_score`, à laquelle je fais une division par 2
-    de la variable `$score`
+### Tableau `<notes>`
 
-    Pourquoi créer des variables supplémentaires sur les nombres?
+| indice | note | opérateur |
+| ------ | ---- | --------- |
+| 0      | 18   | >         |
+| 1      | 13   | >         |
+| 2      | 5    | <         |
+| 3      | 9    | <         |
+| 4      | 10   | ===       |
 
-    1. Ca nous permet de mettre des mots sur ce que signifie ces nombres.
+## Résultat attendus
 
-    2. Afin que d'autres personnes qui lisent le code puissent savoir quoi
-       on parle.
+| score attendu | moitié du score |
+| ------------- | --------------- |
+| 20            | 10              |
 
-    3. Afin d'être plus extensible et configurable.
+## Réflexion
 
-3.  Je crée une boucle "POUR CHAQUE" (`foreach`) tableau `$notes` au
-    pluriel AS `$note` au singulier.
+On a vu comment utiliser la structure de contrôle [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
 
-4.  À l'intérieur de cette boucle,
+## Plan d'action
 
-    1.  Je crée une condition SI `$note` est strictement égal à `$moitié_score`.
-        À l'intérieur de cette condition j'affiche:
-        > "Tu as eu tout pile $note/$score !"
+Étant donné que j'utilise une boucle foreach sur le tableau `<notes>`  
+Et que je veux récupérer chaque valeur `<note>`  
+Alors je veux comparer la note `<note>` avec `<moitié du score>` avec l'opérateur `<opérateur>`  
+Et afficher le message de sortie en fonction du résultat de la comparaison
 
-    2.  À la suite de cette condition, je crée une condition "SINON SI"
-        (`else if`) `$note` est strictement supérieur à `$moitié_score`, via le
-        signe de comparaison supérieur strict.
-        À l'intérieur de cette condition j'affiche via la fonction echo:
-        > "Tu as eu tout pile $note/$score !"
+## Sortie attendue:
 
-    3.  À la suite de cette condition, je crée une condition SINON (ELSE)
-        À l'intérieur de cette condition j'affiche:
-
-        > "Tu as raté avec la note de $note/$score !"
+> Tu as eu tout pile `<note>`/`<moitié du score>` !  
+> Tu as réussi avec la note de `<note>`/`<moitié du score>` !  
+> Tu as raté avec la note de `<note>`/`<moitié du score>` !

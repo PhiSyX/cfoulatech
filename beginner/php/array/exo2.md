@@ -4,7 +4,9 @@
 
 Afficher le 2ème `<animal>` et le 4ème `<animal>` de la liste des `<animaux>`.
 
-## Exemple des `<animaux>`
+## Exemple des données
+
+### Tableau `<animaux>`
 
 | indice | animal     |
 | ------ | ---------- |
@@ -12,6 +14,8 @@ Afficher le 2ème `<animal>` et le 4ème `<animal>` de la liste des `<animaux>`.
 | 1      | "chat"     |
 | 2      | "éléphant" |
 | 3      | "tortue"   |
+
+### Résultat attendu
 
 | animal attendu |
 | -------------- |

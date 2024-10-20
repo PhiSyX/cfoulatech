@@ -5,7 +5,9 @@
 Calculer la `<moyenne>` du tableau des `<notes>` en utilisant les fonctions
 natives de PHP.
 
-## Exemple des `<notes>`
+## Exemple des données
+
+### Tableau `<notes>`
 
 | indice | valeur |
 | ------ | ------ |
@@ -14,6 +16,8 @@ natives de PHP.
 | 2      | 5      |
 | 3      | 9      |
 | 4      | 10     |
+
+### Résultat attendus
 
 | taille des notes attendu | somme attendu | moyenne attendu |
 | ------------------------ | ------------- | --------------- |
