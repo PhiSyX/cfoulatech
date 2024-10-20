@@ -14,9 +14,9 @@ Calculer la `<moyenne>` du tableau des `<notes>`.
 | 3      | 9      |
 | 4      | 10     |
 
-| taille des notes | somme | moyenne |
-| ---------------- | ----- | ------- |
-| 5                | 55    | 11      |
+| taille des notes | somme attendu | moyenne attendu |
+| ---------------- | ------------- | --------------- |
+| 5                | 55            | 11              |
 
 ## Réflexion
 
@@ -35,10 +35,11 @@ qui nous permettent entre autres d'additionner (`+`) et de diviser (`/`).
 
 Lorsqu'on accède à un élément du tableau des `<notes>` via l'indice `<indice>`  
 Alors je veux l'additionner à l'élément qui suit, à savoir: `<indice> + 1`  
-Et je veux diviser (`/`) la `<somme>` obtenue par la `<taille des notes>`  
-Afin d'obtenir la moyenne de `<moyenne>`.
+Et je veux diviser (`/`) la `<somme attendu>` obtenue par la `<taille des notes>`  
+Afin d'obtenir la moyenne de `<moyenne attendu>`
+Alors j'affiche la sortie attendue
 
 ## Sortie attendue:
 
-> La somme des notes est `<somme>`  
-> La moyenne des notes est de `<moyenne>`
+> La somme des notes est `<somme attendu>`  
+> La moyenne des notes est de `<moyenne attendu>`

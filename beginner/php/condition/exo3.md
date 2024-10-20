@@ -28,9 +28,9 @@ Il me suffit de trouver le bon opérateur pour chaque cas.
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre une `<action>`
-Alors je vérifie son action `<action>` avec l'opérateur de comparaison `===`
-Et j'affiche le message `<message attendu>` si c'est vrai
+Lorsque l'utilisateur entre une `<action>`  
+Alors je vérifie son action `<action>` avec l'opérateur de comparaison `===`  
+Et j'affiche le message `<message attendu>` si c'est vrai  
 Sinon j'affiche le message d'erreur `<erreur attendu>`
 
 ## Sortie attendue:

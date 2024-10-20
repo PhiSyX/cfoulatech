@@ -1,6 +1,9 @@
 <?php
 
 $notes = [18, 13, 5, 10, 9];
-$average_grade = array_sum($notes) / sizeof($notes);
 
-echo "La moyenne des notes est de $average_grade";
+$sum = array_sum($notes);
+$avg = $sum / sizeof($notes);
+
+echo "La somme des notes est $sum\n";
+echo "La moyenne des notes est de $avg\n";
