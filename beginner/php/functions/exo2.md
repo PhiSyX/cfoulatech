@@ -7,14 +7,35 @@ des fonctions natives de PHP.
 
 ## Exemple des données
 
-| mot (readline) | message attendu                        |
-| -------------- | -------------------------------------- |
-| "kayak"        | "kayak" s'agit d'un palindrome         |
-| "kayaK"        | "kayaK" ne s'agit pas d'un palindrome  |
-| "hello"        | "hello" ne s'agit pas d'un palindrome  |
-| "radar"        | "radar" s'agit d'un palindrome         |
-| "lol"          | "lol" s'agit d'un palindrome           |
-| "coucou"       | "coucou" ne s'agit pas d'un palindrome |
+| mot (readline) |
+| -------------- |
+| "kayak"        |
+| "kayaK"        |
+| "hello"        |
+| "radar"        |
+| "lol"          |
+| "coucou"       |
+
+## Sortie attendue
+
+| mot      | palindrome |
+| -------- | ---------- |
+| "kayak"  | oui        |
+| "kayaK"  | non        |
+| "hello"  | non        |
+| "radar"  | oui        |
+| "lol"    | oui        |
+| "coucou" | non        |
+
+En fonction du résultat de la comparaison `===` :
+
+**oui**:
+
+> "`<mot>`" s'agit d'un palindrome
+
+**non**:
+
+> "`<mot>`" ne s'agit pas d'un palindrome
 
 ## Réflexion
 
@@ -32,17 +53,3 @@ Je dois utiliser l'opérateur de comparaison `===`.
 Lorsque l'utilisateur entre le mot `<mot>`  
 Alors j'inverse le mot `<mot>` en les comparant en utilisant l'opérateur de comparaison `===`  
 Et j'affiche le message `<message attendu>` en fonction du résultat de la comparaison
-
-## Sortie attendue:
-
-1. "kayak" s'agit d'un palindrome
-
-2. "kayaK" ne s'agit pas d'un palindrome
-
-3. "hello" ne s'agit pas d'un palindrome
-
-4. "radar" s'agit d'un palindrome
-
-5. "lol" s'agit d'un palindrome
-
-6. "coucou" ne s'agit pas d'un palindrome

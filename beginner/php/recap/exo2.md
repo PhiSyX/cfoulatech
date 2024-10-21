@@ -14,8 +14,8 @@ Affichez les prénoms les-uns en dessous des autres avec une boucle.
 | `$prénom4`  | "Jérémie"     |
 | `$prénom5`  | "Timothy"     |
 | `$prénom6`  | "Maxime"      |
-| `$prénom7`  | "Carina"     |
-| `$prénom8`  | "Zakaria"      |
+| `$prénom7`  | "Carina"      |
+| `$prénom8`  | "Zakaria"     |
 | `$prénom9`  | "Clovis"      |
 | `$prénom10` | "Mohamed-Ali" |
 
@@ -33,6 +33,23 @@ Affichez les prénoms les-uns en dessous des autres avec une boucle.
 | 7      | `$prénom8`  |
 | 8      | `$prénom9`  |
 | 9      | `$prénom10` |
+
+## Sortie attendue
+
+> Le prénom est `<prénom>`
+
+---
+
+> Le prénom est Mike  
+> Le prénom est Say  
+> Le prénom est Erica  
+> Le prénom est Jérémie  
+> Le prénom est Timothy  
+> Le prénom est Carina  
+> Le prénom est Zakaria  
+> Le prénom est Maxime  
+> Le prénom est Clovis  
+> Le prénom est Mohamed-Ali
 
 ## Réflexion
 
@@ -66,7 +83,3 @@ Alors je crée une variable se nommant `<prénoms>`
 Et j'y mets toutes les variables `$variables` que j'ai en ma possession afin d'obtenir une liste de prénoms  
 Lorsque je parcours le tableau `<prénoms>` avec une boucle `foreach`, je veux récupérer la valeur `<prénom>`  
 Ensuite je veux afficher le message de sortie attendue pour chaque prénom `<prénom>`
-
-## Sortie attendue
-
-> Le prénom est `<prénom>`

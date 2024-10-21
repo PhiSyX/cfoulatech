@@ -20,11 +20,15 @@ qu'aujourd'hui nous somme `lundi`.
 | 5      | "samedi"   |
 | 6      | "dimanche" |
 
-### Résultat attendu
+## Sortie attendue
 
 | jour ajd attendu | jour hier attendu | jour demain attendu |
 | ---------------- | ----------------- | ------------------- |
 | "lundi"          | "dimanche"        | "mardi"             |
+
+> Aujourd'hui, nous somme `<jour ajd attendu>`  
+> Hier, nous étions `<jour hier attendu>`  
+> Demain, nous serons `<jour demain attendu>`
 
 ## Réflexion
 
@@ -48,9 +52,3 @@ Alors je veux afficher le `<jour>` au format de la sortie attendue
 
 Et que le jour de demain est `mardi` à savoir l'indice `1`  
 Alors je veux afficher le `<jour>` au format de la sortie attendue
-
-## Sortie attendue
-
-> Aujourd'hui, nous somme `<jour ajd attendu>`  
-> Hier, nous étions `<jour hier attendu>`  
-> Demain, nous serons `<jour demain attendu>`

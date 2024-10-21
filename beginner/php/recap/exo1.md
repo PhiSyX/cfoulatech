@@ -19,6 +19,23 @@ Affichez les prénoms les-uns en dessous des autres sans utiliser de boucle.
 | `$prénom9`  | "Clovis"      |
 | `$prénom10` | "Mohamed-Ali" |
 
+## Sortie attendue
+
+> Le prénom est `<prénom>`
+
+---
+
+> Le prénom est Mike  
+> Le prénom est Say  
+> Le prénom est Erica  
+> Le prénom est Jérémie  
+> Le prénom est Timothy  
+> Le prénom est Carina  
+> Le prénom est Zakaria  
+> Le prénom est Maxime  
+> Le prénom est Clovis  
+> Le prénom est Mohamed-Ali
+
 ## Réflexion
 
 On a vu que pour afficher la donnée une chaîne de caractère, il faut utiliser la
@@ -28,7 +45,3 @@ fonction [`echo`](https://www.php.net/manual/fr/function.echo.php).
 
 Étant donné que j'ai en ma possession des variables `$variables` avec la valeur de `<prénom>`  
 Alors j'affiche via la fonction `echo`, le message de sortie attendue pour chaque `<prénom>` individuellement
-
-## Sortie attendue:
-
-> Le prénom est `<prénom>`

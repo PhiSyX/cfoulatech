@@ -21,6 +21,37 @@ Afficher tous les nombres pairs d'un tableau en utilisant une boucle `while` ou
 | 9      | 2      |
 | 10     | 112    |
 
+## Sortie attendue
+
+| nombre | pair |
+| ------ | ---- |
+| 11     | non  |
+| 18     | oui  |
+| 99     | non  |
+| 17     | non  |
+| 65220  | oui  |
+| 6485   | non  |
+| 78     | oui  |
+| 97     | non  |
+| 48     | oui  |
+| 2      | oui  |
+| 112    | oui  |
+
+En fonction du résultat de la comparaison via le modulo:
+
+**oui**:
+
+> `<nombre>` est pair
+
+---
+
+> 18 est pair  
+> 65220 est pair  
+> 78 est pair  
+> 48 est pair  
+> 2 est pair  
+> 112 est pair
+
 ## Réflexion
 
 On a vu comment on pouvait compter le nombre total des éléments d'un tableau via
@@ -45,12 +76,3 @@ notamment le modulo pour trouver chaque nombre pair.
 Et que l'étape d'incrémentation se fait par `1`  
 Alors je veux afficher le nombre `<nombre>` en fonction du compteur qui représente l'indice `<indice>` du tableau `<nombres>`  
 Uniquement si le nombre `<nombre>` est un nombre PAIR.
-
-## Sortie attendue:
-
-> 18 est pair  
-> 65220 est pair  
-> 78 est pair  
-> 48 est pair  
-> 2 est pair  
-> 112 est pair

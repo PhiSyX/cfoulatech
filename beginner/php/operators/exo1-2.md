@@ -7,12 +7,47 @@ différent en fonction de l'heure d'ouverture et de fermeture.
 
 ## Exemple des données
 
-| heure (readline) | opérateur | message attendu                    |
-| ---------------- | --------- | ---------------------------------- |
-| 7                | <         | Le magasin sera fermé à 7 heures   |
-| 9                | ===       | Le magasin sera ouvert à 9 heures  |
-| 15               | ===       | Le magasin sera ouvert à 15 heures |
-| 19               | >         | Le magasin sera fermé à 19 heures  |
+| heure (readline) |
+| ---------------- |
+| 7                |
+| 9                |
+| 15               |
+| 19               |
+
+| ouverture     |
+| ------------- |
+| entre 8 ~ 12  |
+| entre 14 ~ 18 |
+
+## Sortie attendue
+
+| heure | opérateur |
+| ----- | --------- |
+| 7     | <         |
+| 9     | ===       |
+| 15    | ===       |
+| 19    | >         |
+
+En fonction du résultat de comparaison par l'opérateur `<opérateur>`
+
+**===** (`<heure>` égal à la `<ouverture>`):
+
+> Le magasin sera ouvert à `<heure>` heures
+
+**>** (`<heure>` supérieur à la `<ouverture>`):
+
+> Le magasin sera fermé à `<heure>` heures
+
+**<** (`<heure>` inférieur à la `<ouverture>`):
+
+> Le magasin sera fermé à `<heure>` heures
+
+---
+
+1. > Le magasin sera fermé à 7 heures
+2. > Le magasin sera ouvert à 9 heures
+3. > Le magasin sera ouvert à 15 heures
+4. > Le magasin sera fermé à 19 heures
 
 ## Réflexion
 
@@ -29,10 +64,3 @@ Il me suffit de trouver le bon opérateur pour chaque cas.
 Lorsque l'utilisateur entre un `<heure>` correct  
 Alors je vérifie si l'heure `<heure>` correspond aux heures d'ouverture avec l'opérateur de comparaison `<opérateur>`  
 Et j'affiche le message `<message attendu>` en fonction du résultat de la comparaison
-
-## Sortie attendue:
-
-1. Le magasin sera fermé à 7 heures
-2. Le magasin sera ouvert à 9 heures
-3. Le magasin sera ouvert à 15 heures
-4. Le magasin sera fermé à 19 heures

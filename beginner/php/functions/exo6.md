@@ -4,7 +4,7 @@
 
 Inverser un tableau en utilisant les fonctions natives de PHP.
 
-## Exemple des données 
+## Exemple des données
 
 ### Tableau `<notes>`
 
@@ -26,6 +26,10 @@ Inverser un tableau en utilisant les fonctions natives de PHP.
 | 3      | 13     |
 | 4      | 18     |
 
+## Sortie attendue
+
+> 10 9 5 13 18
+
 ## Réflexion
 
 D'après les recherches sur internet, on est tombé sur les fonctions
@@ -41,7 +45,3 @@ nous permettant d'itérer sur un tableau facilement.
 Lorsque j'affiche le `1er` élément du tableau `<notes_inversées>`  
 Alors je veux que cela correspond au dernier élément du tableau des `<notes>`  
 Et j'affiche la sortie sortie attendue avec un `foreach`
-
-## Sortie attendue:
-
-> 10 9 5 13 18

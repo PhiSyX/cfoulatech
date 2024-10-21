@@ -7,12 +7,19 @@ le terminal.
 
 ## Exemple des données
 
-| genre (readline) | message attendu       | erreur attendu                                       |
-| ---------------- | --------------------- | ---------------------------------------------------- |
-| M                | Vous êtes un homme    |                                                      |
-| F                | Vous êtes une femme   |                                                      |
-| X                | Vous êtes non binaire |                                                      |
-| K                |                       | Erreur, vous n'avez pas introduis les bonnes valeurs |
+| genre (readline) | message attendu         | erreur attendu                                         |
+| ---------------- | ----------------------- | ------------------------------------------------------ |
+| "M"              | "Vous êtes un homme"    |                                                        |
+| "F"              | "Vous êtes une femme"   |                                                        |
+| "X"              | "Vous êtes non binaire" |                                                        |
+| "K"              |                         | "Erreur, vous n'avez pas introduis les bonnes valeurs" |
+
+## Sortie attendue
+
+1. > Vous êtes un homme
+2. > Vous êtes une femme
+3. > Vous êtes non binaire
+4. > Erreur, vous n'avez pas introduis les bonnes valeurs
 
 ## Réflexion
 
@@ -28,13 +35,3 @@ Lorsque l'utilisateur entre un `<age>` correct
 Alors je vérifie sa majorité avec l'opérateur de comparaison `===`  
 Et j'affiche le message `<message attendu>` si c'est vrai  
 Sinon j'affiche le message d'erreur `<erreur attendu>`
-
-## Sortie attendue:
-
-1. > Vous êtes un homme
-
-2. > Vous êtes une femme
-
-3. > Vous êtes non binaire
-
-4. > Erreur, vous n'avez pas introduis les bonnes valeurs

@@ -7,14 +7,23 @@ via le terminal.
 
 ## Exemple des données
 
-| action (readline) | message attendu     | erreur attendu                                          |
-| ----------------- | ------------------- | ------------------------------------------------------- |
-| 1                 | Vous attaquez       |                                                         |
-| 2                 | Vous défendez       |                                                         |
-| 3                 | Vous vous soignez   |                                                         |
-| 4                 | Vous fuyez          |                                                         |
-| 5                 | Vous ne faites rien |                                                         |
-| 6                 |                     | Relancez le programme et entrez une action 1,2,3,4 ou 5 |
+| action (readline) | message attendu       | erreur attendu                                            |
+| ----------------- | --------------------- | --------------------------------------------------------- |
+| 1                 | "Vous attaquez"       |                                                           |
+| 2                 | "Vous défendez"       |                                                           |
+| 3                 | "Vous vous soignez"   |                                                           |
+| 4                 | "Vous fuyez"          |                                                           |
+| 5                 | "Vous ne faites rien" |                                                           |
+| 6                 |                       | "Relancez le programme et entrez une action 1,2,3,4 ou 5" |
+
+## Sortie attendue
+
+1. > Vous attaquez
+2. > Vous défendez
+3. > Vous vous soignez
+4. > Vous fuyez
+5. > Vous ne faites rien
+6. > Relancez le programme et entrez une action 1,2,3,4 ou 5
 
 ## Réflexion
 
@@ -32,17 +41,3 @@ Lorsque l'utilisateur entre une `<action>`
 Alors je vérifie son action `<action>` avec l'opérateur de comparaison `===`  
 Et j'affiche le message `<message attendu>` si c'est vrai  
 Sinon j'affiche le message d'erreur `<erreur attendu>`
-
-## Sortie attendue:
-
-1. > Vous attaquez
-
-2. > Vous défendez
-
-3. > Vous vous soignez
-
-4. > Vous fuyez
-
-5. > Vous ne faites rien
-
-6. > Relancez le programme et entrez une action 1,2,3,4 ou 5

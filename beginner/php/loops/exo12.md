@@ -15,6 +15,20 @@ notes des élèves.
 | 1      | "Hakima"    | "Darmouch" | [18, 5, 10] | 11              |
 | 2      | "Christian" | "Bale"     | [7, 19, 5]  | 10.333333333333 |
 
+## Sortie attendue
+
+1. > firstname : Julien  
+   > lastname : Dunia  
+   > notes : Moyenne 11.666666666667
+
+2. > firstname : Hakima  
+   > lastname : Darmouch  
+   > notes : Moyenne 11
+
+3. > firstname : Christian  
+   > lastname : Bale  
+   > notes : Moyenne 10.3333333333
+
 ## Réflexion
 
 On a vu comment utiliser la structure de contrôle [while](https://www.php.net/manual/fr/control-structures.while.php)
@@ -41,17 +55,3 @@ Et je fais la somme des `<notes>` en le parcourant avec un `foreach`
 Ensuite je divise la somme par le total des éléments des `<notes>`  
 Afin d'obtenir la moyenne `<moyenne attendu>` s
 Et j'affiche "`<élève_clé>`: moyenne `<moyenne attendu>`"
-
-## Sortie attendue:
-
-1. > firstname : Julien  
-   > lastname : Dunia  
-   > notes : Moyenne 11.666666666667
-
-2. > firstname : Hakima  
-   > lastname : Darmouch  
-   > notes : Moyenne 11
-
-3. > firstname : Christian  
-   > lastname : Bale  
-   > notes : Moyenne 10.3333333333

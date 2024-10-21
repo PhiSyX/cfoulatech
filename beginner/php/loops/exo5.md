@@ -22,6 +22,10 @@ Afficher tous les mois à partir du mois de Février en utilisant une boucle
 | 10     | "Novembre"  |
 | 11     | "Décembre"  |
 
+## Sortie attendue
+
+> Février Avril Juin Août Octobre Décembre
+
 ## Réflexion
 
 On a vu comment on pouvait compter le nombre total des éléments d'un tableau via
@@ -42,7 +46,3 @@ sortie, qui serait que le compteur soit supérieur ou égal au nombre total des
 Étant donné que j'utilise une boucle for avec un compteur initial à `1`  
 Et que l'étape d'incrémentation se fait par `2`  
 Alors je veux afficher le mois de l'année `<mois>` en fonction du compteur qui représente l'indice `<indice>` du tableau `<mois de l'année>`
-
-## Sortie attendue:
-
-> Février Avril Juin Août Octobre Décembre

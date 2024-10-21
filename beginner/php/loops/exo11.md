@@ -15,7 +15,7 @@ Inviter l'utilisateur à entrer des mots et les afficher séparés par des virgu
 | "super"        |
 | "stop"         |
 
-### Résultat attendu `<mots>`
+## Sortie attendue
 
 | indice | mot attendu |
 | ------ | ----------- |
@@ -23,6 +23,8 @@ Inviter l'utilisateur à entrer des mots et les afficher séparés par des virgu
 | 1      | "world"     |
 | 2      | "ça va"     |
 | 3      | "super"     |
+
+> hello, world, ça va, super,
 
 ## Réflexion
 
@@ -32,11 +34,7 @@ et [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
 ## Plan d'action
 
 Lorsqu'on invite utilisateur à entrer un mot `<mot>`  
-Alors s'il ne s'agit pas du mot `stop`, j'enregistre le mot `<mot>` dans le tableau `<mots>`  
-Ensuite je parcours le tableau `<mots>` via une boucle `foreach`  
-Dans lequel je récupère chaque valeur `<mot>`  
-Et que j'affiche "`<mot>`, "
-
-## Sortie attendue:
-
-> hello, world, ça va, super,
+Et qu'il ne s'agisse pas du mot `stop`  
+Alors j'enregistre le mot `<mot>` dans le tableau `<mots>`  
+Et je parcours le tableau `<mots>` via une boucle `foreach` dans lequel je récupère chaque valeur `<mot>`  
+Ensuite j'affiche la sortie attendue: "`<mot>`, "

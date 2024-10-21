@@ -37,6 +37,12 @@ fonctions natives de PHP.
 | 3      | 9    |
 | 4      | 5    |
 
+## Sortie attendue
+
+1. > 5 9 10 13 18
+
+2. > 18 13 10 9 5
+
 ## Réflexion
 
 D'après les recherches sur internet, on est tombé sur les fonctions
@@ -59,9 +65,3 @@ Et j'affiche la sortie attendue avec un `foreach`
 Lorsque j'affiche le `1er` élément du tableau `<notes_décroissantes>`  
 Alors je veux que cela correspond au `1er` élément du tableau des `<notes>`  
 Et j'affiche la sortie attendue avec un `foreach`
-
-## Sortie attendue:
-
-1. > 5 9 10 13 18
-
-2. > 18 13 10 9 5

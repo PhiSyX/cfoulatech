@@ -20,11 +20,14 @@ Calculer la `<moyenne>` du tableau des `<notes>`.
 | ---------------- |
 | 5                |
 
-### Résultat attendu
+## Sortie attendue
 
 | somme attendu | moyenne attendu |
 | ------------- | --------------- |
 | 55            | 11              |
+
+> La somme des notes est `<somme attendu>`  
+> La moyenne des notes est de `<moyenne attendu>`
 
 ## Réflexion
 
@@ -46,8 +49,3 @@ Alors je veux l'additionner à l'élément qui suit, à savoir: `<indice> + 1`
 Et je veux diviser (`/`) la `<somme attendu>` obtenue par la `<taille des notes>`  
 Afin d'obtenir la moyenne de `<moyenne attendu>`
 Alors j'affiche la sortie attendue
-
-## Sortie attendue:
-
-> La somme des notes est `<somme attendu>`  
-> La moyenne des notes est de `<moyenne attendu>`

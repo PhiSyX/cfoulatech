@@ -7,17 +7,33 @@ valeur numérique pair ou impair.
 
 ## Exemple des données
 
-| nombre (readline) | message attendu                            |
-| ----------------- | ------------------------------------------ |
-| 3                 | "Le nombre que vous avez entré est impair" |
+| nombre (readline) |
+| ----------------- |
+| 3                 |
+| 10                |
+| "Hello World"     |
 
-| nombre (readline) | message attendu                          |
-| ----------------- | ---------------------------------------- |
-| 10                | "Le nombre que vous avez entré est pair" |
+## Sortie attendue
 
-| nombre (readline) | message attendu                              |
-| ----------------- | -------------------------------------------- |
-| "Hello World"     | "Vous n'avez pas introduit un nombre valide" |
+| nombre        | pair | erreur |
+| ------------- | ---- | ------ |
+| 3             | non  | non    |
+| 10            | oui  | non    |
+| "Hello World" | non  | oui    |
+
+**erreur** :
+
+> Vous n'avez pas introduit un nombre valide.
+
+En fonction du résultat de la comparaison du reste de la division par 2
+
+**oui** :
+
+> Le nombre que vous avez entré est pair
+
+**non** :
+
+> Le nombre que vous avez entré est impair
 
 ## Réflexion
 
@@ -47,9 +63,3 @@ S'il n'est pas possible de convertir
 Alors je retourne une erreur provoquant l'arrêt du programme avec le message `<message attendu>`  
 Sinon je vérifie que le nombre converti `<nombre>` soit bien pair  
 Et j'affiche le message de sortie attendu `<message attendu>` en fonction du résultat de la comparaison
-
-## Sortie attendue
-
-1. > Le nombre que vous avez entré est impair
-2. > Le nombre que vous avez entré est pair
-3. > Vous n'avez pas introduit un nombre valide.

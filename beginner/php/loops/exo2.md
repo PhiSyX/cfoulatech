@@ -16,11 +16,23 @@ Trouver le nombre aléatoire entre 0 et 10 à chaque entrée de l'utilisateur.
 | ----------------- | ---------------------- | ------------------ |
 | 3                 | Voici votre nombre : 0 | Non                |
 
-### Résultat attendus
+## Sortie attendue
 
 | nombre aléatoire |
 | ---------------- |
 | 3                |
+
+1. > Mauvais numéro, vous n'avez pas gagné !
+   >
+   > Mauvais numéro, vous n'avez pas gagné !
+   >
+   > Bravo !!!  
+   > Vous avez enfin trouvé le numéro gagnant !  
+   > C'était bien le numéro <nombre aléatoire> :-)
+
+2. > Bravo !!!  
+   > Vous avez enfin trouvé le numéro gagnant !  
+   > C'était bien le numéro <nombre aléatoire> :-)
 
 ## Réflexion
 
@@ -35,17 +47,3 @@ On a vu comment utiliser la structure de contrôle [while](https://www.php.net/m
 
 Lorsqu'on invite utilisateur à entrer un nombre `<nombre>` correct  
 Alors je veux afficher le message "Voici votre nombre : `<nombre>`"
-
-## Sortie attendue:
-
-1. > Mauvais numéro, vous n'avez pas gagné !
-   >
-   > Mauvais numéro, vous n'avez pas gagné !
-   >
-   > Bravo !!!  
-   > Vous avez enfin trouvé le numéro gagnant !  
-   > C'était bien le numéro <nombre aléatoire> :-)
-
-2. > Bravo !!!  
-   > Vous avez enfin trouvé le numéro gagnant !  
-   > C'était bien le numéro <nombre aléatoire> :-)

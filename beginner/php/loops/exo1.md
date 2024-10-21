@@ -18,6 +18,15 @@ nombres à chaque entrée.
 | ----------------- | ------------------ |
 | 0                 | Non                |
 
+## Sortie attendue
+
+1. > Voici votre nombre : 1  
+   > Voici votre nombre : 2  
+   > Voici votre nombre : 3  
+   > Voici votre nombre : 0
+
+2. > Voici votre nombre : 0
+
 ## Réflexion
 
 On a vu comment on pouvait récupérer une entrée utilisateur via la fonction
@@ -31,12 +40,3 @@ On a vu comment utiliser la structure de contrôle [do {} while;](https://www.ph
 
 Lorsqu'on invite utilisateur à entrer un nombre `<nombre>` correct  
 Alors je veux afficher le message de la sortie attendue pour chaque nombre `<nombre>`.
-
-## Sortie attendue:
-
-1. > Voici votre nombre : 1
-   > Voici votre nombre : 2
-   > Voici votre nombre : 3
-   > Voici votre nombre : 0
-
-2. > Voici votre nombre : 0

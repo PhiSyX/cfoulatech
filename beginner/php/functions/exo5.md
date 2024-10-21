@@ -17,11 +17,14 @@ natives de PHP.
 | 3      | 9      |
 | 4      | 10     |
 
-### Résultat attendus
+## Sortie attendue
 
 | taille des notes attendu | somme attendu | moyenne attendu |
 | ------------------------ | ------------- | --------------- |
 | 5                        | 55            | 11              |
+
+> La somme des notes est `<somme attendu>`  
+> La moyenne des notes est de `<moyenne attendu>`
 
 ## Réflexion
 
@@ -44,8 +47,3 @@ Alors je veux la diviser par la taille des `<notes>` en utilisant la fonction na
 Et que ce résultat nous donne bien `<taille des notes attendu>`  
 Afin d'obtenir la moyenne de `<moyenne attendu>`  
 Alors j'affiche le messages de la sortie attendue
-
-## Sortie attendue:
-
-> La somme des notes est `<somme attendu>`  
-> La moyenne des notes est de `<moyenne attendu>`

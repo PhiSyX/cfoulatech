@@ -21,6 +21,15 @@ Chaque note DOIT être noté sur 20.
 | 3      | 9    |
 | 4      | 10   |
 
+## Sortie attendue
+
+> prénom: Lara  
+> nom: Croft  
+> genre: f  
+> date anniversaire: 15-03-1995  
+> notes: [ 18/20 13/20 5/20 9/20 10/20 ]  
+> ville: Londres
+
 ## Réflexion
 
 On a vu comment utiliser la structure de contrôle [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
@@ -39,12 +48,3 @@ Et que je veux récupérer chaque valeur `<note>`
 Alors je veux afficher "`<clé>`: [ "
 Et je veux afficher "`<note>` / 20 "
 Et je veux afficher "]"
-
-## Sortie attendue:
-
-> prénom: Lara  
-> nom: Croft  
-> genre: f  
-> date anniversaire: 15-03-1995  
-> notes: [ 18/20 13/20 5/20 9/20 10/20 ]  
-> ville: Londres

@@ -17,11 +17,14 @@ les fonctions natives de PHP.
 | 3      | 9    |
 | 4      | 10   |
 
-### Résultat attendus
+## Sortie attendue
 
 | minimale attendu | maximale attendu |
 | ---------------- | ---------------- |
 | 5                | 18               |
+
+> Voici la valeur min : `<minimale attendu>`  
+> Voici la valeur max : `<maximale attendu>`
 
 ## Réflexion
 
@@ -37,8 +40,3 @@ Alors je veux afficher le message "Voici la valeur min : `<minimale attendu>`"
 
 Lorsqu'on utilise la fonction max sur `<notes>`  
 Alors je veux afficher le message "Voici la valeur max : `<minimale attendu>`"
-
-## Sortie attendue:
-
-> Voici la valeur min : `<minimale attendu>`  
-> Voici la valeur max : `<maximale attendu>`

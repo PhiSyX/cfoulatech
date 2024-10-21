@@ -15,12 +15,15 @@ Afficher le 2ème `<animal>` et le 4ème `<animal>` de la liste des `<animaux>`.
 | 2      | "éléphant" |
 | 3      | "tortue"   |
 
-### Résultat attendu
+## Sortie attendue
 
 | animal attendu |
 | -------------- |
 | "chat"         |
 | "tortue"       |
+
+> Le 2ème animal est : `<animal attendu>`  
+> Le 4ème animal est : `<animal attendu>`
 
 ## Réflexion
 
@@ -43,8 +46,3 @@ Et ensuite afficher au format de la sortie attendue.
 Et que je veux afficher le `4ème` `<animal>`  
 Alors je dois accéder l'indice `3` du tableau `<animaux>`  
 Et ensuite afficher au format de la sortie attendue.
-
-## Sortie attendue
-
-> Le 2ème animal est : `<animal attendu>`  
-> Le 4ème animal est : `<animal attendu>`

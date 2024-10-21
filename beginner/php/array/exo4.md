@@ -30,11 +30,18 @@ en sachant qu'aujourd'hui nous somme `Vendredi`.
 | 5      | "samedi"   |
 | 6      | "dimanche" |
 
-### Résultat attendu
+## Sortie attendue
 
 | prénom attendu | nom attendu | genre attendu | date naissance attendu | jour hier attendu | ville attendu |
 | -------------- | ----------- | ------------- | ---------------------- | ----------------- | ------------- |
 | "James"        | "Bond"      | "M"           | "07-07-2007"           | "jeudi"           | "Londres"     |
+
+> Prénom: `<prénom attendu>`  
+> Nom: `<nom attendu>`  
+> Genre: `<genre attendu>`  
+> Date de naissance: `<date naissance attendu>`  
+> Jour d'hier: `<jour hier attendu>`
+> Ville: `<ville attendu>`
 
 ## Réflexion
 
@@ -78,12 +85,3 @@ Alors je veux afficher la valeur `<jour>` au format de la sortie attendue
 Lorsque j'accède à l'indice `5` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
 Et que la valeur `<valeur>` corresponde bien `<ville attendu>`  
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue
-
-## Sortie attendue
-
-> Prénom: `<prénom attendu>`  
-> Nom: `<nom attendu>`  
-> Genre: `<genre attendu>`  
-> Date de naissance: `<date naissance attendu>`  
-> Jour d'hier: `<jour hier attendu>`
-> Ville: `<ville attendu>`
