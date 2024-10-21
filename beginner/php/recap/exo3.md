@@ -2,53 +2,54 @@
 
 ## Instruction
 
-Vérifiez que le nombre entré par l'utilisateur depuis la console soit bien une
+Vérifier que le nombre entré par l'utilisateur depuis le terminal soit bien une
 valeur numérique pair ou impair.
+
+## Exemple des données
+
+| nombre (readline) | message attendu                            |
+| ----------------- | ------------------------------------------ |
+| 3                 | "Le nombre que vous avez entré est impair" |
+
+| nombre (readline) | message attendu                          |
+| ----------------- | ---------------------------------------- |
+| 10                | "Le nombre que vous avez entré est pair" |
+
+| nombre (readline) | message attendu                              |
+| ----------------- | -------------------------------------------- |
+| "Hello World"     | "Vous n'avez pas introduit un nombre valide" |
 
 ## Réflexion
 
 Mon premier besoin est de trouver un moyen de récupérer une entrée depuis la
-console du terminal.
+console du terminal. On a vu comment on pouvait récupérer une entrée utilisateur
+via la fonction
+[`readline`](https://www.php.net/manual/fr/function.readline.php). On a
+également vu comment on pouvait convertir cette entrée via une conversion
+explicite d'une chaîne en entier
+[`(int)`](https://www.php.net/manual/fr/language.types.integer.php#language.types.integer.casting).
 
 Mon second besoin est de réfléchir à comment je peux couper court à un programme
-si l'entrée ne correspond pas aux exigences de l'énoncé.
+si l'entrée ne correspond pas aux exigences de l'énoncé. D'après les recherches
+sur internet, on est tombé sur la fonction
+[`exit`](https://www.php.net/manual/fr/function.exit.php) pour terminer la
+script courant.
 
 Mon troisième besoin est de trouver la formule arithmétique permettant de savoir
-si un nombre est pair ou impair.
+si un nombre est pair ou impair. On a vu les [opérateurs arithmétiques](https://www.php.net/manual/fr/language.operators.arithmetic.php)
+qui nous permettent entre autres d'avoir le reste d'une division via le modulo (`%`).
 
-## Plan d'attaque
+## Plan d'action
 
-On a vu que l'on pouvait utiliser la fonction
-[`readline`](https://www.php.net/manual/fr/function.readline.php) pour inviter
-l'utilisateur à entrer des données dans notre programme.
+Lorsque l'utilisateur entre le nombre `<nombre>` en chaîne de caractère  
+Alors je converti cette chaîne en entier  
+S'il n'est pas possible de convertir  
+Alors je retourne une erreur provoquant l'arrêt du programme avec le message `<message attendu>`  
+Sinon je vérifie que le nombre converti `<nombre>` soit bien pair  
+Et j'affiche le message de sortie attendu `<message attendu>` en fonction du résultat de la comparaison
 
-Je n'ai pas encore vu comment couper-court à un programme, mais je suis
-quelqu'un de curieux, je fais donc une recherche sur mon moteur de recherche
-préféré sur comment je peux faire cela. Je tombe pile poil sur une fonction
-trouvée sur la documentation de PHP.net. Cette fonction est
-[`exit`](https://www.php.net/manual/fr/function.exit.php). Parfait, je peux
-commencer !
+## Sortie attendue
 
-## Mes étapes
-
-1. J'invite l'utilisateur à entrer un nombre avec la fonction
-   [`readline`](https://www.php.net/manual/fr/function.readline.php) que je
-   sauvegarde dans une variable la nommant `$maybe_user_number`.
-
-2. Je vérifie que l'entrée correspond bien à une valeur numérique via la
-   fonction [`is_numeric`](https://www.php.net/manual/fr/function.is-numeric.php).
-
-   1. Si ça n'est pas le cas, je quitte le programme avec la fonction
-      [`exit`](https://www.php.net/manual/fr/function.exit.php) et un texte.
-
-   2. Si c'est le cas, on passe au point 3.
-
-3. Je crée une variable s'appellant `$user_number` dans laquelle j'attribue en
-   valeur la conversion de l'entrée en un type entier (`int`), parce que sinon
-   la valeur reste une chaîne de caractères (`string`) et ce n'est pas ce que
-   nous voulons pour la suite.
-
-4. Je vérifie ensuite si l'entrée au format entier est pair via la formule
-   arithmétique adéquate (`$user_number % 2 === 0`) et j'affiche un message
-   différent en fonction du retour de cette évaluation (un valeur booléenne
-   `bool` aka vraie ou fausse).
+1. > Le nombre que vous avez entré est impair
+2. > Le nombre que vous avez entré est pair
+3. > Vous n'avez pas introduit un nombre valide.

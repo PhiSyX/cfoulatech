@@ -7,16 +7,16 @@ nombres à chaque entrée.
 
 ## Exemple des données
 
-| nombre (readline) | message attendu        | continue itération |
-| ----------------- | ---------------------- | ------------------ |
-| 1                 | Voici votre nombre : 1 | Oui                |
-| 2                 | Voici votre nombre : 2 | Oui                |
-| 3                 | Voici votre nombre : 3 | Oui                |
-| 0                 | Voici votre nombre : 0 | Non                |
+| nombre (readline) | continue itération |
+| ----------------- | ------------------ |
+| 1                 | Oui                |
+| 2                 | Oui                |
+| 3                 | Oui                |
+| 0                 | Non                |
 
-| nombre (readline) | message attendu        | continue itération |
-| ----------------- | ---------------------- | ------------------ |
-| 0                 | Voici votre nombre : 0 | Non                |
+| nombre (readline) | continue itération |
+| ----------------- | ------------------ |
+| 0                 | Non                |
 
 ## Réflexion
 
@@ -30,7 +30,7 @@ On a vu comment utiliser la structure de contrôle [do {} while;](https://www.ph
 ## Plan d'action
 
 Lorsqu'on invite utilisateur à entrer un nombre `<nombre>` correct  
-Alors je veux afficher le message "Voici la valeur min : `<minimale attendu>`"
+Alors je veux afficher le message de la sortie attendue pour chaque nombre `<nombre>`.
 
 ## Sortie attendue:
 

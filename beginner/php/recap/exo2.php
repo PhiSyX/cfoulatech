@@ -8,19 +8,30 @@ echo instruction(
     output: true,
 );
 
-$user1 = "Julien";
-$user2 = "Mike";
-$user3 = "Say";
+$user1 = "Mike";
+$user2 = "Say";
+$user3 = "Erica";
 $user4 = "Jérémie";
-$user5 = "Erica";
-$user6 = "Timothy";
-$user7 = "Zakaria";
-$user8 = "Maxime";
+$user5 = "Timothy";
+$user6 = "Maxime";
+$user7 = "Carina";
+$user8 = "Zakaria";
 $user9 = "Clovis";
 $user10 = "Mohamed-Ali";
 
-$users = [$user1, $user2, $user3, $user4, $user5, $user6, $user7, $user8, $user9, $user10];
+$users = [
+    $user1,
+    $user2,
+    $user3,
+    $user4,
+    $user5,
+    $user6,
+    $user7,
+    $user8,
+    $user9,
+    $user10
+];
 
 foreach ($users as $user) {
-    echo $user . "\n";
+    echo "Le prénom est $user \n";
 }
