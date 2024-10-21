@@ -1,5 +1,7 @@
 # Exercice 12
 
+Concerne l'exercice du fichier [exemple.php](exemple.php)
+
 ## Instruction
 
 Ici mettre les instructions donné par le prof.
@@ -77,17 +79,17 @@ afin de récupérer automatiquement le total des notes par élève.
 ## Plan d'action
 
 Ici mettre ce que tu comptes faire pour réaliser tes réflexions, tes besoins,
-etc... Pas besoin d'être
+etc... Pas besoin d'être trop long
 
 **Par exemple**:
 
-Étant donné que j'utilise une boucle `foreach` sur le tableau `<classes>`  
-Je m'attend à recevoir chaque valeur `<élève>` de ce tableau
+Pour parcourir mon tableau `<classes>` j'utilise une boucle `foreach`
+Et je récupère chaque valeur `<élève>` de ce tableau
 
-Étant donné que `<élève>` est un tableau, je dois utiliser une nouvelle boucle `foreach` sur cet élève  
-Je m'attend à récupérer chaque clé `<élève_clé>` et chaque valeur `<élève_valeur>`
+Étant donné que la valeur `<élève>` est un tableau associatif, je dois également utiliser une boucle `foreach` sur cette valeur  
+Je souhaite récupérer chaque clé `<élève_clé>` et chaque valeur `<élève_valeur>` de `<élève>`
 
-Je vérifie ensuite que la clé `<élève_clé>` est une note via l'opérateur de comparaison `===`  
+À l'intérieur du second `foreach`, je vérifie ensuite que la clé `<élève_clé>` est une note via l'opérateur de comparaison `===`  
 Et que la valeur `<élève_valeur>` est un tableau avec la fonction `is_array`
 
 Si c'est le cas, j'effectue le point 1. Sinon j'effectue le point 2.
