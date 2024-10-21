@@ -9,11 +9,17 @@ notes des élèves.
 
 ### Tableau `<classes>`
 
-| indice | prénom      | nom        | notes       | moyenne attendu |
-| ------ | ----------- | ---------- | ----------- | --------------- |
-| 0      | "Julien"    | "Dunia"    | [8, 15, 12] | 11.666666666667 |
-| 1      | "Hakima"    | "Darmouch" | [18, 5, 10] | 11              |
-| 2      | "Christian" | "Bale"     | [7, 19, 5]  | 10.333333333333 |
+| indice | prénom      | nom        | notes       |
+| ------ | ----------- | ---------- | ----------- |
+| 0      | "Julien"    | "Dunia"    | [8, 15, 12] |
+| 1      | "Hakima"    | "Darmouch" | [18, 5, 10] |
+| 2      | "Christian" | "Bale"     | [7, 19, 5]  |
+
+| notes des élèves | somme | moyenne         |
+| ---------------- | ----- | --------------- |
+| [8, 15, 12]      | 35    | 11.666666666667 |
+| [18, 5, 10]      | 33    | 11              |
+| [7, 19, 5]       | 31    | 10.333333333333 |
 
 ## Sortie attendue
 
@@ -31,16 +37,23 @@ notes des élèves.
 
 ## Réflexion
 
-On a vu comment utiliser la structure de contrôle [while](https://www.php.net/manual/fr/control-structures.while.php)
-et [foreach](https://www.php.net/manual/fr/control-structures.foreach.php).
+Mon premier besoin est trouver un moyen efficace de parcourir les éléments d'un
+tableau. On a vu comment utiliser la structure de contrôle
+[`foreach`](https://www.php.net/manual/fr/control-structures.foreach.php) pour
+se faire.
 
-On a vu que la fonction [`is_array`](https://www.php.net/manual/fr/function.is-array.php)
-servait à savoir si l'argument donné est un tableau ou non.
+Mon second besoin est de savoir si une valeur est un tableau ou non. On a vu que
+la fonction [`is_array`](https://www.php.net/manual/fr/function.is-array.php)
+servait à savoir si l'argument à cette fonction est un tableau ou non.
 
-On a vu comment on pouvait comparer des valeurs avec des [opérateurs de comparaisons](https://www.php.net/manual/fr/language.operators.comparison.php).
-
-On a vu les [opérateurs arithmétiques](https://www.php.net/manual/fr/language.operators.arithmetic.php)
-qui nous permettent entre autres d'additionner (`+`) et de diviser (`/`)
+Mon troisième besoin est de trouver une formule pour calculer la moyenne d'un
+tableau. Ce que j'ai trouvé sur internet est qu'il faut additionner toutes les
+notes d'un tableau et ensuite de diviser ce résultat par le nombre des notes.
+Pour se faire, on a vu les [opérateurs arithmétiques](https://www.php.net/manual/fr/language.operators.arithmetic.php)
+qui nous permettent entre autres d'additionner (`+`) et de diviser (`/`) des
+nombres. On a également vu comment récupérer un nombre total d'éléments d'un
+tableau via la fonction [`count`](https://www.php.net/manual/fr/function.count.php)
+afin de récupérer automatiquement le total des notes par élève.
 
 ## Plan d'action
 
@@ -53,5 +66,5 @@ Alors je veux afficher "`<élève_clé>`: `<élève_valeur>`"
 Sinon je renomme `<élève_valeur>` par `<notes>`  
 Et je fais la somme des `<notes>` en le parcourant avec un `foreach`  
 Ensuite je divise la somme par le total des éléments des `<notes>`  
-Afin d'obtenir la moyenne `<moyenne attendu>` s
-Et j'affiche "`<élève_clé>`: moyenne `<moyenne attendu>`"
+Afin d'obtenir la moyenne `<moyenne>`  
+Et j'affiche "`<élève_clé>`: moyenne `<moyenne>`"
