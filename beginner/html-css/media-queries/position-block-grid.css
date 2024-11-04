@@ -1,0 +1,57 @@
+:root {
+	--bg-color: #212121;
+	--text-color: #e5e5e5;
+	--bg-color_alt: var(--text-color);
+	--text-color_alt: var(--bg-color);
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	color-scheme: dark;
+}
+
+h1 {
+	margin: 0;
+}
+
+body {
+	display: grid;
+	grid-template-columns: max-content;
+	grid-template-rows: 100px;
+
+	grid-template-areas:
+		"header header"
+		"aside ."
+		"footer footer";
+
+	@media screen and (min-width: 600px) and (max-width: 768px) {
+		grid-template-areas:
+			"aside header"
+			"aside ."
+			"aside footer";
+	}
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--main-bg-color, var(--bg-color_alt));
+	color: var(--main-text-color, var(--text-color_alt));
+}
+
+main {
+	grid-area: header;
+
+	@media screen and (min-width: 600px) and (max-width: 768px) {
+		grid-area: aside;
+	}
+
+	@media screen and (max-width: 601px) {
+		grid-area: footer;
+	}
+}

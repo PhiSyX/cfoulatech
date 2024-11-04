@@ -1,0 +1,11 @@
+html,
+body {
+	color-scheme: dark;
+}
+
+@media screen and (max-width: 601px) {
+	html,
+	body {
+		color-scheme: light;
+	}
+}
