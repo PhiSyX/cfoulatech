@@ -1,4 +1,4 @@
-const PRENOMS = [
+export const PRENOMS = [
 	"Adam","Alba","Alice","Alma","Ambre","Anna","Arthur","Asmae",
 	"Benoit",
 	"Carina","Clovis","Corina",
