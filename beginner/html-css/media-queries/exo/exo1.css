@@ -2,6 +2,7 @@
 CSS setup – ne rien modifier
 éditer plus bas
 * ==================================== */
+html, body { color-scheme: dark light; }
 
 body { margin: 0; padding: 0; border: 0; }
 section { min-height: 100vh; }

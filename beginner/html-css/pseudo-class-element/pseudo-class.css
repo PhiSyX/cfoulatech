@@ -1,0 +1,74 @@
+:root {
+    --color-red: #e56868;
+}
+
+html,
+body {
+	color-scheme: dark;
+
+	zoom: 2;
+}
+
+a {
+	display: inline-block;
+	padding: 8px;
+
+	color: var(--color-red);
+}
+
+a:hover {
+	color: green;
+}
+
+a:link {
+	background-color: yellow;
+}
+
+a:active {
+	text-decoration: underline wavy;
+}
+
+a:focus-visible {
+	background-color: blueviolet;
+}
+
+input {
+	color: white;
+	height: 1rem;
+
+	border: none;
+	outline: none;
+}
+
+input:focus {
+	background-color: blueviolet;
+}
+
+input:disabled {
+	opacity: 0.5;
+}
+
+input[type="checkbox"]:checked {
+	outline: 2px solid blue;
+}
+progress:indeterminate {
+	outline: 2px solid blue;
+}
+
+article {
+	border: 3px solid transparent;
+}
+
+article:target {
+	border-color: red;
+}
+
+div {
+	height: 40px;
+}
+div:nth-child(2n + 1) {
+	background: red;
+}
+div:nth-of-type(5) {
+	background: green;
+}

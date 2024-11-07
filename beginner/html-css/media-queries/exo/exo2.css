@@ -1,8 +1,5 @@
-body {
-	margin: 0;
-	padding: 0;
-}
-
+html, body { color-scheme: dark light; }
+body { margin: 0; padding: 0; }
 li { background-color: lightgrey; }
 li:nth-of-type(5n + 1) { background-color: #1abc9c; }
 li:nth-of-type(5n + 2) { background-color: #3498db; }
@@ -40,6 +37,7 @@ a {
 	}
 	li {
 		display: inline-block;
+		transition: transform 250ms ease-in-out;
 
 		&:hover {
 			/* zoom: 1.5; */
