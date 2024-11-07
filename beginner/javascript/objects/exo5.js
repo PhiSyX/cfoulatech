@@ -1,3 +1,8 @@
+/**
+ * Classe Personne.
+ *
+ * Elle représente les données d'une personne, d'un humain.
+ */
 class Personne {
 	/**
 	 * Nom de la personne.
@@ -43,7 +48,7 @@ class Personne {
 /**
  * Classe Professeur qui étend de Personne.
  *
- * Elle représente un professeur.
+ * Elle représente les données d'un professeur.
  */
 class Professeur extends Personne {
 	/**
@@ -73,11 +78,16 @@ class Professeur extends Personne {
 	}
 
 	/**
-	 * Retourne les informations de la personne sous forme d'objet
+	 * Retourne les informations de classe professeur sous forme d'objet. Cette
+	 * méthode est redéfinie par la classe Professeur afin d'apporter plus
+	 * d'informations que les informations de bases de la classe Personne.
+	 *
 	 * @returns {*}
 	 */
 	info() {
 		return {
+			// Étant donné que la méthode `info` est déjà définie par la classe
+			// parente Personne, je peux l'appeler avec `super.info()`.
 			info: super.info(),
 			cours: this.cours,
 		};
@@ -87,7 +97,7 @@ class Professeur extends Personne {
 /**
  * Classe Stagiaire qui étend de Personne.
  *
- * Elle représente un stagiaire.
+ * Elle représente les données d'un stagiaire.
  */
 class Stagiaire extends Personne {
 	/**
@@ -103,7 +113,7 @@ class Stagiaire extends Personne {
 	cours = [];
 
 	/**
-     * Définis un ou plusieurs cours pour le stagiaire
+	 * Définis un ou plusieurs cours pour le stagiaire
 	 * @param {Array<string>|string} cours - Un ou plusieurs cours
 	 */
 	définis_cours(cours) {
@@ -123,10 +133,17 @@ class Stagiaire extends Personne {
 	}
 
 	/**
-	 * @returns {any}
+	 * Retourne les informations du stagiaire à partir des propriétés sous forme
+	 * d'objet. Cette méthode est redéfinie par la classe Stagiaire afin
+	 * d'apporter plus d'informations que les informations de bases de la classe
+	 * Personne.
+	 *
+	 * @returns {*}
 	 */
 	info() {
 		return {
+			// Étant donné que la méthode `info` est déjà définie par la classe
+			// parente Personne, je peux l'appeler avec `super.info()`.
 			info: super.info(),
 			formations: this.cours,
 			professeurs: this.professeurs.map((p) => p.nom),
@@ -216,25 +233,25 @@ class CFITECH {
 	 * stagiaires du CFITECH.
 	 */
 	affiche_info() {
-        // Création d'une fonction anonyme disponible uniquement dans la
-        // méthode `affiche_info`.
-        const affiche_espacement = () => {
-            console.log("      ");
-            console.log("      ");
-            console.log("------");
-            console.log("      ");
-            console.log("      ");
-        }
+		// Création d'une fonction anonyme disponible uniquement dans la
+		// méthode `affiche_info`.
+		const affiche_espacement = () => {
+			console.log("      ");
+			console.log("      ");
+			console.log("------");
+			console.log("      ");
+			console.log("      ");
+		};
 
-        // Récupère le total de chaque tableau des entités Matériels,
-        // Professeurs, et Stagiaires.
+		// Récupère le total de chaque tableau des entités Matériels,
+		// Professeurs, et Stagiaires.
 		let total_du_materiels = this.materiels.length;
 		let total_des_professeurs = this.professeurs.length;
 		let total_des_stagiaires = this.stagiaires.length;
 
 		affiche_espacement();
 
-        // Affichage sous forme de tableau des toutes les entités.
+		// Affichage sous forme de tableau des toutes les entités.
 
 		console.log(`Le matériel (${total_du_materiels}) du centre CFITECH: `);
 		for (const materiel of this.materiels) {
@@ -252,9 +269,7 @@ class CFITECH {
 
 		affiche_espacement();
 
-		console.log(
-			`Les stagiaires (${total_des_stagiaires}) du centre CFITECH: `
-		);
+		console.log(`Les stagiaires (${total_des_stagiaires}) du centre CFITECH: `);
 		for (const stagiaire of this.stagiaires) {
 			console.table([stagiaire.info()]);
 		}
@@ -272,77 +287,77 @@ let cfitech = new CFITECH();
 // 2. Création du matériels du CFITECH // -> Les étapes:
 // ----------------------------------- //
 
-    // 2.1) Création des entités Materiel
-    let ordinateurs = new Materiel("Ordinateurs", 100);
-    let écrans = new Materiel("Ecrans", 150);
+// 2.1) Création des entités Materiel
+let ordinateurs = new Materiel("Ordinateurs", 100);
+let écrans = new Materiel("Écrans", 150);
 
-    // 2.2) Ajout des entités précédemment crées à la variable `cfitech` qui est
-    // une instance de CFITECH.
-    cfitech.ajoute_materiel(ordinateurs);
-    cfitech.ajoute_materiel(écrans);
+// 2.2) Ajout des entités précédemment crées à la variable `cfitech` qui est
+// une instance de CFITECH.
+cfitech.ajoute_materiel(ordinateurs);
+cfitech.ajoute_materiel(écrans);
 
 // -------------------------------------- //
 // 3. Création des professeurs du CFITECH // -> Les étapes:
 // -------------------------------------- //
 
-    // 3.1) Création des entités Professeur
+// 3.1) Création des entités Professeur
 
-    let prof_jean_aimable = new Professeur("Jean Aimable", "JavaScript");
-    let prof_julien = new Professeur("Julien", ["PHP", "MySQL"]);
-    let prof_benoît = new Professeur("Benoit", ["HTML", "CSS"]);
+let prof_jean_aimable = new Professeur("Jean Aimable", "JavaScript");
+let prof_julien = new Professeur("Julien", ["PHP", "MySQL"]);
+let prof_benoît = new Professeur("Benoît", ["HTML", "CSS"]);
 
-    // 3.2) Ajout des entités précédemment crées à la variable `cfitech` qui est
-    // une instance de CFITECH.
+// 3.2) Ajout des entités précédemment crées à la variable `cfitech` qui est
+// une instance de CFITECH.
 
-    cfitech.ajoute_professeur(prof_jean_aimable);
-    cfitech.ajoute_professeur(prof_julien);
-    cfitech.ajoute_professeur(prof_benoît);
+cfitech.ajoute_professeur(prof_jean_aimable);
+cfitech.ajoute_professeur(prof_julien);
+cfitech.ajoute_professeur(prof_benoît);
 
 // -------------------------- //
 // 4. Création des stagiaires // -> Les étapes:
 // -------------------------- //
 
-    // 4.1) Je crée une liste d'objet contenant les informations des stagiaires.
-    let stagiaires = [
-        {
-            nom: "Mike S.",
-            age: 24,
-            cours: ["JavaScript", "PHP/MYSQL", "HTML/CSS"],
-            professeurs: [prof_jean_aimable, prof_julien, prof_benoît],
-        },
+// 4.1) Je crée une liste d'objet contenant les informations des stagiaires.
+let stagiaires = [
+	{
+		nom: "Mike S.",
+		age: 24,
+		cours: ["JavaScript", "PHP/MYSQL", "HTML/CSS"],
+		professeurs: [prof_jean_aimable, prof_julien, prof_benoît],
+	},
 
-        {
-            nom: "Jeremy X.",
-            age: 18,
-            cours: ["PHP/MYSQL", "HTML/CSS"],
-            professeurs: [prof_julien, prof_benoît],
-        },
+	{
+		nom: "Jeremy X.",
+		age: 18,
+		cours: ["PHP/MYSQL", "HTML/CSS"],
+		professeurs: [prof_julien, prof_benoît],
+	},
 
-        {
-            nom: "John D.",
-            age: 36,
-            cours: "HTML/CSS",
-            professeurs: [prof_benoît],
-        },
-    ];
+	{
+		nom: "John D.",
+		age: 36,
+		cours: "HTML/CSS",
+		professeurs: [prof_benoît],
+	},
+];
 
-    // 4.2) Parcours du tableau des stagiaires. 
-    //
-    // La boucle `for ... of ...` s'agit d'une boucle "POUR CHAQUE".
-    // L'équivalent d'une boucle `foreach` en PHP.
-    for (let stagiaire of stagiaires) {
-        // 4.2.1) Création de l'entité Stagiaire
-        let stagiaire_instance = new Stagiaire(stagiaire.nom, stagiaire.age);
-        stagiaire_instance.définis_cours(stagiaire.cours);
-        stagiaire_instance.définis_professeurs(stagiaire.professeurs);
+// 4.2) Parcours du tableau des stagiaires.
+//
+// La boucle `for ... of ...` s'agit d'une boucle "POUR CHAQUE".
+// L'équivalent d'une boucle `foreach` en PHP.
+for (let stagiaire of stagiaires) {
+	// 4.2.1) Création de l'entité Stagiaire
+	let stagiaire_instance = new Stagiaire(stagiaire.nom, stagiaire.age);
+	stagiaire_instance.définis_cours(stagiaire.cours);
+	stagiaire_instance.définis_professeurs(stagiaire.professeurs);
 
-        // 4.2.2) Ajout de entité Stagiaire précédement crée à la variable
-        // `cfitech` qui est une instance de CFITECH.
-        cfitech.ajoute_stagiaire(stagiaire_instance);
-    }
+	// 4.2.2) Ajout de entité Stagiaire précédemment crée à la variable
+	// `cfitech` qui est une instance de CFITECH.
+	cfitech.ajoute_stagiaire(stagiaire_instance);
+}
 
 // ----------------------------- //
 // 5. Affichage des informations // -> Les étapes:
 // ----------------------------- //
-    
-    cfitech.affiche_info();
+
+cfitech.affiche_info();
