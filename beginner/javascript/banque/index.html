@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banque</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Simple système bancaire, <small>Client -> Banque</small></h1>
+
+    <details open>
+        <summary>Nos utilisateurs</summary>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Nom</td>
+                    <td>Prénom</td>
+                    <td>Date d'anniversaire</td>
+                    <td>Argent cash</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>S.</td>
+                    <td>Mike</td>
+                    <td>07-12-1991</td>
+                    <td>20</td>
+                </tr>
+
+                <tr>
+                    <td>X.</td>
+                    <td>Timothy</td>
+                    <td>11-12-2005</td>
+                    <td>10</td>
+                </tr>
+
+                <tr>
+                    <td>X.</td>
+                    <td>Jeremy</td>
+                    <td>04-04-1987</td>
+                    <td>17</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details open>
+        <summary>Toutes nos banques</summary>
+        <table>
+            <thead>
+                <tr>
+                    <td>Banque</td>
+                    <td>Adresse</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Axa Bank</td>
+                    <td>Rue de la banque d'Axa Bank n°200, 1000 Bruxelles (Bruxelles)</td>
+                </tr>
+
+                <tr>
+                    <td>ING Bank</td>
+                    <td>Rue de la banque d'ING Bank n°10, 1081 Koekelberg (Bruxelles)</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details open>
+        <summary>Test du programme</summary>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>👨👩</th>
+                    <th>Étape 1</th>
+                    <th>Étape 2</th>
+                    <th>Étape 3</th>
+                </tr>
+                <tr>
+                    <th>Mike</th>
+                    <td>
+                        <button onclick="start_bank_account_registration(database_users[0].id, database_banks[0].name)">
+                            Inscription à la banque Axa Bank
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_deposit(database_users[0].id, database_banks[0].name)">
+                            Déposer de l'argent
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_withdrawal(database_users[0].id, database_banks[0].name)">
+                            Retirer de l'argent
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Timothy</th>
+                    <td>
+                        <button onclick="start_bank_account_registration(database_users[1].id, database_banks[1].name)">
+                            Inscription à la banque ING Bank
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_deposit(database_users[1].id, database_banks[1].name)">
+                            Déposer de l'argent
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_withdrawal(database_users[1].id, database_banks[1].name)">
+                            Retirer de l'argent
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Jeremy</th>
+                    <td>
+                        <button onclick="start_bank_account_registration(database_users[2].id, database_banks[0].name)">
+                            Inscription à la banque Axa Bank
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_deposit(database_users[1].id, database_banks[0].name)">
+                            Déposer de l'argent
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="start_cash_withdrawal(database_users[1].id, database_banks[0].name)">
+                            Retirer de l'argent
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
