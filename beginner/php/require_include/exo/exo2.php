@@ -2,7 +2,7 @@
 
 require dirname(__DIR__) . "/fonctions_require.php";
 
-$term1 = "multiplié";
+$term1 = "multiplier";
 $term2 = "multiplication";
 
 if (yes_or_no("Voulez-vous $term1?")) {

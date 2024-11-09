@@ -2,7 +2,7 @@
 
 require dirname(__DIR__) . "/fonctions_require.php";
 
-$term1 = "additionné";
+$term1 = "additionner";
 $term2 = "addition";
 
 if (yes_or_no("Voulez-vous $term1?")) {
@@ -12,7 +12,7 @@ if (yes_or_no("Voulez-vous $term1?")) {
     if (!(is_numeric($nb1) || is_numeric($nb2))) {
         echo "Veuillez introduire 2 nombres\n";
     } else {
-        $result = add(7, 2); // 9
+        $result = add($nb1, $nb2);
         echo "La réponse de la $term2 est $result\n";
     }
 } else {
