@@ -1,0 +1,5 @@
+ALTER TABLE users ADD address VARCHAR(255) NOT NULL;
+
+ALTER TABLE users DROP address;
+
+ALTER TABLE users CHANGE country city VARCHAR (255) NOT NULL;

@@ -1,0 +1,3 @@
+CREATE DATABASE dbname;
+
+DROP DATABASE dbname;

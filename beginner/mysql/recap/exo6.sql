@@ -4,4 +4,4 @@ SELECT *
 FROM users
 WHERE date_of_birth < "2010-06-01"
 ORDER BY lastname DESC
-LIMIT 4,2;
+LIMIT 4, 2;
