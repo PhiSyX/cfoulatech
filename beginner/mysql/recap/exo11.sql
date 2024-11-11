@@ -1,7 +1,6 @@
 -- Sélectionner 3 utilisateurs à partir de 5ème qui ont un E ou un A dans leurs
 -- prénoms et les trier par genre.
-SELECT
-	*
+SELECT *
 FROM users
 WHERE firstname LIKE "%a%"
    OR firstname LIKE "%e%"

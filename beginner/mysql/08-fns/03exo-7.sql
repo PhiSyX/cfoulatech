@@ -2,5 +2,5 @@
 --    lettres nécessaire... Attention à ne pas modifier d'autres villes, il faut
 --    une condition
 UPDATE users
-SET city = REPLACE (city, 'don', 'dres')
+SET city = REPLACE(city, 'don', 'dres')
 WHERE city = 'London'

@@ -2,5 +2,5 @@
 --    7ème
 SELECT
 	city,
-	SUBSTR (city, 4, 4)
+	SUBSTR(city, 4, 4)
 FROM users;

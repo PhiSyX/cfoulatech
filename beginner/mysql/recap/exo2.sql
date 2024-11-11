@@ -4,11 +4,6 @@
 SELECT
 	*
 FROM users
-WHERE lastname IN (
-		'Bond',
-		'Bauer',
-		'Knowles',
-		'Croft'
-	  )
+WHERE lastname IN('Bond', 'Bauer', 'Knowles', 'Croft')
   AND weight_kg < 85
 ORDER BY firstname ASC;

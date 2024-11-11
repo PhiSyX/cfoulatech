@@ -2,8 +2,8 @@
 -- plus vieux au plus jeune.
 SELECT
 	*,
-	TIMESTAMPDIFF (YEAR, date_of_birth, CURRENT_DATE) AS age
+	TIMESTAMPDIFF(YEAR, date_of_birth, CURRENT_DATE) AS age
 FROM users
-WHERE DATE_SUB (CURRENT_DATE, INTERVAL 26 YEAR) < date_of_birth
-  AND DATE_SUB (CURRENT_DATE, INTERVAL 10 YEAR) > date_of_birth
+WHERE DATE_SUB(CURRENT_DATE, INTERVAL 26 YEAR) < date_of_birth
+  AND DATE_SUB(CURRENT_DATE, INTERVAL 10 YEAR) > date_of_birth
 ORDER BY date_of_birth ASC;

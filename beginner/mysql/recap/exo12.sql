@@ -4,5 +4,5 @@ SELECT
 	city,
 	AVG(weight_kg) as "La moyenne des poids"
 FROM users
-WHERE city IN ('Anvers', 'Bruxelles')
+WHERE city IN('Anvers', 'Bruxelles')
 GROUP BY city;

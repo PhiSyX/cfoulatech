@@ -2,7 +2,7 @@
 -- avoir le même poids.
 UPDATE users
 SET weight_kg = 80
-WHERE id_user IN (1, 8);
+WHERE id_user IN(1, 8);
 
 -- Pareil que : UPDATE users SET weight_kg = 80  WHERE id_user = 1 OR id_user = 8;
 UPDATE users

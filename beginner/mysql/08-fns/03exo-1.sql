@@ -4,13 +4,12 @@
 --    virgules et un espace. Pour le poids, je veux en kilos
 SELECT
 	*,
-	CONCAT (gender, ', ', city, ',', weight_kg, 'kg') AS "Voici le genre, la ville et le poids"
+	CONCAT(
+		gender,
+		', ',
+		city,
+		',',
+		weight_kg, 'kg'
+	) AS "Voici le genre, la ville et le poids"
 FROM users
-WHERE
-	city IN (
-		'Anvers',
-		'Bruxelles',
-		'London',
-		'New-York',
-		'New York'
-	);
+WHERE city IN('Anvers', 'Bruxelles', 'London', 'New-York', 'New York');

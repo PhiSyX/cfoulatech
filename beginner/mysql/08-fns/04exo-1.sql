@@ -3,4 +3,4 @@
 UPDATE users
 SET date_of_birth = DATE_ADD(date_of_birth, INTERVAL 365 DAY)
 WHERE gender IN('F', 'M')
-  AND city LIKE '%e%';
+  AND city LIKE "%e%";

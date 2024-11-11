@@ -2,7 +2,7 @@
 -- vieux.
 SELECT
 	*,
-	TIMESTAMPDIFF (YEAR, date_of_birth, CURRENT_DATE) AS age
+	TIMESTAMPDIFF(YEAR, date_of_birth, CURRENT_DATE) AS age
 FROM users
 WHERE gender = 'M'
   AND DATE_SUB(CURRENT_DATE, INTERVAL 19 YEAR) > date_of_birth

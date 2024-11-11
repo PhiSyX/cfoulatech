@@ -2,5 +2,5 @@
 --    lettres
 SELECT
 	city,
-	SUBSTR (city, 4)
+	SUBSTR(city, 4)
 FROM users;
