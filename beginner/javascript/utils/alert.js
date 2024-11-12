@@ -18,9 +18,11 @@ export function alert(text) {
 
 		// NOTE: Ajoute le texte dans le document.
 		let output = document.createElement("output");
-		output.append(text.toString());
-		document.body.prepend(output);
-	} else {
-		console.info(text.toString());
+		for (let line of text.toString().trimEnd().split('\n')) {
+			output.append(line);
+			output.append(document.createElement("br"));
+		}
+		document.body.append(output);
 	}
+	console.info(text.toString().trimEnd());
 }

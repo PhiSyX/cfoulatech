@@ -6,6 +6,6 @@ for (let index = 0; index < numbers.length; index++) {
 	let number = numbers[index];
 
 	if (number % 2 === 0) {
-		alert(`${number} est un nombre pair`);
+		alert(`${number} est un nombre pair.`);
 	}
 }

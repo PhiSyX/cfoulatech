@@ -15,7 +15,6 @@ for (let index = 1; index < numbers_len; index++) {
 }
 
 write(
-	"%s est le nombre le plus grand parmi la liste des nombres:",
-	highest_number,
+	`${highest_number} est le nombre le plus grand parmi la liste des nombres:`,
 	numbers
 );
