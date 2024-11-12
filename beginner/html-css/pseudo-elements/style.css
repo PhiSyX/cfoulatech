@@ -1,0 +1,31 @@
+html,
+body {
+	color-scheme: dark;
+}
+
+body {
+	width: 80ch;
+	margin-inline: auto;
+}
+
+blockquote {
+	position: relative;
+	margin: 0;
+}
+
+blockquote::after,
+blockquote::before {
+	font-size: 2rem;
+	padding-inline: 12px;
+	vertical-align: middle;
+	border-radius: 50px;
+	background-color: #999;
+}
+
+blockquote::before {
+	content: open-quote;
+}
+
+blockquote::after {
+	content: close-quote;
+}
