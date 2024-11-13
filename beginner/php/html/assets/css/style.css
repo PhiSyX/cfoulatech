@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+	background: black;
+}
+
+nav > a {
+	display: inline-block;
+	padding: 8px;
+	color: white;
+}
+
+nav,
+main {
+	width: 100%;
+	max-width: 80ch;
+	margin-inline: auto;
+	padding: 8px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+form > div {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+label[for]:has(+ input[id], + textarea[id]) {
+	display: block;
+	cursor: pointer;
+}
+
+input[type="text"],
+textarea {
+	width: 100%;
+	resize: none;
+	padding: 8px;
+}
+
+textarea {
+	height: 150px;
+}
+
+button[type="submit"] {
+	width: 100%;
+	padding: 16px;
+	cursor: pointer;
+	border: none;
+	border-radius: 3px;
+	background-color: rgb(29, 127, 160);
+	color: white;
+}
