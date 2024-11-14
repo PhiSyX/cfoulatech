@@ -1,0 +1,101 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	color-scheme: dark;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body,
+#testimonials {
+	height: 100%;
+}
+
+body {
+	width: 80vw;
+	margin-inline: auto;
+}
+
+#testimonials {
+	display: flex;
+	place-items: center;
+	place-content: center;
+	gap: 32px;
+}
+
+#testimonials > figure {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+
+	width: 30vw;
+	padding: 16px;
+	padding-top: 5rem;
+
+	border-radius: 8px;
+	background: #f7f7f7;
+	color: #212121;
+}
+
+#testimonials > figure > img {
+	--size: 100px;
+
+	width: var(--size);
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: calc(-0px - (var(--size) / 2));
+	left: calc(50% - calc(var(--size) / 2));
+
+	filter: drop-shadow(0 0 0.75rem #212121);
+}
+
+#testimonials > figure > blockquote {
+	position: relative;
+}
+
+#testimonials > figure > blockquote p {
+	margin: 0;
+}
+
+#testimonials > figure > blockquote::before {
+	content: open-quote;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: -0.5em;
+	font-size: 4.5rem;
+	color: #ff7f50;
+}
+
+#testimonials > figure > blockquote::after {
+	content: close-quote;
+	visibility: hidden;
+}
+
+#testimonials > figure > figcaption {
+	order: 3;
+	text-align: center;
+	font-weight: bold;
+}
+
+#testimonials > figure > figcaption::before {
+	content: "";
+	display: block;
+	width: 25px;
+	height: 2px;
+	margin-inline: auto;
+	margin-block: 8px;
+	background: #ff7f50;
+}
+
+.testimonials--zoom {
+	zoom: 1.5;
+}
