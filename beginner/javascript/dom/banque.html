@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Banque</title>
+	<style>
+		html {
+			color-scheme: dark;
+		}
+
+		.erreur {
+			color: #d36239;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Gestion de Compte Bancaire</h1>
+
+	<p>Solde : <strong id="js-solde">0€</strong></p>
+
+	<input type="text" name="montant">
+
+	<button id="js-deposer" onclick="evenement_deposer_argent()">Déposer</button>
+	<button id="js-retirer" onclick="evenement_retirer_argent()">Retirer</button>
+
+	<p id="js-erreur" class="erreur"></p>
+
+	<script>
+		// Initialisation à 0 de mon argent. Il s'agit d'une valeur par défaut.
+		// Cette valeur va se voir changer de valeur au fur et à mesure des
+		// actions effectués par l'utilisateur.
+		let ma_thune = 0;
+
+		/**
+		 * Fonction pour l'événement CLICK qui est appelé par le bouton
+		 * "Déposer".
+		 */
+		function evenement_deposer_argent() {
+			// 1. Récupération de l'élément INPUT via l'attribut `name` avec
+			//    comme valeur "montant".
+			let element_inputs = document.getElementsByName("montant");
+			let premier_element_input = element_inputs[0];
+
+			// 2. Récupération de la valeur de l'input.
+			// 3. Conversion de la valeur de l'input en nombre float parce qu'il
+			//    s'agit d'une chaîne de caractères de base.
+			let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+
+			réinitialise_valeur_input();
+
+			// NOTE: La conversion du point 3 PEUT échouer.
+			//
+			// 4. Vérification du montant entré par l'utilisateur qu'il s'agisse
+			//    bien d'un nombre valide.
+			if (Number.isNaN(montant_utilisateur)) {
+				notifie_erreur("Il ne s'agit pas d'un nombre, recommencez...");
+				return;
+			}
+
+			// 5. Vérification du montant de l'utilisateur qui soit bien
+			//    supérieur à 0.
+			if (montant_utilisateur <= 0) {
+				notifie_erreur("Veuillez entrer un montant d'au moins 0.5€");
+				return;
+			}
+
+			// Et si tout s'est bien passé...
+
+			// 6. Modification de la valeur de ma variable `ma_thune` pour
+			//    ajouter le montant entré par l'utilisateur. Via l'opérateur
+			//    d'affection d'addition `+=`.
+			ma_thune += montant_utilisateur;
+
+			// 7. Modification de l'HTML pour réactualiser le solde.
+			mettre_a_jour_le_solde_html(ma_thune);
+		}
+
+		/**
+		 * Fonction pour l'événement CLICK qui est appelé par le bouton
+		 * "Retirer".
+		 */
+		function evenement_retirer_argent() {
+			// 1. Récupération de l'élément INPUT via l'attribut `name` avec
+			//    comme valeur "montant".
+			let element_inputs = document.getElementsByName("montant");
+			let premier_element_input = element_inputs[0];
+
+			// 2. Récupération de la valeur de l'input.
+			// 3. Conversion de la valeur de l'input en nombre float parce qu'il
+			//    s'agit d'une chaîne de caractères de base.
+			let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+
+			réinitialise_valeur_input();
+
+			// NOTE: La conversion du point 3 PEUT échouer.
+			//
+			// 4. Vérification du montant entré par l'utilisateur qu'il s'agisse
+			//    bien d'un nombre valide.
+			if (Number.isNaN(montant_utilisateur)) {
+				notifie_erreur("Il ne s'agit pas d'un nombre, recommencez...");
+				return;
+			}
+
+			// 5. Vérification du montant de l'utilisateur qui soit bien
+			//    supérieur à 0.
+			if (montant_utilisateur <= 0) {
+				notifie_erreur("Veuillez entrer un montant d'au moins 0.5€");
+				return;
+			}
+
+			// 6. Effectue une opération arithmétique de soustraction.
+			let solde_temporaire = ma_thune - montant_utilisateur;
+
+			// 7. Vérification du solde.
+			if (solde_temporaire < 0) {
+				// Pas assez d'argent dans le compte.
+
+				// Valeur absolue, ex: -200 => 200
+				let difference = Math.abs(solde_temporaire);
+
+				notifie_erreur(
+					`Le solde actuel du compte est de ${ma_thune}€. <br>` +
+					`Il vous manque ${difference}€ pour retirer ${montant_utilisateur}€. <br>` +
+					`Veuillez ajouter de l'argent à votre compte !`
+				);
+				return;
+			}
+
+			// Et si tout s'est bien passé...
+
+			// 8. Modification de la valeur de ma variable `ma_thune` pour
+			//    lui affecter le solde temporaire.
+			ma_thune = solde_temporaire;
+			// 9. Modification de l'HTML pour réactualiser le solde.
+			mettre_a_jour_le_solde_html(ma_thune);
+		}
+
+		/**
+		 * Fonction de mise à jour du solde de l'HTML.
+		 */
+		function mettre_a_jour_le_solde_html(nouveau_solde) {
+			let element_solde = document.querySelector("strong#js-solde");
+			element_solde.innerText = `${nouveau_solde}€`;
+		}
+
+		/**
+		 * Fonction de mise à jour des erreurs s'il en existe.
+		 */
+		function notifie_erreur(message) {
+			let element_erreur = document.querySelector("p#js-erreur");
+			element_erreur.innerHTML = message;
+		}
+
+		/**
+		 * Fonction qui va supprimer la valeur du champ input et supprime
+		 * l'erreur s'il en existe une.
+		 */
+		function réinitialise_valeur_input() {
+			let element_montants = document.getElementsByName("montant");
+			let element_montant = element_montants[0];
+			element_montant.value = "";
+
+			let element_erreur = document.querySelector("p#js-erreur");
+			element_erreur.innerText = "";
+		}
+	</script>
+</body>
+
+</html>
