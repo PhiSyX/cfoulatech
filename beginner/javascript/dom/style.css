@@ -1,0 +1,15 @@
+:root {
+	color-scheme: dark light;
+}
+
+output {
+	font-weight: bold;
+}
+
+.erreur {
+	color: #cd3d2a;
+}
+
+input[type="number"] {
+	min-width: 10vw;
+}
