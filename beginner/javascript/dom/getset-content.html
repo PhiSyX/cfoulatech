@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM</title>
+</head>
+
+<body>
+
+	<input type="text" name="my-name">
+
+	<button class="button" onclick="set_input_value()">Définir une valeur</button>
+
+	<hr>
+
+	<p>Output: <output name="my-output"></output></p>
+	<p>Span: <span id="my-span"></span></p>
+
+	<script>
+		let my_inputs = document.getElementsByName("my-name");
+		let my_outputs = document.getElementsByName("my-output");
+		let my_span = document.querySelector("#my-span");
+
+		let my_input = my_inputs[0];
+		let my_output = my_outputs[0];
+
+		function set_input_value()
+		{
+			my_input.value = "Hello World";
+			my_output.value = my_input.value;
+			my_span.innerText = my_input.value;
+		}
+	</script>
+</body>
+
+</html>
