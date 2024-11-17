@@ -11,28 +11,30 @@
 <body>
 	<h1>Gestion de Compte Bancaire</h1>
 
-	<p>
-		Solde :
+	<section>
+		<p>
+			Solde :
 
-		<!--
-		1. Élément <output> représente un conteneur dans lequel un site ou une
-			application peut injecter le résultat d'un calcul ou d'une action
-			utilisateur.
-		-->
-		<output name="solde">0€</output>
-	</p>
+			<!--
+			1. Élément <output> représente un conteneur dans lequel un site ou une
+				application peut injecter le résultat d'un calcul ou d'une action
+				utilisateur.
+			-->
+			<output name="solde">0€</output>
+		</p>
 
-	<input type="number" name="montant" step="5" min="10" max="200">
+		<input placeholder="Votre montant" type="number" name="montant" step="5" min="10" max="200">
 
-	<button id="js-deposer" onclick="evenement_deposer_argent()">
-		Déposer de l'argent
-	</button>
+		<button id="js-deposer" onclick="evenement_deposer_argent()">
+			Déposer de l'argent
+		</button>
 
-	<button id="js-retirer" onclick="evenement_retirer_argent()">
-		Retirer de l'argent
-	</button>
+		<button id="js-retirer" onclick="evenement_retirer_argent()">
+			Retirer de l'argent
+		</button>
 
-	<p id="js-erreur" class="erreur"></p>
+		<p id="js-erreur" class="erreur"></p>
+	</section>
 
 	<script>
 		// 1) Initialise mon argent à 100€. Il s'agit de la valeur par défaut.
@@ -44,8 +46,7 @@
 		 * 2) Création d'une fonction de mise à jour du solde de l'élément HTML
 		 *    `<output name="solde">`.
 		 */
-		function modifier_solde_dans_html(nouveau_solde)
-		{
+		function modifier_solde_dans_html(nouveau_solde) {
 			// 2.1) Récupération de l'élément OUTPUT via l'attribut `name` avec
 			//      comme nom "solde".
 			let elements_outputs = document.getElementsByName("solde");
@@ -63,8 +64,7 @@
 		 * 4) Fonction pour l'événement CLICK qui est appelé par le bouton
 		 *    "Déposer".
 		 */
-		function evenement_deposer_argent()
-		{
+		function evenement_deposer_argent() {
 			// 4.1) Récupération de l'élément INPUT via l'attribut `name` avec
 			//      comme nom "montant".
 			let element_inputs = document.getElementsByName("montant");
@@ -111,8 +111,7 @@
 		 * 5. Fonction pour l'événement CLICK qui est appelé par le bouton
 		 *    "Retirer".
 		 */
-		function evenement_retirer_argent()
-		{
+		function evenement_retirer_argent() {
 			// 5.1) Récupération de l'élément INPUT via l'attribut `name` avec
 			//      comme nom "montant".
 			let element_inputs = document.getElementsByName("montant");
@@ -171,8 +170,7 @@
 		/**
 		 * 6. Fonction de mise à jour des erreurs s'il en existe.
 		 */
-		function notifie_erreur(message)
-		{
+		function notifie_erreur(message) {
 			// 6.1) Récupération de l'élément P via son ID.
 			let element_erreur = document.querySelector("p#js-erreur");
 

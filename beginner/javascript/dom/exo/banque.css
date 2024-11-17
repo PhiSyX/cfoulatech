@@ -1,0 +1,109 @@
+:root {
+	color-scheme: dark light;
+
+	@media (prefers-color-scheme: dark) {
+		--primary-color: #cdaa2a;
+		--secondary-color: #2a99cd;
+
+		--input-bg: linear-gradient(to right, #3c4043, #383a3c);
+	}
+
+	@media (prefers-color-scheme: light) {
+		--primary-color: #2a99cd;
+		--secondary-color: #cdaa2a;
+
+		--input-bg: linear-gradient(to right, #f5e7fd, #dfe7f5);
+	}
+
+	--input-color: FieldText;
+	--input-placeholder: GrayText;
+
+	--button-bg: CanvasText;
+	--button-color: Canvas;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
+
+	width: 80vw;
+	max-width: 80ch;
+	margin: 0 auto;
+}
+
+input,
+button {
+	padding: 8px;
+
+	border: 1px solid transparent;
+	border-radius: 2px;
+}
+
+input {
+	background: var(--input-bg);
+	color: var(--input-color);
+}
+
+button:focus,
+input:focus {
+	outline: 3px solid var(--primary-color);
+}
+
+input::placeholder {
+	color: var(--input-placeholder);
+}
+
+button {
+	background-color: var(--button-bg);
+	color: var(--button-color);
+	cursor: pointer;
+	text-align: left;
+}
+button:active {
+	outline-style: inset;
+	background-color: ButtonBorder;
+	color: ButtonText;
+}
+
+output {
+	font-weight: bold;
+	color: var(--primary-color);
+}
+
+.erreur {
+	min-height: 100px;
+	width: 300px;
+	color: #e57373;
+}
+
+section {
+	display: grid;
+	grid-auto-columns: max-content;
+	justify-content: center;
+	gap: 8px;
+}
+
+section > * {
+	grid-column: span 2;
+}
+
+#js-deposer {
+	grid-column: 1;
+}
+#js-retirer {
+	grid-column: 2;
+}
