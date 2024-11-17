@@ -15,7 +15,7 @@ if (yes_or_no("Voulez-vous $term1?")) {
         }
     } while ($nb2 == 0);
 
-    if (!(is_numeric($nb1) || is_numeric($nb2))) {
+    if (!(is_numeric($nb1) && is_numeric($nb2))) {
         echo "Veuillez introduire 2 nombres\n";
     } else {
         $result = div($nb1, $nb2);

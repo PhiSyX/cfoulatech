@@ -46,20 +46,3 @@ function yes_or_no(string $sentence): bool
         }
     }
 }
-
-function calc(float $l, float $r, int $op): float
-{
-    switch ($op) {
-        case 1:
-            return add($l, $r);
-
-        case 2:
-            return sub($l, $r);
-
-        case 3:
-            return mul($l, $r);
-
-        case 4:
-            return div($l, $r);
-    }
-}
