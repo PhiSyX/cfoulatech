@@ -2,5 +2,4 @@
 --    novembre, le 8 janvier, le 28 décembre etc.).
 SELECT *
 FROM users
-WHERE gender IN ('F', 'M')
-  AND DAY(date_of_birth) MOD 2 = 0;
+WHERE DAY(date_of_birth) MOD 2 = 0;

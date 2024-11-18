@@ -1,5 +1,5 @@
--- 3) Affichez les femmes ou autres (X) qui sont né entre Ie 12 eme et Ie 26e
--- me jour.
+-- 3) Affichez les femmes ou autres (X) qui sont né entre le 12ème et le 26eme
+--    jour.
 SELECT
 	lastname,
 	firstname
