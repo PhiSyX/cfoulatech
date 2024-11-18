@@ -84,30 +84,37 @@ output {
 	color: var(--primary-color);
 }
 
-.erreur {
-	min-height: 100px;
-	width: 300px;
-	color: #e57373;
-}
-
 h1 {
 	text-align: center;
 }
 
-section {
+div {
 	display: grid;
 	grid-auto-columns: max-content;
 	justify-content: center;
 	gap: 8px;
 }
 
-section > * {
+div > * {
 	grid-column: span 2;
 }
 
-#js-deposer {
+button:first-of-type {
 	grid-column: 1;
 }
-#js-retirer {
+button:last-of-type {
 	grid-column: 2;
+}
+
+.message {
+	min-height: 100px;
+	width: 300px;
+}
+
+.erreur {
+	color: #e57373;
+}
+
+.succès {
+	color: #a1e573;
 }

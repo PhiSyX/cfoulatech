@@ -11,7 +11,7 @@
 <body>
 	<h1>Bank Root</h1>
 
-	<section>
+	<div>
 		<p>
 			Solde :
 
@@ -25,16 +25,21 @@
 
 		<input placeholder="Votre montant" type="number" name="montant" step="5" min="10" max="200">
 
-		<button id="js-deposer" onclick="evenement_deposer_argent()">
+		<button type="button" onclick="evenement_deposer_argent()">
 			Déposer de l'argent
 		</button>
 
-		<button id="js-retirer" onclick="evenement_retirer_argent()">
+		<button type="button" onclick="evenement_retirer_argent()">
 			Retirer de l'argent
 		</button>
 
-		<p id="js-erreur" class="erreur"></p>
-	</section>
+		<section id="js-message" class="message">
+			<!--
+				<p class="succès">Ceci est un message de succès</p>
+				<p class="erreur">Ceci est un message d'erreur</p>
+			-->
+		</section>
+	</div>
 
 	<script>
 		// 1) Initialise mon argent à 100€. Il s'agit de la valeur par défaut.
@@ -82,14 +87,14 @@
 			// 4.4) Vérification du montant entré par l'utilisateur qu'il
 			//      s'agisse bien d'un nombre valide.
 			if (Number.isNaN(montant_utilisateur)) {
-				notifie_erreur("Il ne s'agit pas d'un nombre, recommencez...");
+				notifier("erreur", "Il ne s'agit pas d'un nombre, recommencez...");
 				return;
 			}
 
 			// 4.5) Vérification du montant de l'utilisateur qui soit bien
 			//      supérieur à 0.
 			if (montant_utilisateur <= 0) {
-				notifie_erreur("Veuillez entrer un montant d'au moins 0.5€");
+				notifier("erreur", "Veuillez entrer un montant d'au moins 0.5€");
 				return;
 			}
 
@@ -103,9 +108,11 @@
 			// 4.7) Modification de l'HTML pour réactualiser le solde.
 			modifier_solde_dans_html(mon_argent);
 
-			// 4.8) J'efface la valeur de l'input pour qu'il n'y ait plus le
-			//      montant de l'utilisateur dans le champ.
-			premier_element_input.value = "";
+			// 4.8) Notifie l'utilisateur que le montant a bien été ajouté au solde.
+			notifier("succès",
+				`Le montant de <strong>${montant_utilisateur}€</strong>` +
+				` a bien été déposé à votre compte avec succès.`,
+			);
 		}
 
 		/**
@@ -129,14 +136,14 @@
 			// 5.4) Vérification du montant entré par l'utilisateur qu'il
 			//      s'agisse bien d'un nombre valide.
 			if (Number.isNaN(montant_utilisateur)) {
-				notifie_erreur("Il ne s'agit pas d'un nombre, recommencez...");
+				notifier("erreur", "Il ne s'agit pas d'un nombre, recommencez...");
 				return;
 			}
 
 			// 5.5) Vérification du montant de l'utilisateur qui soit bien
 			//      supérieur à 0.
 			if (montant_utilisateur <= 0) {
-				notifie_erreur("Veuillez entrer un montant d'au moins 0.5€");
+				notifier("erreur", "Veuillez entrer un montant d'au moins 0.5€");
 				return;
 			}
 
@@ -148,7 +155,7 @@
 				// NOTE: Valeur absolue, ex: -200 => 200
 				let difference = Math.abs(solde_temporaire);
 
-				notifie_erreur(
+				notifier("erreur",
 					`Le solde actuel du compte est de ${mon_argent}€. <br>` +
 					`Il vous manque ${difference}€ pour retirer ${montant_utilisateur}€. <br>` +
 					`Veuillez ajouter de l'argent à votre compte !`
@@ -164,18 +171,21 @@
 			// 5.9) Modification de l'HTML pour réactualiser le solde.
 			modifier_solde_dans_html(mon_argent);
 
-			// 5.10) J'efface la valeur de l'input pour qu'il n'y ait plus le
-			//       montant de l'utilisateur dans le champ.
-			premier_element_input.value = "";
+			// 5.10) Notifie l'utilisateur que le montant a bien été retiré du
+			//       solde.
+			notifier("succès",
+				`Le montant de <strong>${montant_utilisateur}€</strong>` +
+				` a bien été retiré avec succès de votre compte.`,
+			);
 		}
 
 		/**
-		 * 6. Fonction de mise à jour des erreurs s'il en existe.
+		 * 6. Fonction de mise à jour de la section message d'erreur ou de succès.
 		 */
-		function notifie_erreur(message)
+		function notifier(type, message)
 		{
-			// 6.1) Récupération de l'élément P via son ID.
-			let element_erreur = document.querySelector("p#js-erreur");
+			// 6.1) Récupération de l'élément SECTION via son ID.
+			let element_message = document.querySelector("#js-message");
 
 			// 6.2) Récupération de l'élément INPUT via son nom.
 			let element_montants = document.getElementsByName("montant");
@@ -183,7 +193,7 @@
 
 			// 6.3) Mise à jour du message d'erreur, grâce à la modification de
 			//      la propriété `innerHTML`.
-			element_erreur.innerHTML = message;
+			element_message.innerHTML = `<p class="${type}">${message}</p>`;
 
 			// 6.4) J'efface la valeur de l'input pour qu'il n'y ait plus le
 			//       montant de l'utilisateur dans le champ, grâce à la
