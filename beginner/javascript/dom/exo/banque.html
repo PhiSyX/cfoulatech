@@ -16,9 +16,9 @@
 			Solde :
 
 			<!--
-			1. Élément <output> représente un conteneur dans lequel un site ou une
-				application peut injecter le résultat d'un calcul ou d'une action
-				utilisateur.
+			1. Élément <output> représente un conteneur dans lequel un site ou
+			    une application peut injecter le résultat d'un calcul ou d'une
+			    action utilisateur.
 			-->
 			<output name="solde">0€</output>
 		</p>
@@ -40,13 +40,14 @@
 		// 1) Initialise mon argent à 100€. Il s'agit de la valeur par défaut.
 		//    Cette valeur se mettra à jour au fur et à mesure des actions
 		//    effectuées de l'utilisateur.
-		let ma_thune = 100;
+		let mon_argent = 100;
 
 		/**
 		 * 2) Création d'une fonction de mise à jour du solde de l'élément HTML
 		 *    `<output name="solde">`.
 		 */
-		function modifier_solde_dans_html(nouveau_solde) {
+		function modifier_solde_dans_html(nouveau_solde)
+		{
 			// 2.1) Récupération de l'élément OUTPUT via l'attribut `name` avec
 			//      comme nom "solde".
 			let elements_outputs = document.getElementsByName("solde");
@@ -57,14 +58,15 @@
 		}
 
 		// 3) La valeur qui DOIT être affiché lors de l'initialisation du script
-		//    est la valeur de `ma_thune`.
-		modifier_solde_dans_html(ma_thune);
+		//    est la valeur de `mon_argent`.
+		modifier_solde_dans_html(mon_argent);
 
 		/**
 		 * 4) Fonction pour l'événement CLICK qui est appelé par le bouton
 		 *    "Déposer".
 		 */
-		function evenement_deposer_argent() {
+		function evenement_deposer_argent()
+		{
 			// 4.1) Récupération de l'élément INPUT via l'attribut `name` avec
 			//      comme nom "montant".
 			let element_inputs = document.getElementsByName("montant");
@@ -94,13 +96,13 @@
 
 			// Et si tout s'est bien passé...
 
-			// 4.6) Modification de la valeur de ma variable `ma_thune` pour
+			// 4.6) Modification de la valeur de ma variable `mon_argent` pour
 			//      ajouter le montant entré par l'utilisateur. Via l'opérateur
 			//      d'affection d'addition `+=`.
-			ma_thune += montant_utilisateur;
+			mon_argent += montant_utilisateur;
 
 			// 4.7) Modification de l'HTML pour réactualiser le solde.
-			modifier_solde_dans_html(ma_thune);
+			modifier_solde_dans_html(mon_argent);
 
 			// 4.8) J'efface la valeur de l'input pour qu'il n'y ait plus le
 			//      montant de l'utilisateur dans le champ.
@@ -111,7 +113,8 @@
 		 * 5. Fonction pour l'événement CLICK qui est appelé par le bouton
 		 *    "Retirer".
 		 */
-		function evenement_retirer_argent() {
+		function evenement_retirer_argent()
+		{
 			// 5.1) Récupération de l'élément INPUT via l'attribut `name` avec
 			//      comme nom "montant".
 			let element_inputs = document.getElementsByName("montant");
@@ -139,7 +142,7 @@
 			}
 
 			// 5.6) Effectue une opération arithmétique de soustraction.
-			let solde_temporaire = ma_thune - montant_utilisateur;
+			let solde_temporaire = mon_argent - montant_utilisateur;
 
 			// 5.7) Vérification du solde.
 			if (solde_temporaire < 0) {
@@ -147,7 +150,7 @@
 				let difference = Math.abs(solde_temporaire);
 
 				notifie_erreur(
-					`Le solde actuel du compte est de ${ma_thune}€. <br>` +
+					`Le solde actuel du compte est de ${mon_argent}€. <br>` +
 					`Il vous manque ${difference}€ pour retirer ${montant_utilisateur}€. <br>` +
 					`Veuillez ajouter de l'argent à votre compte !`
 				);
@@ -156,11 +159,11 @@
 
 			// Et si tout s'est bien passé...
 
-			// 5.8) Modification de la valeur de ma variable `ma_thune` pour
+			// 5.8) Modification de la valeur de ma variable `mon_argent` pour
 			//      lui affecter le solde temporaire.
-			ma_thune = solde_temporaire;
+			mon_argent = solde_temporaire;
 			// 5.9) Modification de l'HTML pour réactualiser le solde.
-			modifier_solde_dans_html(ma_thune);
+			modifier_solde_dans_html(mon_argent);
 
 			// 5.10) J'efface la valeur de l'input pour qu'il n'y ait plus le
 			//       montant de l'utilisateur dans le champ.
@@ -170,7 +173,8 @@
 		/**
 		 * 6. Fonction de mise à jour des erreurs s'il en existe.
 		 */
-		function notifie_erreur(message) {
+		function notifie_erreur(message)
+		{
 			// 6.1) Récupération de l'élément P via son ID.
 			let element_erreur = document.querySelector("p#js-erreur");
 
