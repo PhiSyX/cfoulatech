@@ -4,15 +4,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>
-		<?php
-		if (isset($title)):
-			echo $title;
-		else:
-			echo "Mon super site";
-		endif;
-		?>
-	</title>
+	<!--
+	<title><?= $title ?? "Mon super site"; ?></title>
+	-->
+	<title><?php
+
+	if (isset($title)):
+		echo $title;
+	else:
+		echo "Mon super site";
+	endif;
+
+	?></title>
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -21,23 +24,27 @@
 	<header>
 		<nav>
 			<a
-				href="/cfoulatech/beginner/php/html/index.php"
-				class="<?php if ($nav === "index"): ?>active<?php endif; ?>">
+				href="index.php"
+				class="<?php if ($nav === "index"): ?>active<?php endif; ?>"
+			>
 				Accueil
 			</a>
 			<a
-				href="/cfoulatech/beginner/php/html/contact.php"
-				class="<?php if ($nav === "contact"): ?>active<?php endif; ?>">
+				href="contact.php"
+				class="<?php if ($nav === "contact"): ?>active<?php endif; ?>"
+			>
 				Contact
 			</a>
 			<a
-				href="/cfoulatech/beginner/php/html/about.php"
-				class="<?php if ($nav === "about"): ?>active<?php endif; ?>">
+				href="about.php"
+				class="<?php if ($nav === "about"): ?>active<?php endif; ?>"
+			>
 				À propos
 			</a>
 			<a
-				href="/cfoulatech/beginner/php/html/jeuduhasard.php"
-				class="<?php if ($nav === "jeuduhasard"): ?>active<?php endif; ?>">
+				href="jeuduhasard.php"
+				class="<?php if ($nav === "jeuduhasard"): ?>active<?php endif; ?>"
+			>
 				Jeu du Hasard
 			</a>
 		</nav>
