@@ -115,6 +115,12 @@ textarea {
 	color: var(--input-text);
 }
 
+button:focus,
+input:focus,
+textarea:focus {
+	outline: 3px solid var(--primary-color);
+}
+
 textarea {
 	height: 150px;
 }
@@ -127,6 +133,17 @@ button[type="submit"] {
 	border-radius: 3px;
 	background: var(--button-bg);
 	color: var(--button-color);
+}
+
+button {
+	background-color: var(--button-bg);
+	color: var(--button-color);
+	cursor: pointer;
+}
+button:active {
+	outline-style: inset;
+	background-color: ButtonBorder;
+	color: ButtonText;
 }
 
 footer {

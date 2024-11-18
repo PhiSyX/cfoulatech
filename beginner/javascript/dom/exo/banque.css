@@ -90,6 +90,10 @@ output {
 	color: #e57373;
 }
 
+h1 {
+	text-align: center;
+}
+
 section {
 	display: grid;
 	grid-auto-columns: max-content;
