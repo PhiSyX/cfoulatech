@@ -4,6 +4,41 @@
 	box-sizing: border-box;
 }
 
+:root {
+	color-scheme: dark light;
+
+	--space: 0.5rem;
+
+	@media (prefers-color-scheme: dark) {
+		--primary-color: #cdaa2a;
+		--secondary-color: #2a99cd;
+
+		--input-bg: linear-gradient(to right, #3c4043, #383a3c);
+
+		--error-bg: #c94242;
+		--success-bg: #37b437;
+	}
+
+	@media (prefers-color-scheme: light) {
+		--primary-color: #2a99cd;
+		--secondary-color: #cdaa2a;
+
+		--input-bg: linear-gradient(to right, #f5e7fd, #dfe7f5);
+
+		--error-bg: #ed666c;
+		--success-bg: #6874d6;
+	}
+
+	--input-color: FieldText;
+	--input-placeholder: GrayText;
+
+	--button-bg: CanvasText;
+	--button-color: Canvas;
+
+	--header-bg: var(--input-bg);
+	--header-text: CanvasText;
+}
+
 html,
 body {
 	width: 100%;
@@ -13,21 +48,33 @@ body {
 }
 
 header {
-	background: black;
+	position: sticky;
+	top: 0;
+
+	background: var(--header-bg);
+	color: var(--header-text);
 }
 
-nav > a {
+header > nav > a {
 	display: inline-block;
-	padding: 8px;
-	color: white;
+	padding: var(--space);
+	color: var(--header-nav-link);
+	text-decoration: none;
 }
 
-nav,
+.active,
+header > nav > a:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 4px;
+	text-decoration-color: var(--primary-color);
+}
+
+header > nav,
 main {
 	width: 100%;
 	max-width: 80ch;
 	margin-inline: auto;
-	padding: 8px;
+	padding: var(--space);
 }
 
 form {
@@ -39,7 +86,7 @@ form {
 form > div {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: var(--space);
 }
 
 label[for]:has(+ input[id], + textarea[id]) {
@@ -47,11 +94,16 @@ label[for]:has(+ input[id], + textarea[id]) {
 	cursor: pointer;
 }
 
+input[type="number"],
 input[type="text"],
 textarea {
 	width: 100%;
 	resize: none;
-	padding: 8px;
+	padding: var(--space);
+	border-radius: 4px;
+	border: none;
+	background: var(--input-bg);
+	color: var(--input-text);
 }
 
 textarea {
@@ -64,6 +116,43 @@ button[type="submit"] {
 	cursor: pointer;
 	border: none;
 	border-radius: 3px;
-	background-color: rgb(29, 127, 160);
-	color: white;
+	background: var(--button-bg);
+	color: var(--button-color);
+}
+
+footer {
+	position: sticky;
+	bottom: 0;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space);
+	padding: 32px;
+
+	background: var(--header-bg);
+
+	nav {
+		display: flex;
+		gap: var(--space);
+	}
+
+	p {
+		margin: 0;
+	}
+}
+
+.success,
+.error {
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 1px 1px 4px black;
+}
+
+.error {
+	background: var(--error-bg);
+}
+
+.success {
+	background: var(--success-bg);
 }

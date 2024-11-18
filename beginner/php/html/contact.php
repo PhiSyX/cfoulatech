@@ -1,5 +1,8 @@
-<?php require_once "./header.php"; ?>
-
+<?php
+$title = "Contact";
+$nav = "contact";
+require_once "./header.php";
+?>
 <main>
 	<h1>Formulaire de contact</h1>
 

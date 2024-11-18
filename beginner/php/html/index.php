@@ -1,5 +1,9 @@
-<?php require_once "./header.php"; ?>
+<?php
+$title = "Accueil";
+$nav = "index";
 
+require_once "./header.php";
+?>
 <main>
 	<h1>Page d'accueil</h1>
 
