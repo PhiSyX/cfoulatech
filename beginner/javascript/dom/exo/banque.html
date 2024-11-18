@@ -80,7 +80,9 @@
 			// 4.2) Récupération de la valeur de l'input.
 			// 4.3) Conversion de la valeur de l'input en nombre float, parce
 			//      que de base, la valeur s'agit d'une chaîne de caractères.
-			let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+			//let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+			// ^^^ vvv = SAME SAME
+			let montant_utilisateur = premier_element_input.valueAsNumber;
 
 			// NOTE: La conversion du point `4.3` PEUT échouer.
 			//
@@ -129,7 +131,9 @@
 			// 5.2) Récupération de la valeur de l'input.
 			// 5.3) Conversion de la valeur de l'input en nombre float, parce
 			//      que de base, la valeur s'agit d'une chaîne de caractères.
-			let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+			//let montant_utilisateur = Number.parseFloat(premier_element_input.value);
+			// ^^^ vvv = SAME SAME
+			let montant_utilisateur = premier_element_input.valueAsNumber;
 
 			// NOTE: La conversion du point 5.3 PEUT échouer.
 			//
