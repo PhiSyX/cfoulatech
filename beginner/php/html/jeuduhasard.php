@@ -1,14 +1,23 @@
 <?php
 
+session_start();
+
 const NUM_MIN = 0;
 const NUM_MAX = 10;
 
 $title = "Jeu du Hasard";
 $nav = "jeuduhasard";
 
-$numeroGagnant = rand(NUM_MIN, NUM_MAX);
+if ( ! isset($_SESSION["numeroGagnant"])) {
+	$_SESSION["numeroGagnant"] = rand(NUM_MIN, NUM_MAX);
+}
 
-$numeroUtilisateur = isset($_GET["nombre"]) ? (int) $_GET["nombre"] : null;
+$numeroGagnant = $_SESSION["numeroGagnant"];
+$numeroUtilisateur = isset($_POST["nombre"]) ? (int) $_POST["nombre"] : null;
+
+if ($numeroGagnant === $numeroUtilisateur) {
+	unset($_SESSION["numeroGagnant"]);
+}
 
 require_once "./header.php";
 ?>
@@ -25,14 +34,12 @@ require_once "./header.php";
 			<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
 				<p class="error">
 					Oops,
-					votre numéro est trop <strong>grand</strong>. <br>
-					Le numéro gagnant était <strong><?= $numeroGagnant; ?></strong>
+					votre numéro est trop <strong>grand</strong>.
 				</p>
 			<?php elseif ($numeroUtilisateur < $numeroGagnant): ?>
 				<p class="error">
 					Oops,
-					votre numéro est trop <strong>petit</strong>. <br>
-					Le numéro gagnant était <strong><?= $numeroGagnant; ?></strong>
+					votre numéro est trop <strong>petit</strong>.
 				</p>
 			<?php else: ?>
 				<p class="success">
@@ -43,7 +50,7 @@ require_once "./header.php";
 		</div>
 	<?php endif; ?>
 
-	<form action="jeuduhasard.php" method="GET">
+	<form action="jeuduhasard.php" method="POST">
 		<div>
 			<label for="nombre">Numéro</label>
 			<input
