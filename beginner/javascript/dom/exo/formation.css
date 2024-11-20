@@ -1,0 +1,220 @@
+@property --space {
+	syntax: "<length>";
+	inherits: false;
+	initial-value: 8px;
+}
+
+@property --rounded {
+	syntax: "<length>";
+	inherits: false;
+	initial-value: 8px;
+}
+
+@property --full-rounded {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 50%;
+}
+
+:root {
+	color-scheme: light;
+
+	--color-canvas: CanvasText;
+	--color-canvas-text: Canvas;
+	--color-gray: #c0bfbf;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html[lang] {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html,
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Roboto, sans-serif;
+}
+
+div[role="main"] {
+	min-height: 100vh;
+	min-width: 100%;
+}
+
+/* Header */
+
+header[role="heading"] {
+	background-image: url(../../../html-css/assets/bg-header.jpg);
+	background-size: cover;
+	user-select: none;
+	height: calc(var(--space) * 36);
+}
+
+header[role="heading"] > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin-inline: auto;
+	padding-top: calc(var(--space) * 10);
+	max-width: 80ch;
+}
+
+header[role="heading"] .title {
+	margin: 0;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+	letter-spacing: var(--space);
+	text-transform: uppercase;
+	/* color: #fafafa; */
+}
+
+header[role="heading"] img {
+	height: calc(var(--space) * 6);
+	border-radius: var(--full-rounded);
+	box-shadow: 1px 1px 2px #212121;
+}
+
+/* Navigation */
+
+nav[role^="navigation"] {
+	display: flex;
+	gap: var(--space);
+	justify-content: center;
+	max-width: 80ch;
+	margin-inline: auto;
+	padding: calc(var(--space) * 2);
+	transform: translateY(calc(1px - var(--space) * 16));
+	border-radius: var(--rounded);
+	box-shadow: 1px 1px 2px #b861ee, -1px -1px 2px #72a6fa;
+	background-color: Canvas;
+	color: CanvasText;
+}
+
+nav[role^="navigation"] > a {
+	padding-block: var(--space);
+	padding-inline: calc(var(--space) * 2);
+	border-bottom: 4px solid transparent;
+	text-decoration: none;
+	color: inherit;
+}
+
+body:has(#formateurs:target) nav[role^="navigation"] > a[href="#formateurs"],
+body:has(#stagiaires:target) nav[role^="navigation"] > a[href="#stagiaires"],
+body:has(#materiels:target) nav[role^="navigation"] > a[href="#materiels"] {
+	font-weight: bold;
+	border-color: #ad6bf1 !important;
+}
+
+div[role="main"] > main {
+	overflow: hidden;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	display: flex;
+	gap: calc(var(--space) * 4);
+	max-width: 80ch;
+	margin-inline: auto;
+	transform: translateY(calc(1px - var(--space) * 12));
+	box-shadow: 1px 1px 5px #cad1f5, -1px -1px 5px #e4d4f9;
+}
+
+div[role="main"] > main > section {
+	overflow-y: auto;
+	scroll-snap-align: center;
+	flex-shrink: 0;
+	width: 100%;
+	max-width: -moz-available;
+	max-width: -webkit-fill-available;
+	max-height: 80ch;
+	padding: calc(var(--space) * 3);
+	border-radius: var(--rounded);
+	background-color: Canvas;
+	color: CanvasText;
+	font-size: 14px;
+}
+
+div[role="main"] > main > section:target {
+	flex-grow: 1;
+}
+
+div[role="main"] > main > section > h1 {
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+table > tbody > tr > th {
+	font-weight: bold;
+	background: var(--color-canvas);
+	color: var(--color-canvas-text);
+}
+
+table > tbody > tr > th {
+	box-shadow: 1px 1px 1px var(--color-canvas-text);
+}
+
+tbody > tr {
+	background: var(--color-canvas-text);
+}
+tbody > tr:nth-child(odd) {
+	background: #ead8f6;
+}
+tbody > tr:hover {
+	background: #f7edfc;
+}
+
+table > tbody > tr > td {
+	vertical-align: baseline;
+	border-inline: 1px solid var(--color-gray);
+	border-bottom: 1px solid var(--color-gray);
+}
+
+th,
+td {
+	padding: var(--space);
+}
+
+button,
+select,
+input {
+	padding: var(--space);
+	width: 100%;
+}
+
+select,
+input {
+	border: 2px solid transparent;
+	border-radius: 4px;
+	background: linear-gradient(to right, #f5e7fd, #dfe7f5);
+}
+
+button {
+	border: 0;
+	border-radius: 4px;
+	background: linear-gradient(to left, #decdfa, #c8b8e4);
+	box-shadow: 1px 0px 1px #936bf17a, -1px 0px 1px #936bf17a;
+	cursor: pointer;
+}
+
+.input-erreur {
+	border-color: red;
+	color: red;
+}
+
+.materiel-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
