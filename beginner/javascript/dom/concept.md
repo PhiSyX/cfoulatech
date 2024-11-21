@@ -75,6 +75,8 @@ class HTMLDivElement {
 	nodeType = 1;
 	id; // qui va contenir la VALEUR de l'attribut HTML id
 
+	constructor() {}
+
 	// Une méthode qui ajoute un enfant à la DIV.
 	appendChild(child) {}
 }
@@ -87,6 +89,8 @@ class HTMLParagraphElement {
 	nodeName = "P";
 	nodeType = 1;
 	className; // qui va contenir les classes de l'attribut HTML classes
+
+	constructor() {}
 
 	// Une méthode qui ajoute un enfant au paragraphe.
 	appendChild(child) {}
@@ -105,14 +109,14 @@ class Text {
 	}
 }
 
-let div = new HTMLDivElement();
-div.id = "lala";
+let div_instance = new HTMLDivElement();
+div_instance.id = "lala";
 
-let paragraph = new HTMLParagraphElement();
-paragraph.className = "lolo lola";
-paragraph.appendChild(new Text("Hello Mike"));
+let paragraph_instance = new HTMLParagraphElement();
+paragraph_instance.className = "lolo lola";
+paragraph_instance.appendChild(new Text("Hello Mike"));
 
-div.appendChild(paragraph);
+div_instance.appendChild(paragraph_instance);
 ```
 
 > [!CAUTION]
