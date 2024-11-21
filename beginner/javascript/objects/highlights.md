@@ -63,11 +63,14 @@ class CompteBancaire {
 }
 ```
 
-2. Une `classe` est destinée à être utilisée et surtout **instanciée** en un `objet`.
+2. Une `classe` est destinée à être **instanciée** en un `objet`.
 
 ```js
 let instance_objet = new CompteBancaire("Nom");
 ```
+
+Le fait de d'appeler `new` sur une classe s'appelle le fait de **créer une instance de classe**. Une `instance de classe` partage
+les mêmes points clés qu'un `objet`.
 
 3. Une `classe` PEUT avoir des propriétés publiques ou privées.
 
