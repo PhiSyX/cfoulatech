@@ -45,7 +45,7 @@ erDiagram
 		string nodeName "DIV"
 		string id "'lala'"
 	}
-	HTMLParagraphElement ||--|{ Text : "parent de"
+	HTMLParagraphElement ||--o{ Text : "parent de"
 	HTMLParagraphElement {
 		number nodeType "1"
 		string nodeName "P"
