@@ -1,6 +1,10 @@
 Bonjour.
 
-Si tu te souviens du fonctionnement des classes en JavaScript, tu comprendras peut-être mieux ce concept.
+Si tu te souviens du fonctionnement des objets OU des classes en JavaScript, tu comprendras peut-être mieux ce concept.
+
+Si non, n'hésite pas à lire [rappel sur les points clés d'un `objet` et d'une `classe`](../objects/highlights.md).
+
+# Explication
 
 En JavaScript, il existe des classes spécialement créées pour le Web afin de représenter tous les éléments présents dans
 un document HTML. Concrètement, lorsque tu accèdes à une page, le navigateur lit le document HTML ligne par ligne et
@@ -129,16 +133,16 @@ Imagine donc un peu avec un document HTML complet ce que ça pourrait donner.
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mon super titre</title>
-</head>
-<body>
-	<div id="lala">
-		<p class="lolo lola">Hello Mike</p>
-	</div>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mon super titre</title>
+	</head>
+	<body>
+		<div id="lala">
+			<p class="lolo lola">Hello Mike</p>
+		</div>
+	</body>
 </html>
 ```
 
