@@ -1,4 +1,4 @@
-# points clés d'un `objet` et d'une `classe` :
+# Points clés d'un `objet` et d'une `classe` :
 
 ## Objet
 
@@ -71,14 +71,21 @@ let instance_objet = new CompteBancaire("Nom");
 
 3. Une `classe` PEUT avoir des propriétés publiques ou privées.
 
+Pour affecter une valeur à une propriété, on utilise `this`.
+
 ```js
 class CompteBancaire {
 	nom; // <- Propriété publique
-	#code_pin; // <- Propriété privée.
+	#code_puk; // <- Propriété privée.
+	#code_pin = "0000"; // <- Propriété privée avec une valeur par défaut.
 
 	constructor(nom) {
 		this.nom = nom;
-		this.#code_pin = "0000";
+		this.#code_puk = "0000";
+
+		// Pas obligé de faire la ligne qui suit étant donnée
+		// qu'il y a une valeur par défaut
+		//this.#code_pin = "0000";
 	}
 }
 ```
@@ -92,6 +99,8 @@ console.log(instance_objet.#code_pin); // Erreur.
 ```
 
 3. Une `classe` PEUT avoir des méthodes publiques ou privées.
+
+Pour accéder à une propriété ou une méthode, on utilise `this`.
 
 ```js
 class CompteBancaire {
@@ -124,6 +133,11 @@ console.log(instance_objet.#générer_code_pin()); // Erreur.
 ```
 
 4. Une `classe` PEUT hériter des propriétés publiques et méthodes publiques d'une classe parente.
+
+Pour accéder à une propriété ou une méthode, on utilise `this`.
+
+Pour accéder à une propriété ou une méthode de l'objet parent, on utilise
+`super` si `this` n'est pas possible.
 
 ```js
 class CompteBancaire {
