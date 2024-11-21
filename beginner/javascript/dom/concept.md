@@ -132,17 +132,20 @@ Imagine donc un peu avec un document HTML complet ce que ça pourrait donner.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Mon super titre</title>
-	</head>
-	<body>
-		<div id="lala">
-			<p class="lolo lola">Hello Mike</p>
-		</div>
-	</body>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Mon super titre</title>
+</head>
+
+<body>
+	<div id="lala">
+		<p class="lolo lola">Hello Mike</p>
+	</div>
+</body>
+
 </html>
 ```
 
