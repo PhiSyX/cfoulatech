@@ -22,50 +22,51 @@ if ($numeroGagnant === $numeroUtilisateur) {
 require_once "./header.php";
 ?>
 <main>
-	<h1>Jeu du Hasard</h1>
+	<section id="jeuduhasard">
+		<h1>Jeu du Hasard</h1>
 
-	<?php if ($numeroUtilisateur !== null): ?>
-		<div class="alert">
-			<?php if ($numeroUtilisateur < NUM_MIN || $numeroUtilisateur > NUM_MAX): ?>
-				<p class="error">
-					Oops, votre numéro DOIT être compris
-					ENTRE <strong><?= NUM_MIN; ?></strong> ET <strong><?= NUM_MAX; ?></strong>.
-				</p>
-			<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
-				<p class="error">
-					Oops,
-					votre numéro est trop <strong>grand</strong>.
-				</p>
-			<?php elseif ($numeroUtilisateur < $numeroGagnant): ?>
-				<p class="error">
-					Oops,
-					votre numéro est trop <strong>petit</strong>.
-				</p>
-			<?php else: ?>
-				<p class="success">
-					Bravo !!!!!<br>
-					Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant; ?></strong>
-				</p>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
+		<?php if ($numeroUtilisateur !== null): ?>
+			<div class="alert">
+				<?php if ($numeroUtilisateur < NUM_MIN || $numeroUtilisateur > NUM_MAX): ?>
+					<p class="error">
+						Oops, votre numéro DOIT être compris
+						ENTRE <strong><?= NUM_MIN; ?></strong> ET <strong><?= NUM_MAX; ?></strong>.
+					</p>
+				<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
+					<p class="error">
+						Oops,
+						votre numéro est trop <strong>grand</strong>.
+					</p>
+				<?php elseif ($numeroUtilisateur < $numeroGagnant): ?>
+					<p class="error">
+						Oops,
+						votre numéro est trop <strong>petit</strong>.
+					</p>
+				<?php else: ?>
+					<p class="success">
+						Bravo !!!!!<br>
+						Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant; ?></strong>
+					</p>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
 
-	<form action="jeuduhasard.php" method="POST">
-		<div>
-			<label for="nombre">Numéro</label>
-			<input
-				type="number"
-				name="nombre"
-				id="nombre"
-				placeholder="Entre votre numéro entre <?= NUM_MIN; ?> et <?= NUM_MAX; ?>"
-				min="<?= NUM_MIN; ?>"
-				max="<?= NUM_MAX; ?>"
-				value="<?= $numeroUtilisateur; ?>"
-			>
-		</div>
+		<form action="jeuduhasard.php" method="POST">
+			<div>
+				<label for="nombre">Numéro</label>
+				<input
+					type="number"
+					name="nombre"
+					id="nombre"
+					placeholder="Entre votre numéro entre <?= NUM_MIN; ?> et <?= NUM_MAX; ?>"
+					min="<?= NUM_MIN; ?>"
+					max="<?= NUM_MAX; ?>"
+					value="<?= $numeroUtilisateur; ?>">
+			</div>
 
-		<button type="submit">Deviner</button>
-	</form>
+			<button type="submit">Deviner</button>
+		</form>
+	</section>
 </main>
 
 <?php require_once "./footer.php"; ?>

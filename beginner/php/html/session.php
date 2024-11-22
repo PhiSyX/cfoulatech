@@ -9,16 +9,17 @@ if (isset($_GET["op"])) {
 		{
 			$_SESSION["role"] = "admin";
 			$_SESSION["user"] = [
-				'firstname' => 'Julien',
-				'lastname' => 'Dunia',
-				'login' => 'deoking',
-				'password' => 1111
+				'firstname' => 'Mike',
+				'lastname' => 'S.',
+				'login' => 'PhiSyX',
+				'password' => 12345,
 			];
 		} break;
 
 		case "unset":
 		{
 			session_destroy();
+			session_unset();
 		} break;
 	}
 }
