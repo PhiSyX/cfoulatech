@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OFFCANVAS JS</title>
+	<style>
+		body {
+			font-family: 'Roboto Slab', serif;
+			background: hsl(0, 0%, 80%);
+		}
+
+		.container {
+			width: 100%;
+			max-width: 1024px;
+			margin: 0 auto;
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		header button {
+			background: none;
+			border: none;
+			font-size: 2rem;
+			cursor: pointer;
+			z-index: 1;
+		}
+
+		header:has(~ nav.open) button {
+			color: white;
+		}
+
+		nav {
+			position: absolute;
+			top: -100svh;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			background: #313131;
+			color: lightgray;
+			transition: top 0.3s ease-in-out;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		nav a {
+			display: block;
+			padding: 1rem;
+			color: lightgray;
+			font-size: 2rem;
+			text-decoration: none;
+			text-align: center;
+
+			&:hover {
+				color: lightblue;
+			}
+		}
+
+		nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		nav.open {
+			top: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<header>
+				<h1>LOGO</h1>
+				<button type="button">
+					<span id="trigger">&equiv; MENU</span>
+				</button>
+			</header>
+			<nav>
+				<ul class="menu">
+					<li><a href="#">nav 1</a></li>
+					<li><a href="#">nav 2</a></li>
+					<li><a href="#">nav 3</a></li>
+					<li><a href="#">nav 4</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<script>
+		window.addEventListener("DOMContentLoaded", (event) => {
+			console.info("DOM is ready for interaction ✌️");
+
+			const trigger = document.getElementById("trigger");
+			const nav = document.querySelector("nav");
+
+			trigger.addEventListener("click", () => {
+				console.log("☛ toggle");
+				nav.classList.toggle("open");
+			});
+		});
+	</script>
+</body>
+
+</html>
