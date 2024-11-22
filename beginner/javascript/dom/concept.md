@@ -157,11 +157,18 @@ méthodes te donnent l'instance de classe que le navigateur a soigneusement cré
 demandé de cibler.
 
 ```js
-let mon_element_div = document.getElementById("lala"); // HTMLDivElement
-alert(mon_element_div.id); // équivaut à la valeur de l'attribut id de la div (= "lala")
+let my_div_element = document.getElementById("lala"); // Instance de la classe HTMLDivElement
+console.dir(my_div_element);
+let my_par_element = document.querySelector(".lolo"); // Instance de la classe HTMLParagraphElement
+console.dir(my_par_element);
 ```
 
-Dans cet exemple, la variable `mon_element_div` contient maintenant l'instance de la classe `HTMLDivElement`. Grâce à
-cette instance, tu as accès aux propriétés et méthodes de cette classe.
+Dans cet exemple, la variable `my_div_element` contient maintenant l'instance de la classe `HTMLDivElement`. Grâce à
+cette instance, tu as accès aux propriétés et méthodes de cette classe. Et pareil pour la variable `my_par_element` qui contient l'instance de la classe `HTMLParagraphElement`.
+
+Ce qui nous donne ceci en console.
+![Exemple ci-haut](dom-element.png)
+
+On voit bien que ce sont des `objets`. Des instances de leur propre classe respective.
 
 Si la liste de ces classes HTML t'intéressent, tu peux la consulter ici: https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API#html_element_interfaces_2
