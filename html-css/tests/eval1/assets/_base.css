@@ -1,0 +1,51 @@
+/* Bases */
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+
+	width: 100%;
+	height: 100%;
+
+	font-family: Arial, sans-serif;
+}
+
+/** Tous les liens auront une couleur primaires par defaut, retrait du
+ * soulignement */
+a {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+/** Tous les titres h1 auront la couleur primaires par défaut */
+h1 {
+	color: var(--primary-color);
+}
+
+/* Sélecteur ciblant un enfant direct d'un parent avec > */
+main[role="main"] > section {
+	display: flex;
+	/* Ajoute un espacement entre chaque élément enfant */
+	gap: calc(var(--space) * 3);
+
+	/*
+	  Prend la largeur de 60vw si la largeur de la fenêtre correspond à une
+	  taille de 60vw, autrement 80vw, calculée par le navigateur. Essentiellement utilisée pour les petits écrans.
+	*/
+	width: clamp(80vw, 60vw, 60vw);
+
+	/* Aligne le contenu vers le centre */
+	margin-inline: auto;
+
+	padding: calc(var(--space) * 3);
+}
+
+footer {
+	display: flex;
+	/* Positionne le contenu enfant vers la fin de largeur de cet element dans
+	l'axe X */
+	justify-content: end;
+
+	padding: calc(var(--space) * 5);
+}

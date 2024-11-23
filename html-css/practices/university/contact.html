@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>A props de nous - Université de C Fou la Tech</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="contact">
+	<!-- Exercice
+			5. Un page de contact.
+		-->
+
+	<header class="header-nav">
+		<div class="logo">
+			<figure>
+				<img src="https://fastly.picsum.photos/id/430/536/354.jpg?hmac=uxrNCXgJuycp2JMZ9jpZb5ThTsZIplRTSPuc4ybMyws"
+					alt="Logo" />
+				<figcaption>
+					<a href="./index.html" title="Université C Fou la Tech">
+						C Fou la Tech
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+
+		<nav role="navigation">
+			<a href="./about.html">À propos de nous</a>
+			<a href="./contact.html">Nous contacter</a>
+			<a href="./faculties.html">Nos facultés</a>
+		</nav>
+
+		<nav role="navigation">
+			<a href="./registration.html">S'inscrire</a>
+		</nav>
+	</header>
+
+	<main role="main">
+		<h1>Principaux points de contact à C Fou la Tech</h1>
+
+		<p>
+			Vous avez une question ou rencontrez un problème? Trouvez votre
+			point d'entrée dans nos contacts. Université C Fou la Tech,
+			<strong>Rue de l'université 50 - 1000 Bruxelles</strong>, Tél:
+			<a href="tel:00320200000">+32 (0)2 000 00</a>
+		</p>
+
+		<table border="1" cellpadding="1" cellspacing="1" style="width: 100%">
+			<tr>
+				<td>Études à <strong>C Fou la Tech</strong></td>
+
+				<td>
+					Pour toutes les questions relatives aux études à
+					<strong>C Fou la Tech</strong>, contactez notre service
+					d'informations (etude@example.org).
+				</td>
+			</tr>
+
+			<tr>
+				<td>FAQ et support</td>
+				<td>
+					Pour toute question informatique ou relative au
+					fonctionnement du portail <strong>Mon Portail</strong>,
+					consultez la page spécifique d'aide et de contact.
+				</td>
+			</tr>
+
+			<tr>
+				<td>Inscriptions, admissions et équivalence</td>
+				<td>
+					Pour toute question relative à votre dossier
+					d'inscription, d'admission ou une équivalence, envoyez
+					votre message au à Service des inscriptions. Consultez
+					également les pages
+					<a href="./registration.html">S'inscrire.</a>
+				</td>
+			</tr>
+		</table>
+
+		<form action="#" method="POST" autocomplete="off">
+			<fieldset>
+				<legend>Nous contacter</legend>
+
+				<div class="text-input">
+					<label for="name" required>Votre nom :</label>
+					<input id="name" type="text" name="name" placeholder="John D." />
+				</div>
+
+				<div class="text-input">
+					<label for="email">Votre adresse email :</label>
+					<input id="email" type="email" name="email" placeholder="john@example.org" />
+				</div>
+
+				<div class="text-input">
+					<label for="phone">Notre n° de téléphone :</label>
+					<input id="phone" type="tel" name="phone" placeholder="+32 000 00 00 00" />
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div class="text-input">
+					<label for="who">Qui voulez-vous contacter?</label>
+					<select name="who">
+						<option value="1">
+							Pôle d'informations générales
+						</option>
+						<option value="2">
+							Pôle d'informations à propos de nos facultés
+						</option>
+						<option value="3">Pôle d'inscription</option>
+					</select>
+				</div>
+
+				<textarea name="message" placeholder="Votre message..." required></textarea>
+			</fieldset>
+
+			<button type="submit">Nous contacter maintenant</button>
+		</form>
+	</main>
+</body>
+
+</html>

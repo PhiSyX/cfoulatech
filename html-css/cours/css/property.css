@@ -1,0 +1,48 @@
+.sel {
+	background: #f30 url(mon-image.png) no-repeat top center;
+	/*
+    background-color: #f30;
+    background-image: url(mon-image);
+    background-repeat: no-repeat;
+    background-position: top center;
+    */
+
+	border: 1px solid #000;
+	/*
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000;
+    */
+
+	font: italic bold 14px verdana;
+	/*
+    font-style: italic;
+    font-weight: bold;
+    font-size: 14px;
+	font-family: verdana;
+    */
+
+	margin: 10px 5px 10px 5px; /* haut, droite, bas, gauche */
+}
+
+:root {
+	--var-name: value;
+
+	--main-bg-color: #000;
+	--main-text-color: #fff;
+}
+
+body {
+	background-color: var(--main-bg-color);
+	color: var(--main-text-color);
+}
+
+.scoped-var {
+	--space: 8px;
+	padding: var(--space);
+}
+
+.default-var-val {
+	/* .sel2[style="--space: 16px"] */
+	padding: var(--space, 8px); /* 8px est la valeur par défaut */
+}
