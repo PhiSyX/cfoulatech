@@ -5,6 +5,5 @@ function is_connected(): bool
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
 	}
-
-	return ! empty($_SESSION["connected"]);
+	return ! empty($_SESSION["user"]);
 }
