@@ -131,16 +131,8 @@ section[role="presentation"] {
 		}
 
 		.btn {
-			display: inline-block;
-			margin-top: 8px;
+			font-size: 16px;
 			padding: 16px;
-			border-radius: 3px;
-			background: #1c77ac;
-			font-family: "Ibm Plex Sans", sans-serif;
-			/* font-size: 26px; */
-			font-weight: 600;
-			text-transform: uppercase;
-			text-decoration: none;
 		}
 		.contact {
 			font-family: "Ibm Plex Sans", sans-serif;
@@ -195,13 +187,77 @@ section[role="presentation"] {
 	}
 }
 
-section#services {
-	height: 100vh;
-	background: #b9cef3;
+.btn {
+	display: inline-block;
+	margin-top: 8px;
+	padding: 8px;
+	border-radius: 3px;
+	background: #1c77ac;
+	font-family: "Ibm Plex Sans", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+}
 
-	h1 {
+section#services {
+	background: #b9cef3;
+	padding: 32px;
+	padding-inline: 13rem;
+
+	> h1 {
 		font-family: Georgia, sans-serif;
 		font-size: 72px;
+		margin-top: 0;
 		color: #3e4551;
+	}
+
+	.cards {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+
+		> article {
+			display: flex;
+			align-items: end;
+			width: 400px;
+			height: 500px;
+			font-size: 22px;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			h1,
+			p {
+				margin: 0;
+			}
+
+			> div {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				align-content: space-between;
+				align-items: start;
+				height: 200px;
+				padding: 1rem;
+				background: hsla(0, 0%, 100%, 0.8);
+
+				p {
+					flex-grow: 1;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+	#trad {
+		background-image: url(./assets/imgs/traduction.jpg);
+	}
+
+	#lang {
+		background-image: url(./assets/imgs/cours-de-langue.jpg);
+	}
+
+	#correction {
+		background-image: url(./assets/imgs/correction.jpg);
 	}
 }
