@@ -10,8 +10,13 @@ $erreur = null;
 
 if ( ! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
 	if ($_POST["pseudo"] === "Mike" && $_POST["password"] === "12345") {
-		// TODO:
 		$_SESSION["connected"] = true;
+		$_SESSION["user"] = [
+			'firstname' => 'Mike',
+			'lastname' => 'S.',
+			'login' => $_POST["pseudo"],
+			'password' => $_POST["password"],
+		];
 	} else {
 		$erreur = "Identifiants incorrects !";
 	}
@@ -19,7 +24,7 @@ if ( ! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
 
 if (is_connected()) {
 	header("Location: dashboard.php");
-	die();
+	exit;
 }
 ?>
 <main>

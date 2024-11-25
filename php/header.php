@@ -36,7 +36,7 @@ require_once "./functions/authentification.php";
 		</nav>
 
 		<nav>
-			<?php if (!is_connected()) : ?>
+			<?php if (! is_connected()): ?>
 				<a
 					href="login.php"
 					class="<?php if ($nav === "login"): ?>active<?php endif; ?>">
@@ -51,15 +51,29 @@ require_once "./functions/authentification.php";
 					Tableau de bord
 				</a>
 
-				<a href="logout.php">
+				<form action="logout.php" method="POST">
+					<button type="submit" name="send">
+						Déconnexion
+						<strong><?= $_SESSION["user"]["login"]; ?></strong>
+					</button>
+				</form>
+
+				<!--
+				<a
+					href="logout.php"
+					class="<?php if ($nav === "logout"): ?>active<?php endif; ?>"
+				>
 					Déconnexion
 				</a>
+				-->
 			<?php endif ?>
 		</nav>
 	</header>
 
 	<aside>
 		<nav>
+			<a href="cours/">Tous les cours</a>
+
 			<a
 				href="jeuduhasard.php"
 				class="<?php if ($nav === "jeuduhasard"): ?>active<?php endif; ?>">

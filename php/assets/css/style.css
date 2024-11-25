@@ -58,7 +58,10 @@ body {
 
 body {
 	display: grid;
-	grid-template-columns: minmax(max-content, min-content) minmax(50ch, auto) minmax(max-content, min-content);
+	grid-template-columns: minmax(max-content, min-content) minmax(50ch, auto) minmax(
+			max-content,
+			min-content
+		);
 	grid-template-rows: auto 1fr auto;
 	grid-template-areas:
 		"header header header"
@@ -103,6 +106,10 @@ header {
 header > nav {
 	margin-inline: auto;
 	padding: var(--space);
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
 aside > nav > a,
@@ -111,6 +118,10 @@ header > nav > a {
 	padding: var(--space);
 	color: var(--header-nav-link);
 	text-decoration: none;
+}
+
+header > nav button {
+	padding: 12px !important;
 }
 
 .active,
@@ -157,6 +168,7 @@ body > section {
 	overflow: auto;
 	width: 100%;
 	padding: var(--space);
+	resize: horizontal;
 
 	> details {
 		max-width: 80ch;
@@ -212,6 +224,14 @@ button[type="submit"] {
 	border-radius: 3px;
 	background: var(--button-bg);
 	color: var(--button-color);
+
+	strong {
+		background: var(--button-color);
+		color: var(--button-bg);
+		padding-block: 4px;
+		padding-inline: 4px;
+		border-radius: 2px;
+	}
 }
 
 button {
@@ -240,6 +260,10 @@ footer {
 	nav {
 		display: flex;
 		gap: var(--space);
+	}
+
+	nav a:hover {
+		padding: 0;
 	}
 
 	p {
