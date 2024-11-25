@@ -20,7 +20,7 @@ section[role="presentation"] {
 	position: relative;
 	z-index: 1;
 	height: 100vh;
-	padding: 32px;
+	padding: 24px;
 	text-shadow: 1px 1px 2px #000;
 
 	background: hsl(210, 70%, 55%);
@@ -193,6 +193,7 @@ section[role="presentation"] {
 	padding: 8px;
 	border-radius: 3px;
 	background: #1c77ac;
+	color: white;
 	font-family: "Ibm Plex Sans", sans-serif;
 	font-size: 12px;
 	font-weight: 600;
@@ -201,8 +202,7 @@ section[role="presentation"] {
 }
 
 section#services {
-	background: #b9cef3;
-	padding: 32px;
+	padding-block: 32px;
 	padding-inline: 13rem;
 
 	> h1 {
@@ -220,6 +220,7 @@ section#services {
 		> article {
 			display: flex;
 			align-items: end;
+			flex-shrink: 0;
 			width: 400px;
 			height: 500px;
 			font-size: 22px;
@@ -229,6 +230,14 @@ section#services {
 			h1,
 			p {
 				margin: 0;
+			}
+
+			h1 {
+				font-family: Georgia, serif;
+			}
+
+			p {
+				font-family: "Ibm Plex Sans", sans-serif;
 			}
 
 			> div {
@@ -259,5 +268,70 @@ section#services {
 
 	#correction {
 		background-image: url(./assets/imgs/correction.jpg);
+	}
+}
+
+section#about {
+	height: 100vh;
+
+	padding-block: 32px;
+	padding-inline: 13rem;
+
+	display: flex;
+	gap: 64px;
+
+	h1 {
+		margin: 0;
+		font-family: Georgia, sans-serif;
+		font-size: 72px;
+	}
+
+	h2 {
+		font-family: "Ibm Plex Sans", sans-serif;
+		font-size: 36px;
+		font-weight: 400;
+	}
+
+	#about-us {
+		max-width: 410px;
+
+		p {
+			font-family: "Ibm Plex Sans", sans-serif;
+			font-size: 22px;
+		}
+	}
+
+	#cadre {
+		flex-grow: 1;
+		background-image: url(./assets/imgs/qui.jpg);
+		background-size: cover;
+
+		position: relative;
+		padding: 60px;
+
+		font-family: "Ibm Plex Sans", sans-serif;
+		font-size: 22px;
+		text-align: center;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			margin: 24px;
+			background: #fffdf8;
+			pointer-events: none;
+		}
+
+		> * {
+			position: relative;
+		}
+
+		p {
+			text-align: left;
+		}
+
+		a {
+			display: inline-block;
+		}
 	}
 }
