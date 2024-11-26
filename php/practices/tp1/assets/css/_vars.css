@@ -1,0 +1,45 @@
+:root {
+	color-scheme: dark light;
+
+	--space: 0.5rem;
+
+	--input-text: CanvasText;
+
+	@media (prefers-color-scheme: dark) {
+		--primary-color: #cdaa2a;
+		--secondary-color: #2a99cd;
+		--body-bg: #3c4043;
+		--aside-bg: var(--body-bg);
+
+		--input-bg: linear-gradient(to right, var(--body-bg), #383a3c);
+		--header-nav-link-bg-hover: linear-gradient(to left, #5e6062, #56585b);
+
+		--error-bg: #c94242;
+		--success-bg: #37b437;
+	}
+
+	@media (prefers-color-scheme: light) {
+		--primary-color: #2a99cd;
+		--secondary-color: #cdaa2a;
+
+		--body-bg: #f5e7fd;
+		--aside-bg: var(--body-bg);
+
+		--input-bg: linear-gradient(to right, #f5e7fd, #dfe7f5);
+		--header-nav-link-bg-hover: linear-gradient(to left, #ecd5fa, #d1ddf2);
+
+		--error-bg: #ed666c;
+		--success-bg: #6874d6;
+	}
+
+	--input-color: FieldText;
+	--input-placeholder: GrayText;
+
+	--button-bg: CanvasText;
+	--button-color: Canvas;
+
+	--header-bg: var(--input-bg);
+	--header-text: CanvasText;
+
+	--header-nav-link: CanvasText;
+}

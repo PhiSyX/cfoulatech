@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* TP1:
 
 c. Une page Reset Sessions avec comme titre RESET qui servira d’arrêter toutes
    les sessions.

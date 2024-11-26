@@ -1,0 +1,12 @@
+@layer page {
+	.welcome {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.avatar {
+			height: 42px;
+			width: 42px;
+		}
+	}
+}

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* TP1:
 
 i. Une page Login avec comme titre Login, qui permettra de vous loguez avec
    comme login : votre prénom et votre mot de passe caché : cfitech. Si vous
@@ -25,6 +25,13 @@ if ( ! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
 		$_SESSION["user"] = [
 			'firstname' => 'Mike',
 			'lastname' => 'S.',
+			/* TP2
+
+			j. (Facile) Rajoutez une petite image de profile, visible dans Mon
+			            profile.
+
+			*/
+			'avatar' => 'http://cfoulatech.html/assets/me.jpg',
 			'login' => $expected_login,
 			'password' => $expected_pass,
 		];

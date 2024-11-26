@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* TP1:
 
 b. Une page Session Actuelle avec comme titre DEBUG qui servira à montrer toutes
    les sessions en mode debug

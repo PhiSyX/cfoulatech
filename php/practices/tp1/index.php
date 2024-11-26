@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* TP1:
 
 a. Une Page d'accueil avec comme titre Home avec une image, un titre et une
    petite description. (N'importe quel sujet)
@@ -14,6 +14,8 @@ $nav = "home";
 
 <main>
 	<section>
+
+		<img src="./assets/imgs/logo.png" alt="Logo">
 
 		<article>
 			<h1>Bank Root</h1>

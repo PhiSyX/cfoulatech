@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* TP1:
 
 j. Une page Logout pour vous déconnecter.
 
@@ -13,12 +13,15 @@ if (! is_connected()) {
 	redirect_to("login.php");
 }
 
-session_start();
+require_once "./functions/math.php";
 
 if (isset($_POST["send"])) {
-	unset($_SESSION["user"]);
+	unset_user_session();
+	unset_all_math_session();
 	redirect_to("login.php");
 }
+
+session_start();
 
 $title = "Se déconnecter";
 $nav = "logout";

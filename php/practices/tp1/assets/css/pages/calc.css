@@ -1,0 +1,9 @@
+@layer page {
+	.calc-form {
+		input[type="image"] {
+			align-self: center;
+			height: calc(var(--space) * 4);
+			border-radius: 50%;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+@layer component {
+	.l-sidebar {
+		background: var(--aside-bg);
+	}
+
+	.l-sidebar > .navbar {
+		flex-direction: column;
+	}
+}

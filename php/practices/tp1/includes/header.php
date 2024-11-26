@@ -9,10 +9,9 @@
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
-
-	<header>
-		<nav>
+<body class="l-body">
+	<header class="l-header topbar">
+		<nav class="navbar ml:a">
 			<?php if (!is_connected()): ?>
 				<a
 					href="login.php"
@@ -47,31 +46,41 @@
 		</nav>
 	</header>
 
-	<aside>
-		<nav>
-			<a
-				href="addition.php"
-				class="<?php if ($nav === "addition"): ?>active<?php endif; ?>">
-				Addition
-			</a>
+	<aside class="l-sidebar">
+		<!-- TP2:
+			e. Je veux que vous créez un onglet dont le nom sera « Calculatrice »
+			   qui sera une liste contenant donc l'onglet addition, division,
+			   multiplication et soustraction. En gros un onglet avec sous onglet.
 
-			<a
-				href="multiplication.php"
-				class="<?php if ($nav === "multiplication"): ?>active<?php endif; ?>">
-				Multiplication
-			</a>
+			f. (Facile) Je veux que quand vous n'êtes pas connecté,
+			            vous ne voyez plus l'onglet Calculatrice.
+ 		-->
+		<?php if (is_connected()): ?>
+			<nav class="navbar">
+				<a
+					href="addition.php"
+					class="<?php if ($nav === "addition"): ?>active<?php endif; ?>">
+					Addition
+				</a>
 
-			<a
-				href="division.php"
-				class="<?php if ($nav === "division"): ?>active<?php endif; ?>">
-				Division
-			</a>
+				<a
+					href="multiplication.php"
+					class="<?php if ($nav === "multiplication"): ?>active<?php endif; ?>">
+					Multiplication
+				</a>
+
+				<a
+					href="division.php"
+					class="<?php if ($nav === "division"): ?>active<?php endif; ?>">
+					Division
+				</a>
 
 
-			<a
-				href="soustraction.php"
-				class="<?php if ($nav === "soustraction"): ?>active<?php endif; ?>">
-				Soustraction
-			</a>
-		</nav>
+				<a
+					href="soustraction.php"
+					class="<?php if ($nav === "soustraction"): ?>active<?php endif; ?>">
+					Soustraction
+				</a>
+			</nav>
+		<?php endif ?>
 	</aside>

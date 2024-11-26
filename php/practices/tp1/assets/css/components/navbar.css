@@ -1,0 +1,30 @@
+@layer component {
+	.navbar {
+		padding: var(--space);
+
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--space);
+
+		a {
+			display: inline-block;
+			padding: var(--space);
+			color: var(--header-nav-link);
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+				text-decoration-thickness: 4px;
+				text-decoration-color: var(--primary-color);
+				padding: var(--space);
+				border-radius: 4px;
+				background: var(--header-nav-link-bg-hover);
+			}
+		}
+
+		button {
+			padding: 12px;
+		}
+	}
+}

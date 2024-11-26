@@ -1,0 +1,36 @@
+@layer layout {
+	.l-body {
+		display: grid;
+		grid-template-columns:
+			minmax(max-content, min-content) minmax(50ch, auto)
+			minmax(max-content, min-content);
+		grid-template-rows: auto 1fr auto;
+		grid-template-areas:
+			"header header header"
+			"aside main debug"
+			"aside main debug"
+			"footer footer footer";
+	}
+
+	.l-body > main {
+		grid-area: main;
+	}
+
+	.l-header {
+		grid-area: header;
+
+		position: sticky;
+		top: 0;
+	}
+
+	.l-sidebar {
+		grid-area: aside;
+	}
+
+	.l-footer {
+		grid-area: footer;
+
+		position: sticky;
+		bottom: 0;
+	}
+}
