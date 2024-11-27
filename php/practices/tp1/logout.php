@@ -7,7 +7,7 @@ j. Une page Logout pour vous déconnecter.
 */
 
 require_once "./functions/auth.php";
-require_once "./functions/header.php";
+require_once "./functions/redirect.php";
 
 if (! is_connected()) {
 	redirect_to("login.php");

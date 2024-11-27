@@ -12,7 +12,7 @@ i. Une page Login avec comme titre Login, qui permettra de vous loguez avec
 session_start();
 
 require_once "./functions/auth.php";
-require_once "./functions/header.php";
+require_once "./functions/redirect.php";
 
 $title = "Se connecter";
 $nav = "login";
