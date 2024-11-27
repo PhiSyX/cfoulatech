@@ -10,6 +10,22 @@
 </head>
 
 <body class="l-body">
+	<?php if (is_connected()): ?>
+		<input type="checkbox" id="logo" checked>
+	<?php endif; ?>
+
+	<div class="l-logo">
+		<?php if (is_connected()): ?>
+			<label for="logo">
+				<img src="./assets/img/logo.png" alt="Logo">
+			</label>
+		<?php else: ?>
+			<a href="index.php">
+				<img src="./assets/img/logo.png" alt="Logo">
+			</a>
+		<?php endif; ?>
+	</div>
+
 	<header class="l-header topbar">
 		<nav class="navbar ml:a">
 			<?php if (!is_connected()): ?>

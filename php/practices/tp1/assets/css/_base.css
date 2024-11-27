@@ -76,4 +76,9 @@
 	td {
 		padding: var(--space);
 	}
+
+	img {
+		width: 100%;
+		object-fit: cover;
+	}
 }

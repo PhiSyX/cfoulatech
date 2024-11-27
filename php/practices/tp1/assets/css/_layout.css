@@ -6,7 +6,7 @@
 			minmax(max-content, min-content);
 		grid-template-rows: auto 1fr auto;
 		grid-template-areas:
-			"header header header"
+			"logo header header"
 			"aside main debug"
 			"aside main debug"
 			"footer footer footer";
@@ -32,5 +32,40 @@
 
 		position: sticky;
 		bottom: 0;
+	}
+
+	.l-logo {
+		grid-area: logo;
+
+		position: relative;
+
+		background: var(--body-bg);
+
+		display: flex;
+		place-items: center;
+		place-content: center;
+		text-align: center;
+
+		width: 150px;
+		height: 64px;
+
+		a {
+			width: calc(150px / 3);
+		}
+
+		label {
+			display: inline-block;
+			cursor: pointer;
+			width: calc(150px / 3);
+			height: 32px;
+		}
+
+		img {
+			height: 100%;
+			width: 100%;
+			vertical-align: middle;
+			filter: drop-shadow(1px 1px 2px red);
+			mix-blend-mode: color-burn;
+		}
 	}
 }

@@ -6,6 +6,8 @@ j. Une page Logout pour vous déconnecter.
 
 */
 
+session_start();
+
 require_once "./functions/auth.php";
 require_once "./functions/redirect.php";
 
@@ -20,8 +22,6 @@ if (isset($_POST["send"])) {
 	unset_all_math_session();
 	redirect_to("login.php");
 }
-
-session_start();
 
 $title = "Se déconnecter";
 $nav = "logout";

@@ -15,7 +15,7 @@ $nav = "home";
 <main>
 	<section>
 
-		<img src="./assets/imgs/logo.png" alt="Logo">
+		<img src="./assets/img/logo.png" alt="Logo">
 
 		<article>
 			<h1>Bank Root</h1>

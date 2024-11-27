@@ -69,6 +69,32 @@ function div(float $left_operand, float $right_operand): float
 // Session //
 // ------- //
 
+function has_session_math(): bool
+{
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
+
+	$has = false;
+
+	if (isset($_SESSION["operations"])) {
+		foreach (
+			$_SESSION["operations"] as $name => $op
+		) {
+			if ($name === "total") {
+				continue;
+			}
+
+			$has = count($op) >= 1;
+			if ($has) {
+				break;
+			}
+		}
+	}
+
+	return $has;
+}
+
 function set_session_math(
 	string $nav,
 	float $left_operand,

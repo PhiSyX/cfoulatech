@@ -38,3 +38,19 @@ body > section {
 		margin-inline: auto;
 	}
 }
+
+#logo {
+	display: none;
+}
+
+.l-sidebar {
+	transition: transform 250ms ease-in-out;
+}
+
+.l-sidebar {
+	transform: translateX(-100vw);
+}
+
+#logo:checked ~ .l-sidebar {
+	transform: translateX(0);
+}

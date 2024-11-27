@@ -15,6 +15,8 @@ if (! is_connected()) {
 	redirect_to("login.php");
 }
 
+require_once "./functions/math.php";
+
 $title = "Mon profil";
 $nav = "profile";
 
@@ -61,7 +63,7 @@ $nav = "profile";
 			</p>
 		<?php endif; ?>
 
-		<?php if (!empty($_SESSION["operations"])): ?>
+		<?php if (has_session_math()): ?>
 			<details open>
 				<summary>Les dernières opérations arithmétiques</summary>
 				<ul>
@@ -113,7 +115,7 @@ $nav = "profile";
 							que vous aurez fait.
 
 	  -->
-		<?php if (!empty($_SESSION["operations"])): ?>
+		<?php if (has_session_math()): ?>
 			<details open>
 				<summary>Toutes les opérations arithmétiques</summary>
 
