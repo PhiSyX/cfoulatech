@@ -14,9 +14,9 @@ function operator_sign(string $operator): string
 {
 	$operators = [
 		"addition"       => '+',
-		"soustraction"   => "-",
-		"multiplication" => "*",
-		"division"       => "/",
+		"soustraction"   => '-',
+		"multiplication" => '*',
+		"division"       => '/',
 	];
 
 	if (isset($operators[$operator])) {
@@ -29,13 +29,13 @@ function operator_sign(string $operator): string
 function calc(float $left_operand, string $operator, float $right_operand): float
 {
 	switch ($operator) {
-		case "+":
+		case '+':
 			return add($left_operand, $right_operand);
-		case "-":
+		case '-':
 			return sub($left_operand, $right_operand);
-		case "*":
+		case '*':
 			return mul($left_operand, $right_operand);
-		case "/":
+		case '/':
 			return div($left_operand, $right_operand);
 	}
 	return 0;
@@ -78,9 +78,7 @@ function has_session_math(): bool
 	$has = false;
 
 	if (isset($_SESSION["operations"])) {
-		foreach (
-			$_SESSION["operations"] as $name => $op
-		) {
+		foreach ($_SESSION["operations"] as $name => $op) {
 			if ($name === "total") {
 				continue;
 			}

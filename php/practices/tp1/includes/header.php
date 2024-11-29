@@ -27,6 +27,10 @@
 	</div>
 
 	<header class="l-header topbar">
+		<nav class="navbar">
+			<a href="index.php">Accueil</a>
+		</nav>
+
 		<nav class="navbar ml:a">
 			<?php if (!is_connected()): ?>
 				<a

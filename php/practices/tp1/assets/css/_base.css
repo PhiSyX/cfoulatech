@@ -21,14 +21,21 @@
 		font-size: 2em;
 	}
 
-	:is(h1, h2, h3, h4, h5, h6) small {
-		padding: calc(var(--space) / 2);
-		border-radius: 4px;
-		background: var(--input-bg);
-		color: var(--primary-color);
-		font-size: 0.75em;
-		line-height: 24px;
-		vertical-align: middle;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		small {
+			padding: calc(var(--space) / 2);
+			border-radius: 4px;
+			background: var(--input-bg);
+			color: var(--primary-color);
+			font-size: 0.75em;
+			line-height: 24px;
+			vertical-align: middle;
+		}
 	}
 
 	details > summary {
@@ -67,9 +74,9 @@
 	}
 
 	table > tbody > tr > td {
-		border-inline: 1px solid red;
-		border-top: 2px solid red;
-		border-bottom: 1px solid red;
+		border-inline: 1px solid currentColor;
+		border-top: 2px solid currentColor;
+		border-bottom: 1px solid currentColor;
 	}
 
 	th,

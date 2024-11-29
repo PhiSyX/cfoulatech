@@ -280,6 +280,45 @@ footer {
 	}
 }
 
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid;
+}
+
+thead,
+table > tbody > tr > th {
+	font-weight: bold;
+	background: CanvasText;
+	color: Canvas;
+}
+
+table > tbody > tr > th {
+	box-shadow: 1px 1px 1px CanvasText;
+}
+
+tbody > tr {
+	background: Canvas;
+	color: CanvasText;
+}
+tbody > tr:nth-child(odd) {
+	background: #3b484e;
+}
+tbody > tr:hover {
+	background: #56707c;
+}
+
+table > tbody > tr > td {
+	border-inline: 1px solid currentColor;
+	border-top: 2px solid currentColor;
+	border-bottom: 1px solid currentColor;
+}
+
+th,
+td {
+	padding: var(--space);
+}
+
 .alert {
 	text-align: center;
 	p {
