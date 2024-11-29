@@ -79,5 +79,13 @@ require_once "./functions/authentification.php";
 				class="<?php if ($nav === "jeuduhasard"): ?>active<?php endif ?>">
 				Jeu du Hasard
 			</a>
+
+			<?php if (is_connected()): ?>
+				<a
+					href="database.php"
+					class="<?php if ($nav === "database"): ?>active<?php endif ?>">
+					Base de données
+				</a>
+			<?php endif ?>
 		</nav>
 	</aside>
