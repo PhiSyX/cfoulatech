@@ -10,7 +10,12 @@ if (!is_connected()) {
 $nav = "database";
 $title = "Base de données";
 
-require_once "./includes/db.php";
+try {
+	$pdo = new PDO('mysql:dbname=coursmysql;host=localhost', "root", "");
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+	die('Erreur : ' . $e->getMessage());
+}
 
 $articles_req = $pdo->query("SELECT * FROM articles");
 $articles = $articles_req->fetchAll(PDO::FETCH_OBJ);
@@ -20,7 +25,7 @@ $users = $users_req->fetchAll(PDO::FETCH_OBJ);
 
 require_once "./header.php";
 ?>
-<main>
+<section class="center:i">
 
 	<?php if (count($articles) > 0): ?>
 		<section>
@@ -40,7 +45,7 @@ require_once "./header.php";
 				<tbody>
 					<?php foreach ($articles as $user): ?>
 						<tr>
-							<td><?= $user->id_article ?></td>
+							<th><?= $user->id_article ?></th>
 							<td><?= $user->article_name ?></td>
 							<td><?= $user->description ?></td>
 							<td><?= $user->created_at ?></td>
@@ -72,7 +77,7 @@ require_once "./header.php";
 				<tbody>
 					<?php foreach ($users as $user): ?>
 						<tr>
-							<td><?= $user->id_user ?></td>
+							<th><?= $user->id_user ?></th>
 							<td><?= $user->lastname ?></td>
 							<td><?= $user->firstname ?></td>
 							<td><?= $user->gender ?></td>
@@ -87,4 +92,6 @@ require_once "./header.php";
 		</section>
 	<?php endif ?>
 
-</main>
+</section>
+
+<?php require_once "./footer.php"; ?>

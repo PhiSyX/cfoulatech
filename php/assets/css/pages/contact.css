@@ -1,0 +1,20 @@
+#contact-page form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space1);
+}
+
+#contact-page form > div{
+	display: flex;
+	flex-direction: column;
+	gap: var(--space1);
+}
+
+#contact-page input,
+#contact-page textarea {
+	width: 100%;
+}
+
+#contact-page textarea{
+	min-height: 150px;
+}

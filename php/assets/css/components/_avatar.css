@@ -1,0 +1,58 @@
+:root {
+	--avatar-online-color: hsl(120, 75%, 35%);
+}
+
+.avatar img {
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: 0 -2px 2px var(--avatar-online-color);
+	transition: border-radius 250ms;
+}
+
+.avatar--anim img:hover {
+	animation: 600ms avatar-circle reverse infinite linear,
+		600ms avatar-circle reverse infinite linear 500ms;
+	box-shadow: 2px -2px 2px var(--avatar-online-color);
+}
+
+@keyframes avatar-circle {
+	0% {
+		box-shadow: 2px -2px 2px hsl(106, 91%, 35%);
+	}
+
+	11% {
+		box-shadow: 2px -2px 2px hsl(148, 75%, 35%);
+	}
+
+	22% {
+		box-shadow: 2px -1px 2px hsl(140, 75%, 35%);
+	}
+
+	33% {
+		box-shadow: 2px 2px 2px hsl(172, 75%, 35%);
+	}
+
+	44% {
+		box-shadow: 0px 2px 2px hsl(191, 75%, 35%);
+	}
+
+	55% {
+		box-shadow: -2px 2px 2px hsl(223, 75%, 35%);
+	}
+
+	66% {
+		box-shadow: -2px 0px 2px hsl(254, 75%, 35%);
+	}
+
+	77% {
+		box-shadow: -4px -2px 2px hsl(302, 75%, 35%);
+	}
+
+	88% {
+		box-shadow: 0 -3px 2px hsl(43, 75%, 35%);
+	}
+
+	100% {
+		box-shadow: 2px -2px 2px hsl(106, 91%, 35%);
+	}
+}

@@ -1,0 +1,26 @@
+.ml\:a {
+	margin-left: auto;
+}
+.mt\:a {
+	margin-top: auto;
+}
+
+.full\:center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.center\:x {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+}
+
+.center\:i {
+	max-width: 80ch;
+	margin-inline: auto;
+}

@@ -3,31 +3,30 @@ $title = "Contact";
 $nav = "contact";
 require_once "./header.php";
 ?>
-<main>
 
-	<section id="contact-page">
-		<h1>Formulaire de contact</h1>
+<link rel="stylesheet" href="./assets/css/pages/contact.css">
 
-		<form action="contact.php" method="POST">
-			<div>
-				<label for="nom">Nom</label>
-				<input type="text" name="nom" id="nom">
-			</div>
+<section id="contact-page" class="center:i">
+	<h1>Formulaire de contact</h1>
 
-			<div>
-				<label for="object">Object</label>
-				<input type="text" name="object" id="object">
-			</div>
+	<form action="contact.php" method="POST">
+		<div>
+			<label for="nom">Nom</label>
+			<input type="text" name="nom" id="nom">
+		</div>
 
-			<div>
-				<label for="message">Message</label>
-				<textarea name="message" id="message"></textarea>
-			</div>
+		<div>
+			<label for="object">Object</label>
+			<input type="text" name="object" id="object">
+		</div>
 
-			<button type="submit">Envoyer</button>
-		</form>
-	</section>
+		<div>
+			<label for="message">Message</label>
+			<textarea name="message" id="message"></textarea>
+		</div>
 
-</main>
+		<button type="submit">Envoyer</button>
+	</form>
+</section>
 
 <?php require_once "./footer.php"; ?>

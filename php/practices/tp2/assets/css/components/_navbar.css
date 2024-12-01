@@ -72,6 +72,8 @@
 
 .navbar img ~ span,
 .navbar svg ~ span {
+	flex-shrink: 0;
+
 	display: inline-block;
 
 	padding: var(--space1);

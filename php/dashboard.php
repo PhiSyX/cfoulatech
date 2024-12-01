@@ -8,10 +8,9 @@ if (! is_connected()) {
 	exit;
 }
 ?>
-<main>
-	<section id="dashboard-page">
-		<h1><?= $title; ?> de <small><?= $_SESSION["user"]["firstname"]; ?></small></h1>
-	</section>
-</main>
+
+<section id="dashboard-page" class="center:i">
+	<h1><?= $title; ?> de <small><?= $_SESSION["user"]["firstname"]; ?></small></h1>
+</section>
 
 <?php require_once "./footer.php"; ?>

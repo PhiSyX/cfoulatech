@@ -1,0 +1,149 @@
+/**
+ * Les règles de style des éléments en commun pour chaque page.
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+
+	margin: 0;
+}
+
+body {
+	background: var(--body-bg);
+	color: var(--text);
+
+	font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+input {
+	font-family: Nunito, Arial, Helvetica, sans-serif;
+}
+
+form :read-only {
+	user-select: none;
+}
+
+form :disabled {
+	pointer-events: none;
+}
+
+.l-main {
+	overflow: auto;
+}
+
+main[role="main"] {
+	width: 100%;
+	padding: var(--space2);
+	background: #1d2125;
+	color: var(--text);
+	border-radius: var(--default-radius);
+	overflow: auto;
+	> section {
+		overflow: auto;
+	}
+}
+
+label[for] {
+	cursor: pointer;
+}
+
+svg {
+	vertical-align: middle;
+}
+
+textarea,
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+	padding: var(--space1);
+	border: none;
+	outline: none;
+	border-radius: var(--default-radius);
+	background: var(--body-bg);
+	color: var(--text);
+
+	&.error {
+		border: 1px solid red;
+	}
+}
+
+button[type="submit"] {
+	padding: var(--space1);
+	border-radius: var(--default-radius);
+	border: none;
+	background: var(--text);
+	color: var(--body-bg);
+	cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	small {
+		padding: calc(var(--space1) / 2);
+		border-radius: 4px;
+		background: linear-gradient(to right, #3c4043, #383a3c);
+		color: #cdaa2a;
+		font-size: 0.75em;
+		line-height: 24px;
+		vertical-align: middle;
+	}
+}
+
+strong {
+	color: #cdaa2a;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid;
+}
+
+thead,
+table > tbody > tr > th {
+	font-weight: bold;
+	background: CanvasText;
+	color: Canvas;
+}
+
+table > tbody > tr > th {
+	box-shadow: 1px 1px 1px CanvasText;
+}
+
+tbody > tr {
+	background: #56707c;
+	color: CanvasText;
+}
+tbody > tr:nth-child(odd) {
+	background: #3b484e;
+}
+tbody > tr:hover {
+	background: Canvas;
+}
+
+table > tbody > tr > td {
+	border-inline: 1px solid Canvas;
+	border-top: 2px solid Canvas;
+	border-bottom: 1px solid Canvas;
+}
+
+th,
+td {
+	padding: var(--space1);
+}
+
+img {
+	object-fit: cover;
+}

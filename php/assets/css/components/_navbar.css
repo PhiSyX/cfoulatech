@@ -24,6 +24,7 @@
 
 	color: var(--link-color);
 	text-decoration: none;
+	font-size: 14px;
 }
 .navbar--horizontal {
 	margin-top: -5px;
@@ -165,7 +166,7 @@
 	max-width: max-content;
 
 	a > svg {
-		padding-inline: var(--space1);
+		padding-left: var(--space1);
 	}
 
 	svg {
@@ -189,7 +190,7 @@
 #toggle-navigation-global:checked ~ .navigation-per-page {
 	.navbar--left-icon {
 		width: 160px;
-		padding-right: 158px;
+		padding-right: 178px;
 	}
 }
 

@@ -8,7 +8,7 @@ const NUM_MAX = 10;
 $title = "Jeu du Hasard";
 $nav = "jeuduhasard";
 
-if ( ! isset($_SESSION["numeroGagnant"])) {
+if (! isset($_SESSION["numeroGagnant"])) {
 	$_SESSION["numeroGagnant"] = rand(NUM_MIN, NUM_MAX);
 }
 
@@ -21,34 +21,35 @@ if ($numeroGagnant === $numeroUtilisateur) {
 
 require_once "./header.php";
 ?>
-<main>
+
+<link rel="stylesheet" href="./assets/css/pages/jeuduhasard.css">
+
+<div class="center:i">
 	<section id="jeuduhasard">
 		<h1>Jeu du Hasard</h1>
 
 		<?php if ($numeroUtilisateur !== null): ?>
-			<div class="alert">
-				<?php if ($numeroUtilisateur < NUM_MIN || $numeroUtilisateur > NUM_MAX): ?>
-					<p class="error">
-						Oops, votre numéro DOIT être compris
-						ENTRE <strong><?= NUM_MIN; ?></strong> ET <strong><?= NUM_MAX; ?></strong>.
-					</p>
-				<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
-					<p class="error">
-						Oops,
-						votre numéro est trop <strong>grand</strong>.
-					</p>
-				<?php elseif ($numeroUtilisateur < $numeroGagnant): ?>
-					<p class="error">
-						Oops,
-						votre numéro est trop <strong>petit</strong>.
-					</p>
-				<?php else: ?>
-					<p class="success">
-						Bravo !!!!!<br>
-						Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant; ?></strong>
-					</p>
-				<?php endif; ?>
-			</div>
+			<?php if ($numeroUtilisateur < NUM_MIN || $numeroUtilisateur > NUM_MAX): ?>
+				<div class="alert alert--error">
+					Oops, votre numéro DOIT être compris
+					ENTRE <strong><?= NUM_MIN; ?></strong> ET <strong><?= NUM_MAX; ?></strong>.
+				</div>
+			<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
+				<div class="alert alert--error">
+					Oops,
+					votre numéro est trop <strong>grand</strong>.
+				</div>
+			<?php elseif ($numeroUtilisateur < $numeroGagnant): ?>
+				<div class="alert alert--error">
+					Oops,
+					votre numéro est trop <strong>petit</strong>.
+				</div>
+			<?php else: ?>
+				<div class="alert alert--success">
+					Bravo !!!!!<br>
+					Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant; ?></strong>
+				</div>
+			<?php endif; ?>
 		<?php endif; ?>
 
 		<form action="jeuduhasard.php" method="POST">
@@ -67,6 +68,6 @@ require_once "./header.php";
 			<button type="submit">Deviner</button>
 		</form>
 	</section>
-</main>
+</div>
 
 <?php require_once "./footer.php"; ?>

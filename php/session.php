@@ -5,6 +5,15 @@ session_start();
 if (isset($_GET["op"])) {
 	switch ($_GET["op"])
 	{
+		case "read":
+		{
+			$nav = "debug";
+			$title = "Debug";
+			require "header.php";
+			var_dump($_SESSION);
+			require "footer.php";
+		} break;
+
 		case "set":
 		{
 			$_SESSION["role"] = "admin";
@@ -20,6 +29,8 @@ if (isset($_GET["op"])) {
 		{
 			session_destroy();
 			session_unset();
+			header("Location: session.php?op=read");
+			exit;
 		} break;
 	}
 }

@@ -1,4 +1,30 @@
-	<section class="debug">
+</main>
+</div>
+
+<footer class="navigation-per-page">
+	<div class="navbar--left-icon">
+		<label for="toggle-navigation-global"></label>
+	</div>
+
+	<p class="date">
+		<time>
+			© <?= date("Y"); ?> CFITECH, Inc.
+		</time>
+	</p>
+
+	<nav class="navbar navbar--horizontal">
+		<a href="session.php?op=read">
+			Session
+		</a>
+
+		<a href="session.php?op=unset">
+			Effacer Session
+		</a>
+	</nav>
+</footer>
+
+
+<!-- <section class="debug">
 		<details open>
 			<summary>DEBUG</summary>
 
@@ -17,19 +43,7 @@
 				<?= var_dump($_POST); ?>
 			<?php endif; ?>
 		</details>
-	</section>
-
-	<footer>
-		<nav>
-			<a href="index.php">Accueil</a>
-			<a href="contact.php">Contact</a>
-			<a href="about.php">À propos</a>
-		</nav>
-
-		<p class="text-center text-muted">
-			© 2022 CFITECH, Inc
-		</p>
-	</footer>
+	</section> -->
 
 </body>
 
