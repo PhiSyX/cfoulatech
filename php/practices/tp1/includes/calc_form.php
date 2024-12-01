@@ -6,18 +6,18 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once "./functions/math.php";
 
-if (isset($_POST["left_operand"], $_POST["right_operand"])) {
-	if (trim($_POST["left_operand"]) === "" || trim($_POST["right_operand"]) === "") {
+if (isset($_GET["left_operand"], $_GET["right_operand"])) {
+	if (trim($_GET["left_operand"]) === "" || trim($_GET["right_operand"]) === "") {
 		$error = "Vous devez entrer deux nombres valides.";
-	} else if ($nav === "division" && (float) $_POST["right_operand"] === 0.0) {
+	} else if ($nav === "division" && (float) $_GET["right_operand"] === 0.0) {
 		$error = "La division par zéro est interdite";
 	} else {
 		// x
-		$left_operand = (float) $_POST["left_operand"];
-		// opérateurs arithmétiques
+		$left_operand = (float) $_GET["left_operand"];
+		// Symbole de l'opérateur arithmétique, en fonction de $nav
 		$operator = operator_sign($nav);
 		// y
-		$right_operand = (float) $_POST["right_operand"];
+		$right_operand = (float) $_GET["right_operand"];
 		// =
 		$result = calc($left_operand, $operator, $right_operand);
 
@@ -26,42 +26,30 @@ if (isset($_POST["left_operand"], $_POST["right_operand"])) {
 }
 
 ?>
-<form action="<?= $nav; ?>.php" method="POST" class="calc-form max-wc inline">
-	<input type="number" name="left_operand" placeholder="Operand Gauche">
+<form action="<?php echo $nav; ?>.php" method="GET" id="js-calc-form" class="calc-form">
+	<input type="number" name="left_operand" placeholder="Operand Gauche" value="<?php echo isset($_GET["left_operand"]) ? $_GET["left_operand"] : ""; ?>">
 
-	<!-- TP2:
+	<?php include "./assets/svg/icon-$nav.svg" ?>
 
-	m. (Facile) Pour chaque page d’opération mathématique je veux une petite
-	            image représentant le signe de l’opération entre les 2
-				formulaires des nombres à introduire. Et une image du signe
-				égale entre le deuxième formulaire et le formulaire résultat.
+	<input type="number" name="right_operand" placeholder="Operand Droit" value="<?php echo isset($_GET["right_operand"]) ? $_GET["right_operand"] : ""; ?>">
 
-	-->
-	<input disabled type="image" src="<?= "./assets/img/$nav.png"; ?>" alt="<?= $nav; ?>">
-	<input type="number" name="right_operand" placeholder="Operand Droit">
-	<input disabled type="image" src="<?= "./assets/img/equal-sign.png"; ?>" alt="<?= $nav; ?>">
-
-	<!-- TP2:
-
-	k. (Facile) Affichez le résultat de vos calcules dans un formulaire.
-
-	-->
-	<input readonly disabled type="number" value="<?= isset($result) ? $result : ""; ?>" placeholder="Résultat">
 	<button type="submit">Calculer</button>
 </form>
 
-<?php if (isset($error)): ?>
-	<div class="alert">
-		<p class="error">
-			<?= $error; ?>
-		</p>
-	</div>
-<?php endif ?>
+<div id="js-alert-message" class="alert-message">
+	<?php if (isset($error)): ?>
+		<div class="alert alert--error">
+			<p>
+				<?php echo $error; ?>
+			</p>
+		</div>
+	<?php endif ?>
 
-<?php if (isset($result)): ?>
-	<div class="alert">
-		<p class="success">
-			Le résultat du calcul est <strong><?= $result; ?></strong>
-		</p>
-	</div>
-<?php endif ?>
+	<?php if (isset($result)): ?>
+		<div class="alert alert--success">
+			<p>
+				Le résultat du calcul est <strong><?php echo $result; ?></strong>
+			</p>
+		</div>
+	<?php endif ?>
+</div>

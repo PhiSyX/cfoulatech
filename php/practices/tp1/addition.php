@@ -8,32 +8,23 @@ d. Une page Addition avec comme titre Addition qui aura un formulaire qui fera
    l'addition soit sauvegardé.
 
 */
-/* TP2:
-
-g. (Difficile) Je veux que quand vous n’êtes pas connecté, même si vous tapez
-               dans votre navigateur le chemin vers une page de calcule, exemple
-               /addition.php, il vous renvoi vers la page de login.
-
-*/
-
-require_once "./functions/auth.php";
-require_once "./functions/redirect.php";
-
-if (! is_connected()) {
-	redirect_to("login.php");
-}
 
 $title = "Addition";
 $nav = "addition";
 
+$styles = ["assets/css/pages/calc.css"];
+$scripts = ["assets/js/calc.js"];
+
+include "./includes/layouts/header.php";
 ?>
-<?php require_once "./includes/header.php" ?>
 
-<main>
-	<section>
-		<h1><?= $title; ?></h1>
-		<?php require_once "./includes/calc_form.php"; ?>
-	</section>
-</main>
+<section id="calc-page">
 
-<?php require_once "./includes/footer.php" ?>
+	<?php include "./includes/calc_form.php"; ?>
+
+</section>
+
+<?php
+require "./includes/calc_nav.php";
+include "./includes/layouts/footer.php";
+?>

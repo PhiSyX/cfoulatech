@@ -1,9 +1,21 @@
-@layer page {
-	.calc-form {
-		input[type="image"] {
-			align-self: center;
-			height: calc(var(--space) * 4);
-			border-radius: 50%;
-		}
+#calc-page {
+	height: 100%;
+	max-width: 80ch;
+	margin-inline: auto;
+
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	justify-content: center;
+	gap: var(--space3);
+}
+
+#calc-page form {
+	display: flex;
+	align-items: center;
+	gap: var(--space1);
+
+	&.error .hide-on-error {
+		display: none;
 	}
 }

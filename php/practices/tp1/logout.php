@@ -19,31 +19,28 @@ require_once "./functions/math.php";
 
 if (isset($_POST["send"])) {
 	unset_user_session();
-	unset_all_math_session();
 	redirect_to("login.php");
 }
 
-$title = "Se déconnecter";
+$title = "Déconnexion";
 $nav = "logout";
 
+include "./includes/layouts/header.php"
 ?>
-<?php require_once "./includes/header.php" ?>
 
-<main style="align-self: center;">
-	<section>
-		<p>
-			Bonjour
-			<strong><?= $_SESSION["user"]["firstname"]; ?> <?= $_SESSION["user"]["lastname"]; ?></strong>,
-			vous êtes sur le point de vous déconnecter du compte
-			<strong><?= $_SESSION["user"]["login"]; ?></strong>
-		</p>
+<section class="full:center">
+	<p>
+		Bonjour
+		<strong><?php echo $_SESSION["user"]["firstname"]; ?> <?php echo $_SESSION["user"]["lastname"]; ?></strong>,
+		vous êtes sur le point de vous déconnecter du compte
+		<strong><?php echo $_SESSION["user"]["login"]; ?></strong>
+	</p>
 
-		<form action="logout.php" method="POST">
-			<button type="submit" name="send">
-				Se déconnecter maintenant
-			</button>
-		</form>
-	</section>
-</main>
+	<form action="logout.php" method="POST">
+		<button type="submit" name="send">
+			Se déconnecter maintenant
+		</button>
+	</form>
+</section>
 
-<?php require_once "./includes/footer.php" ?>
+<?php include "./includes/layouts/footer.php" ?>

@@ -1,0 +1,8 @@
+#login-page {
+	gap: var(--space3);
+}
+
+#login-page form {
+	display: grid;
+	gap: var(--space1);
+}

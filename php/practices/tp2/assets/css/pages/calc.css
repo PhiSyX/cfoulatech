@@ -1,0 +1,38 @@
+#calc-page {
+	height: 100%;
+	max-width: 80ch;
+	margin-inline: auto;
+
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	justify-content: center;
+	gap: var(--space3);
+}
+
+#calc-page form {
+	display: flex;
+	align-items: center;
+	gap: var(--space1);
+
+	&.error .hide-on-error {
+		display: none;
+	}
+}
+
+#calc-page form output {
+	padding: var(--space1);
+	border-radius: var(--default-radius);
+	background: var(--body-bg);
+	color: var(--text);
+}
+
+.calc-run {
+	padding: var(--space2);
+}
+
+#js-app {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space3);
+}

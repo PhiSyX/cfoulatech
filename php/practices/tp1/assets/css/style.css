@@ -1,56 +1,16 @@
-@import "./_help.css";
-@import "./_vars.css";
-@import "./_base.css";
-@import "./_layout.css";
-@import "./_form.css";
+/**
+ * Le style CSS de toutes les pages.
+ */
 
-@import "./components/alert.css";
-@import "./components/avatar.css";
-@import "./components/footer.css";
-@import "./components/navbar.css";
-@import "./components/sidebar.css";
-@import "./components/topbar.css";
+@import "_vars.css";
 
-@import "./pages/calc.css";
-@import "./pages/profile.css";
+@import "_font.css" layer(font);
+@import "_base.css" layer(base);
+@import "_help.css" layer(help);
+@import "_layout.css" layer(layout);
 
-@layer help, base, layout, form, component, page;
+@import "components/_alert.css" layer(component);
+@import "components/_navbar.css" layer(component);
+@import "components/_topbar.css" layer(component);
 
-body > section,
-body > main {
-	overflow: auto;
-	width: 100%;
-	padding: var(--space);
-}
-
-body > main {
-	> section {
-		max-width: 80ch;
-		margin-inline: auto;
-	}
-}
-
-body > section {
-	resize: horizontal;
-
-	> details {
-		max-width: 80ch;
-		margin-inline: auto;
-	}
-}
-
-#logo {
-	display: none;
-}
-
-.l-sidebar {
-	transition: transform 250ms ease-in-out;
-}
-
-.l-sidebar {
-	transform: translateX(-100vw);
-}
-
-#logo:checked ~ .l-sidebar {
-	transform: translateX(0);
-}
+@layer font, base, layout, help, component;
