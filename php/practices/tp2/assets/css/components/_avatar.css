@@ -9,6 +9,7 @@
 	transition: border-radius 250ms;
 }
 
+.avatar--anim-auto img,
 .avatar--anim img:hover {
 	animation: 600ms avatar-circle reverse infinite linear,
 		600ms avatar-circle reverse infinite linear 500ms;

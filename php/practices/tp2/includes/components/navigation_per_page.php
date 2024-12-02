@@ -25,7 +25,7 @@
 	<?php endif; ?>
 
 	<p class="date">
-		Nous somme le <time datetime="<?= date(DATE_W3C); ?>">
+		Nous sommes le <time datetime="<?= date(DATE_W3C); ?>">
 			<?= date("l, d F Y"); ?>, il est <?= date("H\hi"); ?>.
 		</time>
 	</p>

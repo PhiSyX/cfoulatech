@@ -3,7 +3,7 @@
 <header class="l-topbar topbar">
 	<div class="logo">
 		<?php if (is_connected()): ?>
-			<div class="avatar avatar--anim">
+			<div class="avatar avatar--anim avatar--anim-auto">
 				<a href="profile.php" title="Accéder au profil de <?php echo $_SESSION["user"]["login"]; ?>">
 					<img
 						src="<?php echo $_SESSION["user"]["avatar"] ?>"

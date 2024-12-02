@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php echo isset($title) ? $title : "TP1" ?></title>
+	<title><?php echo isset($title) ? $title : "TP2" ?></title>
 
 	<link rel="stylesheet" href="./assets/css/style.css">
 

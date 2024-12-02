@@ -20,6 +20,11 @@
 				<span>Connexion</span>
 			</a>
 		<?php else: ?>
+			<a href="profile.php" class="<?php echo $nav === "profile" ? "active" : ""; ?>">
+				<?php include "./assets/svg/icon-login.svg" ?>
+				<span>Mon profil</span>
+			</a>
+
 			<form action="logout.php" method="POST">
 				<button type="submit" name="send" class="avatar">
 					<img src="<?php echo $_SESSION["user"]["avatar"]; ?>" alt="Photo de profil de <?php echo $_SESSION["user"]["login"]; ?>" width="24" height="24">
