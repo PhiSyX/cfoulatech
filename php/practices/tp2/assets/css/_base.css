@@ -146,3 +146,13 @@ td {
 img {
 	object-fit: cover;
 }
+
+blockquote {
+	border-left: 10px solid #484646;
+	padding-left: 16px;
+	font-style: italic;
+}
+
+p {
+	hyphens: auto;
+}
