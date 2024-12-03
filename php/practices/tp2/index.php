@@ -112,6 +112,18 @@ include "./includes/layouts/header.php";
 		<h2>PHP</h2>
 
 		<p>
+			Le prof de PHP, <strong>Julien</strong>, parlait de chaque concept
+			avec un enthousiasme débordant, comme s'il s'agissait d'une
+			révélation divine :
+		</p>
+
+		<blockquote>
+			"Vous voyez PHP, c'est le ciment qui tient le web ensemble. Sans
+			PHP, pas de WordPress, pas de forums, pas de... vie. Alors que PHP,
+			c'est la vie. Comme le copier/coller is the life."
+		</blockquote>
+
+		<p>
 			Pour <strong>Timothy</strong>, PHP était un peu comme être coincé
 			dans un jeu dans une salle sombre avec une lampe torche qui
 			clignote. Il savait qu'il fallait avancer, mais chaque ligne de code
