@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Présence</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+	<section class="presence">
+		<form action="#">
+			<fieldset class="presence__fieldset">
+				<legend>Gestion des présences - CFITECH</legend>
+
+				<div class="form-control">
+					<input type="text" placeholder="Nom du stagiaire">
+
+					<button type="button">
+						Ajouter stagiaire
+					</button>
+				</div>
+			</fieldset>
+		</form>
+
+		<section class="stats">
+			<article class="stats_card">
+				<a href="#">
+					Stagiaires
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<span class="today">
+					<strong>5</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span>
+						16 Hier
+					</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+
+			<article class="stats_card">
+				<a href="#">
+					Présences
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<span class="today">
+					<strong>3</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span>
+						15 Hier
+					</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+
+			<article class="stats_card" style="--color: green">
+				<a href="#">
+					Absences
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<span class="today">
+					<strong>2</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span>
+						1 Hier
+					</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+		</section>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Nom du stagiaire</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<!--
+				<tr class="presence__user presence__user--away">
+					<td>Mike</td>
+					<td>Absent</td>
+					<td class="presence__actions">
+						<button>Marquer présent</button>
+						<button>Supprimer</button>
+					</td>
+				</tr>
+				-->
+
+			</tbody>
+		</table>
+	</section>
+
+	<script src="./script.js"></script>
+</body>
+
+</html>
