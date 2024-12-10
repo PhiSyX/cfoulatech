@@ -1,0 +1,103 @@
+body {
+	display: grid;
+	place-items: center;
+	margin: 0;
+	overflow: hidden;
+	height: 100vh;
+}
+
+.feu {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 16px;
+	border-radius: 8px;
+
+	background: #212121;
+}
+
+.feu > div {
+	border: 4px double transparent;
+}
+
+.green,
+.orange,
+.red {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+
+	background: var(--color, gray);
+	background-size: 12px 6px;
+	box-shadow: 0 0 2rem 1rem var(--color), 0 0 4rem 1rem var(--color);
+
+	transition: all 350ms;
+	animation: 1s bounce infinite alternate linear;
+}
+
+.red.active {
+	--color: #e83552;
+	border-color: #eb7d90 !important;
+	background-image: linear-gradient(
+		to bottom,
+		#e83552 20%,
+		#ba3a4d 20%,
+		#ba3a4d 40%,
+		#c91c36 40%,
+		#c91c36 50%,
+		#e83552 50%,
+		#e83552 70%,
+		#ba3a4d 70%,
+		#ba3a4d 90%,
+		#c91c36 90%,
+		#c91c36 100%
+	);
+}
+
+.orange.active {
+	--color: #f6ba45;
+	border-color: #e9d6b1 !important;
+	background-image: linear-gradient(
+		80deg,
+		#f6ba45 20%,
+		#e0a631 20%,
+		#e0a631 40%,
+		#d4a548 40%,
+		#d4a548 50%,
+		#f6ba45 50%,
+		#f6ba45 70%,
+		#e0a631 70%,
+		#e0a631 90%,
+		#d4a548 90%,
+		#d4a548 100%
+	);
+}
+
+.green.active {
+	--color: #1ea07d;
+	border-color: #52bea2 !important;
+
+	background-image: linear-gradient(
+		30deg,
+		#1ea07d 20%,
+		#349178 20%,
+		#349178 40%,
+		#07694f 40%,
+		#07694f 50%,
+		#1ea07d 50%,
+		#1ea07d 70%,
+		#349178 70%,
+		#349178 90%,
+		#07694f 90%,
+		#07694f 100%
+	);
+}
+
+@keyframes bounce {
+	25% {
+		filter: drop-shadow(0 0 0.35rem currentColor);
+	}
+	75% {
+		filter: drop-shadow(0 0 0.45rem currentColor);
+	}
+}

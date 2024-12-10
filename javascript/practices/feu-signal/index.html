@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Feu de signalisation</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<div class="feu">
+		<div id="js-red" class="red"></div>
+		<div id="js-orange" class="orange"></div>
+		<div id="js-green" class="green"></div>
+	</div>
+
+	<script>
+		let red = document.querySelector("#js-red");
+		let orange = document.querySelector("#js-orange");
+		let green = document.querySelector("#js-green");
+
+		function setActiveColor(element_actif, time) {
+			setTimeout(() => {
+				// Réinitialise les classes de chaque feu
+				red.className = "red";
+				orange.className = "orange";
+				green.className = "green";
+
+				// Ajoute la classe active à l'élément en cours
+				element_actif.className += " active";
+			}, time);
+		}
+
+		// Ce timer se met à jour au fur & à mesure des étapes dans la boucle.
+		let timer = 0;
+		for (let i = 0; i < 1000; i++) {
+			// Met en évidence le feu rouge
+			setActiveColor(red, timer);
+			timer += 1000;
+
+			// Met en évidence le feu orange
+			setActiveColor(orange, timer);
+			timer += 1000;
+
+			// Met en évidence le feu vert
+			setActiveColor(green, timer);
+			timer += 1000;
+		}
+	</script>
+
+</body>
+
+</html>
