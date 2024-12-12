@@ -9,24 +9,25 @@
 </head>
 
 <body>
-
 	<section class="presence">
 		<form action="#">
 			<fieldset class="presence__fieldset">
 				<legend>Gestion des présences - CFITECH</legend>
 
 				<div class="form-control">
-					<input type="text" placeholder="Nom du stagiaire">
+					<input type="text" placeholder="Nom du stagiaire" id="js-input-add-stagiaire">
 
-					<button type="button">
+					<button type="button" id="js-btn-add-stagiaire">
 						Ajouter stagiaire
 					</button>
 				</div>
+
+				<p id="js-input-error" class="form-input-error">&nbsp;</p>
 			</fieldset>
 		</form>
 
 		<section class="stats">
-			<article class="stats_card">
+			<article id="js-stats-stagiaires" class="stats_card">
 				<a href="#">
 					Stagiaires
 
@@ -37,20 +38,20 @@
 					</svg>
 				</a>
 
+				<output id="js-total-stagiaires-percent" class="stats_card_percent"></output>
+
 				<span class="today">
-					<strong>5</strong>
+					<strong id="js-total-today-stagiaires">0</strong>
 				</span>
 
 				<footer class="yesterday">
-					<span>
-						16 Hier
-					</span>
+					<span id="js-total-yesterday-stagiaires">0 Hier</span>
 
 					<a href="#">Ce mois</a>
 				</footer>
 			</article>
 
-			<article class="stats_card">
+			<article id="js-stats-present" class="stats_card">
 				<a href="#">
 					Présences
 
@@ -61,20 +62,20 @@
 					</svg>
 				</a>
 
+				<output id="js-total-present-percent" class="stats_card_percent"></output>
+
 				<span class="today">
-					<strong>3</strong>
+					<strong id="js-total-today-present">0</strong>
 				</span>
 
 				<footer class="yesterday">
-					<span>
-						15 Hier
-					</span>
+					<span id="js-total-yesterday-present">0 Hier</span>
 
 					<a href="#">Ce mois</a>
 				</footer>
 			</article>
 
-			<article class="stats_card" style="--color: green">
+			<article id="js-stats-absentees" class="stats_card">
 				<a href="#">
 					Absences
 
@@ -85,21 +86,21 @@
 					</svg>
 				</a>
 
+				<output id="js-total-absentees-percent" class="stats_card_percent"></output>
+
 				<span class="today">
-					<strong>2</strong>
+					<strong id="js-total-today-absentees">0</strong>
 				</span>
 
 				<footer class="yesterday">
-					<span>
-						1 Hier
-					</span>
+					<span id="js-total-yesterday-absentees">0 Hier</span>
 
 					<a href="#">Ce mois</a>
 				</footer>
 			</article>
 		</section>
 
-		<table>
+		<table class="presence_table">
 			<thead>
 				<tr>
 					<th>Nom du stagiaire</th>
@@ -107,8 +108,7 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody>
-
+			<tbody id="js-tbody">
 				<!--
 				<tr class="presence__user presence__user--away">
 					<td>Mike</td>
@@ -119,12 +119,226 @@
 					</td>
 				</tr>
 				-->
-
 			</tbody>
 		</table>
 	</section>
 
-	<script src="./script.js"></script>
+	<script>
+		class Statistic {
+			stagiaires = [];
+			present = [];
+			absentees = [];
+
+			add_stagiaire(id) {
+				this.stagiaires.push(id);
+			}
+
+			add_present(id) {
+				this.present.push(id);
+			}
+
+			add_absentee(id) {
+				this.absentees.push(id);
+			}
+
+			total() {
+				return {
+					stagiaires: this.stagiaires.length,
+					present: this.present.length,
+					absentees: this.absentees.length,
+				}
+			}
+		}
+
+		class StatisticDOM extends Statistic {
+			constructor(fake_stagiaires, fake_present, fake_absentees) {
+				super();
+
+				if (fake_stagiaires && fake_present && fake_absentees) {
+					this.stagiaires = Array(fake_stagiaires);
+					this.present = Array(fake_present);
+					this.absentees = Array(fake_absentees);
+				}
+			}
+
+			add_stagiaire(id) {
+				super.add_stagiaire(id);
+				let total = document.querySelector("#js-total-today-stagiaires")
+				total.textContent = this.stagiaires.length;
+			}
+
+			add_present(id) {
+				super.add_present(id);
+				let total = document.querySelector("#js-total-today-present")
+				total.textContent = this.present.length;
+			}
+
+			add_absentee(id) {
+				super.add_absentee(id);
+				let total = document.querySelector("#js-total-today-absentees")
+				total.textContent = this.absentees.length;
+			}
+		}
+
+		class Statistics {
+			yesterday;
+			today;
+
+			constructor() {
+				this.yesterday = new StatisticDOM(24, 15, 9);
+				this.today = new StatisticDOM();
+			}
+
+			resume() {
+				let today = this.today.total();
+				let yesterday = this.yesterday.total();
+
+				// évolutions journalières
+				const daily_trends = (a, b) => {
+					let n = (((a - b) / b) * 100).toFixed(2);
+					return n.replace(".00", "");
+				};
+
+				const update = (name) => {
+					let stats_card = document.querySelector(`#js-stats-${name}`);
+					let stats_pt = document.querySelector(`#js-total-${name}-percent`);
+					let today_el = document.querySelector(`#js-total-today-${name}`);
+					let yesterday_el = document.querySelector(`#js-total-yesterday-${name}`);
+
+					today_el.textContent = today[name];
+					yesterday_el.textContent = `${yesterday[name]} Hier`;
+
+					if (today[name] !== 0) {
+						if (today[name] > yesterday[name]) {
+							stats_card.className = "stats_card up";
+						} else {
+							stats_card.className = "stats_card down";
+						}
+						let evolution = daily_trends(today[name], yesterday[name]);
+						stats_pt.textContent = `${evolution}%`
+					}
+				};
+
+				update("stagiaires");
+				update("present");
+				update("absentees");
+			}
+		}
+
+		class Stagiaire {
+			/**
+			 * Nom du stagiaire
+			 */
+			nom;
+
+			/**
+			 * État de présence du stagiaire
+			 */
+			status = false;
+
+			constructor(nom) {
+				this.nom = nom;
+				this.id = statistics.today.total().stagiaires + 1;
+			}
+
+			mark_as_away() {
+				this.status = false;
+			}
+
+			mark_as_present() {
+				this.status = true;
+			}
+		}
+
+		class StagiaireDOM extends Stagiaire {
+			append_into_table() {
+				let tbody = document.querySelector("#js-tbody");
+				let tr = this.render();
+				tbody.append(tr);
+				statistics.today.add_stagiaire(this.id);
+				if (this.status) {
+					statistics.today.add_present(this.id);
+				} else {
+					statistics.today.add_absentee(this.id);
+				}
+				statistics.resume();
+			}
+
+			render() {
+				let tr = document.createElement("tr");
+				tr.id = `js-${this.nom}-${this.id}`;
+				tr.className = "presence__user";
+
+				if (!this.status) {
+					tr.className += " presence__user--away";
+				}
+
+				let td_nom = document.createElement("td");
+				td_nom.textContent = this.nom;
+
+				let td_status = document.createElement("td");
+				if (this.status) {
+					td_status.textContent = "Présent";
+				} else {
+					td_status.textContent = "Absent";
+				}
+
+				let td_actions = document.createElement("td");
+				td_actions.className = "presence__actions";
+
+				let td_action_marque_present = document.createElement("button");
+				td_action_marque_present.type = "button";
+				if (this.status) {
+					td_action_marque_present.textContent = "Marquer absent";
+				} else {
+					td_action_marque_present.textContent = "Marquer présent";
+				}
+
+				let td_action_supprimer = document.createElement("button");
+				td_action_supprimer.type = "button";
+				td_action_supprimer.textContent = "Supprimer";
+
+				td_actions.appendChild(td_action_marque_present);
+				td_actions.appendChild(td_action_supprimer);
+
+				tr.appendChild(td_nom);
+				tr.appendChild(td_status);
+				tr.appendChild(td_actions);
+
+				return tr;
+			}
+		}
+
+		let statistics = new Statistics();
+		statistics.resume();
+
+		let btn_add_stagiaire = document.querySelector("#js-btn-add-stagiaire");
+		let input_add_stagiaire = document.querySelector("#js-input-add-stagiaire");
+		let input_error = document.querySelector("#js-input-error");
+
+		btn_add_stagiaire.addEventListener("click", (evt) => {
+			let nom_stagiaire = input_add_stagiaire.value;
+
+			if (nom_stagiaire == null || nom_stagiaire.length == 0) {
+				input_error.textContent = "Veuillez entrer un nom de stagiaire.";
+				return;
+			}
+
+			input_error.textContent = "";
+
+			let stagiaire = new StagiaireDOM(nom_stagiaire);
+			stagiaire.append_into_table();
+
+			input_add_stagiaire.value = "";
+		});
+
+		// for (let i = 0; i < 10; i++) {
+		// 	let stagiaire_dom = new StagiaireDOM("Mike " + i);
+		// 	setTimeout(() => {
+		// 		stagiaire_dom.append_into_table();
+		// 	}, 250 * i);
+		// }
+	</script>
 </body>
 
 </html>

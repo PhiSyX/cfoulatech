@@ -132,6 +132,11 @@ button {
 	}
 }
 
+.form-input-error {
+	display: inline-block;
+	color: #f76b6b;
+}
+
 .presence__user {
 	background: #15471f;
 	color: #f7f7f7;
@@ -178,7 +183,7 @@ button {
 		width: 120px;
 		height: 120px;
 		border-radius: 50%;
-		background-color: var(--color, #8b0d0d);
+		background-color: var(--color);
 		filter: blur(120px);
 	}
 
@@ -220,4 +225,27 @@ button {
 	.today {
 		font-size: 24px;
 	}
+}
+
+.stats_card.up {
+	--color: green;
+}
+.stats_card.down {
+	--color: #8b0d0d;
+}
+
+.stats_card_percent {
+	position: absolute;
+	right: 16px;
+	color: var(--color);
+	font-weight: bold;
+	mix-blend-mode: plus-lighter;
+}
+
+/* Table */
+
+.presence_table button {
+	padding: 1rem;
+	margin-left: 0.5rem;
+	border-radius: 8px;
 }
