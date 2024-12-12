@@ -135,15 +135,23 @@ button {
 .form-input-error {
 	display: inline-block;
 	color: #f76b6b;
+	margin: 0;
+	margin-top: 8px;
 }
 
 .presence__user {
-	background: #15471f;
+	background: #14843623;
 	color: #f7f7f7;
+	button {
+		background: #148436db;
+	}
 }
 .presence__user--away {
-	background: #34181d;
+	background: #ed406b15;
 	color: #f7f7f7;
+	button {
+		background: #ed406b5b;
+	}
 }
 .presence__actions {
 	text-align: right;
@@ -228,21 +236,31 @@ button {
 }
 
 .stats_card.up {
-	--color: green;
+	--color: #148436;
 }
 .stats_card.down {
-	--color: #8b0d0d;
+	--color: #ed406b;
 }
 
 .stats_card_percent {
 	position: absolute;
 	right: 16px;
 	color: var(--color);
-	font-weight: bold;
 	mix-blend-mode: plus-lighter;
 }
 
 /* Table */
+.presence_table caption {
+	caption-side: bottom;
+	padding-block: 1.5rem;
+	background: #0f0e0e;
+	border: 1px solid ButtonFace;
+	border-top: none;
+}
+
+.presence_table:has(tbody tr) caption {
+	display: none;
+}
 
 .presence_table button {
 	padding: 1rem;
