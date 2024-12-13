@@ -1,0 +1,30 @@
+/**
+ * Les variables
+ */
+:root {
+	/** Espacement par défaut */
+	--space1: 8px;
+	--space2: 16px;
+	--space3: 24px;
+	--space4: 32px;
+	--space5: 40px;
+	--space6: 48px;
+	--space7: 56px;
+	--space8: 64px;
+	--space9: 72px;
+	--space10: 80px;
+
+	/** Tailles par défaut */
+	--container-width: 1000px;
+
+	/** border-radius par défaut */
+	--radius: 4px;
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 16px;
+	--radius-full: 50%;
+
+	/** Couleurs */
+	--primary-color: ;
+	--secondary-color: ;
+}

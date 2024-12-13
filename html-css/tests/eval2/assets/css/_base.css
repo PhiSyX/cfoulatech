@@ -1,0 +1,97 @@
+/* Bases */
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+
+	width: 100%;
+	height: 100%;
+
+	font-family: Arial, sans-serif;
+}
+
+/** Tous les liens auront une couleur primaires par défaut. Retrait du
+ *  soulignement des liens */
+a {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+/** Tous les titres h1 auront la couleur primaires par défaut */
+h1 {
+	color: var(--primary-color);
+}
+
+/** Image par défaut à 100% de la largeur, spécifique à cette évaluation */
+img {
+	width: 100%;
+}
+
+/** Les boutons de type submit et les labels ont un curseur qui pointe */
+button[type="submit"],
+label[for] {
+	cursor: pointer;
+}
+
+/** Classe utilitaire qui nous permet d'être cohérent sur les largeurs et marges
+ *  sur les zones principales */
+.container {
+	width: var(--container-width);
+	margin-inline: auto;
+}
+
+/** Classe utilitaire en display flex en row, étant donné que l'on va utiliser
+ *  plusieurs fois */
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+/** Classe utilitaire en display flex en colonne, étant donné que l'on va
+ *  utiliser plusieurs fois */
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+/** Classe utilitaire sur les marges automatiques */
+.ml-auto {
+	margin-left: auto;
+}
+.mr-auto {
+	margin-right: auto;
+}
+
+/** Classes utilitaires qui donnent des largeurs différentes, afin de pouvoir
+  * les utiliser en cas de besoin */
+.w-10 {
+	width: 10%;
+}
+.w-20 {
+	width: 20%;
+}
+.w-30 {
+	width: 30%;
+}
+.w-40 {
+	width: 40%;
+}
+.w-50 {
+	width: 50%;
+}
+.w-60 {
+	width: 60%;
+}
+.w-70 {
+	width: 70%;
+}
+.w-80 {
+	width: 80%;
+}
+.w-90 {
+	width: 90%;
+}
+.w-100 {
+	width: 100%;
+}

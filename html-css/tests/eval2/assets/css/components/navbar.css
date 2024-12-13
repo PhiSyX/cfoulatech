@@ -1,0 +1,34 @@
+/**
+ * Concerne le style du composant "navbar".
+ */
+
+/** Variables spécifiques à la navbar */
+:root {
+	/** Couleurs */
+	--navbar-link-active-bg: #212121;
+	--navbar-link-active-color: #fff;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	gap: var(--space1);
+}
+
+.navbar_link {
+	/* NOTE: Les paddings sont mis pour élargir la zone de click */
+	padding-block: var(--space2);
+	padding-inline: var(--space1);
+
+	transition: background 250ms linear;
+
+	font-size: 14px;
+	border-radius: var(--radius-md);
+	text-transform: uppercase;
+}
+
+.navbar_link--active,
+.navbar_link:hover {
+	background: var(--navbar-link-active-bg);
+	color: var(--navbar-link-active-color);
+}

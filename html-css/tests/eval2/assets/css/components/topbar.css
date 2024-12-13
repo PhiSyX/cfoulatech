@@ -1,0 +1,41 @@
+/**
+ * Concerne le style du composant "topbar".
+ */
+
+/** Variables spécifiques au topbar */
+:root {
+	/** Taille du logo */
+	--topbar-logo-size: 50px;
+
+	/** Couleurs */
+	--topbar-bg: #333;
+	--topbar-text: #fff;
+}
+
+.topbar {
+	padding: var(--space1);
+
+	background: var(--topbar-bg);
+	color: var(--topbar-text);
+}
+
+.topbar #logo {
+	width: var(--topbar-logo-size);
+	height: var(--topbar-logo-size);
+}
+
+.topbar_navbar {
+	margin-inline: auto;
+}
+
+.topbar_searchbar {
+	.searchbar__input {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.searchbar__btn {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}

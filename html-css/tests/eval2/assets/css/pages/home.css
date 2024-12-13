@@ -1,0 +1,12 @@
+/**
+ * Concerne le style de la page "Accueil".
+ *
+ * Étant donné que cette stylesheet va être chargée uniquement pour la page
+ * index.html, il est nécessaire de lui spécifier la couche `@layer page` et de
+ * mettre nos styles à l'intérieur de cette couche.
+ */
+
+@layer page {
+	#page-home {
+	}
+}

@@ -1,0 +1,19 @@
+
+@import "./_vars.css";
+
+@import "./_reset.css" layer(reset);
+@import "./_base.css" layer(base);
+
+/** Ces composants sont utilisés dans toutes les pages */
+
+@import "./components/navbar.css" layer(component);
+@import "./components/searchbar.css" layer(component);
+@import "./components/topbar.css" layer(component);
+
+/** Ordre de précédence des différentes couches.
+
+   NOTE: la couche `page` est définie pour chaque page individuellement.
+         Les fichiers CSS pour ces pages sont chargés en fonction de la page HTML.
+*/
+
+@layer reset, base, component, page;
