@@ -30,8 +30,34 @@ img {
 
 /** Les boutons de type submit et les labels ont un curseur qui pointe */
 button[type="submit"],
+input[type="submit"],
 label[for] {
 	cursor: pointer;
+}
+
+h1,
+.h1-like {
+	font-size: 2em;
+}
+h2,
+.h2-like {
+	font-size: 1.5em;
+}
+h3,
+.h3-like {
+	font-size: 1.17em;
+}
+h4,
+.h4-like {
+	font-size: 1em;
+}
+h5,
+.h5-like {
+	font-size: 0.83em;
+}
+h6,
+.h6-like {
+	font-size: 0.67em;
 }
 
 /** Classe utilitaire qui nous permet d'être cohérent sur les largeurs et marges
@@ -43,14 +69,14 @@ label[for] {
 
 /** Classe utilitaire en display flex en row, étant donné que l'on va utiliser
  *  plusieurs fois */
-.flex-row {
+.flex-horizontal {
 	display: flex;
 	flex-direction: row;
 }
 
 /** Classe utilitaire en display flex en colonne, étant donné que l'on va
  *  utiliser plusieurs fois */
-.flex-col {
+.flex-vertical {
 	display: flex;
 	flex-direction: column;
 }
@@ -61,6 +87,10 @@ label[for] {
 }
 .mr-auto {
 	margin-right: auto;
+}
+.mx-auto {
+	/* margin-left et margin-right */
+	margin-inline: auto;
 }
 
 /** Classes utilitaires qui donnent des largeurs différentes, afin de pouvoir

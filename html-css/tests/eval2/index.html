@@ -12,13 +12,14 @@
 <body id="page-home">
 
 	<header class="topbar">
-		<div class="container flex-row">
+		<div class="container flex-horizontal">
 			<a href="./" id="logo">
 				<img src="./assets/img/logo.png" alt="Logo">
 			</a>
 
 			<nav role="navigation" class="topbar_navbar navbar">
 				<a href="./" class="navbar_link navbar_link--active">Accueil</a>
+				<!-- Lien ancre, l'ancre doit correspondre à la valeur d'un attribut ID d'un élément HTML -->
 				<a href="#ancre" class="navbar_link">Lien ancre</a>
 				<a href="page.html" class="navbar_link">Lien vers page</a>
 				<a href="https://google.com/" class="navbar_link">Lien externe</a>
@@ -35,13 +36,13 @@
 	</header>
 
 	<main role="main">
-		<div class="container flex-col">
+		<div class="container flex-vertical">
 			<h1>Page d'accueil</h1>
 		</div>
 	</main>
 
 	<footer id="footer">
-		<div class="container flex-row">
+		<div class="container flex-horizontal">
 			<p>Pied de page</p>
 		</div>
 	</footer>

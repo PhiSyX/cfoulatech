@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/pages/contact.css">
+</head>
+
+<body id="page-contact">
+
+	<header class="topbar">
+		<div class="container flex-horizontal">
+			<a href="./" id="logo">
+				<img src="./assets/img/logo.png" alt="Logo">
+			</a>
+
+			<nav role="navigation" class="topbar_navbar navbar">
+				<a href="./" class="navbar_link navbar_link--active">Accueil</a>
+				<a href="#ancre" class="navbar_link">Lien ancre</a>
+				<a href="page.html" class="navbar_link">Lien vers page</a>
+				<a href="https://google.com/" class="navbar_link">Lien externe</a>
+			</nav>
+
+			<form action="." method="get" class="topbar_searchbar searchbar">
+				<input type="search" placeholder="Search..." name="q" class="searchbar__input">
+
+				<button type="submit" class="searchbar__btn">
+					Rechercher
+				</button>
+			</form>
+		</div>
+	</header>
+
+	<main role="main">
+		<div class="container flex-vertical">
+			<h1>Page de contact</h1>
+
+			<form action="traitement.php" method="post" class="contactform w-50 flex-vertical">
+				<div class="contactform_group flex-horizontal">
+					<!--
+					la valeur de l'attribut `for` de la balise label DOIT être
+					relié à la valeur de l'attribut `id` d'un input.
+					-->
+					<label for="prenom" class="w-30">Prénom :</label>
+					<!--
+					l'attribut `name` est requis dans le cadre d'un élément de
+					formulaire, dans le but d'envoyer la donnée de l'input vers
+					le serveur lors de l'envoie.
+					-->
+					<input type="text" name="prenom" placeholder="John" id="prenom" class="contactform_input w-100">
+				</div>
+
+				<div class="contactform_group flex-horizontal">
+					<label for="nom" class="w-30">Nom :</label>
+					<input type="text" name="nom" placeholder="Doe" id="nom" class="contactform_input w-100">
+				</div>
+
+				<div class="contactform_group flex-horizontal">
+					<label for="email" class="w-30">Adresse mail :</label>
+					<input type="text" name="email" placeholder="john.d@example.org" id="email" class="contactform_input w-100">
+				</div>
+
+				<div class="contactform_group flex-vertical">
+					<label for="message" class="w-30">Message :</label>
+					<textarea name="message" id="message" class="contactform_input w-100"></textarea>
+				</div>
+
+				<button type="submit" class="contactform_submit">Contacter</button>
+			</form>
+		</div>
+	</main>
+
+	<footer id="footer">
+		<div class="container flex-horizontal">
+			<p>Pied de page</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>
