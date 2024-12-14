@@ -151,8 +151,6 @@
 
 			remove_present(id) {
 				this.present = this.present.filter(s => s !== id);
-				console.log(this.present);
-
 			}
 
 			remove_absentee(id) {
@@ -285,7 +283,6 @@
 
 			constructor(nom) {
 				this.nom = nom;
-				console.log(statistics.today.total().stagiaires);
 				this.id = statistics.today.total().stagiaires + 1;
 			}
 
