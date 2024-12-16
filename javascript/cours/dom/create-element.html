@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM</title>
+</head>
+
+<body>
+	<h1 id="intro">Accession à l'élément HTML par id</h1>
+
+	<p class="para">
+		Du texte et <a href="http://www.cfitech.be">Site cfitech.be</a>
+	</p>
+
+	<p class="para">
+		La première méthode, getElementById(), va nous permettre de cibler un
+		élément HTML possédant un attribut id en particulier
+	</p>
+
+	<p class="para">
+		La méthode getElementsByTagName() va retourner des informations
+		relatives à tous les éléments HTML d'un même genre Ex tous les éléments
+		p dans un tableau
+	</p>
+
+	<p class="para1">
+		La méthode getElementsByClassName() va nous permettre d'accéder aux
+		éléments HTML disposant d'un attribut class en particulier.
+	</p>
+
+	<script>
+		// let intro = document.querySelector("#intro");
+		// let contenu = intro.textContent;
+
+		// let paragraphs = document.querySelectorAll("p");
+		// alert(`Il y a ${paragraphs.length} paragraphes !`);
+
+		// let paragraphs_para = document.querySelectorAll("p.para");
+		// alert(`Il y a ${paragraphs_para.length} paragraphes avec la classe "para" !`);
+
+		// let paragraph = document.querySelector("p.para");
+		// alert(paragraph.innerHTML);
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM CloneNode</title>
+</head>
+
+<body>
+
+	<p id="myP">Bonjour</p>
+
+	<script>
+		let paragraph1 = document.getElementById('myP');
+		let paragraph2 = paragraph1.cloneNode(false);
+		paragraph1.parentNode.appendChild(paragraph2);
+	</script>
+
+</body>
+
+</html>
