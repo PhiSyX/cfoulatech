@@ -1,0 +1,8 @@
+.btn {
+    padding: 1rem 2rem;
+
+	background-color: var(--color-coral);
+	color: var(--color-white);
+    
+    text-transform: uppercase;
+}

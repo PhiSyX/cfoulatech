@@ -5,11 +5,11 @@
 /** Variables spécifiques au topbar */
 :root {
 	/** Taille du logo */
-	--topbar-logo-size: 50px;
+	--topbar-logo-size: 80px;
 
 	/** Couleurs */
-	--topbar-bg: #333;
-	--topbar-text: #fff;
+	--topbar-bg: #fff;
+	--topbar-text: #333;
 }
 
 .topbar {
@@ -19,13 +19,19 @@
 	color: var(--topbar-text);
 }
 
-.topbar #logo {
-	width: var(--topbar-logo-size);
-	height: var(--topbar-logo-size);
+.topbar .container {
+	align-items: center;
 }
 
-.topbar_navbar {
+.topbar #logo {
+	/* width: var(--topbar-logo-size);
+	height: var(--topbar-logo-size); */
+
 	margin-inline: auto;
+
+	img {
+		width: auto;
+	}
 }
 
 .topbar_searchbar {

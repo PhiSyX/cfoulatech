@@ -1,4 +1,5 @@
 
+@import "./_font.css";
 @import "./_vars.css";
 
 @import "./_reset.css" layer(reset);
@@ -6,8 +7,9 @@
 
 /** Ces composants sont utilisés dans toutes les pages */
 
+@import "./components/button.css" layer(component);
+@import "./components/footer.css" layer(component);
 @import "./components/navbar.css" layer(component);
-@import "./components/searchbar.css" layer(component);
 @import "./components/topbar.css" layer(component);
 
 /** Ordre de précédence des différentes couches.

@@ -1,0 +1,110 @@
+/**
+ * Concerne le style de la page "Food".
+ *
+ * Étant donné que cette stylesheet va être chargée uniquement pour la page
+ * food.html, il est nécessaire de lui spécifier la couche `@layer page` et
+ * de mettre nos styles à l'intérieur de cette couche.
+ */
+
+@layer page {
+	#page-food main {
+		background: #f8f6f0;
+	}
+
+	#hero {
+		display: flex;
+		place-items: center;
+		place-content: center;
+
+		height: 484px;
+
+		background: url(../../img/hero__image--food.jpg);
+		background-size: cover;
+	}
+
+	.hero_title {
+		font-size: 128px;
+		color: var(--color-white);
+		text-shadow: 4px 4px 3px var(--color-black);
+	}
+
+	.recipe_container {
+		gap: 124px;
+	}
+
+	.recipe_title {
+		color: var(--color-black);
+	}
+
+	.recipe_content {
+		font-size: 16px;
+		color: var(--color-gray);
+	}
+
+	.recipe_list {
+		font-size: 1rem;
+		list-style-type: none;
+		text-transform: uppercase;
+	}
+
+	.recipe_list,
+	.recipe_list_item {
+		padding-bottom: 1rem;
+		position: relative;
+	}
+
+	.recipe_list_item::before {
+		content: "";
+		position: absolute;
+		background-color: #d8d8d8;
+		left: -24px;
+		top: 4px;
+		width: 10px;
+		height: 10px;
+		border-radius: var(--radius-full);
+	}
+
+	#recently-added {
+		--container-width: 1242px;
+	}
+
+	.cards {
+		gap: var(--space2);
+	}
+
+	.card {
+		position: relative;
+		gap: var(--space2);
+		padding: 40px;
+		background: var(--color-white);
+		border-radius: var(--radius-md);
+		width: 584px;
+	}
+
+	.card_name,
+	.card_price {
+		color: #66b3cf;
+		font-size: 2rem;
+		margin: 0;
+	}
+
+	.card_img {
+		border-radius: var(--radius-md);
+		height: 174px;
+	}
+
+	.card_btn {
+		position: relative;
+		z-index: 1;
+		align-self: baseline;
+	}
+
+	.card_link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-indent: -100vw;
+	}
+}

@@ -13,37 +13,176 @@
 
 	<header class="topbar">
 		<div class="container flex-horizontal">
-			<a href="./" id="logo">
-				<img src="./assets/img/logo.png" alt="Logo">
-			</a>
-
 			<nav role="navigation" class="topbar_navbar navbar">
-				<a href="./" class="navbar_link navbar_link--active">Accueil</a>
-				<!-- Lien ancre, l'ancre doit correspondre à la valeur d'un attribut ID d'un élément HTML -->
-				<a href="#ancre" class="navbar_link">Lien ancre</a>
-				<a href="page.html" class="navbar_link">Lien vers page</a>
-				<a href="https://google.com/" class="navbar_link">Lien externe</a>
+				<a href="./" class="navbar_link navbar_link--active">Home</a>
+				<a href="food.html" class="navbar_link">Foods</a>
 			</nav>
 
-			<form action="." method="get" class="topbar_searchbar searchbar">
-				<input type="search" placeholder="Search..." name="q" class="searchbar__input">
+			<a href="./" id="logo">
+				<img src="./assets/img/logo.svg" alt="Logo">
+			</a>
 
-				<button type="submit" class="searchbar__btn">
-					Rechercher
-				</button>
-			</form>
+			<a id="getintouch" href="#getintouch" class="navbar_link">
+				Get in touch →
+			</a>
 		</div>
 	</header>
 
-	<main role="main">
-		<div class="container flex-vertical">
-			<h1>Page d'accueil</h1>
+	<section id="presentation">
+		<div class="container presentation_container">
+			<h1 class="title presentation_title">A symphony of spices and flavors</h1>
+			<a href="#" class="btn">Our menu</a>
 		</div>
+	</section>
+
+	<main role="main">
+		<section id="explore-foods">
+			<div class="container">
+				<h1>Explore Foods</h1>
+
+				<form action="dishes.php" method="post" class="flex-horinzontal explore-foods_form">
+					<input type="search" name="dishes" placeholder="Search a dishes" class="explore-foods_input">
+					<button type="submit" class="explore-foods_btn">Search</button>
+				</form>
+
+				<div class="flex-horizontal space-between">
+					<a href="/menu/pizza" id="menu-pizza" class="menu">
+						Pizza
+					</a>
+
+					<a href="/menu/burger" id="menu-burger" class="menu">
+						Burger
+					</a>
+
+					<a href="/menu/momo" id="menu-momo" class="menu">
+						Momo
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="thai-food">
+			<div class="container">
+				<h1>Thaï Food</h1>
+
+				<div class="flex-horizontal">
+					<figure class="w-30">
+						<img src="./assets/img/plat-thai-salad.png" alt="Green Curry">
+
+						<header class="recipe flex-horizontal space-between">
+							<span class="recipe_name">Curry</span>
+							<strong class="recipe_price">18€</strong>
+						</header>
+
+						<h2 class="h3-like">Green Curry</h2>
+
+						<p>
+							ingredients, ingredients,
+							ingredients, ingredients,
+						</p>
+					</figure>
+
+					<figure class="w-30">
+						<img src="./assets/img/plat-thai-fish.png" alt="Green Curry">
+
+						<header class="recipe flex-horizontal space-between">
+							<span class="recipe_name">Curry</span>
+							<strong class="recipe_price">18€</strong>
+						</header>
+
+						<h2 class="h3-like">Green Curry</h2>
+
+						<p>
+							ingredients, ingredients,
+							ingredients, ingredients,
+						</p>
+					</figure>
+
+					<figure class="w-30">
+						<img src="./assets/img/plat-thai-tiger.png" alt="Green Curry">
+
+						<header class="recipe flex-horizontal space-between">
+							<span class="recipe_name">Curry</span>
+							<strong class="recipe_price">18€</strong>
+						</header>
+
+						<h2 class="h3-like">Green Curry</h2>
+
+						<p>
+							ingredients, ingredients,
+							ingredients, ingredients
+						</p>
+					</figure>
+
+					<figure class="w-30">
+						<img src="./assets/img/plat-thai-salad.png" alt="Green Curry">
+
+						<header class="recipe flex-horizontal space-between">
+							<span class="recipe_name">Curry</span>
+							<strong class="recipe_price">18€</strong>
+						</header>
+
+						<h2 class="h3-like">Green Curry</h2>
+
+						<p>
+							ingredients, ingredients,
+							ingredients, ingredients
+						</p>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<section id="random-title">
+			<div class="container">
+				<h1>Random title</h1>
+
+				<div class="flex-horizontal">
+					<article class="w-50">
+						<h2 class="h5-like">Lorem ipsum dolor sit amet consectetur</h2>
+						<p>Sed diam tellus, imperdiet vel libero eu, hendrerit
+							imperdiet purus. Nulla vel odio sed quam accumsan
+							tempor. Vivamus nec convallis massa</p>
+						<p>Aenean eleifend dignissim quam eu maximus.
+							Suspendisse gravida sapien ut enim ornare, a dictum
+							augue pharetra. Mauris non mi nec enim varius
+							rhoncus.</p>
+					</article>
+
+					<article class="w-40">
+						<h2 class="h5-like">Lorem ipsum dolor sit amet consectetur</h2>
+						<p>Sed diam tellus, imperdiet vel libero eu, hendrerit
+							imperdiet purus. Nulla vel odio sed quam ACCUMSAN
+							tempor. Vivamus nec convallis massa. Aenean eleifend
+							dignissim quam eu maximus. Suspendisse gravida sapien ut
+							enim ornare, a dictum augue pharetra. Mauris non mi nec
+							enim varius rhoncus.</p>
+					</article>
+				</div>
+			</div>
+		</section>
 	</main>
 
-	<footer id="footer">
-		<div class="container flex-horizontal">
-			<p>Pied de page</p>
+	<footer class="footer">
+		<div class="container flex-vertical">
+			<nav class="flex-horizontal footer_links">
+				<a href="./">Home</a>
+				<a href="food.html">Foods</a>
+			</nav>
+
+			<nav class="flex-horizontal social-networks">
+				<a href="#">
+					<img src="./assets/img/icon__twitter.svg" alt="Notre page Twitter">
+				</a>
+
+				<a href="#">
+					<img src="./assets/img/icon__facebook.svg" alt="Notre page Facebook">
+				</a>
+
+				<a href="#">
+					<img src="./assets/img/icon__insta.png" alt="Notre page Instagram">
+				</a>
+			</nav>
 		</div>
 	</footer>
 

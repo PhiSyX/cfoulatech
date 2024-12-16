@@ -7,12 +7,14 @@
 	/** Couleurs */
 	--navbar-link-active-bg: #212121;
 	--navbar-link-active-color: #fff;
+	--navbar-link-color: #979797;
 }
 
 .navbar {
 	display: flex;
 	align-items: center;
-	gap: var(--space1);
+	gap: var(--space4);
+	padding: var(--space3);
 }
 
 .navbar_link {
@@ -22,13 +24,22 @@
 
 	transition: background 250ms linear;
 
-	font-size: 14px;
-	border-radius: var(--radius-md);
+	font-size: 22px;
 	text-transform: uppercase;
+
+	color: var(--navbar-link-color);
 }
 
 .navbar_link--active,
 .navbar_link:hover {
-	background: var(--navbar-link-active-bg);
-	color: var(--navbar-link-active-color);
+	border-bottom: 2px solid var(--color-gray);
+}
+
+#getintouch {
+	border: 1px solid currentColor;
+	border-radius: var(--radius-md);
+	align-self: center;
+	letter-spacing: 0.5px;
+	font-size: 16px;
+	font-family: Roboto, sans-serif;
 }

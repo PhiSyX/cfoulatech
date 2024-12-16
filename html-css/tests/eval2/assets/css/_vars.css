@@ -15,7 +15,7 @@
 	--space10: 80px;
 
 	/** Tailles par défaut */
-	--container-width: 1000px;
+	--container-width: 1024px;
 
 	/** border-radius par défaut */
 	--radius: 4px;
@@ -24,7 +24,18 @@
 	--radius-lg: 16px;
 	--radius-full: 50%;
 
+	/** Typographies */
+	--text-font: "Rubik", sans-serif;
+	--title-font: "Roboto Slab", sans-serif;
+
 	/** Couleurs */
 	--primary-color: ;
 	--secondary-color: ;
+
+	--color-coral: #da612a;
+	--color-orange: #ff9f1c;
+	--color-blue: #66b3cf;
+	--color-gray: #898989;
+	--color-black: #000000;
+	--color-white: #ffffff;
 }

@@ -9,4 +9,80 @@
 @layer page {
 	#page-home {
 	}
+
+	.presentation_container {
+		background: url(../../img/hero__image--home.png);
+		background-size: cover;
+
+		height: 815px;
+	}
+
+	.presentation_title {
+		font-size: 72px;
+		color: var(--color-black);
+	}
+
+	#explore-foods {
+		text-align: center;
+	}
+
+	.explore-foods_form {
+		padding-top: 42px;
+		padding-bottom: 72px;
+	}
+
+	.explore-foods_btn,
+	.explore-foods_input {
+		padding: 16px;
+		font-size: 26px;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--color-gray);
+	}
+
+	.explore-foods_input {
+		text-transform: lowercase;
+	}
+
+	.explore-foods_btn {
+		background: var(--color-orange);
+		color: var(--color-white);
+		text-transform: uppercase;
+	}
+
+	.recipe_name {
+		color: var(--color-gray);
+	}
+
+	.recipe_price {
+		color: var(--color-orange);
+	}
+
+	.menu {
+		display: flex;
+		place-items: center;
+		place-content: center;
+
+		width: 300px;
+		height: 473px;
+
+		border: 1px solid;
+		border-radius: 150px;
+		background-color: var(--color-black);
+		background-size: cover;
+		background-repeat: no-repeat;
+		color: var(--color-white);
+		text-shadow: 4px 4px 3px var(--color-black);
+
+		font-size: 3.875rem;
+	}
+
+	#menu-pizza {
+		background-image: url(../../img/pizza.jpg);
+	}
+	#menu-burger {
+		background-image: url(../../img/burger.jpg);
+	}
+	#menu-momo {
+		background-image: url(../../img/momo.jpg);
+	}
 }

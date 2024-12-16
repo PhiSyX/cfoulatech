@@ -1,0 +1,24 @@
+.footer {
+	padding-block: 124px;
+}
+
+.footer .container {
+	place-content: center;
+	place-items: center;
+	gap: var(--space3);
+}
+
+.footer .social-networks {
+	gap: 128px;
+	img {
+		filter: grayscale(60%);
+	}
+}
+
+.footer_links {
+	letter-spacing: 3px;
+	font-size: 22px;
+	font-weight: 700;
+	color: var(--color-orange);
+	gap: var(--space2);
+}
