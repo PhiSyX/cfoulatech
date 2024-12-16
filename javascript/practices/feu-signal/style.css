@@ -4,9 +4,12 @@ body {
 	margin: 0;
 	overflow: hidden;
 	height: 100vh;
+	background: CanvasText;
 }
 
 .feu {
+	zoom: 1.5;
+
 	display: inline-flex;
 	flex-direction: column;
 	gap: 8px;
@@ -14,6 +17,26 @@ body {
 	border-radius: 8px;
 
 	background: #212121;
+	position: relative;
+}
+
+.feu::before {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -101px;
+	left: calc(50% - 12px);
+	width: 24px;
+	height: 100px;
+	border: 1px solid #941214;
+	background: linear-gradient(
+		to bottom,
+		#d52d31 20%,
+		white 20% 40%,
+		#d52d31 40% 60%,
+		white 60% 80%,
+		#d52d31 80% 100%
+	);
 }
 
 .feu > div {
@@ -91,6 +114,11 @@ body {
 		#07694f 90%,
 		#07694f 100%
 	);
+}
+
+.active {
+	position: relative;
+	z-index: 1;
 }
 
 @keyframes bounce {
