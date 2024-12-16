@@ -1,0 +1,18 @@
+.navbar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+
+	a {
+		color: var(--text);
+	}
+
+	a.active,
+	a:not(.logo):hover {
+		text-shadow: none;
+		mix-blend-mode: difference;
+		text-decoration: underline;
+	}
+}

@@ -1,0 +1,162 @@
+section[role="presentation"] {
+	position: relative;
+	z-index: 1;
+	height: 100vh;
+	padding: 24px;
+	text-shadow: 1px 1px 2px var(--shadow);
+
+	background: hsl(210, 70%, 55%);
+	background-image: var(--presentation);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	color: var(--text);
+
+	h1,
+	a {
+		color: var(--text);
+	}
+
+	/*
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		height: 50vh;
+		background: linear-gradient(
+			to bottom,
+			hsla(0, 0%, 0%, 0.35),
+			hsla(0, 0%, 100%, 0.1)
+		);
+		pointer-events: none;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 0;
+		top: 50vh;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		height: 50vh;
+		background: linear-gradient(
+			to top,
+			hsla(0, 0%, 0%, 0.35),
+			hsla(0, 0%, 100%, 0.1)
+		);
+		pointer-events: none;
+	}
+	*/
+
+	.toolbar,
+	.navbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.navbar {
+		flex-direction: row;
+	}
+
+	.navbar .logo img {
+		width: 200px;
+	}
+
+	.navbar nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+
+		a {
+			font-family: var(--ff-ibm-plex);
+			font-size: 20px;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	}
+
+	.hero {
+		color: var(--text);
+		text-align: center;
+
+		h1 {
+			font-family: Georgia, sans-serif;
+			font-size: 120px;
+			margin: 0;
+		}
+
+		p {
+			font-family: var(--ff-ibm-plex);
+			font-size: 36px;
+			margin: 0;
+		}
+
+		.btn {
+			font-size: 26px;
+			padding: 16px;
+			margin-block: 16px;
+		}
+		.contact {
+			font-family: var(--ff-ibm-plex);
+			font-stretch: condensed;
+			font-size: 14px;
+			display: block;
+			padding: 16px;
+		}
+	}
+
+	.rgpd {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #1561ad;
+		color: #f6f0e1;
+		text-shadow: none;
+
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		justify-content: space-around;
+		padding: 16px;
+
+		h1 {
+			color: #f6f0e1;
+			font-size: 22px;
+		}
+
+		p {
+			margin: 0;
+			font-family: var(--ff-ibm-plex);
+		}
+
+		> div {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		a {
+			color: #f6f0e1;
+			text-decoration: none;
+		}
+
+		.accept-and-close {
+			font-family: var(--ff-ibm-plex);
+			padding: 8px;
+			background: #1c77ac;
+			border-radius: 4px;
+			box-shadow: 0 1px 2px 0 #000;
+		}
+	}
+}

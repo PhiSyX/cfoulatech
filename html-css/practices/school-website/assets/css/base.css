@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+a:not(.logo) img[src$=".svg"] {
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+}
+
+h1 {
+	margin: 0;
+	font-family: Georgia, sans-serif;
+	color: var(--text_alt);
+}

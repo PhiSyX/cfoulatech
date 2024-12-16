@@ -1,0 +1,72 @@
+section#about {
+	height: 100vh;
+
+	padding-block: 32px;
+	padding-inline: 13rem;
+
+	/* display: flex; */
+	display: grid;
+	grid-template-columns: auto minmax(auto, 1000px);
+	justify-content: center;
+	gap: 64px;
+
+	h1 {
+		margin: 0;
+		font-family: Georgia, sans-serif;
+		font-size: 72px;
+	}
+
+	h2 {
+		font-family: var(--ff-ibm-plex);
+		font-size: 36px;
+		font-weight: 400;
+	}
+
+	#about-us {
+		max-width: 410px;
+
+		p {
+			font-family: var(--ff-ibm-plex);
+			font-size: 22px;
+		}
+	}
+
+	#cadre {
+		flex-grow: 1;
+		background-image: url(../../img/qui.jpg);
+		background-size: cover;
+
+		position: relative;
+		padding: 60px;
+
+		font-family: var(--ff-ibm-plex);
+		font-size: 22px;
+		text-align: center;
+
+		color: var(--text_alt);
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: 24px;
+			background: var(--text);
+			pointer-events: none;
+		}
+
+		> * {
+			position: relative;
+		}
+
+		p {
+			text-align: left;
+		}
+
+		a {
+			display: inline-block;
+		}
+	}
+}

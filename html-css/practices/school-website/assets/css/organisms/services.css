@@ -1,0 +1,70 @@
+section#services {
+	padding-block: 32px;
+	padding-inline: 13rem;
+
+	> h1 {
+		font-family: Georgia, sans-serif;
+		font-size: 72px;
+		margin-top: 0;
+	}
+
+	.cards {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+
+		> article {
+			display: flex;
+			align-items: end;
+			flex-shrink: 0;
+			width: 400px;
+			height: 500px;
+			font-size: 22px;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			h1,
+			p {
+				margin: 0;
+			}
+
+			h1 {
+				font-family: Georgia, serif;
+				color: var(--text_alt);
+			}
+
+			p {
+				font-family: var(--ff-ibm-plex);
+			}
+
+			> div {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				align-content: space-between;
+				align-items: start;
+				height: 200px;
+				padding: 1rem;
+				background: Canvas;
+				opacity: 0.8;
+
+				p {
+					flex-grow: 1;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+	#trad {
+		background-image: url(../../../traduction.jpg);
+	}
+
+	#lang {
+		background-image: url(../../img/cours-de-langue.jpg);
+	}
+
+	#correction {
+		background-image: url(../../img/correction.jpg);
+	}
+}

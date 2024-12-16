@@ -1,0 +1,9 @@
+@import "../components/navbar.css" layer(component);
+@import "../components/toolbar.css" layer(component);
+
+@import "../organisms/about.css" layer(organism);
+@import "../organisms/footer.css" layer(organism);
+@import "../organisms/presentation.css" layer(organism);
+@import "../organisms/services.css" layer(organism);
+
+@layer component, organism;

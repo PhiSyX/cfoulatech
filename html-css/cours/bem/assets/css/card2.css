@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+}
+
+body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	background: lightgray;
+}
+
+.card {
+	width: 400px;
+	background: white;
+}
+
+.card__header {
+}
+.card__figure {
+}
+.card__image {
+}
+.card__body {
+}
+.card__title {
+}
+.card__subtitle {
+}
+.card__copy {
+}
+.card__footer {
+}
+.card__actions {
+}
+.button {
+}

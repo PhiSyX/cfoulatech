@@ -1,0 +1,30 @@
+footer {
+	background-color: #3e4551;
+	display: flex;
+	flex-direction: column;
+	font-family: var(--ff-ibm-plex);
+	gap: 24px;
+
+	a {
+		color: #f6f0e1;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: all 250ms;
+	}
+
+	.navbar {
+		padding: 32px;
+
+		a {
+			margin-inline: 8px;
+		}
+	}
+
+	.toolbar {
+		background: #2c3037;
+		color: #f6f0e1;
+		padding: 16px;
+
+		display: flex;
+	}
+}

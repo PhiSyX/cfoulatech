@@ -1,0 +1,9 @@
+:root {
+	color-scheme: dark light;
+
+	--ff-ibm-plex: "Ibm Plex sans", sans-serif;
+
+	--text: #fff;
+	--text_alt: #212121;
+	--shadow: #212121;
+}

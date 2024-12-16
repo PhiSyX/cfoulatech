@@ -1,0 +1,13 @@
+.btn {
+	display: inline-block;
+	margin-top: 8px;
+	padding: 8px;
+	border-radius: 3px;
+	background: #1c77ac;
+	color: #ffffff;
+	font-family: var(--ff-ibm-plex);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+}

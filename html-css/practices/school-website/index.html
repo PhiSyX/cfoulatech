@@ -5,36 +5,37 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SCHOOL WEBSITE</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/pages/home.css">
 </head>
 
 <body>
 
-	<section role="presentation">
+	<section role="presentation" style="--presentation: url(../../img/hero-bg.jpg)">
 		<div class="toolbar">
 			<a href="#">
-				<img src="./assets/imgs/icon-email.svg" alt="Mail">
+				<img src="./assets/img/icon-email.svg" alt="Mail">
 				email@example.org
 			</a>
 
 			<a href="#">
-				<img src="./assets/imgs/icon-phone.svg" alt="Mail">
+				<img src="./assets/img/icon-phone.svg" alt="Mail">
 				+32 000 000 000
 			</a>
 
 			<a href="#">
-				<img src="./assets/imgs/icon-lang.svg" alt="Lang">
+				<img src="./assets/img/icon-lang.svg" alt="Lang">
 				FR
 			</a>
 		</div>
 
 		<div class="navbar">
 			<a href="#" class="logo">
-				<img src="./assets/imgs/logo.svg" alt="Logo">
+				<img src="./assets/img/logo.svg" alt="Logo">
 			</a>
 
 			<nav>
-				<a href="#">Accueil</a>
+				<a href="#" class="active">Accueil</a>
 				<a href="#">Traductions</a>
 				<a href="#">Cours</a>
 				<a href="#">Tarif</a>
@@ -160,7 +161,42 @@
 		</article>
 	</section>
 
-	<footer></footer>
+	<footer id="footer">
+		<div class="navbar">
+			<a href="#" class="logo">
+				<img src="./assets/img/logo.svg" alt="Logo">
+			</a>
+
+			<nav>
+				<a href="#" class="active">Accueil</a>
+				<a href="#">Traductions</a>
+				<a href="#">Cours</a>
+				<a href="#">Contact</a>
+			</nav>
+		</div>
+
+		<div class="toolbar">
+			<a href="#">
+				<img src="./assets/img/icon-email.svg" alt="Mail">
+				email@example.org
+			</a>
+
+			<a href="#">
+				<img src="./assets/img/icon-phone.svg" alt="Mail">
+				+32 000 000 000
+			</a>
+
+			<a href="#">
+				<img src="./assets/img/geo.svg" alt="Localisation">
+				Route des écluses 6
+				1997 Haute-Nendaz, Suisse
+			</a>
+
+			<a href="#">
+				© Copyright 2020 Exactement!.
+			</a>
+		</div>
+	</footer>
 
 </body>
 
