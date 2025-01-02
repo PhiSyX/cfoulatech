@@ -147,10 +147,10 @@ include "./includes/layouts/header.php";
 		</blockquote>
 
 		<p>
-			Le clavier assis sur le bureau, observant
-			<strong>Timothy</strong> taper frénétiquement sur ses touches. Il
-			avait vu beaucoup de choses dans sa vie le clavier, mais jamais il
-			n'avait vu quelqu'un aussi en colère que <strong>Timothy</strong>.
+			Le clavier de <strong>Timothy</strong>, assis sur le bureau, observant
+			<strong>Timothy</strong> taper frénétiquement sur ses touches avait
+			vu beaucoup de choses dans sa vie, mais jamais il n'avait
+			vu quelqu'un aussi en colère que <strong>Timothy</strong>.
 		</p>
 
 		<p>

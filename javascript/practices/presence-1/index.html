@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Présence</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<style>
+		.table-active {
+			--bs-table-active-bg: rgb(168, 214, 88);
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>Gestion des présences - CFITECH</h1>
+
+		<div class="input-group mb-3">
+			<input id="input-nom-stagiaire" type="text" class="form-control" placeholder="Nom du stagiaire">
+			<button id="btn-ajouter-stagiaire" class="btn btn-dark">Ajouter stagiaire</button>
+		</div>
+
+		<table class="table">
+			<thead class="table-dark">
+				<tr>
+					<th>Nom du stagiaire</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody id="table-stagiaires" class="table-group-divider text-danger">
+				<!--
+				<tr>
+					<td>Mike</td>
+					<td>Absent</td>
+					<td>
+						<button class="btn btn-dark">Marquer Présent</button>
+						<button class="btn btn-danger">Supprimer</button>
+					</td>
+				</tr>
+
+				<tr class="table-active">
+					<td>Mona</td>
+					<td>Présent</td>
+					<td>
+						<button class="btn btn-dark">Marquer Absent</button>
+						<button class="btn btn-danger">Supprimer</button>
+					</td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+
+		<ul class="list-group">
+			<li class="list-group-item">
+				Total des stagiaires : <span id="stagiaires-total">0</span>
+			</li>
+
+			<li class="list-group-item">
+				Présents aujourd'hui : <span id="stagiaires-presents">0</span>
+			</li>
+
+			<li class="list-group-item">
+				Absents aujourd'hui : <span id="stagiaires-absents">0</span>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
+	<script>
+		let stagiaires_total = 0;
+		let stagiaires_presents = 0;
+		let stagiaires_absents = 0;
+
+		// Étape 1:
+		//
+		// Fonction qui met à jour le texte des éléments du DOM liés aux
+		// statistiques des présences.
+		function met_a_jour_statistiques_des_présences() {
+			let el_stagiaires_total = document.querySelector("#stagiaires-total");
+			let el_stagiaires_presents = document.querySelector("#stagiaires-presents");
+			let el_stagiaires_absents = document.querySelector("#stagiaires-absents");
+
+			el_stagiaires_total.textContent = stagiaires_total;
+			el_stagiaires_presents.textContent = stagiaires_presents;
+			el_stagiaires_absents.textContent = stagiaires_absents;
+		}
+
+		// Montrer pourquoi l'étape 1, en modifiant les variables d'états.
+
+		// Étape 3:
+		//
+		// Fonction qui ajoute une nouvelle ligne dans la table des présences.
+		/* EXEMPLE HTML:
+		<tr>
+			<td>{{ nom }}</td>
+			<td>Absent</td>
+			<td>
+				<button class="btn btn-dark">Marquer Présent</button>
+				<button class="btn btn-danger">Supprimer</button>
+			</td>
+		</tr>
+		*/
+		function ajoute_ligne_dans_la_table_des_présences(nom) {
+			// Création de l'EXEMPLE HTML ci-haut en JavaScript.
+			let el_tr = document.createElement("tr");
+
+			let el_td1 = document.createElement("td");
+			{
+				el_td1.textContent = nom;
+			}
+
+			let el_td2 = document.createElement("td");
+
+			{
+				el_td2.textContent = "Absent";
+			}
+
+			let el_td3 = document.createElement("td");
+			{
+				let el_td3_btn1 = document.createElement("button");
+				el_td3_btn1.textContent = "Marquer Présent";
+				el_td3_btn1.className = "btn btn-dark";
+
+				el_td3_btn1.addEventListener("click", evenement_marquer_stagiaire_present, { once: true });
+
+				let el_td3_btn2 = document.createElement("button");
+				el_td3_btn2.textContent = "Supprimer";
+				el_td3_btn2.className = "btn btn-danger";
+				el_td3_btn2.addEventListener("click", evenement_supprimer_stagiaire, { once: true });
+
+				el_td3.appendChild(el_td3_btn1);
+				el_td3.appendChild(document.createTextNode(" "));
+				el_td3.appendChild(el_td3_btn2);
+			}
+
+			el_tr.appendChild(el_td1);
+			el_tr.appendChild(el_td2);
+			el_tr.appendChild(el_td3);
+
+			// Ajoute la nouvelle dans le DOM existant
+			let el_tbody = document.querySelector("#table-stagiaires");
+			el_tbody.appendChild(el_tr);
+
+			stagiaires_total += 1;
+			stagiaires_absents += 1;
+			met_a_jour_statistiques_des_présences();
+		}
+
+		function evenement_marquer_stagiaire_present(e) {
+			let el_tr = e.target.parentElement.parentElement;
+			el_tr.className = "table-active";
+
+			let el_status = el_tr.children[1];
+			el_status.textContent = "Présent";
+
+			let el_action_present = e.target;
+			el_action_present.textContent = "Marquer Absent";
+			el_action_present.addEventListener("click", evenement_marquer_stagiaire_absent, { once: true });
+
+			stagiaires_presents += 1;
+			stagiaires_absents -= 1;
+			met_a_jour_statistiques_des_présences();
+		}
+
+		function evenement_marquer_stagiaire_absent(e) {
+			let el_tr = e.target.parentElement.parentElement;
+			el_tr.className = "";
+
+			let el_status = el_tr.children[1];
+			el_status.textContent = "Absent";
+
+			let el_action_present = e.target;
+			el_action_present.textContent = "Marquer Présent";
+			el_action_present.addEventListener("click", evenement_marquer_stagiaire_present, { once: true });
+
+			stagiaires_presents -= 1;
+			stagiaires_absents += 1;
+			met_a_jour_statistiques_des_présences();
+		}
+
+		function evenement_supprimer_stagiaire(e) {
+			let el_tr = e.target.parentElement.parentElement;
+
+
+			let el_status = el_tr.children[1];
+
+			stagiaires_total -= 1;
+
+			if (el_status.textContent === "Absent") {
+				stagiaires_absents -= 1;
+			} else {
+				stagiaires_presents -= 1;
+			}
+
+			met_a_jour_statistiques_des_présences();
+			el_tr.remove();
+		}
+
+		// Étape 2:
+		//
+		// Ajouter des stagiaires manuellement.
+		ajoute_ligne_dans_la_table_des_présences("Mona");
+		ajoute_ligne_dans_la_table_des_présences("Mike");
+
+		let btn_ajouter_stagiaire = document.querySelector("#btn-ajouter-stagiaire");
+
+		// Étape 4:
+		//
+		// Lorsqu'on click sur le bouton d'ajout de stagiaire, la fonction du
+		// deuxième paramètre est appelée
+		btn_ajouter_stagiaire.addEventListener("click", function () {
+			let el_nom_stagiaire = document.querySelector("#input-nom-stagiaire");
+
+			if (el_nom_stagiaire.value.length === 0) {
+				alert("Veuillez entrer un nom pour le stagiaire.");
+				return;
+			}
+
+			ajoute_ligne_dans_la_table_des_présences(el_nom_stagiaire.value);
+
+			el_nom_stagiaire.value = "";
+		});
+	</script>
+
+</body>
+
+</html>

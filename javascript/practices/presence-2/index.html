@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Présence</title>
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		:root {
+			color-scheme: dark;
+		}
+
+		html,
+		body {
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		html {
+			font-size: 14px;
+		}
+
+		body {
+			max-width: 70vw;
+			margin-inline: auto;
+			padding: 1rem;
+			background: #17181c;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			border: 1px solid ButtonFace;
+		}
+
+		thead,
+		table>tbody>tr>th {
+			text-align: left;
+			font-weight: bold;
+			background: #0f0e0e;
+			color: #f7f7f7;
+		}
+
+		table>thead>tr>th:last-child {
+			text-align: right;
+		}
+
+		table>tbody>tr>th {
+			box-shadow: 1px 1px 1px CanvasText;
+		}
+
+		tbody>tr {
+			color: CanvasText;
+		}
+
+		th,
+		td {
+			padding: 8px;
+		}
+
+		fieldset {
+			padding: 1rem;
+			border: 1px solid ButtonFace;
+			border-radius: 2px;
+		}
+
+		fieldset legend {
+			padding-inline: 0.5rem;
+			font-size: 1.5rem;
+		}
+
+		button,
+		input {
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 16px;
+
+			border: none;
+			background: #1f2024;
+			color: #b1c4cc;
+
+			&:focus {
+				position: relative;
+				outline: 3px solid LinkText;
+			}
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		/* Presence */
+
+		.presence {
+			display: flex;
+			flex-direction: column;
+
+			gap: 1rem;
+		}
+
+		.form-control {
+			display: flex;
+
+			input[type="text"] {
+				padding: 8px;
+
+				border: 1px solid ButtonFace;
+				border-right: none;
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+
+				&:focus {
+					border-top-right-radius: 4px;
+					border-bottom-right-radius: 4px;
+				}
+			}
+
+			button[type="button"] {
+				padding: 8px;
+
+				border: 1px solid ButtonFace;
+				border-left: none;
+				border-top-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+
+				&:focus {
+					border-top-left-radius: 4px;
+					border-bottom-left-radius: 4px;
+				}
+			}
+		}
+
+		.form-input-error {
+			display: inline-block;
+			color: #f76b6b;
+			margin: 0;
+			margin-top: 8px;
+		}
+
+		.presence__user {
+			background: #14843623;
+			color: #f7f7f7;
+
+			button:first-of-type {
+				background: #dfb22b5c;
+			}
+
+			button:last-of-type {
+				background: #ed406b5b;
+			}
+		}
+
+		.presence__user--away {
+			background: #ed406b15;
+			color: #f7f7f7;
+
+			button:first-of-type {
+				background: #1b3523db;
+			}
+		}
+
+		.presence__actions {
+			text-align: right;
+		}
+
+		/* Statistiques */
+
+		.stats {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1rem;
+		}
+
+		.stats_card {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			padding: 1rem;
+
+			border: 1px solid ButtonFace;
+			border-radius: 12px;
+
+			position: relative;
+			overflow: clip;
+
+			transition: 250ms;
+
+			&:hover {
+				box-shadow: 0 12px 16px -3px #000, 0 0 0 1px ButtonFace;
+			}
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: -60%;
+				right: -30%;
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				background-color: var(--color);
+				filter: blur(120px);
+			}
+
+			a {
+				color: gainsboro;
+				font-weight: 600;
+
+				&:hover {
+					color: LinkText;
+
+					svg {
+						transform: translate(4px);
+					}
+				}
+			}
+
+			svg {
+				transition: 0.3s;
+				vertical-align: middle;
+			}
+
+			footer {
+				display: flex;
+				justify-content: space-between;
+				color: GrayText;
+
+				a {
+					transition: all 250ms linear;
+					opacity: 0;
+				}
+			}
+
+			&:hover {
+				footer a {
+					opacity: 1;
+				}
+			}
+
+			.today {
+				font-size: 24px;
+			}
+		}
+
+		.stats_card.up {
+			--color: #148436;
+		}
+
+		.stats_card.down {
+			--color: #ed406b;
+		}
+
+		.stats_card_percent {
+			position: absolute;
+			right: 16px;
+			color: var(--color);
+			mix-blend-mode: plus-lighter;
+		}
+
+		/* Table */
+		.presence_table caption {
+			caption-side: bottom;
+			padding-block: 1.5rem;
+			background: #0f0e0e;
+			border: 1px solid ButtonFace;
+			border-top: none;
+		}
+
+		.presence_table:has(tbody tr) caption {
+			display: none;
+		}
+
+		.presence_table button {
+			padding: 1rem;
+			margin-left: 0.5rem;
+			border-radius: 8px;
+		}
+	</style>
+</head>
+
+<body>
+	<section class="presence">
+		<form action="#">
+			<fieldset class="presence__fieldset">
+				<legend>Gestion des présences - CFITECH</legend>
+
+				<div class="form-control">
+					<input type="text" placeholder="Nom du stagiaire" id="js-input-nom-stagiaire">
+
+					<button type="button" id="js-btn-add-stagiaire">
+						Ajouter stagiaire
+					</button>
+				</div>
+
+				<p id="js-input-error" class="form-input-error">&nbsp;</p>
+			</fieldset>
+		</form>
+
+		<section class="stats">
+			<article id="js-stats-stagiaires" class="stats_card">
+				<a href="#">
+					Stagiaires
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<output id="js-total-stagiaires-percent" class="stats_card_percent"></output>
+
+				<span class="today">
+					<strong id="js-total-today-stagiaires">0</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span id="js-total-yesterday-stagiaires">0 Hier</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+
+			<article id="js-stats-present" class="stats_card">
+				<a href="#">
+					Présences
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<output id="js-total-present-percent" class="stats_card_percent"></output>
+
+				<span class="today">
+					<strong id="js-total-today-present">0</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span id="js-total-yesterday-present">0 Hier</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+
+			<article id="js-stats-absentees" class="stats_card">
+				<a href="#">
+					Absences
+
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M9.53 4.47a.75.75 0 0 0-1.06 1.06l1.72 1.72H4a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3Z"
+							fill="currentColor"></path>
+					</svg>
+				</a>
+
+				<output id="js-total-absentees-percent" class="stats_card_percent"></output>
+
+				<span class="today">
+					<strong id="js-total-today-absentees">0</strong>
+				</span>
+
+				<footer class="yesterday">
+					<span id="js-total-yesterday-absentees">0 Hier</span>
+
+					<a href="#">Ce mois</a>
+				</footer>
+			</article>
+		</section>
+
+		<table class="presence_table">
+			<caption>Veuillez ajouter un stagiaire</caption>
+
+			<thead>
+				<tr>
+					<th>Nom du stagiaire</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="js-tbody">
+				<!--
+				<tr class="presence__user presence__user--away">
+					<td>Mike</td>
+					<td>Absent</td>
+					<td class="presence__actions">
+						<button>Marquer présent</button>
+						<button>Supprimer</button>
+					</td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+	</section>
+
+	<script>
+		// Classe Statistique contenant les données
+		class Statistique {
+			ids = 0;
+			stagiaires = [];
+			présents = [];
+			absents = [];
+
+			ajouter_stagiaire(id) {
+				this.stagiaires.push(id);
+
+				this.ids += 1;
+			}
+
+			ajouter_stagiaire_présent(id) {
+				this.présents.push(id);
+			}
+
+			ajouter_stagiaire_absent(id) {
+				this.absents.push(id);
+			}
+
+			supprimer_stagiaire(id) {
+				this.stagiaires = this.stagiaires.filter(s => s !== id);
+				this.présents = this.présents.filter(s => s !== id);
+				this.absents = this.absents.filter(s => s !== id);
+			}
+
+			supprimer_stagiaire_présent(id) {
+				this.présents = this.présents.filter(s => s !== id);
+			}
+
+			supprimer_stagiaire_absent(id) {
+				this.absents = this.absents.filter(s => s !== id);
+			}
+
+			total() {
+				return {
+					ids: this.ids,
+					stagiaires: this.stagiaires.length,
+					present: this.présents.length,
+					absentees: this.absents.length,
+				}
+			}
+		}
+
+		// Classe Statistique qui interagit avec le DOM
+		class StatistiqueDOM extends Statistique {
+			constructor(faux_stagiaires, faux_presents, faux_absents) {
+				super();
+
+				if (faux_stagiaires && faux_presents && faux_absents) {
+					this.stagiaires = Array(faux_stagiaires);
+					this.présents = Array(faux_presents);
+					this.absents = Array(faux_absents);
+				}
+			}
+
+			ajouter_stagiaire(id) {
+				super.ajouter_stagiaire(id);
+				let el_total = document.querySelector("#js-total-today-stagiaires");
+				el_total.textContent = this.stagiaires.length;
+			}
+
+			ajouter_stagiaire_présent(id) {
+				super.ajouter_stagiaire_présent(id);
+				let el_total = document.querySelector("#js-total-today-present");
+				el_total.textContent = this.présents.length;
+			}
+
+			ajouter_stagiaire_absent(id) {
+				super.ajouter_stagiaire_absent(id);
+				let el_total = document.querySelector("#js-total-today-absentees");
+				el_total.textContent = this.absents.length;
+			}
+
+			supprimer_stagiaire(id) {
+				super.supprimer_stagiaire(id);
+				let el_total = document.querySelector("#js-total-today-stagiaires");
+				el_total.textContent = this.stagiaires.length;
+			}
+
+			supprimer_stagiaire_présent(id) {
+				super.supprimer_stagiaire_présent(id);
+				let el_total = document.querySelector("#js-total-today-present");
+				el_total.textContent = this.présents.length;
+			}
+
+			supprimer_stagiaire_absent(id) {
+				super.supprimer_stagiaire_absent(id);
+				let el_total = document.querySelector("#js-total-today-absentees");
+				el_total.textContent = this.absents.length;
+			}
+		}
+
+		class Statistiques {
+			/**
+			 * Les statistiques d'hier
+			 */
+			hier;
+			/**
+			 * Les statistiques d'aujourd'hui
+			 */
+			aujourdhui;
+
+			constructor() {
+				this.hier = new StatistiqueDOM(24, 15, 9);
+				this.aujourdhui = new StatistiqueDOM();
+			}
+
+			résumé() {
+				let hier = this.hier.total();
+				let ajd = this.aujourdhui.total();
+
+				const mettre_à_jour_carte_dom = (name) => {
+					let el_stats_carte = document.querySelector(`#js-stats-${name}`);
+					let el_stats_pourcent = document.querySelector(`#js-total-${name}-percent`);
+					let el_hier = document.querySelector(`#js-total-yesterday-${name}`);
+					let el_aujourdhui = document.querySelector(`#js-total-today-${name}`);
+
+					// Met à
+					el_aujourdhui.textContent = ajd[name];
+
+					el_hier.textContent = `${hier[name]} Hier`;
+					// Pas important, c'est pour les couleurs
+					if (ajd[name] !== 0) {
+						if (name === "absentees") {
+							if (ajd[name] <= hier[name]) {
+								el_stats_carte.className = "stats_card up";
+							} else {
+								el_stats_carte.className = "stats_card down";
+							}
+							let evolution = (
+								-((ajd[name] - hier[name]) / hier[name]) * 100
+							).toFixed(2).replace(".00", "").replace("-", "+");
+							el_stats_pourcent.textContent = `${evolution}%`
+						} else {
+							if (ajd[name] > hier[name]) {
+								el_stats_carte.className = "stats_card up";
+							} else {
+								el_stats_carte.className = "stats_card down";
+							}
+							let evolution = (
+								((ajd[name] - hier[name]) / hier[name]) * 100
+							).toFixed(2).replace(".00", "");
+							el_stats_pourcent.textContent = `${evolution}%`
+						}
+					} else {
+						el_stats_carte.className = "stats_card";
+						el_stats_pourcent.textContent = "";
+					}
+				};
+
+				mettre_à_jour_carte_dom("stagiaires");
+				mettre_à_jour_carte_dom("present");
+				mettre_à_jour_carte_dom("absentees");
+			}
+		}
+
+		// Classe Stagiaire contenant les informations d'un stagiaire
+		class Stagiaire {
+			/**
+			 * Nom du stagiaire
+			 */
+			nom;
+
+			/**
+			 * État de présence du stagiaire
+			 */
+			status = false;
+
+			/**
+			 * Méthode constructrice de la classe
+			 */
+			constructor(nom) {
+				this.nom = nom;
+				this.id = statistiques.aujourdhui.total().ids + 1;
+			}
+
+			/**
+			 * Marque le stagiaire comme absent
+			 */
+			marquer_comme_absent() {
+				this.status = false;
+			}
+
+			/**
+			 * Marque le stagiaire comme présent
+			 */
+			marquer_comme_présent() {
+				this.status = true;
+			}
+		}
+
+		class StagiaireDOM extends Stagiaire {
+			/**
+			 * Marque le stagiaire comme absent, met à jour les statistiques
+			 */
+			marquer_comme_absent() {
+				super.marquer_comme_absent();
+
+				statistiques.aujourdhui.supprimer_stagiaire_présent(this.id);
+				statistiques.aujourdhui.ajouter_stagiaire_absent(this.id);
+			}
+
+			/**
+			 * Marque le stagiaire comme présent, met à jour les statistiques
+			 */
+			marquer_comme_présent() {
+				super.marquer_comme_présent();
+
+				statistiques.aujourdhui.supprimer_stagiaire_absent(this.id);
+				statistiques.aujourdhui.ajouter_stagiaire_présent(this.id);
+			}
+
+			/**
+			 * Ajoute le stagiaire dans la table des présences
+			 */
+			ajouter_dans_la_table_présence() {
+				let tbody = document.querySelector("#js-tbody");
+				let tr = this.#créer_nouvel_élément_tr();
+				tbody.append(tr);
+
+				/* Statistique */
+				statistiques.aujourdhui.ajouter_stagiaire(this.id);
+				if (this.status) {
+					statistiques.aujourdhui.ajouter_stagiaire_présent(this.id);
+				} else {
+					statistiques.aujourdhui.ajouter_stagiaire_absent(this.id);
+				}
+				statistiques.résumé();
+			}
+
+			/**
+			 * Représentation objet d'un élément TR, exemple:
+			 *
+			 *	<tr data-id="1" class="presence__user presence__user--away">
+			 *		<td>Mike</td>
+			 *		<td>Absent</td>
+			 *		<td class="presence__actions">
+			 *			<button>Marquer présent</button>
+			 *			<button>Supprimer</button>
+			 *		</td>
+			 *	</tr>
+			 *
+			*/
+			#créer_nouvel_élément_tr() {
+				let tr = document.createElement("tr");
+				tr.setAttribute("data-id", this.id);
+				tr.className = "presence__user";
+
+				if (this.status) {
+					tr.className += " presence__user--present";
+				} else {
+					tr.className += " presence__user--away";
+				}
+
+				let td_nom = document.createElement("td");
+				td_nom.textContent = this.nom;
+
+				let td_status = document.createElement("td");
+				if (this.status) {
+					td_status.textContent = "Présent";
+				} else {
+					td_status.textContent = "Absent";
+				}
+
+				let td_actions = document.createElement("td");
+				td_actions.className = "presence__actions";
+
+				let td_action_marque_present = document.createElement("button");
+				td_action_marque_present.type = "button";
+				if (this.status) {
+					td_action_marque_present.textContent = "Marquer absent";
+
+					td_action_marque_present.addEventListener("click", () => {
+						this.marquer_comme_absent();
+						this.#mettre_a_jour_ligne_tr_courante();
+					});
+				} else {
+					td_action_marque_present.textContent = "Marquer présent";
+
+					td_action_marque_present.addEventListener("click", () => {
+						this.marquer_comme_présent();
+						this.#mettre_a_jour_ligne_tr_courante();
+					});
+				}
+
+				let td_action_supprimer = document.createElement("button");
+				td_action_supprimer.type = "button";
+				td_action_supprimer.textContent = "Supprimer";
+				td_action_supprimer.addEventListener("click", () => {
+					this.#supprimer_ligne_tr_courante();
+				});
+
+				td_actions.appendChild(td_action_marque_present);
+				td_actions.appendChild(td_action_supprimer);
+
+				tr.appendChild(td_nom);
+				tr.appendChild(td_status);
+				tr.appendChild(td_actions);
+
+				return tr;
+			}
+
+			#supprimer_ligne_tr_courante() {
+				let tr = document.querySelector(`tr[data-id="${this.id}"]`);
+				tr.remove();
+				statistiques.aujourdhui.supprimer_stagiaire(this.id);
+				statistiques.résumé();
+			}
+
+			#mettre_a_jour_ligne_tr_courante() {
+				let tr = document.querySelector(`tr[data-id="${this.id}"]`);
+				tr.replaceWith(this.#créer_nouvel_élément_tr());
+				statistiques.résumé();
+			}
+		}
+
+		let statistiques = new Statistiques();
+		statistiques.résumé();
+
+		let btn_ajouter_stagiaire = document.querySelector("#js-btn-add-stagiaire");
+		let input_nom_stagiaire = document.querySelector("#js-input-nom-stagiaire");
+		let input_erreur = document.querySelector("#js-input-error");
+
+		btn_ajouter_stagiaire.addEventListener("click", (evt) => {
+			let nom_stagiaire = input_nom_stagiaire.value;
+
+			if (nom_stagiaire == null || nom_stagiaire.length < 3) {
+				input_erreur.textContent = "Veuillez entrer un nom de stagiaire.";
+				return;
+			}
+
+			let stagiaire = new StagiaireDOM(nom_stagiaire);
+			stagiaire.ajouter_dans_la_table_présence();
+
+			input_nom_stagiaire.value = "";
+			input_erreur.textContent = "";
+		});
+
+		for (let i = 0; i < 25; i++) {
+			setTimeout(() => {
+				let stagiaire_dom = new StagiaireDOM("Mike " + i);
+				stagiaire_dom.ajouter_dans_la_table_présence();
+			}, 250 * i);
+		}
+	</script>
+</body>
+
+</html>
