@@ -1,0 +1,12 @@
+-- Cette commande permet de sauvegarder la base de données coursmysql dans un
+-- fichier coursmysql.sql, pour cela, il faut se connecter à la base de données
+-- coursmysql en tant que root dans notre cas.
+--
+-- Analyse de la commande :
+--
+-- mysqldump  : commande permettant de sauvegarder une base de données
+-- -uroot     : permet de se connecter en tant que root
+-- -p         : permet de demander le mot de passe
+-- coursmysql : nom de la base de données
+-- > : permet de rediriger la sortie de la commande vers un fichier > coursmysql.sql
+mysqldump -uroot -p coursmysql > coursmysql.sql
