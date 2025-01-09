@@ -409,8 +409,23 @@
 		// Classe Statistique contenant les données
 		class Statistique {
 			ids = 0;
+
+			/**
+			 * Liste des identifiants des stagiaires
+			 * Exemple : [1, 2, 3, 4]
+			 */
 			stagiaires = [];
+
+			/**
+			 * Liste des identifiants des stagiaires présents
+			 * Exemple : [1, 2]
+			 */
 			présents = [];
+
+			/**
+			 * Liste des identifiants des stagiaires absents
+			 * Exemple : [3, 4]
+			 */
 			absents = [];
 
 			ajouter_stagiaire(id) {
@@ -428,17 +443,17 @@
 			}
 
 			supprimer_stagiaire(id) {
-				this.stagiaires = this.stagiaires.filter(s => s !== id);
-				this.présents = this.présents.filter(s => s !== id);
-				this.absents = this.absents.filter(s => s !== id);
+				this.stagiaires = this.stagiaires.filter(stagiaire_id => stagiaire_id !== id);
+				this.présents = this.présents.filter(stagiaire_id => stagiaire_id !== id);
+				this.absents = this.absents.filter(stagiaire_id => stagiaire_id !== id);
 			}
 
 			supprimer_stagiaire_présent(id) {
-				this.présents = this.présents.filter(s => s !== id);
+				this.présents = this.présents.filter(stagiaire_id => stagiaire_id !== id);
 			}
 
 			supprimer_stagiaire_absent(id) {
-				this.absents = this.absents.filter(s => s !== id);
+				this.absents = this.absents.filter(stagiaire_id => stagiaire_id !== id);
 			}
 
 			total() {
@@ -599,6 +614,7 @@
 			}
 		}
 
+		// Classe Stagiaire qui interagit avec le DOM
 		class StagiaireDOM extends Stagiaire {
 			/**
 			 * Marque le stagiaire comme absent, met à jour les statistiques
