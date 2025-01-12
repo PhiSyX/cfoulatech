@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Library Management System</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+	<!-- Mike -->
+
+	<dialog id="addBookDialog">
+		<h1>Add a new book</h1>
+
+		<form method="dialog">
+			<div class="mb-3">
+				<label for="isbn1" class="form-label">International Standard Book Number (ISBN)</label>
+				<input type="text" class="form-control" id="isbn1" name="isbn">
+			</div>
+
+			<div class="mb-3">
+				<label for="author1" class="form-label">Author</label>
+				<input type="text" class="form-control" id="author1" name="author">
+			</div>
+
+			<div class="mb-3">
+				<label for="title1" class="form-label">Title</label>
+				<input type="text" class="form-control" id="title1" name="title">
+			</div>
+
+			<div class="mb-3">
+				<label for="quantity1">Quantity (<output id="quantity2">1</output>)</label>
+				<input type="range" class="form-range" id="quantity1" name="quantity" min="1" step="1" value="1">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Add the book now</button>
+			<button type="reset" class="btn btn-danger">Cancel</button>
+		</form>
+	</dialog>
+
+	<dialog id="borrowBookDialog">
+		<h1>Which book(s) would you like to borrow?</h1>
+
+		<form method="dialog">
+			<div class="mb-3">
+				<label for="isbn2" class="form-label">Available books</label>
+				<select class="form-select" id="isbn2" name="isbn" multiple></select>
+			</div>
+			<button type="submit" class="btn btn-primary">Borrow book(s) now</button>
+			<button type="reset" class="btn btn-danger">Cancel</button>
+		</form>
+	</dialog>
+
+	<dialog id="returnBookDialog">
+		<h1>Which book(s) would you like to return?</h1>
+
+		<form method="dialog">
+			<div class="mb-3">
+				<label for="isbn3" class="form-label">Borrowed books</label>
+				<select class="form-select" id="isbn3" name="isbn" multiple></select>
+			</div>
+			<button type="submit" class="btn btn-primary">Return book(s) now</button>
+			<button type="reset" class="btn btn-danger">Cancel</button>
+		</form>
+	</dialog>
+
+	<!-- Aicha -->
+
+	<div class="containers">
+		<h1>Monaika, the best online Library Management System </h1>
+
+		<ol class="list-group">
+			<li class="list-group-item"><button id="addBookButton">Add a new book</button></li>
+			<li class="list-group-item"><button id="borrowBookButton">Borrow a book</button></li>
+			<li class="list-group-item"><button id="returnBookButton">Return a book</button></li>
+		</ol>
+
+		<div id="result-section">
+			<h2>List of books</h2>
+
+			<ul id="result">
+			</ul>
+
+			<table class="table">
+				<thead class="table-dark">
+					<tr>
+						<th>ISBN</th>
+						<th>Author</th>
+						<th>Title of book</th>
+						<th>Available</th>
+					</tr>
+				</thead>
+
+				<tbody id="table-books" class="table-group-divider text-danger">
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+	<script src="assets/js/script.mona.js"></script>
+	<script src="assets/js/script.aicha.js"></script>
+	<script src="assets/js/script.mike.js"></script>
+	<script src="assets/js/script.js"></script>
+</body>
+
+</html>
