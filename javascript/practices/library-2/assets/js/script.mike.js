@@ -95,7 +95,7 @@ class LibrarySystem {
 
 		quantityInput?.addEventListener("change", () => {
 			quantityOutput.value = quantityInput.value;
-		}, _);
+		});
 	}
 
 	/**
