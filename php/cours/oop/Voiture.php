@@ -2,83 +2,133 @@
 
 class Voiture
 {
-    /** Les états */
+	/** Les états */
 
-    /**
-     * Couleur de la voiture
-     */
-    private string $couleur = "Blanche";
-    /**
-     * Poids de la voiture
-     */
-    private float $poids = 1500.0;
-    /**
-     * Prix de la voiture
-     */
-    private int $prix = 7800;
+	/**
+	 * Couleur de la voiture
+	 */
+	private string $couleur;
+	/**
+	 * Marque de la voiture
+	 */
+	private string $marque;
+	/**
+	 * Poids de la voiture
+	 */
+	private float $poids;
+	/**
+	 * Prix de la voiture
+	 */
+	private int $prix;
 
-    /**
-     * Permet de construire la classe Voiture en un type `objet Voiture`
-     */
-    //public function __construct(string $couleur, float $poids, int $prix)
-    //{
-    //    $this->couleur = $couleur;
-    //    $this->poids = $poids;
-    //    $this->prix = $prix;
-    //}
+	/**
+	 * Permet de construire la classe Voiture en un type `objet Voiture`
+	 */
+	public function __construct(string $uneCouleur, float $unPoids, int $unPrix)
+	{
+		$this->couleur = $uneCouleur;
+		$this->poids = $unPoids;
+		$this->prix = $unPrix;
+		$this->marque = "";
+	}
 
-    /** Les getters / setters */
+	/** Méthodes spéciales */
 
-    public function getCouleur(): string
-    {
-        return $this->couleur;
-    }
+	public function __toString(): string
+	{
+		$str = "";
 
-    public function setCouleur(string $couleur): void
-    {
-        $this->couleur = $couleur;
-    }
+		$str .= "La couleur de la voiture est : <strong>" . $this->getCouleur() . "</strong>   <br>";
+		$str .= "La poids   de la voiture est : <strong>" . $this->getPoids()   . "</strong>Kg <br>";
+		$str .= "Le prix    de la voiture est : <strong>" . $this->getPrix()    . "</strong>€  <br>";
 
-    public function getPrix(): int
-    {
-        return $this->prix;
-    }
+		if ($this->hasMarque()) {
+			$str .= "La marque  de la voiture est : <strong>" . $this->getMarque()  . "</strong> <br>";
+		}
 
-    public function setPrix(int $prix): void
-    {
-        $this->prix = $prix;
-    }
+		$str .= "<br>";
 
-    public function getPoids(): float
-    {
-        return $this->poids;
-    }
+		return $str;
+	}
 
-    public function setPoids(float $poids): void
-    {
-        $this->poids = $poids;
-    }
+
+	/** Les getters / setters */
+
+	public function getCouleur(): string
+	{
+		return $this->couleur;
+	}
+
+	public function setCouleur(string $couleur): void
+	{
+		$this->couleur = $couleur;
+	}
+
+	public function getDifference(Voiture $other): float
+	{
+		return abs($this->prix - $other->getPrix());
+	}
+
+	public function getMarque(): string
+	{
+		return $this->marque;
+	}
+
+	public function setMarque(string $marque): void
+	{
+		$this->marque = $marque;
+	}
+
+	public function getPrix(): int
+	{
+		return $this->prix;
+	}
+
+	public function setPrix(int $prix): void
+	{
+		$this->prix = $prix;
+	}
+
+	public function getPoids(): float
+	{
+		return $this->poids;
+	}
+
+	public function setPoids(float $poids): void
+	{
+		$this->poids = $poids;
+	}
 
 	public function addPrix(int $prix): void
 	{
 		$this->prix += $prix;
 	}
 
-    /** Les comportements */
+	public function hasMarque(): bool
+	{
+		return !empty($this->marque);
+	}
 
-    /**
-     * Cette fonction démarre la voiture
-     */
-    public function demarrer(): void
-    {
-        echo "La voiture {$this->couleur} a démarré";
-    }
+	public function isMoreExpensive(Voiture $voiture)
+	{
+		return $this->prix > $voiture->getPrix();
+	}
 
-    /**
-     * Cette fonction accélère la voiture
-     */
-    public function accelerer(): void
-    {
-        echo "La voiture {$this->couleur} accélère";
-    }
+	/** Les comportements */
+
+	/**
+	 * Cette fonction démarre la voiture
+	 */
+	public function demarrer(): void
+	{
+		echo "La voiture {$this->couleur} a démarré";
+	}
+
+	/**
+	 * Cette fonction accélère la voiture
+	 */
+	public function accelerer(): void
+	{
+		echo "La voiture {$this->couleur} accélère";
+	}
 }
