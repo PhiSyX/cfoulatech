@@ -1,8 +1,10 @@
 
-/**
- * Cette fonction dit Bonjour à Carina.
- */
-function bonjourCarina()
+class Hotel
 {
-	alert("Bonjour Carina");
+
+	addRoom(info)
+	{
+		console.log(info)
+	}
+
 }
