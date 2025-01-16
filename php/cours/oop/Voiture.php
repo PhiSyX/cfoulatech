@@ -132,3 +132,36 @@ class Voiture
 		echo "La voiture {$this->couleur} accélère";
 	}
 }
+
+function showVoiture(Voiture $voiture)
+{
+	echo "La couleur de la voiture est : <strong>" . $voiture->getCouleur() . "</strong>   <br>";
+	echo "La poids   de la voiture est : <strong>" . $voiture->getPoids()   . "</strong>Kg <br>";
+	echo "Le prix    de la voiture est : <strong>" . $voiture->getPrix()    . "</strong>€  <br>";
+
+	if ($voiture->hasMarque()) {
+		echo "La marque  de la voiture est : <strong>" . $voiture->getMarque()  . "</strong> <br>";
+	}
+
+	echo "<br>";
+}
+
+function comparePrixVoiture(Voiture $voiture1, Voiture $voiture2)
+{
+	echo "La voiture ";
+	if ($voiture1->isMoreExpensive($voiture2)) {
+		echo $voiture1->getCouleur();
+		echo " est <strong>plus chère</strong> que la voiture ";
+		echo $voiture2->getCouleur();
+	} else {
+		echo $voiture2->getCouleur();
+		echo " est <strong>moins chère</strong> que la voiture ";
+		echo $voiture1->getCouleur();
+	}
+
+	echo "<br>";
+
+	echo "Il y a une différence de <strong>{$voiture1->getDifference($voiture2)}</strong> €";
+
+	echo "<br>";
+}
