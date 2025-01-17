@@ -19,9 +19,14 @@ $nav = "session-debug";
 		<details open>
 			<summary>DEBUG</summary>
 
-			<?php if (isset($_SESSION) && ! empty($_SESSION)): ?>
-				<h1>Les données de <small>$_SESSION</small></h1>
-				<?php var_dump($_SESSION); ?>
+			<?php if (isset($_SESSION["user"]) && ! empty($_SESSION["user"])): ?>
+				<h1>Le dump de <small>$_SESSION["user"]</small></h1>
+				<?php var_dump($_SESSION["user"]); ?>
+			<?php endif; ?>
+
+			<?php if (isset($_SESSION["operations"]) && ! empty($_SESSION["operations"])): ?>
+				<h1>Le dump de <small>$_SESSION["operations"]</small></h1>
+				<?php var_dump($_SESSION["operations"]); ?>
 			<?php endif; ?>
 		</details>
 	</section>
