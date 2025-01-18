@@ -27,7 +27,7 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 
 ?>
 <form action="<?php echo $nav; ?>.php" method="GET" id="js-calc-form" class="calc-form">
-	<input type="number" name="left_operand" placeholder="Operand Gauche" value="<?php echo isset($left_operand) ? $left_operand : ""; ?>">
+	<input type="text" name="left_operand" placeholder="Operand Gauche" value="<?php echo isset($left_operand) ? $left_operand : ""; ?>">
 
 	<!-- TP2:
 
@@ -39,7 +39,7 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 	-->
 	<?php include "./assets/svg/icon-$nav.svg" ?>
 
-	<input type="number" name="right_operand" placeholder="Operand Droit" value="<?php echo isset($right_operand) ? $right_operand : ""; ?>">
+	<input type="text" name="right_operand" placeholder="Operand Droit" value="<?php echo isset($right_operand) ? $right_operand : ""; ?>">
 
 	<?php if (isset($result)) : ?>
 		<div class="hide-on-error">
