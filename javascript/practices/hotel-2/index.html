@@ -43,31 +43,55 @@
 
 		<hr>
 
-		<div id="error-msg" class="alert alert-danger" hidden></div>
+		<div id="search-rooms-form">
+			<form method="post" class="d-flex gap-2">
+				<div class="form-group">
+					<label for="type1">Type</label>
+					<select name="type" id="type1" class="form-control"></select>
+					<span class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="max-price1">Max Price</label>
+					<input
+						type="number"
+						inputmode="decimal"
+						name="max_price"
+						id="max-price1"
+						class="form-control"
+					>
+					<span class="text-danger"></span>
+				</div>
+
+				<button type="submit" class="btn btn-primary align-self-end">Search</button>
+			</form>
+		</div>
+
+		<hr>
 
 		<div id="room-form" hidden>
 			<h1><span id="term" class="bg-primary-subtle text-primary"></span> Room Form</h1>
 
 			<form method="post">
 				<div class="form-group">
-					<label for="number">Number</label>
-					<input type="number" name="number" id="number" class="form-control">
+					<label for="number2">Number</label>
+					<input type="number" name="number" id="number2" class="form-control">
 					<span class="text-danger"></span>
 				</div>
 
 				<div class="form-group">
-					<label for="type">Type</label>
-					<select name="type" id="type" class="form-control">
+					<label for="type2">Type</label>
+					<select name="type" id="type2" class="form-control">
 					</select>
 					<span class="text-danger"></span>
 				</div>
 
 				<div class="form-group">
-					<label for="price">Price</label>
+					<label for="price2">Price</label>
 					<input type="number"
 							inputmode="decimal"
 							name="price"
-							id="price"
+							id="price2"
 							class="form-control"
 					>
 					<span class="text-danger"></span>
@@ -121,6 +145,29 @@
 			</ul>
 		</div>
 
+		<div id="search-rooms" hidden>
+			<h1>Filtered rooms</h1>
+
+			<ul class="list-group">
+				<!--
+				<li class="list-group-item">
+					<div class="row align-items-center">
+						<div class="col-md-2">Room Number: 5</div>
+						<div class="col-md-2">Room Type: Single</div>
+						<div class="col-md-2">Room Price: 123€</div>
+						<div class="col-md-2">Room Status: Free</div>
+						<div class="col-md-4 d-inline-flex gap-1">
+							<button class="btn btn-secondary">Modify</button>
+							<button class="btn btn-secondary">Free</button>
+							<button class="btn btn-danger">Delete</button>
+						</div>
+					</div>
+				</li>
+				-->
+			</ul>
+		</div>
+
+		<div id="error-msg" class="alert alert-danger" hidden></div>
 
 		<!-- Carina: -->
 

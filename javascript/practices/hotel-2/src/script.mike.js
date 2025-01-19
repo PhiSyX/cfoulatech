@@ -1,13 +1,17 @@
 // @ts-nocheck
 
 const ADD_ROOM_BUTTON_SELECTOR = "#add-room-btn";
-const ROOM_FORM_SELECTOR       = "#room-form";
+
+const ROOM_FORM_SELECTOR        = "#room-form";
+const SEARCH_ROOMS_FORM_SELECTOR = "#search-rooms-form";
 
 const LIST_ROOMS_BUTTON_SELECTOR = "#list-all-rooms-btn";
 const LIST_ROOMS_LIST_SELECTOR   = "#list-all-rooms";
 
 const LIST_AVAILABLE_ROOMS_BUTTON_SELECTOR = "#list-available-rooms-btn";
 const LIST_AVAILABLE_ROOMS_LIST_SELECTOR   = "#list-available-rooms";
+
+const SEARCH_ROOMS_SELECTOR = "#search-rooms";
 
 class HotelManagementSystem
 {
@@ -53,6 +57,8 @@ class HotelManagementSystem
 			listSelector: LIST_AVAILABLE_ROOMS_LIST_SELECTOR,
 			rooms: "available",
 		});
+
+		this.#registerEventFormSearchRoom();
 	}
 
 	#registerEventFormRoom()
@@ -148,9 +154,135 @@ class HotelManagementSystem
 		// va être appelée.
 		buttonElement.addEventListener("click", onClickAction);
 
-		// Lorsqu'on appuie sur le bouton de soumission du formulaire
-		// la fonction ci-dessus `onSubmitAction` va être appelée.
+		// Lorsqu'on appuie sur le bouton de soumission du formulaire la
+		// fonction ci-dessus `onSubmitAction` va être appelée.
 		formElement.addEventListener("submit", onSubmitAction)
+	}
+
+	#registerEventFormSearchRoom()
+	{
+		let formElement   = document.querySelector(SEARCH_ROOMS_FORM_SELECTOR);
+		let listElement   = document.querySelector(SEARCH_ROOMS_SELECTOR);
+		let listElementUL = listElement.querySelector("ul");
+		let selectElement = formElement.querySelector("#type1");
+
+		let roomsTypes = this.#hotel.getAllRoomTypes();
+
+		let defaultTypeOption = document.createElement("option");
+		defaultTypeOption.textContent = "Select type";
+		defaultTypeOption.value       = "";
+		defaultTypeOption.selected    = true;
+		defaultTypeOption.disabled    = true;
+		selectElement.append(defaultTypeOption);
+
+		for (let roomType of roomsTypes) {
+			let option = document.createElement("option");
+			option.textContent = capitalize(roomType);
+			option.value = roomType;
+			selectElement.append(option);
+		}
+
+		const onSubmitAction = (event) => {
+			event.preventDefault();
+
+			let roomType = checkValidityInput(event.target.elements.type, {
+				isInList: roomsTypes,
+			});
+
+			let maxPrice = checkValidityInput(event.target.elements.max_price, {
+				number: "positive",
+			});
+
+			if (!roomType || !maxPrice) {
+				return;
+			}
+
+			let rooms = this.#hotel.searchRooms(roomType.value, maxPrice.value);
+			listElementUL.textContent = "";
+			for (let room of rooms) {
+				listElementUL.append(makeRoomItemDOM(room));
+			}
+
+			this.#showPage(listElement);
+
+			if (rooms.length === 0) {
+				error("No rooms were found according to your filters.");
+			}
+		};
+
+		/**
+		 * Crée un élément de liste (<li>) correspondant aux informations d'une chambre.
+		 */
+		const makeRoomItemDOM = (room) => {
+			let li = document.createElement("li");
+			li.classList.add("list-group-item");
+
+			let div = document.createElement("div");
+			div.classList.add("row", "align-items-center");
+
+			{
+				let divNumber = document.createElement("div");
+				divNumber.classList.add("col-md-2");
+				divNumber.textContent = `Number: ${room.getNumber()}`;
+
+				let divPrice = document.createElement("div");
+				divPrice.classList.add("col-md-2");
+				divPrice.textContent = `Price: ${room.getPrice()}€`;
+
+				let divType = document.createElement("div");
+				divType.classList.add("col-md-2");
+				divType.textContent = `Type: ${room.getType()}`;
+
+				let divStatus = document.createElement("div");
+				divStatus.classList.add("col-md-2");
+				divStatus.textContent = "Status: ";
+				if (room.getStatus()) {
+					divStatus.textContent += "Free";
+				} else {
+					divStatus.textContent += "Booked";
+				}
+
+				let divActions = document.createElement("div");
+				divActions.classList.add("col-md-4", "d-inline-flex", "gap-1", "justify-content-end");
+				{
+					let btnModify = document.createElement("button");
+					btnModify.classList.add("btn", "btn-secondary");
+					btnModify.textContent = "Modify";
+					this.#registerEventEditRoom(room, btnModify);
+
+					let btnFreeBook = document.createElement("button");
+					btnFreeBook.classList.add("btn", "btn-secondary");
+					if (room.getStatus()) {
+						btnFreeBook.textContent = "Book";
+					} else {
+						btnFreeBook.textContent = "Free";
+					}
+					this.#registerEventForFreeBookRoom(
+						room,
+						true,
+						btnFreeBook,
+						divStatus
+					);
+
+					let btnDelete = document.createElement("button");
+					btnDelete.classList.add("btn", "btn-danger");
+					btnDelete.textContent = "Delete";
+					this.#registerEventForDeleteRoom(room, btnDelete, li);
+
+					divActions.append(btnModify, btnFreeBook, btnDelete);
+				}
+
+				div.append(divNumber, divPrice, divType, divStatus, divActions);
+			}
+
+			li.append(div);
+
+			return li;
+		};
+
+		// Lorsqu'on appuie sur le bouton de soumission du formulaire la
+		// fonction ci-dessus `onSubmitAction` va être appelée.
+		formElement.addEventListener("submit", onSubmitAction);
 	}
 
 	#registerEventListRooms(opt)
@@ -321,7 +453,7 @@ class HotelManagementSystem
 		let titleElement = formElement.querySelector("#term");
 		titleElement.textContent = this.#formType === "add" ? "Add" : `Edit n°${values.number}`;
 
-		let numberInput = formElement.querySelector("#number");
+		let numberInput = formElement.querySelector("#number2");
 		numberInput.classList.remove("border", "border-danger");
 		numberInput.value = values.number;
 		numberInput.nextElementSibling.textContent = "";
@@ -331,7 +463,7 @@ class HotelManagementSystem
 			numberInput.parentElement.removeAttribute("hidden");
 		}
 
-		let typeElement = formElement.querySelector("#type");
+		let typeElement = formElement.querySelector("#type2");
 		typeElement.classList.remove("border", "border-danger");
 		typeElement.textContent = "";
 		typeElement.nextElementSibling.textContent = "";
@@ -346,14 +478,14 @@ class HotelManagementSystem
 
 		for (let roomType of this.#hotel.getAllRoomTypes()) {
 			let option = document.createElement("option");
-			option.textContent = roomType.slice(0, 1).toUpperCase() + roomType.slice(1);
+			option.textContent = capitalize(roomType);
 			option.value = roomType;
 			typeElement.append(option);
 		}
 
 		typeElement.value = values.type;
 
-		let priceElement = formElement.querySelector("#price");
+		let priceElement = formElement.querySelector("#price2");
 		priceElement.value = values.price;
 		priceElement.classList.remove("border", "border-danger");
 		priceElement.nextElementSibling.textContent = "";
@@ -364,7 +496,8 @@ class HotelManagementSystem
 		let pages = document.querySelectorAll([
 			ROOM_FORM_SELECTOR,
 			LIST_ROOMS_LIST_SELECTOR,
-			LIST_AVAILABLE_ROOMS_LIST_SELECTOR
+			LIST_AVAILABLE_ROOMS_LIST_SELECTOR,
+			SEARCH_ROOMS_SELECTOR,
 		]);
 
 		for (let page of pages) {
@@ -379,7 +512,8 @@ class HotelManagementSystem
 		let pages = document.querySelectorAll([
 			ROOM_FORM_SELECTOR,
 			LIST_ROOMS_LIST_SELECTOR,
-			LIST_AVAILABLE_ROOMS_LIST_SELECTOR
+			LIST_AVAILABLE_ROOMS_LIST_SELECTOR,
+			SEARCH_ROOMS_SELECTOR
 		]);
 
 		for (let page of pages) {
@@ -387,6 +521,8 @@ class HotelManagementSystem
 		}
 
 		currentPage.removeAttribute("hidden");
+
+		error("");
 	}
 }
 
@@ -484,4 +620,8 @@ function inputError(input, msg)
 	}
 
 	error(msg, input.nextElementSibling);
+}
+
+function capitalize(s) {
+	return s[0].toUpperCase() + s.slice(1);
 }
