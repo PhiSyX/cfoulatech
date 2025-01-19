@@ -22,9 +22,15 @@ class HotelManagementSystem
 	constructor()
 	{
 		this.#hotel = new Hotel();
-		let room1 = this.#hotel.addRoom(11, 200.0, "single");
-		let room2 = this.#hotel.addRoom(12, 200.0, "double");
-		room1.setStatus(false);
+
+		/**
+		 * Des exemples.
+		 */
+		let room1 = this.#hotel.addRoom(11, 23.0, "single");
+		room1.setStatus(true);
+
+		let room2 = this.#hotel.addRoom(12, 123.0, "double");
+		room2.setStatus(false);
 	}
 
 	/**
@@ -178,12 +184,17 @@ class HotelManagementSystem
 					} else {
 						btnFreeBook.textContent = "Free";
 					}
-					this.#registerEventForFreeBookRoom(room, btnFreeBook);
+					this.#registerEventForFreeBookRoom(
+						room,
+						opt.rooms === "available",
+						btnFreeBook,
+						divStatus
+					);
 
 					let btnDelete = document.createElement("button");
 					btnDelete.classList.add("btn", "btn-danger");
 					btnDelete.textContent = "Delete";
-					this.#registerEventForDeleteRoom(room, btnDelete);
+					this.#registerEventForDeleteRoom(room, btnDelete, li);
 
 					divActions.append(btnModify, btnFreeBook, btnDelete);
 				}
@@ -196,24 +207,47 @@ class HotelManagementSystem
 			return li;
 		};
 
-
 		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
 		// va être appelée.
 		buttonElement.addEventListener("click", onClickAction);
 	}
 
+	// TODO: créer un formulaire d'édition ?
 	#registerEventForModifyRoom(room, btnElement) {
 		const onModifyAction = (event) => {};
 		btnElement.addEventListener("click", onModifyAction);
 	}
 
-	#registerEventForFreeBookRoom(room, btnElement) {
-		const onFreeBookAction = (event) => {};
+	// TODO: créer un formulaire avec :
+	//
+	// 			1. Nom de la personne qui réserve/rend
+	// 			2. le nombre de nuits
+	#registerEventForFreeBookRoom(room, removeItemWhenBooked, btnElement, rootElement) {
+		const onFreeBookAction = (event) => {
+			if (room.getStatus()) {
+				if (this.#hotel.bookRoom(room)) {
+					rootElement.textContent = "Room Status: Booked";
+					btnElement.textContent = "Free";
+					if (removeItemWhenBooked) {
+						rootElement.parentElement.parentElement.remove();
+					}
+				}
+			} else {
+				if (this.#hotel.freeRoom(room)) {
+					rootElement.textContent = "Room Status: Free";
+					btnElement.textContent = "Book";
+				}
+			}
+		};
+
 		btnElement.addEventListener("click", onFreeBookAction);
 	}
 
-	#registerEventForDeleteRoom(room, btnElement) {
-		const onDeleteAction = (event) => {};
+	#registerEventForDeleteRoom(room, btnElement, rootElement) {
+		const onDeleteAction = (event) => {
+			this.#hotel.deleteRoom(room);
+			rootElement.remove();
+		};
 		btnElement.addEventListener("click", onDeleteAction);
 	};
 

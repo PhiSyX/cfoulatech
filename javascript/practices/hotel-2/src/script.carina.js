@@ -18,6 +18,36 @@ class Hotel
 		return room;
 	}
 
+	bookRoom(selectedRoom)
+	{
+		let room = this.#rooms.find((r) => r.getNumber() === selectedRoom.getNumber());
+
+		if (!room) {
+			return false;
+		}
+
+		room.setStatus(false);
+		return true;
+	}
+
+	freeRoom(selectedRoom)
+	{
+		let room = this.#rooms.find((r) => r.getNumber() === selectedRoom.getNumber());
+
+		if (!room) {
+			return false;
+		}
+
+		room.setStatus(true);
+		return true;
+	}
+
+	deleteRoom(selectedRoom)
+	{
+		this.#rooms = this.#rooms.filter((r) => r.getNumber() !== selectedRoom.getNumber());
+		return true;
+	}
+
 	#hasRoom(number) {
 		return this.#rooms.some((room) => room.getNumber() === number);
 	}
