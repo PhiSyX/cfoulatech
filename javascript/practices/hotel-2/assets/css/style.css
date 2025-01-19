@@ -24,3 +24,8 @@ body {
 	/* Centre le container au milieu */
 	margin-inline: auto;
 }
+
+#term {
+	border-radius: 8px;
+	padding-inline: 4px;
+}
