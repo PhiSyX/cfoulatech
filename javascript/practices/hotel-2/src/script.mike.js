@@ -193,11 +193,17 @@ class HotelManagementSystem
 				number: "positive",
 			});
 
+			let status = checkValidityInput(event.target.elements.status);
+
 			if (!roomType || !maxPrice) {
 				return;
 			}
 
-			let rooms = this.#hotel.searchRooms(roomType.value, maxPrice.value);
+			let rooms = this.#hotel.searchRooms(
+				roomType.value,
+				maxPrice.value,
+				status.value,
+			);
 			listElementUL.textContent = "";
 			for (let room of rooms) {
 				listElementUL.append(makeRoomItemDOM(room));
@@ -529,11 +535,15 @@ class HotelManagementSystem
 /**
  * Validation des `<input />`
  */
-function checkValidityInput(input, ruleOption)
+function checkValidityInput(input, ruleOption = {})
 {
 	let value   = input.value;
 	let pass    = true;
 	let helpmsg = "";
+
+	if (input.type === "checkbox") {
+		value = input.checked;
+	}
 
 	if (ruleOption.number) {
 		switch (ruleOption.number) {

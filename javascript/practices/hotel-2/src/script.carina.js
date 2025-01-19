@@ -50,9 +50,11 @@ class Hotel {
 		room.setStatus(false);
 	  return true;
 	}
-	searchRooms(type, maxPrice) {
+	searchRooms(type, maxPrice, status) {
 	  return this.#rooms.filter(
-		(room) => room.getType() === type && room.getPrice() <= maxPrice
+		(room) => room.getType() === type &&
+			room.getStatus() === status &&
+			room.getPrice() <= maxPrice
 	  );
 
 
