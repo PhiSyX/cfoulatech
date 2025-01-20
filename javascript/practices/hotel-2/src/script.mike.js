@@ -33,10 +33,16 @@ class HotelManagementSystem
 		 * Des exemples.
 		 */
 		let room1 = this.#hotel.addRoom(11, "single", 23.0);
-		room1.setStatus(true);
+		room1.setStatus(false);
 
 		let room2 = this.#hotel.addRoom(12, "double", 123.0);
-		room2.setStatus(false);
+		room2.setStatus(true);
+
+		let room3 = this.#hotel.addRoom(13, "double", 125.0);
+		room3.setStatus(true);
+
+		let room4 = this.#hotel.addRoom(14, "double", 120.0);
+		room4.setStatus(true);
 	}
 
 	/**
