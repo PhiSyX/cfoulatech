@@ -1,7 +1,12 @@
-SELECT
-	ville_departement,
-	SUM(ville_population_2012) AS habitants
-FROM villes_france_free
-GROUP BY ville_departement
-HAVING habitants > 2000000
-ORDER BY habitants DESC;
+UPDATE villes_france_free
+SET ville_nom = REPLACE(ville_nom, "-", " ")
+WHERE ville_nom LIKE "SAINT-%";
+
+--
+-- SELECT
+-- 	REPLACE(ville_nom, '-', ' ')
+-- FROM
+-- 	villes_france_free
+-- WHERE
+-- 	ville_nom LIKE "SAINT %";
+--
