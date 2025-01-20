@@ -6,7 +6,8 @@ class Hotel {
 	constructor() {
 	  this.#rooms = [];
 	}
-	//push is a native function  and used to add an element to an array
+
+	// push is a native function  and used to add an element to an array
 	// number, type, price inside the constructor is not reference to the object itself but is just to show the parameters
 	addRoom(number, type, price) {
 	  let newRoom = new Room(number, type, price);
@@ -24,15 +25,40 @@ class Hotel {
 	}
 	deleteRoom(number) {
 	  this.#rooms = this.#rooms.filter((room) => room.getNumber() !== number);
+
+		// version sans filter
+		/*
+		let rooms = [];
+		for (let room of this.#rooms) {
+			if (room.getNumber() !== number) {
+				rooms.push(room);
+			}
+		}
+		this.#rooms = rooms;
+		*/
+
 	  return true;
 	}
 	modifyRoom(number, type, price) {
+		// la méthode find parcours tous les éléments d'un tableau et s'attend à
+		// recevoir une fonction anonyme qui renvoie un boolean. Si le boolean
+		// est true, le premier élément trouvé sera retourné.
+		//
+		// EX: rooms     = ["a", "b", "c", "d"];
+		//     rooms.find(nom => true); le retour sera le premier "a"
+		//     rooms.find(nom => false); le retour sera null
+		//     rooms.find(nom => nom == "b"); le retour sera "b"
 		let room = this.#rooms.find((room) => {
+			// Donc ici, on retourne la première chambre dont le numéro de
+			// chambre correspond à celui passé en paramètre.
 			return room.getNumber() === number;
 		});
+		console.log({room, number, type, price})
+
 		room.setNumber(number);
 		room.setType(type);
 		room.setPrice(price);
+
 		return room;
 	}
 	freeRoom(number) {
@@ -52,21 +78,26 @@ class Hotel {
 	}
 	searchRooms(type, maxPrice, status) {
 	  return this.#rooms.filter(
-		(room) => room.getType() === type &&
-			room.getStatus() === status &&
-			room.getPrice() <= maxPrice
+		(room) => {
+			let defaultReturn = room.getType() === type && room.getPrice() <= maxPrice;
+			if (status !== null) {
+				return defaultReturn && room.getStatus() === status;
+			}
+			return defaultReturn
+		}
 	  );
-
 
 	  //version avec le boucle for
 	  // let rooms = []
-
 	  // for (let room of this.#rooms) {
-	  //   if (room.getType() === type && room.getPrice() <= maxPrice) {
+	  // let defaultReturn = room.getType() === type && room.getPrice() <= maxPrice;
+	  // if (status !== null) {
+	  // 	defaultReturn &&= room.getStatus() === status;
+	  // }
+	  //   if (defaultReturn) {
 	  //     rooms.push(room);
 	  //   }
 	  // }
-
 	  // return rooms;
 	}
 
@@ -133,170 +164,5 @@ class Room {
 	}
 	getStatus() {
 	  return this.status;
-	}
-}
-
-
-
-
-
-
-
-/** Mike */
-
-
-
-
-
-class HotelX
-{
-	/**
-	 * @type {Array<Room>}
-	 */
-	#rooms = [];
-
-	#allRoomTypes = ["single", "double"];
-
-	addRoom(...args)
-	{
-		if (this.#hasRoom(args[0])) {
-			return null;
-		}
-
-		let room = new Room(...args);
-		this.#rooms.push(room);
-		return room;
-	}
-
-	modifyRoom(number, price, type) {
-		let room = this.#rooms.find((r) => r.getNumber() === number);
-		if (!room) {
-			return null;
-		}
-
-		room.setNumber(number);
-		room.setPrice(price);
-		room.setType(type);
-
-		return room;
-	}
-
-	bookRoom(selectedRoom)
-	{
-		let room = this.#rooms.find((r) => r.getNumber() === selectedRoom.getNumber());
-
-		if (!room) {
-			return false;
-		}
-
-		room.setStatus(false);
-		return true;
-	}
-
-	freeRoom(selectedRoom)
-	{
-		let room = this.#rooms.find((r) => r.getNumber() === selectedRoom.getNumber());
-
-		if (!room) {
-			return false;
-		}
-
-		room.setStatus(true);
-		return true;
-	}
-
-	deleteRoom(selectedRoom)
-	{
-		this.#rooms = this.#rooms.filter((r) => r.getNumber() !== selectedRoom.getNumber());
-		return true;
-	}
-
-	#hasRoom(number) {
-		return this.#rooms.some((room) => room.getNumber() === number);
-	}
-
-	listAllRooms()
-	{
-		return this.#rooms;
-	}
-
-	listAvailableRooms()
-	{
-		return this.#rooms.filter((room) => room.getStatus())
-	}
-
-	getAllRoomTypes()
-	{
-		return this.#allRoomTypes;
-	}
-}
-
-class RoomX {
-	#number;
-	#price;
-	#type;
-	#status;
-	#nights;
-
-	constructor(number, price, type) {
-		this.#number = number;
-		this.#price = price;
-		this.#type = type;
-		/**
-		 * true  = disponible
-		 * false = réservé
-		 */
-		this.#status = true;
-		this.#nights = 1;
-	}
-
-	getNumber()
-	{
-		return this.#number;
-	}
-
-	setNumber(number)
-	{
-		this.#number = number;
-	}
-
-	getUnitPrice()
-	{
-		return this.#price;
-	}
-
-	getPrice()
-	{
-		return this.#price * this.getNights();
-	}
-
-	setPrice(price)
-	{
-		this.#price = price;
-	}
-
-	getType()
-	{
-		return this.#type;
-	}
-
-	setType(type)
-	{
-		this.#type = type;
-	}
-
-	getStatus()
-	{
-		return this.#status;
-	}
-
-	setStatus(status)
-	{
-		this.#status = status;
-	}
-
-	getNights()
-	{
-		return this.#nights;
 	}
 }

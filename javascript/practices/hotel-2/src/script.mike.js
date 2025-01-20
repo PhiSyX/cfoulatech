@@ -165,6 +165,7 @@ class HotelManagementSystem
 		let listElement   = document.querySelector(SEARCH_ROOMS_SELECTOR);
 		let listElementUL = listElement.querySelector("ul");
 		let selectElement = formElement.querySelector("#type1");
+		let statusElement = formElement.querySelector("#status1");
 
 		let roomsTypes = this.#hotel.getAllRoomTypes();
 
@@ -289,6 +290,15 @@ class HotelManagementSystem
 		// Lorsqu'on appuie sur le bouton de soumission du formulaire la
 		// fonction ci-dessus `onSubmitAction` va être appelée.
 		formElement.addEventListener("submit", onSubmitAction);
+
+		const onClickCheckboxAction = (event) => {
+			// On dégage le filtre du status
+			statusElement.indeterminate = event.altKey;
+		};
+
+		// Lorsqu'on maintient ALT (ou option) et que l'on click sur l'input
+		// de type checkbox, la fonction `onClickCheckboxAction` est appelée.
+		statusElement.addEventListener("click", onClickCheckboxAction);
 	}
 
 	#registerEventListRooms(opt)
@@ -413,7 +423,8 @@ class HotelManagementSystem
 	// 			1. Nom de la personne qui réserve/rend
 	// 			2. le nombre de nuits
 	#registerEventForFreeBookRoom(room, removeItemWhenBooked, btnElement, rootElement) {
-		// Change le texte des éléments du DOM en fonction du status de disponibilité la chambre.
+		// Change le texte des éléments du DOM en fonction du status de
+		// disponibilité la chambre.
 		const onClickAction = (event) => {
 			if (room.getStatus()) {
 				if (this.#hotel.bookRoom(room.getNumber())) {
@@ -439,7 +450,7 @@ class HotelManagementSystem
 	#registerEventForDeleteRoom(room, btnElement, rootElement) {
 		// Supprime la ligne de la chambre dans la liste des chambres dans le DOM.
 		const onClickAction = (event) => {
-			this.#hotel.deleteRoom(room);
+			this.#hotel.deleteRoom(room.getNumber());
 			rootElement.remove();
 		};
 
@@ -543,6 +554,10 @@ function checkValidityInput(input, ruleOption = {})
 
 	if (input.type === "checkbox") {
 		value = input.checked;
+
+		if (input.indeterminate) {
+			value = null;
+		}
 	}
 
 	if (ruleOption.number) {
