@@ -1,5 +1,5 @@
 <?php
-require "../Voiture.php";
+require_once "../classes/Voiture.php";
 
 $maTwingoRouge = new Voiture();
 

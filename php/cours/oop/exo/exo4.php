@@ -1,6 +1,6 @@
 <?php
 
-require "../Voiture.php";
+require_once "../Voiture.php";
 
 $maVoiture1 = new Voiture("Jaune", 3200.0, 35_000);
 var_dump($maVoiture1);

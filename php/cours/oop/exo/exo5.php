@@ -1,6 +1,6 @@
 <?php
 
-require "../Voiture.php";
+require_once "../Voiture.php";
 
 $maVoiture1 = new Voiture("Jaune", 1330.5, 10000);
 $maVoiture1->setMarque("Audi");

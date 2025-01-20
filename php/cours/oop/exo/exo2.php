@@ -1,6 +1,6 @@
 <?php
 
-require "../Voiture.php";
+require_once "../classes/Voiture.php";
 
 $maVoiture = new Voiture();
 $maVoiture->couleur = "Blanche";

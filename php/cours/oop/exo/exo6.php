@@ -1,6 +1,6 @@
 <?php
 
-require "../Personne.php";
+require_once "../classes/Personne.php";
 
 $personne1 = new Personne("Julien", 34, "M");
 $personne2 = new Personne("Sarah", 27, "F");
