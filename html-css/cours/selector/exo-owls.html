@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owls selector</title>
+
+<style>
+	html,
+	body,
+	.app {
+		height: 100%;
+	}
+
+	.app > * + * {
+		margin-top: 2rem;
+	}
+
+	.placeholder {
+		background-color: #e7e7e7;
+		border: 2px dashed #acacac;
+		border-radius: 2px;
+
+		height: 300px;
+	}
+
+	section > * + * {
+		margin-top: 2rem;
+	}
+
+	@media screen and (min-width: 768px) {
+		section {
+			display: flex;
+		}
+
+		section > * {
+			width: 33%;
+		}
+
+		section > * + * {
+			margin-top: unset;
+			margin-left: 2rem;
+		}
+	}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+	<div class="placeholder"></div>
+
+	<section>
+		<div class="placeholder"></div>
+		<div class="placeholder"></div>
+		<div class="placeholder"></div>
+	</section>
+
+</div>
+
+</body>
+
+</html>

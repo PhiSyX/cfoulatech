@@ -35,3 +35,7 @@ header ~ footer {
 
 .sel > .child {
 }
+
+/* owl selector */
+* + * {
+}
