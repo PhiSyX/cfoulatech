@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popover Dialog - no JS</title>
+	<style>
+		:root {
+			--color-prim: lightblue;
+			--color-bg: lightgray;
+			--color-sheet: white;
+			--color-fg: black;
+			font-family: system-ui, sans-serif;
+		}
+
+		[popover],
+		::backdrop {
+			transition: display 400ms ease-in-out allow-discrete,
+				transform 288ms ease-in-out,
+				opacity 160ms ease-in-out;
+		}
+
+		[popover] {
+			position: fixed;
+			inset: 0px;
+
+			width: fit-content;
+			height: fit-content;
+			padding: 0.25em;
+			opacity: 0;
+			transform: translateY(1rem);
+
+			&::backdrop {
+				background-color: var(--color-fg);
+				opacity: 0;
+			}
+
+			&:popover-open {
+				opacity: 1;
+				transform: translateY(0);
+
+				&::backdrop {
+					opacity: 0.5;
+				}
+			}
+
+			@starting-style {
+				&:popover-open {
+					opacity: 0;
+					transform: translateY(3rem);
+				}
+
+				&:popover-open::backdrop {
+					opacity: 0;
+				}
+			}
+		}
+
+		html,
+		body {
+			display: grid;
+			place-content: center;
+			gap: 2rem;
+			height: 100%;
+		}
+
+		.text-lg {
+			font-size: 4rem;
+		}
+
+		.card {
+			border-radius: 1rem;
+			padding: 3rem;
+		}
+
+		.btn {
+			font-size: 2rem;
+			padding: 0.33rem 0.75rem;
+			box-shadow: 2px 4px 0 var(--color-fg);
+			background-color: var(--color-sheet);
+			transition: 200ms ease-in-out;
+			cursor: pointer;
+			color: var(--color-fg);
+
+			&:focus,
+			&:hover {
+				background-color: var(--color-sheet);
+				box-shadow: 0px 0px 0 var(--color-bg);
+				transform: translate(4px, 4px);
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<button popovertarget="the-popover" class="btn">
+		open popover
+	</button>
+
+	<dialog id="the-popover" popover class="text-lg card">
+		🎉
+	</dialog>
+
+</body>
+
+</html>
