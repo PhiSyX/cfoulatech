@@ -213,7 +213,7 @@ class HotelManagementSystem
 			);
 			listElementUL.textContent = "";
 			for (let room of rooms) {
-				listElementUL.append(makeRoomItemDOM(room));
+				listElementUL.append(this.#makeRoomItemDOM(room));
 			}
 
 			this.#showPage(listElement);
@@ -221,76 +221,6 @@ class HotelManagementSystem
 			if (rooms.length === 0) {
 				error("No rooms were found according to your filters.");
 			}
-		};
-
-		/**
-		 * Crée un élément de liste (<li>) correspondant aux informations d'une chambre.
-		 */
-		const makeRoomItemDOM = (room) => {
-			let li = document.createElement("li");
-			li.classList.add("list-group-item");
-
-			let div = document.createElement("div");
-			div.classList.add("row", "align-items-center");
-
-			{
-				let divNumber = document.createElement("div");
-				divNumber.classList.add("col-md-2");
-				divNumber.textContent = `Number: ${room.getNumber()}`;
-
-				let divPrice = document.createElement("div");
-				divPrice.classList.add("col-md-2");
-				divPrice.textContent = `Price: ${room.getPrice()}€`;
-
-				let divType = document.createElement("div");
-				divType.classList.add("col-md-2");
-				divType.textContent = `Type: ${room.getType()}`;
-
-				let divStatus = document.createElement("div");
-				divStatus.classList.add("col-md-2");
-				divStatus.textContent = "Status: ";
-				if (room.getStatus()) {
-					divStatus.textContent += "Free";
-				} else {
-					divStatus.textContent += "Booked";
-				}
-
-				let divActions = document.createElement("div");
-				divActions.classList.add("col-md-4", "d-inline-flex", "gap-1", "justify-content-end");
-				{
-					let btnModify = document.createElement("button");
-					btnModify.classList.add("btn", "btn-secondary");
-					btnModify.textContent = "Modify";
-					this.#registerEventEditRoom(room, btnModify);
-
-					let btnFreeBook = document.createElement("button");
-					btnFreeBook.classList.add("btn", "btn-secondary");
-					if (room.getStatus()) {
-						btnFreeBook.textContent = "Book";
-						this.#registerEventForBookRoom(
-							room,
-							true,
-							btnFreeBook,
-							divStatus
-						);
-					} else {
-						btnFreeBook.textContent = "Free";
-					}
-
-					let btnDelete = document.createElement("button");
-					btnDelete.classList.add("btn", "btn-danger");
-					btnDelete.textContent = "Delete";
-					this.#registerEventForDeleteRoom(room, btnDelete, li);
-
-					divActions.append(btnModify, btnFreeBook, btnDelete);
-				}
-
-				div.append(divNumber, divPrice, divType, divStatus, divActions);
-			}
-
-			li.append(div);
-
-			return li;
 		};
 
 		// Lorsqu'on appuie sur le bouton de soumission du formulaire la
@@ -321,89 +251,10 @@ class HotelManagementSystem
 			listElementUL.textContent = "";
 
 			for (let room of rooms) {
-				listElementUL.append(makeRoomItemDOM(room));
+				listElementUL.append(this.#makeRoomItemDOM(room));
 			}
 
 			this.#showPage(listElement);
-		};
-
-		/**
-		 * Crée un élément de liste (<li>) correspondant aux informations d'une chambre.
-		 */
-		const makeRoomItemDOM = (room) => {
-			let li = document.createElement("li");
-			li.classList.add("list-group-item");
-
-			let div = document.createElement("div");
-			div.classList.add("row", "align-items-center");
-
-			{
-				let divNumber = document.createElement("div");
-				divNumber.classList.add("col-md-2");
-				divNumber.textContent = `Number: ${room.getNumber()}`;
-
-				let divPrice = document.createElement("div");
-				divPrice.classList.add("col-md-2");
-				divPrice.textContent = `Price: ${room.getPrice()}€`;
-
-				let divType = document.createElement("div");
-				divType.classList.add("col-md-2");
-				divType.textContent = `Type: ${room.getType()}`;
-
-				let divStatus = document.createElement("div");
-				divStatus.classList.add("col-md-2");
-				divStatus.textContent = "Status: ";
-				if (room.getStatus()) {
-					divStatus.textContent += "Free";
-				} else {
-					divStatus.textContent += "Booked";
-				}
-
-				let divActions = document.createElement("div");
-				divActions.classList.add("col-md-4", "d-inline-flex", "gap-1", "justify-content-end");
-				{
-					let btnModify = document.createElement("button");
-					btnModify.classList.add("btn", "btn-secondary");
-					btnModify.textContent = "Modify";
-					this.#registerEventEditRoom(room, btnModify);
-
-					let btnFreeBook
-					if (room.getStatus()) {
-						btnFreeBook = document.createElement("button");
-						btnFreeBook.classList.add("btn", "btn-secondary");
-						btnFreeBook.textContent = "Book";
-						this.#registerEventForBookRoom(
-							room,
-							opt.rooms === "available",
-							btnFreeBook,
-							divStatus
-						);
-					} else {
-						btnFreeBook = document.createElement("button");
-						btnFreeBook.classList.add("btn", "btn-secondary");
-						btnFreeBook.textContent = "Free";
-						this.#registerEventForFreeRoom(
-							room,
-							opt.rooms === "available",
-							btnFreeBook,
-							divStatus
-						);
-					}
-
-					let btnDelete = document.createElement("button");
-					btnDelete.classList.add("btn", "btn-danger");
-					btnDelete.textContent = "Delete";
-					this.#registerEventForDeleteRoom(room, btnDelete, li);
-
-					divActions.append(btnModify, btnFreeBook, btnDelete);
-				}
-
-				div.append(divNumber, divPrice, divType, divStatus, divActions);
-			}
-
-			li.append(div);
-
-			return li;
 		};
 
 		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
@@ -411,9 +262,37 @@ class HotelManagementSystem
 		buttonElement.addEventListener("click", onClickAction);
 	}
 
-	#registerEventEditRoom(room, btnElement) {
+	/**
+	 * Crée un élément de liste (<li>) correspondant aux informations d'une chambre.
+	 */
+	#makeRoomItemDOM(room) {
+		let li = document.createElement("li");
+		li.classList.add("list-group-item");
+
+		let div = document.createElement("div");
+		div.classList.add("row", "align-items-center");
+
+		let divNumber = document.createElement("div");
+		divNumber.classList.add("col-md-2");
+		divNumber.textContent = `Number: ${room.getNumber()}`;
+
+		let divPrice = document.createElement("div");
+		divPrice.classList.add("col-md-2");
+		divPrice.textContent = `Price: ${room.getPrice()}€`;
+
+		let divType = document.createElement("div");
+		divType.classList.add("col-md-3");
+		divType.textContent = `Type: ${room.getType()}`;
+
+		let divActions = document.createElement("div");
+		divActions.classList.add("col-md-5", "d-inline-flex", "gap-1", "justify-content-end");
+
+		let btnModify = document.createElement("button");
+		btnModify.classList.add("btn", "btn-secondary");
+		btnModify.textContent = "Modify";
+
 		// Crée le formulaire d'édition.
-		const onClickAction = (event) => {
+		const onModifyClickAction = () => {
 			let formElement   = document.querySelector(ROOM_FORM_SELECTOR);
 
 			this.#formType = "edit";
@@ -427,84 +306,101 @@ class HotelManagementSystem
 
 			this.#showPage(formElement);
 		};
+		btnModify.addEventListener("click", onModifyClickAction);
 
-		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
-		// va être appelée.
-		btnElement.addEventListener("click", onClickAction);
+		divActions.appendChild(btnModify);
+		divActions.appendChild(this.#makeFreeBookButton(room));
+
+		let btnDelete = document.createElement("button");
+		btnDelete.classList.add("btn", "btn-danger");
+		btnDelete.textContent = "Delete";
+		// Supprime la ligne de la chambre dans la liste des chambres dans le DOM.
+		const onDeleteClickAction = () => {
+			this.#hotel.deleteRoom(room.getNumber());
+			li.remove();
+		};
+		btnDelete.addEventListener("click", onDeleteClickAction)
+
+		divActions.appendChild(btnDelete);
+
+		div.append(divNumber, divPrice, divType, divActions);
+
+		li.append(div);
+
+		return li;
 	}
 
-	#registerEventForFreeRoom(room, removeItemWhenBooked, btnElement, rootElement) {
-		const onClickAction = (event) => {
-			if ( ! room.getStatus()) {
-				if (this.#hotel.freeRoom(room.getNumber())) {
-					rootElement.textContent = "Status: Free";
-					btnElement.textContent = "Book";
-				}
-			}
+	#makeFreeBookButton(room) {
+		const onBookClickAction = (clickEvent) => {
+			const dialog = document.querySelector("#book-room");
+			dialog.querySelector("#book-room-number").textContent = `n°${room.getNumber()}`;
+			dialog.querySelector("form")
+				.addEventListener(
+					"submit",
+					(submitEvent) => onBookSubmitAction(submitEvent, clickEvent.target),
+					{ once: true }
+				);
 		};
 
-		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
-		// va être appelée.
-		btnElement.addEventListener("click", onClickAction);
-	}
-
-	#registerEventForBookRoom(room, removeItemWhenBooked, btnElement, rootElement) {
-		let dialog = document.querySelector("#book-room");
-		// Change le texte des éléments du DOM en fonction du status de
-		// disponibilité la chambre.
-		const onClickAction = (event) => {
-			dialog.setAttribute("open", "open");
-			dialog.addEventListener("submit", onSubmitAction, { once: true });
-		};
-
-		const onSubmitAction = (event) => {
-			// Pour éviter de rediriger vers la page d'action
+		const onBookSubmitAction = (event, clickedButton) => {
 			event.preventDefault();
 
 			let name = event.target.elements.name.value;
 			let nights = event.target.elements.nights.value;
 
-			if (this.#hotel.bookRoom(
+			let bookedRoom = this.#hotel.bookRoom(
 				room.getNumber(),
 				name,
 				nights,
-			)) {
-				console.log(
-					`You have successfully reserved the room n°${room.getNumber()} for ${nights} nights.`
-				);
-			} else {
+			);
+
+			const dialog = document.querySelector("#book-room");
+			dialog.hidePopover();
+
+			if (!bookedRoom) {
 				console.log(`Sorry ${name}, this room is already reserved`);
+				return;
 			}
 
-			dialog.removeAttribute("open");
+			console.log(
+				`You have successfully reserved the room n°${bookedRoom.getNumber()} for ${nights} nights.`
+			);
 
-			if (room.getStatus()) {
-				rootElement.textContent = "Status: Booked";
-				btnElement.textContent = "Free";
-				if (removeItemWhenBooked) {
-					rootElement.parentElement.parentElement.remove();
-				}
-			} else {
-				rootElement.textContent = "Status: Free";
-				btnElement.textContent = "Book";
-			}
+			clickedButton.replaceWith(
+				this.#makeFreeBookButton(bookedRoom)
+			);
 		};
 
-		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
-		// va être appelée.
-		btnElement.addEventListener("click", onClickAction);
-	}
+		if (room.getStatus()) {
+			let btnBook = document.createElement("button");
+			btnBook.classList.add("btn", "btn-secondary");
+			btnBook.textContent = "Book";
+			btnBook.setAttribute("popovertarget", "book-room");
+			btnBook.setAttribute("popovertargetaction", "show");
+			btnBook.addEventListener("click", onBookClickAction, { once: true });
+			return btnBook;
+		}
 
-	#registerEventForDeleteRoom(room, btnElement, rootElement) {
-		// Supprime la ligne de la chambre dans la liste des chambres dans le DOM.
-		const onClickAction = (event) => {
-			this.#hotel.deleteRoom(room.getNumber());
-			rootElement.remove();
+		const onFreeClickAction = (event) => {
+			const dialog = document.querySelector("#free-room");
+			dialog?.addEventListener("submit", () => {
+				this.#hotel.freeRoom(room.getNumber());
+				event.target.replaceWith(
+					this.#makeFreeBookButton(room)
+				);
+				dialog.hidePopover();
+			}, { once: true });
 		};
 
-		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
-		// va être appelée.
-		btnElement.addEventListener("click", onClickAction);
+		let btnFree = document.createElement("button");
+		btnFree.classList.add("btn", "btn-secondary");
+		btnFree.textContent = "Free";
+		btnFree.setAttribute("popovertarget", "free-room");
+		btnFree.setAttribute("popovertargetaction", "show");
+
+		btnFree.addEventListener("click", onFreeClickAction, { once: true });
+
+		return btnFree;
 	}
 
 	#createForm(values) {

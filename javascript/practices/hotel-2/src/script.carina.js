@@ -75,8 +75,11 @@ class Hotel {
 			return room.getNumber() === number;
 		});
 		let booked = room.bookNow(new RoomReservation(number, personName, nights));
-		room.setStatus(booked);
-		return booked;
+		room.setStatus(!booked);
+		if (!booked) {
+			return false;
+		}
+		return room;
 	}
 	searchRooms(type, maxPrice, status) {
 	  return this.#rooms.filter(
