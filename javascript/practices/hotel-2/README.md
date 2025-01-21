@@ -6,8 +6,8 @@ débutants afin de réaliser l'application de la gestion des chambres d'un hôte
 ## Groupe
 
 1. Chef d'équipe : `M.`
-2. Développeuse  : `C.` (**active**)
-3. Développeur   : `S.` (**inactif**)
+2. Développeuse  : `C.`
+3. Designer      : `S.`
 
 ## Fonctionnalités
 
@@ -47,9 +47,10 @@ classDiagram
     }
 ```
 
-Son schéma pouvait être amélioré. J'ai donc décidé de consulter `C.` et lui
-proposer de réfléchir ensemble à un nouveau en partant de l'existant. Avec
-beaucoup d'échanges, nous avons convenus à un schéma en commun :
+Son schéma était correcte mais pouvait être amélioré. J'ai donc décidé de
+consulter `C.` et lui proposer de réfléchir ensemble à un nouveau en partant de
+l'existant. Avec beaucoup d'échanges, nous avons convenu à un schéma en commun
+:
 
 ```mermaid
 classDiagram
@@ -95,12 +96,17 @@ de démo, qu'est Bootstrap.
 Nous n'avons pas beaucoup de temps à accorder aux design de l'application.
 Il s'agit d'un simple exercice de groupes, pas d'un réel projet.
 
+`S.` a pris l'initiative de faire le design de l'application afin de le rendre
+visuellement plus attrayant que la version bootstrap.
+
+Nous avons opté de choisir la version de `S.` car elle est vraiment cool.
+
 ## Implémentation
 
 J'ai demandé à `C.` de créer les classes correspondantes aux schémas qu'on a
 établie, elle est l'a fait avec brio.
 
-Étant donné que `S.` n'a pas donné signe de vie, j'ai pris l'initiative de de
+Étant donné que `S.` n'était pas en bonne forme, j'ai pris l'initiative de de
 connecter les boutons et les formulaires aux JavaScript et de transmettre les
 données aux méthodes de classes qu'à précédemment crée `C.` et d'afficher les
 données que me retournent les méthodes de classes de `C.` dans le DOM.
