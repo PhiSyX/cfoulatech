@@ -182,10 +182,49 @@
 
 		<div id="error-msg" class="alert alert-danger" hidden></div>
 
-		<!-- Carina: -->
-
 		<!-- Saif: -->
 	</div>
+
+	<!-- Carina: -->
+	<dialog id="book-room" class="dialog">
+		<h1>
+			Réservation de la chambre
+			<span id="book-number"></span>
+		</h1>
+
+		<form action="book-room.php" method="post">
+
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label>
+				<input type="text" class="form-control" id="name" placeholder="John doe" value="Mike">
+			</div>
+
+			<div class="mb-3">
+				<label for="name" class="form-label">
+					How many nights
+				</label>
+
+				<input
+					type="number"
+					name="nights"
+					id="nights"
+					class="form-control"
+					min="1"
+					max="30"
+					value="12"
+				>
+				<!-- <input
+					min="1"
+					max="30"
+					type="range"
+					class="form-control"
+					id="nights"
+				> -->
+			</div>
+
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</dialog>
 
 	<script src="src/script.carina.js"></script>
 	<script src="src/script.saif.js"></script>

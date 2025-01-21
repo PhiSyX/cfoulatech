@@ -267,15 +267,15 @@ class HotelManagementSystem
 					btnFreeBook.classList.add("btn", "btn-secondary");
 					if (room.getStatus()) {
 						btnFreeBook.textContent = "Book";
+						this.#registerEventForBookRoom(
+							room,
+							true,
+							btnFreeBook,
+							divStatus
+						);
 					} else {
 						btnFreeBook.textContent = "Free";
 					}
-					this.#registerEventForFreeBookRoom(
-						room,
-						true,
-						btnFreeBook,
-						divStatus
-					);
 
 					let btnDelete = document.createElement("button");
 					btnDelete.classList.add("btn", "btn-danger");
@@ -367,19 +367,28 @@ class HotelManagementSystem
 					btnModify.textContent = "Modify";
 					this.#registerEventEditRoom(room, btnModify);
 
-					let btnFreeBook = document.createElement("button");
-					btnFreeBook.classList.add("btn", "btn-secondary");
+					let btnFreeBook
 					if (room.getStatus()) {
+						btnFreeBook = document.createElement("button");
+						btnFreeBook.classList.add("btn", "btn-secondary");
 						btnFreeBook.textContent = "Book";
+						this.#registerEventForBookRoom(
+							room,
+							opt.rooms === "available",
+							btnFreeBook,
+							divStatus
+						);
 					} else {
+						btnFreeBook = document.createElement("button");
+						btnFreeBook.classList.add("btn", "btn-secondary");
 						btnFreeBook.textContent = "Free";
+						this.#registerEventForFreeRoom(
+							room,
+							opt.rooms === "available",
+							btnFreeBook,
+							divStatus
+						);
 					}
-					this.#registerEventForFreeBookRoom(
-						room,
-						opt.rooms === "available",
-						btnFreeBook,
-						divStatus
-					);
 
 					let btnDelete = document.createElement("button");
 					btnDelete.classList.add("btn", "btn-danger");
@@ -424,27 +433,60 @@ class HotelManagementSystem
 		btnElement.addEventListener("click", onClickAction);
 	}
 
-	// TODO: créer un formulaire avec :
-	//
-	// 			1. Nom de la personne qui réserve/rend
-	// 			2. le nombre de nuits
-	#registerEventForFreeBookRoom(room, removeItemWhenBooked, btnElement, rootElement) {
-		// Change le texte des éléments du DOM en fonction du status de
-		// disponibilité la chambre.
+	#registerEventForFreeRoom(room, removeItemWhenBooked, btnElement, rootElement) {
 		const onClickAction = (event) => {
-			if (room.getStatus()) {
-				if (this.#hotel.bookRoom(room.getNumber())) {
-					rootElement.textContent = "Status: Booked";
-					btnElement.textContent = "Free";
-					if (removeItemWhenBooked) {
-						rootElement.parentElement.parentElement.remove();
-					}
-				}
-			} else {
+			if ( ! room.getStatus()) {
 				if (this.#hotel.freeRoom(room.getNumber())) {
 					rootElement.textContent = "Status: Free";
 					btnElement.textContent = "Book";
 				}
+			}
+		};
+
+		// Lorsqu'on appuie sur le click, la fonction ci-dessus `onClickAction`
+		// va être appelée.
+		btnElement.addEventListener("click", onClickAction);
+	}
+
+	#registerEventForBookRoom(room, removeItemWhenBooked, btnElement, rootElement) {
+		let dialog = document.querySelector("#book-room");
+		// Change le texte des éléments du DOM en fonction du status de
+		// disponibilité la chambre.
+		const onClickAction = (event) => {
+			dialog.setAttribute("open", "open");
+			dialog.addEventListener("submit", onSubmitAction, { once: true });
+		};
+
+		const onSubmitAction = (event) => {
+			// Pour éviter de rediriger vers la page d'action
+			event.preventDefault();
+
+			let name = event.target.elements.name.value;
+			let nights = event.target.elements.nights.value;
+
+			if (this.#hotel.bookRoom(
+				room.getNumber(),
+				name,
+				nights,
+			)) {
+				console.log(
+					`You have successfully reserved the room n°${room.getNumber()} for ${nights} nights.`
+				);
+			} else {
+				console.log(`Sorry ${name}, this room is already reserved`);
+			}
+
+			dialog.removeAttribute("open");
+
+			if (room.getStatus()) {
+				rootElement.textContent = "Status: Booked";
+				btnElement.textContent = "Free";
+				if (removeItemWhenBooked) {
+					rootElement.parentElement.parentElement.remove();
+				}
+			} else {
+				rootElement.textContent = "Status: Free";
+				btnElement.textContent = "Book";
 			}
 		};
 

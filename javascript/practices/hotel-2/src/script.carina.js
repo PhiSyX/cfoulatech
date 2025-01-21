@@ -53,7 +53,6 @@ class Hotel {
 			// chambre correspond à celui passé en paramètre.
 			return room.getNumber() === number;
 		});
-		console.log({room, number, type, price})
 
 		room.setNumber(number);
 		room.setType(type);
@@ -61,28 +60,35 @@ class Hotel {
 
 		return room;
 	}
+
 	freeRoom(number) {
 		let room = this.#rooms.find((room) => {
 			return room.getNumber() === number;
 		});
 		room.setStatus(true);
+		room.freeNow();
 		return true;
 	}
 
-	bookRoom(number) {
+	bookRoom(number, personName, nights) {
 		let room = this.#rooms.find((room) => {
 			return room.getNumber() === number;
 		});
-		room.setStatus(false);
-	  return true;
+		let booked = room.bookNow(new RoomReservation(number, personName, nights));
+		room.setStatus(booked);
+		return booked;
 	}
 	searchRooms(type, maxPrice, status) {
 	  return this.#rooms.filter(
 		(room) => {
+			// Carina qui a fait
 			let defaultReturn = room.getType() === type && room.getPrice() <= maxPrice;
+
+			// Mike qui a fait
 			if (status !== null) {
 				return defaultReturn && room.getStatus() === status;
 			}
+
 			return defaultReturn
 		}
 	  );
@@ -122,6 +128,7 @@ class Room {
 	   */
 	  this.status = true;
 	  this.nights = 1;
+	  this.reservation = null;
 	}
 	//setter
 	setNumber(number) {
@@ -164,5 +171,26 @@ class Room {
 	}
 	getStatus() {
 	  return this.status;
+	}
+
+	//methods
+	bookNow(reservation) {
+		if (this.reservation !== null) {
+			return false;
+		}
+
+		this.reservation = reservation;
+		return true;
+	}
+	freeNow() {
+		this.reservation = null;
+	}
+}
+
+class RoomReservation {
+	constructor(roomNumber, personName, nights) {
+		this.roomNumber = roomNumber;
+		this.personName = personName;
+		this.nights = nights;
 	}
 }
