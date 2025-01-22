@@ -41,7 +41,7 @@
 						<label for="status1" class="form-check-label">Free</label>
 					</div>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2 align-self-end">
 					<button type="submit" class="btn btn-warning w-100">Search</button>
 				</div>
 			</form>
@@ -72,7 +72,9 @@
 					<span class="text-danger"></span>
 				</div>
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-warning w-100">Save Room</button>
+					<button type="submit" class="btn btn-warning w-100">
+						Save Room
+					</button>
 				</div>
 			</form>
 		</div>
@@ -93,6 +95,7 @@
 		</div>
 
 		<div id="error-msg" class="alert alert-danger mt-4" hidden></div>
+		<div id="success-msg" class="alert alert-success mt-4" hidden></div>
 
 		<footer>
 			<span class="badge text-bg-dark">
@@ -112,6 +115,7 @@
 			<div class="mb-3">
 				<label for="name" class="form-label">Name</label>
 				<input type="text" class="form-control" id="name" placeholder="John doe" value="Mike">
+				<span class="text-danger"></span>
 			</div>
 
 			<div class="mb-3">
@@ -128,6 +132,7 @@
 					max="30"
 					value="12"
 				>
+				<span class="text-danger"></span>
 				<!-- <input
 					min="1"
 					max="30"
@@ -143,20 +148,36 @@
 			>
 				Save
 			</button>
+
+			<button
+				type="button"
+				class="btn btn-dark"
+				popovertarget="book-room"
+				popovertargetaction="hide"
+			>
+				Cancel
+			</button>
 		</form>
 	</dialog>
 
 	<dialog id="free-room" class="dialog" popover>
 		<h1>
 			Free the room
-			<span id="book-number"></span>
+			<span id="free-book-number"></span>
 		</h1>
 
 		<form action="free-room.php" method="dialog">
-			<p>Are you sure you want to vacate the room?</p>
+			<p>Are you sure you want to vacate the room <strong id="free-room-person"></strong>?</p>
 
 			<button type="submit" class="btn btn-info">Yes</button>
-			<button type="submit" class="btn btn-dark">No</button>
+			<button
+				type="button"
+				class="btn btn-dark"
+				popovertarget="free-room"
+				popovertargetaction="hide"
+			>
+				No
+			</button>
 		</form>
 	</dialog>
 

@@ -14,7 +14,7 @@ débutants afin de réaliser l'application de la gestion des chambres d'un hôte
 1. [x] L'ajout d'une chambre
 2. [x] La modification d'une chambre
 3. [x] La suppression d'une chambre
-4. [ ] La réservation d'une chambre
+4. [x] La réservation d'une chambre
 5. [x] La libération d'une chambre
 6. [x] La recherche d'une chambre en fonction d'un prix max et d'un type (réservé ou non)
 7. [x] Lister toutes les chambres disponibles et réservés de l'hôtel

@@ -33,16 +33,16 @@ class HotelManagementSystem
 		 * Des exemples.
 		 */
 		let room1 = this.#hotel.addRoom(11, "single", 23.0);
-		room1.setStatus(false);
+		room1.freeNow();
 
 		let room2 = this.#hotel.addRoom(12, "double", 123.0);
-		room2.setStatus(true);
+		room2.bookNow(new RoomReservation(12, "Mike", 4));
 
 		let room3 = this.#hotel.addRoom(13, "double", 125.0);
-		room3.setStatus(true);
+		room3.bookNow(new RoomReservation(13, "Carina", 1));
 
 		let room4 = this.#hotel.addRoom(14, "double", 120.0);
-		room4.setStatus(true);
+		room4.bookNow(new RoomReservation(14, "Saif", 7));
 	}
 
 	/**
@@ -73,11 +73,11 @@ class HotelManagementSystem
 		let formElement   = document.querySelector(ROOM_FORM_SELECTOR);
 
 		let rooms = [];
+		let formType = "add";
 
 		const onClickAction = (event) => {
-			this.#formType = "add";
-
 			this.#createForm({
+				formType: formType,
 				number: "",
 				type: "",
 				price: "",
@@ -113,16 +113,16 @@ class HotelManagementSystem
 
 			let numberRoom = checkValidityInput(event.target.elements.number, {
 				number:     "positive",
-				isInList:    this.#formType === "edit" ? [Number(formElement.getAttribute("data-id"))] : [],
-				isNotInList: this.#formType === "add"  ? rooms : [],
+				isInList:    formType === "edit" ? [Number(formElement.getAttribute("data-id"))] : [],
+				isNotInList: formType === "add"  ? rooms : [],
 			});
 			let priceRoom  = checkValidityInput(event.target.elements.price, {
 				number: "positive",
 			});
 			let typeRoom   = checkValidityInput(event.target.elements.type, {
-				isInList:    this.#formType === "add"  ? this.#hotel.getAllRoomTypes() : [],
-				isNotInList: this.#formType === "edit" ? this.#hotel.getAllRoomTypes() : [],
-				unchecked:   this.#formType === "edit",
+				isInList:    formType === "add"  ? this.#hotel.getAllRoomTypes() : [],
+				isNotInList: formType === "edit" ? this.#hotel.getAllRoomTypes() : [],
+				unchecked:   formType === "edit",
 			});
 
 			if (!numberRoom || !priceRoom || !typeRoom) {
@@ -133,7 +133,7 @@ class HotelManagementSystem
 			// qu'à crée Carina
 			let room;
 
-			if (this.#formType === "add") {
+			if (formType === "add") {
 				room = this.#hotel.addRoom(
 					numberRoom.consume(),
 					typeRoom.consume(),
@@ -295,9 +295,8 @@ class HotelManagementSystem
 		const onModifyClickAction = () => {
 			let formElement   = document.querySelector(ROOM_FORM_SELECTOR);
 
-			this.#formType = "edit";
-
 			this.#createForm({
+				formType: "edit",
 				id: room.getNumber(),
 				number: room.getNumber(),
 				type: room.getType(),
@@ -330,6 +329,9 @@ class HotelManagementSystem
 		return li;
 	}
 
+	/**
+	 * @param {Room} room
+	 */
 	#makeFreeBookButton(room) {
 		const onBookClickAction = (clickEvent) => {
 			const dialog = document.querySelector("#book-room");
@@ -346,7 +348,9 @@ class HotelManagementSystem
 			event.preventDefault();
 
 			let name = event.target.elements.name.value;
-			let nights = event.target.elements.nights.value;
+			let nights = checkValidityInput(event.target.elements.nights, {
+				number: "positive"
+			});
 
 			let bookedRoom = this.#hotel.bookRoom(
 				room.getNumber(),
@@ -358,12 +362,12 @@ class HotelManagementSystem
 			dialog.hidePopover();
 
 			if (!bookedRoom) {
-				console.log(`Sorry ${name}, this room is already reserved`);
+				error(`Sorry ${name}, this room is already reserved`);
 				return;
 			}
 
-			console.log(
-				`You have successfully reserved the room n°${bookedRoom.getNumber()} for ${nights} nights.`
+			success(
+				`You have successfully reserved the room n°${bookedRoom.getNumber()} for ${nights.consume()} nights.`
 			);
 
 			clickedButton.replaceWith(
@@ -383,13 +387,17 @@ class HotelManagementSystem
 
 		const onFreeClickAction = (event) => {
 			const dialog = document.querySelector("#free-room");
-			dialog?.addEventListener("submit", () => {
-				this.#hotel.freeRoom(room.getNumber());
-				event.target.replaceWith(
-					this.#makeFreeBookButton(room)
-				);
-				dialog.hidePopover();
-			}, { once: true });
+
+			dialog.querySelector("#free-book-number").textContent = `n°${room.getNumber()}`;
+			dialog.querySelector("#free-room-person").textContent = room.getReservation().getPersonName();
+
+			dialog.addEventListener("submit", onFreeSubmitAction, { once: true });
+		};
+
+		const onFreeSubmitAction = (event) => {
+			this.#hotel.freeRoom(room.getNumber());
+			event.target.replaceWith(this.#makeFreeBookButton(room));
+			dialog.hidePopover();
 		};
 
 		let btnFree = document.createElement("button");
@@ -412,7 +420,7 @@ class HotelManagementSystem
 		}
 
 		let titleElement = formElement.querySelector("#term");
-		titleElement.textContent = this.#formType === "add" ? "Add" : `Edit n°${values.number}`;
+		titleElement.textContent = values.formType === "add" ? "Add" : `Edit n°${values.number}`;
 
 		let numberInput = formElement.querySelector("#number2");
 		numberInput.classList.remove("border", "border-danger");
@@ -484,6 +492,7 @@ class HotelManagementSystem
 		currentPage.removeAttribute("hidden");
 
 		error("");
+		success("");
 	}
 }
 
@@ -571,6 +580,16 @@ function checkValidityInput(input, ruleOption = {})
 };
 
 function error(msg, element = document.querySelector("#error-msg"))
+{
+	if (msg.length === 0) {
+		element.setAttribute("hidden", "hidden");
+	} else {
+		element.removeAttribute("hidden");
+	}
+	element.textContent = msg;
+}
+
+function success(msg, element = document.querySelector("#success-msg"))
 {
 	if (msg.length === 0) {
 		element.setAttribute("hidden", "hidden");

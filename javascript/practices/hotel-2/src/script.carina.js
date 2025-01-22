@@ -75,7 +75,6 @@ class Hotel {
 			return room.getNumber() === number;
 		});
 		let booked = room.bookNow(new RoomReservation(number, personName, nights));
-		room.setStatus(!booked);
 		if (!booked) {
 			return false;
 		}
@@ -150,6 +149,10 @@ class Room {
 	  this.price = price;
 	}
 
+	/**
+	 * true = free
+	 * false = booked
+	 */
 	setStatus(status) {
 	  this.status = status;
 	}
@@ -183,10 +186,17 @@ class Room {
 		}
 
 		this.reservation = reservation;
+		this.setStatus(false);
 		return true;
 	}
 	freeNow() {
+		this.setStatus(true);
 		this.reservation = null;
+	}
+
+	getReservation()
+	{
+		return this.reservation;
 	}
 }
 
@@ -195,5 +205,10 @@ class RoomReservation {
 		this.roomNumber = roomNumber;
 		this.personName = personName;
 		this.nights = nights;
+	}
+
+	getPersonName()
+	{
+		return this.personName;
 	}
 }
