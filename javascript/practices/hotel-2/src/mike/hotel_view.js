@@ -6,11 +6,13 @@ import { HotelDOMEvent } from "./hotel_event.js";
 // Implémentation //
 // -------------- //
 
-class HotelView extends HotelDOMEvent {
+class HotelView extends HotelDOMEvent
+{
 	/**
 	 * Enregistre les événements liés à la fonctionnalité de l'ajout de chambre.
 	 */
-	registerAddFeature() {
+	registerAddFeature()
+	{
 		this.registerAddButtonEvent();
 	}
 
@@ -18,7 +20,8 @@ class HotelView extends HotelDOMEvent {
 	 * Enregistre les événements liés à la fonctionnalité de l'ajout et
 	 * l'édition de chambre (formulaire).
 	 */
-	registerFormFeature() {
+	registerFormFeature()
+	{
 		this.registerAddEditFormEvent();
 	}
 
@@ -26,7 +29,8 @@ class HotelView extends HotelDOMEvent {
 	 * Enregistre les événements liés à la fonctionnalité de listage des
 	 * chambres.
 	 */
-	registerListRoomsFeature() {
+	registerListRoomsFeature()
+	{
 		this.registerListAllRoomsButtonEvent();
 		this.registerListAvailableRoomsButtonEvent();
 	}
@@ -35,7 +39,8 @@ class HotelView extends HotelDOMEvent {
 	 * Enregistre les événements liés à la fonctionnalité de recherche des
 	 * chambres.
 	 */
-	registerSearchRoomsFeature() {
+	registerSearchRoomsFeature()
+	{
 		this.registerSearchButtonEvent();
 		this.registerSearchCheckboxEvent();
 		this.registerSearchSubmitEvent();

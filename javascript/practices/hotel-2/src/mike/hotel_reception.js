@@ -6,27 +6,35 @@ import { Hotel } from "../carina/hotel.js";
 // Implémentation //
 // -------------- //
 
-class HotelReception {
+class HotelReception
+{
 	#database;
 	#allRoomTypes = ["single", "double"];
 
-	constructor() {
+	constructor()
+	{
 		this.#database = new Hotel();
 	}
 
-	allRooms() {
+	allRooms()
+	{
 		return this.#database.listAllRooms();
 	}
 
-	availableRooms() {
+	availableRooms()
+	{
 		return this.#database.listAvailableRooms();
 	}
 
-	getAllRoomTypes() {
+	getAllRoomTypes()
+	{
 		return this.#allRoomTypes;
 	}
 
-	requestBookRoom(data) {
+	requestBookRoom(data)
+	{
+		console.debug("> FORM BOOK ROOM", data);
+
 		let roomNumber = data.roomNumber;
 		let personName = data.personName.trim();
 		let nights = data.nights;
@@ -57,7 +65,8 @@ class HotelReception {
 			});
 		}
 
-		if (errors.length) {
+		if (errors.length > 0) {
+			console.debug("< RETURN BOOK ROOM", errors);
 			return errors;
 		}
 
@@ -67,38 +76,36 @@ class HotelReception {
 			nights
 		);
 
-		if (!maybeBookedRoom) {
-			errors.push({
-				type: "error",
-				message: "The room is currently unavailable",
-			});
-		}
-
-		if (errors.length) {
-			return errors;
-		}
-
+		console.debug("< RETURN BOOK ROOM", maybeBookedRoom);
 		return maybeBookedRoom;
 	}
 
-	requestFreeRoom(data) {
+	requestFreeRoom(data)
+	{
+		console.debug("> FORM FREE ROOM", data);
+
 		let errors = [];
 
-		if (!this.#database.freeRoom(data.roomNumber)) {
+		if (!this.#database.freeRoom(data.number)) {
 			errors.push({
 				type: "error",
 				message: "The room is not currently booked",
 			});
 		}
 
-		if (errors.length) {
+		if (errors.length > 0) {
+			console.debug("< RETURN FREE ROOM", errors);
 			return errors;
 		}
 
+		console.debug("< RETURN FREE ROOM", true);
 		return true;
 	}
 
-	requestAddRoom(data) {
+	requestAddRoom(data)
+	{
+		console.debug("> FORM ADD ROOM", data);
+
 		let number = data.number;
 		let type = data.type;
 		let price = data.price;
@@ -116,9 +123,7 @@ class HotelReception {
 		if (!this.getAllRoomTypes().includes(type)) {
 			errors.push({
 				type: "error",
-				message:
-					"The room type must be in the following list: " +
-					this.getAllRoomTypes(),
+				message: `The room type must be in the following list: ${this.getAllRoomTypes()}`,
 				pointer: "type",
 			});
 		}
@@ -138,21 +143,27 @@ class HotelReception {
 		if (roomsNumbers.includes(number)) {
 			errors.push({
 				type: "error",
-				message:
-					`The room number (${number}) is already stored in our database: ` +
-					roomsNumbers,
+				message: `The room number (${number}) is already stored in our database: ${roomsNumbers}`,
 				pointer: "number",
 			});
 		}
 
-		if (errors.length) {
+		if (errors.length > 0) {
+			console.debug("< RETURN ADD ROOM", errors);
 			return errors;
 		}
 
-		return this.#database.addRoom(number, type, price);
+		let addedRoom = this.#database.addRoom(number, type, price);
+
+		console.debug("< RETURN ADD ROOM", addedRoom);
+
+		return addedRoom;
 	}
 
-	requestEditRoom(data) {
+	requestEditRoom(data)
+	{
+		console.debug("> FORM EDIT ROOM", data);
+
 		let number = data.number;
 		let type = data.type;
 		let price = data.price;
@@ -170,9 +181,7 @@ class HotelReception {
 		if (!this.getAllRoomTypes().includes(type)) {
 			errors.push({
 				type: "error",
-				message:
-					"The room type must be in the following list: " +
-					this.getAllRoomTypes(),
+				message: `The room type must be in the following list: ${this.getAllRoomTypes()}`,
 				pointer: "type",
 			});
 		}
@@ -185,11 +194,7 @@ class HotelReception {
 			});
 		}
 
-		if (
-			!this.#database
-				.listAllRooms()
-				.some((room) => room.getNumber() === number)
-		) {
+		if (!this.#database.listAllRooms().some((room) => room.getNumber() === number)) {
 			errors.push({
 				type: "error",
 				message: `The room number (${number}) is not included in our database`,
@@ -197,18 +202,28 @@ class HotelReception {
 			});
 		}
 
-		if (errors.length) {
+		if (errors.length > 0) {
+			console.debug("< RETURN EDIT ROOM", errors);
 			return errors;
 		}
 
-		return this.#database.modifyRoom(number, type, price);
+		let modifiedRoom = this.#database.modifyRoom(number, type, price);
+
+		console.debug("< RETURN EDIT ROOM", modifiedRoom);
+
+		return modifiedRoom;
 	}
 
-	requestDeleteRoom(data) {
-		return this.#database.deleteRoom(data.number);
+	requestDeleteRoom(data)
+	{
+		console.debug("> FORM DELETE ROOM", data);
+		let deletedRoom = this.#database.deleteRoom(data.number);
+		console.debug("< RETURN DELETE ROOM", deletedRoom);
+		return deletedRoom;
 	}
 
-	searchRooms(data) {
+	searchRooms(data)
+	{
 		let type = data.type;
 		let maxPrice = data.maxPrice;
 		let status = data.status;
@@ -218,9 +233,7 @@ class HotelReception {
 		if (!this.getAllRoomTypes().includes(type)) {
 			errors.push({
 				type: "error",
-				message:
-					"The room type must be in the following list: " +
-					this.getAllRoomTypes(),
+				message: `The room type must be in the following list: ${this.getAllRoomTypes()}`,
 				pointer: "type",
 			});
 		}

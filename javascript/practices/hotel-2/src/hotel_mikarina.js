@@ -6,7 +6,8 @@ import { HotelView } from "./mike/hotel_view.js";
 // Implémentation //
 // -------------- //
 
-class HotelMikarina {
+class HotelMikarina
+{
 	#view;
 
 	constructor() {
@@ -48,7 +49,8 @@ class HotelMikarina {
 	/**
 	 * Démarre le programme de l'hotel.
 	 */
-	launch() {
+	launch()
+	{
 		this.#view.registerAddFeature();
 		this.#view.registerFormFeature();
 		this.#view.registerListRoomsFeature();

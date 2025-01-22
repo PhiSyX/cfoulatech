@@ -59,10 +59,6 @@ class HotelRoom {
 
 	//methods
 	bookNow(personName, nights) {
-		if (this.reservation !== null) {
-			return false;
-		}
-
 		this.reservation = new HotelRoomReservation(
 			this.number,
 			personName,

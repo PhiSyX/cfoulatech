@@ -6,16 +6,18 @@ import { HotelReception } from "./hotel_reception.js";
 // Implémentation //
 // -------------- //
 
-class HotelDOM {
-	constructor() {
+class HotelDOM
+{
+	constructor()
+	{
 		this.reception = new HotelReception();
 	}
 
 	/**
-	 * @param {HTMLElement} element
-	 * @param {{ id?: string ; formType: "add"|"edit", roomTypes: Array<string>; number: string, type: string, price: string }} data
+	 * Initialise les données d'un formulaire avec des données prédéfinies.
 	 */
-	createForm(element, data) {
+	createForm(element, data)
+	{
 		if (data.id) {
 			element.setAttribute("data-id", data.id);
 		} else {
@@ -26,12 +28,8 @@ class HotelDOM {
 		errorDanger.classList.add("text-danger");
 
 		let titleElement = element.querySelector("#js-term");
-		titleElement.textContent =
-			data.formType === "add" ? "Add" : `Edit n°${data.number}`;
+		titleElement.textContent = data.formType === "add" ? "Add" : `Edit n°${data.number}`;
 
-		/**
-		 * @type {HTMLInputElement|null}
-		 */
 		let numberInput = element.querySelector("#js-number2");
 		numberInput.classList.remove("border", "border-danger");
 		numberInput.value = data.number;
@@ -44,15 +42,13 @@ class HotelDOM {
 				errorDanger.cloneNode(true)
 			);
 		}
+
 		if (data.id) {
 			numberInput.parentElement.setAttribute("hidden", "hidden");
 		} else {
 			numberInput.parentElement.removeAttribute("hidden");
 		}
 
-		/**
-		 * @type {HTMLSelectElement|null}
-		 */
 		let typeElement = element.querySelector("#js-type2");
 		typeElement.classList.remove("border", "border-danger");
 		typeElement.textContent = "";
@@ -83,9 +79,6 @@ class HotelDOM {
 
 		typeElement.value = data.type;
 
-		/**
-		 * @type {HTMLInputElement|null}
-		 */
 		let priceElement = element.querySelector("#js-price2");
 		priceElement.value = data.price;
 		priceElement.classList.remove("border", "border-danger");
@@ -101,10 +94,11 @@ class HotelDOM {
 	}
 
 	/**
-	 * @param {string} message
-	 * @param {HTMLElement} element
+	 * Affiche un message d'erreur de manière globale
 	 */
-	errorMessage(message, element = document.querySelector("#js-error-msg")) {
+	errorMessage(message)
+	{
+		let element = document.querySelector("#js-error-msg");
 		if (message.length === 0) {
 			element.setAttribute("hidden", "hidden");
 		} else {
@@ -114,29 +108,33 @@ class HotelDOM {
 	}
 
 	/**
-	 * @param {HTMLElement} element
+	 * Cache un élément en lui attribuant un attribut `hidden`
 	 */
-	hide(element) {
+	hide(element)
+	{
 		element.setAttribute("hidden", "hidden");
 	}
 
-	hideAllInputErrors() {
+	/**
+	 * Supprime toutes les erreurs de la page
+	 */
+	removeAllInputErrors()
+	{
 		let errors = document.querySelectorAll(".text-danger");
 
 		for (let error of Array.from(errors)) {
 			error.textContent = "";
-			error.previousElementSibling.classList.remove(
-				"border",
-				"border-danger"
-			);
+
+			error.previousElementSibling.classList.remove("border", "border-danger");
 		}
 	}
 
 	/**
-	 * @param {HTMLElement} element
+	 * Affiche un élément en lui retirant l'attribut `hidden`
 	 */
-	show(element) {
-		this.hideAllInputErrors();
+	show(element)
+	{
+		this.removeAllInputErrors();
 		this.successMessage("");
 		this.errorMessage("");
 
@@ -159,17 +157,15 @@ class HotelDOM {
 	}
 
 	/**
-	 * @param {HTMLUListElement} element
-	 * @param {{filter:"all"|"available"|"filter";list?:Array<number>}} options
+	 * Affiche la liste des chambres d'hotel dans un élément de liste,
+	 * en fonction d'options.
 	 */
-	showListRooms(element, options) {
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
+	showListRooms(listElement, options)
+	{
 		const showEditFormOnClick = (room) => {
-			let editFormElement = document.querySelector("#js-room-form");
+			let formElement = document.querySelector("#js-room-form");
 
-			this.createForm(editFormElement, {
+			this.createForm(formElement, {
 				formType: "edit",
 				id: room.getNumber(),
 				number: room.getNumber(),
@@ -178,13 +174,9 @@ class HotelDOM {
 				roomTypes: this.reception.getAllRoomTypes(),
 			});
 
-			this.show(editFormElement);
+			this.show(formElement);
 		};
 
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 * @param {HTMLLIElement} rootElement
-		 */
 		const deleteRoomOnClick = (room, rootElement) => {
 			let roomNumber = room.getNumber();
 
@@ -193,24 +185,14 @@ class HotelDOM {
 			}
 		};
 
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const bookRoomOnClick = (room) => {
 			let dialog = document.querySelector("#js-book-room");
 			let dialogForm = dialog.querySelector("form");
 			let dialogRoomNumber = dialog.querySelector("#js-book-room-number");
 			dialogRoomNumber.textContent = `n°${room.getNumber()}`;
-
-			dialogForm.addEventListener("submit", (event) =>
-				bookRoomOnSubmit(event, room)
-			);
+			dialogForm.addEventListener("submit", (event) => bookRoomOnSubmit(event, room));
 		};
 
-		/**
-		 * @param {SubmitEvent} event
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const bookRoomOnSubmit = (event, room) => {
 			event.preventDefault();
 
@@ -234,7 +216,6 @@ class HotelDOM {
 						this.errorMessage(error.message);
 					}
 				}
-
 				return;
 			}
 
@@ -242,18 +223,15 @@ class HotelDOM {
 
 			this.successMessage(
 				`The room has been reserved for ${reservation.getPersonName()} for ${reservation.getNights()} nights. ` +
-					`The total amount is ${room.getPrice()}€.`
+				`The total amount is ${room.getPrice()}€.`
 			);
 
 			let dialog = event.target.parentElement;
 			dialog.hidePopover();
 
-			this.showListRooms(element, options);
+			this.showListRooms(listElement, options);
 		};
 
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const freeRoomOnClick = (room) => {
 			let dialog = document.querySelector("#js-free-room");
 			let dialogRoomNumber = dialog.querySelector("#js-free-room-number");
@@ -261,24 +239,16 @@ class HotelDOM {
 			let dialogForm = dialog.querySelector("form");
 
 			dialogRoomNumber.textContent = `n°${room.getNumber()}`;
-			dialogPersonName.textContent = room
-				.getReservation()
-				.getPersonName();
+			dialogPersonName.textContent = room.getReservation().getPersonName();
 
-			dialogForm.addEventListener("submit", (event) =>
-				freeRoomOnSubmit(event, room)
-			);
+			dialogForm.addEventListener("submit", (event) => freeRoomOnSubmit(event, room));
 		};
 
-		/**
-		 * @param {SubmitEvent} event
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const freeRoomOnSubmit = (event, room) => {
 			event.preventDefault();
 
 			let maybeFreeRoom = this.reception.requestFreeRoom({
-				roomNumber: room.getNumber(),
+				number: room.getNumber(),
 			});
 
 			if (Array.isArray(maybeFreeRoom)) {
@@ -290,12 +260,9 @@ class HotelDOM {
 			let dialog = document.querySelector("#js-free-room");
 			dialog.hidePopover();
 
-			this.showListRooms(element, options);
+			this.showListRooms(listElement, options);
 		};
 
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const makeFreeBookButton = (room) => {
 			let btn = document.createElement("button");
 			btn.classList.add("btn", "btn-light");
@@ -315,9 +282,6 @@ class HotelDOM {
 			return btn;
 		};
 
-		/**
-		 * @param {import("../carina/hotel_room.js").HotelRoom} room
-		 */
 		const makeRoomItem = (room) => {
 			let li = document.createElement("li");
 			li.classList.add("list-group-item");
@@ -341,33 +305,25 @@ class HotelDOM {
 			divStatus.classList.add("col", "col--md-4");
 			divStatus.textContent = "Status: ";
 			if (room.getStatus()) {
-				divStatus.textContent = `Free`;
+				divStatus.textContent = "Free";
 			} else {
 				let res = room.getReservation();
 				divStatus.textContent = `Booked by ${res.getPersonName()} for ${res.getNights()} nights`;
 			}
 
 			let divActions = document.createElement("div");
-			divActions.classList.add(
-				"col-md-3",
-				"d-inline-flex",
-				"gap-1",
-				"justify-content-end"
-			);
+			divActions.classList.add("col-md-3", "d-inline-flex", "gap-1", "justify-content-end");
+
 			{
 				let btnModify = document.createElement("button");
 				btnModify.classList.add("btn", "btn-secondary");
 				btnModify.textContent = "Modify";
-				btnModify.addEventListener("click", () =>
-					showEditFormOnClick(room)
-				);
+				btnModify.addEventListener("click", () => showEditFormOnClick(room));
 
 				let btnDelete = document.createElement("button");
 				btnDelete.classList.add("btn", "btn-danger");
 				btnDelete.textContent = "Delete";
-				btnDelete.addEventListener("click", () => {
-					deleteRoomOnClick(room, li);
-				});
+				btnDelete.addEventListener("click", () => deleteRoomOnClick(room, li));
 
 				let separator = document.createElement("div");
 				separator.classList.add("align-self-center");
@@ -385,38 +341,36 @@ class HotelDOM {
 			return li;
 		};
 
-		element.innerHTML = "";
+		listElement.innerHTML = "";
 
 		let rooms = [];
 
 		switch (options.filter) {
 			case "all":
+			{
 				rooms = this.reception.allRooms();
-				break;
+			} break;
+
 			case "available":
+			{
 				rooms = this.reception.availableRooms();
-				break;
+			} break;
+
 			case "filter":
-				{
-					rooms = this.reception
-						.allRooms()
-						.filter((room) =>
-							options.list.includes(room.getNumber())
-						);
-				}
-				break;
+			{
+				rooms = this.reception.allRooms().filter(
+					(room) => options.list.includes(room.getNumber())
+				);
+			} break;
 		}
 
 		for (let room of rooms) {
-			element.appendChild(makeRoomItem(room));
+			listElement.appendChild(makeRoomItem(room));
 		}
 	}
 
-	/**
-	 * @param {HTMLInputElement} element
-	 * @param {string} message
-	 */
-	showInputError(element, message) {
+	showInputError(element, message)
+	{
 		if (message.length === 0) {
 			element.classList.remove("border", "border-danger");
 		} else {
@@ -428,34 +382,29 @@ class HotelDOM {
 		} else {
 			element.nextElementSibling.removeAttribute("hidden");
 		}
+
 		element.nextElementSibling.textContent = message;
 	}
 
-	/**
-	 * @param {string} message
-	 * @param {HTMLElement} element
-	 */
 	successMessage(
 		message,
 		element = document.querySelector("#js-success-msg")
-	) {
+	)
+	{
 		if (message.length === 0) {
 			element.setAttribute("hidden", "hidden");
 		} else {
 			element.removeAttribute("hidden");
 		}
+
 		element.textContent = message;
 	}
 }
 
-/**
- * @param {string} s
- */
-function capitalize(s) {
+function capitalize(s)
+{
 	return s[0].toUpperCase() + s.slice(1);
 }
-
-const _ = { once: true };
 
 // ------ //
 // Export //

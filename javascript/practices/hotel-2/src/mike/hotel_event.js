@@ -6,18 +6,18 @@ import { HotelDOM } from "./hotel_dom.js";
 // Implémentation //
 // -------------- //
 
-class HotelDOMEvent extends HotelDOM {
+class HotelDOMEvent extends HotelDOM
+{
 	/**
 	 * Ajoute l'événement click sur le bouton permettant d'afficher le formulaire
 	 * d'ajout d'une chambre.
 	 */
-	registerAddButtonEvent() {
+	registerAddButtonEvent()
+	{
 		let buttonElement = document.querySelector("#js-add-room-btn");
 
 		const openAddFormOnClick = (event) => {
-			let formElement = document.getElementById(
-				buttonElement.getAttribute("aria-controls")
-			);
+			let formElement = document.getElementById(buttonElement.getAttribute("aria-controls"));
 
 			this.createForm(formElement, {
 				formType: "add",
@@ -36,14 +36,15 @@ class HotelDOMEvent extends HotelDOM {
 	/**
 	 * Ajout l'événement submit sur le formulaire lié à l'ajout d'une chambre.
 	 */
-	registerAddEditFormEvent() {
+	registerAddEditFormEvent()
+	{
 		let sectionElement = document.querySelector("#js-room-form");
 		let formElement = sectionElement.querySelector("form");
 
 		const formRoomOnSubmit = (event) => {
 			event.preventDefault();
 
-			this.hideAllInputErrors();
+			this.removeAllInputErrors();
 
 			let formType = sectionElement.getAttribute("data-id")
 				? "edit"
@@ -77,13 +78,13 @@ class HotelDOMEvent extends HotelDOM {
 
 			let room = maybeRoom;
 
-			this.successMessage(
-				`La chambre n°${room.getNumber()} a bien été sauvegardé.`
-			);
-
+			this.successMessage(`La chambre n°${room.getNumber()} a bien été sauvegardé.`);
 			this.hide(sectionElement);
-
 			sectionElement.removeAttribute("data-id");
+
+			let listElement = document.querySelector("#js-list-all-rooms");
+			this.showListRooms(listElement.querySelector("ul"), { filter: "all" });
+			this.show(listElement);
 		};
 
 		formElement.addEventListener("submit", formRoomOnSubmit);
@@ -93,16 +94,14 @@ class HotelDOMEvent extends HotelDOM {
 	 * Ajoute l'événement click sur le bouton permettant d'afficher la liste des
 	 * chambres de l'hotel.
 	 */
-	registerListAllRoomsButtonEvent() {
+	registerListAllRoomsButtonEvent()
+	{
 		let buttonElement = document.querySelector("#js-list-all-rooms-btn");
 
 		const openListAllRoomsOnClick = (event) => {
-			let sectionElement = document.getElementById(
-				buttonElement.getAttribute("aria-controls")
-			);
-			this.showListRooms(sectionElement.querySelector("ul"), {
-				filter: "all",
-			});
+			let sectionElement = document.getElementById(buttonElement.getAttribute("aria-controls"));
+			let listElement = sectionElement.querySelector("ul");
+			this.showListRooms(listElement, { filter: "all" });
 			this.show(sectionElement);
 		};
 
@@ -113,18 +112,14 @@ class HotelDOMEvent extends HotelDOM {
 	 * Ajoute l'événement click sur le bouton permettant d'afficher la liste des
 	 * chambres de l'hotel.
 	 */
-	registerListAvailableRoomsButtonEvent() {
-		let buttonElement = document.querySelector(
-			"#js-list-available-rooms-btn"
-		);
+	registerListAvailableRoomsButtonEvent()
+	{
+		let buttonElement = document.querySelector("#js-list-available-rooms-btn");
 
 		const openListAllRoomsOnClick = (event) => {
-			let sectionElement = document.getElementById(
-				buttonElement.getAttribute("aria-controls")
-			);
-			this.showListRooms(sectionElement.querySelector("ul"), {
-				filter: "available",
-			});
+			let sectionElement = document.getElementById(buttonElement.getAttribute("aria-controls"));
+			let listElement = sectionElement.querySelector("ul");
+			this.showListRooms(listElement, { filter: "available" });
 			this.show(sectionElement);
 		};
 
@@ -134,30 +129,32 @@ class HotelDOMEvent extends HotelDOM {
 	/**
 	 * Ajoute l'événement click sur le bouton de recherche des chambres.
 	 */
-	registerSearchButtonEvent() {
+	registerSearchButtonEvent()
+	{
 		let buttonElement = document.querySelector("#js-search-room-btn");
 
 		const openSearchFormOnClick = (event) => {
-			let sectionElement = document.getElementById(
-				buttonElement.getAttribute("aria-controls")
-			);
-
+			let sectionElement = document.getElementById(buttonElement.getAttribute("aria-controls"));
 			let formElement = document.querySelector("#js-search-rooms-form");
 			let selectElement = formElement.querySelector("select");
-			selectElement.innerHTML = "";
 
 			let defaultTypeOption = document.createElement("option");
+
 			defaultTypeOption.textContent = "Select type";
-			defaultTypeOption.value = "";
-			defaultTypeOption.selected = true;
-			defaultTypeOption.disabled = true;
+			defaultTypeOption.value       = "";
+			defaultTypeOption.selected    = true;
+			defaultTypeOption.disabled    = true;
+
+			selectElement.innerHTML = "";
 
 			selectElement.append(defaultTypeOption);
 
 			for (let roomType of this.reception.getAllRoomTypes()) {
 				let option = document.createElement("option");
-				option.value = roomType;
+
+				option.value       = roomType;
 				option.textContent = capitalize(roomType);
+
 				selectElement.appendChild(option);
 			}
 
@@ -170,7 +167,8 @@ class HotelDOMEvent extends HotelDOM {
 	/**
 	 * Ajoute l'événement click sur l'input de type checkbox.
 	 */
-	registerSearchCheckboxEvent() {
+	registerSearchCheckboxEvent()
+	{
 		let checkboxElement = document.querySelector("#js-status1");
 
 		const removeStatusOnAltClick = (event) => {
@@ -186,19 +184,20 @@ class HotelDOMEvent extends HotelDOM {
 	/**
 	 * Ajoute l'événement click sur l'input de type checkbox.
 	 */
-	registerSearchSubmitEvent() {
+	registerSearchSubmitEvent()
+	{
 		let sectionElement = document.querySelector("#js-search-rooms-form");
 		let formElement = sectionElement.querySelector("form");
 
 		const filterListOnSubmit = (event) => {
 			event.preventDefault();
 
-			this.hideAllInputErrors();
+			this.removeAllInputErrors();
 
-			let roomType = event.target.elements.type.value;
-			let maxPrice = event.target.elements.max_price.valueAsNumber;
-			let roomStatus = event.target.elements.status.checked;
-			if (event.target.elements.status.indeterminate) {
+			let roomType = formElement.elements.type.value;
+			let maxPrice = formElement.elements.max_price.valueAsNumber;
+			let roomStatus = formElement.elements.status.checked;
+			if (formElement.elements.status.indeterminate) {
 				roomStatus = null;
 			}
 
@@ -211,32 +210,32 @@ class HotelDOMEvent extends HotelDOM {
 			if (Array.isArray(maybeFilteredRooms)) {
 				for (let error of maybeFilteredRooms) {
 					this.showInputError(
-						event.target.elements[error.pointer],
+						formElement.elements[error.pointer],
 						error.message
 					);
 				}
 				return;
 			}
 
-			event.target.elements.type.value = "";
-			event.target.elements.max_price.value = "";
-			event.target.elements.status.checked = false;
+			formElement.elements.type.value      = "";
+			formElement.elements.max_price.value = "";
+			formElement.elements.status.checked  = false;
 
 			let list = document.getElementById(
-				event.target.elements.searchsubmit.getAttribute("aria-controls")
+				formElement.elements.searchsubmit.getAttribute("aria-controls")
 			);
 
 			this.showListRooms(list.querySelector("ul"), {
 				filter: "filter",
 				list: maybeFilteredRooms.filtered,
 			});
+
 			this.show(list);
 
 			if (maybeFilteredRooms.filtered.length === 0) {
 				this.errorMessage(
 					"No rooms were found according to your filters."
 				);
-				return;
 			}
 		};
 
@@ -244,10 +243,8 @@ class HotelDOMEvent extends HotelDOM {
 	}
 }
 
-/**
- * @param {string} s
- */
-function capitalize(s) {
+function capitalize(s)
+{
 	return s[0].toUpperCase() + s.slice(1);
 }
 
