@@ -75,11 +75,10 @@ class Hotel {
 		let room = this.#rooms.find((room) => {
 			return room.getNumber() === number;
 		});
-		if (!room) {
-			return false;
-		}
+
 		room.setStatus(true);
 		room.freeNow();
+
 		return true;
 	}
 
@@ -87,13 +86,12 @@ class Hotel {
 		let room = this.#rooms.find((room) => {
 			return room.getNumber() === number;
 		});
-		if (!room) {
-			return false;
-		}
+
 		let booked = room.bookNow(personName, nights);
 		if (!booked) {
 			return false;
 		}
+
 		return room;
 	}
 	searchRooms(type, maxPrice, status) {

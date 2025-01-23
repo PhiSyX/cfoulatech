@@ -205,6 +205,7 @@ class HotelDOM
 				nights: nights,
 			});
 
+			// Affichage des erreurs:
 			if (Array.isArray(maybeBookedRoom)) {
 				for (let error of maybeBookedRoom) {
 					if (error.pointer) {
@@ -218,6 +219,8 @@ class HotelDOM
 				}
 				return;
 			}
+
+			// Pas d'erreurs...
 
 			let reservation = maybeBookedRoom.getReservation();
 
@@ -251,6 +254,7 @@ class HotelDOM
 				number: room.getNumber(),
 			});
 
+			// Affichage des erreurs:
 			if (Array.isArray(maybeFreeRoom)) {
 				for (let error of maybeFreeRoom) {
 					this.errorMessage(error.message);

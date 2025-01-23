@@ -66,6 +66,7 @@ class HotelDOMEvent extends HotelDOM
 				});
 			}
 
+			// Affichage des erreurs:
 			if (Array.isArray(maybeRoom)) {
 				for (let error of maybeRoom) {
 					this.showInputError(
@@ -75,6 +76,8 @@ class HotelDOMEvent extends HotelDOM
 				}
 				return;
 			}
+
+			// Pas d'erreurs...
 
 			let room = maybeRoom;
 
@@ -207,6 +210,7 @@ class HotelDOMEvent extends HotelDOM
 				status: roomStatus,
 			});
 
+			// Affichage des erreurs:
 			if (Array.isArray(maybeFilteredRooms)) {
 				for (let error of maybeFilteredRooms) {
 					this.showInputError(
@@ -216,6 +220,8 @@ class HotelDOMEvent extends HotelDOM
 				}
 				return;
 			}
+
+			// Pas d'erreurs...
 
 			formElement.elements.type.value      = "";
 			formElement.elements.max_price.value = "";
