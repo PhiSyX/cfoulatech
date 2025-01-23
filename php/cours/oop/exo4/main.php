@@ -1,6 +1,6 @@
 <?php
 
-require_once "./classes/Personnage.php";
+require_once "./Personnage.php";
 
 $personnages = [
 	new Personnage("Ryu", 70, 24),

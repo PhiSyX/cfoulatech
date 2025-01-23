@@ -1,6 +1,6 @@
 <?php
 
-require_once "../classes/Personne.php";
+require_once "./Personne.php";
 
 $personne1 = new Personne("Julien",   gender: "M", age: 34);
 $personne2 = new Personne("Sarah",    gender: "F", age: 27);
