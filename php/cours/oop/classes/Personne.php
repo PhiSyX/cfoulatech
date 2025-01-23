@@ -15,9 +15,9 @@ class Personne
 	 */
 	private int $age;
 	/**
-	 * Le sexe de la personne 'M' ou 'F' ou 'X'
+	 * Le genre de la personne 'M' ou 'F' ou 'X'
 	 */
-	private string $sexe;
+	private string $gender;
 
 	// ----------- //
 	// Constructor //
@@ -26,18 +26,16 @@ class Personne
 	/**
 	 * Construit la classe Personne
 	 */
-	public function __construct(string $prénom, int $age, string $sexe)
+	public function __construct(string $prénom, int $age, string $gender)
 	{
 		$this->prénom = $prénom;
 		$this->age = $age;
-		$this->sexe = $sexe;
+		$this->gender = $gender;
 	}
 
 	// --------------- //
 	// Getter | Setter //
 	// --------------- //
-
-
 
 	public function getPrénom(): string
 	{
@@ -49,9 +47,9 @@ class Personne
 		return $this->age;
 	}
 
-	public function getSexe(): string
+	public function getGender(): string
 	{
-		return $this->sexe;
+		return $this->gender;
 	}
 
 	public function setPrénom(string $prénom): void
@@ -64,16 +62,20 @@ class Personne
 		$this->age = $age;
 	}
 
-	public function setSexe(string $sexe): void
+	public function setGender(string $gender): void
 	{
-		$this->sexe = $sexe;
+		$this->gender = $gender;
 	}
+
+	// ------- //
+	// Méthode // -> Native de PHP
+	// ------- //
 
 	public function __toString(): string
 	{
-		return "Prénom: " . $this->prénom . "<br>"      .
-			"Age: "    . $this->age    . " ans <br>" .
-			"Sexe: "   . $this->sexe   . " <br>";
+		return  "Prénom : " . $this->prénom . "     <br>" .
+				"Age    : " . $this->age    . " ans <br>" .
+				"Genre  : " . $this->gender . "     <br>" ;
 	}
 
 	// ------- //

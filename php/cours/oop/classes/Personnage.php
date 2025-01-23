@@ -6,9 +6,9 @@ class Personnage
 	protected int $age;
 	protected float $poids;
 
-	public function __construct(string $un, int $age, float $poids)
+	public function __construct(string $nom, int $age, float $poids)
 	{
-		$this->nom = $un;
+		$this->nom = $nom;
 		$this->age = $age;
 		$this->poids = $poids;
 	}

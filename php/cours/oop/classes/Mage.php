@@ -1,6 +1,6 @@
 <?php
 
-class Mage extends Personnage
+class MageX extends PersonnageX
 {
 	private string $baton;
 

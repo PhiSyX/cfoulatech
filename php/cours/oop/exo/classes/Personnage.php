@@ -6,6 +6,10 @@ class Personnage
 	private int $attaque;
 	private int $vie;
 
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
 	public function __construct(
 		string $nom,
 		int $vie,
@@ -38,7 +42,11 @@ class Personnage
 
 	public function setVie(int $vie): void
 	{
-		$this->vie = $vie;
+		if ($vie < 0) {
+			$this->vie = 0;
+		} else {
+			$this->vie = $vie;
+		}
 	}
 
 	public function getAttaque(): int
@@ -51,19 +59,19 @@ class Personnage
 		$this->attaque = $attaque;
 	}
 
-	// ------------ //
-	// Méthodes PHP //
-	// ------------ //
+	// ------- //
+	// Méthode // -> Native de php
+	// ------- //
 
 	public function __toString(): string
 	{
-		return "Nom : " . $this->nom .  " <br>"
-			.  "Vie : " . $this->vie .  " <br>"
-			.  "Puissance d'attaque : " . $this->attaque .  " de dégâts <br><br>";
+		return "Nom : " . $this->nom .  " <br>" .
+			   "Vie : " . $this->vie .  " <br>" .
+			   "Puissance d'attaque : " . $this->attaque . " de dégâts <br><br>";
 	}
 
 	// ------- //
-	// Méthode // -> public
+	// Méthode // -> Publique
 	// ------- //
 
 	public function estVivant(): bool

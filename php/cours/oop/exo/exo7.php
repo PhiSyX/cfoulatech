@@ -16,29 +16,37 @@ foreach ($personnages as $personnage) {
 
 $p1 = $personnages[3];
 $p2 = $personnages[0];
-$winner = false;
-$looser = false;
-$nb_attaque = 0;
 
-while ($winner === false) {
+$winner = null;
+$loser = null;
+
+$nb_attack = 0;
+
+while ($winner === null) {
 	$p1->lanceAttaque($p2);
 	$p2->lanceAttaque($p1);
 
-	$nb_attaque += 1;
+	$nb_attack += 1;
 
 	if ($p1->getVie() <= 0) {
 		$winner = $p2;
-		$looser = $p1;
+		$loser = $p1;
 		break;
 	} else if ($p2->getVie() <= 0) {
 		$winner = $p1;
-		$looser = $p2;
+		$loser = $p2;
 		break;
 	}
 }
 
 echo "Le personnage " . $winner->getNom() .
-	" a battu le personnage " . $looser->getNom() .
-	" en $nb_attaque coups. <br>"
+	 " a battu le personnage " . $loser->getNom() .
+	 " en $nb_attack coups. <br>"
 ;
-echo "Et il lui reste " . $winner->getVie() . " de points de vie";
+
+if ($winner->getVie() <= 0) {
+	echo "Et n'a plus de vie, donc ça veut dire qu'il est mort en même temps.";
+}else {
+	echo "Et lui reste " . $winner->getVie() . " de points de vie";
+}
+
