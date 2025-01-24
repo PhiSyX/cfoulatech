@@ -2,6 +2,10 @@
 
 class Personnage
 {
+	// --------- //
+	// Propriété //
+	// --------- //
+
 	private string $nom;
 	private int $attaque;
 	private int $vie;

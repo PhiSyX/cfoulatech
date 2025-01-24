@@ -2,6 +2,10 @@
 
 class Employee
 {
+	// --------- //
+	// Propriété //
+	// --------- //
+
 	private string $matricule;
 	private string $nom;
 	private string $prenom;

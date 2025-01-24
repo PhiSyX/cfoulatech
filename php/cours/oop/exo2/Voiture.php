@@ -2,10 +2,18 @@
 
 class Voiture
 {
+	// --------- //
+	// Propriété //
+	// --------- //
+
 	private string $couleur;
 	private float $poids;
 	private float $prix;
 	private string $marque;
+
+	// ----------- //
+	// Constructor //
+	// ----------- //
 
 	public function __construct(
 		string $marque,
@@ -20,15 +28,9 @@ class Voiture
 		$this->prix = $prix;
 	}
 
-	public function accelerer(): void
-	{
-		echo "La voiture accélère<br>";
-	}
-
-	public function demarrer(): void
-	{
-		echo "La voiture démarre<br>";
-	}
+	// --------------- //
+	// Getter | Setter //
+	// --------------- //
 
 	public function setCouleur(string $couleur): void
 	{
@@ -68,6 +70,20 @@ class Voiture
 	public function setMarque(string $marque): void
 	{
 		$this->marque = $marque;
+	}
+
+	// ------- //
+	// Méthode // -> API Publique
+	// ------- //
+
+	public function accelerer(): void
+	{
+		echo "La voiture accélère<br>";
+	}
+
+	public function demarrer(): void
+	{
+		echo "La voiture démarre<br>";
 	}
 
 	public function addPrix(float $prix): void
