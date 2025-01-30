@@ -17,6 +17,27 @@ body {
 	flex-direction: column;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logo {
+    width: 450px;
+    height: 275px;
+    border: 8px solid gold;
+    padding: 15px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .container,
 .container #room-form form {
 	display: flex;
@@ -102,7 +123,9 @@ body {
 
 h1,
 h2 {
-	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+	text-shadow: 2px 2px 5px rgba(255, 162, 0, 0.7);
+
 }
 
 .container {
@@ -158,8 +181,16 @@ hr {
 .badge {
 	font-size: 18px;
 	span {
-		display: inline-block;
 		padding: 4px;
 		border-radius: 4px;
 	}
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
