@@ -1,0 +1,6 @@
+*-prod.css
+*.css.map
+*.png
+
+!package.json
+

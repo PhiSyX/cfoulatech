@@ -1,0 +1,59 @@
+// Card Styles
+// B.E.M
+
+.card {
+ width: 350px; /* pour la demo */
+ &__header {
+  background-color: #333;
+  background-size: cover;
+  color: #fff;
+  text-shadow: 2px 2px 2px var(--shadow-text-card, black);
+  padding: 1rem;
+  min-height: 180px;
+  font-size: 32px;
+ }
+ &__body{ padding: 1em;}
+ &__body > * + * {
+  margin-top: .5em;
+ }
+
+ &__footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+ }
+
+ &__pricing {
+	list-style: none;
+	border: 1px solid white;
+	border-radius: 4px;
+	overflow: hidden;
+ }
+
+ &__pricing__item {
+	padding: 1rem;
+	border: 1px solid #d3d3d3;
+ }
+}
+.card__button {
+ text-decoration: none;
+ display: inline-block;
+ color: #fff;
+ padding: .7rem 1rem ;
+ background-color: hsl(0, 0%, 25%);
+ transition:  background-color 250ms ease-in-out;
+
+ &:hover {
+  background-color: hsl(0, 0%, 65%);
+ }
+}
+
+.card--kellogs {
+	background-image: url(https://www.kelloggs.com.au/content/dam/Australia/kelloggs_au/images/brands/HEADER.png);
+	color: chocolate;
+}
+
+.card--chanel {
+	background-image: url(https://www.reawake.ch/cdn/shop/files/pf-03ca66fe--headerauthenticitychanel.webp?v=1694171456&width=2400);
+	color: #feecc6;
+}

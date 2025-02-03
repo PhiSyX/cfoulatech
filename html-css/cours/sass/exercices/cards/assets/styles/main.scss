@@ -1,0 +1,24 @@
+// main
+
+
+//⚠️ import des partials, sans " _ " devant le nom des partials.
+@use "fonts";
+@use "card";
+
+*, *::before, *::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+body {
+ font-family: "Work Sans", sans-serif;
+ background-color: #f0ecec;
+}
+
+.cards {
+ margin-top: 3em;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 1em;
+ justify-content: center;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "sass-cours",
+  "version": "0.1.0",
+  "description": "Sass Cours",
+  "scripts": {
+  },
+  "keywords": [],
+  "devDependencies": {
+    "sass": "^1.83.4"
+  }
+}
