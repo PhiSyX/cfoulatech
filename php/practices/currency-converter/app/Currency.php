@@ -36,21 +36,21 @@ class Currency
 	// Getter | Setter //
 	// --------------- //
 
-	public function getRates(): array
+	public function get_rates(): array
 	{
 		return $this->rates;
 	}
 
-	public function getSymbol( string $currency_name ) : string | null
+	public function get_symbol( string $currency_name ) : string | null
 	{
 		return isset($this->symbols[$currency_name])
 			? $this->symbols[$currency_name]
 			:  null;
 	}
 
-	public function getAmount( string $amount, string $currency_name ) : string
+	public function get_amount( string $amount, string $currency_name ) : string
 	{
-		return $amount . $this->getSymbol($currency_name);
+		return $amount . $this->get_symbol($currency_name);
 	}
 
 	// ------- //

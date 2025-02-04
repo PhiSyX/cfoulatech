@@ -1,80 +1,34 @@
 <?php
-require_once "./app/Auth.php";
-require_once "./views/Page.php";
 
-class PageConversion extends Page
-{
-	public function __construct()
-	{
-		parent::__construct("conversion", "Mikonvertika");
-	}
+// $curr = new Currency();
 
-	/**
-	 * Taux de conversions
-	 */
-	private array $rates = [
-		"EUR" => 1,
-		"USD" => 1.003,
-		"JPY" => 160.3,
-		"GBP" => 0.8306,
-		"CDF" => 2951,
-		"DIR" => 10.38,
-		"AUD" => 1.661
-	];
+// if (isset($_GET["amount"]) && (float) $_GET["amount"] > 0.0) {
+// 	// J'ai besoin de ces variables plus bas dans le code HTML.
+// 	$amount = (float) $_GET["amount"];
+// 	$currency_from = strtoupper($_GET["currency_from"]);
+// 	$currency_to = strtoupper($_GET["currency_to"]);
 
-	/**
-	 * Les symboles des différentes monnaies.
-	 */
-	private array $symbols = [
-		"EUR" => "€",
-		"USD" => "$",
-		"JPY" => "¥",
-		"GBP" => "£",
-		"CDF" => "CDF",
-		"DIR" => "د.إ",
-		"AUD" => "$",
-	];
+// 	// Conversion
+// 	$curr->convert(
+// 		amount: $amount,
+// 		from: $currency_from,
+// 		to: $currency_to,
+// 	);
+// }
 
-	// --------------- //
-	// Getter | Setter //
-	// --------------- //
-
-	public function get_rates(): array
-	{
-		return $this->rates;
-	}
-
-	public function get_currencies(): array
-	{
-		return array_keys($this->symbols);
-	}
-
-	public function get_symbol( string $currency_name ) : string | null
-	{
-		return isset($this->symbols[$currency_name])
-			? $this->symbols[$currency_name]
-			:  null;
-	}
-}
-
-
-$auth = new Auth;
-
-if (!$auth->is_connected()) {
-	$auth->redirect_signin();
-}
-
-$page = new PageConversion;
-
-include "./views/layouts/header.php";
 ?>
+
 <link rel="stylesheet" href="assets/css/conversion.css">
+
 <dialog id="currency-converter" open>
-	<h1><?= $page->get_title() ?></h1>
+	<h1>Mikonvertika</h1>
 
 	<form action="?action=conversion" method="POST">
 		<div class="form-group">
-			<label for="js-amount">Enter amount</label>
+			<label for="js-amount">
+				Enter amount
+			</label>
+
 			<input
 				id="js-amount"
 				name="amount"
@@ -91,7 +45,7 @@ include "./views/layouts/header.php";
 			<div class="form-group">
 				<label for="js-curr-from">From</label>
 				<select name="currency_from" id="js-curr-from">
-					<?php foreach ($page->get_currencies() as $currency) : ?>
+					<?php foreach ($curr->get_rates() as $currency => $_) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
@@ -101,8 +55,7 @@ include "./views/layouts/header.php";
 							):
 							?>
 							selected="selected"
-							<?php endif ?>
-						>
+							<?php endif ?>>
 							<?php echo $currency ?>
 						</option>
 					<?php endforeach ?>
@@ -121,7 +74,7 @@ include "./views/layouts/header.php";
 			<div class="form-group">
 				<label for="js-curr-to">To</label>
 				<select name="currency_to" id="js-curr-to">
-					<?php foreach ($page->get_currencies() as $currency) : ?>
+					<?php foreach ($curr->get_rates() as $currency => $_) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
@@ -131,8 +84,7 @@ include "./views/layouts/header.php";
 							):
 							?>
 							selected="selected"
-							<?php endif ?>
-						>
+							<?php endif ?>>
 							<?php echo $currency ?>
 						</option>
 					<?php endforeach ?>
@@ -143,7 +95,7 @@ include "./views/layouts/header.php";
 		<button type="submit">Convert now</button>
 	</form>
 
-	<?php if (isset($_SESSION["csurrency_result"])): ?>
+	<?php if (isset($_SESSION["currency_result"])): ?>
 		<hr>
 
 		<details open>

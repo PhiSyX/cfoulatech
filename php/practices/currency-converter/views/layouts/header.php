@@ -12,7 +12,7 @@ if (!isset($auth)) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mikonvertica</title>
+	<title><?php if (isset($page)) { echo $page->get_title(); } ?></title>
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -23,14 +23,14 @@ if (!isset($auth)) {
 			<nav>
 				<a
 					href="?page=profile"
-					<?php if (isset($nav) && $nav === "profile"): ?>class="active"<?php endif ?>
+					<?php if (isset($page) && $page->get_page() === "profile"): ?>class="active"<?php endif ?>
 				>
 					Profile
 				</a>
 
 				<a
 					href="?page=conversion"
-					<?php if (isset($nav) && $nav === "conversion"): ?>class="active"<?php endif ?>
+					<?php if (isset($page) && $page->get_page() === "conversion"): ?>class="active"<?php endif ?>
 				>
 					Mikonvertika
 				</a>
