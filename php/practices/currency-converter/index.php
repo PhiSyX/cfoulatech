@@ -4,10 +4,10 @@
 switch ($_SERVER["REQUEST_METHOD"]):
 	case "GET":
 	{
-		$page = isset($_GET["page"]) ? $_GET["page"] : "signin";
+		$pageParam = isset($_GET["page"]) ? $_GET["page"] : "signin";
 
-		if (file_exists("views/$page.php")):
-			require "views/$page.php";
+		if (file_exists("views/$pageParam.php")):
+			require "views/$pageParam.php";
 		else:
 			require "views/errors/404_notfound.php";
 		endif;
@@ -15,10 +15,10 @@ switch ($_SERVER["REQUEST_METHOD"]):
 
 	case "POST":
 	{
-		$action = isset($_GET["action"]) ? $_GET["action"] : null;
+		$actionParam = isset($_GET["action"]) ? $_GET["action"] : null;
 
-		if ($action && file_exists("app/actions/$action.php")):
-			require "app/actions/$action.php";
+		if ($actionParam && file_exists("app/actions/$actionParam.php")):
+			require "app/actions/$actionParam.php";
 		else:
 			require "views/errors/404_notfound.php";
 		endif;

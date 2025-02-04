@@ -1,11 +1,16 @@
 <?php
-require_once "./app/Auth.php";
+require_once "./views/Page.php";
 
-$auth = new Auth;
-
-if ($auth->is_connected()) {
-	$auth->redirect_profile();
+class PageSignIn extends Page
+{
+	public function __construct()
+	{
+		parent::__construct("signin", "Log In");
+	}
 }
+
+$page = new PageSignIn;
+$page->anonymous_auth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 
@@ -36,16 +41,16 @@ if ($auth->is_connected()) {
 
 	<hr>
 
-	<form action="?action=login" method="post">
+	<form action="?action=login" method="POST">
 		<div class="form-group align-t:left">
 			<label for="username">Username</label>
-			<input id="username" type="text" name="username" placeholder="JohnDoe">
+			<input id="username" type="text" name="username" placeholder="JohnDoe" value="PhiSyX">
 			<?= isset($errors) ? error($errors, "username") : null ?>
 		</div>
 
 		<div class="form-group align-t:left">
 			<label for="password">Password</label>
-			<input id="password" type="password" name="password" placeholder="Secret555">
+			<input id="password" type="password" name="password" placeholder="Secret555" value="123456">
 			<?= isset($errors) ? error($errors, "password") : null ?>
 		</div>
 

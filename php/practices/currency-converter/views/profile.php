@@ -1,13 +1,31 @@
 <?php
-require_once "./app/Auth.php";
+require_once "./app/Currency.php";
+require_once "./views/Page.php";
 
-$auth = new Auth;
+class PageProfile extends Page
+{
+	private Currency $currency;
 
-if (!$auth->is_connected()) {
-	$auth->redirect_signin();
+	public function __construct()
+	{
+		parent::__construct("profile", "My Profile");
+		$this->currency = new Currency;
+	}
+
+	public function conversions_list(): array
+	{
+		$user_id = $this->get_user_id();
+
+		if (!$user_id) {
+			return [];
+		}
+
+		return $this->currency->all($user_id);
+	}
 }
 
-$nav = "profile";
+$page = new PageProfile;
+$page->required_auth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 
@@ -15,38 +33,36 @@ $nav = "profile";
 	<h1>Profile</h1>
 
 	<section>
-		<?php if (isset($_SESSION["currency_result"])): ?>
-			<h2>History of your currency conversion</h2>
+		<h2>History of your currency conversion</h2>
 
-			<div class="currency-conversion-history">
-				<table>
-					<thead>
+		<div class="currency-conversion-history">
+			<table>
+				<thead>
+					<tr>
+						<th>Amount</th>
+						<th>Currency from</th>
+						<th>Currency to</th>
+						<th>Result</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<?php foreach ($page->conversions_list() as $conversion): ?>
 						<tr>
-							<th>Amount</th>
-							<th>Currency from</th>
-							<th>Currency to</th>
-							<th>Result</th>
-							<th>Actions</th>
+							<td><?= $conversion["amount"]; ?></td>
+							<td><?= $conversion["from"]; ?></td>
+							<td><?= $conversion["to"]; ?></td>
+							<td><?= $conversion["result"][0]; ?></td>
+
+							<td>
+								<button>Delete</button>
+							</td>
 						</tr>
-					</thead>
-
-					<tbody>
-						<?php foreach ($_SESSION["currency_result"] as $conversion): ?>
-							<tr>
-								<td><?= $conversion["amount"]; ?></td>
-								<td><?= $conversion["from"]; ?></td>
-								<td><?= $conversion["to"]; ?></td>
-								<td><?= $conversion["result"][0]; ?></td>
-
-								<td>
-									<button>Delete</button>
-								</td>
-							</tr>
-						<?php endforeach; ?>
-					</tbody>
-				</table>
-			</div>
-		<?php endif; ?>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
 	</section>
 
 </div>

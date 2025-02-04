@@ -1,11 +1,16 @@
 <?php
-require_once "./app/Auth.php";
+require_once "./views/Page.php";
 
-$auth = new Auth;
-
-if ($auth->is_connected()) {
-	$auth->redirect_profile();
+class PageSignUp extends Page
+{
+	public function __construct()
+	{
+		parent::__construct("signup", "Registration");
+	}
 }
+
+$page = new PageSignUp;
+$page->anonymous_auth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 

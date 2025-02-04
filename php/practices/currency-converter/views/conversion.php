@@ -1,74 +1,49 @@
 <?php
-require_once "./app/Auth.php";
+
 require_once "./views/Page.php";
+require_once "./app/Currency.php";
 
 class PageConversion extends Page
 {
+	private Currency $currency;
+
 	public function __construct()
 	{
 		parent::__construct("conversion", "Mikonvertika");
+		$this->currency = new Currency();
 	}
 
-	/**
-	 * Taux de conversions
-	 */
-	private array $rates = [
-		"EUR" => 1,
-		"USD" => 1.003,
-		"JPY" => 160.3,
-		"GBP" => 0.8306,
-		"CDF" => 2951,
-		"DIR" => 10.38,
-		"AUD" => 1.661
-	];
+	// ------- //
+	// Méthode // -> API Publique
+	// ------- //
 
-	/**
-	 * Les symboles des différentes monnaies.
-	 */
-	private array $symbols = [
-		"EUR" => "€",
-		"USD" => "$",
-		"JPY" => "¥",
-		"GBP" => "£",
-		"CDF" => "CDF",
-		"DIR" => "د.إ",
-		"AUD" => "$",
-	];
-
-	// --------------- //
-	// Getter | Setter //
-	// --------------- //
-
-	public function get_rates(): array
+	public function last_conversion(): array|bool
 	{
-		return $this->rates;
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
+		if (!isset($_SESSION["currency_result"])) {
+			return false;
+		}
+		return end($_SESSION["currency_result"]);
 	}
 
-	public function get_currencies(): array
+	public function currencies_list(): array
 	{
-		return array_keys($this->symbols);
+		return $this->currency->get_currencies();
 	}
-
-	public function get_symbol( string $currency_name ) : string | null
-	{
-		return isset($this->symbols[$currency_name])
-			? $this->symbols[$currency_name]
-			:  null;
-	}
-}
-
-
-$auth = new Auth;
-
-if (!$auth->is_connected()) {
-	$auth->redirect_signin();
 }
 
 $page = new PageConversion;
+$page->required_auth();
+
+$last_conversion = $page->last_conversion();
 
 include "./views/layouts/header.php";
 ?>
+
 <link rel="stylesheet" href="assets/css/conversion.css">
+
 <dialog id="currency-converter" open>
 	<h1><?= $page->get_title() ?></h1>
 
@@ -81,32 +56,32 @@ include "./views/layouts/header.php";
 				type="number"
 				step="0.01"
 
-				<?php if (isset($amount)): ?>
-				value="<?php echo $amount ?>"
-				<?php endif ?>
-			>
+				<?php if (isset($_POST["amount"])): ?>
+				value="<?php echo (float)$_POST["amount"] ?>"
+				<?php endif ?>>
+			<?= isset($errors) ? error($errors, "amount") : null ?>
 		</div>
 
 		<div class="form-group-inline">
 			<div class="form-group">
 				<label for="js-curr-from">From</label>
 				<select name="currency_from" id="js-curr-from">
-					<?php foreach ($page->get_currencies() as $currency) : ?>
+					<?php foreach ($page->currencies_list() as $currency) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
 							if (
-								isset($currency_from)	   &&
-								strtoupper($currency_from) == strtoupper($currency)
+								isset($_POST["currency_from"])      &&
+								strtoupper($_POST["currency_from"]) == strtoupper($currency)
 							):
 							?>
 							selected="selected"
-							<?php endif ?>
-						>
+							<?php endif ?>>
 							<?php echo $currency ?>
 						</option>
 					<?php endforeach ?>
 				</select>
+				<?= isset($errors) ? error($errors, "currency_from") : null ?>
 			</div>
 
 			<div>
@@ -121,42 +96,38 @@ include "./views/layouts/header.php";
 			<div class="form-group">
 				<label for="js-curr-to">To</label>
 				<select name="currency_to" id="js-curr-to">
-					<?php foreach ($page->get_currencies() as $currency) : ?>
+					<?php foreach ($page->currencies_list() as $currency) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
 							if (
-								isset($currency_to)		 &&
-								strtoupper($currency_to) == strtoupper($currency)
+								isset($_POST["currency_to"])      &&
+								strtoupper($_POST["currency_to"]) == strtoupper($currency)
 							):
 							?>
 							selected="selected"
-							<?php endif ?>
-						>
+							<?php endif ?>>
 							<?php echo $currency ?>
 						</option>
 					<?php endforeach ?>
 				</select>
+				<?= isset($errors) ? error($errors, "currency_to") : null ?>
 			</div>
 		</div>
 
 		<button type="submit">Convert now</button>
 	</form>
 
-	<?php if (isset($_SESSION["csurrency_result"])): ?>
+	<?php if ($last_conversion !== false): ?>
 		<hr>
 
 		<details open>
 			<summary>Dernière conversion</summary>
 
-			<?php $last_conversion = end($_SESSION["currency_result"]); ?>
 			<ul>
 				<li>
 					<strong>
-						<?= $curr->get_amount(
-							$last_conversion["amount"],
-							$last_conversion["from"]
-						) ?> (<?= $last_conversion["from"] ?>)
+						<?= $last_conversion["amount"] ?> (<?= $last_conversion["from"] ?>)
 					</strong>
 
 					en
@@ -166,18 +137,12 @@ include "./views/layouts/header.php";
 					équivaut à
 
 					<strong>
-						<?= $curr->get_amount(
-							$last_conversion["result"][0],
-							$last_conversion["to"],
-						) ?>
+						<?= $last_conversion["result"][0] ?>
 					</strong>
 				</li>
 				<li>
 					<strong>
-						<?= $curr->get_amount(
-							$last_conversion["amount"],
-							$last_conversion["to"]
-						) ?> (<?= $last_conversion["to"] ?>)
+						<?= $last_conversion["amount"] ?> (<?= $last_conversion["to"] ?>)
 					</strong>
 
 					en
@@ -187,10 +152,7 @@ include "./views/layouts/header.php";
 					équivaut à
 
 					<strong>
-						<?= $curr->get_amount(
-							$last_conversion["result"][1],
-							$last_conversion["from"],
-						) ?>
+						<?= $last_conversion["result"][1] ?>
 					</strong>
 				</li>
 			</ul>
