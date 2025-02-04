@@ -1,6 +1,7 @@
 .vscode/
 package.json
 package-lock.json
+pnpm-lock.yaml
 tsconfig.json
 node_modules/
 biome.json
