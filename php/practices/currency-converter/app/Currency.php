@@ -83,6 +83,7 @@ class Currency
 			$req = $this->database->prepare(
 				"
 				SELECT
+					id,
 					amount,
 					currency_from AS 'from',
 					currency_to   AS 'to'
@@ -144,6 +145,22 @@ class Currency
 		}
 
 		return [$converted1, $converted2];
+	}
+
+	public function delete_from_database(int $user_id, int $conversion_id): bool
+	{
+		$req = $this->database->prepare(
+			"DELETE FROM conversions WHERE id = :conversion_id AND user_id = :user_id"
+		);
+
+		try {
+			return $req->execute([
+				"conversion_id" => $conversion_id,
+				"user_id" => $user_id,
+			]);
+		} catch (PDOException $error) {
+			return false;
+		}
 	}
 
 	private function save_to_database(

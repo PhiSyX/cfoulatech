@@ -56,7 +56,10 @@ $page->required_auth();
 							<td><?= $conversion["result"][0]; ?></td>
 
 							<td>
-								<button>Delete</button>
+								<form action="?action=conversion_delete" method="POST">
+									<input type="hidden" name="conversion_id" value="<?= $conversion["id"]; ?>">
+									<button type="submit">Delete</button>
+								</form>
 							</td>
 						</tr>
 					<?php endforeach; ?>
