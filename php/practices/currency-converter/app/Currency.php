@@ -7,6 +7,11 @@ class Currency
 	// --------- //
 
 	/**
+	 * Accès à PDO, à la base de données.
+	 */
+	private PDO $database;
+
+	/**
 	 * Taux de conversions
 	 */
 	private array $rates = [
@@ -42,9 +47,8 @@ class Currency
 		'TRY' => 37.155,
 		'USD' => 1.0335,
 		'ZAR' => 19.4072,
-		*/];
-
-	private PDO $database;
+		*/
+	];
 
 	// ----------- //
 	// Constructor //
@@ -61,24 +65,34 @@ class Currency
 	// Getter | Setter //
 	// --------------- //
 
-	public function get_rates(): array
+	public function getRates(): array
 	{
-		$this->rates = $this->from_api("rates", "/v1/latest");
+		$this->rates = $this->fromAPI("rates", "/v1/latest");
 		$this->rates["EUR"] = 1.0;
 		return $this->rates;
 	}
 
-	public function get_currencies(): array
+	/**
+	 * Toutes les devices sous forme de liste
+	 * Exemple: ["EUR", "USD", "AUD", ...]
+	 */
+	public function getCurrencies(): array
 	{
-		return array_keys($this->get_rates());
+		return array_keys($this->getRates());
 	}
 
 	// ------- //
 	// Méthode // -> API Publique
 	// ------- //
 
+	/**
+	 * Récupère toutes les conversions dans la base de donnée en fonction de
+	 * l'ID utilisateur.
+	 */
 	public function all(int $user_id): array
 	{
+		$data = [];
+
 		try {
 			$req = $this->database->prepare(
 				"
@@ -94,49 +108,52 @@ class Currency
 
 			$req->execute(["user_id" => $user_id]);
 
-			$data = [];
 
 			foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $item) {
+				// Les résultats ne sont pas sauvegardés en base de données.
 				$item["result"] = $this->convert(
 					$item["amount"],
 					$item["from"],
 					$item["to"],
 					save: false,
 				);
+
 				$data[] = $item;
 			}
+		} catch (PDOException $error) { }
 
-			return $data;
-		} catch (PDOException $error) {
-			return [];
-		}
+		return $data;
 	}
 
+	/**
+	 * Converti un montant d'une devine à une autre.
+	 */
 	public function convert(
 		float $amount,
 		string $from,
 		string $to,
 		bool $save = true,
-	): array {
-		$converted1 = $this->from_api(
+	): array
+	{
+		$converted1 = $this->fromAPI(
 			$amount . "_" . $from . "_" . $to,
 			"/v1/latest?amount=$amount&base=$from&symbols=$to"
 		)[$to];
 
-		$converted2 = $this->from_api(
+		$converted2 = $this->fromAPI(
 			$amount . "_" . $to . "_" . $from,
 			"/v1/latest?amount=$amount&base=$to&symbols=$from"
 		)[$from];
 
 		if ($save) {
-			$this->save_to_session(
+			$this->saveToSession(
 				$amount,
 				$from,
 				$to,
 				[$converted1, $converted2],
 			);
 
-			$this->save_to_database(
+			$this->saveToDatabase(
 				$amount,
 				$from,
 				$to,
@@ -147,62 +164,73 @@ class Currency
 		return [$converted1, $converted2];
 	}
 
-	public function delete_from_database(int $user_id, int $conversion_id): bool
+	/**
+	 * Supprime une conversion en base de données en fonction de son ID.
+	 */
+	public function deleteFromDatabase(int $user_id, int $conversion_id): bool
 	{
-		$req = $this->database->prepare(
-			"DELETE FROM conversions WHERE id = :conversion_id AND user_id = :user_id"
-		);
+		$req = $this->database->prepare("
+			DELETE FROM conversions
+			WHERE id = :conversion_id
+			AND user_id = :user_id
+		");
 
 		try {
 			return $req->execute([
 				"conversion_id" => $conversion_id,
-				"user_id" => $user_id,
+				"user_id"       => $user_id,
 			]);
 		} catch (PDOException $error) {
 			return false;
 		}
 	}
 
-	private function save_to_database(
+	/**
+	 * Ajoute une conversion en base de données
+	 */
+	private function saveToDatabase(
 		float $amount,
 		string $from,
 		string $to,
 		array $result
-	) {
-		$req = $this->database->prepare(
-			"
-			INSERT INTO conversions (
-				amount,
-				currency_from,
-				currency_to,
-				user_id
-			) VALUES (
-				:amount,
-				:currency_from,
-				:currency_to,
-				:user_id
-			)
-			 "
-		);
-
+	): bool
+	{
 		try {
+			$req = $this->database->prepare("
+				INSERT INTO conversions (
+					amount,
+					currency_from,
+					currency_to,
+					user_id
+				) VALUES (
+					:amount,
+					:currency_from,
+					:currency_to,
+					:user_id
+				)
+			");
+
 			return $req->execute([
-				"amount" => $amount,
+				"amount" 		=> $amount,
 				"currency_from" => $from,
-				"currency_to" => $to,
-				"user_id" => $_SESSION["user"]->get_id(),
+				"currency_to" 	=> $to,
+				"user_id" 		=> $_SESSION["user"]->getId(),
 			]);
 		} catch (PDOException $error) {
 			return false;
 		}
 	}
 
-	private function save_to_session(
+	/**
+	 * Sauvegarde une conversion en session.
+	 */
+	private function saveToSession(
 		float $amount,
 		string $from,
 		string $to,
 		array $result
-	) {
+	): void
+	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
 		}
@@ -215,7 +243,7 @@ class Currency
 		];
 	}
 
-	private function from_api(string $name, string $path): mixed
+	private function fromAPI(string $name, string $path): mixed
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();

@@ -13,18 +13,18 @@ class ConversionDeleteAction
 
 	public function delete(): void
 	{
-		$this->currency->delete_from_database(
-			$this->auth->get_user_session()->get_id(),
+		$this->currency->deleteFromDatabase(
+			$this->auth->getUserSession()->getId(),
 			$this->conversion_id
 		);
-		$this->auth->redirect_profile();
+		$this->auth->redirectProfile();
 	}
 }
 
 $auth = new Auth;
 
-if (!$auth->is_connected()) {
-	$auth->redirect_signin();
+if (!$auth->isConnected()) {
+	$auth->redirectSignin();
 }
 
 $action = new ConversionDeleteAction(

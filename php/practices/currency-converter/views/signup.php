@@ -1,5 +1,5 @@
 <?php
-require_once "./views/Page.php";
+require_once "./app/Page.php";
 
 class PageSignUp extends Page
 {
@@ -10,7 +10,7 @@ class PageSignUp extends Page
 }
 
 $page = new PageSignUp;
-$page->anonymous_auth();
+$page->anonymousAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 

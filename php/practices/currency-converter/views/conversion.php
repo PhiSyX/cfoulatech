@@ -1,7 +1,7 @@
 <?php
 
-require_once "./views/Page.php";
 require_once "./app/Currency.php";
+require_once "./app/Page.php";
 
 class PageConversion extends Page
 {
@@ -17,7 +17,7 @@ class PageConversion extends Page
 	// Méthode // -> API Publique
 	// ------- //
 
-	public function last_conversion(): array|bool
+	public function lastConversion(): array|bool
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
@@ -28,16 +28,16 @@ class PageConversion extends Page
 		return end($_SESSION["currency_result"]);
 	}
 
-	public function currencies_list(): array
+	public function currenciesList(): array
 	{
-		return $this->currency->get_currencies();
+		return $this->currency->getCurrencies();
 	}
 }
 
 $page = new PageConversion;
-$page->required_auth();
+$page->requiredAuth();
 
-$last_conversion = $page->last_conversion();
+$lastConversion = $page->lastConversion();
 
 include "./views/layouts/header.php";
 ?>
@@ -45,7 +45,7 @@ include "./views/layouts/header.php";
 <link rel="stylesheet" href="assets/css/conversion.css">
 
 <dialog id="currency-converter" open>
-	<h1><?= $page->get_title() ?></h1>
+	<h1><?= $page->getTitle() ?></h1>
 
 	<form action="?action=conversion" method="POST">
 		<div class="form-group">
@@ -66,13 +66,20 @@ include "./views/layouts/header.php";
 			<div class="form-group">
 				<label for="js-curr-from">From</label>
 				<select name="currency_from" id="js-curr-from">
-					<?php foreach ($page->currencies_list() as $currency) : ?>
+					<?php foreach ($page->currenciesList() as $currency) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
 							if (
 								isset($_POST["currency_from"])      &&
 								strtoupper($_POST["currency_from"]) == strtoupper($currency)
+							):
+							?>
+							selected="selected"
+							<?php
+							elseif (
+								!isset($_POST["currency_from"]) &&
+								"EUR" == strtoupper($currency)
 							):
 							?>
 							selected="selected"
@@ -96,7 +103,7 @@ include "./views/layouts/header.php";
 			<div class="form-group">
 				<label for="js-curr-to">To</label>
 				<select name="currency_to" id="js-curr-to">
-					<?php foreach ($page->currencies_list() as $currency) : ?>
+					<?php foreach ($page->currenciesList() as $currency) : ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
@@ -118,7 +125,7 @@ include "./views/layouts/header.php";
 		<button type="submit">Convert now</button>
 	</form>
 
-	<?php if ($last_conversion !== false): ?>
+	<?php if ($lastConversion !== false): ?>
 		<hr>
 
 		<details open>
@@ -127,32 +134,32 @@ include "./views/layouts/header.php";
 			<ul>
 				<li>
 					<strong>
-						<?= $last_conversion["amount"] ?> (<?= $last_conversion["from"] ?>)
+						<?= $lastConversion["amount"] ?> (<?= $lastConversion["from"] ?>)
 					</strong>
 
 					en
 
-					<strong><?php echo $last_conversion["to"] ?></strong>
+					<strong><?php echo $lastConversion["to"] ?></strong>
 
 					équivaut à
 
 					<strong>
-						<?= $last_conversion["result"][0] ?>
+						<?= $lastConversion["result"][0] ?>
 					</strong>
 				</li>
 				<li>
 					<strong>
-						<?= $last_conversion["amount"] ?> (<?= $last_conversion["to"] ?>)
+						<?= $lastConversion["amount"] ?> (<?= $lastConversion["to"] ?>)
 					</strong>
 
 					en
 
-					<strong><?= $last_conversion["from"] ?></strong>
+					<strong><?= $lastConversion["from"] ?></strong>
 
 					équivaut à
 
 					<strong>
-						<?= $last_conversion["result"][1] ?>
+						<?= $lastConversion["result"][1] ?>
 					</strong>
 				</li>
 			</ul>

@@ -56,7 +56,7 @@ class RegisterAction
 			$this->email,
 			password_hash($this->password, PASSWORD_DEFAULT)
 		)) {
-			$this->auth->redirect_signin();
+			$this->auth->redirectSignin();
 			return true;
 		} else {
 			$errors["global"] = "Une erreur s'est produite lors de l'inscription, " .
@@ -69,8 +69,8 @@ class RegisterAction
 
 $auth = new Auth;
 
-if ($auth->is_connected()) {
-	$auth->redirect_profile();
+if ($auth->isConnected()) {
+	$auth->redirectProfile();
 }
 
 $action = new RegisterAction(

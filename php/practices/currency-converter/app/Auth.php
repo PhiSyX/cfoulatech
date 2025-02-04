@@ -4,6 +4,13 @@ require_once "./app/User.php";
 
 class Auth
 {
+	// --------- //
+	// Propriété //
+	// --------- //
+
+	/**
+	 * Accès à PDO, à la base de données.
+	 */
 	private PDO $database;
 
 	// ----------- //
@@ -21,7 +28,7 @@ class Auth
 	// Getter | Setter //
 	// --------------- //
 
-	public function get_user_session(): User|null
+	public function getUserSession(): User|null
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
@@ -29,7 +36,7 @@ class Auth
 		return isset($_SESSION["user"]) ? $_SESSION["user"] : null;
 	}
 
-	private function set_user_session(User $user): void
+	private function setUserSession(User $user): void
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
@@ -37,7 +44,7 @@ class Auth
 		$_SESSION["user"] = $user;
 	}
 
-	private function unset_user_session(): void
+	private function unsetUserSession(): void
 	{
 		if (session_status() === PHP_SESSION_NONE) {
 			session_start();
@@ -50,28 +57,35 @@ class Auth
 	// Méthode // -> API Publique
 	// ------- //
 
+	/**
+	 * Tentative de connexion
+	 */
 	public function attempt(string $username, string $password): User|null
 	{
-		$user = $this->find_by_username($username);
+		$user = $this->findByUsername($username);
 
 		// Utilisateur non trouvé
 		if (!$user) {
 			return null;
 		}
 
+		// Utilisateur trouvé
 		// Les mots de passes ne correspondent pas
-		if (!password_verify($password, $user->get_password())) {
+		if (!password_verify($password, $user->getPassword())) {
 			return null;
 		}
 
 		// Tout est ok.
 
-		$this->set_user_session($user);
+		$this->setUserSession($user);
 
 		return $user;
 	}
 
-	public function find_by_username(string $username): User|null
+	/**
+	 * Cherche un utilisateur dans la base de données en fonction d'un pseudo.
+	 */
+	public function findByUsername(string $username): User|null
 	{
 		$req = $this->database->prepare("SELECT * FROM users WHERE username = :username LIMIT 1", []);
 		// $req->setFetchMode(PDO::FETCH_CLASS, User::class);
@@ -88,7 +102,8 @@ class Auth
 		string $username,
 		string $email,
 		string $password,
-	): bool {
+	): bool
+	{
 		$req = $this->database->prepare("INSERT INTO users (username,email,password) VALUES (:username,:email,:password)");
 
 		try {
@@ -98,24 +113,24 @@ class Auth
 		}
 	}
 
-	public function is_connected(): bool
+	public function isConnected(): bool
 	{
-		return $this->get_user_session() !== null && !empty($this->get_user_session()->get_id());
+		return $this->getUserSession() !== null && !empty($this->getUserSession()->getId());
 	}
 
 	public function logout(): void
 	{
-		$this->unset_user_session();
-		$this->redirect_signin();
+		$this->unsetUserSession();
+		$this->redirectSignin();
 	}
 
-	public function redirect_profile(): void
+	public function redirectProfile(): void
 	{
 		header("Location: ?page=profile");
 		exit;
 	}
 
-	public function redirect_signin(): void
+	public function redirectSignin(): void
 	{
 		header("Location: ?page=signin");
 		exit;

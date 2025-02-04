@@ -4,7 +4,7 @@ require_once "./app/Auth.php";
 
 $auth = new Auth;
 
-if (!$auth->is_connected()) {
+if (!$auth->isConnected()) {
 	// Redirect back
 	exit;
 }

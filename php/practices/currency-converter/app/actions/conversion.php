@@ -21,14 +21,18 @@ class CurrencyConversionAction
 			$errors["amount"] = "The amount cannot be equal to 0";
 		}
 
-		$currencies = $this->currency->get_currencies();
+		$currencies = $this->currency->getCurrencies();
 
 		if (!in_array(strtoupper($this->currency_from), $currencies)) {
-			$errors["currency_from"] = "The currency you have entered is invalid. " . "Valid currencies are : " . join(",", $currencies);
+			$errors["currency_from"] =
+				"The currency you have entered is invalid. " .
+				"Valid currencies are : " . join(",", $currencies);
 		}
 
 		if (!in_array(strtoupper($this->currency_to), $currencies)) {
-			$errors["currency_to"] = "The currency you have entered is invalid. " . "Valid currencies are : " . join(",", $currencies);
+			$errors["currency_to"] =
+				"The currency you have entered is invalid. " .
+				"Valid currencies are : " . join(",", $currencies);
 		}
 
 		if (count($errors) > 0) {
@@ -50,8 +54,8 @@ class CurrencyConversionAction
 
 $auth = new Auth;
 
-if (!$auth->is_connected()) {
-	$auth->redirect_signin();
+if (!$auth->isConnected()) {
+	$auth->redirectSignin();
 }
 
 $action = new CurrencyConversionAction(

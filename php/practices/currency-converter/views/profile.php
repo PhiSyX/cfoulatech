@@ -1,6 +1,6 @@
 <?php
 require_once "./app/Currency.php";
-require_once "./views/Page.php";
+require_once "./app/Page.php";
 
 class PageProfile extends Page
 {
@@ -12,9 +12,9 @@ class PageProfile extends Page
 		$this->currency = new Currency;
 	}
 
-	public function conversions_list(): array
+	public function conversionsList(): array
 	{
-		$user_id = $this->get_user_id();
+		$user_id = $this->getUserId();
 
 		if (!$user_id) {
 			return [];
@@ -25,7 +25,7 @@ class PageProfile extends Page
 }
 
 $page = new PageProfile;
-$page->required_auth();
+$page->requiredAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 
@@ -48,7 +48,7 @@ $page->required_auth();
 				</thead>
 
 				<tbody>
-					<?php foreach ($page->conversions_list() as $conversion): ?>
+					<?php foreach ($page->conversionsList() as $conversion): ?>
 						<tr>
 							<td><?= $conversion["amount"]; ?></td>
 							<td><?= $conversion["from"]; ?></td>

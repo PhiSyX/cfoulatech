@@ -14,7 +14,7 @@ if (!isset($auth)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php
 			if (isset($page)):
-				echo $page->get_title();
+				echo $page->getTitle();
 			else:
 				echo "Mon super site";
 			endif;
@@ -24,22 +24,24 @@ if (!isset($auth)) {
 
 <body>
 
-	<?php if ($auth->is_connected()): ?>
+	<?php if ($auth->isConnected()): ?>
 		<aside>
 			<nav>
 				<a
 					href="?page=profile"
-					<?php if (isset($page) && $page->get_page() === "profile"): ?>class="active" <?php endif ?>>
+					<?php if (isset($page) && $page->getPage() === "profile"): ?>class="active" <?php endif ?>
+				>
 					Profile
 				</a>
 
 				<a
 					href="?page=conversion"
-					<?php if (isset($page) && $page->get_page() === "conversion"): ?>class="active" <?php endif ?>>
+					<?php if (isset($page) && $page->getPage() === "conversion"): ?>class="active" <?php endif ?>
+				>
 					Mikonvertika
 				</a>
 
-				<a href="?page=signout">Log Out, <?= $auth->get_user_session()->get_username(); ?></a>
+				<a href="?page=signout">Log Out, <?= $auth->getUserSession()->getUsername(); ?></a>
 
 				<a href="?page=session">Session</a>
 				<a href="?page=session&destroy">Clear Session</a>

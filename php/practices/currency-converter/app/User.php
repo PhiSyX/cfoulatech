@@ -2,6 +2,10 @@
 
 class User
 {
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
 	public function __construct(
 		private string $username,
 		private string $email,
@@ -13,22 +17,22 @@ class User
 	// Getter | Setter //
 	// --------------- //
 
-	public function get_username(): string
+	public function getUsername(): string
 	{
 		return $this->username;
 	}
 
-	public function get_email(): string
+	public function getEmail(): string
 	{
 		return $this->email;
 	}
 
-	public function get_password(): string
+	public function getPassword(): string
 	{
 		return $this->password;
 	}
 
-	public function get_id(): int
+	public function getId(): int
 	{
 		return $this->id;
 	}

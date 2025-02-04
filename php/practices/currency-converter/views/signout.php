@@ -1,5 +1,5 @@
 <?php
-require_once "./views/Page.php";
+require_once "./app/Page.php";
 
 class PageSignOut extends Page
 {
@@ -10,7 +10,7 @@ class PageSignOut extends Page
 }
 
 $page = new PageSignOut;
-$page->required_auth();
+$page->requiredAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 
@@ -20,8 +20,8 @@ $page->required_auth();
 
 	<section>
 		<p class="align-t:left">
-			Hello <strong><?php echo $auth->get_user_session()->get_username(); ?></strong>,
-			you are about to log out of your account (<strong><?php echo $auth->get_user_session()->get_email(); ?></strong>)
+			Hello <strong><?= $page->getUserName(); ?></strong>,
+			you are about to log out of your account (<strong><?= $page->getUserEmail(); ?></strong>)
 		</p>
 
 		<form action="?action=logout" method="POST">

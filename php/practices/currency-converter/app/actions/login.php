@@ -46,9 +46,8 @@ class LoginAction
 
 $auth = new Auth;
 
-if ($auth->is_connected()) {
-	$auth->redirect_profile();
-	exit;
+if ($auth->isConnected()) {
+	$auth->redirectProfile();
 }
 
 $action = new LoginAction(
