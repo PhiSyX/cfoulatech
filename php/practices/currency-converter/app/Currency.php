@@ -10,12 +10,13 @@ class Currency
 	 * Taux de conversions
 	 */
 	private array $rates = [
-		"USD" => 1.08,
-		"YEN" => 129.53,
-		"GBP" => 0.85,
-		"RDC" => 2200,
-		"DIR" => 10.89,
-		"AUD" => 1.62
+		"EUR" => 1,
+		"USD" => 1.003,
+		"JPY" => 160.3,
+		"GBP" => 0.8306,
+		"CDF" => 2951,
+		"DIR" => 10.38,
+		"AUD" => 1.661
 	];
 
 	/**
@@ -24,9 +25,9 @@ class Currency
 	private array $symbols = [
 		"EUR" => "€",
 		"USD" => "$",
-		"YEN" => "¥",
+		"JPY" => "¥",
 		"GBP" => "£",
-		"RDC" => "CDF",
+		"CDF" => "CDF",
 		"DIR" => "د.إ",
 		"AUD" => "$",
 	];
@@ -58,27 +59,28 @@ class Currency
 
 	public function convert(
 		float $amount,
+		string $from,
 		string $to,
-		string $from = "EUR"
-	): string
+	): array
 	{
-		$converted = $amount * $this->rates[$to];
+		$converted1 = $amount * $this->rates[$to];
+		$converted2 = $amount * ($this->rates[$from] / $converted1);
 
-		$this->saveToSession(
+		$this->save_to_session(
 			$amount,
 			$from,
 			$to,
-			$converted,
+			[$converted1, $converted2],
 		);
 
-		return $converted;
+		return [$converted1, $converted2];
 	}
 
-	private function saveToSession(
+	private function save_to_session(
 		float $amount,
 		string $from,
 		string $to,
-		float $result
+		array $result
 	)
 	{
 		if (session_status() === PHP_SESSION_NONE) {
