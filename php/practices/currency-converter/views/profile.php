@@ -1,33 +1,12 @@
 <?php
-require_once "./app/Currency.php";
-require_once "./app/Page.php";
-
-class PageProfile extends Page
-{
-	private Currency $currency;
-
-	public function __construct()
-	{
-		parent::__construct("profile", "My Profile");
-		$this->currency = new Currency;
-	}
-
-	public function conversionsList(): array
-	{
-		$user_id = $this->getUserId();
-
-		if (!$user_id) {
-			return [];
-		}
-
-		return $this->currency->all($user_id);
-	}
-}
+require_once "./app/PageProfile.php";
 
 $page = new PageProfile;
 $page->requiredAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
+
+<link rel="stylesheet" href="assets/css/profile.css">
 
 <div class="page-profile">
 	<h1>Profile</h1>

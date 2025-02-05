@@ -1,20 +1,38 @@
+
 <?php
 
-require_once "./app/Auth.php";
+require_once "./app/Action.php";
 
-class RegisterAction
+class ActionUserRegister extends Action
 {
 	// ----------- //
 	// Constructor //
 	// ----------- //
 
+	/*
+		La syntaxe suivante dans les paramètres d'un constructeur :
+
+			public function __construct(private type $property)
+			{
+			}
+
+		est une alternative à faire ceci :
+
+			private type $property;
+			public function __construct(type $property)
+			{
+				$this->property = $property;
+			}
+	*/
 	public function __construct(
-		private Auth $auth,
 		private string $username,
 		private string $email,
 		private string $password,
 		private string $password_confirm,
-	) {}
+	)
+	{
+		parent::__construct();
+	}
 
 	// ------- //
 	// Méthode // -> API Publique
@@ -59,32 +77,11 @@ class RegisterAction
 			$this->auth->redirectSignin();
 			return true;
 		} else {
-			$errors["global"] = "Une erreur s'est produite lors de l'inscription, " .
-				"vous ne pouvez pas vous inscrire avec ces identifiants, " .
-				"ils ont été bannis de nos services.";
+			$errors["global"] =
+				"An error occurred while registering, " .
+				"you cannot register with these credentials, " .
+				"they have been banned from our services.";
 			return $errors;
 		}
 	}
 }
-
-$auth = new Auth;
-
-if ($auth->isConnected()) {
-	$auth->redirectProfile();
-}
-
-$action = new RegisterAction(
-	auth: $auth,
-	username: $_POST["username"],
-	email: $_POST["email"],
-	password: $_POST["password"],
-	password_confirm: $_POST["password_confirm"],
-);
-
-$errors = $action->validate();
-
-if ($errors === false) {
-	$errors = $action->save();
-}
-
-require "./views/signup.php";

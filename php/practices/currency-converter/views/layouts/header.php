@@ -25,24 +25,32 @@ if (!isset($auth)) {
 <body>
 
 	<?php if ($auth->isConnected()): ?>
-		<aside>
-			<nav>
+		<aside class="sidebar">
+			<nav role="navigation,primary">
 				<a
 					href="?page=profile"
-					<?php if (isset($page) && $page->getPage() === "profile"): ?>class="active" <?php endif ?>
+					<?php if (isset($page) && $page->getPage() === "profile"): ?>
+						class="active"
+					<?php endif ?>
 				>
 					Profile
 				</a>
 
 				<a
 					href="?page=conversion"
-					<?php if (isset($page) && $page->getPage() === "conversion"): ?>class="active" <?php endif ?>
+					<?php if (isset($page) && $page->getPage() === "conversion"): ?>
+						class="active"
+					<?php endif ?>
 				>
 					Mikonvertika
 				</a>
 
-				<a href="?page=signout">Log Out, <?= $auth->getUserSession()->getUsername(); ?></a>
+				<a href="?page=signout">
+					Log Out, <?= $auth->getUserSession()->getUsername(); ?>
+				</a>
+			</nav>
 
+			<nav role="navigation,secondary">
 				<a href="?page=session">Session</a>
 				<a href="?page=session&destroy">Clear Session</a>
 			</nav>
@@ -51,6 +59,7 @@ if (!isset($auth)) {
 
 	<main class="container" role="main">
 
+		<!-- Affiche des erreurs globales -->
 		<?php if (isset($errors) && is_array($errors) && isset($errors["global"])): ?>
 			<div class="alert alert--error">
 				<?= $errors["global"]; ?>

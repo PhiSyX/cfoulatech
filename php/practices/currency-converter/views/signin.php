@@ -1,18 +1,13 @@
 <?php
-require_once "./app/Page.php";
 
-class PageSignIn extends Page
-{
-	public function __construct()
-	{
-		parent::__construct("signin", "Log In");
-	}
-}
+require_once "./app/PageSignin.php";
 
 $page = new PageSignIn;
 $page->anonymousAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
+
+<link rel="stylesheet" href="assets/css/signin.css">
 
 <div class="auth-login align-t:center">
 	<h1>Connection</h1>
@@ -44,13 +39,13 @@ $page->anonymousAuth();
 	<form action="?action=login" method="POST">
 		<div class="form-group align-t:left">
 			<label for="username">Username</label>
-			<input id="username" type="text" name="username" placeholder="JohnDoe" value="PhiSyX">
+			<input id="username" type="text" name="username" placeholder="JohnDoe">
 			<?= isset($errors) ? error($errors, "username") : null ?>
 		</div>
 
 		<div class="form-group align-t:left">
 			<label for="password">Password</label>
-			<input id="password" type="password" name="password" placeholder="Secret555" value="123456">
+			<input id="password" type="password" name="password" placeholder="Secret555">
 			<?= isset($errors) ? error($errors, "password") : null ?>
 		</div>
 

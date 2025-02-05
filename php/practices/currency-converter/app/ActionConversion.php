@@ -1,17 +1,43 @@
 <?php
 
-require_once "./app/Auth.php";
-require_once "./app/Currency.php";
+require_once "./app/Action.php";
+require_once "./app/Conversion.php";
 
-class CurrencyConversionAction
+class ActionConversion extends Action
 {
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	/*
+		La syntaxe suivante dans les paramètres d'un constructeur :
+
+			public function __construct(private type $property)
+			{
+			}
+
+		est une alternative à faire ceci :
+
+			private type $property;
+			public function __construct(type $property)
+			{
+				$this->property = $property;
+			}
+	*/
 	public function __construct(
-		private Auth $auth,
-		private Currency $currency,
+		private Conversion $conversion,
+
 		private float $amount,
 		private string $currency_from,
 		private string $currency_to,
-	) {}
+	)
+	{
+		parent::__construct();
+	}
+
+	// ------- //
+	// Méthode // -> API Publique
+	// ------- //
 
 	public function validate(): array|bool
 	{
@@ -21,7 +47,7 @@ class CurrencyConversionAction
 			$errors["amount"] = "The amount cannot be equal to 0";
 		}
 
-		$currencies = $this->currency->getCurrencies();
+		$currencies = $this->conversion->getCurrencies();
 
 		if (!in_array(strtoupper($this->currency_from), $currencies)) {
 			$errors["currency_from"] =
@@ -44,32 +70,10 @@ class CurrencyConversionAction
 
 	public function save(): void
 	{
-		$this->currency->convert(
+		$this->conversion->convert(
 			$this->amount,
 			strtoupper($this->currency_from),
 			strtoupper($this->currency_to),
 		);
 	}
 }
-
-$auth = new Auth;
-
-if (!$auth->isConnected()) {
-	$auth->redirectSignin();
-}
-
-$action = new CurrencyConversionAction(
-	auth: $auth,
-	currency: new Currency,
-	amount: (float) $_POST["amount"],
-	currency_from: $_POST["currency_from"],
-	currency_to: $_POST["currency_to"],
-);
-
-$errors = $action->validate();
-
-if ($errors === false) {
-	$action->save();
-}
-
-require "./views/conversion.php";

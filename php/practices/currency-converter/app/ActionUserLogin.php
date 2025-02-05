@@ -1,14 +1,39 @@
 <?php
 
-require_once "./app/Auth.php";
+require_once "./app/Action.php";
 
-class LoginAction
+class ActionUserLogin extends Action
 {
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	/*
+		La syntaxe suivante dans les paramètres d'un constructeur :
+
+			public function __construct(private type $property)
+			{
+			}
+
+		est une alternative à faire ceci :
+
+			private type $property;
+			public function __construct(type $property)
+			{
+				$this->property = $property;
+			}
+	*/
 	public function __construct(
-		private Auth $auth,
 		private string $username,
 		private string $password,
-	) {}
+	)
+	{
+		parent::__construct();
+	}
+
+	// ------- //
+	// Méthode // -> API Publique
+	// ------- //
 
 	public function validate(): array|bool
 	{
@@ -43,23 +68,3 @@ class LoginAction
 		return $errors;
 	}
 }
-
-$auth = new Auth;
-
-if ($auth->isConnected()) {
-	$auth->redirectProfile();
-}
-
-$action = new LoginAction(
-	auth: $auth,
-	username: $_POST["username"],
-	password: $_POST["password"],
-);
-
-$errors = $action->validate();
-
-if ($errors === false) {
-	$errors = $action->attempt();
-}
-
-require "./views/signin.php";

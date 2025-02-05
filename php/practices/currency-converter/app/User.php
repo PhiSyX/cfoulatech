@@ -6,11 +6,26 @@ class User
 	// Constructor //
 	// ----------- //
 
+	/*
+		La syntaxe suivante dans les paramètres d'un constructeur :
+
+			public function __construct(private type $property)
+			{
+			}
+
+		est une alternative à faire ceci :
+
+			private type $property;
+			public function __construct(type $property)
+			{
+				$this->property = $property;
+			}
+	*/
 	public function __construct(
 		private string $username,
 		private string $email,
 		private string $password,
-		private ?int $id,
+		private int $id,
 	) {}
 
 	// --------------- //

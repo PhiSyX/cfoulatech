@@ -87,15 +87,18 @@ class Auth
 	 */
 	public function findByUsername(string $username): User|null
 	{
-		$req = $this->database->prepare("SELECT * FROM users WHERE username = :username LIMIT 1", []);
-		// $req->setFetchMode(PDO::FETCH_CLASS, User::class);
-		$req->execute(["username" => $username]);
-		$data = $req->fetch();
-		if (!$data) {
+		try {
+			$req = $this->database->prepare("SELECT * FROM users WHERE username = :username LIMIT 1", []);
+			$req->execute(["username" => $username]);
+			$data = $req->fetch();
+			if (!$data) {
+				return null;
+			}
+			$user = new User($data->username, $data->email, $data->password, $data->id);
+			return $user;
+		} catch (PDOException $e) {
 			return null;
 		}
-		$user = new User($data->username, $data->email, $data->password, $data->id);
-		return $user;
 	}
 
 	public function insert(
@@ -104,11 +107,18 @@ class Auth
 		string $password,
 	): bool
 	{
-		$req = $this->database->prepare("INSERT INTO users (username,email,password) VALUES (:username,:email,:password)");
-
 		try {
-			return $req->execute(["username" => $username, "email" => $email, "password" => $password,]);
-		} catch (PDOException $error) {
+			$req = $this->database->prepare("
+				INSERT INTO users  (  username, email, password )
+							VALUES ( :username,:email,:password )
+			");
+
+			return $req->execute([
+				"username" => $username,
+				"email"    => $email,
+				"password" => $password,
+			]);
+		} catch (PDOException $e) {
 			return false;
 		}
 	}

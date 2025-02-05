@@ -1,19 +1,12 @@
 <?php
-require_once "./app/Page.php";
-
-class PageSignOut extends Page
-{
-	public function __construct()
-	{
-		parent::__construct("signout", "Log Out");
-	}
-}
+require_once "./app/PageSignout.php";
 
 $page = new PageSignOut;
 $page->requiredAuth();
 ?>
 <?php include "./views/layouts/header.php"; ?>
 
+<link rel="stylesheet" href="assets/css/signin.css">
 <link rel="stylesheet" href="assets/css/signout.css">
 
 <div class="auth-login align-t:center">

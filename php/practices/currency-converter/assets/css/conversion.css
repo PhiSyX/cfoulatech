@@ -1,24 +1,26 @@
-main {
+body > main {
 	background-color: #5b2626;
 	background-image: radial-gradient(
 			at 40% 20%,
-			rgb(232 110 110) 0px,
+			#e86e6e 0px,
 			transparent 50%
 		),
-		radial-gradient(at 80% 0%, rgb(229 147 166) 0px, transparent 50%),
-		radial-gradient(at 0% 50%, rgb(255 128 138) 0px, transparent 50%),
-		radial-gradient(at 80% 50%, rgb(210 104 104) 0px, transparent 50%),
-		radial-gradient(at 0% 100%, rgb(249 172 127) 0px, transparent 50%),
-		radial-gradient(at 80% 100%, rgb(188 100 83) 0px, transparent 50%);
+		radial-gradient(at 80% 0%, #e593a6 0px, transparent 50%),
+		radial-gradient(at 0% 50%, #ff808a 0px, transparent 50%),
+		radial-gradient(at 80% 50%, #d26868 0px, transparent 50%),
+		radial-gradient(at 0% 100%, #f9ac7f 0px, transparent 50%),
+		radial-gradient(at 80% 100%, #bc6453 0px, transparent 50%);
 }
 
-aside {
-	background: white;
+.sidebar {
+	background: #fff;
+
 	nav a {
-		color: black;
+		color: #212121;
 	}
+
 	nav a.active {
-		background: rgb(232 110 110);
+		background: #e86e6e;
 	}
 }
 
@@ -33,30 +35,22 @@ dialog {
 	box-shadow: 2px 2px 0px var(--border);
 
 	h1 {
-		text-align: center;
 		margin: 0;
 		margin-bottom: 2rem;
+
+		text-align: center;
 	}
 }
 
 form {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	gap: 1rem;
-}
-
-label[for] {
-	cursor: pointer;
-}
-
-svg {
-	margin-top: 2rem;
-	flex-shrink: 0;
 }
 
 .form-group {
 	display: grid;
 	gap: 0.5rem;
+
 	width: 100%;
 
 	input,
@@ -75,34 +69,48 @@ svg {
 	gap: 0.5rem;
 }
 
+svg {
+	flex-shrink: 0;
+
+	margin-top: 2rem;
+}
+
 button {
 	--border: #bf4040;
-	cursor: pointer;
+	width: 100%;
 	padding: 1rem;
+
+	cursor: pointer;
+
 	border: 3px solid var(--border);
+	border-radius: 0.5rem;
 	background: salmon;
 	box-shadow: 2px 2px 0px var(--border);
+
 	text-transform: uppercase;
-	border-radius: 0.5rem;
 }
 
 button:hover {
-	box-shadow: 4px 4px 0px var(--border);
-	transition: 100ms;
 	margin: -2px 2px 2px -2px;
+
+	box-shadow: 4px 4px 0px var(--border);
+
+	transition: 100ms;
 }
 
 button:active {
+	margin: 0;
+
 	box-shadow: 2px 2px 0px var(--border);
-	margin: 0px;
 }
 
 ul {
 	list-style: none;
+
 	margin: 0;
 	padding: 16px;
 }
 
 strong {
-	color: black;
+	color: #212121;
 }

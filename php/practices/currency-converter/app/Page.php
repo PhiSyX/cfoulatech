@@ -31,7 +31,7 @@ class Page
 		string $page,
 		string $title,
 	) {
-		$this->auth  = new Auth;
+		$this->auth  = new Auth();
 		$this->page  = $page;
 		$this->title = $title;
 	}
@@ -85,6 +85,10 @@ class Page
 	// Méthode // -> API Publique
 	// ------- //
 
+	/**
+	 * L'accès à la page est anonyme, ça veut dire
+	 * qu'il n'y a pas besoin de se connecter.
+	 */
 	public function anonymousAuth(): void
 	{
 		if ($this->auth->isConnected()) {
@@ -92,6 +96,9 @@ class Page
 		}
 	}
 
+	/**
+	 * L'accès à la page est requise.
+	 */
 	public function requiredAuth(): void
 	{
 		if (!$this->auth->isConnected()) {

@@ -1,6 +1,6 @@
 <?php
 
-class Currency
+class Conversion
 {
 	// --------- //
 	// Propriété //
@@ -13,6 +13,10 @@ class Currency
 
 	/**
 	 * Taux de conversions
+	 *
+	 * Le format des données de la liste est :
+	 *
+	 * 		"DEVISE" => taux en entier
 	 */
 	private array $rates = [
 		/*
@@ -65,6 +69,9 @@ class Currency
 	// Getter | Setter //
 	// --------------- //
 
+	/**
+	 * Récupère le taux des devises via une API.
+	 */
 	public function getRates(): array
 	{
 		$this->rates = $this->fromAPI("rates", "/v1/latest");
@@ -126,7 +133,7 @@ class Currency
 	}
 
 	/**
-	 * Converti un montant d'une devine à une autre.
+	 * Converti un montant d'une devise à une autre.
 	 */
 	public function convert(
 		float $amount,
@@ -169,13 +176,13 @@ class Currency
 	 */
 	public function deleteFromDatabase(int $user_id, int $conversion_id): bool
 	{
-		$req = $this->database->prepare("
-			DELETE FROM conversions
-			WHERE id = :conversion_id
-			AND user_id = :user_id
-		");
-
 		try {
+			$req = $this->database->prepare("
+				DELETE FROM conversions
+				WHERE id      = :conversion_id
+				  AND user_id = :user_id
+			");
+
 			return $req->execute([
 				"conversion_id" => $conversion_id,
 				"user_id"       => $user_id,
@@ -184,6 +191,10 @@ class Currency
 			return false;
 		}
 	}
+
+	// ------- //
+	// Méthode // -> Privée
+	// ------- //
 
 	/**
 	 * Ajoute une conversion en base de données
@@ -249,13 +260,17 @@ class Currency
 			session_start();
 		}
 
-		$url = "https://api.frankfurter.dev" . $path;
 		if (isset($_SESSION[$name])) {
 			return $_SESSION[$name];
 		}
+
+		$url = "https://api.frankfurter.dev" . $path;
+		// NOTE: n'est pas une bonne méthode de récupération des données
+		// 		 j'ai choisi cette option par facilité.
 		$result = file_get_contents($url);
-		$data = json_decode($result, true)["rates"];
-		$_SESSION[$name] = $data;
-		return $data;
+
+		$_SESSION[$name] = json_decode($result, true)["rates"];
+
+		return $_SESSION[$name];
 	}
 }
