@@ -1,5 +1,7 @@
 -- USER: etudiant1
 
+use coursmsyql;
+
 INSERT INTO users (
 	lastname,
 	firstname,
