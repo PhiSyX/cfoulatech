@@ -71,7 +71,7 @@ require_once "./functions/authentification.php";
 					</a>
 				<?php endif ?>
 
-				<a href="cours/">
+				<a href="../../cours/">
 					<?php include "./assets/svg/icon-course.svg" ?>
 					<span>Tous les cours</span>
 				</a>
