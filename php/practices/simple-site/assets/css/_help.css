@@ -1,6 +1,9 @@
 .ml\:a {
 	margin-left: auto;
 }
+.mr\:a {
+	margin-right: auto;
+}
 .mt\:a {
 	margin-top: auto;
 }
@@ -23,4 +26,12 @@
 .center\:i {
 	max-width: 80ch;
 	margin-inline: auto;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.gap\=1 {
+	gap: 8px;
 }

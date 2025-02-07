@@ -1,0 +1,51 @@
+#database-page form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space1);
+}
+
+#database-page form > div{
+	display: flex;
+	flex-direction: column;
+	gap: var(--space1);
+}
+
+#database-page input,
+#database-page textarea {
+	width: 100%;
+}
+
+#database-page textarea{
+	min-height: 150px;
+}
+
+#database-page form * + * {
+	margin-top: 8px;
+}
+
+#database-page form input {
+	width: 100%;
+
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid #87c3b7;
+}
+#database-page form button {
+	cursor: pointer;
+}
+#database-page form button[type="button"] {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid black;
+	background: black;
+	color: white;
+}
+
+#database-page dialog {
+	min-width: 550px;
+	padding: 1rem;
+
+	border-radius: 8px;
+	border: 6px outset #bdeae1;
+	box-shadow: 7px 7px 11px #726f6f;
+}

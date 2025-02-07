@@ -6,6 +6,27 @@
 		<label for="toggle-navigation-global"></label>
 	</div>
 
+	<?php if (isset($navigations) && is_array($navigations)): ?>
+		<nav class="navbar navbar--horizontal">
+			<?php foreach ($navigations as $link): ?>
+				<a
+					href="<?php echo $link["href"]; ?>"
+					title="<?php echo isset($link["title"]) ? $link["title"] : "Naviguer vers " . $link["href"] ?>"
+					class="<?php echo $nav === $link["id"] ? 'active' : '' ?>">
+					<?php
+					if (isset($link["svg"])):
+						include $link["svg"];
+					endif;
+
+					if (isset($link["text"])):
+						echo '<span>' . $link["text"] . '</span>';
+					endif;
+					?>
+				</a>
+			<?php endforeach; ?>
+		</nav>
+	<?php endif; ?>
+
 	<p class="date">
 		<time>
 			© <?= date("Y"); ?> CFITECH, Inc.
