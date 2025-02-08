@@ -1,6 +1,5 @@
 
 <?php
-
 require_once "./app/Action.php";
 
 class ActionUserRegister extends Action
@@ -48,14 +47,17 @@ class ActionUserRegister extends Action
 
 		if (trim($this->email) === "") {
 			$errors["email"] = "The email address MUST NOT be empty";
-		} else if (strpos($this->email, '@') == false) {
+		} elseif (strpos($this->email, "@") == false) {
 			$errors["email"] = "The email address MUST CONTAIN the @ character";
 		}
 
-		if (strlen($this->password) === 0 || strlen($this->password_confirm) === 0) {
+		if (
+			strlen($this->password) === 0 ||
+			strlen($this->password_confirm) === 0
+		) {
 			$errors["password"] = "The password cannot be empty";
 			$errors["password_confirm"] = "The password cannot be empty";
-		} else if ($this->password !== $this->password_confirm) {
+		} elseif ($this->password !== $this->password_confirm) {
 			$errors["password"] = "Both passwords MUST BE the same.";
 			$errors["password_confirm"] = "Both passwords MUST BE the same.";
 		}
@@ -69,14 +71,17 @@ class ActionUserRegister extends Action
 
 	public function save(): array|bool
 	{
-		if ($this->auth->insert(
-			$this->username,
-			$this->email,
-			password_hash($this->password, PASSWORD_DEFAULT)
-		)) {
+		if (
+			$this->auth->insert(
+				$this->username,
+				$this->email,
+				password_hash($this->password, PASSWORD_DEFAULT)
+			)
+		) {
 			$this->auth->redirectSignin();
 			return true;
 		} else {
+			$errors = [];
 			$errors["global"] =
 				"An error occurred while registering, " .
 				"you cannot register with these credentials, " .
@@ -85,3 +90,4 @@ class ActionUserRegister extends Action
 		}
 	}
 }
+

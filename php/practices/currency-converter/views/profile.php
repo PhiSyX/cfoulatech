@@ -29,14 +29,14 @@ $page->requiredAuth();
 				<tbody>
 					<?php foreach ($page->conversionsList() as $conversion): ?>
 						<tr>
-							<td><?= $conversion["amount"]; ?></td>
-							<td><?= $conversion["from"]; ?></td>
-							<td><?= $conversion["to"]; ?></td>
-							<td><?= $conversion["result"][0]; ?></td>
+							<td><?= $conversion["amount"] ?></td>
+							<td><?= $conversion["from"] ?></td>
+							<td><?= $conversion["to"] ?></td>
+							<td><?= $conversion["result"][0] ?></td>
 
 							<td>
 								<form action="?action=conversion_delete" method="POST">
-									<input type="hidden" name="conversion_id" value="<?= $conversion["id"]; ?>">
+									<input type="hidden" name="conversion_id" value="<?= $conversion["id"] ?>">
 									<button type="submit">Delete</button>
 								</form>
 							</td>

@@ -27,8 +27,8 @@ include "./views/layouts/header.php";
 				step="0.1"
 
 				<?php if (isset($_POST["amount"])): ?>
-					value="<?php echo (float) $_POST["amount"] ?>"
-				<?php endif ?>
+					value="<?php echo (float) $_POST["amount"]; ?>"
+				<?php endif; ?>
 			>
 			<?= isset($errors) ? error($errors, "amount") : null ?>
 		</div>
@@ -38,7 +38,7 @@ include "./views/layouts/header.php";
 				<label for="js-curr-from">From</label>
 
 				<select name="currency_from" id="js-curr-from">
-					<?php foreach ($page->currenciesList() as $currency) : ?>
+					<?php foreach ($page->currenciesList() as $currency): ?>
 						<option
 							value="<?php echo strtolower($currency) ?>"
 							<?php
@@ -55,38 +55,38 @@ include "./views/layouts/header.php";
 							):
 							?>
 								selected="selected"
-							<?php endif ?>
+							<?php endif; ?>
 						>
-							<?php echo $currency ?>
+							<?php echo $currency; ?>
 						</option>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 				</select>
 				<?= isset($errors) ? error($errors, "currency_from") : null ?>
 			</div>
 
 			<div>
-				<?php include "./assets/svg/conversion.svg" ?>
+				<?php include "./assets/svg/conversion.svg"; ?>
 			</div>
 
 			<div class="form-group">
 				<label for="js-curr-to">To</label>
 
 				<select name="currency_to" id="js-curr-to">
-					<?php foreach ($page->currenciesList() as $currency) : ?>
+					<?php foreach ($page->currenciesList() as $currency): ?>
 						<option
-							value="<?php echo strtolower($currency) ?>"
-							<?php
-							if (
-								isset($_POST["currency_to"])      &&
-								strtoupper($_POST["currency_to"]) == strtoupper($currency)
-							):
+							value="<?php echo strtolower($currency); ?>"
+							<?php 
+								if (
+							       	isset($_POST["currency_to"]) &&
+							       	strtoupper($_POST["currency_to"]) == strtoupper($currency)
+								):
 							?>
 								selected="selected"
-							<?php endif ?>
+							<?php endif; ?>
 						>
-							<?php echo $currency ?>
+							<?php echo $currency; ?>
 						</option>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 				</select>
 
 				<?= isset($errors) ? error($errors, "currency_to") : null ?>
@@ -128,8 +128,8 @@ include "./views/layouts/header.php";
 				</li>
 			</ul>
 		</details>
-	<?php endif ?>
+	<?php endif; ?>
 
 </dialog>
 
-<?php include "./views/layouts/footer.php" ?>
+<?php include "./views/layouts/footer.php"; ?>

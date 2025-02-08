@@ -16,19 +16,19 @@ $page->anonymousAuth();
 	<ul>
 		<li class="btn">
 			<a href="#">
-				<?php include "./assets/svg/google.svg" ?>
+				<?php include "./assets/svg/google.svg"; ?>
 			</a>
 		</li>
 
 		<li class="btn">
 			<a href="#">
-				<?php include "./assets/svg/facebook.svg" ?>
+				<?php include "./assets/svg/facebook.svg"; ?>
 			</a>
 		</li>
 
 		<li class="btn">
 			<a href="#">
-				<?php include "./assets/svg/apple.svg" ?>
+				<?php include "./assets/svg/apple.svg"; ?>
 			</a>
 		</li>
 	</ul>

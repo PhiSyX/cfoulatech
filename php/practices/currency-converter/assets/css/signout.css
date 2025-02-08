@@ -1,10 +1,6 @@
 body > main {
 	background-color: #5289dc;
-	background-image: radial-gradient(
-			at 40% 20%,
-			#6edde8 0px,
-			transparent 50%
-		),
+	background-image: radial-gradient(at 40% 20%, #6edde8 0px, transparent 50%),
 		radial-gradient(at 80% 0%, #b093e5 0px, transparent 50%),
 		radial-gradient(at 0% 50%, #80d5ff 0px, transparent 50%),
 		radial-gradient(at 80% 50%, #688cd2 0px, transparent 50%),

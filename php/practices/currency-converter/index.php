@@ -27,9 +27,7 @@ switch ($_SERVER["REQUEST_METHOD"]):
 		// cas, je veux afficher une page par défaut, ici la page de connexion
 		// "signin".
 
-		$pageParam = isset($_GET["page"])
-			? $_GET["page"]
-			: "signin";
+		$pageParam = isset($_GET["page"]) ? $_GET["page"] : "signin";
 
 		if (file_exists("views/$pageParam.php")):
 			include "views/$pageParam.php";

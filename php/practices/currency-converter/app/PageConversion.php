@@ -25,6 +25,9 @@ class PageConversion extends Page
 	// Méthode // -> API Publique
 	// ------- //
 
+	/**
+	 * @return int[]|string[]
+	 */
 	public function currenciesList(): array
 	{
 		return $this->conversion->getCurrencies();

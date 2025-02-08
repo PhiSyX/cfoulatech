@@ -19,9 +19,19 @@ class Auth
 
 	public function __construct()
 	{
-		$this->database = new PDO('mysql:dbname=tp_currency_converter;host=localhost', "root", "");
-		$this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$this->database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+		$this->database = new PDO(
+			"mysql:dbname=tp_currency_converter;host=localhost",
+			"root",
+			""
+		);
+		$this->database->setAttribute(
+			PDO::ATTR_ERRMODE,
+			PDO::ERRMODE_EXCEPTION
+		);
+		$this->database->setAttribute(
+			PDO::ATTR_DEFAULT_FETCH_MODE,
+			PDO::FETCH_OBJ
+		);
 	}
 
 	// --------------- //
@@ -88,13 +98,20 @@ class Auth
 	public function findByUsername(string $username): User|null
 	{
 		try {
-			$req = $this->database->prepare("SELECT * FROM users WHERE username = :username LIMIT 1", []);
+			$req = $this->database->prepare(
+				"SELECT * FROM users WHERE username = :username LIMIT 1"
+			);
 			$req->execute(["username" => $username]);
 			$data = $req->fetch();
 			if (!$data) {
 				return null;
 			}
-			$user = new User($data->username, $data->email, $data->password, $data->id);
+			$user = new User(
+				$data->username,
+				$data->email,
+				$data->password,
+				$data->id
+			);
 			return $user;
 		} catch (PDOException $e) {
 			return null;
@@ -115,7 +132,7 @@ class Auth
 
 			return $req->execute([
 				"username" => $username,
-				"email"    => $email,
+				"email" => $email,
 				"password" => $password,
 			]);
 		} catch (PDOException $e) {
@@ -125,7 +142,8 @@ class Auth
 
 	public function isConnected(): bool
 	{
-		return $this->getUserSession() !== null && !empty($this->getUserSession()->getId());
+		return $this->getUserSession() !== null &&
+			!empty($this->getUserSession()->getId());
 	}
 
 	public function logout(): void
@@ -137,12 +155,12 @@ class Auth
 	public function redirectProfile(): void
 	{
 		header("Location: ?page=profile");
-		exit;
+		exit();
 	}
 
 	public function redirectSignin(): void
 	{
 		header("Location: ?page=signin");
-		exit;
+		exit();
 	}
 }

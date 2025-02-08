@@ -10,7 +10,7 @@ class PageProfile extends Page
 	public function __construct()
 	{
 		parent::__construct("profile", "My Profile");
-		$this->conversion = new Conversion;
+		$this->conversion = new Conversion();
 	}
 
 	public function conversionsList(): array

@@ -13,8 +13,8 @@ $page->requiredAuth();
 
 	<section>
 		<p class="align-t:left">
-			Hello <strong><?= $page->getUserName(); ?></strong>,
-			you are about to log out of your account (<strong><?= $page->getUserEmail(); ?></strong>)
+			Hello <strong><?= $page->getUserName() ?></strong>,
+			you are about to log out of your account (<strong><?= $page->getUserEmail() ?></strong>)
 		</p>
 
 		<form action="?action=logout" method="POST">

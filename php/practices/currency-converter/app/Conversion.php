@@ -60,9 +60,19 @@ class Conversion
 
 	public function __construct()
 	{
-		$this->database = new PDO('mysql:dbname=tp_currency_converter;host=localhost', "root", "");
-		$this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$this->database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+		$this->database = new PDO(
+			"mysql:dbname=tp_currency_converter;host=localhost",
+			"root",
+			""
+		);
+		$this->database->setAttribute(
+			PDO::ATTR_ERRMODE,
+			PDO::ERRMODE_EXCEPTION
+		);
+		$this->database->setAttribute(
+			PDO::ATTR_DEFAULT_FETCH_MODE,
+			PDO::FETCH_OBJ
+		);
 	}
 
 	// --------------- //
@@ -82,6 +92,7 @@ class Conversion
 	/**
 	 * Toutes les devices sous forme de liste
 	 * Exemple: ["EUR", "USD", "AUD", ...]
+	 * @return int[]|string[]
 	 */
 	public function getCurrencies(): array
 	{
@@ -115,25 +126,26 @@ class Conversion
 
 			$req->execute(["user_id" => $user_id]);
 
-
 			foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $item) {
 				// Les résultats ne sont pas sauvegardés en base de données.
 				$item["result"] = $this->convert(
 					$item["amount"],
 					$item["from"],
 					$item["to"],
-					save: false,
+					save: false
 				);
 
 				$data[] = $item;
 			}
-		} catch (PDOException $error) { }
+		} catch (PDOException $error) {
+		}
 
 		return $data;
 	}
 
 	/**
 	 * Converti un montant d'une devise à une autre.
+	 * @return array<int,mixed>
 	 */
 	public function convert(
 		float $amount,
@@ -153,19 +165,15 @@ class Conversion
 		)[$from];
 
 		if ($save) {
-			$this->saveToSession(
-				$amount,
-				$from,
-				$to,
-				[$converted1, $converted2],
-			);
+			$this->saveToSession($amount, $from, $to, [
+				$converted1,
+				$converted2,
+			]);
 
-			$this->saveToDatabase(
-				$amount,
-				$from,
-				$to,
-				[$converted1, $converted2],
-			);
+			$this->saveToDatabase($amount, $from, $to, [
+				$converted1,
+				$converted2,
+			]);
 		}
 
 		return [$converted1, $converted2];
@@ -185,7 +193,7 @@ class Conversion
 
 			return $req->execute([
 				"conversion_id" => $conversion_id,
-				"user_id"       => $user_id,
+				"user_id" => $user_id,
 			]);
 		} catch (PDOException $error) {
 			return false;
@@ -198,6 +206,7 @@ class Conversion
 
 	/**
 	 * Ajoute une conversion en base de données
+	 * @param array<int,mixed> $result
 	 */
 	private function saveToDatabase(
 		float $amount,
@@ -222,10 +231,10 @@ class Conversion
 			");
 
 			return $req->execute([
-				"amount" 		=> $amount,
+				"amount" => $amount,
 				"currency_from" => $from,
-				"currency_to" 	=> $to,
-				"user_id" 		=> $_SESSION["user"]->getId(),
+				"currency_to" => $to,
+				"user_id" => $_SESSION["user"]->getId(),
 			]);
 		} catch (PDOException $error) {
 			return false;
@@ -234,6 +243,7 @@ class Conversion
 
 	/**
 	 * Sauvegarde une conversion en session.
+	 * @param array<int,mixed> $result
 	 */
 	private function saveToSession(
 		float $amount,
@@ -248,8 +258,8 @@ class Conversion
 
 		$_SESSION["currency_result"][] = [
 			"amount" => $amount,
-			"from" 	 => $from,
-			"to"     => $to,
+			"from" => $from,
+			"to" => $to,
 			"result" => $result,
 		];
 	}

@@ -27,12 +27,10 @@ class Page
 	// Constructor //
 	// ----------- //
 
-	public function __construct(
-		string $page,
-		string $title,
-	) {
-		$this->auth  = new Auth();
-		$this->page  = $page;
+	public function __construct(string $page, string $title)
+	{
+		$this->auth = new Auth();
+		$this->page = $page;
 		$this->title = $title;
 	}
 

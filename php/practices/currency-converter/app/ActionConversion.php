@@ -52,13 +52,15 @@ class ActionConversion extends Action
 		if (!in_array(strtoupper($this->currency_from), $currencies)) {
 			$errors["currency_from"] =
 				"The currency you have entered is invalid. " .
-				"Valid currencies are : " . join(",", $currencies);
+				"Valid currencies are : " .
+				join(",", $currencies);
 		}
 
 		if (!in_array(strtoupper($this->currency_to), $currencies)) {
 			$errors["currency_to"] =
 				"The currency you have entered is invalid. " .
-				"Valid currencies are : " . join(",", $currencies);
+				"Valid currencies are : " .
+				join(",", $currencies);
 		}
 
 		if (count($errors) > 0) {
@@ -73,7 +75,7 @@ class ActionConversion extends Action
 		$this->conversion->convert(
 			$this->amount,
 			strtoupper($this->currency_from),
-			strtoupper($this->currency_to),
+			strtoupper($this->currency_to)
 		);
 	}
 }

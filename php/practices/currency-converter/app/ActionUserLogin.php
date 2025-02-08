@@ -55,7 +55,7 @@ class ActionUserLogin extends Action
 		return false;
 	}
 
-	public function attempt()
+	public function attempt(): bool|array
 	{
 		$user = $this->auth->attempt($this->username, $this->password);
 
@@ -63,6 +63,7 @@ class ActionUserLogin extends Action
 			return true;
 		}
 
+		$errors = [];
 		$errors["global"] = "Unable to log in with these credentials.";
 
 		return $errors;

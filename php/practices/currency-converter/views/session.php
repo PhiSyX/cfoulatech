@@ -8,7 +8,7 @@ if (isset($_GET["destroy"])) {
 
 	// Redirige vers la page de connexion.
 	header("Location: ?page=signin");
-	exit;
+	exit();
 } else {
 	var_dump($_SESSION);
 }

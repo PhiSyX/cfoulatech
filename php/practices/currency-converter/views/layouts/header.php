@@ -31,7 +31,7 @@ if (!isset($auth)) {
 					href="?page=profile"
 					<?php if (isset($page) && $page->getPage() === "profile"): ?>
 						class="active"
-					<?php endif ?>
+					<?php endif; ?>
 				>
 					Profile
 				</a>
@@ -40,13 +40,13 @@ if (!isset($auth)) {
 					href="?page=conversion"
 					<?php if (isset($page) && $page->getPage() === "conversion"): ?>
 						class="active"
-					<?php endif ?>
+					<?php endif; ?>
 				>
 					Mikonvertika
 				</a>
 
 				<a href="?page=signout">
-					Log Out, <?= $auth->getUserSession()->getUsername(); ?>
+					Log Out, <?= $auth->getUserSession()->getUsername() ?>
 				</a>
 			</nav>
 
@@ -55,13 +55,13 @@ if (!isset($auth)) {
 				<a href="?page=session&destroy">Clear Session</a>
 			</nav>
 		</aside>
-	<?php endif ?>
+	<?php endif; ?>
 
 	<main class="container" role="main">
 
 		<!-- Affiche des erreurs globales -->
 		<?php if (isset($errors) && is_array($errors) && isset($errors["global"])): ?>
 			<div class="alert alert--error">
-				<?= $errors["global"]; ?>
+				<?= $errors["global"] ?>
 			</div>
 		<?php endif; ?>
