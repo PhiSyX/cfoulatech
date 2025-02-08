@@ -14,7 +14,7 @@ $months = [
 	"Septembre",
 	"Octobre",
 	"Novembre",
-	"Décembre"
+	"Décembre",
 ];
 
 echo instruction("

@@ -16,39 +16,32 @@ echo display_output();
 
 echo "Solution 1: ";
 switch ($user_number) {
-	case 1: {
-			echo "bonjour";
-		}
+	case 1:
+		echo "bonjour";
 		break;
 
-	case 2: {
-			echo "au revoir";
-		}
+	case 2:
+		echo "au revoir";
 		break;
 
-	case 3: {
-			echo "bien joué";
-		}
+	case 3:
+		echo "bien joué";
 		break;
 
-	case 4: {
-			echo "bonne nuit";
-		}
+	case 4:
+		echo "bonne nuit";
 		break;
 
-	case 5: {
-			echo "à tantôt";
-		}
+	case 5:
+		echo "à tantôt";
 		break;
 
-	case 6: {
-			echo "arrête un peu";
-		}
+	case 6:
+		echo "arrête un peu";
 		break;
 
-	case 7: {
-			echo "10 + 10 = 20";
-		}
+	case 7:
+		echo "10 + 10 = 20";
 		break;
 
 	default:

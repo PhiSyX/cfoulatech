@@ -132,8 +132,15 @@ function afficherNomCapaciteVehicule(array $vehicules): array
 	return $ordres;
 }
 
-foreach (afficherNomCapaciteVehicule([$avion1, $avion2, $bateau1, $bateau2]) as $vehicule) {
-	echo "Le véhicule " . $vehicule->getNom() . " comporte " . $vehicule->getCapacite() . " places<br>";
+foreach (
+	afficherNomCapaciteVehicule([$avion1, $avion2, $bateau1, $bateau2])
+	as $vehicule
+) {
+	echo "Le véhicule " .
+		$vehicule->getNom() .
+		" comporte " .
+		$vehicule->getCapacite() .
+		" places<br>";
 }
 
 echo "<hr>";

@@ -1,5 +1,3 @@
 <?php
 
-class Moto extends VehiculeDeuxRoues
-{
-}
+class Moto extends VehiculeDeuxRoues {}

@@ -28,7 +28,7 @@ function display_message(array $users): void
 {
 	$user_categories = [
 		true => "adulte",
-		false => "mineur"
+		false => "mineur",
 	];
 
 	$user_civilities = [
@@ -90,7 +90,7 @@ $users = [
 		"prenom" => "Karim",
 		"age" => 45,
 		"genre" => "homme",
-	]
+	],
 ];
 
 display_message($users);

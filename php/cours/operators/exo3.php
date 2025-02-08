@@ -8,7 +8,7 @@ $user1 = [
 	"lastname" => "Smith",
 	"gender" => $male,
 	"age" => 53,
-	"vaccinated" => true
+	"vaccinated" => true,
 ];
 
 $user2 = [
@@ -16,7 +16,7 @@ $user2 = [
 	"lastname" => "Croft",
 	"gender" => $female,
 	"age" => 17,
-	"vaccinated" => false
+	"vaccinated" => false,
 ];
 
 $user3 = [
@@ -24,7 +24,7 @@ $user3 = [
 	"lastname" => "Cotillard",
 	"gender" => $female,
 	"age" => 46,
-	"vaccinated" => true
+	"vaccinated" => true,
 ];
 
 $user = $user3;
@@ -42,6 +42,6 @@ if ($user["age"] >= 18 && $user["vaccinated"]) {
 	$bracelet_color = $bracelets[$user["gender"]];
 	echo "Prenez un bracelet $bracelet_color";
 } else {
-	$feminize = $user["gender"] === $female ? 'e' : '';
+	$feminize = $user["gender"] === $female ? "e" : "";
 	echo "Désolé $firstname $lastname, vous n'êtes ni majeur$feminize ni vacciné$feminize";
 }

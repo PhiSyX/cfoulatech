@@ -14,11 +14,7 @@ class Personnage
 	// Constructor //
 	// ----------- //
 
-	public function __construct(
-		string $nom,
-		int $vie,
-		int $attaque,
-	)
+	public function __construct(string $nom, int $vie, int $attaque)
 	{
 		$this->nom = $nom;
 		$this->attaque = $attaque;
@@ -69,9 +65,15 @@ class Personnage
 
 	public function __toString(): string
 	{
-		return "Nom : " . $this->nom .  " <br>" .
-			   "Vie : " . $this->vie .  " <br>" .
-			   "Puissance d'attaque : " . $this->attaque . " de dégâts <br><br>";
+		return "Nom : " .
+			$this->nom .
+			" <br>" .
+			"Vie : " .
+			$this->vie .
+			" <br>" .
+			"Puissance d'attaque : " .
+			$this->attaque .
+			" de dégâts <br><br>";
 	}
 
 	// ------- //
@@ -85,8 +87,6 @@ class Personnage
 
 	public function lanceAttaque(Personnage $personnage): void
 	{
-		$personnage->setVie(
-			$personnage->getVie() - $this->attaque
-		);
+		$personnage->setVie($personnage->getVie() - $this->attaque);
 	}
 }

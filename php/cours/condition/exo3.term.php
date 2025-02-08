@@ -6,7 +6,7 @@ $user_action = (int) readline(
 
 if ($user_action === 1) {
 	echo "Vous attaquez";
-} else if ($user_action === 2) {
+} elseif ($user_action === 2) {
 	echo "Vous défendez";
 } elseif ($user_action === 3) {
 	echo "Vous vous soignez";

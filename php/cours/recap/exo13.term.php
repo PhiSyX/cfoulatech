@@ -12,11 +12,11 @@ echo instruction(
 $user_figures = [];
 
 while (true) {
-	$user_maybe_figure = readline("Quel est votre chiffre ? (tapez 0 pour arrêter) ");
+	$user_maybe_figure = readline(
+		"Quel est votre chiffre ? (tapez 0 pour arrêter) "
+	);
 
-	if (
-		!is_numeric($user_maybe_figure) || strlen($user_maybe_figure) > 1
-	) {
+	if (!is_numeric($user_maybe_figure) || strlen($user_maybe_figure) > 1) {
 		echo "Il ne s'agit pas d'un chiffre entre 0 et 9.\n";
 		continue;
 	}
@@ -49,7 +49,6 @@ foreach ($user_figures as $number) {
 		}
 	}
 }
-
 
 echo "\n";
 

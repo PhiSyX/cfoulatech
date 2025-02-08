@@ -17,7 +17,7 @@ function display_message(array $users)
 {
 	$user_categories = [
 		true => "majeur",
-		false => "mineur"
+		false => "mineur",
 	];
 
 	$user_colors = [
@@ -67,7 +67,7 @@ $users = [
 		"prenom" => "Karim",
 		"age" => 45,
 		"genre" => "homme",
-	]
+	],
 ];
 
 display_message($users);

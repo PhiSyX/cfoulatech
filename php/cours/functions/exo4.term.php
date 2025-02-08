@@ -14,10 +14,8 @@ function is_palindrome(string $word, int $index = 0)
 {
 	$word_size = strlen($word);
 
-	return (
-		$index < 0 ||
+	return $index < 0 ||
 		$index >= $word_size >> 1 ||
-		$word[$index] === $word[$word_size - 1 - $index] &&
-		is_palindrome($word, ++$index)
-	);
+		($word[$index] === $word[$word_size - 1 - $index] &&
+			is_palindrome($word, ++$index));
 }

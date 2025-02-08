@@ -16,13 +16,13 @@ if ($maybe_user_amount === false || !is_numeric($maybe_user_amount)) {
 	exit("Tu DOIS entrer un montant valide (une valeur entière ou décimale).");
 }
 
-$user_amount = (float)$maybe_user_amount;
+$user_amount = (float) $maybe_user_amount;
 
 echo display_output();
 
 if ($user_amount < $amount_min) {
 	echo "Vous n'avez pas assez d'argent";
-} else if ($user_amount >= $amount_min && $user_amount <= $amount_max) {
+} elseif ($user_amount >= $amount_min && $user_amount <= $amount_max) {
 	echo "Vous avez bien introduis un montant ($user_amount) se situant entre $amount_min et $amount_max euros";
 } else {
 	echo "Vous avez dépassé la limite";

@@ -10,9 +10,8 @@ class Avion extends VehiculeSansRoues
 		string $nom,
 		string $marque,
 		float $vitesseMax,
-		int $capacite,
-	)
-	{
+		int $capacite
+	) {
 		parent::__construct($nom, $marque, $vitesseMax, $capacite);
 	}
 

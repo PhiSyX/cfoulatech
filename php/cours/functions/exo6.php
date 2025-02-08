@@ -11,7 +11,6 @@ foreach ($notes as $note) {
 echo "]";
 echo "\n";
 
-
 echo "Voici votre tableau inversé est: ";
 echo "[ ";
 foreach ($reverse_notes as $note) {

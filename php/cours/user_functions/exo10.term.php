@@ -3,7 +3,7 @@
 $add = fn(int $l, int $r): int => $l + $r;
 $sub = fn(int $l, int $r): int => $l - $r;
 $mul = fn(int $l, int $r): int => $l * $r;
-$div = function (int $l, int $r): int | string {
+$div = function (int $l, int $r): int|string {
 	if ($r === 0) {
 		return "Division par 0 impossible";
 	}
@@ -12,8 +12,12 @@ $div = function (int $l, int $r): int | string {
 
 function prompt_operands(string $term)
 {
-	$left_operand = (int)readline("[$term]:  Veuillez introduire un premier nombre : ");
-	$right_operand = (int)readline("[$term]: Veuillez introduire un deuxième nombre : ");
+	$left_operand = (int) readline(
+		"[$term]:  Veuillez introduire un premier nombre : "
+	);
+	$right_operand = (int) readline(
+		"[$term]: Veuillez introduire un deuxième nombre : "
+	);
 	return [$left_operand, $right_operand];
 }
 
@@ -41,7 +45,7 @@ $ops = [
 		"name" => "Multiplication",
 		"term" => "multiplié",
 		"calc" => $mul,
-	]
+	],
 ];
 
 foreach ($ops as $op) {

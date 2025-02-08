@@ -31,7 +31,7 @@ $users = [
 		"firstname" => "Amina",
 		"notes" => [81, 13, 97, 61, 73],
 		"gender" => "F",
-	]
+	],
 ];
 
 echo instruction(
@@ -51,6 +51,8 @@ foreach ($users as $user) {
 				$highest_note = $current_iter_note;
 			}
 		}
-		echo "La note maximale de " . $user["firstname"] . " est de $highest_note \n";
+		echo "La note maximale de " .
+			$user["firstname"] .
+			" est de $highest_note \n";
 	}
 }

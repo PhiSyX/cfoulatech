@@ -19,9 +19,8 @@ class Bateau extends VehiculeSansRoues
 		float $vitesseMax,
 		int $capacite,
 		bool $enMouvement,
-		bool $aLArret = true,
-	)
-	{
+		bool $aLArret = true
+	) {
 		parent::__construct($nom, $marque, $vitesseMax, $capacite);
 		$this->enMouvement = $enMouvement;
 		$this->aLArret = $aLArret;

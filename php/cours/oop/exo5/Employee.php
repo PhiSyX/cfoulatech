@@ -30,7 +30,7 @@ class Employee
 		DateTimeInterface $dateNaissance,
 		DateTimeInterface $dateEmbauche,
 		float $salaire,
-		DateTimeInterface $now = new DateTime("now"),
+		DateTimeInterface $now = new DateTime("now")
 	) {
 		$this->matricule = $matricule;
 		$this->nom = $nom;
@@ -132,7 +132,7 @@ class Employee
 
 		if ($anciennete < 5) {
 			$this->salaire *= 1 + 2 / 100;
-		} else if ($anciennete < 10) {
+		} elseif ($anciennete < 10) {
 			$this->salaire *= 1 + 5 / 100;
 		} else {
 			$this->salaire *= 1 + 10 / 100;

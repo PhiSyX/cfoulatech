@@ -19,9 +19,8 @@ class Voiture
 		string $marque,
 		string $couleur,
 		float $poids,
-		float $prix,
-	)
-	{
+		float $prix
+	) {
 		$this->marque = $marque;
 		$this->couleur = $couleur;
 		$this->poids = $poids;
@@ -88,7 +87,7 @@ class Voiture
 
 	public function addPrix(float $prix): void
 	{
-		$this->prix += $prix;;
+		$this->prix += $prix;
 	}
 
 	public function plusChère(self $voiture): bool

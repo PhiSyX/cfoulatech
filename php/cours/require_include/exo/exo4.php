@@ -9,7 +9,7 @@ if (yes_or_no("Voulez-vous $term1?")) {
 	$nb1 = readline("Votre premier nombre : ");
 	$nb2 = readline("Votre second nombre : ");
 
-	if (! (is_numeric($nb1) && is_numeric($nb2))) {
+	if (!(is_numeric($nb1) && is_numeric($nb2))) {
 		echo "Veuillez introduire 2 nombres\n";
 	} else {
 		$result = add($nb1, $nb2);

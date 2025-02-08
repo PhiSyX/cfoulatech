@@ -14,18 +14,22 @@ function mul(int $l, int $r): int
 {
 	return $l * $r;
 }
-function div(int $l, int $r): int | string
+function div(int $l, int $r): int|string
 {
 	if ($r === 0) {
 		return "La division par zéro est interdite";
 	}
 	return $l / $r;
-};
+}
 
 function prompt_operands(string $term)
 {
-	$left_operand  = (int) readline("[$term]: Veuillez introduire un premier nombre : ");
-	$right_operand = (int) readline("[$term]: Veuillez introduire un deuxième nombre : ");
+	$left_operand = (int) readline(
+		"[$term]: Veuillez introduire un premier nombre : "
+	);
+	$right_operand = (int) readline(
+		"[$term]: Veuillez introduire un deuxième nombre : "
+	);
 	return [$left_operand, $right_operand];
 }
 
@@ -33,7 +37,7 @@ function display_result_operation(
 	int $a,
 	string $word,
 	int $b,
-	string | int $result
+	string|int $result
 ) {
 	if (is_numeric($result)) {
 		return "$a $word $b donne $result";

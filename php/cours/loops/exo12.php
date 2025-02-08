@@ -6,18 +6,18 @@ $class = [
 	[
 		"firstname" => "Julien",
 		"lastname" => "Dunia",
-		"notes" => [8, 15, 12]
+		"notes" => [8, 15, 12],
 	],
 	[
 		"firstname" => "Hakima",
 		"lastname" => "Darmouch",
-		"notes" => [18, 5, 10]
+		"notes" => [18, 5, 10],
 	],
 	[
 		"firstname" => "Christian",
 		"lastname" => "Bale",
-		"notes" => [7, 19, 5]
-	]
+		"notes" => [7, 19, 5],
+	],
 ];
 
 echo instruction("

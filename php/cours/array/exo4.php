@@ -6,7 +6,7 @@ $two_dim = [
 	"M",
 	"07-07-2007",
 	["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
-	"Londres"
+	"Londres",
 ];
 
 $firstname = $two_dim[0];

@@ -6,7 +6,7 @@ $user = [
 	"gender" => "F",
 	"dateOfBirth" => "23-10-1995",
 	"notes" => [18, 13, 5, 10, 9],
-	"city" => "Londres"
+	"city" => "Londres",
 ];
 
 $score_notes = 20;

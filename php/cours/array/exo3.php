@@ -7,7 +7,7 @@ $days_of_week = [
 	"jeudi",
 	"vendredi",
 	"samedi",
-	"dimanche"
+	"dimanche",
 ];
 
 $day_today = $days_of_week[0];

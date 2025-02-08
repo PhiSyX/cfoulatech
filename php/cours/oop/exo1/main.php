@@ -34,7 +34,9 @@ echo "<hr>";
 // echo "Elle a un prix de : <strong>" . $v1->prix . "</strong>Kg <br>";
 
 // NOTE: bonne pratique
-echo "Ma voiture est de couleur : <strong>" . $v1->getCouleur() . "</strong> <br>";
+echo "Ma voiture est de couleur : <strong>" .
+	$v1->getCouleur() .
+	"</strong> <br>";
 echo "Elle a un poids de : <strong>" . $v1->getPoids() . "</strong>Kg <br>";
 echo "Elle a un prix de : <strong>" . $v1->getPrix() . "</strong>Kg <br>";
 
@@ -44,7 +46,9 @@ echo "Elle a un prix de : <strong>" . $v1->getPrix() . "</strong>Kg <br>";
 
 // NOTE: bonne pratique
 $v1->setCouleur("Jaune");
-echo "Ma nouvelle couleur de voiture est : <strong>" . $v1->getCouleur() . "</strong> <br>";
+echo "Ma nouvelle couleur de voiture est : <strong>" .
+	$v1->getCouleur() .
+	"</strong> <br>";
 
 // 6)
 $v1->setPrix(11_000);
@@ -57,7 +61,9 @@ echo "L'ancien prix de ma voiture <strong>" . $v1->getPrix() . "</strong>€<br>
 
 $v1->addPrix(200);
 
-echo "Le nouveau prix de ma voiture <strong>" . $v1->getPrix() . "</strong>€<br>";
+echo "Le nouveau prix de ma voiture <strong>" .
+	$v1->getPrix() .
+	"</strong>€<br>";
 
 echo "<hr>";
 
@@ -68,17 +74,27 @@ $v2->setCouleur("Verte");
 $v2->setPrix(5000);
 $v2->setPoids(600.95);
 
-echo "Ma voiture est de couleur : <strong>" . $v2->getCouleur() . "</strong> <br>";
+echo "Ma voiture est de couleur : <strong>" .
+	$v2->getCouleur() .
+	"</strong> <br>";
 echo "Elle a un poids de : <strong>" . $v2->getPoids() . "</strong>Kg <br>";
 echo "Elle a un prix de : <strong>" . $v2->getPrix() . "</strong>Kg <br>";
 
 $diff = abs($v1->getPrix() - $v2->getPrix());
 if ($v1->getPrix() > $v2->getPrix()) {
-	echo "La voiture <strong>" . $v1->getCouleur() . "</strong> est plus chère ".
-		 "que la voiture <strong>". $v2->getCouleur() . "</strong>";
+	echo "La voiture <strong>" .
+		$v1->getCouleur() .
+		"</strong> est plus chère " .
+		"que la voiture <strong>" .
+		$v2->getCouleur() .
+		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 } else {
-	echo "La voiture <strong>" . $v2->getCouleur() . "</strong> est plus chère ".
-		 "que la voiture <strong>". $v1->getCouleur() . "</strong>";
+	echo "La voiture <strong>" .
+		$v2->getCouleur() .
+		"</strong> est plus chère " .
+		"que la voiture <strong>" .
+		$v1->getCouleur() .
+		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 }

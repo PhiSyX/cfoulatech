@@ -12,7 +12,9 @@ echo instruction("
 ", input: true);
 
 while ($is_running) {
-	$user_word = readline("Entrez un nouveau mot ou tapez 'stop' pour arrêter: ");
+	$user_word = readline(
+		"Entrez un nouveau mot ou tapez 'stop' pour arrêter: "
+	);
 	$is_running = $user_word !== $stop_word;
 	if ($is_running) {
 		$user_words[] = $user_word;

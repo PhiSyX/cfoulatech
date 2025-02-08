@@ -11,11 +11,7 @@ class Vehicule
 	// Constructor //
 	// ----------- //
 
-	public function __construct(
-		string $nom,
-		string $marque,
-		float $vitesseMax,
-	)
+	public function __construct(string $nom, string $marque, float $vitesseMax)
 	{
 		$this->nom = $nom;
 		$this->marque = $marque;
@@ -35,7 +31,6 @@ class Vehicule
 	{
 		$this->nom = $nom;
 	}
-
 
 	public function getMarque(): string
 	{
@@ -66,7 +61,6 @@ class Vehicule
 	{
 		$this->vitesseMax = $vitessemax;
 	}
-
 }
 
 class VehiculeDeuxRoues extends Vehicule
@@ -86,9 +80,8 @@ class VehiculeDeuxRoues extends Vehicule
 		string $marque,
 		float $vitesseMax,
 		string $pays,
-		bool $connecte,
-	)
-	{
+		bool $connecte
+	) {
 		parent::__construct($nom, $marque, $vitesseMax);
 		$this->setPays($pays);
 		$this->connecte = $connecte;
@@ -138,8 +131,7 @@ class VehiculeSansRoues extends Vehicule
 		float $vitesseMax,
 		int $capacite,
 		string $pays = null
-	)
-	{
+	) {
 		parent::__construct($nom, $marque, $vitesseMax);
 		$this->capacite = $capacite;
 		if ($pays) {
@@ -160,5 +152,4 @@ class VehiculeSansRoues extends Vehicule
 	{
 		$this->capacite = $capacite;
 	}
-
 }

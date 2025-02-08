@@ -13,7 +13,9 @@ $quit_word = "fin";
 $is_running = true;
 
 while ($is_running) {
-	$user_word = readline("Entrez un mot (écrivez '$quit_word' pour arrêter): ");
+	$user_word = readline(
+		"Entrez un mot (écrivez '$quit_word' pour arrêter): "
+	);
 	if (!$user_word) {
 		continue;
 	}

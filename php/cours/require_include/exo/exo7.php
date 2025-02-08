@@ -32,7 +32,7 @@ if (yes_or_no("Voulez-vous faire un calcul?")) {
 			") : "
 	);
 
-	if (! ($op >= ADD && $op <= DIV)) {
+	if (!($op >= ADD && $op <= DIV)) {
 		echo "Vous avez introduit autre chose qu'un chiffre entre 1 et 4\n";
 		return;
 	}
@@ -46,7 +46,7 @@ if (yes_or_no("Voulez-vous faire un calcul?")) {
 		}
 	} while ($op == DIV && $nb2 == DIV_BY_ZERO);
 
-	if (! (is_numeric($nb1) && is_numeric($nb2))) {
+	if (!(is_numeric($nb1) && is_numeric($nb2))) {
 		echo "Veuillez introduire 2 nombres\n";
 	} else {
 		$result = calc($op, $nb1, $nb2);

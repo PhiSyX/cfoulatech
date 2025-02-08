@@ -32,21 +32,21 @@ while ($winner === null) {
 		$winner = $p2;
 		$loser = $p1;
 		break;
-	} else if ($p2->getVie() <= 0) {
+	} elseif ($p2->getVie() <= 0) {
 		$winner = $p1;
 		$loser = $p2;
 		break;
 	}
 }
 
-echo "Le personnage " . $winner->getNom() .
-	 " a battu le personnage " . $loser->getNom() .
-	 " en $nb_attack coups. <br>"
-;
+echo "Le personnage " .
+	$winner->getNom() .
+	" a battu le personnage " .
+	$loser->getNom() .
+	" en $nb_attack coups. <br>";
 
 if ($winner->getVie() <= 0) {
 	echo "Et n'a plus de vie, donc ça veut dire qu'il est mort en même temps.";
-}else {
+} else {
 	echo "Et lui reste " . $winner->getVie() . " de points de vie";
 }
-

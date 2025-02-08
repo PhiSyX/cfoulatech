@@ -8,10 +8,9 @@ function vendeur($produit, $montant)
 
 	if ($montant >= $info_produit["prix"]) {
 		return $diff;
-	} else if ($diff >= 1) {
+	} elseif ($diff >= 1) {
 		return "Il te manque $diff euros euros";
 	} else {
-
 		return "Il te manque $diff euros centimes";
 	}
 }

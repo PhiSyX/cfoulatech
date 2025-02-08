@@ -31,7 +31,7 @@ $users = [
 		"firstname" => "Amina",
 		"notes" => [81, 13, 97, 61, 73],
 		"gender" => "F",
-	]
+	],
 ];
 
 echo instruction(
@@ -39,7 +39,6 @@ echo instruction(
 	data: $users,
 	output: true,
 );
-
 
 foreach ($users as $user) {
 	echo "Voici les notes de " . $user["firstname"] . ": ";

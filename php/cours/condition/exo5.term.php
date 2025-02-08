@@ -5,7 +5,7 @@ $actions = [
 	2 => "Défendre",
 	3 => "Se soigner",
 	4 => "Fuir",
-	5 => "Ne rien faire"
+	5 => "Ne rien faire",
 ];
 
 $actions_sentences = [
@@ -14,7 +14,7 @@ $actions_sentences = [
 	2 => "Vous défendez",
 	3 => "Vous vous soignez",
 	4 => "Vous fuyez",
-	5 => "Vous ne faites rien"
+	5 => "Vous ne faites rien",
 ];
 
 $actions_str = "";
@@ -24,9 +24,7 @@ for ($i = 1; $i < count($actions) + 1; $i++) {
 	$actions_str .= " $i: $action, ";
 }
 
-$user_action = (int) readline(
-	"Entrez une action ($actions_str): "
-);
+$user_action = (int) readline("Entrez une action ($actions_str): ");
 
 $action = $actions_sentences[0];
 

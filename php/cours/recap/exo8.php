@@ -33,7 +33,7 @@ $users = [
 		"firstname" => "Amina",
 		"notes" => [81, 13, 97, 61, 73],
 		"gender" => "F",
-	]
+	],
 ];
 
 echo instruction(

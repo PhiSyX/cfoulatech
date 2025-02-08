@@ -63,6 +63,6 @@ class Voiture
 	// 9)
 	public function addPrix(float $prix): void
 	{
-		$this->prix += $prix;;
+		$this->prix += $prix;
 	}
 }
