@@ -4,7 +4,7 @@
 	gap: var(--space1);
 }
 
-#database-page form > div{
+#database-page form > div {
 	display: flex;
 	flex-direction: column;
 	gap: var(--space1);
@@ -15,7 +15,7 @@
 	width: 100%;
 }
 
-#database-page textarea{
+#database-page textarea {
 	min-height: 150px;
 }
 

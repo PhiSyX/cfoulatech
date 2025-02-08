@@ -10,7 +10,8 @@
 }
 
 .avatar--anim img:hover {
-	animation: 600ms avatar-circle reverse infinite linear,
+	animation:
+		600ms avatar-circle reverse infinite linear,
 		600ms avatar-circle reverse infinite linear 500ms;
 	box-shadow: 2px -2px 2px var(--avatar-online-color);
 }

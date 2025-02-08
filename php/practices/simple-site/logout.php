@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST["send"])) {
 	unset($_SESSION["connected"], $_SESSION["user"]);
 	header("Location: login.php");
-	exit;
+	exit();
 }
 
 $title = "Déconnexion";
@@ -17,9 +17,12 @@ require_once "./header.php";
 <section class="full:center">
 	<p>
 		Bonjour
-		<strong><?= $_SESSION["user"]["firstname"]; ?> <?= $_SESSION["user"]["lastname"]; ?></strong>,
+		<strong>
+			<?= $_SESSION["user"]["firstname"] ?>
+			<?= $_SESSION["user"]["lastname"] ?>
+		</strong>,
 		vous êtes sur le point de vous déconnecter du compte
-		<strong><?= $_SESSION["user"]["login"]; ?></strong>
+		<strong><?= $_SESSION["user"]["login"] ?></strong>
 	</p>
 
 	<form action="logout.php" method="POST">

@@ -8,7 +8,7 @@ $nav = "login";
 
 $erreur = null;
 
-if (! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
+if (!empty($_POST["pseudo"]) || !empty($_POST["password"])) {
 	if ($_POST["pseudo"] === "Mike" && $_POST["password"] === "12345") {
 		$_SESSION["connected"] = true;
 		$_SESSION["user"] = [
@@ -25,7 +25,7 @@ if (! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
 
 if (is_connected()) {
 	header("Location: dashboard.php");
-	exit;
+	exit();
 }
 
 require_once "./header.php";
@@ -36,9 +36,9 @@ require_once "./header.php";
 	<div id="js-alert-message">
 		<?php if (isset($erreur)): ?>
 			<div class="alert alert--error">
-				<p><?php echo $erreur ?></p>
+				<p><?php echo $erreur; ?></p>
 			</div>
-		<?php endif ?>
+		<?php endif; ?>
 	</div>
 
 	<form action="login.php" method="POST" id="js-login-form">

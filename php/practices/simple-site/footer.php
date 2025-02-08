@@ -11,17 +11,19 @@
 			<?php foreach ($navigations as $link): ?>
 				<a
 					href="<?php echo $link["href"]; ?>"
-					title="<?php echo isset($link["title"]) ? $link["title"] : "Naviguer vers " . $link["href"] ?>"
-					class="<?php echo $nav === $link["id"] ? 'active' : '' ?>">
+					title="<?php echo isset($link["title"])
+     	? $link["title"]
+     	: "Naviguer vers " . $link["href"]; ?>"
+					class="<?php echo $nav === $link["id"] ? "active" : ""; ?>">
 					<?php
-					if (isset($link["svg"])):
-						include $link["svg"];
-					endif;
+     if (isset($link["svg"])):
+     	include $link["svg"];
+     endif;
 
-					if (isset($link["text"])):
-						echo '<span>' . $link["text"] . '</span>';
-					endif;
-					?>
+     if (isset($link["text"])):
+     	echo "<span>" . $link["text"] . "</span>";
+     endif;
+     ?>
 				</a>
 			<?php endforeach; ?>
 		</nav>
@@ -29,7 +31,7 @@
 
 	<p class="date">
 		<time>
-			© <?= date("Y"); ?> CFITECH, Inc.
+			© <?= date("Y") ?> CFITECH, Inc.
 		</time>
 	</p>
 
@@ -49,19 +51,19 @@
 		<details open>
 			<summary>DEBUG</summary>
 
-			<?php if (isset($_SESSION) && ! empty($_SESSION)): ?>
+			<?php if (isset($_SESSION) && !empty($_SESSION)): ?>
 				<h1>Les données de <small>$_SESSION</small></h1>
-				<?= var_dump($_SESSION); ?>
+				<?= var_dump($_SESSION) ?>
 			<?php endif; ?>
 
-			<?php if (! empty($_GET)): ?>
+			<?php if (!empty($_GET)): ?>
 				<h1>Les paramètres d'URL <small>$_GET</small></h1>
-				<?= var_dump($_GET); ?>
+				<?= var_dump($_GET) ?>
 			<?php endif; ?>
 
-			<?php if (! empty($_POST)): ?>
+			<?php if (!empty($_POST)): ?>
 				<h1>Les données du formulaire <small>$_POST</small></h1>
-				<?= var_dump($_POST); ?>
+				<?= var_dump($_POST) ?>
 			<?php endif; ?>
 		</details>
 	</section> -->

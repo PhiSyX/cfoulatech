@@ -4,7 +4,7 @@ require_once "./functions/authentification.php";
 
 if (!is_connected()) {
 	header("Location: login.php");
-	exit;
+	exit();
 }
 
 $navigations = [
@@ -12,24 +12,24 @@ $navigations = [
 		"id" => "db_articles",
 		"href" => "database_articles.php",
 		"title" => "Tous les articles",
-		"text" => "Articles"
+		"text" => "Articles",
 	],
 	[
 		"id" => "db_users",
 		"href" => "database_users.php",
 		"title" => "Tous les utilisateurs",
-		"text" => "Utilisateurs"
-	]
+		"text" => "Utilisateurs",
+	],
 ];
 
 $nav = "db_articles";
 $title = "Tous les articles de la base de données";
 
 try {
-	$pdo = new PDO('mysql:dbname=coursmysql;host=localhost', "root", "");
+	$pdo = new PDO("mysql:dbname=coursmysql;host=localhost", "root", "");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	die('Erreur : ' . $e->getMessage());
+	die("Erreur : " . $e->getMessage());
 }
 
 $articles_req = $pdo->query("
@@ -85,7 +85,7 @@ require_once "./header.php";
 					<option value="<?= $author->id_user ?>">
 						<?= $author->firstname ?> <?= $author->lastname ?>
 					</option>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 			</select>
 		</div>
 
@@ -117,11 +117,11 @@ require_once "./header.php";
 							<td><?= htmlspecialchars($article->article_name) ?></td>
 							<td><?= $article->author ?></td>
 						</tr>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</section>
-	<?php endif ?>
+	<?php endif; ?>
 
 </section>
 

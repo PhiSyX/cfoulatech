@@ -4,7 +4,7 @@ require_once "./functions/authentification.php";
 
 if (!is_connected()) {
 	header("Location: login.php");
-	exit;
+	exit();
 }
 
 $navigations = [
@@ -12,14 +12,14 @@ $navigations = [
 		"id" => "db_articles",
 		"href" => "database_articles.php",
 		"title" => "Tous les articles",
-		"text" => "Articles"
+		"text" => "Articles",
 	],
 	[
 		"id" => "db_users",
 		"href" => "database_users.php",
 		"title" => "Tous les utilisateurs",
-		"text" => "Utilisateurs"
-	]
+		"text" => "Utilisateurs",
+	],
 ];
 
 $nav = "database";

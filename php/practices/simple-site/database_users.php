@@ -4,7 +4,7 @@ require_once "./functions/authentification.php";
 
 if (!is_connected()) {
 	header("Location: login.php");
-	exit;
+	exit();
 }
 
 $navigations = [
@@ -12,30 +12,28 @@ $navigations = [
 		"id" => "db_articles",
 		"href" => "database_articles.php",
 		"title" => "Tous les articles",
-		"text" => "Articles"
+		"text" => "Articles",
 	],
 	[
 		"id" => "db_users",
 		"href" => "database_users.php",
 		"title" => "Tous les utilisateurs",
-		"text" => "Utilisateurs"
-	]
+		"text" => "Utilisateurs",
+	],
 ];
 
 $nav = "db_users";
 $title = "Tous les utilisateurs de la base de données";
 
 try {
-	$pdo = new PDO('mysql:dbname=coursmysql;host=localhost', "root", "");
+	$pdo = new PDO("mysql:dbname=coursmysql;host=localhost", "root", "");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	die('Erreur : ' . $e->getMessage());
+	die("Erreur : " . $e->getMessage());
 }
 
 try {
-	$describes = $pdo
-		->query("DESCRIBE users")
-		->fetchAll(PDO::FETCH_OBJ);
+	$describes = $pdo->query("DESCRIBE users")->fetchAll(PDO::FETCH_OBJ);
 
 	$users = $pdo
 		->query("SELECT * FROM users ORDER BY id_user DESC")
@@ -56,15 +54,15 @@ if (
 		$_POST["gender"],
 		$_POST["date_of_birth"],
 		$_POST["weight_kg"],
-		$_POST["city"],
+		$_POST["city"]
 	) &&
 	!empty($_POST["firstname"]) &&
 	!empty($_POST["lastname"]) &&
 	!empty($_POST["gender"]) &&
 	!empty($_POST["date_of_birth"]) &&
 	!empty($_POST["weight_kg"]) &&
-	!empty($_POST["city"]))
-{
+	!empty($_POST["city"])
+) {
 	try {
 		$req = $pdo->prepare("
 			INSERT INTO users (
@@ -94,13 +92,15 @@ if (
 		]);
 
 		header("Location: database_users.php");
-		exit;
+		exit();
 	} catch (PDOException $e) {
 		$insertSuccess = false;
 	}
-}
-
-else if (isset($_GET["read_user"]) && isset($_POST["search"]) && !empty(trim($_POST["search"]))) {
+} elseif (
+	isset($_GET["read_user"]) &&
+	isset($_POST["search"]) &&
+	!empty(trim($_POST["search"]))
+) {
 	try {
 		$users_req = $pdo->prepare("
 			SELECT * FROM users
@@ -118,9 +118,7 @@ else if (isset($_GET["read_user"]) && isset($_POST["search"]) && !empty(trim($_P
 	} catch (PDOException $e) {
 		die("Erreur de sélection : " . $e->getMessage());
 	}
-}
-
-else if (
+} elseif (
 	isset($_GET["update_user"]) &&
 	isset(
 		$_POST["id_user"],
@@ -129,7 +127,7 @@ else if (
 		$_POST["gender"],
 		$_POST["date_of_birth"],
 		$_POST["city"],
-		$_POST["weight_kg"],
+		$_POST["weight_kg"]
 	)
 ) {
 	try {
@@ -152,17 +150,15 @@ else if (
 			"gender" => $_POST["gender"],
 			"date_of_birth" => $_POST["date_of_birth"],
 			"city" => $_POST["city"],
-			"weight_kg" => (int)$_POST["weight_kg"],
+			"weight_kg" => (int) $_POST["weight_kg"],
 		]);
 
 		header("Location: database_users.php");
-		exit;
+		exit();
 	} catch (PDOException $e) {
 		$updateSuccess = false;
 	}
-}
-
-else if (isset($_GET["delete_user"])) {
+} elseif (isset($_GET["delete_user"])) {
 	try {
 		$req = $pdo->prepare("
 			DELETE FROM users
@@ -174,14 +170,14 @@ else if (isset($_GET["delete_user"])) {
 		]);
 
 		header("Location: database_users.php");
-		exit;
+		exit();
 	} catch (PDOException $e) {
 		$deleteSuccess = false;
 	}
 }
 
-
-function capitalize(string $text): string {
+function capitalize(string $text): string
+{
 	$w = "";
 	foreach (explode("_", $text) as $key => $value) {
 		$w .= " ";
@@ -218,7 +214,7 @@ require_once "./header.php";
 					<tr>
 						<?php foreach ($describes as $describe): ?>
 							<th><?= $describe->Field ?></th>
-						<?php endforeach ?>
+						<?php endforeach; ?>
 
 						<th>Actions</th>
 					</tr>
@@ -229,7 +225,7 @@ require_once "./header.php";
 						<tr>
 							<?php foreach ($user as $field => $val): ?>
 								<td headers="<?= $field ?>"><?= $val ?></td>
-							<?php endforeach ?>
+							<?php endforeach; ?>
 
 							<td>
 								<form action="?delete_user" method="post">
@@ -256,7 +252,7 @@ require_once "./header.php";
 								</form>
 							</td>
 						</tr>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
 
@@ -305,10 +301,10 @@ require_once "./header.php";
 							value="<?= $user->id_user ?>"
 						>
 
-						<?php
-						foreach ($user as $field => $val):
-							if ($field === "id_user") continue;
-						?>
+						<?php foreach ($user as $field => $val):
+      	if ($field === "id_user") {
+      		continue;
+      	} ?>
 							<div class="form-group">
 								<label for="<?= $field ?>">
 									<?= capitalize($field) ?>
@@ -321,7 +317,8 @@ require_once "./header.php";
 									value="<?= $val ?>"
 								>
 							</div>
-						<?php endforeach ?>
+						<?php
+      endforeach; ?>
 
 						<button type="submit">
 							Modifier les infos
@@ -334,9 +331,9 @@ require_once "./header.php";
 
 
 				</dialog>
-			<?php endforeach ?>
+			<?php endforeach; ?>
 
-		<?php endif ?>
+		<?php endif; ?>
 	</section>
 
 	<dialog id="add-user-dialog" popover>
@@ -381,7 +378,7 @@ require_once "./header.php";
 				<datalist id="cities">
 					<?php foreach ($cities as $user): ?>
 					<option value="<?= $user->city ?>"><?= $user->city ?></option>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 				</datalist>
 			</div>
 

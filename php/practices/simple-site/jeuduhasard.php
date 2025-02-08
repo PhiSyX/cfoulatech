@@ -8,7 +8,7 @@ const NUM_MAX = 10;
 $title = "Jeu du Hasard";
 $nav = "jeuduhasard";
 
-if (! isset($_SESSION["numeroGagnant"])) {
+if (!isset($_SESSION["numeroGagnant"])) {
 	$_SESSION["numeroGagnant"] = rand(NUM_MIN, NUM_MAX);
 }
 
@@ -21,7 +21,6 @@ if ($numeroGagnant === $numeroUtilisateur) {
 
 require_once "./header.php";
 ?>
-
 <link rel="stylesheet" href="./assets/css/pages/jeuduhasard.css">
 
 <div class="center:i">
@@ -32,7 +31,7 @@ require_once "./header.php";
 			<?php if ($numeroUtilisateur < NUM_MIN || $numeroUtilisateur > NUM_MAX): ?>
 				<div class="alert alert--error">
 					Oops, votre numéro DOIT être compris
-					ENTRE <strong><?= NUM_MIN; ?></strong> ET <strong><?= NUM_MAX; ?></strong>.
+					ENTRE <strong><?= NUM_MIN ?></strong> ET <strong><?= NUM_MAX ?></strong>.
 				</div>
 			<?php elseif ($numeroUtilisateur > $numeroGagnant): ?>
 				<div class="alert alert--error">
@@ -47,7 +46,7 @@ require_once "./header.php";
 			<?php else: ?>
 				<div class="alert alert--success">
 					Bravo !!!!!<br>
-					Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant; ?></strong>
+					Le numéro gagnant est bien le numéro <strong><?= $numeroGagnant ?></strong>
 				</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -59,10 +58,10 @@ require_once "./header.php";
 					type="number"
 					name="nombre"
 					id="nombre"
-					placeholder="Entre votre numéro entre <?= NUM_MIN; ?> et <?= NUM_MAX; ?>"
-					min="<?= NUM_MIN; ?>"
-					max="<?= NUM_MAX; ?>"
-					value="<?= $numeroUtilisateur; ?>">
+					placeholder="Entre votre numéro entre <?= NUM_MIN ?> et <?= NUM_MAX ?>"
+					min="<?= NUM_MIN ?>"
+					max="<?= NUM_MAX ?>"
+					value="<?= $numeroUtilisateur ?>">
 			</div>
 
 			<button type="submit">Deviner</button>

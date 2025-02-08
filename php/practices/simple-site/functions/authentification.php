@@ -6,5 +6,5 @@ function is_connected(): bool
 		session_start();
 	}
 
-	return ! empty($_SESSION["connected"]);
+	return !empty($_SESSION["connected"]);
 }
