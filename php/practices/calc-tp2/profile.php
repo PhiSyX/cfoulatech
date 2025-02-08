@@ -11,7 +11,7 @@ h. Une page Mon profile qui aura comme titre Mon Profile, qui si vous êtes
 require_once "./functions/auth.php";
 require_once "./functions/redirect.php";
 
-if (! is_connected()) {
+if (!is_connected()) {
 	redirect_to("login.php");
 }
 
@@ -21,17 +21,32 @@ $title = "Mon profil";
 $nav = "profile";
 $styles = ["./assets/css/pages/profile.css"];
 
+function get_last_operation($op)
+{
+	if (empty($_SESSION["operations"][$op])) {
+		return null;
+	}
+
+	$arr = $_SESSION["operations"][$op];
+	$last = count($arr) - 1;
+	$item = $arr[$last];
+	$item["fullop"] =
+		$item["left_operand"] .
+		" " .
+		$item["operator"] .
+		" " .
+		$item["right_operand"];
+	return $item;
+}
 ?>
-<?php include "./includes/layouts/header.php" ?>
+<?php include "./includes/layouts/header.php"; ?>
 
 <section id="profile-page" class="center:x">
 
 	<header class="welcome avatar avatar--anim">
 		<h2>
 			Bienvenue
-			<small>
-				<?php echo $_SESSION["user"]["login"]; ?>
-			</small>
+			<small><?= $_SESSION["user"]["login"] ?></small>
 		</h2>
 
 		<!-- TP2:
@@ -39,7 +54,10 @@ $styles = ["./assets/css/pages/profile.css"];
 		j. (Facile) Rajoutez une petite image de profile, visible dans Mon profile.
 
 		-->
-		<img src="<?php echo $_SESSION["user"]["avatar"]; ?>" alt="Photo de profil" height="300" width="300">
+		<img
+			src="<?= $_SESSION["user"]["avatar"] ?>"
+			alt="Photo de profil" height="300" width="300"
+		>
 	</header>
 
 	<?php if (isset($_SESSION["operations"]["total"])): ?>
@@ -57,7 +75,7 @@ $styles = ["./assets/css/pages/profile.css"];
 		-->
 		<p>
 			Vous avez fait
-			<strong><?php echo $_SESSION["operations"]["total"]; ?></strong>
+			<strong><?= $_SESSION["operations"]["total"] ?></strong>
 			opérations
 		</p>
 	<?php endif; ?>
@@ -66,35 +84,20 @@ $styles = ["./assets/css/pages/profile.css"];
 		<details open>
 			<summary>Les dernières opérations arithmétiques</summary>
 			<ul>
-				<?php
-				function get_last_operation($op)
-				{
-					if (!empty($_SESSION["operations"][$op])):
-						$arr = $_SESSION["operations"][$op];
-						$last = count($arr) - 1;
-						$item = $arr[$last];
-						$item["fullop"] = $item["left_operand"] . ' ' . $item["operator"] . ' ' . $item["right_operand"];
-						return $item;
-					endif;
+				<?php foreach ($_SESSION["operations"] as $operation_key => $operation_value):
 
-					return null;
-				}
-				?>
-
-				<?php
-				foreach ($_SESSION["operations"] as $operation_key => $operation_value):
-					if (!is_array($operation_value)):
-						continue;
-					endif;
-
-					$op = get_last_operation($operation_key);
-				?>
+    	if (!is_array($operation_value)):
+    		continue;
+    	endif;
+    	$op = get_last_operation($operation_key);
+    	?>
 					<li>
-						Votre dernière <?php echo $operation_key; ?> faite, est :
-						<strong><?php echo $op["fullop"]; ?></strong> donne
-						<strong><?php echo $op["result"]; ?></strong>.
+						Votre dernière <?= $operation_key ?> faite, est :
+						<strong><?= $op["fullop"] ?></strong> donne
+						<strong><?= $op["result"] ?></strong>.
 					</li>
-				<?php endforeach ?>
+				<?php
+    endforeach; ?>
 
 			</ul>
 		</details>
@@ -129,32 +132,32 @@ $styles = ["./assets/css/pages/profile.css"];
 				</thead>
 
 				<tbody>
-					<?php
-					foreach ($_SESSION["operations"] as $operation_key => $operations):
-						if (!is_array($operations)):
-							continue;
-						endif;
+					<?php foreach ($_SESSION["operations"] as $operation_key => $operations):
 
-						foreach ($operations as $operation):
-					?>
+     	if (!is_array($operations)):
+     		continue;
+     	endif;
+     	foreach ($operations as $operation): ?>
 							<tr>
-								<th><?php echo ucfirst($operation_key) ?></th>
-								<td><?php echo $operation["left_operand"] ?></td>
-								<td><?php echo $operation["right_operand"] ?></td>
-								<td><?php echo $operation["result"] ?></td>
+								<th><?= ucfirst($operation_key) ?></th>
+								<td><?= $operation["left_operand"] ?></td>
+								<td><?= $operation["right_operand"] ?></td>
+								<td><?= $operation["result"] ?></td>
 							</tr>
-						<?php endforeach ?>
-					<?php endforeach ?>
+						<?php endforeach;
+     	?>
+					<?php
+     endforeach; ?>
 					<tr>
 						<th>Total</th>
-						<th colspan="3"><?php echo $_SESSION["operations"]["total"]; ?></th>
+						<th colspan="3"><?= $_SESSION["operations"]["total"] ?></th>
 					</tr>
 				</tbody>
 			</table>
 		</details>
-	<?php endif ?>
+	<?php endif; ?>
 
 
 </section>
 
-<?php include "./includes/layouts/footer.php" ?>
+<?php include "./includes/layouts/footer.php"; ?>

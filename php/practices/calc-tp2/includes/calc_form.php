@@ -7,9 +7,12 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once "./functions/math.php";
 
 if (isset($_GET["left_operand"], $_GET["right_operand"])) {
-	if (trim($_GET["left_operand"]) === "" || trim($_GET["right_operand"]) === "") {
+	if (
+		trim($_GET["left_operand"]) === "" ||
+		trim($_GET["right_operand"]) === ""
+	) {
 		$error = "Vous devez entrer deux nombres valides.";
-	} else if ($nav === "division" && (float) $_GET["right_operand"] === 0.0) {
+	} elseif ($nav === "division" && (float) $_GET["right_operand"] === 0.0) {
 		$error = "La division par zéro est interdite";
 	} else {
 		// x
@@ -21,13 +24,19 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 		// =
 		$result = calc($left_operand, $operator, $right_operand);
 
-		set_session_math($nav, $left_operand, $operator, $right_operand, $result);
+		set_session_math(
+			$nav,
+			$left_operand,
+			$operator,
+			$right_operand,
+			$result
+		);
 	}
 }
-
 ?>
-<form action="<?php echo $nav; ?>.php" method="GET" id="js-calc-form" class="calc-form">
-	<input type="text" name="left_operand" placeholder="Operand Gauche" value="<?php echo isset($left_operand) ? $left_operand : ""; ?>">
+<form action="<?= $nav ?>.php" method="GET" id="js-calc-form" class="calc-form">
+	<input type="text" name="left_operand" placeholder="Operand Gauche"
+		value="<?= isset($left_operand) ? $left_operand : "" ?>">
 
 	<!-- TP2:
 
@@ -37,13 +46,14 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 				égale entre le deuxième formulaire et le formulaire résultat.
 
 	-->
-	<?php include "./assets/svg/icon-$nav.svg" ?>
+	<?php include "./assets/svg/icon-$nav.svg"; ?>
 
-	<input type="text" name="right_operand" placeholder="Operand Droit" value="<?php echo isset($right_operand) ? $right_operand : ""; ?>">
+	<input type="text" name="right_operand" placeholder="Operand Droit"
+		value="<?= isset($right_operand) ? $right_operand : "" ?>">
 
-	<?php if (isset($result)) : ?>
+	<?php if (isset($result)): ?>
 		<div class="hide-on-error">
-			<?php include "./assets/svg/icon-equal-sign.svg" ?>
+			<?php include "./assets/svg/icon-equal-sign.svg"; ?>
 
 			<!-- TP2:
 
@@ -51,10 +61,10 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 
 			-->
 			<output readonly type="number" placeholder="Résultat">
-				<?php echo $result ?>
+				<?= $result ?>
 			</output>
 		</div>
-	<?php endif ?>
+	<?php endif; ?>
 
 	<button type="submit">Calculer</button>
 </form>
@@ -63,16 +73,16 @@ if (isset($_GET["left_operand"], $_GET["right_operand"])) {
 	<?php if (isset($error)): ?>
 		<div class="alert alert--error">
 			<p>
-				<?php echo $error; ?>
+				<?= $error ?>
 			</p>
 		</div>
-	<?php endif ?>
+	<?php endif; ?>
 
 	<?php if (isset($result)): ?>
 		<div class="alert alert--success">
 			<p>
-				Le résultat du calcul est <strong><?php echo $result; ?></strong>
+				Le résultat du calcul est <strong><?= $result ?></strong>
 			</p>
 		</div>
-	<?php endif ?>
+	<?php endif; ?>
 </div>

@@ -4,6 +4,6 @@
 	</div>
 
 	<p class="title">
-		<?php echo isset($title) ? $title : "TP" ?>
+		<?= isset($title) ? $title : "TP" ?>
 	</p>
 </header>

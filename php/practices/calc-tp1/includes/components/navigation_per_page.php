@@ -1,4 +1,4 @@
-<?php require "./includes/calc_nav.php" ?>
+<?php require "./includes/calc_nav.php"; ?>
 
 <footer class="navigation-per-page">
 	<div class="navbar--left-icon">

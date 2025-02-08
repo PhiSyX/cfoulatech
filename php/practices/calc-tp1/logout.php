@@ -11,7 +11,7 @@ session_start();
 require_once "./functions/auth.php";
 require_once "./functions/redirect.php";
 
-if (! is_connected()) {
+if (!is_connected()) {
 	redirect_to("login.php");
 }
 
@@ -25,15 +25,18 @@ if (isset($_POST["send"])) {
 $title = "Déconnexion";
 $nav = "logout";
 
-include "./includes/layouts/header.php"
+include "./includes/layouts/header.php";
 ?>
 
 <section class="full:center">
 	<p>
 		Bonjour
-		<strong><?php echo $_SESSION["user"]["firstname"]; ?> <?php echo $_SESSION["user"]["lastname"]; ?></strong>,
+		<strong>
+			<?= $_SESSION["user"]["firstname"] ?>
+			<?= $_SESSION["user"]["lastname"] ?>
+		</strong>,
 		vous êtes sur le point de vous déconnecter du compte
-		<strong><?php echo $_SESSION["user"]["login"]; ?></strong>
+		<strong><?= $_SESSION["user"]["login"] ?></strong>
 	</p>
 
 	<form action="logout.php" method="POST">
@@ -43,4 +46,4 @@ include "./includes/layouts/header.php"
 	</form>
 </section>
 
-<?php include "./includes/layouts/footer.php" ?>
+<?php include "./includes/layouts/footer.php"; ?>

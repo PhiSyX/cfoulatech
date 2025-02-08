@@ -11,4 +11,4 @@ session_start();
 session_unset();
 
 header("Location: ./session-debug.php");
-exit;
+exit();

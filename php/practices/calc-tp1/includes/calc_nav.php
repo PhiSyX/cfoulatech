@@ -24,5 +24,5 @@ $navigations = [
 		"href" => "./division.php",
 		"svg" => "./assets/svg/icon-division.svg",
 		"text" => "Division",
-	]
+	],
 ];

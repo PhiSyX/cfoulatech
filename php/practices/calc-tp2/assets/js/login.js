@@ -1,7 +1,7 @@
 let login_form = document.querySelector("#js-login-form");
 let alert_messages = document.querySelector("#js-alert-message");
 
-login_form.addEventListener("submit", function (e) {
+login_form.addEventListener("submit", (e) => {
 	e.preventDefault();
 
 	let login_el = login_form.firstElementChild.nextElementSibling;

@@ -22,8 +22,11 @@ $scripts = ["./assets/js/login.js"];
 $expected_login = "Mike";
 $expected_pass = "cfitech";
 
-if (! empty($_POST["pseudo"]) || ! empty($_POST["password"])) {
-	if ($_POST["pseudo"] === $expected_login && $_POST["password"] === $expected_pass) {
+if (!empty($_POST["pseudo"]) || !empty($_POST["password"])) {
+	if (
+		$_POST["pseudo"] === $expected_login &&
+		$_POST["password"] === $expected_pass
+	) {
 		$_SESSION["user"] = [
 			"firstname" => "Mike",
 			"lastname" => "S.",
@@ -45,9 +48,9 @@ include "./includes/layouts/header.php";
 	<div id="js-alert-message">
 		<?php if (isset($erreur)): ?>
 			<div class="alert alert--error">
-				<p><?php echo $erreur ?></p>
+				<p><?= $erreur ?></p>
 			</div>
-		<?php endif ?>
+		<?php endif; ?>
 	</div>
 
 	<form action="login.php" method="POST" id="js-login-form">
@@ -62,4 +65,4 @@ include "./includes/layouts/header.php";
 
 </section>
 
-<?php include "./includes/layouts/footer.php" ?>
+<?php include "./includes/layouts/footer.php"; ?>

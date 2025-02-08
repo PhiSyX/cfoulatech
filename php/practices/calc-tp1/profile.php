@@ -11,16 +11,15 @@ h. Une page Mon profile qui aura comme titre Mon Profile, qui si vous êtes
 require_once "./functions/auth.php";
 require_once "./functions/redirect.php";
 
-if (! is_connected()) {
+if (!is_connected()) {
 	redirect_to("login.php");
 }
 
 $title = "Mon profil";
 $nav = "profile";
 $styles = ["./assets/css/pages/profile.css"];
-
 ?>
-<?php include "./includes/layouts/header.php" ?>
+<?php include "./includes/layouts/header.php"; ?>
 
 <section id="profile-page" class="center:x">
 
@@ -28,10 +27,10 @@ $styles = ["./assets/css/pages/profile.css"];
 		<h2>
 			Bienvenue
 			<small>
-				<?php echo $_SESSION["user"]["login"]; ?>
+				<?= $_SESSION["user"]["login"] ?>
 			</small>
 		</h2>
 	</header>
 </section>
 
-<?php include "./includes/layouts/footer.php" ?>
+<?php include "./includes/layouts/footer.php"; ?>

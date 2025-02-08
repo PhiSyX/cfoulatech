@@ -25,8 +25,8 @@
 	<?php endif; ?>
 
 	<p class="date">
-		Nous sommes le <time datetime="<?= date(DATE_W3C); ?>">
-			<?= date("l, d F Y"); ?>, il est <?= date("H\hi"); ?>.
+		Nous sommes le <time datetime="<?= date(DATE_W3C) ?>">
+			<?= date("l, d F Y") ?>, il est <?= date("H\hi") ?>.
 		</time>
 	</p>
 

@@ -26,8 +26,11 @@ function operator_sign(string $operator): string
 	return "";
 }
 
-function calc(float $left_operand, string $operator, float $right_operand): float
-{
+function calc(
+	float $left_operand,
+	string $operator,
+	float $right_operand
+): float {
 	switch ($operator) {
 		case '+':
 			return add($left_operand, $right_operand);
@@ -154,12 +157,7 @@ function unset_all_session_math()
 		session_start();
 	}
 
-	$sessions = [
-		"addition",
-		"soustraction",
-		"multiplication",
-		"division",
-	];
+	$sessions = ["addition", "soustraction", "multiplication", "division"];
 
 	/* TP2:
 

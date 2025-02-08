@@ -45,4 +45,4 @@ include "./includes/layouts/header.php";
 	</article>
 </section>
 
-<?php include "./includes/layouts/footer.php" ?>
+<?php include "./includes/layouts/footer.php"; ?>

@@ -16,8 +16,11 @@ function operator_sign(string $operator): string
 	return "";
 }
 
-function calc(float $left_operand, string $operator, float $right_operand): float
-{
+function calc(
+	float $left_operand,
+	string $operator,
+	float $right_operand
+): float {
 	switch ($operator) {
 		case '+':
 			return $left_operand + $right_operand;
@@ -31,7 +34,8 @@ function calc(float $left_operand, string $operator, float $right_operand): floa
 	return 0;
 }
 
-function set_session_math(string $nav, float $result): void {
+function set_session_math(string $nav, float $result): void
+{
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
 	}

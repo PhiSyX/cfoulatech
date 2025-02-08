@@ -4,19 +4,20 @@
 	<div class="logo">
 		<?php if (is_connected()): ?>
 			<div class="avatar avatar--anim avatar--anim-auto">
-				<a href="profile.php" title="Accéder au profil de <?php echo $_SESSION["user"]["login"]; ?>">
+				<a href="profile.php"
+					title="Accéder au profil de <?= $_SESSION["user"]["login"] ?>">
 					<img
-						src="<?php echo $_SESSION["user"]["avatar"] ?>"
-						alt="Photo de profil de <?php echo $_SESSION["user"]["login"]; ?>"
+						src="<?= $_SESSION["user"]["avatar"] ?>"
+						alt="Photo de profil de <?= $_SESSION["user"]["login"] ?>"
 						width="48" height="48">
 				</a>
 			</div>
 		<?php else: ?>
 			<img src="./assets/img/logo.png" alt="Logo du site" width="48" height="48">
-		<?php endif ?>
+		<?php endif; ?>
 	</div>
 
 	<p class="title">
-		<?php echo isset($title) ? $title : "TP" ?>
+		<?= isset($title) ? $title : "TP" ?>
 	</p>
 </header>

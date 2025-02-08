@@ -21,7 +21,7 @@ g. (Difficile) Je veux que quand vous n’êtes pas connecté, même si vous tap
 require_once "./functions/auth.php";
 require_once "./functions/redirect.php";
 
-if (! is_connected()) {
+if (!is_connected()) {
 	redirect_to("login.php");
 }
 
