@@ -1,0 +1,23 @@
+@mixin breakpoint($format) {
+	@if $format == medium {
+		@media screen and (min-width: 768px) {
+			@content;
+		}
+	} @else if $format == large {
+		@media screen and (min-width: 1200px) {
+			@content;
+		}
+	}
+}
+
+.container {
+	background: red;
+
+	@include breakpoint(medium) {
+		background: blue;
+	}
+
+	@include breakpoint(large) {
+		background: yellow;
+	}
+}

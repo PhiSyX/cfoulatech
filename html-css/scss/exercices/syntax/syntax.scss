@@ -1,0 +1,117 @@
+/*
+  Voici quelques brefs exercices pour vous donner de l'experience supplementaire en SCSS, et plus particulierement en refactorant du CSS classique en SCSS.
+
+  Vous pouvez verifier votre SCSS en le placant dans Sassmeister, et voir si le CSS compil  correspond au code de depart :
+  http://www.sassmeister.com/
+
+  La documentation Sass est une excellente ressource et peut etre trouvee ici : http://sass-lang.com/documentation/
+*/
+
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+/*
+	A votre tour!
+	 *Ecrire le code CSS suivant en utilisant un mixin SCSS:
+   */
+@mixin browser-prefix($property, $value) {
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	#{$property}: $value;
+}
+
+.box-square {
+	@include browser-prefix(border-radius, 0);
+}
+
+.box-rounded {
+	@include browser-prefix(border-radius, 10px);
+}
+
+/*
+	 *Ecrire les regles suivantes en utilisant la syntaxe d'imbrication de SCSS:
+   */
+nav {
+	& ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	& li {
+		display: inline-block;
+	}
+
+	& a {
+		display: block;
+		padding: 6px 12px;
+		text-decoration: none;
+	}
+}
+
+/*
+	 *Ecrire le code CSS suivant en utilisant le mot-cle @extends de SCSS:
+   */
+%message {
+	border: 1px solid #ccc;
+	padding: 10px;
+	color: #333;
+}
+.success {
+	@extend %message;
+	border-color: green;
+}
+
+.error {
+	@extend %message;
+	border-color: red;
+}
+
+.warning {
+	@extend %message;
+	border-color: yellow;
+}
+
+/*
+	*Écrivez le CSS suivant en utilisant une directive SCSS "each" et une "map" (similaire à un objet en JS)
+	*/
+
+$heading_colors: (
+	h1: darkorange,
+	h2: royalblue,
+	h3: springgreen,
+);
+
+@each $heading, $color in $heading_colors {
+	#{$heading} {
+		color: $color;
+	}
+}
+
+/*
+	*Écrire le CSS suivant en utilisant le mot-cle @extends de SCSS et des variables représentant les valeurs de couleurs:
+*/
+
+%social {
+	min-width: 100px;
+	padding: 1em;
+	border-radius: 1em;
+	color: #fff;
+	background: var(--social-bg-color);
+}
+
+a.twitter {
+	@extend %social;
+	--social-bg-color: #55acee;
+}
+
+span.facebook {
+	@extend %social;
+	--social-bg-color: #3b5998;
+}

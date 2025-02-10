@@ -1,0 +1,25 @@
+
+// Global Style
+
+@use "abstracts/variables";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+@use "abstracts/placeholders";
+
+@use "bases/reset";
+@use "bases/typography";
+
+@use "components/buttons";
+@use "components/carousel";
+@use "components/cover";
+@use "components/dropdown";
+
+@use "layouts/footer";
+@use "layouts/forms";
+@use "layouts/grid";
+@use "layouts/header";
+@use "layouts/navigation";
+@use "layouts/sidebar";
+
+@use "pages/contact";
+@use "pages/home";
