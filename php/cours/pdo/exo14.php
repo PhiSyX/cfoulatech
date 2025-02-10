@@ -1,15 +1,16 @@
 <?php
 
-try {
-	$pdo = new PDO('mysql:dbname=coursmysql;host=localhost', "root", "");
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-	die("Erreur de connexion : " . $e->getMessage());
-}
+require_once "./pdo.php";
 
 try {
+	// Récupère tous les utilisateurs n'ayant pas crées d'articles.
 	$users = $pdo->query("
-		SELECT * FROM users u
+		SELECT
+			a.id_article,
+			u.id_user,
+			u.firstname,
+			u.lastname
+		FROM users u
 		LEFT JOIN articles a
 		ON u.id_user = a.id_user_article
 	")
@@ -62,144 +63,113 @@ if (isset($_POST["delete_user"])) {
 }
 ?>
 
-<style>
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-body {
-	display: grid;
-	place-content: center;
-}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Supprime un utilisateur</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-form * + * {
-	margin-top: 8px;
-}
+<body>
+	<h1>Supprimer un utilisateur</h1>
 
-form input {
-	width: 100%;
+	<form action="" method="get">
+		<div class="form-group">
+			<label for="id_user">ID utilisateur</label>
+			<input
+				type="text"
+				name="id_user"
+				id="id_user"
+				list="users"
+				<?php if (isset($_GET["id_user"])): ?>
+				value="<?= filter_input(INPUT_GET, 'id_user', FILTER_VALIDATE_INT) ?>"
+				<?php endif; ?>>
 
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid rgb(195, 135, 140);
-}
+			<datalist id="users">
+				<?php foreach ($users as $xuser): ?>
+					<?php if ($xuser->id_article === NULL): ?>
+					<option value="<?= $xuser->id_user ?>">
+						<?= $xuser->firstname ?> <?= $xuser->lastname ?>)
+					</option>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</datalist>
+		</div>
 
-dialog {
-	padding: 1rem;
+		<button type="submit">Retrouver l'utilisateur</button>
+	</form>
 
-	border-radius: 8px;
-	border: 6px outset rgb(234, 101, 113);
-	box-shadow: 7px 7px 11px #726f6f;
-	background: rgb(255, 221, 224);
-}
-button[type="submit"] {
-	padding: 8px;
-	background: #e96e6e;
-	border: none;
-	border-radius: 3px;
-	cursor: pointer;
-}
-button[type="button"] {
-	padding: 8px;
-	background: black;
-	color: white;
-	border: none;
-	border-radius: 3px;
-}
-</style>
+	<section>
+		<?php if (isset($_GET["id_user"])) : ?>
+			<?php if (!$user): ?>
 
-<form action="" method="get">
-	<div class="form-group">
-		<label for="id_user">ID utilisateur</label>
-		<input
-			type="text"
-			name="id_user"
-			id="id_user"
-			list="users"
-			<?php if (isset($_GET["id_user"])): ?>
-				value="<?= (int) $_GET["id_user"] ?>"
-			<?php endif ?>
-		>
+				<p style="color:red">
+					Erreur, l'utilisateur à l'ID demandé
+					"<?= htmlspecialchars($_GET["id_user"]) ?>"
+					n'existe pas.
+				</p>
 
-		<datalist id="users">
-			<?php foreach ($users as $xuser): ?>
-				<option value="<?= $xuser->id_user ?>">
-					<?= $xuser->firstname ?> <?= $xuser->lastname ?> (<?= $xuser->id_article ? 'NOOOO' : 'YEEES' ?>)
-				</option>
-			<?php endforeach ?>
-		</datalist>
-	</div>
+			<?php else: ?>
 
-	<button type="submit">Retrouver l'utilisateur</button>
-</form>
+				<?php if (!isset($success)): ?>
 
-<section>
-	<?php if (isset($_GET["id_user"])) : ?>
-		<?php if (!$user): ?>
+					<dialog id="delete-dialog" popover>
 
-			<p style="color:red">
-				Erreur, l'utilisateur à l'ID demandé
-				"<?= htmlspecialchars($_GET["id_user"]) ?>"
-				n'existe pas.
-			</p>
+						<form action="?id_user=<?= (int) $_GET["id_user"] ?>" method="post">
+							<input
+								type="hidden"
+								name="id_user"
+								value="<?= filter_input(INPUT_GET, 'id_user', FILTER_VALIDATE_INT) ?>">
 
-		<?php else: ?>
+							<p>
+								Voulez-vous vraiment supprimer
 
-			<?php if(!isset($success)): ?>
+								<strong>
+									<?= $user->firstname ?>
+									<?= $user->lastname ?>
+								</strong>
 
-			<dialog id="delete-dialog" popover>
+								?
+							</p>
 
-				<form action="?id_user=<?= (int) $_GET["id_user"] ?>" method="post">
-					<input
-						type="hidden"
-						name="id_user"
-						value="<?= (int) $_GET["id_user"] ?>"
-					>
+							<button type="submit" name="delete_user">
+								Oui
+							</button>
 
-					<p>
-						Voulez-vous vraiment supprimer
+							<button type="button" popovertarget="delete-dialog" popovertargetaction="hide">
+								Annuler
+							</button>
+						</form>
+					</dialog>
 
-						<strong>
-							<?= $user->firstname ?>
-							<?= $user->lastname ?>
-						</strong>
-
-						?
-					</p>
-
-					<button type="submit" name="delete_user">
-						Oui
-					</button>
-
-					<button type="button" popovertarget="delete-dialog" popovertargetaction="hide">
-						Annuler
-					</button>
-				</form>
-			</dialog>
-
-			<script>
-				let dialog = document.querySelector("#delete-dialog");
-				dialog.showPopover();
-			</script>
-			<?php endif ?>
-
-			<?php if(isset($success)): ?>
-				<?php if ($success): ?>
-					<p style="color: green">
-						L'utilisateur
-						<?= (int) $_GET["id_user"] ?>
-						a bien été supprimé
-					</p>
-				<?php else: ?>
-					<p style="color: red">
-						Impossible de supprimer l'utilisateur
-						<?= (int) $_GET["id_user"] ?>
-					</p>
+					<script>
+						let dialog = document.querySelector("#delete-dialog");
+						dialog.showPopover();
+					</script>
 				<?php endif ?>
-			<?php endif ?>
 
+				<?php if (isset($success)): ?>
+					<?php if ($success): ?>
+						<p style="color: green">
+							L'utilisateur
+							<?= (int) $_GET["id_user"] ?>
+							a bien été supprimé
+						</p>
+					<?php else: ?>
+						<p style="color: red">
+							Impossible de supprimer l'utilisateur
+							<?= (int) $_GET["id_user"] ?>
+						</p>
+					<?php endif ?>
+				<?php endif ?>
+
+			<?php endif ?>
 		<?php endif ?>
-	<?php endif ?>
-</section>
+	</section>
+
+</body>
+
+</html>

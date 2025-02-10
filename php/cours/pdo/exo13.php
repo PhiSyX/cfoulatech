@@ -1,216 +1,206 @@
 <?php
 
-try {
-	$pdo = new PDO('mysql:dbname=coursmysql;host=localhost', "root", "");
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-	die("Erreur de connexion : " . $e->getMessage());
-}
+require_once "./pdo.php";
+require_once "./utils.php";
 
-try {
-	$users = $pdo->query("
-		SELECT * FROM users
-	")
-		->fetchAll(PDO::FETCH_OBJ);
-} catch (PDOException $e) {
-	die("Erreur de sélection " . $e->getMessage());
+$users = fetchAll("SELECT * FROM users");
+$cities = fetchAll("SELECT DISTINCT city FROM users");
+
+if (isset($_GET["id_user"])) {
+	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 }
 
 if (isset($_POST["update_user"])) {
-	try {
-		$req = $pdo->prepare("
-			UPDATE users SET
-				firstname = :firstname,
-				lastname = :lastname,
-				gender = :gender,
-				date_of_birth = :date_of_birth,
-				city = :city,
-				weight_kg = :weight_kg
-			WHERE id_user = :id_user
-		");
+	$weight_kg = filter_input(INPUT_POST, "weight_kg", FILTER_VALIDATE_INT);
 
-		$success = $req->execute([
-			"id_user" => (int) $_GET["id_user"],
-
-			"firstname" => $_POST["firstname"],
-			"lastname" => $_POST["lastname"],
-			"gender" => $_POST["gender"],
-			"date_of_birth" => $_POST["date_of_birth"],
-			"city" => $_POST["city"],
-			"weight_kg" => $_POST["weight_kg"],
-		]);
-	} catch (PDOException $e) {
-		$success = false;
-	}
+	$success = executeQuery("
+		UPDATE users SET
+			firstname      = :firstname,
+			lastname      = :lastname,
+			gender        = :gender,
+			date_of_birth = :date_of_birth,
+			city          = :city,
+			weight_kg     = :weight_kg
+		WHERE id_user = :id_user
+	", [
+		"id_user"       => $idUser,
+		"firstname"      => $_POST["firstname"],
+		"lastname"      => $_POST["lastname"],
+		"gender"        => $_POST["gender"],
+		"date_of_birth" => $_POST["date_of_birth"],
+		"city"          => $_POST["city"],
+		"weight_kg"     => $weight_kg,
+	]);
 }
 
 if (isset($_GET["id_user"])) {
-	try {
-		$describes = $pdo
-			->query("DESCRIBE users")
-			->fetchAll(PDO::FETCH_OBJ);
-
-		$user = $pdo->prepare("
-			SELECT
-				firstname,
-				lastname,
-				gender,
-				date_of_birth,
-				city,
-				weight_kg
-			FROM users
-			WHERE id_user = :id_user
-		");
-
-		$user->execute([
-			"id_user" => (int) $_GET["id_user"]
-		]);
-
-		$user = $user->fetch(PDO::FETCH_OBJ);
-	} catch (PDOException $e) {
-		die("Erreur de selection : " . $e->getMessage());
-	}
-}
-
-function capitalize(string $text): string {
-	$w = "";
-	foreach (explode("_", $text) as $key => $value) {
-		$w .= " ";
-		$w .= ucfirst($value);
-	}
-	return $w;
+	$describes = fetchAll("DESCRIBE users");
+	$user = fetchOne("
+		SELECT
+			firstname,
+			lastname,
+			gender,
+			date_of_birth,
+			city,
+			weight_kg
+		FROM users
+		WHERE id_user = :id_user
+	", [
+		"id_user" => [$idUser, PDO::PARAM_INT]
+	]);
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modifier un utilisateur</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-body {
-	display: grid;
-	place-content: center;
-}
+<body>
 
-form * + * {
-	margin-top: 8px;
-}
+	<h1>Modifier un utilisateur</h1>
 
-form input {
-	width: 100%;
+	<form action="" method="get">
+		<div class="form-group">
+			<?= input("id_user", "ID Utilisateur", [
+				"type" => "number",
+				"list" => "users",
+				"datalist" => array_reduce(
+					$users,
+					function ($acc, $user) {
+						$acc[$user->id_user] = sprintf(
+							"%s %s",
+							$user->firstname,
+							$user->lastname,
+						);
+						return $acc;
+					},
+					[]
+				),
+				"value" => $idUser ?? "",
+			]) ?>
+		</div>
 
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid #87c3b7;
-}
+		<button type="submit">Retrouver l'utilisateur</button>
+	</form>
 
-dialog {
-	padding: 1rem;
+	<section>
+		<?php if (isset($_GET["id_user"])) : ?>
+			<?php if (!$user): ?>
 
-	border-radius: 8px;
-	border: 6px outset #bdeae1;
-	box-shadow: 7px 7px 11px #726f6f;
-}
-</style>
+				<p style="color:red">
+					Erreur, l'utilisateur à l'ID demandé
+					"<?= htmlspecialchars($_GET["id_user"]) ?>"
+					n'existe pas.
+				</p>
 
-<form action="" method="get">
-	<div class="form-group">
-		<label for="id_user">ID utilisateur</label>
-		<input
-			type="text"
-			name="id_user"
-			id="id_user"
-			list="users"
-			<?php if (isset($_GET["id_user"])): ?>
-				value="<?= (int) $_GET["id_user"] ?>"
-			<?php endif ?>
-		>
+			<?php else: ?>
 
-		<datalist id="users">
-			<?php foreach ($users as $xuser): ?>
-				<option value="<?= $xuser->id_user ?>">
-					<?= $xuser->firstname ?> <?= $xuser->lastname ?>
-				</option>
-			<?php endforeach ?>
-		</datalist>
-	</div>
+				<dialog id="update-dialog" popover>
+					<h1>
+						Modifier les informations de l'utilisateur:
+						<?= $user->firstname ?>
+						<?= $user->lastname ?>
+					</h1>
 
-	<button type="submit">Retrouver l'utilisateur</button>
-</form>
-
-<section>
-	<?php if (isset($_GET["id_user"])) : ?>
-		<?php if (!$user): ?>
-
-			<p style="color:red">
-				Erreur, l'utilisateur à l'ID demandé
-				"<?= htmlspecialchars($_GET["id_user"]) ?>"
-				n'existe pas.
-			</p>
-
-		<?php else: ?>
-
-			<dialog id="update-dialog" popover>
-				<h1>
-					Modifier les informations de l'utilisateur:
-					<?= $user->firstname ?>
-					<?= $user->lastname ?>
-				</h1>
-
-				<?php if(isset($success)): ?>
-					<?php if ($success): ?>
-						<p style="color: green">
-							L'utilisateur
-							<?= (int) $_GET["id_user"] ?>
-							a bien été modifié
-						</p>
-					<?php else: ?>
-						<p style="color: red">
-							Impossible de modifier l'utilisateur
-							<?= (int) $_GET["id_user"] ?>
-						</p>
+					<?php if (isset($success)): ?>
+						<?php if ($success): ?>
+							<p style="color: green">
+								L'utilisateur
+								<?= $idUser ?>
+								a bien été modifié
+							</p>
+						<?php else: ?>
+							<p style="color: red">
+								Impossible de modifier l'utilisateur
+								<?= $idUser ?>
+							</p>
+						<?php endif ?>
 					<?php endif ?>
-				<?php endif ?>
 
-				<form action="?id_user=<?= (int) $_GET["id_user"] ?>" method="post">
-					<input
-						type="hidden"
-						name="id_user"
-						value="<?= (int) $_GET["id_user"] ?>"
-					>
+					<form action="?id_user=<?= $idUser ?>" method="post">
+						<?= input("id_user", attrs: [
+							"type" => "hidden",
+							"value" => $idUser ?? "",
+						]) ?>
 
-					<?php foreach ($user as $field => $val): ?>
 						<div class="form-group">
-							<label for="<?= $field ?>">
-								<?= capitalize($field) ?>
-							</label>
-
-							<input
-								id="<?= $field ?>"
-								type="text"
-								name="<?= $field ?>"
-								value="<?= $val ?>"
-							>
+							<?= input("firstname", "Prénom", [
+								"type" => "text",
+								"value" => $user->firstname,
+							]) ?>
 						</div>
-					<?php endforeach ?>
 
-					<button type="submit" name="update_user">
-						Modifier les infos
-					</button>
+						<div class="form-group">
+							<?= input("lastname", "Nom", [
+								"type" => "text",
+								"value" => $user->lastname,
+							]) ?>
+						</div>
 
-					<button type="button" popovertarget="update-dialog" popovertargetaction="hide">
-						Fermer la &lt;dialog&gt;
-					</button>
-				</form>
-			</dialog>
+						<div class="form-group">
+							<?= select("gender", "Genre", [
+								"M" => "Homme",
+								"F" => "Femme",
+								"X" => "X",
+							], [
+								"value" => $user->gender,
+							]) ?>
+						</div>
 
-			<script>
-				let dialog = document.querySelector("#update-dialog");
-				dialog.showPopover();
-			</script>
+						<div class="form-group">
+							<?= input("date_of_birth", "Date de naissance", [
+								"type" => "date",
+								"value" => $user->date_of_birth,
+							]) ?>
+						</div>
 
+						<div class="form-group">
+							<?= input("city", "Ville", [
+								"type" => "text",
+								"datalist" => array_reduce(
+									$cities,
+									function ($acc, $item) {
+										$acc[$item->city] = $item->city;
+										return $acc;
+									},
+									[]
+								),
+								"list" => "cities",
+								"value" => $user->city,
+							]) ?>
+						</div>
+
+						<div class="form-group">
+							<?= input("weight_kg", "Poids", [
+								"type" => "number",
+								"value" => $user->weight_kg,
+							]) ?>
+						</div>
+
+						<button type="submit" name="update_user">
+							Modifier les infos
+						</button>
+
+						<button type="button" popovertarget="update-dialog" popovertargetaction="hide">
+							Fermer la &lt;dialog&gt;
+						</button>
+					</form>
+				</dialog>
+
+				<script>
+					let dialog = document.querySelector("#update-dialog");
+					dialog.showPopover();
+				</script>
+
+			<?php endif ?>
 		<?php endif ?>
-	<?php endif ?>
-</section>
+	</section>
+
+</body>
+
+</html>
