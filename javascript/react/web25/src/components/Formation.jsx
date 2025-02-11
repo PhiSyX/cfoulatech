@@ -1,10 +1,8 @@
-export function Formation()
-{
+export function Formation() {
 	return (
-		<div>
+		<div className="formation">
 			<h1>Formation</h1>
-
 			<p>Page de formation</p>
 		</div>
-	)
+	);
 }

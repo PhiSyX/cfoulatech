@@ -1,10 +1,11 @@
-export function Service()
-{
+/**
+ * @param {{address: string}} props
+ */
+export function Service(props) {
 	return (
-		<div>
+		<div className="service">
 			<h1>Service</h1>
-
-			<p>Adresse : Rue de l'église Saint-Anne, n°63</p>
+			<p>{props.address}</p>
 		</div>
-	)
+	);
 }

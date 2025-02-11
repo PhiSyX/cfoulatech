@@ -1,20 +1,13 @@
 /**
- * @param {{ nom: string; age: number; city: string }} props
+ * Composant <Message />
+ *
+ * @param {object} props -- Les propriétés d'un composants
+ * @param {string} props.text -- Message du composant
  */
 export function Message(props) {
 	return (
-		<ul className="message">
-			<li>
-				<strong>{props.nom}</strong>{" "}
-			</li>
-
-			<li>
-				Âge: <strong>{props.age}</strong> ans
-			</li>
-
-			<li>
-				Ville: <strong>{props.city}</strong>
-			</li>
-		</ul>
+		<div className="message">
+			<p>{props.text}</p>
+		</div>
 	);
 }
