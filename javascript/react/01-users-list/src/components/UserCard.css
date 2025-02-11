@@ -1,0 +1,30 @@
+
+.user-card {
+	border: 1px solid ButtonFace;
+
+	border-radius: 8px;
+	padding: 1rem;
+}
+
+.user-card-change-age h1 {
+	margin: 0;
+}
+
+.user-card-change-age dialog {
+	padding: 1rem;
+}
+.user-card-change-age form {
+	width: 100%;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+.user-card-change-age label {
+	cursor: pointer;
+}
+
+.user-card-change-age .form-group {
+	display: flex;
+	gap: 1rem;
+	padding: 1rem;
+}
