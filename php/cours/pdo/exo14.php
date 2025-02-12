@@ -64,7 +64,7 @@ if (isset($_POST["delete_user"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="UTF-8">
@@ -80,13 +80,14 @@ if (isset($_POST["delete_user"])) {
 		<div class="form-group">
 			<label for="id_user">ID utilisateur</label>
 			<input
-				type="text"
+				type="number"
 				name="id_user"
 				id="id_user"
 				list="users"
 				<?php if (isset($_GET["id_user"])): ?>
 				value="<?= filter_input(INPUT_GET, 'id_user', FILTER_VALIDATE_INT) ?>"
-				<?php endif; ?>>
+				<?php endif; ?>
+			>
 
 			<datalist id="users">
 				<?php foreach ($users as $xuser): ?>

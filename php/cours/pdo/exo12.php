@@ -26,7 +26,7 @@ if (isset($_GET["id_user"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="UTF-8">
@@ -56,7 +56,7 @@ if (isset($_GET["id_user"])) {
 					},
 					[]
 				),
-				"value" => $idUser,
+				"value" => $idUser ?? "",
 			]) ?>
 		</div>
 
