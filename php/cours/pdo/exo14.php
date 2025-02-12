@@ -1,65 +1,49 @@
 <?php
 
 require_once "./pdo.php";
+require_once "./utils.php";
 
-try {
-	// Récupère tous les utilisateurs n'ayant pas crées d'articles.
-	$users = $pdo->query("
-		SELECT
-			a.id_article,
-			u.id_user,
-			u.firstname,
-			u.lastname
-		FROM users u
-		LEFT JOIN articles a
-		ON u.id_user = a.id_user_article
-	")
-		->fetchAll(PDO::FETCH_OBJ);
-} catch (PDOException $e) {
-	die("Erreur de sélection " . $e->getMessage());
-}
+// Récupère tous les utilisateurs n'ayant pas crées d'articles.
+$users = fetchAll("
+	SELECT
+		a.id_article,
+		u.id_user,
+		u.firstname,
+		u.lastname
+	FROM users u
+	LEFT JOIN articles a
+	ON u.id_user = a.id_user_article
+");
 
 if (isset($_GET["id_user"])) {
-	try {
-		$describes = $pdo
-			->query("DESCRIBE users")
-			->fetchAll(PDO::FETCH_OBJ);
+	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 
-		$user = $pdo->prepare("
-			SELECT
-				firstname,
-				lastname,
-				gender,
-				date_of_birth,
-				city,
-				weight_kg
-			FROM users
-			WHERE id_user = :id_user
-		");
+	$describes = describe("users");
 
-		$user->execute([
-			"id_user" => (int) $_GET["id_user"]
-		]);
-
-		$user = $user->fetch(PDO::FETCH_OBJ);
-	} catch (PDOException $e) {
-		die("Erreur de selection : " . $e->getMessage());
-	}
+	$user = fetchOne("
+		SELECT
+			firstname,
+			lastname,
+			gender,
+			date_of_birth,
+			city,
+			weight_kg
+		FROM users
+		WHERE id_user = :id_user
+	",
+	[
+		"id_user" => $idUser,
+	]);
 }
 
 if (isset($_POST["delete_user"])) {
-	try {
-		$req = $pdo->prepare("
-			DELETE FROM users
-			WHERE id_user = :id_user
-		");
-
-		$success = $req->execute([
-			"id_user" => (int) $_GET["id_user"],
-		]);
-	} catch (PDOException $e) {
-		$success = false;
-	}
+	$success = executeQuery("
+		DELETE FROM users
+		WHERE id_user = :id_user
+	",
+	[
+		"id_user" => $idUser,
+	]);
 }
 ?>
 
@@ -85,16 +69,15 @@ if (isset($_POST["delete_user"])) {
 				id="id_user"
 				list="users"
 				<?php if (isset($_GET["id_user"])): ?>
-				value="<?= filter_input(INPUT_GET, 'id_user', FILTER_VALIDATE_INT) ?>"
-				<?php endif; ?>
-			>
+				value="<?= $idUser ?>"
+				<?php endif; ?>>
 
 			<datalist id="users">
 				<?php foreach ($users as $xuser): ?>
 					<?php if ($xuser->id_article === NULL): ?>
-					<option value="<?= $xuser->id_user ?>">
-						<?= $xuser->firstname ?> <?= $xuser->lastname ?>)
-					</option>
+						<option value="<?= $xuser->id_user ?>">
+							<?= $xuser->firstname ?> <?= $xuser->lastname ?>)
+						</option>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</datalist>
@@ -109,7 +92,7 @@ if (isset($_POST["delete_user"])) {
 
 				<p style="color:red">
 					Erreur, l'utilisateur à l'ID demandé
-					"<?= htmlspecialchars($_GET["id_user"]) ?>"
+					"<?= htmlspecialchars($idUser) ?>"
 					n'existe pas.
 				</p>
 
@@ -119,11 +102,11 @@ if (isset($_POST["delete_user"])) {
 
 					<dialog id="delete-dialog" popover>
 
-						<form action="?id_user=<?= (int) $_GET["id_user"] ?>" method="post">
+						<form action="?id_user=<?= $idUser ?>" method="post">
 							<input
 								type="hidden"
 								name="id_user"
-								value="<?= filter_input(INPUT_GET, 'id_user', FILTER_VALIDATE_INT) ?>">
+								value="<?= $idUser ?>">
 
 							<p>
 								Voulez-vous vraiment supprimer
@@ -156,13 +139,13 @@ if (isset($_POST["delete_user"])) {
 					<?php if ($success): ?>
 						<p style="color: green">
 							L'utilisateur
-							<?= (int) $_GET["id_user"] ?>
+							<?= $idUser ?>
 							a bien été supprimé
 						</p>
 					<?php else: ?>
 						<p style="color: red">
 							Impossible de supprimer l'utilisateur
-							<?= (int) $_GET["id_user"] ?>
+							<?= $idUser ?>
 						</p>
 					<?php endif ?>
 				<?php endif ?>

@@ -24,7 +24,7 @@ if (isset($_POST["update_user"])) {
 		WHERE id_user = :id_user
 	", [
 		"id_user"       => $idUser,
-		"firstname"      => $_POST["firstname"],
+		"firstname"		=> $_POST["firstname"],
 		"lastname"      => $_POST["lastname"],
 		"gender"        => $_POST["gender"],
 		"date_of_birth" => $_POST["date_of_birth"],
@@ -34,7 +34,7 @@ if (isset($_POST["update_user"])) {
 }
 
 if (isset($_GET["id_user"])) {
-	$describes = fetchAll("DESCRIBE users");
+	$describes = describe("users");
 	$user = fetchOne("
 		SELECT
 			firstname,

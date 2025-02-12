@@ -22,23 +22,7 @@ if (isset(
 		!empty($_POST["weight_kg"])     &&
 		!empty($_POST["city"])
 	) {
-		$success = executeQuery("
-			INSERT INTO users (
-				firstname,
-				lastname,
-				gender,
-				date_of_birth,
-				weight_kg,
-				city
-			) VALUES (
-				:firstname,
-				:lastname,
-				:gender,
-				:date_of_birth,
-				:weight_kg,
-				:city
-			)
-		", [
+		$success = insertQuery("users", [
 			"firstname" => $_POST["firstname"],
 			"lastname" => $_POST["lastname"],
 			"gender" => $_POST["gender"],

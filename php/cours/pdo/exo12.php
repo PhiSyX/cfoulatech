@@ -14,7 +14,7 @@ $users = fetchALl("
 if (isset($_GET["id_user"])) {
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 
-	$describes = fetchAll("DESCRIBE users");
+	$describes = describe("users");
 
 	$user = fetchOne(
 		"SELECT * FROM users WHERE id_user = :id_user",

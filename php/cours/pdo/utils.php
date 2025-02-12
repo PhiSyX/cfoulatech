@@ -100,6 +100,12 @@ function select(string $name, string $label = null, $options = [], $attrs = []):
 	return $element;
 }
 
+function describe(string $table): mixed
+{
+	return fetchAll("DESCRIBE $table");
+}
+
+
 function fetchAll(string $req, array $bindings = []): mixed
 {
 	global $pdo;
@@ -158,7 +164,26 @@ function executeQuery(string $req, array $bindings = []): bool
 	try {
 		$res = $pdo->prepare($req);
 		return $res->execute($bindings);
-	} catch (PDOException $_) {
+	} catch (PDOException $e) {
+		var_dump($e);
 		return false;
+	}
+}
+
+function insertQuery(string $table, array $data): bool
+{
+	$fields = join(",", array_keys($data));
+	$bindings = join(",", array_map(fn($k) => ":$k", array_keys($data)));
+	return executeQuery("INSERT INTO $table ($fields) VALUES ($bindings)", $data);
+}
+
+function sqlDriver()
+{
+	$v = fetchOne("SELECT VERSION() AS version");
+
+	if (strpos(strtolower($v->version), "mariadb")) {
+		return "mariadb";
+	} else {
+		return "mysql";
 	}
 }

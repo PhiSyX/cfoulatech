@@ -3,7 +3,7 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-$describes = fetchAll("DESCRIBE users");
+$describes = describe("users");
 $users = fetchAll("SELECT * FROM users");
 ?>
 

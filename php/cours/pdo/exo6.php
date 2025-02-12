@@ -12,26 +12,12 @@ $user = [
 	"weight_kg" => 80
 ];
 
-executeQuery("
-	INSERT INTO users (
-		firstname,
-		lastname,
-		gender,
-		date_of_birth,
-		city,
-		weight_kg
-	) VALUES (
-		:firstname,
-		:lastname,
-		:gender,
-		:date_of_birth,
-		:city,
-		:weight_kg
-	)
-", $user);
+$success = insertQuery("users", $user);
 
-echo "L'utilisateur ";
-echo $user["firstname"];
-echo " ";
-echo $user["lastname"];
-echo " a bien été ajouté à la table `coursmysql`.`users`";
+if ($success) {
+	echo "L'utilisateur ";
+	echo $user["firstname"];
+	echo " ";
+	echo $user["lastname"];
+	echo " a bien été ajouté à la table `coursmysql`.`users`";
+}

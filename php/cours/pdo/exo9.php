@@ -3,27 +3,43 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-// En MySQL, il faut séparer les deux requêtes et les executer une à une :
-//
-// 	SELECT id_article FROM articles
-// 	ORDER BY id_article DESC
-// 	LIMIT 1,1
-//
-// 	DELETE FROM articles
-// 	WHERE id_article = :id_article
-//
-// où :
-// 	id_article = $article->id_article
-//
-// Mais dans MariaBD on peut directement faire ça:
-$success = executeQuery("
-	DELETE FROM articles
-	WHERE id_article = (
-		SELECT id_article FROM articles
-		ORDER BY id_article DESC
-		LIMIT 1,1
-	)
-");
+$success = false;
+
+switch (sqlDriver()) {
+	//
+	// En MariaBD, on peut directement faire ça.
+	//
+	case "mariadb":
+	{
+		$success = executeQuery("
+			DELETE FROM articles
+			WHERE id_article = (
+				SELECT id_article FROM articles
+				ORDER BY id_article DESC
+				LIMIT 1,1
+			)
+		");
+	} break;
+
+	//
+	// En MySQL, il faut séparer les deux requêtes et les executer une à une.
+	//
+	case "mysql":
+	{
+		$penultimate = fetchOne("
+			SELECT id_article FROM articles
+			ORDER BY id_article DESC
+			LIMIT 1,1
+		");
+
+		$success = executeQuery("
+			DELETE FROM articles
+			WHERE id_article = :id_article
+		", [
+			"id_article" => $penultimate->id_article,
+		]);
+	} break;
+}
 
 if ($success) {
 	echo "L'avant dernier article de la table `coursmysql`.`articles`";
