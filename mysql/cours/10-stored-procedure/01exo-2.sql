@@ -1,8 +1,10 @@
 DELIMITER $$
 
-CREATE OR REPLACE PROCEDURE getListUsersByGender(IN i_gender VARCHAR(5))
+CREATE OR REPLACE PROCEDURE getListUsersByGender(in i_gender varchar(5))
 BEGIN
+
 	SELECT * FROM users WHERE gender = i_gender;
+
 END$$
 
 DELIMITER ;

@@ -1,13 +1,11 @@
 DELIMITER $$
 
-CREATE OR REPLACE PROCEDURE getTotalUsersFromBrussels(OUT o_total INT)
+CREATE OR REPLACE PROCEDURE getTotalUsersFromBrussels(out o_total int)
 BEGIN
 
-	SELECT
-		COUNT(*) INTO o_total
-	FROM users
-	WHERE
-		city IN("Bruxelles", "Brussels");
+	SELECT COUNT(*) INTO o_total
+	  FROM users
+	 WHERE city IN("Bruxelles", "Brussels");
 
 END$$
 
