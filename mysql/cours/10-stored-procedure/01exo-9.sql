@@ -1,13 +1,13 @@
 DELIMITER $$
 
 -- Récupère tous les utilisateurs qui ont une lettre spécifique dans leur nom.
-CREATE OR REPLACE PROCEDURE getUsersWhoHaveLetterInName(in letter char(1))
+CREATE OR REPLACE PROCEDURE getUsersWhoHaveLetterInName(in i_letter char(1))
 BEGIN
 
 	SELECT *
 	  FROM users
-	 WHERE letter NOT IN('%', '_', '')
-	   AND lastname LIKE CONCAT('%',letter,'%');
+	 WHERE i_letter NOT IN('%', '_', '')
+	   AND lastname LIKE CONCAT('%',i_letter,'%');
 
 END$$
 
