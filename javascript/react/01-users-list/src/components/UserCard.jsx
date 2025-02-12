@@ -34,9 +34,13 @@ export function UserCard(props) {
 export function UserCardWithChangeAge(props) {
 	const { age, city, name, onChangeAge } = props;
 
+	/**
+	 * @param {React.FormEvent<HTMLFormElement>} evt
+	 */
 	function onSubmit(evt) {
 		evt.preventDefault();
 
+		// @ts-expect-error : fixme, types age element
 		let newAge = evt.currentTarget.elements.age.value;
 		onChangeAge(name, newAge);
 

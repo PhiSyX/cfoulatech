@@ -57,15 +57,12 @@ export function UsersListWithState() {
 	 * @param {number} newUserAge
 	 */
 	function onChangeUserAge(currentUserName, newUserAge) {
-		setUsers((users) => {
-			return users.map((user) => {
-				if (user.name === currentUserName) {
-					return { ...user, age: newUserAge };
-				}
-
-				return user;
-			});
-		});
+		setUsers((users) => users.map((user) => {
+			if (user.name === currentUserName) {
+				return { ...user, age: newUserAge };
+			}
+			return user;
+		}));
 	}
 
 	return (
