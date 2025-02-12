@@ -1,15 +1,15 @@
 import "./App.css";
 
-import { UserList, UserListWithState } from "./components/UserList";
+import React from "react";
+import { UsersList, UsersListWithState } from "./components/UsersList";
 
 function App() {
 	return (
 		<>
 			<h1>CFITECH</h1>
 
-			<UserList />
-
-			<UserListWithState />
+			<UsersList />
+			<UsersListWithState />
 		</>
 	);
 }

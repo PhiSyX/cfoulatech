@@ -1,25 +1,23 @@
 import "./UserCard.css";
 
+import React from "react";
+
 /**
  * Composant <UserCard />
  *
- * @param {object} props		Les propriétés d'un composants
+ * @param {object} props		Les propriétés du composant [UserCard]
  * @param {string} props.name	Nom de la personne
  * @param {number} props.age	Âge de la personne
  * @param {string} props.city	Ville de la personne
  */
-export function UserCard({ age, city, name }) {
+export function UserCard(props) {
+	const { age, city, name } = props;
+
 	return (
 		<div className="user-card">
-			<p>
-				Nom: <strong>{name}</strong>
-			</p>
-			<p>
-				Âge: <strong>{age}</strong> ans
-			</p>
-			<p>
-				Ville: <strong>{city}</strong>
-			</p>
+			<p>Nom: <strong>{name}</strong></p>
+			<p>Âge: <strong>{age}</strong> ans</p>
+			<p>Ville: <strong>{city}</strong></p>
 		</div>
 	);
 }
@@ -27,10 +25,10 @@ export function UserCard({ age, city, name }) {
 /**
  * Composant <UserCardChangeAge />
  *
- * @param {object} props -- Les propriétés d'un composants
- * @param {string} props.name -- Nom de la personne
- * @param {number} props.age -- Âge de la personne
- * @param {string} props.city -- Ville de la personne
+ * @param {object} props         Les propriétés du composant [UserCardWithChangeAge]
+ * @param {string} props.name    Nom de la personne
+ * @param {number} props.age     Âge de la personne
+ * @param {string} props.city    Ville de la personne
  * @param {(currentName: string, newAge: number) => void} props.onChangeAge -- Événement de changement de d'âge
  */
 export function UserCardWithChangeAge(props) {
@@ -42,16 +40,13 @@ export function UserCardWithChangeAge(props) {
 		let newAge = evt.currentTarget.elements.age.value;
 		onChangeAge(name, newAge);
 
+		// @ts-expect-error : fixme, use ref
 		document.querySelector(`#change-age-dialog-${name}`).hidePopover();
 	}
 
 	return (
 		<div className="user-card-change-age">
-			<UserCard
-				age={age}
-				city={city}
-				name={name}
-			/>
+			<UserCard age={age} city={city} name={name} />
 
 			<button
 				type="button"
@@ -78,6 +73,8 @@ export function UserCardWithChangeAge(props) {
 							type="number"
 							name="age"
 							id={`age-${name}`}
+							min={1}
+							max={120}
 							defaultValue={age}
 						/>
 					</div>

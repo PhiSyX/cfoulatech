@@ -7,3 +7,5 @@ node_modules/
 biome.json
 target/
 .DS_Store
+
+!javascript/react/*/package.json
