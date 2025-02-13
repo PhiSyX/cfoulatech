@@ -4,28 +4,29 @@ import React, { useState } from "react";
 
 import { UserCard, UserCardWithChangeAge } from "./UserCard";
 
-const usersList = [
-	{
-		name: "Mike",
-		age: 24,
-		city: "Bruxelles",
-	},
-	{
-		name: "Jeremy",
-		age: 32,
-		city: "Bruxelles",
-	},
-	{
-		name: "Mohamed-Ali",
-		age: 20,
-		city: "Bruxelles",
-	},
-];
-
 /**
  * Composant <UserList />
  */
-export function UsersList() {
+export function UsersList()
+{
+	const usersList = [
+		{
+			name: "Mike",
+			age: 24,
+			city: "Bruxelles",
+		},
+		{
+			name: "Say",
+			age: 23,
+			city: "Bruxelles",
+		},
+		{
+			name: "Maxime",
+			age: 22,
+			city: "Bruxelles",
+		},
+	];
+
 	return (
 		<div className="users-list">
 			<h1>Liste des utilisateurs</h1>
@@ -47,7 +48,26 @@ export function UsersList() {
 /**
  * Composant <UserListWithState />
  */
-export function UsersListWithState() {
+export function UsersListWithState()
+{
+	const usersList = [
+		{
+			name: "Erica",
+			age: 19,
+			city: "Bruxelles",
+		},
+		{
+			name: "Carina",
+			age: 20,
+			city: "Bruxelles",
+		},
+		{
+			name: "Olga",
+			age: 21,
+			city: "Bruxelles",
+		},
+	];
+
 	const [users, setUsers] = useState(usersList);
 
 	/**
@@ -56,14 +76,14 @@ export function UsersListWithState() {
 	 * @param {string} currentUserName
 	 * @param {number} newUserAge
 	 */
-	function onChangeUserAge(currentUserName, newUserAge) {
+	const onChangeUserAge = (currentUserName, newUserAge) => {
 		setUsers((users) => users.map((user) => {
 			if (user.name === currentUserName) {
 				return { ...user, age: newUserAge };
 			}
 			return user;
 		}));
-	}
+	};
 
 	return (
 		<div className="users-list">

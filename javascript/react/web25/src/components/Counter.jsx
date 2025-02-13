@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 /**
  * Composant <Counter />
  *
  * @param {object} props -- Les propriétés du composant Counter
  * @param {number} props.initialValue -- Valeur initiale
- * @param {number} props.step -- Étape d'incrémentation/décrémentation
+ * @param {number} [props.step=1] -- Étape d'incrémentation/décrémentation
  */
 export function Counter(props) {
 	const [count, setCount] = useState(props.initialValue);
@@ -17,7 +17,7 @@ export function Counter(props) {
 	}
 
 	/**
-	 * @param {MouseEvent} evt
+	 * @param {React.MouseEvent<HTMLButtonElement>} evt
 	 */
 	function increment(evt) {
 		if (evt.altKey) {
@@ -27,6 +27,9 @@ export function Counter(props) {
 		}
 	}
 
+	/**
+	 * @param {React.MouseEvent<HTMLButtonElement>} evt
+	 */
 	function decrement(evt) {
 		if (evt.altKey) {
 			reset();

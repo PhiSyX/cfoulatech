@@ -1,5 +1,7 @@
 import "./App.css";
 
+import React from "react";
+
 import { Counter } from "./components/Counter";
 import { Message } from "./components/Message";
 import { UserCard } from "./components/UserCard";
@@ -7,7 +9,7 @@ import { UserCard } from "./components/UserCard";
 function App() {
 	return (
 		<>
-			<h1>Cfitech</h1>
+			<h1>CFOULATECH</h1>
 
 			<Message text="Mon super message" />
 

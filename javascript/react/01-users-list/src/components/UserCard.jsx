@@ -10,7 +10,8 @@ import React from "react";
  * @param {number} props.age	Âge de la personne
  * @param {string} props.city	Ville de la personne
  */
-export function UserCard(props) {
+export function UserCard(props)
+{
 	const { age, city, name } = props;
 
 	return (
@@ -31,22 +32,27 @@ export function UserCard(props) {
  * @param {string} props.city    Ville de la personne
  * @param {(currentName: string, newAge: number) => void} props.onChangeAge -- Événement de changement de d'âge
  */
-export function UserCardWithChangeAge(props) {
+export function UserCardWithChangeAge(props)
+{
 	const { age, city, name, onChangeAge } = props;
+
+	/**
+	 * @type {React.RefObject<HTMLDialogElement|null>}
+	 */
+	const dialogRef = React.useRef(null);
 
 	/**
 	 * @param {React.FormEvent<HTMLFormElement>} evt
 	 */
-	function onSubmit(evt) {
+	const onSubmit = (evt) => {
 		evt.preventDefault();
 
-		// @ts-expect-error : fixme, types age element
+		// @ts-expect-error : FIXME, types age element
 		let newAge = evt.currentTarget.elements.age.value;
 		onChangeAge(name, newAge);
 
-		// @ts-expect-error : fixme, use ref
-		document.querySelector(`#change-age-dialog-${name}`).hidePopover();
-	}
+		dialogRef.current?.hidePopover();
+	};
 
 	return (
 		<div className="user-card-change-age">
@@ -62,6 +68,7 @@ export function UserCardWithChangeAge(props) {
 			<dialog
 				id={`change-age-dialog-${name}`}
 				popover="auto"
+				ref={dialogRef}
 			>
 				<h1>Changer l'âge de {name}</h1>
 
