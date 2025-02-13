@@ -20,7 +20,8 @@ if (isset($_GET["id_user"])) {
 
 	$describes = describe("users");
 
-	$user = fetchOne("
+	$user = fetchOne(
+		"
 		SELECT
 			firstname,
 			lastname,
@@ -30,20 +31,23 @@ if (isset($_GET["id_user"])) {
 			weight_kg
 		FROM users
 		WHERE id_user = :id_user
-	",
-	[
-		"id_user" => $idUser,
-	]);
+		",
+		[
+			"id_user" => $idUser,
+		]
+	);
 }
 
 if (isset($_POST["delete_user"])) {
-	$success = executeQuery("
+	$success = executeQuery(
+		"
 		DELETE FROM users
 		WHERE id_user = :id_user
-	",
-	[
-		"id_user" => $idUser,
-	]);
+		",
+		[
+			"id_user" => $idUser,
+		]
+	);
 }
 ?>
 
