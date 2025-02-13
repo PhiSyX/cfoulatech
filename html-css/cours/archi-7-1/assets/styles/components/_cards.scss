@@ -1,0 +1,43 @@
+@use "../abstracts/mixins" as mx;
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
+	gap: 1rem;
+	padding: 3rem;
+
+	@include mx.tablet {
+		--min: 200px
+	}
+}
+
+.card {
+	width: 100%;
+	padding: 1rem;
+	flex-shrink: 0;
+
+	border: 1px solid ButtonBorder;
+	border-radius: 4px;
+
+	> * + * {
+		margin-top: 1rem;
+	}
+}
+
+.card__image {
+	width: 100%;
+}
+
+.card__button {
+	display: inline-block;
+
+	padding: 1rem;
+
+	cursor: pointer;
+
+	border: none;
+	border-radius: 4px;
+	background: #212121;
+	color: #fff;
+	text-decoration: none;
+}

@@ -1,0 +1,19 @@
+// * Global Styles
+
+@use "abstracts/variables";
+@use "abstracts/functions";
+@use "abstracts/placeholders";
+@use "abstracts/mixins";
+
+@use "base/reset";
+@use "base/typo";
+
+@use "components/cards";
+@use "components/hero";
+@use "components/nav";
+
+@use "layout/base";
+@use "layout/header";
+@use "layout/grid";
+
+@use "pages/home";

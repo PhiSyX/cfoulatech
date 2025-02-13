@@ -1,0 +1,35 @@
+{
+  "name": "StarterKit",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "test"
+  ],
+  "homepage": "https://github.com/b3no1t/7-1-architecture#readme",
+  "bugs": {
+    "url": "https://github.com/b3no1t/7-1-architecture/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3no1t/7-1-architecture.git"
+  },
+  "license": "ISC",
+  "author": "Benoit Lepage",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel watch"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.13.3",
+    "parcel": "^2.13.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "lmdb",
+      "msgpackr-extract"
+    ]
+  }
+}

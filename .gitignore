@@ -7,5 +7,12 @@ node_modules/
 biome.json
 target/
 .DS_Store
+*.bmp
+*.pdf
+*.docx
+*.png
+*.jpg
+*.jpeg
 
+!html-css/cours/*/package.json
 !javascript/react/*/package.json

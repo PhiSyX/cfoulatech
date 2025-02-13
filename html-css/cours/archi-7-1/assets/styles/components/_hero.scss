@@ -1,0 +1,25 @@
+@use "../abstracts/mixins" as mx;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 1rem;
+
+  background-color: #e5e5e5;
+  color: #212121;
+
+  @include mx.tablet {
+    flex-direction: row;
+  }
+}
+
+.hero__image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.hero__text {
+  padding: 1rem;
+}
