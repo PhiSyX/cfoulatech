@@ -1,5 +1,6 @@
 DELIMITER $$
 
+-- Exo 6
 -- Récupérer tous les utilisateurs qui sont nés avant une certaine date, cette
 -- date doit être donnée en paramètre.
 CREATE OR REPLACE PROCEDURE getUsersBeforeDate(in i_date date)

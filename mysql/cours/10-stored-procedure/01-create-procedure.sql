@@ -49,5 +49,6 @@ BEGIN
 END$$
 
 
--- On remet le délimiteur à sa valeur initiale `;`
+-- On remet le délimiteur à sa valeur initiale `;`.
+-- L'espace entre DELIMITER et `;` est important.
 DELIMITER ;

@@ -1,5 +1,6 @@
 DELIMITER $$
 
+-- Exo 7
 -- Récupérer tous les utilisateurs d'une ville donnée.
 CREATE OR REPLACE PROCEDURE getUsersFromCity(in i_city varchar(40))
 BEGIN

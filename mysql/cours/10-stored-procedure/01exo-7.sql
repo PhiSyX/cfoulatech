@@ -1,5 +1,6 @@
 DELIMITER $$
 
+-- Exo 3
 -- Récupérer tous les utilisateurs qui ont moins de 30 ans
 CREATE OR REPLACE PROCEDURE getListUsersUnder30Years()
 BEGIN

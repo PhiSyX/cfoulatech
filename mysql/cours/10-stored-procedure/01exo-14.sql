@@ -1,5 +1,6 @@
 DELIMITER $$
 
+-- Exo 10
 -- Récupérer utilisateurs de la ville donnée, et qui ont un âge plus grand que
 -- l'âge donné.
 CREATE OR REPLACE PROCEDURE getListUsersFromCity(

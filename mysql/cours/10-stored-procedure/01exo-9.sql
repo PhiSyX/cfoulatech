@@ -1,5 +1,6 @@
 DELIMITER $$
 
+-- Exo 5
 -- Récupère tous les utilisateurs qui ont une lettre spécifique dans leur nom.
 CREATE OR REPLACE PROCEDURE getUsersWhoHaveLetterInName(in i_letter char(1))
 BEGIN
@@ -13,7 +14,8 @@ END$$
 
 DELIMITER ;
 
--- Les résultats sont vides
+-- Les résultats DOIVENT être vides, parce que par défaut avec ces lettres,
+-- ça renvoie tous les utilisateurs.
 CALL getUsersWhoHaveLetterInName('');
 CALL getUsersWhoHaveLetterInName('_');
 CALL getUsersWhoHaveLetterInName('%');

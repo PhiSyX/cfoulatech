@@ -1,11 +1,14 @@
 DELIMITER $$
 
+-- Exo 11
 -- Vérifier si au moins une personne avec l'âge donnée.
+--
+-- Pas sûr du résultat à retourner
 CREATE OR REPLACE PROCEDURE checkIfUsersHasAge(in i_age tinyint)
 BEGIN
 
 	SELECT *
-      FROM users
+	  FROM users
 	 WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURRENT_DATE) = i_age;
 
 END$$
