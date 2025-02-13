@@ -27,3 +27,30 @@
  display: flex;
  justify-content: center;
 }
+
+
+%flex-center-evenly {
+	@extend %flex-center-vert;
+	justify-content: space-evenly;
+}
+
+
+//------
+// Grid
+//------
+
+%grid-auto-fill {
+	--min: auto; // à changer en fonction des tailles d'écrans responsive
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--min), 1fr));
+}
+
+//------
+// List
+//------
+
+%list-reset {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
