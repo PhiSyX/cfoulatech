@@ -1,11 +1,8 @@
 .vscode/
-package.json
-package-lock.json
-pnpm-lock.yaml
-tsconfig.json
 node_modules/
-biome.json
 target/
+
+biome.json
 .DS_Store
 *.bmp
 *.pdf
@@ -14,5 +11,35 @@ target/
 *.jpg
 *.jpeg
 
-!html-css/cours/*/package.json
-!javascript/react/*/package.json
+package.json
+package-lock.json
+pnpm-lock.yaml
+composer.json
+composer.lock
+tsconfig.json
+
+# HTML-CSS
+!html-css/.vscode/
+!html-css/.vscode/settings.json
+!html-css/cours/**/package.json
+!html-css/scss/**/package.json
+
+# JS / TS - Angular / React / ...
+!javascript/.vscode/
+!javascript/.vscode/settings.json
+!javascript/react/**/package.json
+
+!typescript/.vscode/
+!typescript/.vscode/settings.json
+!typescript/angular/**/package.json
+!typescript/angular/**/tsconfig*.json
+
+# SQL
+!mysql/.vscode/
+!mysql/.vscode/settings.json
+
+# PHP / Symfony
+!php/.vscode/
+!php/.vscode/settings.json
+!php/symfony/**/composer.json
+!php/symfony/**/package.json
