@@ -25,7 +25,8 @@ if (isset($_POST["update_user"], $idUser)) {
 	)) {
 		$success = false;
 	} else {
-		$success = executeQuery("
+		$success = executeQuery(
+			"
 			UPDATE users SET
 				firstname     = :firstname,
 				lastname      = :lastname,
@@ -34,21 +35,24 @@ if (isset($_POST["update_user"], $idUser)) {
 				city          = :city,
 				weight_kg     = :weight_kg
 			WHERE id_user = :id_user
-		", [
-			"id_user"       => $idUser,
-			"firstname"		=> $_POST["firstname"],
-			"lastname"      => $_POST["lastname"],
-			"gender"        => $_POST["gender"],
-			"date_of_birth" => $_POST["date_of_birth"],
-			"city"          => $_POST["city"],
-			"weight_kg"     => $weight_kg,
-		]);
+			",
+			[
+				"id_user"       => $idUser,
+				"firstname"		=> $_POST["firstname"],
+				"lastname"      => $_POST["lastname"],
+				"gender"        => $_POST["gender"],
+				"date_of_birth" => $_POST["date_of_birth"],
+				"city"          => $_POST["city"],
+				"weight_kg"     => $weight_kg,
+			]
+		);
 	}
 }
 
 if (isset($_GET["id_user"])) {
-	$describes = describe("users");
-	$user = fetchOne("
+	$describesUsers = describe("users");
+	$user = fetchOne(
+		"
 		SELECT
 			firstname,
 			lastname,
@@ -58,9 +62,11 @@ if (isset($_GET["id_user"])) {
 			weight_kg
 		FROM users
 		WHERE id_user = :id_user
-	", [
-		"id_user" => [$idUser, PDO::PARAM_INT]
-	]);
+		",
+		[
+			"id_user" => $idUser,
+		]
+	);
 }
 ?>
 <!DOCTYPE html>
@@ -139,22 +145,22 @@ if (isset($_GET["id_user"])) {
 
 					<form action="?id_user=<?= $idUser ?>" method="post">
 						<?= input("id_user", attrs: [
-							"type" => "hidden",
+							"type"  => "hidden",
 							"value" => $idUser ?? "",
 						]) ?>
 
 						<div class="form-group">
 							<?= input("firstname", "Prénom", [
-								"type" => "text",
-								"value" => $user->firstname,
+								"type"        => "text",
+								"value"       => $user->firstname,
 								"placeholder" => $user->firstname,
 							]) ?>
 						</div>
 
 						<div class="form-group">
 							<?= input("lastname", "Nom", [
-								"type" => "text",
-								"value" => $user->lastname,
+								"type"        => "text",
+								"value"       => $user->lastname,
 								"placeholder" => $user->lastname,
 							]) ?>
 						</div>
@@ -171,7 +177,7 @@ if (isset($_GET["id_user"])) {
 
 						<div class="form-group">
 							<?= input("date_of_birth", "Date de naissance", [
-								"type" => "date",
+								"type"  => "date",
 								"value" => $user->date_of_birth,
 							]) ?>
 						</div>
@@ -189,16 +195,16 @@ if (isset($_GET["id_user"])) {
 									},
 									[]
 								),
-								"list" => "cities",
-								"value" => $user->city,
+								"list"        => "cities",
+								"value"       => $user->city,
 								"placeholder" => $user->city,
 							]) ?>
 						</div>
 
 						<div class="form-group">
 							<?= input("weight_kg", "Poids", [
-								"type" => "number",
-								"value" => $user->weight_kg,
+								"type"        => "number",
+								"value"       => $user->weight_kg,
 								"placeholder" => $user->weight_kg,
 							]) ?>
 						</div>

@@ -18,9 +18,10 @@ $users = fetchAll("
 if (isset($_GET["id_user"])) {
 	// See https://php.net/manual/en/function.filter-input.php
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
+}
 
-	$describes = describe("users");
 
+if (isset($_GET["id_user"])) {
 	$user = fetchOne(
 		"
 		SELECT
@@ -95,7 +96,7 @@ if (isset($_POST["delete_user"])) {
 		<?php if (isset($_GET["id_user"])) : ?>
 			<?php if (!$user): ?>
 
-				<p style="color:red">
+				<p class="alert alert-error">
 					Erreur, l'utilisateur à l'ID demandé
 					"<?= htmlspecialchars($idUser) ?>"
 					n'existe pas.

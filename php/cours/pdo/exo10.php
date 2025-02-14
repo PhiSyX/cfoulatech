@@ -3,7 +3,7 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-$describes = describe("users");
+$describesUsers = describe("users");
 $users = fetchAll("SELECT * FROM users");
 ?>
 
@@ -14,7 +14,7 @@ $users = fetchAll("SELECT * FROM users");
 		<table>
 			<thead>
 				<tr>
-					<?php foreach ($describes as $describe): ?>
+					<?php foreach ($describesUsers as $describe): ?>
 						<th><?= capitalize($describe->Field) ?></th>
 					<?php endforeach ?>
 				</tr>

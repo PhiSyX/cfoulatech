@@ -15,7 +15,7 @@ if (isset(
 	$_POST["city"],
 )) {
 	if (
-		!empty($_POST["firstname"])      &&
+		!empty($_POST["firstname"])     &&
 		!empty($_POST["lastname"])      &&
 		!empty($_POST["gender"])        &&
 		!empty($_POST["date_of_birth"]) &&
@@ -23,12 +23,12 @@ if (isset(
 		!empty($_POST["city"])
 	) {
 		$success = insertQuery("users", [
-			"firstname" => $_POST["firstname"],
-			"lastname" => $_POST["lastname"],
-			"gender" => $_POST["gender"],
+			"firstname"     => $_POST["firstname"],
+			"lastname"      => $_POST["lastname"],
+			"gender"        => $_POST["gender"],
 			"date_of_birth" => $_POST["date_of_birth"],
-			"weight_kg" => (int) $_POST["weight_kg"],
-			"city" => $_POST["city"],
+			"weight_kg"     => (int) $_POST["weight_kg"],
+			"city"          => $_POST["city"],
 		]);
 	} else {
 		$emptyForm = true;

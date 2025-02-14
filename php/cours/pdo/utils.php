@@ -13,18 +13,18 @@
  *
  * Ce qui nous donnera pour l'exemple plus haut :
  *
- * 		$w = "Id User"
+ * 		$str = "Id User"
  *
- * Et ensuite je retourne $w.
+ * Et ensuite je retourne $str.
  */
 function capitalize(string $text): string
 {
-	$w = "";
+	$str = "";
 	foreach (explode("_", $text) as $value) {
-		$w .= " ";
-		$w .= ucfirst($value);
+		$str .= " ";
+		$str .= ucfirst($value);
 	}
-	return $w;
+	return $str;
 }
 
 /**
@@ -167,11 +167,7 @@ function fetchAll(string $req, array $bindings = []): mixed
 
 		if (count($bindings) > 0) {
 			foreach ($bindings as $varname => $value) {
-				if (is_array($value)) {
-					$res->bindParam(":$varname", $value[0], $value[1]);
-				} else {
-					$res->bindParam(":$varname", $value);
-				}
+				$res->bindParam(":$varname", $value);
 			}
 		}
 
@@ -196,11 +192,7 @@ function fetchOne(string $req, array $bindings = []): mixed
 
 	if (count($bindings) > 0) {
 		foreach ($bindings as $varname => $value) {
-			if (is_array($value)) {
-				$res->bindParam(":$varname", $value[0], $value[1]);
-			} else {
-				$res->bindParam(":$varname", $value);
-			}
+			$res->bindParam(":$varname", $value);
 		}
 	}
 

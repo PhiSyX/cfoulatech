@@ -15,7 +15,7 @@ if (isset($_GET["id_user"])) {
 	// See https://php.net/manual/en/function.filter-input.php
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 
-	$describes = describe("users");
+	$describesUsers = describe("users");
 
 	$user = fetchOne(
 		"SELECT * FROM users WHERE id_user = :id_user",
@@ -74,7 +74,7 @@ if (isset($_GET["id_user"])) {
 				<table>
 					<thead>
 						<tr>
-							<?php foreach ($describes as $describe): ?>
+							<?php foreach ($describesUsers as $describe): ?>
 								<th><?= capitalize($describe->Field) ?></th>
 							<?php endforeach ?>
 						</tr>
@@ -82,8 +82,8 @@ if (isset($_GET["id_user"])) {
 
 					<tbody>
 						<tr>
-							<?php foreach ($user as $field => $val): ?>
-								<td><?= $val ?></td>
+							<?php foreach ($user as $field => $value): ?>
+								<td><?= $value ?></td>
 							<?php endforeach ?>
 						</tr>
 					</tbody>
