@@ -4,5 +4,7 @@
 		"titleBar.inactiveBackground": "#083b4b",
 		"titleBar.activeForeground": "#ffffff",
 		"titleBar.inactiveForeground": "#ffffff",
-	}
+	},
+	"workbench.preferredLightColorTheme": "GitHub Dark Default",
+	"workbench.preferredDarkColorTheme": "GitHub Dark Default"
 }
