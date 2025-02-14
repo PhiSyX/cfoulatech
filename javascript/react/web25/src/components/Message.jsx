@@ -3,8 +3,8 @@ import React from "react";
 /**
  * Composant <Message />
  *
- * @param {object} props -- Les propriétés d'un composants
- * @param {string} props.text -- Message du composant
+ * @param {object} props         Les propriétés du composant
+ * @param {string} props.text    Le texte du message
  */
 export function Message(props) {
 	return (

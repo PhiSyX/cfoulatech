@@ -5,11 +5,11 @@ import React from "react";
 /**
  * Composant <UserCard />
  *
- * @param {object} props		Les propriétés du composant [UserCard]
- * @param {string} props.name	Nom de la personne
- * @param {number} props.age	Âge de la personne
- * @param {string} props.city	Ville de la personne
- * @param {string} [props.nationality] Nationalité de la personne
+ * @param {object} props		                                                 Les propriétés du composant [UserCard]
+ * @param {string} props.name	                                                 Nom de la personne
+ * @param {number} props.age	                                                 Âge de la personne
+ * @param {string} props.city	                                                 Ville de la personne
+ * @param {string} [props.nationality]                                           Nationalité de la personne
  */
 export function UserCard(props) {
 	const { age, city, name, nationality } = props;
@@ -25,6 +25,7 @@ export function UserCard(props) {
 			<p>
 				Ville: <strong>{city}</strong>
 			</p>
+
 			{nationality && (
 				<p>
 					Nationalité: <strong>{nationality}</strong>
@@ -37,17 +38,17 @@ export function UserCard(props) {
 /**
  * Composant <UserCardChangeAge />
  *
- * @param {object} props         Les propriétés du composant [UserCardWithChangeAge]
- * @param {string} props.name    Nom de la personne
- * @param {number} props.age     Âge de la personne
- * @param {string} props.city    Ville de la personne
- * @param {(currentName: string, newAge: number) => void} props.onChangeAge -- Événement de changement de d'âge
+ * @param {object} props                                                         Les propriétés du composant [UserCardWithChangeAge]
+ * @param {string} props.name                                                    Nom de la personne
+ * @param {number} props.age                                                     Âge de la personne
+ * @param {string} props.city                                                    Ville de la personne
+ * @param {(currentName: string, newAge: number) => void} props.onChangeAge      Événement de changement de d'âge
  */
 export function UserCardWithChangeAge(props) {
 	const { age, city, name, onChangeAge } = props;
 
 	/**
-	 * @type {React.RefObject<HTMLDialogElement|null>}
+	 * @type {React.LegacyRef<HTMLDialogElement>|undefined}
 	 */
 	const dialogRef = React.useRef(null);
 

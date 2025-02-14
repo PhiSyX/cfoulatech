@@ -8,39 +8,49 @@ import React, { useState } from "react";
 export function Profile() {
 	const [nom, setNom] = useState("Mike");
 	const [age, setAge] = useState(10);
+
 	const [inputMode, setInputMode] = useState("");
 
-	const changeInputNameMode = () => {
-		setInputMode("input.name")
+	// Fonction anonyme stockée dans une variable `applyInputNameMode` qui
+	// change le mode de l'input avec la fonction `setInputMode`.
+	const applyInputNameMode = () => {
+		setInputMode("editable.name");
 	};
-
+	// Fonction anonyme stockée dans une variable `removeInputMode` qui change
+	// le mode de l'input avec la fonction `setInputMode` pour du vide.
+	const removeInputMode = () => {
+		setInputMode("");
+	};
+	// Fonction anonyme stockée dans une variable `incrementAge` qui va utiliser
+	// la fonction setAge pour mettre à jour l'âge en incrémentant de 1.
 	const incrementAge = () => {
-		setAge(age + 1);
+		setAge((age) => age + 1);
 	};
 
+	/**
+	 * @param {React.ChangeEvent<HTMLInputElement>} evt
+	 */
 	const handleChange = (evt) => {
 		setNom(evt.target.value);
 	};
 
 	return (
 		<div className="profile">
-			<div>
-				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-				<label htmlFor="name" onClick={changeInputNameMode}>
-					Nom :&nbsp;
-				</label>
+			{/* biome-ignore lint/a11y/useKeyWithClickEvents: chut */}
+			<div onClick={applyInputNameMode}>
+				<label htmlFor="name">Nom : </label>
 
-				{
-				inputMode === 'input.name'
-					? <input
-							id="name"
-							type="text"
-							value={nom}
-							onChange={handleChange}
-							onBlur={() => setInputMode("")}
-						/>
-					: nom
-				}
+				{inputMode === "editable.name" ? (
+					<input
+						id="name"
+						type="text"
+						value={nom}
+						onChange={handleChange}
+						onBlur={removeInputMode}
+					/>
+				) : (
+					nom
+				)}
 			</div>
 
 			<div>

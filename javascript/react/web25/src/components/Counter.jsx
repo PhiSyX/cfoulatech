@@ -12,11 +12,15 @@ export function Counter(props) {
 
 	const step = props.step || 1;
 
+	/**
+	 * Remet à le compteur à son état initial.
+	 */
 	function reset() {
 		setCount(props.initialValue);
 	}
 
 	/**
+	 * Incrémente le compteur.
 	 * @param {React.MouseEvent<HTMLButtonElement>} evt
 	 */
 	function increment(evt) {
@@ -28,6 +32,7 @@ export function Counter(props) {
 	}
 
 	/**
+	 * Décrémente le compteur.
 	 * @param {React.MouseEvent<HTMLButtonElement>} evt
 	 */
 	function decrement(evt) {

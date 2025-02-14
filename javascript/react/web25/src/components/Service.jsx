@@ -1,7 +1,8 @@
 import React from "react";
 
 /**
- * @param {{address: string}} props
+ * @param {object} props          Propriété du composant [Service]
+ * @param {string} props.address  Adresse du service
  */
 export function Service(props) {
 	return (
