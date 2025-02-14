@@ -27,7 +27,7 @@ if (isset(
 			"lastname" => $_POST["lastname"],
 			"gender" => $_POST["gender"],
 			"date_of_birth" => $_POST["date_of_birth"],
-			"weight_kg" => $_POST["weight_kg"],
+			"weight_kg" => (int) $_POST["weight_kg"],
 			"city" => $_POST["city"],
 		]);
 	} else {

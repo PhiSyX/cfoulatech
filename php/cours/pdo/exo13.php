@@ -7,30 +7,43 @@ $users = fetchAll("SELECT * FROM users");
 $cities = fetchAll("SELECT DISTINCT city FROM users");
 
 if (isset($_GET["id_user"])) {
+	// See https://php.net/manual/en/function.filter-input.php
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 }
 
-if (isset($_POST["update_user"])) {
+if (isset($_POST["update_user"], $idUser)) {
+	// See https://php.net/manual/en/function.filter-input.php
 	$weight_kg = filter_input(INPUT_POST, "weight_kg", FILTER_VALIDATE_INT);
 
-	$success = executeQuery("
-		UPDATE users SET
-			firstname      = :firstname,
-			lastname      = :lastname,
-			gender        = :gender,
-			date_of_birth = :date_of_birth,
-			city          = :city,
-			weight_kg     = :weight_kg
-		WHERE id_user = :id_user
-	", [
-		"id_user"       => $idUser,
-		"firstname"		=> $_POST["firstname"],
-		"lastname"      => $_POST["lastname"],
-		"gender"        => $_POST["gender"],
-		"date_of_birth" => $_POST["date_of_birth"],
-		"city"          => $_POST["city"],
-		"weight_kg"     => $weight_kg,
-	]);
+	if (!isset(
+		$_POST["firstname"],
+		$_POST["lastname"],
+		$_POST["gender"],
+		$_POST["date_of_birth"],
+		$_POST["city"],
+		$_POST["weight_kg"],
+	)) {
+		$success = false;
+	} else {
+		$success = executeQuery("
+			UPDATE users SET
+				firstname     = :firstname,
+				lastname      = :lastname,
+				gender        = :gender,
+				date_of_birth = :date_of_birth,
+				city          = :city,
+				weight_kg     = :weight_kg
+			WHERE id_user = :id_user
+		", [
+			"id_user"       => $idUser,
+			"firstname"		=> $_POST["firstname"],
+			"lastname"      => $_POST["lastname"],
+			"gender"        => $_POST["gender"],
+			"date_of_birth" => $_POST["date_of_birth"],
+			"city"          => $_POST["city"],
+			"weight_kg"     => $weight_kg,
+		]);
+	}
 }
 
 if (isset($_GET["id_user"])) {
@@ -69,6 +82,8 @@ if (isset($_GET["id_user"])) {
 			<?= input("id_user", "ID Utilisateur", [
 				"type" => "number",
 				"list" => "users",
+				// See https://php.net/manual/en/function.array-reduce.php
+				// It's difficult to understand and to use, but it's ok
 				"datalist" => array_reduce(
 					$users,
 					function ($acc, $user) {
@@ -92,7 +107,7 @@ if (isset($_GET["id_user"])) {
 		<?php if (isset($_GET["id_user"])) : ?>
 			<?php if (!$user): ?>
 
-				<p style="color:red">
+				<p alert="alert alert-error">
 					Erreur, l'utilisateur à l'ID demandé
 					"<?= htmlspecialchars($_GET["id_user"]) ?>"
 					n'existe pas.
@@ -132,6 +147,7 @@ if (isset($_GET["id_user"])) {
 							<?= input("firstname", "Prénom", [
 								"type" => "text",
 								"value" => $user->firstname,
+								"placeholder" => $user->firstname,
 							]) ?>
 						</div>
 
@@ -139,6 +155,7 @@ if (isset($_GET["id_user"])) {
 							<?= input("lastname", "Nom", [
 								"type" => "text",
 								"value" => $user->lastname,
+								"placeholder" => $user->lastname,
 							]) ?>
 						</div>
 
@@ -162,6 +179,8 @@ if (isset($_GET["id_user"])) {
 						<div class="form-group">
 							<?= input("city", "Ville", [
 								"type" => "text",
+								// See https://php.net/manual/en/function.array-reduce.php
+								// It's difficult to understand and to use, but it's ok
 								"datalist" => array_reduce(
 									$cities,
 									function ($acc, $item) {
@@ -172,6 +191,7 @@ if (isset($_GET["id_user"])) {
 								),
 								"list" => "cities",
 								"value" => $user->city,
+								"placeholder" => $user->city,
 							]) ?>
 						</div>
 
@@ -179,6 +199,7 @@ if (isset($_GET["id_user"])) {
 							<?= input("weight_kg", "Poids", [
 								"type" => "number",
 								"value" => $user->weight_kg,
+								"placeholder" => $user->weight_kg,
 							]) ?>
 						</div>
 

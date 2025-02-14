@@ -3,7 +3,7 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-// Récupère tous les utilisateurs n'ayant pas crées d'articles.
+// Récupère tous les utilisateurs n'ayant pas crée d'articles.
 $users = fetchAll("
 	SELECT
 		a.id_article,
@@ -16,6 +16,7 @@ $users = fetchAll("
 ");
 
 if (isset($_GET["id_user"])) {
+	// See https://php.net/manual/en/function.filter-input.php
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 
 	$describes = describe("users");

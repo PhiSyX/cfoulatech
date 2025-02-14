@@ -12,6 +12,7 @@ $users = fetchALl("
 ");
 
 if (isset($_GET["id_user"])) {
+	// See https://php.net/manual/en/function.filter-input.php
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 
 	$describes = describe("users");
@@ -19,7 +20,7 @@ if (isset($_GET["id_user"])) {
 	$user = fetchOne(
 		"SELECT * FROM users WHERE id_user = :id_user",
 		[
-			"id_user" => [$idUser, PDO::PARAM_INT]
+			"id_user" => $idUser
 		]
 	);
 }
@@ -44,6 +45,9 @@ if (isset($_GET["id_user"])) {
 			<?= input("id_user", "ID Utilisateur", [
 				"type" => "number",
 				"list" => "users",
+
+				// See https://php.net/manual/en/function.array-reduce.php
+				// It's difficult to understand and to use, but it's ok
 				"datalist" => array_reduce(
 					$users,
 					function($acc, $user) {
