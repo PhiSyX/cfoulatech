@@ -2,15 +2,18 @@ import "./App.css";
 
 import React from "react";
 
-import { Counter } from "./components/Counter";
-import { Message } from "./components/Message";
-import { UserCard } from "./components/UserCard";
+// import { Counter } from "./components/Counter";
+// import { Message } from "./components/Message";
+// import { UserCard } from "./components/UserCard";
+// import { UsersList } from "./components/UsersList";
+import { Profile } from "./components/Profile";
 
 function App() {
 	return (
 		<>
 			<h1>CFOULATECH</h1>
 
+			{/*
 			<Message text="Mon super message" />
 
 			<UserCard
@@ -37,6 +40,14 @@ function App() {
 				initialValue={5}
 				step={2}
 			/>
+
+			<hr />
+
+
+			<UsersList />
+			*/}
+
+			<Profile />
 		</>
 	);
 }

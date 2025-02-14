@@ -1,4 +1,6 @@
 #root {
+	width: 80vw;
+	margin-inline: auto;
 	padding: 2rem;
 }
 

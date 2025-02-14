@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { UserCard, UserCardWithChangeAge } from "./UserCard";
 
 /**
- * Composant <UserList />
+ * Composant <UsersList />
  */
 export function UsersList()
 {
@@ -34,16 +34,23 @@ export function UsersList()
 			<div className="users-list-cards">
 				{usersList.map((user) => (
 					<UserCard
+						key={user.name}
 						name={user.name}
 						age={user.age}
 						city={user.city}
-						key={user.name}
 					/>
 				))}
 			</div>
 		</div>
 	);
 }
+
+
+
+
+
+
+
 
 /**
  * Composant <UserListWithState />
@@ -87,7 +94,7 @@ export function UsersListWithState()
 
 	return (
 		<div className="users-list">
-			<h1>Liste des utilisateurs</h1>
+			<h1>Liste des utilisateurs #2</h1>
 
 			<div className="users-list-cards">
 				{users.map((user) => (

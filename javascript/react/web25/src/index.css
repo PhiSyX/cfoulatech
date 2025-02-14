@@ -4,23 +4,9 @@
 	font-weight: 400;
 
 	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-.user-list-cards {
-	display: flex;
-	gap: 1rem;
-}
-
-.user-card {
-	border: 1px solid ButtonFace;
-
-	border-radius: 8px;
-	padding: 1rem;
 }
