@@ -6,5 +6,6 @@
 		"titleBar.inactiveForeground": "#ffffff",
 	},
 	"workbench.preferredLightColorTheme": "GitHub Dark Default",
-	"workbench.preferredDarkColorTheme": "GitHub Dark Default"
+	"workbench.preferredDarkColorTheme": "GitHub Dark Default",
+	"window.title": "[CFITECH] ${separator} ${folderName}/${activeFolderMedium}",
 }

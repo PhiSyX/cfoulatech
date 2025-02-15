@@ -4,5 +4,6 @@
 		"titleBar.inactiveBackground": "#4f5b93",
 		"titleBar.activeForeground": "#ffffff",
 		"titleBar.inactiveForeground": "#ffffff",
-	}
+	},
+	"window.title": "[CFITECH] ${separator} ${folderName}/${activeFolderMedium}",
 }
