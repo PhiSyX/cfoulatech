@@ -18,20 +18,9 @@
 	<p>Output: <output name="my-output"></output></p>
 	<p>Span: <span id="my-span"></span></p>
 
-	<script>
-		let my_inputs = document.getElementsByName("my-name");
-		let my_outputs = document.getElementsByName("my-output");
-		let my_span = document.querySelector("#my-span");
-
-		let my_input = my_inputs[0];
-		let my_output = my_outputs[0];
-
-		function set_input_value()
-		{
-			my_input.value = "Hello World";
-			my_output.value = my_input.value;
-			my_span.innerText = my_input.value;
-		}
+	<script type="module">
+		import { set_input_value } from "./getset-content.dom.js";
+		window.set_input_value = set_input_value;
 	</script>
 </body>
 

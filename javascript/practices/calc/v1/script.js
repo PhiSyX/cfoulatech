@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * Exercice faire une calculatrice simple. Sur la base de connaissances que nous
  * avons vu en cours.
@@ -316,3 +314,5 @@ const div = (a, b) => {
 const add = (a, b) => a + b;
 
 const sub = (a, b) => a - b;
+
+export {};

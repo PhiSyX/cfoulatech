@@ -55,6 +55,7 @@ const COURS = [
  * @param {number} val
  * @param {number} min
  * @param {number} max
+ * @returns {number}
  */
 function minmax(val, min, max) {
 	return Math.min(Math.max(min, val), max);
@@ -69,12 +70,18 @@ function valeur_aléatoire(tableau) {
 	return valeur;
 }
 
+/**
+ * @returns {string}
+ */
 function nom_prenom_aléatoire() {
 	let prénom = valeur_aléatoire(PRENOMS);
 	let nom = valeur_aléatoire(NOMS);
 	return `${prénom} ${nom}.`;
 }
 
+/**
+ * @returns {number}
+ */
 function age_aléatoire() {
 	return minmax(Math.floor(Math.random() * 50), 18, 50);
 }
@@ -122,6 +129,9 @@ class Personne {
 		}
 	}
 
+	/**
+	 * @returns {({ nom: string; age: number; } | { nom: string; age?: undefined; })}
+	 */
 	info() {
 		if (this.age != null) {
 			return { nom: this.nom, age: this.age };
@@ -133,8 +143,15 @@ class Personne {
 	}
 }
 
+/**
+ * Description placeholder
+ *
+ * @class Professeur
+ * @extends {Personne}
+ */
 class Professeur extends Personne {
 	/**
+	 * @constructor
 	 * @param {string} nom - Nom du professeur
 	 * @param {string|Array<string>} postes - Un ou plusieurs postes du professeur
 	 * @param {number} [age] - Âge du professeur (non requis)
@@ -160,14 +177,18 @@ class Professeur extends Personne {
 	}
 }
 
+/**
+ * @class Stagiere
+ * @extends {Personne}
+ */
 class Stagiere extends Personne {
 	/**
 	 * @type {Array<Professeur>}
 	 */
-
 	professeurs = [];
 
 	/**
+	 * @constructor
 	 * @param {string} nom
 	 * @param {number} age
 	 * @param {Array<string>|string} formation
@@ -211,6 +232,9 @@ class Materiel {
 		this.quantité = quantité;
 	}
 
+	/**
+	 * @returns {{ name: string; quantité: number; }}
+	 */
 	info() {
 		return { name: this.name, quantité: this.quantité };
 	}

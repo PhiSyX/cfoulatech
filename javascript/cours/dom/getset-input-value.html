@@ -15,19 +15,10 @@
 
 	<button class="button" onclick="set_input_value()">Définir une valeur</button>
 
-	<script>
-		let my_inputs = document.getElementsByName("my-name");
-		let my_input = my_inputs[0];
-
-		function get_input_value()
-		{
-			console.log("<input>.value:", my_input.value);
-		}
-
-		function set_input_value()
-		{
-			my_input.value = "Hello World";
-		}
+	<script type="module">
+		import { get_input_value, set_input_value } from "./getset-input-value.dom.js";
+		window.get_input_value = get_input_value;
+		window.set_input_value = set_input_value;
 	</script>
 </body>
 

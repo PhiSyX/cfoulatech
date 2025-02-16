@@ -71,7 +71,7 @@
 </head>
 
 <body>
-
+<!--
 	<script>
 		let myDiv = document.createElement("div");
 		myDiv.id = "LOL";
@@ -82,70 +82,9 @@
 		myDiv.appendChild(strongEl)
 
 		document.body.appendChild(myDiv);
-	</script>
+	</script> -->
 
-	<script hidden>
-		let myDiv = document.createElement("div");
-		myDiv.id = "myDiv";
-
-		let myParagraph = document.createElement("p");
-		myParagraph.id = "myP";
-
-		let e2 = document.createTextNode(" est une entreprise de");
-		let br = document.createElement("br");
-		let e4 = document.createTextNode("services linguistiques");
-		let e5 = br.cloneNode();
-		let e6 = document.createTextNode("ofrant des prestations professionnelles");
-		let e7 = br.cloneNode();
-		let e8 = document.createTextNode("de ");
-		let e9 = document.createElement("a");
-		e9.href = "/traduction.html";
-		e9.textContent = "traduction";
-		let e10 = document.createTextNode(", ");
-		let e11 = document.createElement("a");
-		e11.href = "/correction.html";
-		e11.textContent = "correction";
-		let e12 = document.createTextNode(" et ");
-
-		let e13 = document.createElement("a");
-		e13.href = "/relecture-text.html";
-		let e131 = document.createElement("strong")
-		e131.textContent = "relecture de texte";
-		e13.appendChild(e131);
-
-		let e14 = document.createTextNode(".");
-
-		let title = document.createElement("h1");
-		title.textContent = "Excellent!";
-
-		let devis = document.createElement("a")
-		devis.href = "/devis";
-		devis.className = "btn";
-		devis.textContent = "Demander votre devis gratuit";
-
-		myParagraph.appendChild(e2);
-		myParagraph.appendChild(br);
-		myParagraph.appendChild(e4);
-		myParagraph.appendChild(e5);
-		myParagraph.appendChild(e6);
-		myParagraph.appendChild(e7);
-		myParagraph.appendChild(e8);
-		myParagraph.appendChild(e9);
-		myParagraph.appendChild(e10);
-		myParagraph.appendChild(e12);
-		myParagraph.appendChild(e13);
-		myParagraph.appendChild(e14);
-
-		myDiv.appendChild(myParagraph)
-		myDiv.insertBefore(
-			title,
-			myParagraph,
-		);
-
-		myDiv.appendChild(devis);
-
-		document.body.appendChild(myDiv);
-	</script>
+	<script src="./exo5.dom.js" type="module"></script>
 
 	<!--
     <script>

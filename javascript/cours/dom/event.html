@@ -13,18 +13,7 @@
 		Cliquez moi
 	</button>
 
-	<script>
-		let addition_btn = document.querySelector("#addition");
-
-		addition_btn.onclick = function () {
-			let x = Number.parseFloat(prompt("1er numéro"));
-			let y = Number.parseFloat(prompt("2nd numéro"));
-
-			let z = x + y;
-
-			alert(`Le résultat du calcul de ${x} + ${y} = ${z}`);
-		};
-	</script>
+	<script src="./event.dom.js" type="module"></script>
 	<!--
     -->
 
@@ -34,10 +23,6 @@
     <p onclick="alert('Bravo ! Vous avez cliqué');">Cliquez-moi, cliquez-moi !</p>
     <p>Un deuxième <strong>paragraphe</strong></p>
     <button onclick="this.innerHTML=Date()">Il est quelle heure?</button>
-    -->
-
-	<!--
-
     -->
 
 </body>

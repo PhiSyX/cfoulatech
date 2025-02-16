@@ -59,12 +59,16 @@ export class Admin extends User {
 	 * @default ["user:readwrite"]
 	 */
 	permissions;
+	/**
+	 * Role utilisateur
+	 */
 	role = "admin";
 
 	/**
 	 * Le constructeur de la classe `Admin`, qui étend de la classe
 	 * `Utilisateur`, nous devons donc appeler l'instruction `super`.
 	 *
+	 * @constructor
 	 * @param {string} name
 	 * @param {string} email
 	 * @param {Array<string>} [permissions=["user:readwrite"]]
@@ -74,6 +78,11 @@ export class Admin extends User {
 		this.permissions = permissions;
 	}
 
+	/**
+	 * Affiche les permissions de l'admin.
+	 *
+	 * @returns {string}
+	 */
 	display_permissions() {
 		return `Les permissions de ${this.name} sont les suivantes: "${this.permissions}".`;
 	}

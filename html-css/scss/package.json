@@ -1,8 +1,10 @@
 {
-	"name": "sass-cours",
+	"name": "@phisyx/cfoulatech-sass",
 	"version": "0.1.0",
 	"description": "Sass Cours",
-	"scripts": {},
+	"scripts": {
+		"build": "sass -w"
+	},
 	"keywords": [],
 	"devDependencies": {
 		"sass": "catalog:"
