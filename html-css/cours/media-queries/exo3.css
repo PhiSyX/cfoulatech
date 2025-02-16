@@ -3,31 +3,38 @@
 	body {
 		color-scheme: dark light;
 	}
+
 	html,
 	body {
+		height: 100%;
 		margin: 0;
 		padding: 0;
-		height: 100%;
-		color: white;
+		color: #ffffff;
 	}
+
 	p,
 	ul {
 		margin: 0;
 		padding: 0;
 	}
+
 	a {
-		color: white;
+		color: #ffffff;
 		text-decoration: none;
 	}
+
 	header {
 		background-color: #1abc9c;
 	}
+
 	nav {
 		background-color: #3498db;
 	}
+
 	main {
 		background-color: #9b59b6;
 	}
+
 	footer {
 		background-color: #e67e22;
 	}
@@ -47,34 +54,31 @@
 	}
 
 	main {
-		flex-grow: 1;
-
 		display: flex;
 		flex-direction: column-reverse;
+		flex-grow: 1;
 	}
 
 	main > nav > a {
 		display: block;
 		padding: 1rem;
 		padding-right: 5rem;
-		border-bottom: 1px solid currentColor;
+		border-bottom: 1px solid currentcolor;
 	}
 
 	main > article {
-		min-height: 10rem;
 		flex-grow: 1;
-
+		min-height: 10rem;
 		padding: 1rem;
 	}
 
 	main > nav {
 		flex-shrink: 0;
-
 		padding: 0.5rem;
 	}
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (width >= 600px) {
 	main {
 		flex-direction: row;
 	}
@@ -90,13 +94,14 @@
 		display: flex;
 		gap: 1px;
 	}
+
 	a {
-		color: black;
+		border-bottom: 3px solid currentcolor;
+		color: #000000;
 		font-size: 20px;
-		line-height: 18px;
 		font-weight: 800;
+		line-height: 18px;
 		text-decoration: none;
-		border-bottom: 3px solid currentColor;
 	}
 
 	a:not(:last-child)::after {

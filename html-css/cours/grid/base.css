@@ -15,26 +15,27 @@ body {
 }
 
 section {
-	margin: auto;
-	overflow-x: hidden;
 	max-width: 80ch;
 	height: 100vh;
+	margin: auto;
+	overflow-x: hidden;
 }
 
 .box {
 	display: grid;
 	place-items: center;
 }
+
 .box1 {
-	background-color: green;
+	background-color: #008000;
 }
 
 .box2 {
-	background-color: red;
+	background-color: #ff0000;
 }
 
 .box3 {
-	background-color: blue;
+	background-color: #0000ff;
 }
 
 .grid-1 {
@@ -42,25 +43,27 @@ section {
 	gap: 16px;
 	grid-template-columns: 200px auto 100px;
 }
+
 .grid-2 {
 	display: grid;
 	gap: 16px;
 	grid-template-rows: 200px auto 100px;
 }
+
 .grid-3 {
 	display: grid;
 	gap: 16px;
 	grid-template-rows: repeat(3, 1fr);
 }
+
 .grid-4 {
 	display: grid;
-	gap: 16px;
-	height: 100vh;
-
 	grid-template-areas:
 		"A A A A"
 		"C C C C"
 		"B B B B";
+	height: 100vh;
+	gap: 16px;
 }
 
 .grid-4 .box1 {

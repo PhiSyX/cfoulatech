@@ -23,47 +23,47 @@ html[lang] {
 
 html,
 body {
-	margin: 0;
 	width: 100%;
 	height: 100%;
+	margin: 0;
 	font-family: Roboto, sans-serif;
 }
 
 body {
-	background-image: url(../../assets/texture-paper.png);
+	background-image: url("../../assets/texture-paper.png");
 	background-size: cover;
 }
 
 main[role="main"] {
-	min-height: 100vh;
 	min-width: 100%;
+	min-height: 100vh;
 }
 
 /* Header */
 
 header[role="heading"] {
-	background-image: url(../../assets/bg-header.jpg);
+	height: calc(var(--space) * 36);
+	background-image: url("../../assets/bg-header.jpg");
 	background-size: cover;
 	user-select: none;
-	height: calc(var(--space) * 36);
 }
 
 header[role="heading"] > div {
 	display: flex;
-	justify-content: space-between;
 	align-items: start;
+	justify-content: space-between;
+	max-width: 80ch;
 	margin-inline: auto;
 	padding-top: calc(var(--space) * 10);
-	max-width: 80ch;
 }
 
 header[role="heading"] .title {
 	margin: 0;
-	font-size: 2.25rem;
-	line-height: 2.5rem;
-	letter-spacing: var(--space);
-	text-transform: uppercase;
 	color: #fafafa;
+	font-size: 2.25rem;
+	letter-spacing: var(--space);
+	line-height: 2.5rem;
+	text-transform: uppercase;
 }
 
 header[role="heading"] img {
@@ -76,57 +76,57 @@ header[role="heading"] img {
 
 nav[role^="navigation"] {
 	display: flex;
-	gap: var(--space);
 	justify-content: center;
 	max-width: 75ch;
 	margin-inline: auto;
 	padding: calc(var(--space) * 2);
 	transform: translateY(calc(1px - var(--space) * 16));
 	border-radius: var(--rounded);
+	background-color: #ffffff;
 	box-shadow: 1px 1px 2px #b861ee, -1px -1px 2px #72a6fa;
-	background-color: #fff;
+	gap: var(--space);
 }
 
 nav[role^="navigation"] > a {
 	padding-block: var(--space);
 	padding-inline: calc(var(--space) * 2);
 	border-bottom: 4px solid transparent;
-	text-decoration: none;
 	color: inherit;
+	text-decoration: none;
 }
 
 body:has(#about:target) nav[role^="navigation"] > a[href="#about"],
 body:has(#projects:target) nav[role^="navigation"] > a[href="#projects"],
 body:has(#contact:target) nav[role^="navigation"] > a[href="#contact"] {
-	font-weight: bold;
 	border-color: #ad6bf1 !important;
+	font-weight: 700;
 }
 
 main[role="main"] > main {
-	overflow: hidden;
-	overflow-x: auto;
-	scroll-behavior: smooth;
-	scroll-snap-type: x mandatory;
 	display: flex;
-	gap: calc(var(--space) * 4);
 	max-width: 80ch;
 	margin-inline: auto;
+	overflow: hidden;
+	overflow-x: auto;
 	transform: translateY(calc(1px - var(--space) * 12));
 	box-shadow: 1px 1px 5px #cad1f5, -1px -1px 5px #e4d4f9;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	gap: calc(var(--space) * 4);
 }
 
 main[role="main"] > main > section {
-	overflow-y: auto;
-	scroll-snap-align: center;
 	flex-shrink: 0;
 	width: 100%;
 	max-width: -moz-available;
 	max-width: -webkit-fill-available;
 	max-height: 80ch;
 	padding: calc(var(--space) * 3);
+	overflow-y: auto;
 	border-radius: var(--rounded);
-	background-color: #fff;
+	background-color: #ffffff;
 	font-size: 14px;
+	scroll-snap-align: center;
 }
 
 main[role="main"] > main > section:target {
@@ -141,26 +141,29 @@ main[role="main"] > main > section > h1 {
 /** Table */
 
 table {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid;
-	width: 100%;
 }
 
 thead {
 	background: #212121;
-	color: #fff;
+	color: #ffffff;
 }
 
 tbody td {
 	border-inline: 1px solid #c5bfbf;
 	border-bottom: 1px solid #c5bfbf;
 }
+
 tbody tr {
-	background: #fff;
+	background: #ffffff;
 }
+
 tbody tr:nth-child(odd) {
 	background: #ead8f6;
 }
+
 tbody tr:hover {
 	background: #f7edfc;
 }
@@ -193,18 +196,21 @@ td {
 	grid-template-columns: 100px auto;
 	gap: var(--space);
 }
+
 #details > div > p {
+	margin: 0;
 	padding: 0;
 	padding-block: 4px;
-	margin: 0;
 }
+
 #details > div > p:first-of-type {
-	font-weight: bold;
+	font-weight: 700;
 }
 
 .f-left {
 	float: left;
 }
+
 .f-right {
 	float: right;
 }
@@ -214,9 +220,9 @@ td {
 #contact form {
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--space) * 2);
-	font-size: 14px;
 	background: transparent;
+	font-size: 14px;
+	gap: calc(var(--space) * 2);
 }
 
 #contact fieldset {
@@ -224,15 +230,17 @@ td {
 	padding: 0;
 	border: 0;
 }
+
 #contact fieldset:first-of-type {
 	display: flex;
 	flex-wrap: wrap;
 	gap: calc(var(--space) * 2);
 }
+
 #contact .text-input {
-	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
 	gap: var(--space);
 }
 
@@ -251,8 +259,8 @@ td {
 
 #contact :is(input, textarea, button[type="submit"]) {
 	padding: var(--space);
-	border-radius: 4px;
 	border: 0;
+	border-radius: 4px;
 	background: linear-gradient(to right, #f5e7fd, #dfe7f5);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: calc(var(--space) * 2);
@@ -264,7 +272,7 @@ td {
 }
 
 #contact :is(input, textarea, button[type="submit"]):placeholder-shown {
-	color: #000;
+	color: #000000;
 }
 
 #contact button[type="submit"] {

@@ -12,7 +12,7 @@ html,
 body {
 	height: calc(100vh - var(--space) * 2);
 	font-size: 24px;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 body {
@@ -36,17 +36,15 @@ aside,
 main,
 header,
 footer {
+	padding: calc(var(--space) * 3);
 	overflow: auto;
 	border: 1px solid;
-	padding: calc(var(--space) * 3);
 }
 
 header {
 	grid-column: 1 / 4;
 	grid-row: 1 / 1;
-
 	min-height: max-content;
-
 	background: #e6dce5;
 }
 
@@ -65,11 +63,9 @@ aside.left {
 main {
 	grid-column: 2 / 2;
 	grid-row: 2 / 3;
-
 	margin: 0 auto;
 	padding-inline: 5vi;
-
-	background: #fff;
+	background: #ffffff;
 }
 
 aside.right {
@@ -82,7 +78,6 @@ aside.right {
 footer {
 	grid-column: 1 / 4;
 	grid-row: 3 / 3;
-
 	min-width: 40px;
 	background: #df7491;
 }

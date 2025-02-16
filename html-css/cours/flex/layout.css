@@ -12,60 +12,52 @@ body {
 .container {
 	display: flex;
 	gap: 8px;
-
 	height: calc(100% - 60px);
 }
 
 .horizontal-nav {
 	display: flex;
-	justify-content: space-around;
 	flex-wrap: wrap;
 	align-items: start;
+	justify-content: space-around;
 	border-radius: 8px;
-
-	background-color: black;
-	color: white;
+	background-color: #000000;
+	color: #ffffff;
 }
 
 .horizontal-nav a {
 	display: inline-block;
 	padding: 8px;
-
-	color: white;
+	color: #ffffff;
 }
 
 .vertical-nav {
-	flex-shrink: 1;
-
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 1;
 	min-width: 250px;
 	height: 100%;
 	border-radius: 8px;
-
-	background-color: black;
-	color: white;
+	background-color: #000000;
+	color: #ffffff;
 }
 
 .vertical-nav a {
 	display: inline-block;
 	padding: 8px;
-
-	color: white;
+	color: #ffffff;
 }
 
 main {
-	flex-grow: 1;
-
-	height: 100%;
-
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
 	justify-content: space-between;
+	height: 100%;
 }
 
 main > div {
-	background-color: salmon;
 	width: 150px;
 	height: 150px;
+	background-color: #fa8072;
 }

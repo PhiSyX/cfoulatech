@@ -1,18 +1,17 @@
 :root {
 	--bg-color: #212121;
 	--text-color: #e5e5e5;
-	--bg-color_alt: var(--text-color);
-	--text-color_alt: var(--bg-color);
+	--bg-color-alt: var(--text-color);
+	--text-color-alt: var(--bg-color);
 }
 
 html,
 body {
-	margin: 0;
-	padding: 0;
 	width: 100%;
 	height: 100%;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
-
 	color-scheme: dark;
 }
 
@@ -22,15 +21,14 @@ h1 {
 
 body {
 	display: grid;
-	grid-template-columns: max-content;
-	grid-template-rows: 100px;
-
 	grid-template-areas:
 		"header header"
 		"aside ."
 		"footer footer";
+	grid-template-columns: max-content;
+	grid-template-rows: 100px;
 
-	@media screen and (min-width: 600px) and (max-width: 768px) {
+	@media screen and (width >= 600px) and (width <= 768px) {
 		grid-template-areas:
 			"aside header"
 			"aside ."
@@ -40,18 +38,18 @@ body {
 
 main {
 	padding: 1rem;
-	background-color: var(--main-bg-color, var(--bg-color_alt));
-	color: var(--main-text-color, var(--text-color_alt));
+	background-color: var(--main-bg-color, var(--bg-color-alt));
+	color: var(--main-text-color, var(--text-color-alt));
 }
 
 main {
 	grid-area: header;
 
-	@media screen and (min-width: 600px) and (max-width: 768px) {
+	@media screen and (width >= 600px) and (width <= 768px) {
 		grid-area: aside;
 	}
 
-	@media screen and (max-width: 601px) {
+	@media screen and (width <= 601px) {
 		grid-area: footer;
 	}
 }

@@ -1,20 +1,18 @@
 .user-card {
-	zoom: 1.5;
-
 	min-width: 200px;
 	padding: 1rem;
+	zoom: 1.5;
+	transition: all 250ms ease-in-out;
 	border: 4px solid transparent;
 	border-radius: 8px;
 	background-color: HighLight;
-
-	transition: all 250ms ease-in-out;
 
 	strong {
 		color: #ea777a;
 	}
 
 	&:hover {
-		border-color: salmon;
+		border-color: #fa8072;
 		box-shadow: 2px 2px 2px 2px #EA777A, -2px -2px 2px 2px #EA777A;
 	}
 }
@@ -41,8 +39,8 @@
 }
 
 .user-card-change-age label {
-	cursor: pointer;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 .user-card-change-age button {
@@ -58,9 +56,8 @@
 
 .user-card-change-age input {
 	flex-grow: 1;
-
 	padding: 0.5rem;
 	border: 1px solid #7dadd5;
-	outline: none;
 	border-radius: 4px;
+	outline: none;
 }

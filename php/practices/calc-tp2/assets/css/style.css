@@ -3,12 +3,10 @@
  */
 
 @import "_vars.css";
-
 @import "_font.css" layer(font);
 @import "_base.css" layer(base);
 @import "_help.css" layer(help);
 @import "_layout.css" layer(layout);
-
 @import "components/_alert.css" layer(component);
 @import "components/_avatar.css" layer(component);
 @import "components/_navbar.css" layer(component);

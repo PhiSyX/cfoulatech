@@ -1,12 +1,11 @@
 #calc-page {
-	height: 100%;
-	max-width: 80ch;
-	margin-inline: auto;
-
 	display: flex;
 	flex-direction: column;
-	place-items: center;
 	justify-content: center;
+	max-width: 80ch;
+	height: 100%;
+	margin-inline: auto;
+	place-items: center;
 	gap: var(--space3);
 }
 

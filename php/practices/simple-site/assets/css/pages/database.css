@@ -25,27 +25,27 @@
 
 #database-page form input {
 	width: 100%;
-
 	padding: 8px;
-	border-radius: 4px;
 	border: 1px solid #87c3b7;
+	border-radius: 4px;
 }
+
 #database-page form button {
 	cursor: pointer;
 }
+
 #database-page form button[type="button"] {
 	padding: 8px;
+	border: 1px solid #000000;
 	border-radius: 4px;
-	border: 1px solid black;
-	background: black;
-	color: white;
+	background: #000000;
+	color: #ffffff;
 }
 
 #database-page dialog {
 	min-width: 550px;
 	padding: 1rem;
-
-	border-radius: 8px;
 	border: 6px outset #bdeae1;
+	border-radius: 8px;
 	box-shadow: 7px 7px 11px #726f6f;
 }

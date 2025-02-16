@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:wght@100&display=swap");
+@import "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:wght@100&display=swap";
 
 *,
 *::before,
@@ -21,12 +21,11 @@ section[role="presentation"] {
 	z-index: 1;
 	height: 100vh;
 	padding: 24px;
-	text-shadow: 1px 1px 2px #000;
-
-	background: hsl(210, 70%, 55%);
-	background-image: url(./assets/imgs/hero-bg.jpg);
-	background-size: cover;
+	background: hsl(210 70% 55%);
+	background-image: url("./assets/imgs/hero-bg.jpg");
 	background-repeat: no-repeat;
+	background-size: cover;
+	text-shadow: 1px 1px 2px #000000;
 
 	/*
 	&::before {
@@ -73,14 +72,14 @@ section[role="presentation"] {
 	.toolbar,
 	.navbar {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 		gap: 16px;
 	}
 
 	.toolbar {
-		font-size: 14px;
 		margin-bottom: 8px;
+		font-size: 14px;
 	}
 
 	.toolbar > a,
@@ -102,8 +101,8 @@ section[role="presentation"] {
 
 	.navbar nav {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 		gap: 16px;
 
 		a {
@@ -115,51 +114,51 @@ section[role="presentation"] {
 	}
 
 	.hero {
-		color: #fff;
+		color: #ffffff;
 		text-align: center;
 
 		h1 {
+			margin: 0;
 			font-family: Georgia, sans-serif;
 			font-size: 100px;
-			margin: 0;
 		}
 
 		p {
+			margin: 0;
 			font-family: "Ibm Plex Sans", sans-serif;
 			font-size: 26px;
-			margin: 0;
 		}
 
 		.btn {
-			font-size: 16px;
 			padding: 16px;
+			font-size: 16px;
 		}
+
 		.contact {
-			font-family: "Ibm Plex Sans", sans-serif;
-			font-stretch: condensed;
 			display: block;
 			padding: 16px;
+			font-family: "Ibm Plex Sans", sans-serif;
+			font-stretch: condensed;
 		}
 	}
 
 	.rgpd {
+		display: flex;
 		position: absolute;
-		left: 0;
 		right: 0;
 		bottom: 0;
-		background: #1561ad;
-		color: #f6f0e1;
-
-		display: flex;
+		left: 0;
 		align-items: center;
-		gap: 8px;
 		justify-content: space-around;
 		padding: 16px;
+		background: #1561ad;
+		color: #f6f0e1;
+		gap: 8px;
 
 		h1 {
+			margin: 0;
 			font-family: Georgia, sans-serif;
 			font-size: 22px;
-			margin: 0;
 		}
 
 		p {
@@ -178,11 +177,11 @@ section[role="presentation"] {
 		}
 
 		.accept-and-close {
-			font-family: "Ibm Plex sans", sans-serif;
 			padding: 8px;
-			background: #1c77ac;
 			border-radius: 4px;
-			box-shadow: 0 1px 2px 0 #000;
+			background: #1c77ac;
+			box-shadow: 0 1px 2px 0 #000000;
+			font-family: "Ibm Plex sans", sans-serif;
 		}
 	}
 }
@@ -197,8 +196,8 @@ section[role="presentation"] {
 	font-family: "Ibm Plex Sans", sans-serif;
 	font-size: 12px;
 	font-weight: 600;
-	text-transform: uppercase;
 	text-decoration: none;
+	text-transform: uppercase;
 }
 
 section#services {
@@ -206,10 +205,10 @@ section#services {
 	padding-inline: 13rem;
 
 	> h1 {
-		font-family: Georgia, sans-serif;
-		font-size: 72px;
 		margin-top: 0;
 		color: #3e4551;
+		font-family: Georgia, sans-serif;
+		font-size: 72px;
 	}
 
 	.cards {
@@ -219,13 +218,13 @@ section#services {
 
 		> article {
 			display: flex;
-			align-items: end;
 			flex-shrink: 0;
+			align-items: end;
 			width: 400px;
 			height: 500px;
-			font-size: 22px;
-			background-size: cover;
 			background-repeat: no-repeat;
+			background-size: cover;
+			font-size: 22px;
 
 			h1,
 			p {
@@ -248,7 +247,7 @@ section#services {
 				align-items: start;
 				height: 200px;
 				padding: 1rem;
-				background: hsla(0, 0%, 100%, 0.8);
+				background: hsl(0 0% 100% / 80%);
 
 				p {
 					flex-grow: 1;
@@ -259,25 +258,23 @@ section#services {
 	}
 
 	#trad {
-		background-image: url(./assets/imgs/traduction.jpg);
+		background-image: url("./assets/imgs/traduction.jpg");
 	}
 
 	#lang {
-		background-image: url(./assets/imgs/cours-de-langue.jpg);
+		background-image: url("./assets/imgs/cours-de-langue.jpg");
 	}
 
 	#correction {
-		background-image: url(./assets/imgs/correction.jpg);
+		background-image: url("./assets/imgs/correction.jpg");
 	}
 }
 
 section#about {
+	display: flex;
 	height: 100vh;
-
 	padding-block: 32px;
 	padding-inline: 13rem;
-
-	display: flex;
 	gap: 64px;
 
 	h1 {
@@ -302,13 +299,11 @@ section#about {
 	}
 
 	#cadre {
-		flex-grow: 1;
-		background-image: url(./assets/imgs/qui.jpg);
-		background-size: cover;
-
 		position: relative;
+		flex-grow: 1;
 		padding: 60px;
-
+		background-image: url("./assets/imgs/qui.jpg");
+		background-size: cover;
 		font-family: "Ibm Plex Sans", sans-serif;
 		font-size: 22px;
 		text-align: center;

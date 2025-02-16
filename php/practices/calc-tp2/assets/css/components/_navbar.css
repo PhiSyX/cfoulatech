@@ -4,16 +4,17 @@
 	padding-block: var(--space1);
 	padding-inline: var(--space1);
 }
+
 .navbar--vertical {
-	justify-content: center;
 	flex-direction: column;
+	justify-content: center;
 	max-width: calc(var(--space3) * 2);
 }
 
 .navbar--horizontal {
+	align-items: end;
 	min-height: calc(var(--space3) * 2);
 	max-height: calc(var(--space3) * 2);
-	align-items: end;
 }
 
 .navbar > form,
@@ -21,14 +22,15 @@
 	display: inline-flex;
 	align-items: center;
 	gap: var(--space2);
-
 	color: var(--link-color);
 	text-decoration: none;
 }
+
 .navbar--horizontal {
 	margin-top: -5px;
 	padding-left: 24px;
 }
+
 .navbar--horizontal > :has(svg, img) {
 	flex-direction: column-reverse;
 	width: 24px;
@@ -49,22 +51,23 @@
 
 .navbar > :not(.active) img,
 .navbar > :not(.active) svg {
-	opacity: 0.5;
+	opacity: 50%;
 }
 
 .navbar > .active img,
 .navbar > :hover img,
 .navbar > .active svg,
 .navbar > :hover svg {
-	opacity: 1;
-	filter: drop-shadow(0 0 0.45rem var(--link-color));
 	animation: 1s bounce-active infinite alternate-reverse;
+	opacity: 100%;
+	filter: drop-shadow(0 0 0.45rem var(--link-color));
 }
 
 @keyframes bounce-active {
 	25% {
 		filter: drop-shadow(0 0 0.35rem var(--link-color));
 	}
+
 	75% {
 		filter: drop-shadow(0 0 0.45rem var(--link-color));
 	}
@@ -72,39 +75,34 @@
 
 .navbar img ~ span,
 .navbar svg ~ span {
-	flex-shrink: 0;
-
 	display: inline-block;
-
+	flex-shrink: 0;
 	padding: var(--space1);
-
 	border-radius: var(--default-radius);
-	background: #fff;
-	color: #000;
-
+	background: #ffffff;
 	box-shadow: 3px 2px 2px black;
-
+	color: #000000;
 	font-size: 14px;
 }
 
 .navbar > :hover img ~ span::before,
 .navbar > :hover svg ~ span::before {
 	content: "";
-	position: absolute;
-
 	display: inline-block;
+	position: absolute;
 	padding: 4px;
-
-	border: solid #fff;
-	border-width: 0 4px 4px 0;
 	transform: rotate(135deg);
-	background: #fff;
+	border: solid #ffffff;
+	border-width: 0 4px 4px 0;
+	background: #ffffff;
 }
+
 .navbar--vertical.navbar > :hover img ~ span::before,
 .navbar--vertical.navbar > :hover svg ~ span::before {
 	top: calc(50% - 6px);
 	left: -6px;
 }
+
 .navbar--horizontal.navbar > :hover img ~ span::before,
 .navbar--horizontal.navbar > :hover svg ~ span::before {
 	bottom: -6px;
@@ -119,15 +117,15 @@
 
 .navbar button {
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	gap: var(--space2);
+	justify-content: center;
 	background: transparent;
 	color: var(--text);
+	gap: var(--space2);
 
 	svg {
-		width: unset !important;
 		flex-shrink: 0;
+		width: unset !important;
 	}
 }
 
@@ -147,14 +145,12 @@
 
 .navbar--left-icon {
 	align-self: center;
+	width: 32px;
+	height: 32px;
 	margin-left: var(--space1);
 	padding-right: 40px;
-
-	height: 32px;
-	width: 32px;
-
+	border-right: 1px inset hsl(0 0% 13% / 75%);
 	text-align: center;
-	border-right: 1px inset hsla(0, 0%, 13%, 0.75);
 }
 
 #toggle-navigation-global {
@@ -176,13 +172,14 @@
 		all: unset;
 		width: 100%;
 		padding: var(--space1);
+
 		&::before {
 			all: unset;
 		}
 	}
 
 	> :not(.active, :hover) span {
-		opacity: 0.5;
+		opacity: 50%;
 	}
 }
 

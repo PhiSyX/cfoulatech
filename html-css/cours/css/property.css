@@ -1,20 +1,4 @@
 .sel {
-	background: #f30 url(mon-image.png) no-repeat top center;
-	/*
-    background-color: #f30;
-    background-image: url(mon-image);
-    background-repeat: no-repeat;
-    background-position: top center;
-    */
-
-	border: 1px solid #000;
-	/*
-	border-width: 1px;
-	border-style: solid;
-	border-color: #000;
-    */
-
-	font: italic bold 14px verdana;
 	/*
     font-style: italic;
     font-weight: bold;
@@ -22,14 +6,31 @@
 	font-family: verdana;
     */
 
-	margin: 10px 5px 10px 5px; /* haut, droite, bas, gauche */
+	margin: 10px 5px; /* haut, droite, bas, gauche */
+
+	/*
+    background-color: #f30;
+    background-image: url(mon-image);
+    background-repeat: no-repeat;
+    background-position: top center;
+    */
+
+	border: 1px solid #000000;
+	background: #ff3300 url("mon-image.png") no-repeat top center;
+
+	/*
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000;
+    */
+
+	font: italic 700 14px verdana;
 }
 
 :root {
 	--var-name: value;
-
-	--main-bg-color: #000;
-	--main-text-color: #fff;
+	--main-bg-color: #000000;
+	--main-text-color: #ffffff;
 }
 
 body {
@@ -39,6 +40,7 @@ body {
 
 .scoped-var {
 	--space: 8px;
+
 	padding: var(--space);
 }
 

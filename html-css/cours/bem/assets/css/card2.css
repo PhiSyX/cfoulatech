@@ -6,12 +6,12 @@ body {
 	display: grid;
 	place-items: center;
 	height: 100vh;
-	background: lightgray;
+	background: #d3d3d3;
 }
 
 .card {
 	width: 400px;
-	background: white;
+	background: #ffffff;
 }
 
 .card__header {

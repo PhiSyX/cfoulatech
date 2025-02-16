@@ -1,15 +1,15 @@
 footer {
-	background-color: #3e4551;
 	display: flex;
 	flex-direction: column;
+	background-color: #3e4551;
 	font-family: var(--ff-ibm-plex);
 	gap: 24px;
 
 	a {
+		transition: all 250ms;
 		color: #f6f0e1;
 		text-decoration: none;
 		text-transform: uppercase;
-		transition: all 250ms;
 	}
 
 	.navbar {
@@ -21,10 +21,9 @@ footer {
 	}
 
 	.toolbar {
+		display: flex;
+		padding: 16px;
 		background: #2c3037;
 		color: #f6f0e1;
-		padding: 16px;
-
-		display: flex;
 	}
 }

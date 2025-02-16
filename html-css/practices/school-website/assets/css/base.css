@@ -15,13 +15,13 @@ body {
 }
 
 a:not(.logo) img[src$=".svg"] {
-	vertical-align: middle;
 	width: 16px;
 	height: 16px;
+	vertical-align: middle;
 }
 
 h1 {
 	margin: 0;
+	color: var(--text-alt);
 	font-family: Georgia, sans-serif;
-	color: var(--text_alt);
 }

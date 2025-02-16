@@ -1,23 +1,21 @@
 body {
 	display: grid;
-	place-items: center;
+	height: 100vh;
 	margin: 0;
 	overflow: hidden;
-	height: 100vh;
 	background: CanvasText;
+	place-items: center;
 }
 
 .feu {
-	zoom: 1.5;
-
 	display: inline-flex;
-	flex-direction: column;
-	gap: 8px;
-	padding: 16px;
-	border-radius: 8px;
-
-	background: #212121;
 	position: relative;
+	flex-direction: column;
+	padding: 16px;
+	zoom: 1.5;
+	border-radius: 8px;
+	background: #212121;
+	gap: 8px;
 }
 
 .feu::before {
@@ -48,18 +46,17 @@ body {
 .red {
 	width: 24px;
 	height: 24px;
+	transition: all 350ms;
+	animation: 1s bounce infinite alternate linear;
 	border-radius: 50%;
-
 	background: var(--color, gray);
 	background-size: 12px 6px;
 	box-shadow: 0 0 2rem 1rem var(--color), 0 0 4rem 1rem var(--color);
-
-	transition: all 350ms;
-	animation: 1s bounce infinite alternate linear;
 }
 
 .red.active {
 	--color: #e83552;
+
 	border-color: #eb7d90 !important;
 	background-image: linear-gradient(
 		to bottom,
@@ -79,6 +76,7 @@ body {
 
 .orange.active {
 	--color: #f6ba45;
+
 	border-color: #e9d6b1 !important;
 	background-image: linear-gradient(
 		80deg,
@@ -98,8 +96,8 @@ body {
 
 .green.active {
 	--color: #1ea07d;
-	border-color: #52bea2 !important;
 
+	border-color: #52bea2 !important;
 	background-image: linear-gradient(
 		30deg,
 		#1ea07d 20%,
@@ -123,9 +121,10 @@ body {
 
 @keyframes bounce {
 	25% {
-		filter: drop-shadow(0 0 0.35rem currentColor);
+		filter: drop-shadow(0 0 0.35rem currentcolor);
 	}
+
 	75% {
-		filter: drop-shadow(0 0 0.45rem currentColor);
+		filter: drop-shadow(0 0 0.45rem currentcolor);
 	}
 }

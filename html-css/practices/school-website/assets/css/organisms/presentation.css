@@ -3,14 +3,12 @@ section[role="presentation"] {
 	z-index: 1;
 	height: 100vh;
 	padding: 24px;
-	text-shadow: 1px 1px 2px var(--shadow);
-
-	background: hsl(210, 70%, 55%);
+	background: hsl(210 70% 55%);
 	background-image: var(--presentation);
-	background-size: cover;
 	background-repeat: no-repeat;
-
+	background-size: cover;
 	color: var(--text);
+	text-shadow: 1px 1px 2px var(--shadow);
 
 	h1,
 	a {
@@ -58,8 +56,8 @@ section[role="presentation"] {
 	.toolbar,
 	.navbar {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 		gap: 16px;
 	}
 
@@ -73,8 +71,8 @@ section[role="presentation"] {
 
 	.navbar nav {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 		gap: 16px;
 
 		a {
@@ -90,45 +88,45 @@ section[role="presentation"] {
 		text-align: center;
 
 		h1 {
+			margin: 0;
 			font-family: Georgia, sans-serif;
 			font-size: 120px;
-			margin: 0;
 		}
 
 		p {
+			margin: 0;
 			font-family: var(--ff-ibm-plex);
 			font-size: 36px;
-			margin: 0;
 		}
 
 		.btn {
-			font-size: 26px;
-			padding: 16px;
 			margin-block: 16px;
+			padding: 16px;
+			font-size: 26px;
 		}
+
 		.contact {
-			font-family: var(--ff-ibm-plex);
-			font-stretch: condensed;
-			font-size: 14px;
 			display: block;
 			padding: 16px;
+			font-family: var(--ff-ibm-plex);
+			font-size: 14px;
+			font-stretch: condensed;
 		}
 	}
 
 	.rgpd {
+		display: flex;
 		position: absolute;
-		left: 0;
 		right: 0;
 		bottom: 0;
+		left: 0;
+		align-items: center;
+		justify-content: space-around;
+		padding: 16px;
 		background: #1561ad;
 		color: #f6f0e1;
 		text-shadow: none;
-
-		display: flex;
-		align-items: center;
 		gap: 8px;
-		justify-content: space-around;
-		padding: 16px;
 
 		h1 {
 			color: #f6f0e1;
@@ -152,11 +150,11 @@ section[role="presentation"] {
 		}
 
 		.accept-and-close {
-			font-family: var(--ff-ibm-plex);
 			padding: 8px;
-			background: #1c77ac;
 			border-radius: 4px;
-			box-shadow: 0 1px 2px 0 #000;
+			background: #1c77ac;
+			box-shadow: 0 1px 2px 0 #000000;
+			font-family: var(--ff-ibm-plex);
 		}
 	}
 }

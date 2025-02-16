@@ -9,10 +9,9 @@
 
 .users-list-cards dialog {
 	padding: 1rem;
-
-	border: 4px solid white;
-	box-shadow: -1px -2px 3px #7dadd5, 1px 2px 3px #2a66d9;
+	border: 4px solid #ffffff;
 	border-radius: 8px;
 	background: CanvasText;
+	box-shadow: -1px -2px 3px #7dadd5, 1px 2px 3px #2a66d9;
 	color: Canvas;
 }

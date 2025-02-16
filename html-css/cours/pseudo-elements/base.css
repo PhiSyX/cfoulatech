@@ -15,11 +15,11 @@ blockquote {
 
 blockquote::after,
 blockquote::before {
-	font-size: 2rem;
 	padding-inline: 12px;
-	vertical-align: middle;
 	border-radius: 50px;
-	background-color: #999;
+	background-color: #999999;
+	font-size: 2rem;
+	vertical-align: middle;
 }
 
 blockquote::before {

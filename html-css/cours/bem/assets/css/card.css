@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Slab:wght@100..900&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Slab:wght@100..900&display=swap";
 
 *,
 *::after,
@@ -8,23 +8,18 @@
 
 body {
 	display: grid;
-	align-items: center;
-	justify-items: center;
-
-	margin: 0;
+	place-items: center;
 	height: 100vh;
-
+	margin: 0;
 	background-color: #d8d8d8;
 }
 
 .card {
 	width: 560px;
-
-	border-bottom-left-radius: 16px;
-	border-bottom-right-radius: 16px;
-
-	box-shadow: 0px 1px 10rem #6e6e6e;
 	border: 1px solid #aaaaaa;
+	border-bottom-right-radius: 16px;
+	border-bottom-left-radius: 16px;
+	box-shadow: 0 1px 10rem #6e6e6e;
 }
 
 .card__image {
@@ -40,25 +35,20 @@ body {
 
 .card__title {
 	margin: 0;
-	text-transform: uppercase;
-	font-size: 22px;
-	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	color: #373432;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	text-transform: uppercase;
 }
 
 .card__content {
+	padding: 24px 64px;
+	border-bottom-right-radius: 16px;
+	border-bottom-left-radius: 16px;
 	background: linear-gradient(to bottom, #717171, #c3c3c3);
 
-	padding-top: 24px;
-	padding-bottom: 24px;
-	padding-left: 64px;
-	padding-right: 64px;
-
-	border-bottom-left-radius: 16px;
-	border-bottom-right-radius: 16px;
-
 	p {
-		font-size: 16px;
 		font-family: "Open Sans", Arial, Helvetica, sans-serif;
+		font-size: 1rem;
 	}
 }

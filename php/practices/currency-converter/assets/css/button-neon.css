@@ -13,33 +13,32 @@
 
 .btn {
 	position: relative;
-
 	padding: 0;
 	border: none;
-	box-shadow: 0 0 5px #333;
-	color: #fff;
+	box-shadow: 0 0 5px #333333;
+	color: #ffffff;
 
 	&::before,
 	&::after {
 		content: "";
-
 		position: absolute;
-
 		width: var(--btn-border-width);
 		height: 0%;
+		transition: all 500ms ease;
 		background: var(--btn-border-color);
 		box-shadow: 0 0 5px var(--btn-border-color);
-		transition: all 500ms ease;
 	}
 
 	&::before {
-		right: 0;
 		top: 0;
+		right: 0;
 	}
+
 	&::after {
-		left: 0;
 		bottom: 0;
+		left: 0;
 	}
+
 	&:hover::before,
 	&:hover::after {
 		height: 100%;
@@ -47,31 +46,27 @@
 }
 
 .btn span {
-	position: relative;
-
 	display: inline-block;
-
+	position: relative;
 	width: 100%;
 	height: 100%;
 
 	&::before,
 	&::after {
-		position: absolute;
-
 		content: "";
-
+		position: absolute;
 		width: 0;
 		height: var(--btn-border-width);
-
+		transition: all 500ms ease;
 		background: var(--btn-border-color);
 		box-shadow: 0 0 5px var(--btn-border-color);
-		transition: all 500ms ease;
 	}
 
 	&::before {
-		left: 0;
 		top: 0;
+		left: 0;
 	}
+
 	&::after {
 		right: 0;
 		bottom: 0;

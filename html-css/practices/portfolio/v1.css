@@ -2,24 +2,19 @@
 :root {
 	--space: 8px;
 	--default-border-radius: 8px;
-
 	--outline-color: var(--color-ultra-lightcyan);
-
 	--color-black: #212121;
 	--color-white: Canvas;
 	--color-lightgray: #e5e5e5;
 	--color-gray: #c5bfbf;
-
 	--color-ultra-lightcyan: #b3dff3;
 	--color-lightcyan: #93bfd3;
 	--color-cyan: #56707c;
 	--color-darkcyan: #455a64;
 	--color-ultra-darkcyan: #3b484e;
-
 	--color-ultra-lightblue: #d3deed;
 	--color-lightblue: #aecaf0;
 	--color-blue: #1861af;
-
 	--color-darkred: #a0090e;
 	--color-darkgreen: #057009;
 }
@@ -38,17 +33,17 @@
 
 html,
 body {
+	max-width: 80ch;
 	margin: 0;
+	margin: auto;
 	padding: 0;
+	background-color: var(--color-ultra-lightcyan);
+	color: var(--color-black);
 	font-family: Roboto, sans-serif;
 	font-size: 14px;
 	line-height: 1.4;
-	background-color: var(--color-ultra-lightcyan);
-	color: var(--color-black);
 	scroll-behavior: smooth;
 	scroll-padding-top: 8px;
-	max-width: 80ch;
-	margin: auto;
 }
 
 a {
@@ -82,12 +77,15 @@ tbody td {
 	border-inline: 1px solid var(--color-gray);
 	border-bottom: 1px solid var(--color-gray);
 }
+
 tbody tr {
 	background: var(--color-white);
 }
+
 tbody tr:nth-child(odd) {
 	background: var(--color-ultra-lightblue);
 }
+
 tbody tr:hover {
 	background: var(--color-lightblue);
 }
@@ -108,32 +106,30 @@ label[for] {
 .header-nav {
 	display: flex;
 	align-items: center;
-
 	justify-content: space-between;
-	padding: var(--space);
-
-	background: var(--color-black);
-	color: var(--color-white);
 	margin: 4px;
 	margin-bottom: 64px;
+	padding: var(--space);
 	border-radius: 24px;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
+	background: var(--color-black);
+	color: var(--color-white);
 }
 
 .avatar {
 	display: flex;
 	padding: 4px;
-	color: var(--color-black);
-	border-radius: 20px;
 	transition: all 250ms ease-in-out, border-radius 500ms ease-in-out,
 		background-color 400ms ease-in-out;
+	border-radius: 20px;
+	color: var(--color-black);
 }
 
 .avatar:hover {
-	background: var(--color-white);
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
+	background: var(--color-white);
 }
 
 .avatar figure {
@@ -146,35 +142,37 @@ label[for] {
 
 .avatar img {
 	--img-filter: var(--color-darkred);
+
+	flex-shrink: 0;
 	width: 40px;
 	height: 40px;
-	object-fit: cover;
 	border-radius: 50%;
-	flex-shrink: 0;
-	filter: drop-shadow(0px 2px 3px var(--img-filter));
+	object-fit: cover;
+	filter: drop-shadow(0 2px 3px var(--img-filter));
 }
+
 .avatar:hover img {
 	--img-filter: var(--color-darkgreen);
 }
 
 .avatar figcaption {
 	visibility: hidden;
-
 	width: 0;
 	transition: all 300ms ease-in-out;
 }
+
 .avatar:hover figcaption {
 	visibility: visible;
-
 	width: 100%;
 	padding-right: 8px;
 }
 
 .avatar a {
 	color: var(--color-black);
-	font-weight: bold;
+	font-weight: 700;
 	text-decoration: none;
 }
+
 .avatar a:hover {
 	color: LinkText;
 }
@@ -185,13 +183,13 @@ nav[role="navigation"] {
 }
 
 nav > a {
-	transition: all 250ms;
 	display: inline-block;
 	padding: var(--space);
-	text-decoration: none;
-	color: var(--color-white);
-	background: #212121;
+	transition: all 250ms;
 	border-radius: var(--default-border-radius);
+	background: #212121;
+	color: var(--color-white);
+	text-decoration: none;
 }
 
 nav > a:hover {
@@ -209,8 +207,8 @@ nav > a:hover {
 /** Section */
 
 section {
-	margin-inline: 32px;
 	margin-bottom: 64px;
+	margin-inline: 32px;
 }
 
 section p {
@@ -218,18 +216,19 @@ section p {
 }
 
 section a {
-	--outline-color: currentColor;
-	border-bottom: 1px solid currentColor;
+	--outline-color: currentcolor;
+
+	border-bottom: 1px solid currentcolor;
 }
 
 /** Contact */
 
 #contact form {
-	margin-top: calc(var(--space) * 4);
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--space) * 2);
+	margin-top: calc(var(--space) * 4);
 	background: transparent;
+	gap: calc(var(--space) * 2);
 }
 
 #contact fieldset {
@@ -237,15 +236,17 @@ section a {
 	padding: 0;
 	border: 0;
 }
+
 #contact fieldset:first-of-type {
 	display: flex;
 	flex-wrap: wrap;
 	gap: calc(var(--space) * 2);
 }
+
 #contact .text-input {
-	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
 	gap: var(--space);
 }
 
@@ -263,10 +264,10 @@ section a {
 
 #contact :is(input, textarea, button[type="submit"]) {
 	padding: 8px;
-	border-radius: 4px;
 	border: 0;
+	border-radius: 4px;
 	background-color: var(--color-white);
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 #contact :is(input, textarea, button[type="submit"]):hover,

@@ -1,17 +1,17 @@
 body {
-	font-family: "Roboto", sans-serif;
-	margin: 0;
-	padding: 0;
 	display: flex;
 	height: 100vh;
+	margin: 0;
+	padding: 0;
 	background: url("../img/DBD7-24-3.jpg.webp") no-repeat center center fixed;
 	background-size: cover;
 	color: #2c3e50;
+	font-family: Roboto, sans-serif;
 }
 
 body:has(dialog[open]) {
 	overflow: hidden;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgb(0 0 0 / 50%);
 
 	:not(.container, dialog[open], dialog[open] *) {
 		filter: blur(5px);
@@ -32,13 +32,13 @@ body:has(dialog[open]) {
 }
 
 .containers {
-	text-align: left;
-	background: rgba(255, 255, 255, 0.9);
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 	width: 60%;
 	margin: auto;
+	padding: 20px;
+	border-radius: 10px;
+	background: rgb(255 255 255 / 90%);
+	box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+	text-align: left;
 }
 
 ol {
@@ -50,38 +50,38 @@ button:not(.btn) {
 	display: block;
 	width: 100%;
 	padding: 10px 15px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #2c3e50;
-	background: #bdc3c7;
+	transition: all 0.3s ease;
 	border: none;
 	border-radius: 5px;
+	background: #bdc3c7;
+	color: #2c3e50;
+	font-size: 14px;
+	font-weight: 700;
 	cursor: pointer;
-	transition: all 0.3s ease;
 }
 
 button:not(.btn):hover {
+	transform: scale(1.04);
 	background: #3498db;
 	color: #ffffff;
-	transform: scale(1.04);
 }
 
 button.selected {
+	transform: scale(1.1);
 	background: #2ecc71;
+	box-shadow: 0 5px 15px rgb(46 204 113 / 40%);
 	color: white;
 	font-size: 16px;
-	font-weight: bold;
-	transform: scale(1.1);
-	box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+	font-weight: 700;
 }
 
 #result-section {
-	margin-top: 20px;
-	background: #ffffff;
-	border-radius: 10px;
-	padding: 15px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	height: auto;
 	min-height: 200px;
+	margin-top: 20px;
+	padding: 15px;
 	overflow: auto;
+	border-radius: 10px;
+	background: #ffffff;
+	box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
 }

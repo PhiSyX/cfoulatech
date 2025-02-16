@@ -1,13 +1,11 @@
 section#about {
-	height: 100vh;
-
-	padding-block: 32px;
-	padding-inline: 13rem;
-
 	/* display: flex; */
 	display: grid;
 	grid-template-columns: auto minmax(auto, 1000px);
 	justify-content: center;
+	height: 100vh;
+	padding-block: 32px;
+	padding-inline: 13rem;
 	gap: 64px;
 
 	h1 {
@@ -32,26 +30,20 @@ section#about {
 	}
 
 	#cadre {
-		flex-grow: 1;
-		background-image: url(../../img/qui.jpg);
-		background-size: cover;
-
 		position: relative;
+		flex-grow: 1;
 		padding: 60px;
-
+		background-image: url("../../img/qui.jpg");
+		background-size: cover;
+		color: var(--text-alt);
 		font-family: var(--ff-ibm-plex);
 		font-size: 22px;
 		text-align: center;
 
-		color: var(--text_alt);
-
 		&::before {
 			content: "";
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
+			inset: 0;
 			margin: 24px;
 			background: var(--text);
 			pointer-events: none;

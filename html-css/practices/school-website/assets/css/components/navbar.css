@@ -1,8 +1,8 @@
 .navbar {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	gap: 16px;
 
 	a {
@@ -11,8 +11,8 @@
 
 	a.active,
 	a:not(.logo):hover {
+		text-decoration: underline;
 		text-shadow: none;
 		mix-blend-mode: difference;
-		text-decoration: underline;
 	}
 }

@@ -5,23 +5,21 @@
 html,
 body {
 	color-scheme: dark;
-
 	zoom: 2;
 }
 
 a {
 	display: inline-block;
 	padding: 8px;
-
 	color: var(--color-red);
 }
 
 a:hover {
-	color: green;
+	color: #008000;
 }
 
 a:link {
-	background-color: yellow;
+	background-color: #ffff00;
 }
 
 a:active {
@@ -29,30 +27,30 @@ a:active {
 }
 
 a:focus-visible {
-	background-color: blueviolet;
+	background-color: #8a2be2;
 }
 
 input {
-	color: white;
 	height: 1rem;
-
 	border: none;
 	outline: none;
+	color: #ffffff;
 }
 
 input:focus {
-	background-color: blueviolet;
+	background-color: #8a2be2;
 }
 
 input:disabled {
-	opacity: 0.5;
+	opacity: 50%;
 }
 
 input[type="checkbox"]:checked {
-	outline: 2px solid blue;
+	outline: 2px solid #0000ff;
 }
+
 progress:indeterminate {
-	outline: 2px solid blue;
+	outline: 2px solid #0000ff;
 }
 
 article {
@@ -60,15 +58,17 @@ article {
 }
 
 article:target {
-	border-color: red;
+	border-color: #ff0000;
 }
 
 div {
 	height: 40px;
 }
+
 div:nth-child(2n + 1) {
-	background: red;
+	background: #ff0000;
 }
+
 div:nth-of-type(5) {
-	background: green;
+	background: #008000;
 }

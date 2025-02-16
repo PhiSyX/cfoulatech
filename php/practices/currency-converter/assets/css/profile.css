@@ -3,7 +3,6 @@
 .page-profile {
 	flex-grow: 1;
 	align-self: normal;
-
 	padding: 2rem;
 
 	h1 {
@@ -13,21 +12,19 @@
 
 .currency-conversion-history {
 	padding: 1rem;
-
 	border-radius: 12px;
 	background-color: #292929;
 }
 
 .currency-conversion-history table {
 	width: 100%;
-
-	text-align: left;
-
 	border-collapse: collapse;
+	text-align: left;
 }
+
 .currency-conversion-history table thead > tr th {
-	color: #7c7878;
 	border-bottom: 1px solid #413a3a;
+	color: #7c7878;
 }
 
 .currency-conversion-history table th,

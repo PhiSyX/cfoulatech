@@ -10,19 +10,21 @@
 }
 
 section {
-	margin: auto;
-	overflow-x: hidden;
 	max-width: 80ch;
 	height: 100vh;
+	margin: auto;
+	overflow-x: hidden;
 }
 
 .flex {
 	display: flex;
 }
+
 .flex\! {
 	display: flex;
 	flex-direction: column;
 }
+
 .flex\!\^ {
 	display: flex;
 	flex-direction: column-reverse;
@@ -31,30 +33,39 @@ section {
 .align-j\:start {
 	justify-content: start;
 }
+
 .align-j\:center {
 	justify-content: center;
 }
+
 .align-j\:end {
 	justify-content: end;
 }
+
 .align-j\:sa {
 	justify-content: space-around;
 }
+
 .align-j\:sb {
 	justify-content: space-between;
 }
+
 .align-i\:stretch {
 	align-items: stretch;
 }
+
 .align-i\:start {
 	align-items: start;
 }
+
 .align-i\:end {
 	align-items: end;
 }
+
 .align-i\:center {
 	align-items: center;
 }
+
 .align-i\:baseline {
 	align-items: baseline;
 }
@@ -62,6 +73,7 @@ section {
 .flex-wrap {
 	flex-wrap: wrap;
 }
+
 .flex-wrap\^ {
 	flex-wrap: wrap-reverse;
 }

@@ -3,9 +3,9 @@ section#services {
 	padding-inline: 13rem;
 
 	> h1 {
+		margin-top: 0;
 		font-family: Georgia, sans-serif;
 		font-size: 72px;
-		margin-top: 0;
 	}
 
 	.cards {
@@ -15,13 +15,13 @@ section#services {
 
 		> article {
 			display: flex;
-			align-items: end;
 			flex-shrink: 0;
+			align-items: end;
 			width: 400px;
 			height: 500px;
-			font-size: 22px;
-			background-size: cover;
 			background-repeat: no-repeat;
+			background-size: cover;
+			font-size: 22px;
 
 			h1,
 			p {
@@ -29,8 +29,8 @@ section#services {
 			}
 
 			h1 {
+				color: var(--text-alt);
 				font-family: Georgia, serif;
-				color: var(--text_alt);
 			}
 
 			p {
@@ -40,13 +40,13 @@ section#services {
 			> div {
 				display: flex;
 				flex-direction: column;
-				gap: 8px;
 				align-content: space-between;
 				align-items: start;
 				height: 200px;
 				padding: 1rem;
+				opacity: 80%;
 				background: Canvas;
-				opacity: 0.8;
+				gap: 8px;
 
 				p {
 					flex-grow: 1;
@@ -57,14 +57,14 @@ section#services {
 	}
 
 	#trad {
-		background-image: url(../../../traduction.jpg);
+		background-image: url("../../../traduction.jpg");
 	}
 
 	#lang {
-		background-image: url(../../img/cours-de-langue.jpg);
+		background-image: url("../../img/cours-de-langue.jpg");
 	}
 
 	#correction {
-		background-image: url(../../img/correction.jpg);
+		background-image: url("../../img/correction.jpg");
 	}
 }

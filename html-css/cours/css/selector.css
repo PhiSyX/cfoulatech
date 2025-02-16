@@ -4,15 +4,15 @@
 }
 
 p {
-	color: blue;
+	color: #0000ff;
 }
 
 .class {
-	font-weight: bold;
+	font-weight: 700;
 }
 
 #id {
-	background: gray;
+	background: #808080;
 }
 
 a[target] {
@@ -21,7 +21,7 @@ a[target] {
 
 h1,
 .h1-like {
-	color: red;
+	color: #ff0000;
 }
 
 .sel .child {
