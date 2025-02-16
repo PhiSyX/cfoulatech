@@ -1,0 +1,29 @@
+{
+	"name": "@phisyx/cfoulatech",
+	"version": "0.1.0",
+	"description": "C'est fou la tech",
+	"type": "module",
+	"scripts": {
+		"react25": "pnpm --filter @phisyx/cfoulatech-react-web25 dev"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"stylelint": "catalog:",
+		"stylelint-config-html": "catalog:",
+		"stylelint-config-property-sort-order-smacss": "catalog:",
+		"stylelint-config-standard": "catalog:",
+		"stylelint-order": "catalog:"
+	},
+	"pnpm": {
+		"ignoredBuiltDependencies": [
+			"@parcel/watcher",
+			"@swc/core",
+			"lmdb",
+			"msgpackr-extract"
+		],
+		"onlyBuiltDependencies": [
+			"@biomejs/biome",
+			"esbuild"
+		]
+	}
+}

@@ -2,7 +2,6 @@
 node_modules/
 target/
 
-biome.json
 .DS_Store
 *.bmp
 *.pdf
@@ -10,13 +9,11 @@ biome.json
 *.png
 *.jpg
 *.jpeg
+*.webp
 
-package.json
 package-lock.json
 pnpm-lock.yaml
-composer.json
 composer.lock
-tsconfig.json
 
 # HTML-CSS
 !html-css/.vscode/
@@ -31,8 +28,6 @@ tsconfig.json
 
 !typescript/.vscode/
 !typescript/.vscode/settings.json
-!typescript/angular/**/package.json
-!typescript/angular/**/tsconfig*.json
 
 # SQL
 !mysql/.vscode/
@@ -41,5 +36,3 @@ tsconfig.json
 # PHP / Symfony
 !php/.vscode/
 !php/.vscode/settings.json
-!php/symfony/**/composer.json
-!php/symfony/**/package.json

@@ -1,0 +1,19 @@
+packages:
+    - 'html-css/**'
+    - 'javascript/**'
+    - 'php/**'
+    - 'typescript/**'
+
+catalog:
+    '@biomejs/biome': ^1.9.4
+    sass: ^1.85.0
+    stylelint: ^16.14.1
+    stylelint-config-html: ^1.1.0
+    stylelint-config-property-sort-order-smacss: ^10.0.0
+    stylelint-config-standard: ^37.0.0
+    stylelint-order: ^6.0.4
+    vite: ^6.1.0
+    react: ^19.0.0
+    react-dom: ^19.0.0
+    '@types/react': ^19.0.8
+    '@types/react-dom': ^19.0.3
