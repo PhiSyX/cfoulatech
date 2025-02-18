@@ -1,63 +1,89 @@
 import React, { useState } from "react";
 
 /**
+ * @param {number} val
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+function minmax(min, val, max) {
+	return Math.min(Math.max(min, val), max);
+}
+
+/**
  * Composant <Counter />
  *
  * @param {object} props -- Les propriétés du composant Counter
- * @param {number} props.initialValue -- Valeur initiale
+ * @param {number} [props.initialValue=0] -- Valeur initiale
  * @param {number} [props.step=1] -- Étape d'incrémentation/décrémentation
+ * @param {number} [props.min=Infinity]
+ * @param {number} [props.max=Infinity]
  */
 export function Counter(props) {
-	const [count, setCount] = useState(props.initialValue);
+	const min = props.min ?? Number.NEGATIVE_INFINITY;
+	const max = props.max ?? Number.POSITIVE_INFINITY;
 
 	const step = props.step || 1;
 
-	/**
-	 * Remet à le compteur à son état initial.
-	 */
-	function reset() {
-		setCount(props.initialValue);
-	}
+	const [count, setCount] = useState(
+		minmax(min, props.initialValue || 0, max),
+	);
 
 	/**
 	 * Incrémente le compteur.
-	 * @param {React.MouseEvent<HTMLButtonElement>} evt
 	 */
-	function increment(evt) {
-		if (evt.altKey) {
-			reset();
-		} else {
-			setCount((count) => count + step);
-		}
-	}
+	const increment = () => {
+		setCount((count) => minmax(min, count + step, max));
+	};
 
 	/**
 	 * Décrémente le compteur.
-	 * @param {React.MouseEvent<HTMLButtonElement>} evt
 	 */
-	function decrement(evt) {
-		if (evt.altKey) {
-			reset();
-		} else {
-			setCount((count) => count - step);
-		}
-	}
+	const decrement = () => {
+		setCount((count) => minmax(min, count - step, max));
+	};
+
+	/**
+	 * @param {React.ChangeEvent<HTMLInputElement>} e
+	 */
+	const onChange = (e) => {
+		setCount(minmax(min, e.target.valueAsNumber, max));
+	};
 
 	return (
 		<div className="counter">
-			<button
-				type="button"
-				onClick={increment}
-			>
-				Incrémenter {count}
-			</button>
+			<strong>Compteur: {count}</strong>
 
-			<button
-				type="button"
-				onClick={decrement}
-			>
-				Décrémenter {count}
-			</button>
+			<div>
+				<button
+					type="button"
+					onClick={increment}
+				>
+					Incrémenter
+				</button>
+				&nbsp;
+				<button
+					type="button"
+					onClick={decrement}
+				>
+					Décrémenter
+				</button>
+			</div>
+
+			<div>
+				<p>
+					Minimum: {min},
+					Maximum: {max}
+				</p>
+
+				<input
+					type="range"
+					value={count}
+					min={min}
+					max={max}
+					onChange={onChange}
+				/>
+			</div>
 		</div>
 	);
 }
