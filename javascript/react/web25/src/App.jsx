@@ -2,7 +2,9 @@ import "./App.css";
 
 import React from "react";
 
-import { Counter } from "./components/Counter";
+// import { Counter } from "./components/Counter";
+// import { InfiniteTimer } from "./components/Timer";
+import { Timer } from "./components/Timer";
 // import { Message } from "./components/Message";
 // import { UserCard } from "./components/UserCard";
 // import { UsersList } from "./components/UsersList";
@@ -43,16 +45,18 @@ function App() {
 				step={2}
 			/>
 
-			<hr />
+			<Counter initialValue={0} step={1} min={5} max={10} />
 
+			<hr />
 
 			<UsersList />
 			<UserProfile />
 			<TasksList />
 			*/}
 
-			<Counter initialValue={0} step={1} min={5} max={10} />
+			{/* <InfiniteTimer /> */}
 
+			<Timer />
 		</>
 	);
 }
