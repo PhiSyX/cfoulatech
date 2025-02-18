@@ -2,11 +2,13 @@ import "./App.css";
 
 import React from "react";
 
-// import { Counter } from "./components/Counter";
+import { Counter } from "./components/Counter";
 // import { Message } from "./components/Message";
 // import { UserCard } from "./components/UserCard";
 // import { UsersList } from "./components/UsersList";
-import { Profile } from "./components/Profile";
+// import { Profile } from "./components/Profile";
+// import { UserProfile } from "./components/UserProfile";
+// import { TasksList } from "./components/TasksList";
 
 function App() {
 	return (
@@ -45,9 +47,12 @@ function App() {
 
 
 			<UsersList />
+			<UserProfile />
+			<TasksList />
 			*/}
 
-			<Profile />
+			<Counter initialValue={0} step={1} min={5} max={10} />
+
 		</>
 	);
 }
