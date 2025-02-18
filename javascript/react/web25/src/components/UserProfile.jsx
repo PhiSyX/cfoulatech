@@ -3,11 +3,16 @@ import "./UserCard.css";
 import React, { useState } from "react";
 
 /**
- * Composant <Profile />
+ * Composant <UserProfile />
  */
-export function Profile() {
-	const [nom, setNom] = useState("Mike");
-	const [age, setAge] = useState(10);
+export function UserProfile() {
+	// useState avec une valeur un objet
+	const [info, setInfo] = useState(
+		{
+			name: "Mike",
+			age: 24,
+		}
+	);
 
 	const [inputMode, setInputMode] = useState("");
 
@@ -22,41 +27,55 @@ export function Profile() {
 		setInputMode("");
 	};
 	// Fonction anonyme stockée dans une variable `incrementAge` qui va utiliser
-	// la fonction setAge pour mettre à jour l'âge en incrémentant de 1.
+	// la fonction setInfo pour mettre à jour l'âge en incrémentant de 1.
 	const incrementAge = () => {
-		setAge((age) => age + 1);
+		// NOTE: setInfo DOIT RETOURNER UN NOUVEL OBJET A CHAQUE FOIS
+		setInfo((info) => {
+			// NOTE: c'est à dire qu'on ne peut pas directement écrire cela
+			//
+			//info.age = info.age + 1;
+			//return info;
+
+			// NOTE: en faisant cela, nous créons un nouvel objet à partir
+			// des valeurs l'ancien objet grâce à la syntaxe spread operator,
+			// en ne modifiant uniquement la propriété âge.
+			return { ...info, age: info.age + 1 };
+		});
 	};
 
 	/**
 	 * @param {React.ChangeEvent<HTMLInputElement>} evt
 	 */
 	const handleChange = (evt) => {
-		setNom(evt.target.value);
+		setInfo((info) => ({
+			...info,
+			name: evt.target.value,
+		}));
 	};
 
 	return (
-		<div className="profile">
-			<h1>Profile</h1>
+		<div className="user-profile">
+			<h1>User Profile</h1>
 
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: chut */}
 			<div onClick={applyInputNameMode}>
-				<label htmlFor="name">Nom : </label>
+				<label htmlFor="name">Nom :</label>
 
 				{inputMode === "editable.name" ? (
 					<input
 						id="name"
 						type="text"
-						value={nom}
+						value={info.name}
 						onChange={handleChange}
 						onBlur={removeInputMode}
 					/>
 				) : (
-					nom
+					info.name
 				)}
 			</div>
 
 			<div>
-				<label htmlFor="age">Age : {age}</label>
+				<label htmlFor="age">Age : {info.age}</label>
 
 				<br />
 
