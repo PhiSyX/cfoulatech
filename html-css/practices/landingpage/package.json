@@ -1,0 +1,11 @@
+{
+	"name": "@b3no1t/landingpage",
+	"version": "0.1.0",
+	"scripts": {
+		"dev": "parcel index.html"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"parcel": "^2.13.3"
+	}
+}

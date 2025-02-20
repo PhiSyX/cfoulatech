@@ -1,0 +1,27 @@
+:root {
+	--navbar-link-color: var(--header-secondary);
+	--navbar-link-spacing-s: var(--spacing-1);
+	--navbar-link-spacing-m: var(--spacing-2);
+	--navbar-link-spacing-l: var(--spacing-2);
+	--navbar-button-color: #2883eb;
+	--navbar-button-radius: var(--radius-full);
+}
+
+.chapp-landing-header a,
+.chapp-landing-navbar a {
+	padding: var(--navbar-link-spacing-m);
+	color: var(--navbar-link-color);
+}
+
+.chapp-landing-navbar ul {
+	display: flex;
+	gap: var(--navbar-link-spacing-s);
+	list-style: none;
+}
+
+.chapp-landing-button {
+	display: inline !important;
+	padding: var(--navbar-link-spacing-m) var(--navbar-link-spacing-l) !important;
+	background: var(--navbar-button-color);
+	border-radius: var(--navbar-button-radius);
+}

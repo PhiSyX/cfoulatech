@@ -1,0 +1,12 @@
+@use "../abstracts/mixins" as mx;
+
+@include mx.font-face("mulish", "../fonts/Mulish Regular");
+@include mx.font-face("roboto", "../fonts/Roboto Regular");
+
+body {
+	font-family: var(--text-roboto);
+}
+
+a {
+	text-decoration: none;
+}

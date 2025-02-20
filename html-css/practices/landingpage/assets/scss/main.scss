@@ -1,0 +1,32 @@
+/* Variables */
+@use "./abstracts/vars";
+/* Bases */
+@use "./bases/reset";
+@use "./bases/base";
+/* Composants */
+@use "./components/button";
+@use "./components/header";
+@use "./components/footer";
+@use "./components/hero";
+@use "./components/navbar";
+
+.container {
+	max-width: 768px;
+	margin-inline: auto;
+}
+
+.container-horizontal {
+	display: flex;
+}
+
+.text-bold {
+	font-weight: 700;
+}
+
+.stack-v > * + * {
+	margin-top: var(--stack-spacing, 1rem);
+}
+
+.stack-h > * + * {
+	margin-left: var(--stack-spacing, 1rem);
+}

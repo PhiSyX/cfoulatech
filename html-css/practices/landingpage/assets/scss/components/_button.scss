@@ -1,0 +1,17 @@
+:root {
+	--button-spacing: var(--spacing-2);
+}
+
+.btn {
+	padding: var(--button-spacing);
+	border-radius: var(--radius-full);
+}
+
+.btn-primary {}
+.btn-outline {
+	border: 1px solid currentColor;
+}
+
+a.btn {
+	display: inline-block;
+}

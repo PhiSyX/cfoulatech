@@ -1,0 +1,24 @@
+:root {
+	--header-surface: #1264df;
+	--header-text-color: #ffffff;
+	--header-spacing: var(--spacing-4);
+	--header-text: var(--text-m);
+	--header-text-logo: var(--text-l);
+}
+
+.chapp-landing-header {
+	padding: var(--header-spacing);
+	background: var(--header-surface);
+	color: var(--header-text-color);
+	font-family: var(--text-mulish);
+	font-size: var(--header-text);
+
+	& > .container {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.chapp-landing-logo {
+	font-size: var(--header-text-logo);
+}
