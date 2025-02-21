@@ -56,7 +56,7 @@ function App() {
 
 			{/* <InfiniteTimer /> */}
 
-			<Timer />
+			<Timer limit={100} pauseBtn={true} />
 		</>
 	);
 }
