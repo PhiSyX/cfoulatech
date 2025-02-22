@@ -36,7 +36,7 @@ export default {
 
 		// Unités
 		"declaration-property-unit-allowed-list": {
-			"/^font|^font-size/": ["em", "rem", "%", "vw", "dvw"],
+			"/^font|^font-size/": ["em", "rem", "%", "vw", "dvw", "px"],
 		},
 
 		// Imports
