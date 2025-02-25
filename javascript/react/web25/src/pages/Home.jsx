@@ -1,10 +1,11 @@
-import "./App.css";
+import "./Home.css";
 
 import React from "react";
 
 // import { Counter } from "./components/Counter";
 // import { InfiniteTimer } from "./components/Timer";
-import { Timer } from "./components/Timer";
+import { Timer } from "../components/Timer";
+import { Link } from "react-router-dom";
 // import { Message } from "./components/Message";
 // import { UserCard } from "./components/UserCard";
 // import { UsersList } from "./components/UsersList";
@@ -12,7 +13,7 @@ import { Timer } from "./components/Timer";
 // import { UserProfile } from "./components/UserProfile";
 // import { TasksList } from "./components/TasksList";
 
-function App() {
+export function Home() {
 	return (
 		<>
 			<h1>CFOULATECH</h1>
@@ -57,8 +58,9 @@ function App() {
 			{/* <InfiniteTimer /> */}
 
 			<Timer limit={100} pauseBtn={true} />
+
+			<Link to={"/contact"}>Goto Contact</Link>
 		</>
 	);
 }
 
-export default App;

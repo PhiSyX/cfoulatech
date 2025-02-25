@@ -11,13 +11,14 @@
 	},
 	"dependencies": {
 		"react": "catalog:",
-		"react-dom": "catalog:"
+		"react-dom": "catalog:",
+		"react-router-dom": "^7.2.0"
 	},
 	"devDependencies": {
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "^4.3.4",
-		"globals": "^15.14.0",
+		"globals": "^16.0.0",
 		"vite": "catalog:"
 	}
 }
