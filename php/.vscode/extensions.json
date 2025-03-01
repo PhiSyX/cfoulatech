@@ -1,7 +1,6 @@
 {
 	"recommendations": [
 		"xdebug.php-debug",
-		"bmewburn.vscode-intelephense-client",
-		"zobo.php-intellisense"
+		"bmewburn.vscode-intelephense-client"
 	]
 }
