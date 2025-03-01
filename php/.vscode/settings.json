@@ -13,5 +13,5 @@
 	"intelephense.completion.insertUseDeclaration": true,
 	"intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
 	"intelephense.completion.triggerParameterHints": true,
-	"intelephense.trace.server": "messages",
+	"intelephense.trace.server": "off",
 }
