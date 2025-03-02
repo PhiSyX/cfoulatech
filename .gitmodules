@@ -1,3 +1,6 @@
 [submodule "php/practices/ZakVille"]
 	path = php/practices/ZakVille
 	url = https://github.com/zakka88/ZakVille
+[submodule "javascript/practices/hotel-management"]
+	path = javascript/practices/hotel-management
+	url = https://github.com/carina2023808/hotel-management
