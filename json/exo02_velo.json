@@ -1,0 +1,8 @@
+{
+	"nom": "Velo",
+	"marque": "marque",
+	"pays": "pays",
+	"vitesseMax": 100.0,
+	"mouvement": true,
+	"arret": false
+}

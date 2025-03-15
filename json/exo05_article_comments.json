@@ -1,0 +1,25 @@
+{
+	"titre": "Mon super titre",
+	"contenu": "Contenu de l'article",
+	"auteur": {
+		"nom": "Nom",
+		"prénom": "Prénom",
+		"age": 42
+	},
+	"comments": [
+		{
+			"id": 1,
+			"username": "Mike",
+			"contenu": "Très bon article",
+			"responses": [
+				{
+					"parent_id": 1,
+					"id": 2,
+					"username": "John",
+					"contenu": "Oui c'est vrai ça",
+					"responses": []
+				}
+			]
+		}
+	]
+}

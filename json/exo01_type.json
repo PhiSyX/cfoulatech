@@ -1,0 +1,12 @@
+{
+	"number": 42,
+	"float": 4.2,
+	"exp": 4e2,
+	"str": "string",
+	"bool-true": true,
+	"bool-false": false,
+	"obj": { "x": "y" },
+	"arr-indexes": [1, 2, 3, 4],
+	"arr-objets": [{ "y": "z" }],
+	"member": null
+}

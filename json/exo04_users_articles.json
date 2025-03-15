@@ -1,0 +1,26 @@
+[
+	{
+		"id_article": 1,
+		"article_name": "Titre",
+		"description": "Description",
+		"created_at": "2025-10-17T14:32:04",
+		"updated_at": "2025-10-17T14:32:04",
+		"user": null
+	},
+	{
+		"id_article": 2,
+		"article_name": "Titre",
+		"description": "Description",
+		"created_at": "2025-10-17T14:32:04",
+		"updated_at": "2025-10-17T14:32:04",
+		"user": {
+			"id_user": 7,
+			"firstname": "Eden",
+			"lastname": "Hazard",
+			"gender": "M",
+			"date_of_birth": "1988-10-10",
+			"city": "Brussels",
+			"weight_kg": 82
+		}
+	}
+]
