@@ -1,0 +1,4 @@
+body:has(.page-not-found) {
+	display: grid;
+	place-content: center;
+}

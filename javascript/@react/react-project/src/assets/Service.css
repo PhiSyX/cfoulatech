@@ -1,0 +1,100 @@
+:root {
+	--primary-color: #cdaa2a;
+	--secondary-color: #2a99cd;
+	--input-bg: linear-gradient(to right, #3c4043, #383a3c);
+
+	--input-color: FieldText;
+	--input-placeholder: GrayText;
+	--button-bg: CanvasText;
+	--button-color: Canvas;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-service {
+	input,
+	button {
+		padding: 8px;
+		border: 1px solid transparent;
+		border-radius: 2px;
+	}
+
+	input {
+		background: var(--input-bg);
+		color: var(--input-color);
+	}
+
+	button:focus,
+	input:focus {
+		outline: 3px solid var(--primary-color);
+	}
+
+	input::placeholder {
+		color: var(--input-placeholder);
+	}
+
+	button {
+		background-color: var(--button-bg);
+		color: var(--button-color);
+		text-align: left;
+		cursor: pointer;
+	}
+
+	button:active {
+		outline-style: inset;
+		background-color: ButtonBorder;
+		color: ButtonText;
+	}
+
+	output {
+		color: var(--primary-color);
+		font-weight: 700;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	div {
+		display: grid;
+		grid-auto-columns: max-content;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	div > * {
+		grid-column: span 2;
+	}
+
+	button:first-of-type {
+		grid-column: 1;
+	}
+
+	button:last-of-type {
+		grid-column: 2;
+	}
+
+	.message {
+		width: 300px;
+		min-height: 100px;
+	}
+
+	.err {
+		color: #e57373;
+	}
+
+	.ok {
+		color: #a1e573;
+	}
+}
