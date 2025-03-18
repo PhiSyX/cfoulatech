@@ -10,4 +10,10 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 	die("Erreur de décodage JSON : " . json_last_error_msg());
 }
 
-echo json_encode($json_data, JSON_PRETTY_PRINT);
+if (empty($_SERVER["HTTP_HOST"])):
+	echo json_encode($json_data, JSON_PRETTY_PRINT);
+else:
+?>
+	<pre><?= json_encode($json_data, JSON_PRETTY_PRINT) ?></pre>
+<?php
+endif;
