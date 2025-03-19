@@ -1,0 +1,75 @@
+:root {
+    --neon-blue: #80CED7;
+    --neon-blue: #00ffff;
+    --dark-bg: #003249;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff7f50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.gallery {
+text-align: center;
+padding: 50px 20px;
+background: #f5f5f5;
+}
+
+.gallery h2 {
+font-size: 2rem;
+margin-bottom: 20px;
+}
+
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 15px;
+max-width: 1000px;
+margin: auto;
+}
+
+.gallery-item {
+display: block;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+width: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+transform: scale(1.05);
+}

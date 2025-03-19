@@ -1,0 +1,17 @@
+.container__profil {
+    
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20rem auto;
+}
+
+.profile {
+    text-align: center;
+    font-size: 2rem;
+    color: #033b5d;
+    font-size: 7Opx;
+}
