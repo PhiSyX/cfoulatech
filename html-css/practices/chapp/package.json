@@ -1,5 +1,5 @@
 {
-	"name": "@b3no1t/landingpage",
+	"name": "@phisyx/cfoulatech-chapp",
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "parcel index.html"
