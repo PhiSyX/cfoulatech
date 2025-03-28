@@ -4,3 +4,7 @@
 -- GRANT ALL PRIVILEGES ON <database>.<table> TO '<user>'@'<host>'; GRANT ALL
 -- PRIVILEGES ON <database>.* TO '<user>'@'<host>';
 GRANT ALL PRIVILEGES ON coursmysql.* TO 'mike'@'localhost';
+
+-- Voir toutes les autorisations d'un utilisateur.
+
+SHOW GRANTS FOR 'mike'@'localhost';

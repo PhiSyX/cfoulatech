@@ -1,5 +1,12 @@
 -- Révoquer les droits d'un utilisateur sur toutes les tables d'une base de
 -- données.
 --
--- REVOKE ALL PRIVILEGES ON <database>.* FROM '<user>'@'<host>';
+-- REVOKE <privilege,...> ON <database>.* FROM '<user>'@'<host>';
+--
+-- Les <privilège>s:
+--    ALL PRIVILEGES
+--    SELECT
+--    INSERT
+--    DELETE
+--    UPDATE
 REVOKE ALL PRIVILEGES ON coursmysql.* FROM 'mike'@'localhost';
