@@ -4,17 +4,17 @@
  * Nous ne pouvons pas créer de nouvelles instances avec une classe abstraite.
  */
 
-abstract class World
+abstract class WorldAbstract
 {
     abstract public function hello(string $name = "World"): void;
 
-    public function world(string $p): string
+    public function world(string $prefixWord): string
     {
-        return "$p World\n";
+        return "$prefixWord World\n";
     }
 }
 
-class Hello extends World
+class ExempleAbstractHello1 extends WorldAbstract
 {
     public function hello(string $name = "World"): void
     {
@@ -31,6 +31,6 @@ Error: Cannot instantiate abstract class World in abstract.php on line 30
 //$w->hello();
 //echo $w->world("Hello");
 
-$h = new Hello();
+$h = new ExempleAbstractHello1();
 $h->hello(); // Hello World
 echo $h->world("Hello"); // Hello World

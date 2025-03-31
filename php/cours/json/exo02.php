@@ -1,19 +1,38 @@
 <?php
 
-$json_file = file_get_contents("exo02.json", true);
-if (!$json_file) {
-	die("Erreur de lecture du fichier JSON.");
-}
+require_once "utils.php";
 
-$json_data = json_decode($json_file);
-if (json_last_error() !== JSON_ERROR_NONE) {
-	die("Erreur de décodage JSON : " . json_last_error_msg());
-}
+$json_data = [
+	[
+		"firstname" => "Tom",
+		"lastname" => "Cruise",
+		"lastMovie" => "Mission impossible",
+		"isAmerican" => true
+	],
+	[
+		"firstname" => "Omar",
+		"lastname" => "Sy",
+		"lastMovie" => "The Killer",
+		"isAmerican" => false
+	],
+	[
+		"firstname" => "Denzel",
+		"lastname" => "Washington",
+		"lastMovie" => "The Rift",
+		"isAmerican" => true
+	],
+	[
+		"firstname" => "Emilie",
+		"lastname" => "Blunt",
+		"lastMovie" => "Disclosure",
+		"isAmerican" => false
+	],
+	[
+		"firstname" => "Julia",
+		"lastname" => "Roberts",
+		"lastMovie" => "After the hunts",
+		"isAmerican" => true
+	]
+];
 
-if (empty($_SERVER["HTTP_HOST"])):
-	echo json_encode($json_data, JSON_PRETTY_PRINT);
-else:
-?>
-	<pre><?= json_encode($json_data, JSON_PRETTY_PRINT) ?></pre>
-<?php
-endif;
+echo json_pretty($json_data);

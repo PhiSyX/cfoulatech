@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Nous ne pouvons pas faire hériter une classe désigner en final.
+ * Nous ne pouvons pas faire hériter une classe définie en final.
  */
 
-final class World {}
+final class WorldFinal {}
 
-// 
+//
 // Fatal error: Class Hello cannot extend final class World in final.php on line 13/14
-// 
-//class Hello extends World {}
-//final class Hello extends World {}
+//
+//class ExampleFinalHello1 extends WorldFinal {}
+//final class ExampleFinalHello2 extends WorldFinal {}
 
 $w = new World();
 var_dump($w);
