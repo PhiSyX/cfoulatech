@@ -10,6 +10,8 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { BankAccount } from "./pages/BankAccount";
 import { NotFound } from "./pages/NotFound";
+import { Magasin } from "./pages/Magasin";
+import { Restaurant } from "./pages/Restaurant";
 
 function App() {
 	return (
@@ -30,8 +32,16 @@ function App() {
 					element={<Contact />}
 				/>
 				<Route
-					path="/service"
+					path="/services/bank-account"
 					element={<BankAccount />}
+				/>
+				<Route
+					path="/services/magasin"
+					element={<Magasin />}
+				/>
+				<Route
+					path="/services/restaurant"
+					element={<Restaurant />}
 				/>
 				<Route
 					path="/*"

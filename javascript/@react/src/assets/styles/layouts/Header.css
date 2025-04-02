@@ -15,6 +15,7 @@ ul {
 }
 
 ul a {
+	display: inline-block;
 	padding: 4px;
 	border: 3px solid transparent;
 	color: #212121;
@@ -28,7 +29,36 @@ ul a {
 
 	&.active {
 		background: #f1e715;
-        color: #347706;
+		color: #347706;
 		font-weight: 700;
+	}
+}
+
+li > ul {
+	position: absolute;
+	flex-direction: column;
+	margin-top: -.5rem;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	padding-inline: .5rem;
+	border-radius: 4px;
+	background-color: #d5bc57;
+}
+
+.dropdown {
+	> strong {
+		display: inline-block;
+		padding: 7px;
+		color: #212121;
+		font-weight: 500;
+		cursor: pointer;
+	}
+
+	> ul {
+		visibility: hidden;
+	}
+
+	&:hover > ul {
+		visibility: visible;
 	}
 }

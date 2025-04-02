@@ -9,19 +9,37 @@ export function Header() {
 			<nav>
 				<ul>
 					<li>
-						<NavLink to="/" >Home</NavLink>
+						<NavLink to="/">Home</NavLink>
 					</li>
 
 					<li>
-						<NavLink to="/about" >About</NavLink>
+						<NavLink to="/about">About</NavLink>
 					</li>
 
 					<li>
-						<NavLink to="/contact" >Contact</NavLink>
+						<NavLink to="/contact">Contact</NavLink>
 					</li>
 
-					<li>
-						<NavLink to="/service" >Bank Account</NavLink>
+					<li className="dropdown">
+						<strong>Services</strong>
+
+						<ul>
+							<li>
+								<NavLink to="/services/bank-account">
+									Bank Account
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/services/magasin">
+									Magasin
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/services/restaurant">
+									Restaurant
+								</NavLink>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</nav>
