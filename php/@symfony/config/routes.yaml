@@ -6,4 +6,4 @@ controllers:
 
 # home:
 #     path: /
-#     controller: App\Controller\HomeController::index
+#     controller: App\Controller\HomeController::hello_world
