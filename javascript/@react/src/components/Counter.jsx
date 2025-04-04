@@ -1,3 +1,4 @@
+import "../assets/styles/components/Counter.css";
 import React, { useState } from "react";
 
 /**
@@ -52,7 +53,7 @@ export function Counter(props) {
 
 	return (
 		<div className="counter">
-			<strong>Compteur: {count}</strong>
+			<h1>Compteur: <small>{count}</small></h1>
 
 			<div>
 				<button

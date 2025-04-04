@@ -21,6 +21,26 @@ export function Header() {
 					</li>
 
 					<li className="dropdown">
+						<strong>Features</strong>
+
+						<ul>
+							<li>
+								<NavLink to="/counter">Compteur</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/timer">Timer</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/timer/infinite">
+									Timer infini
+								</NavLink>
+							</li>
+						</ul>
+					</li>
+
+					<li className="dropdown">
 						<strong>Services</strong>
 
 						<ul>

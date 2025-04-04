@@ -12,6 +12,15 @@ import { BankAccount } from "./pages/BankAccount";
 import { NotFound } from "./pages/NotFound";
 import { Magasin } from "./pages/Magasin";
 import { Restaurant } from "./pages/Restaurant";
+import { Counter } from "./components/Counter";
+import {
+	B_ALL,
+	B_START,
+	B_CLEAR,
+	B_PAUSE,
+	InfiniteTimer,
+	Timer,
+} from "./components/Timer";
 
 function App() {
 	return (
@@ -30,6 +39,23 @@ function App() {
 				<Route
 					path="/contact"
 					element={<Contact />}
+				/>
+				<Route
+					path="/counter"
+					element={
+						<Counter
+							min={0}
+							max={30}
+						/>
+					}
+				/>
+				<Route
+					path="/timer"
+					element={<Timer limit={1000} />}
+				/>
+				<Route
+					path="/timer/infinite"
+					element={<InfiniteTimer />}
 				/>
 				<Route
 					path="/services/bank-account"
