@@ -45,6 +45,12 @@ export function Header() {
 									Timer infini
 								</NavLink>
 							</li>
+
+							<li>
+								<NavLink to="/components/websocket">
+									WebSocket
+								</NavLink>
+							</li>
 						</ul>
 					</li>
 

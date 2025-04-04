@@ -22,6 +22,7 @@ import {
 	Timer,
 } from "./components/Timer";
 import { MouseTracker } from "./components/MouseTracker";
+import { WebSocket$ } from "./components/WebSocket";
 
 function App() {
 	return (
@@ -62,6 +63,10 @@ function App() {
 				<Route
 					path="/components/timer/infinite"
 					element={<InfiniteTimer />}
+				/>
+				<Route
+					path="/components/websocket"
+					element={<WebSocket$ />}
 				/>
 				{/* Services */}
 				<Route
