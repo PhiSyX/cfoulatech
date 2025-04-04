@@ -21,6 +21,7 @@ import {
 	InfiniteTimer,
 	Timer,
 } from "./components/Timer";
+import { MouseTracker } from "./components/MouseTracker";
 
 function App() {
 	return (
@@ -40,8 +41,9 @@ function App() {
 					path="/contact"
 					element={<Contact />}
 				/>
+				{/* Components */}
 				<Route
-					path="/counter"
+					path="/components/counter"
 					element={
 						<Counter
 							min={0}
@@ -50,13 +52,18 @@ function App() {
 					}
 				/>
 				<Route
-					path="/timer"
+					path="/components/mouse-tracker"
+					element={<MouseTracker />}
+				/>
+				<Route
+					path="/components/timer"
 					element={<Timer limit={1000} />}
 				/>
 				<Route
-					path="/timer/infinite"
+					path="/components/timer/infinite"
 					element={<InfiniteTimer />}
 				/>
+				{/* Services */}
 				<Route
 					path="/services/bank-account"
 					element={<BankAccount />}

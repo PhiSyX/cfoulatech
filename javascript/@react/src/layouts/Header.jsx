@@ -21,19 +21,27 @@ export function Header() {
 					</li>
 
 					<li className="dropdown">
-						<strong>Features</strong>
+						<strong>Components</strong>
 
 						<ul>
 							<li>
-								<NavLink to="/counter">Compteur</NavLink>
+								<NavLink to="/components/counter">
+									Compteur
+								</NavLink>
 							</li>
 
 							<li>
-								<NavLink to="/timer">Timer</NavLink>
+								<NavLink to="/components/mouse-tracker">
+									MouseTracker
+								</NavLink>
 							</li>
 
 							<li>
-								<NavLink to="/timer/infinite">
+								<NavLink to="/components/timer">Timer</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/components/timer/infinite">
 									Timer infini
 								</NavLink>
 							</li>
