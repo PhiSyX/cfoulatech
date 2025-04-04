@@ -1,7 +1,9 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Page de la recette {{ nom }} !{% endblock %}
+{% block title "Page de la recette " ~ slug | title ~ "!" %}
 
 {% block body %}
-<h1>Bienvenue dans la page n°{{ id }} {{ nom }} !</h1>
+	<h1>Bienvenue sur la recette n°{{ id }}</h1>
+	<h2>Recette créée par {{user.firstname}} (<small>{{user.username}}</small>)</h2>
+	<p>Comment faire un.e {{ slug | title }}!</p>
 {% endblock %}
