@@ -13,16 +13,10 @@ import { NotFound } from "./pages/NotFound";
 import { Magasin } from "./pages/Magasin";
 import { Restaurant } from "./pages/Restaurant";
 import { Counter } from "./components/Counter";
-import {
-	B_ALL,
-	B_START,
-	B_CLEAR,
-	B_PAUSE,
-	InfiniteTimer,
-	Timer,
-} from "./components/Timer";
+import { InfiniteTimer, Timer } from "./components/Timer";
 import { MouseTracker } from "./components/MouseTracker";
 import { WebSocket$ } from "./components/WebSocket";
+import { UsersPage } from "./pages/Users";
 
 function App() {
 	return (
@@ -30,6 +24,7 @@ function App() {
 			<Header />
 
 			<Routes>
+				{/* Pages */}
 				<Route
 					path="/"
 					element={<Home />}
@@ -41,6 +36,10 @@ function App() {
 				<Route
 					path="/contact"
 					element={<Contact />}
+				/>
+				<Route
+					path="/users"
+					element={<UsersPage />}
 				/>
 				{/* Components */}
 				<Route

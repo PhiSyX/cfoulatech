@@ -12,12 +12,22 @@ export function Header() {
 						<NavLink to="/">Home</NavLink>
 					</li>
 
-					<li>
-						<NavLink to="/about">About</NavLink>
-					</li>
+					<li className="dropdown">
+						<strong>Pages</strong>
 
-					<li>
-						<NavLink to="/contact">Contact</NavLink>
+						<ul>
+							<li>
+								<NavLink to="/about">About</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/contact">Contact</NavLink>
+							</li>
+
+							<li>
+								<NavLink to="/users">Users</NavLink>
+							</li>
+						</ul>
 					</li>
 
 					<li className="dropdown">
