@@ -5,6 +5,16 @@
 
 {% block body %}
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, quisquam! Sed doloremque aspernatur unde, veritatis inventore recusandae nam doloribus porro. Necessitatibus nisi beatae accusamus, repellendus nobis amet in quis exercitationem!</p>
+	<h1>Liste de recettes</h1>
+
+	<ul>
+		{% for recipe in recipes %}
+			<li>
+				<a href="{{ path("app_recipe_show", { id: recipe.id, slug: recipe.slug }) }}">
+					{{ recipe.title }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
 
 {% endblock %}

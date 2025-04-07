@@ -13,7 +13,23 @@ final class RecipeController extends AbstractController
 	#[Route(path: "/recette", name: "app_recipe_index")]
 	public function index(Request $req): Response
 	{
-		return $this->render("recipe/index.html.twig");
+		return $this->render("recipe/index.html.twig", [
+			"recipes" => [
+				[
+					"id" => 1,
+					"title" => "Pizza Capricieuse",
+					"slug" => "pizza-capricciosa",
+				], [
+					"id" => 2,
+					"title" => "Pizza 4 Fromages",
+					"slug" => "pizza-4-fromages",
+				], [
+					"id" => 3,
+					"title" => "Pizza Margherita",
+					"slug" => "pizza-margherita",
+				],
+			],
+		]);
 	}
 
 	/*
@@ -46,8 +62,8 @@ final class RecipeController extends AbstractController
 	// expressions régulières.
 	#[Route(
 		path: "/recette/{slug}-{id}",
+		name: "app_recipe_show",
 		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
-		name: 'app_recipe_show',
 	)]
 	public function show(Request $req, string $slug, int $id): Response
 	{
@@ -61,9 +77,9 @@ final class RecipeController extends AbstractController
 		dump($user);
 
 		return $this->render("recipe/show.html.twig", [
-			"slug"  => $slug,
-			"id"    => $id,
-			"user"  => $user,
+			"slug" => $slug,
+			"id" => $id,
+			"user" => $user,
 		]);
 	}
 
@@ -92,12 +108,13 @@ final class RecipeController extends AbstractController
 	// expressions régulières.
 	#[Route(
 		path: "/api/recette/{slug}-{id}",
+		name: "api_recipe_show",
 		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
-		name: 'api_recipe_show',
 	)]
 	public function api_show(Request $req, string $slug, int $id): Response
 	{
-		// `compact("id", "slug")` est un équivalent de `["id" => $id, "slug" => $slug]`
+		// La fonction `compact("id", "slug")` est un équivalent de faire
+		// `["id" => $id, "slug" => $slug]`
 		return $this->json(compact("id", "slug"));
 	}
 }

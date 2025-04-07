@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
-	// Méthode auto-généré par le framework Symfony via la commande de création
+	// Méthode auto-générée par le framework Symfony via la commande de création
 	// de controller
 	#[Route(path: "/", name: "app_home")]
 	public function index(): Response
