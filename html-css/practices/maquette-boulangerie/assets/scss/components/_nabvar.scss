@@ -1,0 +1,32 @@
+@use "../abstracts/functions" as fn;
+
+$navbar-link-on-surface: LinkText !default;
+$navbar-link-active-on-surface: VisitedText !default;
+
+:root {
+  --navbar-link-on-surface: #{$navbar-link-on-surface};
+  --navbar-link-active-on-surface: #{$navbar-link-active-on-surface};
+}
+
+.navbar a {
+  display: inline-block;
+  padding: fn.space(sm);
+  transition: color 250ms ease;
+  color: fn.color(navbar-link);
+
+  &[aria-current="page"],
+  &:active,
+  &:hover {
+    color: fn.color(navbar-link-active);
+  }
+}
+
+.navbar-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-actions {
+  gap: fn.space(sm);
+}

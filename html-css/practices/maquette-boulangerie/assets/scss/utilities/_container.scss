@@ -1,0 +1,28 @@
+@use "../abstracts/functions" as fn;
+
+$container-size: 768px !default;
+
+/** Classe utilitaire qui nous permet d'être cohérent sur les largeurs et marges
+ *  sur les zones principales */
+.container {
+  --size-container: #{$container-size};
+  max-width: var(--size-container);
+  margin-inline: auto;
+}
+
+/** Classe utilitaire en display flex en row, étant donné que l'on va utiliser
+ *  plusieurs fois */
+.container-inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: fn.space(sm);
+}
+
+/** Classe utilitaire en display flex en colonne, étant donné que l'on va
+ *  utiliser plusieurs fois */
+.container-block {
+  display: flex;
+  flex-direction: column;
+}

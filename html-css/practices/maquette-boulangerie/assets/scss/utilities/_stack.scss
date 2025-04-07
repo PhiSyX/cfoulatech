@@ -1,0 +1,9 @@
+@use "../abstracts/functions" as fn;
+
+.stack-v > * + * {
+  margin-top: fn.space(stack, fn.space(md));
+}
+
+.stack-h > * + * {
+  margin-left: fn.space(stack, fn.space(md));
+}

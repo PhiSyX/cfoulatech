@@ -1,0 +1,26 @@
+@use "../abstracts/functions" as fn;
+
+$btn-primary-surface: ButtonFace !default;
+$btn-primary-on-surface: ButtonText !default;
+
+:root {
+  --btn-primary-surface: #{$btn-primary-surface};
+  --btn-primary-on-surface: #{$btn-primary-on-surface};
+}
+
+.btn {
+  padding-block: fn.space(md);
+  padding-inline: fn.space(lg);
+  border-radius: fn.radius(full);
+  font-size: fn.text(xs);
+}
+
+.btn-primary {
+  background: var(--btn-primary-surface);
+}
+
+a.btn {
+  display: inline-block;
+  color: var(--btn-primary-on-surface);
+  text-decoration: none;
+}

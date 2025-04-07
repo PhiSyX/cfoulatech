@@ -1,0 +1,92 @@
+@use "../abstracts/functions" as fn;
+
+$header-size: 89px;
+
+$carousel-on-surface: CanvasText !default;
+$carousel-controls-on-surface: Highlight !default;
+
+:root {
+  --carousel-on-surface: #{$carousel-on-surface};
+  --carousel-controls-on-surface: #{$carousel-controls-on-surface};
+}
+
+.carousel {
+  position: relative;
+  padding-top: $header-size;
+  height: 65vh;
+
+  transition: background 1s ease-in-out;
+  background-image: var(--carousel-img);
+  background-size: cover;
+  background-position: top;
+
+  color: var(--carousel-on-surface);
+}
+
+.carousel > .carousel-wrapper {
+  height: 100%;
+  overflow: auto;
+  background: rgb(0 0 0 / 40%);
+}
+
+.carousel-container {
+  align-items: stretch;
+  height: 100%;
+  overflow: auto;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: fit-content;
+  padding-top: fn.space(lg);
+
+  h1,
+  h2,
+  p {
+    text-shadow: 2px 2px 2px CanvasText;
+  }
+
+  h2 {
+    font-size: fn.text(xl);
+  }
+}
+
+/** Controls */
+
+.carousel-controls {
+  $size: 100px;
+  position: absolute;
+  left: calc(50% - 5vw);
+  bottom: calc(0px - ($size / 2));
+  width: $size;
+  height: $size;
+  background: fn.color(white);
+  box-shadow: inset 20px 20px 20px 0px fn.color(lightgray);
+  transform: rotate(45deg);
+}
+
+.carousel-controls .carousel-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  gap: fn.space(md);
+  transform: rotate(-45deg) translateX(-25px) translateY(20px);
+}
+
+.carousel-controls button {
+  padding: 0;
+  padding-top: fn.space(sm);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: var(--carousel-controls-on-surface);
+  &:hover {
+    color: CanvasText;
+  }
+}
+
+.carousel ::-webkit-scrollbar {
+  display: none;
+}

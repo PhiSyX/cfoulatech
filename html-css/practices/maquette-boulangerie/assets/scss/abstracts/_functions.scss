@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+@use "./vars" as vars;
+
+@function bg($name) {
+  @if map.has-key(vars.$colors, $name) {
+    @return var(--color-#{$name});
+  }
+  @return var(--#{$name}-surface);
+}
+
+@function color($name) {
+  @if map.has-key(vars.$colors, $name) {
+    @return var(--color-#{$name});
+  }
+  @return var(--#{$name}-on-surface);
+}
+
+@function radius($token) {
+  @return var(--radius-#{$token});
+}
+
+@function space($length, $default: null) {
+  @if (meta.type-of($length) == "number") {
+    @if ($length <= 10) {
+      @return var(--spacing-#{$length}, $default);
+    }
+
+    // Multiple de 8
+    $div: math.round(math.div($length, 8));
+    @return calc(var(--space-sm, $default) * $div);
+  }
+
+  @return var(--space-#{$length}, $default);
+}
+
+@function text($length, $prefix: null) {
+  @if $prefix {
+    @return var(--#{$length}-text-#{$prefix});
+  }
+  @return var(--text-#{$length});
+}

@@ -1,0 +1,60 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/mixins" as mx;
+
+$header-surface: Canvas !default;
+$header-on-surface: CanvasText !default;
+$header-active-on-surface: ActiveText !default;
+$header-text-logo: 1rem !default;
+
+:root {
+  --header-surface: #{$header-surface};
+  --header-on-surface: #{$header-on-surface};
+  --header-active-on-surface: #{$header-active-on-surface};
+  --header-text-logo: #{$header-text-logo};
+}
+
+.l-header {
+  justify-content: space-around;
+  padding: fn.space(md);
+  @include mx.bgcolor(header);
+}
+
+.l-header > .header-logo,
+.l-header > .header-logo a {
+  font-size: fn.text(header, logo);
+  color: fn.color(header-active);
+}
+
+.l-header .header-actions {
+  gap: fn.space(md);
+}
+
+.l-header .icon-phone {
+  padding: fn.space(md);
+  border: 1px solid;
+  border-radius: var(--radius-full);
+
+  svg {
+    color: fn.color(header-active);
+    fill: fn.color(header-active);
+  }
+}
+
+.l-header .phone-contact {
+  p {
+    margin-top: 0;
+    color: fn.color(header-active);
+  }
+
+  a {
+    color: fn.color(header);
+  }
+}
+
+.header-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}

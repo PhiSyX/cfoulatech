@@ -1,0 +1,16 @@
+{
+	"name": "@phisyx/boulangerie",
+	"version": "0.1.0",
+	"scripts": {
+		"dev": "vite"
+	},
+	"devDependencies": {
+		"sass-embedded": "^1.85.1",
+		"vite": "^6.2.1"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
+	}
+}

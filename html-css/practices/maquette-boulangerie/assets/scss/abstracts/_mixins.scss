@@ -1,0 +1,11 @@
+@use "./functions" as fn;
+
+@mixin bgcolor($name) {
+  background: fn.bg($name);
+  color: fn.color($name);
+}
+
+@mixin radius-bottom($variant) {
+  border-bottom-left-radius: fn.radius($variant);
+  border-bottom-right-radius: fn.radius($variant);
+}
