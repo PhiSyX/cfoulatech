@@ -1,0 +1,8 @@
+.l-header {
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	mix-blend-mode: luminosity;
+	background: var(--color-ultra-white);
+}

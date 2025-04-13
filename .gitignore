@@ -1,4 +1,5 @@
 .parcel-cache/
+.idea/
 .vscode/
 dist/
 node_modules/
@@ -38,3 +39,4 @@ composer.lock
 # PHP / Symfony
 !php/.vscode/
 !php/.vscode/settings.json
+php/**/vendor/
