@@ -1,0 +1,40 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid;
+}
+
+thead,
+table > tbody > tr > th {
+	background: CanvasText;
+	color: Canvas;
+	font-weight: 700;
+}
+
+table > tbody > tr > th {
+	box-shadow: 1px 1px 1px CanvasText;
+}
+
+tbody > tr {
+	background: #f3f3f3;
+	color: CanvasText;
+}
+
+tbody > tr:nth-child(odd) {
+	background: #d3dfe4;
+}
+
+tbody > tr:hover {
+	background: Canvas;
+}
+
+table > tbody > tr > td {
+	border-inline: 1px solid Canvas;
+	border-top: 2px solid Canvas;
+	border-bottom: 1px solid Canvas;
+}
+
+th,
+td {
+	padding: var(--spacing-1);
+}
