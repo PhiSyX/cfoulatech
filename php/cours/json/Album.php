@@ -15,10 +15,11 @@ class Album implements JsonSerializable
 	// ----------- //
 
 	public function __construct(
-		string $nom,
-		int $nbPiste,
+		string   $nom,
+		int      $nbPiste,
 		DateTime $dateDeSortie,
-	) {
+	)
+	{
 		$this->nom = $nom;
 		$this->nbPiste = $nbPiste;
 		$this->dateDeSortie = $dateDeSortie;

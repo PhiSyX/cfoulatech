@@ -18,9 +18,10 @@ class Artiste implements JsonSerializable
 	public function __construct(
 		string $nom,
 		string $type,
-		int $nbFollowers,
-		Album $album,
-	) {
+		int    $nbFollowers,
+		Album  $album,
+	)
+	{
 		$this->nom = $nom;
 		$this->type = $type;
 		$this->nbFollowers = $nbFollowers;

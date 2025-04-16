@@ -17,9 +17,9 @@ class Personne
 
 	public function __construct(string $prenom, int $age, string $genre)
 	{
-		$this->prenom   = $prenom;
-		$this->age      = $age;
-		$this->genre    = $genre;
+		$this->prenom = $prenom;
+		$this->age = $age;
+		$this->genre = $genre;
 		$this->terminal = empty($_SERVER["HTTP_HOST"]);
 	}
 
@@ -30,9 +30,12 @@ class Personne
 	public function __toString()
 	{
 		switch ($this->genre) {
-			case "M": return $this->affichePourHomme();
-			case "F": return $this->affichePourFemme();
-			default:  return "<p>Vous êtes autre chose qu'un homme ou une femme</p>";
+			case "M":
+				return $this->affichePourHomme();
+			case "F":
+				return $this->affichePourFemme();
+			default:
+				return "<p>Vous êtes autre chose qu'un homme ou une femme</p>";
 		}
 	}
 
@@ -42,8 +45,8 @@ class Personne
 
 	private function affichePourFemme(): string
 	{
-		$ouvertureBalisePar = $this->isHttp() ? "<p style='color: hotpink'>"  : "";
-		$fermetureBalisePar = $this->isHttp() ? "</p>"                        : "\n";
+		$ouvertureBalisePar = $this->isHttp() ? "<p style='color: hotpink'>" : "";
+		$fermetureBalisePar = $this->isHttp() ? "</p>" : "\n";
 
 		return <<<HTML
 		$ouvertureBalisePar
@@ -56,9 +59,9 @@ class Personne
 	private function affichePourHomme(): string
 	{
 		$ouvertureBaliseUl = $this->isHttp() ? "<ul style='color: deepskyblue'>" : "";
-		$fermetureBaliseUl = $this->isHttp() ? "</ul>"                           : "\n";
+		$fermetureBaliseUl = $this->isHttp() ? "</ul>" : "\n";
 
-		$ouvertureBaliseLi = $this->isHttp() ? "<li>"  : "";
+		$ouvertureBaliseLi = $this->isHttp() ? "<li>" : "";
 		$fermetureBaliseLi = $this->isHttp() ? "</li>" : "";
 
 		return <<<HTML

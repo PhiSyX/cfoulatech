@@ -7,32 +7,32 @@ $json_data = [
 		"firstname" => "Tom",
 		"lastname" => "Cruise",
 		"lastMovie" => "Mission impossible",
-		"isAmerican" => true
+		"isAmerican" => true,
 	],
 	[
 		"firstname" => "Omar",
 		"lastname" => "Sy",
 		"lastMovie" => "The Killer",
-		"isAmerican" => false
+		"isAmerican" => false,
 	],
 	[
 		"firstname" => "Denzel",
 		"lastname" => "Washington",
 		"lastMovie" => "The Rift",
-		"isAmerican" => true
+		"isAmerican" => true,
 	],
 	[
 		"firstname" => "Emilie",
 		"lastname" => "Blunt",
 		"lastMovie" => "Disclosure",
-		"isAmerican" => false
+		"isAmerican" => false,
 	],
 	[
 		"firstname" => "Julia",
 		"lastname" => "Roberts",
 		"lastMovie" => "After the hunts",
-		"isAmerican" => true
-	]
+		"isAmerican" => true,
+	],
 ];
 
 echo json_pretty($json_data);

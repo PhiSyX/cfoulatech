@@ -1,0 +1,27 @@
+{
+	"titre": "Intro JSON",
+	"contenu": "Voici le cours de JSON",
+	"auteur": {
+		"nom": "Dunia",
+		"prenom": "Julien",
+		"age": 23
+	},
+	"commentaires": [
+		{
+			"username": "Saif",
+			"contenu": "Ton cours est trop cool !",
+			"reponses": []
+		},
+		{
+			"username": "Deoking",
+			"contenu": "Ton cours est nul !",
+			"reponses": [
+				{
+					"username": "Timothy",
+					"contenu": "En plus, on voit pas ça sert à quoi !",
+					"reponses": []
+				}
+			]
+		}
+	]
+}
