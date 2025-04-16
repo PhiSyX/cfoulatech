@@ -1,22 +1,22 @@
 {
-	"titre": "Mon super titre",
-	"contenu": "Contenu de l'article",
-	"auteur": {
-		"nom": "Nom",
-		"prénom": "Prénom",
+	"title": "Mon super titre",
+	"content": "Contenu de l'article",
+	"author": {
+		"lastname": "Nom",
+		"firstname": "Prénom",
 		"age": 42
 	},
 	"comments": [
 		{
 			"id": 1,
 			"username": "Mike",
-			"contenu": "Très bon article",
+			"content": "Très bon article",
 			"responses": [
 				{
 					"parent_id": 1,
 					"id": 2,
 					"username": "John",
-					"contenu": "Oui c'est vrai ça",
+					"content": "Oui c'est vrai ça",
 					"responses": []
 				}
 			]

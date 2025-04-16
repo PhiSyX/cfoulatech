@@ -1,0 +1,6 @@
+{
+	"$schema": "dict_string_constraint_schema.json",
+	"email": "abc@cde.fr",
+	"nom": "Nom",
+	"prenom": "Prenom"
+}

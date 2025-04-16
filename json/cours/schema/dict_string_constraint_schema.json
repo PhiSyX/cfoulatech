@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"nom": {
+			"type": "string",
+			"title": "Nom de famille",
+			"description": "Cela représente le nom de famille d'une personne",
+			"maxLength": 50,
+			"minLength": 2,
+			"pattern": "^[A-Z]([a-z-\\s'])*[a-z]$"
+		}
+	},
+	"required": ["nom"]
+}

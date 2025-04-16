@@ -1,0 +1,8 @@
+{
+	"$schema": "exo01_schema.json",
+	"email": "abc@cde.fr",
+	"nom": "Nom",
+	"prenom": "Prenom",
+	"nationality": "Italienne",
+	"website": "http://website.fr"
+}
