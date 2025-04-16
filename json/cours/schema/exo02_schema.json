@@ -1,0 +1,30 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"posnum": {
+			"type": "number",
+			"exclusiveMinimum": 0
+		},
+		"negnum": {
+			"type": "integer",
+			"maximum": 0
+		},
+		"rngage/-12..=19": {
+			"type": "integer",
+			"minimum": -12,
+			"maximum": 19
+		},
+		"majage": {
+			"type": "integer",
+			"minimum": 18,
+			"title": "Âge majeur"
+		},
+		"rngage/18..=25": {
+			"type": "integer",
+			"minimum": 18,
+			"maximum": 25,
+			"description": "Âge compris entre 18 et 25 ans."
+		}
+	}
+}
