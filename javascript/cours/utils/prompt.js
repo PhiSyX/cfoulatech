@@ -1,6 +1,17 @@
 /**
- * Invite l'utilisateur à entrer un mot, une phrase... en fonction de
- * l'environnement :
+ * @typedef {{
+ *     required?: boolean;
+ *     default?: { toString(): string };
+ *     cast?: "number"|"float"|"int"|"integer"|"boolean";
+ *     range?: [start: number, end:number];
+ *     enum?: Array<{ toString(): string }>;
+ *     filter?: (v: any) => boolean;
+ * }} PromptOptions
+ */
+
+/**
+ * Invite l'utilisateur à entrer un mot, un nombre, une phrase... en fonction de
+ * l'environnement, la fonction suivante est utilisée :
  *
  *  - Navigateur = window.prompt
  *  - Node.js    = readline
@@ -10,27 +21,85 @@
  * intuitive.
  *
  * @param {string} ask - Question à demander l'utilisateur.
- * @param {null|{toString(): string}} [def=null] - valeur par défaut
- * @returns {Promise<string>}
+ * @param {PromptOptions} [options={}] - valeur par défaut
  */
-export async function prompt(ask, def) {
-	let required = def === undefined ? true : def !== null;
+export async function prompt(ask, options = {}) {
+	options.required ??= true;
 
-	def ??= null;
+	// NOTE: Browser env
+	let response;
 
+	if (options.required) {
+		response = await prompt_forever(ask, options);
+	} else {
+		response = await prompt_with_cancellation(ask, options);
+	}
+
+	if (
+		(options.enum && !options.enum.includes(response)) ||
+		(options.range && !(response >= options.range[0] && response <= options.range[1]))
+	) {
+		return prompt(ask, options);
+	}
+
+	if (options.filter && !options.filter(response)) {
+		return prompt(ask, options);
+	}
+
+	return response;
+}
+
+/**
+ * @param {string} ask - Question à demander l'utilisateur.
+ * @param {PromptOptions} [options={}] - valeur par défaut
+ */
+async function prompt_forever(ask, options = {}) {
+	let response;
+	let drop;
+	do {
+		[response, drop] = await prompt_fn(ask, options.default);
+		response ||= options.default;
+	} while (typeof response !== "string");
+
+	drop();
+
+	return into(response, options.cast);
+}
+
+/**
+ * @param {string} ask - Question à demander l'utilisateur.
+ * @param {PromptOptions} [options={}] - valeur par défaut
+ */
+async function prompt_with_cancellation(ask, options = {}) {
+	let response;
+	let drop;
+	do {
+		[response, drop] = await prompt_fn(ask, options.default);
+		response ||= options.default;
+		response ||= null;
+
+		if (response == null) {
+			break;
+		}
+	} while (typeof response !== "string");
+
+	drop();
+
+	if (response == null) {
+		return response;
+	}
+
+	return into(response, options.cast);
+}
+
+/**
+ * @param {string} ask
+ * @param {{ toString(): string }} [def]
+ */
+async function prompt_fn(ask, def) {
 	if (Object.hasOwn(globalThis, "prompt")) {
 		// NOTE: Browser env
-		let response;
-
-		do {
-			response = globalThis.prompt(ask, def?.toString() || "");
-
-			if (required && !response) {
-				response = def?.toString() || null;
-			}
-		} while (typeof response !== "string");
-
-		return response;
+		return [globalThis.prompt(ask, def?.toString()), () => void 0];
 	}
 
 	// NOTE: Node.js env
@@ -38,25 +107,65 @@ export async function prompt(ask, def) {
 	const { stdin, stdout } = await import("node:process");
 
 	let readline = createInterface({
-		input: stdin,
-		output: stdout,
+		input: stdin, output: stdout,
 	});
 
-	let def_s =
-		def && def.toString() !== "0" ? `[${def.toString()} par défaut] ` : "";
+	let def_s = def && def.toString() !== "0" ? `[${def.toString()} par défaut] ` : "";
+	let response = await readline.question(`${ask} ${def_s}`).catch((_) => def?.toString() || "");
+	return [response, () => readline.close()];
+}
 
-	let response;
+/**
+ * @param {string} str
+ * @param {PromptOptions["cast"]} to
+ */
+function into(str, to) {
+	switch (to) {
+		case "number":
+			return try_into_number(Number(str));
+		case "int":
+		case "integer":
+			return try_into_number(Number.parseInt(str, 10));
+		case "float":
+			return try_into_number(Number.parseFloat(str));
 
-	do {
-		response = await readline
-			.question(`${ask} ${def_s}`)
-			.catch((_) => def?.toString() || "");
-		if (required && !response) {
-			response = def?.toString() || null;
-		}
-	} while (typeof response !== "string");
+		case "boolean":
+			return into_boolean(str);
+	}
 
-	readline.close();
+	return str;
+}
 
-	return response;
+/**
+ * @param {number} n
+ */
+function try_into_number(n) {
+	if (Number.isNaN(n)) {
+		throw new Error("Not a number");
+	}
+	return n;
+}
+
+/**
+ * @param {string} text
+ * @returns {boolean}
+ */
+function into_boolean(text) {
+	switch (text) {
+		case "actif":
+		case "active":
+		case "enable":
+		case "enabled":
+		case "ok":
+		case "on":
+		case "yes":
+		case "oui":
+		case "true":
+		case "vrai":
+		case "vraie":
+			return true;
+
+		default:
+			return false;
+	}
 }

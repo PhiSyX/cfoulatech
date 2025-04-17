@@ -25,7 +25,10 @@ function get_message_based_on_hours(hours) {
 let current_hours = new Date().getHours();
 
 // Heure entrée par l'utilisateur dans le terminal.
-let user_hours = Number.parseInt(await prompt("Entrez une heure :", current_hours), 10);
+let user_hours = await prompt("Entrez une heure :", {
+	cast: "int",
+	default: current_hours,
+});
 
 // Affiche à l'utilisateur le texte en fonction de l'heure entrée par
 // l'utilisateur.

@@ -1,7 +1,7 @@
 import { alert } from "../utils/alert.js";
 import { prompt } from "../utils/prompt.js";
 
-let age = Number.parseInt(await prompt("Entrez votre âge :"));
+let age = await prompt("Entrez votre âge :", { cast: "int" });
 
 if (age >= 1 && age <= 17) {
 	alert("Vous n'êtes pas encore majeur.");

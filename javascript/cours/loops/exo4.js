@@ -2,7 +2,7 @@ import { alert } from "../utils/alert.js";
 import { prompt } from "../utils/prompt.js";
 
 let numbers = [3, 7, 12, 22, 34, 125, 56, 45, 4558, 41, 100];
-let user_number = Number(await prompt("Quel est votre nombre ?"));
+let user_number = await prompt("Quel est votre nombre ?", { cast: "number" });
 let numbers_len = numbers.length;
 let has_number_been_found = false;
 

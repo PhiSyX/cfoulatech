@@ -9,8 +9,8 @@ let addition_btn = document.querySelector("#addition");
 
 if (addition_btn) {
 	addition_btn.onclick = async () => {
-		let x = Number.parseFloat(await prompt("1er numéro"));
-		let y = Number.parseFloat(await prompt("2nd numéro"));
+		let x = await prompt("1er numéro", { cast: "number" });
+		let y = await prompt("2nd numéro", { cast: "number" });
 
 		let z = x + y;
 
