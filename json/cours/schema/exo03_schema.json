@@ -1,0 +1,43 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"sentences": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"minLength": 10,
+				"maxLength": 15
+			}
+		},
+		"notes": {
+			"type": "array",
+			"items": {
+				"type": "number",
+				"minimum": 0,
+				"maximum": 100
+			},
+			"minItems": 5,
+			"maxItems": 10
+		},
+		"mots": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"pattern": "^[A-Z][a-zA-Z]{5,6}$"
+			},
+			"uniqueItems": true
+		},
+		"nombres": {
+			"type": "array",
+			"items": {
+				"type": "number"
+			},
+			"contains": {
+				"type": "integer",
+				"minimum": -7,
+				"maximum": -7
+			}
+		}
+	}
+}

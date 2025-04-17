@@ -1,0 +1,21 @@
+{
+	"$schema": "exo03_schema.json",
+	"sentences": [
+		"bonjour Mike"
+	],
+	"notes": [
+		1,
+		2,
+		3,
+		4,
+		5
+	],
+	"mots": [
+		"Bonjour",
+		"Carina"
+	],
+	"nombres": [
+		1,
+		-7
+	]
+}

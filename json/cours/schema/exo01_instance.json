@@ -1,8 +1,8 @@
 {
 	"$schema": "exo01_schema.json",
-	"email": "abc@cde.fr",
-	"nom": "Nom",
-	"prenom": "Prenom",
+	"email": "mymail-ita@alessandrodelpiero.com",
+	"nom": "Del Piero",
+	"prenom": "Alessandro",
 	"nationality": "Italienne",
-	"website": "http://website.fr"
+	"website": "https://www.alessandrodelpiero.com/"
 }

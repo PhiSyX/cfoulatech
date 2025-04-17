@@ -7,7 +7,7 @@
 			"title": "Prénom",
 			"description": "Cela représente le prenom d'une personne",
 			"minLength": 2,
-			"pattern": "^[A-Z]([a-z-\\s'])*[a-z]$"
+			"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$"
 		},
 		"nom": {
 			"type": "string",
@@ -15,7 +15,7 @@
 			"description": "Cela représente le nom de famille d'une personne",
 			"maxLength": 50,
 			"minLength": 2,
-			"pattern": "^[A-Z]([a-z-\\s'])*[a-z]$"
+			"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$"
 		},
 		"email": {
 			"type": "string",
@@ -30,5 +30,10 @@
 			"format": "uri"
 		}
 	},
-	"required": ["prenom", "nom", "email", "website"]
+	"required": [
+		"prenom",
+		"nom",
+		"email",
+		"website"
+	]
 }

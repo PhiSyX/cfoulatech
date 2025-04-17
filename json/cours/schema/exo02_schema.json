@@ -8,7 +8,7 @@
 		},
 		"negnum": {
 			"type": "integer",
-			"maximum": 0
+			"exclusiveMaximum": 0
 		},
 		"rngage/-12..=19": {
 			"type": "integer",
@@ -25,6 +25,30 @@
 			"minimum": 18,
 			"maximum": 25,
 			"description": "Âge compris entre 18 et 25 ans."
+		},
+		"pair": {
+			"type": "number",
+			"multipleOf": 2
+		},
+		"negsolde": {
+			"type": "number",
+			"minimum": -2500
+		},
+		"rngint/1..99": {
+			"type": "integer",
+			"exclusiveMinimum": 0,
+			"exclusiveMaximum": 100,
+			"multipleOf": 5
+		},
+		"rng": {
+			"type": "number",
+			"multipleOf": 11,
+			"minimum": -77.0,
+			"maximum": 33.0
+		},
+		"xx": {
+			"exclusiveMinimum": 2,
+			"exclusiveMaximum": 3
 		}
 	}
 }

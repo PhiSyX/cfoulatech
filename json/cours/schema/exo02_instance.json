@@ -1,8 +1,12 @@
 {
 	"$schema": "exo02_schema.json",
-	"majage": 18,
+	"majage": 24,
 	"posnum": 100,
 	"negnum": -1,
 	"rngage/-12..=19": -3,
-	"rngage/18..=25": 20
+	"rngage/18..=25": 20,
+	"negsolde": -32.5,
+	"pair": 10,
+	"rngint/1..99": 55,
+	"rng": -32
 }
