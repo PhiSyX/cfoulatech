@@ -56,9 +56,10 @@ export async function prompt(ask, options = {}) {
 async function prompt_forever(ask, options = {}) {
 	let response;
 	let drop;
+
 	do {
 		[response, drop] = await prompt_fn(ask, options.default);
-		response ||= options.default;
+		response ??= options.default;
 	} while (typeof response !== "string");
 
 	drop();
@@ -73,10 +74,11 @@ async function prompt_forever(ask, options = {}) {
 async function prompt_with_cancellation(ask, options = {}) {
 	let response;
 	let drop;
+
 	do {
 		[response, drop] = await prompt_fn(ask, options.default);
-		response ||= options.default;
-		response ||= null;
+		response ??= options.default;
+		response ??= null;
 
 		if (response == null) {
 			break;
@@ -111,7 +113,10 @@ async function prompt_fn(ask, def) {
 	});
 
 	let def_s = def && def.toString() !== "0" ? `[${def.toString()} par défaut] ` : "";
-	let response = await readline.question(`${ask} ${def_s}`).catch((_) => def?.toString() || "");
+	let response = await readline.question(`${ask} ${def_s}`).catch((_) => null);
+	if (def && response?.length === 0) {
+		response = def.toString();
+	}
 	return [response, () => readline.close()];
 }
 
@@ -141,7 +146,7 @@ function into(str, to) {
  */
 function try_into_number(n) {
 	if (Number.isNaN(n)) {
-		throw new Error("Not a number");
+		throw new Error("Not a Number");
 	}
 	return n;
 }
@@ -157,8 +162,13 @@ function into_boolean(text) {
 		case "enable":
 		case "enabled":
 		case "ok":
+		case "okay":
 		case "on":
+		case "yep":
 		case "yes":
+		case "ouai":
+		case "ouaip":
+		case "ouais":
 		case "oui":
 		case "true":
 		case "vrai":
