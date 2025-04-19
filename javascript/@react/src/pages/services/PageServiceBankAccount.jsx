@@ -1,4 +1,4 @@
-import "../assets/styles/pages/Service.css";
+import "../../assets/styles/pages/PageServiceBankAccount.css";
 
 import React, { useState, useRef } from "react";
 
@@ -29,7 +29,7 @@ const MESSAGES = {
 	],
 };
 
-export function BankAccount() {
+export default function PageServiceBankAccount() {
 	let [balance, setBalance] = useState(0);
 	let [userAmount, setUserAmount] = useState(
 		/** @type {number|undefined} */ (undefined),
@@ -107,7 +107,7 @@ export function BankAccount() {
 	};
 
 	return (
-		<div className="page-service">
+		<div className="page-service-bank-service">
 			<h1>Bank Root</h1>
 
 			<div>

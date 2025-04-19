@@ -1,15 +1,7 @@
 import "../assets/styles/components/Counter.css";
 import React, { useState } from "react";
 
-/**
- * @param {number} val
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-function minmax(min, val, max) {
-	return Math.min(Math.max(min, val), max);
-}
+import { minmax } from "../../lib/math/minmax";
 
 /**
  * Composant <Counter />

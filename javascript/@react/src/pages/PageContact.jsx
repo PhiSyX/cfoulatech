@@ -1,8 +1,8 @@
-import "../assets/styles/pages/Contact.css";
+import "../assets/styles/pages/PageContact.css";
 
 import React from "react";
 
-export function Contact() {
+export default function PageContact() {
 	return (
 		<div className="page-contact">
 			<h1>Contact</h1>

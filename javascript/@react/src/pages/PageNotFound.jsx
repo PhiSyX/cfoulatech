@@ -1,8 +1,8 @@
-import "../assets/styles/pages/NotFound.css";
+import "../assets/styles/pages/PageNotFound.css";
 
 import React from "react";
 
-export function NotFound() {
+export default function PageNotFound() {
 	function gotoBack() {
 		history.back();
 	}
@@ -13,7 +13,7 @@ export function NotFound() {
 				type="button"
 				onClick={gotoBack}
 			>
-				Goto back
+				Retour
 			</button>
 
 

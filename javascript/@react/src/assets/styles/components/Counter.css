@@ -8,21 +8,6 @@
 	color: rgb(224 172 98);
 }
 
-.counter button {
-	padding: 1rem;
-	transition: background 250ms ease-in-out;
-	border: none;
-	border-radius: 8px;
-	background: CanvasText;
-	color: Canvas;
-	font-size: 1rem;
-	cursor: pointer;
-
-	&:hover {
-		background: #c1c1c1;
-	}
-}
-
 .counter input[type="range"] {
 	appearance: none;
 	border-radius: 8px;
@@ -32,8 +17,8 @@
 		appearance: none;
 		width: 1rem;
 		height: 1rem;
-		margin-top: -.5rem;
-		transform: translateY(.25rem);
+		margin-top: -0.5rem;
+		transform: translateY(0.25rem);
 		border-radius: 0.5rem;
 		background-color: rgb(224 172 98);
 	}
@@ -41,8 +26,8 @@
 	&::-moz-range-thumb {
 		appearance: none;
 		width: 1rem;
-		height: .5rem;
-		margin-top: -.5rem;
+		height: 0.5rem;
+		margin-top: -0.5rem;
 		border-radius: 0.5rem;
 		background-color: rgb(224 172 98);
 	}

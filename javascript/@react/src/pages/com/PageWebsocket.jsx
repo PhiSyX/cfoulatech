@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-export function WebSocket$() {
+export default function PageWebsocket() {
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
 		const socket = new WebSocket("wss://echo.websocket.org/");
 
 		socket.addEventListener("message", (event) => {
-			setMessages((prev) => [...prev, event.data]);
+			setMessages((msgs) => [...msgs, event.data]);
 		});
 
 		return () => {
@@ -19,8 +19,8 @@ export function WebSocket$() {
 		<div>
 			<h2>Messages reçus</h2>
 
-			{messages.map((msg, index) => (
-				<li key={index}>{msg}</li>
+			{messages.map((msg) => (
+				<li key={msg}>{msg}</li>
 			))}
 		</div>
 	);

@@ -1,0 +1,10 @@
+input[type="text"],
+input[type="number"] {
+	padding: .5rem;
+	transition: background 250ms ease-in-out;
+	border: none;
+	border-radius: 4px;
+	background: CanvasText;
+	color: Canvas;
+	font-size: 1rem;
+}

@@ -1,0 +1,14 @@
+button {
+	padding: .5rem;
+	transition: background 250ms ease-in-out;
+	border: none;
+	border-radius: 4px;
+	background: CanvasText;
+	color: Canvas;
+	font-size: 1rem;
+	cursor: pointer;
+
+	&:hover {
+		background: #c1c1c1;
+	}
+}

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-/**
- * Composant <Profile />
- */
-export function Profile() {
+export default function PageUserProfile() {
 	const [nom, setNom] = useState("Mike");
 	const [age, setAge] = useState(10);
 
@@ -34,11 +31,15 @@ export function Profile() {
 
 	return (
 		<div className="profile">
-			<h1>Profile</h1>
+			<h1>Profil utilisateur</h1>
 
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: chut */}
-			<div onClick={applyInputNameMode}>
-				<label htmlFor="name">Nom : </label>
+			<div>
+				<label
+					htmlFor="name"
+					onClickCapture={applyInputNameMode}
+				>
+					Nom :{" "}
+				</label>
 
 				{inputMode === "editable.name" ? (
 					<input
