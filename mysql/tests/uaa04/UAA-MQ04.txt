@@ -1,0 +1,305 @@
+--------------
+-- Partie 1 --
+--------------
+
+CREATE DATABASE bibliotheque CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+CREATE TABLE `lecteurs`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nom` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `est_millionnaire` BOOLEAN NOT NULL
+) ENGINE=InnoDB;
+
+ALTER TABLE
+    `lecteurs` ADD UNIQUE `lecteurs_email_unique`(`email`);
+
+CREATE TABLE `livres`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `titre` VARCHAR(150) NOT NULL,
+    `nom` TEXT NOT NULL,
+    `firstname` VARCHAR(50) NOT NULL,
+    `stock` FLOAT NOT NULL DEFAULT 1
+) ENGINE=InnoDB;
+
+CREATE TABLE `emprunts`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_lecteur` FLOAT NOT NULL,
+    `id_livre` FLOAT NOT NULL,
+    `date_emprunt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date_retour` DATETIME NULL
+) ENGINE=InnoDB;
+
+mkdir backupsDB
+cd backupsDB
+mysqldump -uroot bibliotheque > backup_v1.sql
+
+ALTER TABLE `lecteurs` ADD `prenom` VARCHAR(50) NOT NULL AFTER `nom`;
+
+ALTER TABLE `livres` CHANGE `firstname` `prenom` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+ALTER TABLE `livres` CHANGE `nom` `nom` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `stock` `stock` INT NOT NULL DEFAULT '1';
+
+ALTER TABLE `emprunts` CHANGE `id_lecteur` `id_lecteur` INT NOT NULL, CHANGE `id_livre` `id_livre` INT NOT NULL;
+
+ALTER TABLE `emprunts` ADD CONSTRAINT `emprunts_id_lecteur_foreign` FOREIGN KEY(`id_lecteur`) REFERENCES `lecteurs`(`id`);
+ALTER TABLE `emprunts` ADD CONSTRAINT `emprunts_id_livre_foreign` FOREIGN KEY(`id_livre`) REFERENCES `livres`(`id`);
+
+ALTER TABLE `lecteurs` DROP `est_millionnaire`;
+
+
+
+
+
+--------------
+-- Partie 2 --
+--------------
+
+mysql -uroot -p
+
+CREATE USER 'mike'@'localhost' IDENTIFIED BY 'cfitech';
+
+CREATE USER 'chatGPT'@'localhost' IDENTIFIED BY 'nul';
+
+ALTER USER 'mike'@'localhost' IDENTIFIED BY 'hello';
+
+GRANT INSERT,DELETE ON bibliotheque.lecteurs TO 'mike'@'localhost';
+GRANT INSERT,DELETE ON bibliotheque.livres TO 'mike'@'localhost';
+
+GRANT UPDATE,SELECT ON bibliotheque.lecteurs TO 'chatGPT'@'localhost';
+
+FLUSH PRIVILEGES;
+exit;
+
+mysql -umike -p
+use bibliotheque;
+
+INSERT INTO lecteurs (nom, prenom, email) VALUES
+    ('Ronaldo', 'Cristiano', 'cr7@siuuuuuuuuu.pt'),
+    ('Mathers', 'Marshall', 'eminem@d12.org');
+
+SELECT * FROM lecteurs;
+ERROR 1142 (42000): SELECT command denied to user 'mike'@'localhost' for table `bibliotheque`.`lecteurs`
+
+INSERT INTO livres (titre,nom,prenom) VALUES (
+	'On est ensemble',
+	'Jean',
+	'Aimable'
+);
+
+exit;
+
+mysql -uroot -p
+
+GRANT SELECT ON bibliotheque.* TO 'mike'@'localhost';
+FLUSH PRIVILEGES;
+exit;
+
+mysql -uchatGPT -p
+use bibliotheque;
+
+UPDATE lecteurs SET nom = 'Tim', prenom = 'Protagoniste', email = 'abcd@ef.com' WHERE id = 1;
+
+INSERT INTO livres (titre, nom, prenom) VALUES (
+	"Copier-coller c'est la vie",
+	'Dunia',
+	'Julien'
+);
+ERROR 1142 (42000): INSERT command denied to user 'chatGPT'@'localhost' for table `bibliotheque`.`livres`
+
+exit;
+
+mysql -uroot -p
+
+REVOKE ALL PRIVILEGES ON bibliotheque.lecteurs FROM 'chatGPT'@'localhost';
+REVOKE INSERT,DELETE ON bibliotheque.livres FROM 'mike'@'localhost';
+REVOKE INSERT,DELETE ON bibliotheque.lecteurs FROM 'mike'@'localhost';
+
+SHOW GRANTS FOR 'mike'@'localhost';
++-------------------------------------------------------------------------------------------------------------+
+| Grants for mike@localhost                                                                                   |
++-------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `mike`@`localhost` IDENTIFIED BY PASSWORD '*6B4F89A54E2D27ECD7E8DA05B4AB8FD9D1D8B119' |
+| GRANT SELECT ON `bibliotheque`.* TO `mike`@`localhost`                                                      |
++-------------------------------------------------------------------------------------------------------------+
+
+DROP USER 'chatGPT'@'localhost';
+
+exit;
+cd backupsDB
+mysqldump -uroot bibliotheque > backup_v2.sql
+
+
+
+
+--------------
+-- Partie 3 --
+--------------
+
+INSERT INTO lecteurs (nom,prenom,email) VALUES ('Dunia', 'Julien', 'jdunia@cfitech.be');
+INSERT INTO livres (nom,prenom,titre) VALUES ('Stephen', 'King', 'The Shining');
+INSERT INTO lecteurs (nom,prenom,email) VALUES ('Doré', 'Julien', 'juliend@cfitech.be');
+INSERT INTO livres (nom,prenom,titre,stock) VALUES ('Tolkien', 'JRR', 'The Lord of the Rings', 10);
+
+INSERT INTO lecteurs (nom,prenom,email) VALUES ('Dunia', 'Julia', 'jdunia@cfitech.be');
+	MySQL a répondu :
+
+	#1062 - Duplicata du champ 'jdunia@cfitech.be' pour la clef 'lecteurs_email_unique'
+
+	Car nous avons définis le champ `email` comme étant un champ dont les valeurs doivent être UNIQUE.
+
+INSERT INTO livres (nom,prenom,titre) VALUES ('Stephen', 'King', 'The Shining');
+INSERT INTO livres (nom,prenom,titre,stock) VALUES ('Rowling', 'JK', 'Harry Potter', 6);
+INSERT INTO lecteurs (nom,prenom,email) VALUES ('S.', 'Mike', 's@mike.it');
+
+INSERT INTO emprunts (id_lecteur,id_livre,date_emprunt,date_retour) VALUES
+	(6, 5, '2024-11-18 10:26:12', NULL),
+	(3, 1, '2025-02-15 10:26:12', '2025-03-28 10:26:12');
+
+INSERT INTO lecteurs (nom,prenom,email) VALUES
+	('Makkonen Tesfaye', 'Abel', 'le@week.end'),
+	('Jean', 'Neymar', 'jean@neymar.br');
+
+INSERT INTO livres (nom,prenom,titre,stock) VALUES
+	('Austen', 'Jane', 'Orgueil et préjugés', 1000),
+	('Camus', 'Albert', "L'Étranger", 2000),
+	('Shakespeare', 'William', 'Hamlet', 3000)
+;
+
+INSERT INTO emprunts (id_lecteur, id_livre, date_emprunt, date_retour) VALUES
+	(3, 5, current_timestamp(), NULL),
+	(7, 7, current_timestamp(), '2023-07-18 10:26:12'),
+	(8, 8, current_timestamp(), NULL),
+	(7, 2, current_timestamp(), '2023-07-18 10:26:12'),
+	(3, 1, current_timestamp(), NULL);
+
+
+
+
+--------------
+-- Partie 4 --
+--------------
+
+mariadb -umike -p
+use bibliotheque
+
+SELECT CONCAT(nom, ' ', prenom) AS lecteur FROM lecteurs WHERE nom LIKE '%a%' ORDER BY nom ASC;
+
+SELECT * FROM livres WHERE stock >= 3;
+
+SELECT * FROM lecteurs LIMIT 1,3;
+
+SELECT COUNT(*) AS "le nombre d'emprunt" FROM emprunts;
+
+SELECT * FROM emprunts WHERE DATE_SUB(CURRENT_DATE, INTERVAL 3 MONTH) > date_retour;
+
+SELECT l.* FROM lecteurs l LEFT JOIN emprunts e ON l.id = e.id_lecteur WHERE e.id_lecteur is NULL;
+
+SELECT li.titre, CONCAT(li.nom, ' ', li.prenom) AS auteur, CONCAT(le.nom, ' ', le.prenom) AS lecteur FROM livres li LEFT JOIN emprunts e ON e.id_livre = li.id LEFT JOIN lecteurs le ON e.id_lecteur = le.id;
+
+SELECT li.titre, CONCAT(li.nom, ' ', li.prenom) AS auteur, CONCAT(le.nom, ' ', le.prenom) AS lecteur, e.date_emprunt FROM emprunts e INNER JOIN livres li ON e.id_livre = li.id INNER JOIN lecteurs le ON e.id_lecteur = le.id;
+
+SELECT CONCAT(le.nom, ' ', le.prenom) AS lecteur FROM emprunts e INNER JOIN livres li ON e.id_livre = li.id INNER JOIN lecteurs le ON e.id_lecteur = le.id;
+
+
+
+
+
+--------------
+-- Partie 5 --
+--------------
+
+mysql -uroot
+
+-- a)
+DELIMITER $$
+CREATE PROCEDURE AfficherLecteurs246()
+BEGIN
+	SELECT * FROM lecteurs WHERE id IN(2, 4, 6);
+END$$
+DELIMITER ;
+CALL AfficherLecteurs246();
+
+-- b)
+DELIMITER $$
+CREATE PROCEDURE AfficherTroisDerniersLivres()
+BEGIN
+	SELECT * FROM livres ORDER BY id DESC LIMIT 3;
+END$$
+DELIMITER ;
+CALL AfficherTroisDerniersLivres();
+
+-- c)
+DELIMITER $$
+CREATE PROCEDURE AjouterLecteur(in i_nom varchar(50), in i_prenom varchar(50), in i_email varchar(100))
+BEGIN
+INSERT INTO lecteurs (nom,prenom,email) VALUES (i_nom, i_prenom, i_email);
+END$$
+DELIMITER ;
+CALL AjouterLecteur('Doe', 'John', 'john@doe.com');
+
+-- d)
+CREATE PROCEDURE AfficherLivresEmprunteAPartirDe(in i_date timestamp)
+BEGIN
+	SELECT * FROM livres li INNER JOIN emprunts e ON e.id_livre = li.id WHERE date_emprunt > i_date;
+END$$
+DELIMITER ;
+CALL AfficherLivresEmprunteAPartirDe("2025-03-28 10:30:00");
+
+-- e)
+DELIMITER $$
+CREATE PROCEDURE AfficherNombreEmprunts(out o_nb_emprunt int)
+BEGIN
+	SELECT COUNT(*) INTO o_nb_emprunt FROM emprunts WHERE date_retour is NULL;
+END$$
+DELIMITER ;
+
+CALL AfficherNombreEmprunts(@emprunt);
+SELECT @emprunt;
+
+-- f
+DELIMITER $$
+CREATE PROCEDURE AfficherNombreStockLivre(in i_stock int, out o_nb_livre int)
+BEGIN
+	SELECT COUNT(*) INTO o_nb_livre FROM livres WHERE stock = i_stock;
+END$$
+DELIMITER ;
+
+CALL AfficherNombreStockLivre(1, @nb_livre);
+SELECT @nb_livre;
+
+-- g
+DELIMITER $$
+CREATE PROCEDURE AfficherLecteurParSonPrenom(in i_prenom varchar(50), out o_id int)
+BEGIN
+	SELECT id INTO o_id FROM lecteurs WHERE prenom = i_prenom LIMIT 1;
+END$$
+DELIMITER ;
+
+CALL AfficherLecteurParSonPrenom("Mike", @id);
+SELECT @id;
+
+-- h
+SELECT * FROM lecteurs WHERE id = @id;
+
+-- i
+
+Etant donnée qu'il peut y avoir plusieurs fois le prénom dans la table lecteur,
+nous devons limiter le retour de la requête à 1 dans la requête g).
+La requête h) peut échouer si @id vaut NULL, par exemple, quand un lecteur n'a pas été trouvé
+
+--
+
+mysqldump -uroot bibliotheque > backup_final.sql
+
+--
+
+A partir de la commande d'import de mysql, nous pouvons restaurer la base de données:
+
+mysql -uroot bibliotheque < backup_final.sql
+
+--
+
+Pour faire une sauvegarde tous les jours, nous avons besoin de lancer une commande système
+
+echo "0 2 * * * mysqldump -uroot bibliotheque > /chemin/vers/le/dossier/sauvegarde/backup-\$(date +\%F).sql" | crontab -
