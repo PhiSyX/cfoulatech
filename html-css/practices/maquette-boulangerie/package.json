@@ -5,12 +5,7 @@
 		"dev": "vite"
 	},
 	"devDependencies": {
-		"sass-embedded": "^1.85.1",
-		"vite": "^6.2.1"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
+		"sass-embedded": "catalog:",
+		"vite": "catalog:"
 	}
 }

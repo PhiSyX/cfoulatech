@@ -7,6 +7,6 @@
 	},
 	"keywords": [],
 	"devDependencies": {
-		"sass": "catalog:"
+		"sass-embedded": "catalog:"
 	}
 }
