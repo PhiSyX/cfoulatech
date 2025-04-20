@@ -14,18 +14,28 @@ const Default = {
 // Fonction //
 // -------- //
 
-/// Transforme une chaîne de caractère en une chaîne capitalisée.
-function camelcase(text, user_options = Default) {
+/**
+ * Transforme une chaîne de caractère en une chaîne capitalisée.
+ * @param {string} text
+ * @param {{ to_lower?: boolean; includes_separators?: boolean; }} user_options
+ * @returns {*}
+ */
+function camelcase(text, user_options = Default)
+{
 	let options = { ...Default, ...user_options };
 
+	/**
+	 * @param {string} word
+	 * @returns {string}
+	 */
 	let algo = (word) => {
 		if (word.length === 0) {
 			return word;
 		}
 
-		// SAFETY: la condition ci-haut nous garantie que la chaîne de
-		// caractères comporte au moins 1 caractère, qui nous permet d'accéder à
-		// l'index 0 de la chaîne en toute sécurité.
+		// SAFETY(phisyx): la condition ci-haut nous garantit que la chaîne de
+		// caractères comporte au moins un (1) caractère, qui nous permet
+		// d'accéder à l'index zéro (0) de la chaîne en toute sécurité.
 		let first_ch /* char */ = word[0].toUpperCase();
 
 		// NOTE(phisyx): le résultat d'une [String.prototype.slice(1)] lorsque

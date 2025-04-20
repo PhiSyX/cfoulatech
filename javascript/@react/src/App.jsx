@@ -9,7 +9,8 @@ import { ROUTES } from "./router/routes";
 
 import PageNotFound from "./pages/PageNotFound";
 
-function App() {
+function App()
+{
 	return (
 		<BrowserRouter>
 			<Header />
@@ -25,10 +26,7 @@ function App() {
 					)),
 				)}
 
-				<Route
-					path="*"
-					element={<PageNotFound />}
-				/>
+				<Route path="*" element={<PageNotFound/>} />
 			</Routes>
 		</BrowserRouter>
 	);

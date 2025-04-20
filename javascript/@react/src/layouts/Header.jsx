@@ -6,11 +6,17 @@ import { NavLink } from "react-router-dom";
 import { ROUTES } from "../router/routes";
 import { pascalcase } from "../../lib/capitalization/pascalcase";
 
-function title(str) {
+/**
+ * @param {string} str
+ * @returns {string}
+ */
+function title(str)
+{
 	return pascalcase(str.replace(/^(PageService|Page)/g, ""));
 }
 
-export function Header() {
+export function Header()
+{
 	return (
 		<header>
 			<nav>

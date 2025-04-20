@@ -7,7 +7,8 @@ const DEFAULT_API_USERS = "https://jsonplaceholder.typicode.com/users";
  * @param {string} endpoint
  * @param {AbortSignal} signal
  */
-async function fetchUsers(endpoint, signal) {
+async function fetchUsers(endpoint, signal)
+{
 	const response = await fetch(endpoint, { signal });
 	if (response.ok === null) {
 		throw new Error("Erreur lors de la récupération des utilisateurs");
@@ -19,7 +20,8 @@ async function fetchUsers(endpoint, signal) {
  * @param {object} props
  * @param {string} [props.endpoint]
  */
-export function ApiUsers(props) {
+export default function ApiUsers(props)
+{
 	let endpoint = props.endpoint || DEFAULT_API_USERS;
 
 	const [users, setUsers] = useState([]);

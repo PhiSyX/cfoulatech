@@ -1,3 +1,7 @@
+/**
+ * @typedef {{id:number;name:string;email:string;address:{city:string};phone:string;}} UserAPI
+ */
+
 import React, { useEffect, useState } from "react";
 
 import { UserCard } from "../components/UserCard";
@@ -9,7 +13,8 @@ const DEFAULT_API_USERS = "https://jsonplaceholder.typicode.com/users/%d";
  * @param {number} id
  * @param {AbortSignal} signal
  */
-async function fetchUser(endpoint, id, signal) {
+async function fetchUser(endpoint, id, signal)
+{
 	let response = await fetch(endpoint.replace("%d", id.toString()), {
 		signal,
 	});
@@ -25,12 +30,15 @@ async function fetchUser(endpoint, id, signal) {
  * @param {object} props
  * @param {string} [props.endpoint]
  */
-export default function ApiUserDetails(props) {
+export default function ApiUserDetails(props)
+{
 	let endpoint = props.endpoint || DEFAULT_API_USERS;
 
 	const [id, setId] = useState(1);
 
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(
+		/** @type {UserAPI|null} */null,
+	);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -62,7 +70,7 @@ export default function ApiUserDetails(props) {
 				phone={user.phone}
 			/>
 
-			<hr />
+			<hr/>
 
 			{id < 10 && (
 				<button

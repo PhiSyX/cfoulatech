@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React from "react";
 
 import PageHome from "../pages/PageHome";
 import PageAbout from "../pages/PageAbout";
@@ -12,11 +12,12 @@ import PageServiceRestaurant from "../pages/services/PageServiceRestaurant";
 
 import PageWebsocket from "../pages/com/PageWebsocket";
 
+import ApiUsers from "../api/ApiUsers";
+import ApiUserDetails from "../api/ApiUserDetails";
+
 import { Counter } from "../components/Counter";
 import { MouseTracker } from "../components/MouseTracker";
 import { InfiniteTimer, Timer } from "../components/Timer";
-import { ApiUsers } from "../api/ApiUsers";
-import ApiUserDetails from "../api/ApiUserDetails";
 
 export const ROUTES = [
 	{

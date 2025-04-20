@@ -41,18 +41,21 @@ export function UsersListWithState() {
 			id: 1,
 			name: "Erica",
 			age: 19,
+			email: "erica@fitgirl.pt",
 			city: "Bruxelles",
 		},
 		{
 			id: 2,
 			name: "Carina",
 			age: 20,
+			email: "carina@voce.br",
 			city: "Bruxelles",
 		},
 		{
 			id: 3,
 			name: "Olga",
 			age: 21,
+			email: "olga@ak47.uk",
 			city: "Bruxelles",
 		},
 	];
@@ -86,6 +89,7 @@ export function UsersListWithState() {
 						id={user.id}
 						name={user.name}
 						age={user.age}
+						email={user.email}
 						city={user.city}
 						onChangeAge={onChangeUserAge}
 						key={user.name}

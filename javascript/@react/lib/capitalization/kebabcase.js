@@ -12,10 +12,25 @@ const Default = {
 // Fonction //
 // -------- //
 
-/// Transforme une chaîne de caractère en kebab-case.
-function kebabcase(text, user_options = Default) {
+/**
+ * Transforme une chaîne de caractère en kebab-case.
+ * @param {string} text
+ * @param {{
+ * 	includes_dash_before_number?: boolean;
+ * 	includes_special_chars_after_dash?: boolean,
+ * 	reduce_cumulative_hyphens_into_one?: boolean,
+ * }} user_options
+ * @returns {string}
+ */
+function kebabcase(text, user_options = Default)
+{
 	let options = { ...Default, ...user_options };
 
+	/**
+	 * @param {string[number]} ch
+	 * @param {number} idx
+	 * @returns {string}
+	 */
 	let algo = (ch, idx) => {
 		if (ch === "-" || ch !== ch.toUpperCase()) {
 			return ch;

@@ -8,7 +8,7 @@ import React, { useRef } from "react";
  * @param {object}  props		 Les propriétés du composant [UserCard]
  * @param {number}  props.id	 ID
  * @param {string}  props.name	 Nom de la personne
- * @param {number}  props.email	 Âge de la personne
+ * @param {string}  props.email	 Email de la personne
  * @param {string}  props.city	 Ville de la personne
  * @param {string} [props.phone] Numéro de la personne
  */
@@ -49,11 +49,12 @@ export function UserCard(props) {
  * @param {number} props.id    ID
  * @param {string} props.name  Nom de la personne
  * @param {number} props.age   Âge de la personne
+ * @param {string} props.email Email de la personne
  * @param {string} props.city  Ville de la personne
  * @param {(_: string,__: number) => void} props.onChangeAge Événement de changement de d'âge
  */
 export function UserCardWithChangeAge(props) {
-	const { id, age, city, name, onChangeAge } = props;
+	const { id, age, email, city, name, onChangeAge } = props;
 
 	/**
 	 * @type {React.RefObject<HTMLDialogElement|null>}
@@ -77,7 +78,7 @@ export function UserCardWithChangeAge(props) {
 		<div className="user-card-change-age">
 			<UserCard
 				id={id}
-				email={age}
+				email={email}
 				city={city}
 				name={name}
 			/>

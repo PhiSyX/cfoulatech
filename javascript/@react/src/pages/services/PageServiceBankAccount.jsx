@@ -29,7 +29,8 @@ const MESSAGES = {
 	],
 };
 
-export default function PageServiceBankAccount() {
+export default function PageServiceBankAccount()
+{
 	let [balance, setBalance] = useState(0);
 	let [userAmount, setUserAmount] = useState(
 		/** @type {number|undefined} */ (undefined),

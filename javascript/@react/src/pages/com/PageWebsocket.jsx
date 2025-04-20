@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-export default function PageWebsocket() {
+export default function PageWebsocket()
+{
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export function InfiniteTimer() {
+export function InfiniteTimer()
+{
 	const [timer, setTimer] = useState(0);
 
 	useEffect(() => {
@@ -32,7 +33,8 @@ export const B_ALL = B_START | B_PAUSE | B_CLEAR;
  * @param {number} [props.btns=B_ALL]
  * @returns {React.JSX.Element}
  */
-export function Timer(props) {
+export function Timer(props)
+{
 	const [timer, setTimer] = useState(0);
 	const limit = props.limit ?? 1_000;
 	const timeoutRef = useRef(0);

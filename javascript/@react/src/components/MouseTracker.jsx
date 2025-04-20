@@ -2,7 +2,8 @@ import React from "react";
 
 import { useMousePosition } from "../hooks/useMousePosition";
 
-export function MouseTracker() {
+export function MouseTracker()
+{
 	const { x, y } = useMousePosition();
 
 	return (

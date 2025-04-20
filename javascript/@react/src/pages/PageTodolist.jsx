@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-export default function PageTodolist() {
+export default function PageTodolist()
+{
 	const [tasks, setTasks] = useState(["Première tâche", "Seconde tâche"]);
 
 	const addTask = () => {

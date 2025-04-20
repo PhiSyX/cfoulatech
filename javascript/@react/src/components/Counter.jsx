@@ -12,7 +12,8 @@ import { minmax } from "../../lib/math/minmax";
  * @param {number} [props.min=Infinity]
  * @param {number} [props.max=Infinity]
  */
-export function Counter(props) {
+export function Counter(props)
+{
 	const min = props.min ?? Number.NEGATIVE_INFINITY;
 	const max = props.max ?? Number.POSITIVE_INFINITY;
 
