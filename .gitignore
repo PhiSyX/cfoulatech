@@ -5,6 +5,8 @@ dist/
 node_modules/
 target/
 
+*.lock
+
 .DS_Store
 *.bmp
 *.pdf
