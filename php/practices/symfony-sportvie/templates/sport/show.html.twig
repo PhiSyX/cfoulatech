@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title "Sport " ~ sport.nom %}
+
+{% block body %}
+
+	<nav aria-label="breadcrumb" class="breadcrumb-nav">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item" aria-current="false">
+					<a href="{{ path('app_home') }}">Accueil</a>
+				</li>
+				<li class="breadcrumb-item" aria-current="false">
+					<a href="{{ path('app_sport') }}">Nos sports</a>
+				</li>
+				<li class="breadcrumb-item" aria-current="page">
+					{{ sport.nom }}
+				</li>
+			</ol>
+		</div>
+	</nav>
+
+	<section class="page-sport container">
+		<h1>{{ sport.nom }}</h1>
+
+		<p>
+			{{ sport.regles }}
+		</p>
+
+		{{ dump(sport) }}
+	</section>
+{% endblock %}

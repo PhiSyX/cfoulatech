@@ -1,0 +1,31 @@
+<section class="header {{ hero is defined ? 'with-hero' : '' }}">
+	<header role="banner">
+		<nav>
+			<ul>
+				<li class=header-brand>
+					<a href="./">Sport<span class="hl">Vie</span></a>
+				</li>
+			</ul>
+
+			<ul role="list">
+				<li>
+					<a href="{{ path("app_home") }}"
+					   aria-current="{{ app.current_route == 'app_home' ? 'page' : 'false' }}">
+						Accueil
+					</a>
+				</li>
+
+				<li>
+					<a href="{{ path('app_sport') }}"
+					   aria-current="{{ app.current_route starts with 'app_sport' ? 'page' : 'false' }}">
+						Parcourir nos sports
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	{% if hero is defined %}
+		{% include "partials/components/_hero.html.twig" %}
+	{% endif %}
+</section>

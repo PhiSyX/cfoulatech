@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title "Nos sports" %}
+
+{% block body %}
+	<section class="page-sport container">
+		<h1>Tous nos sports</h1>
+
+		<p>
+			Envie de pratiquer un sport avec plus de 3000 sportifs dans une ambiance fun tout en étant compétitif, mais
+			tu ne sais pas quel sport choisir ?
+			Cette liste pourrait te plaire !
+		</p>
+
+		<section class="sport">
+			{% for sport in sports %}
+				<article class="sport-item">
+					<h2>
+						<a href="{{ path('app_sport_show', {id:sport.id}) }}">
+							{{ sport.nom }}
+						</a>
+					</h2>
+
+					{{ dump(sport) }}
+				</article>
+			{% endfor %}
+		</section>
+	</section>
+{% endblock %}
