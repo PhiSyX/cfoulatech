@@ -12,10 +12,21 @@
 	],
 	"mots": [
 		"Bonjour",
-		"Carina"
+		"Bonsoir",
+		"Carina",
+		"Clovis",
+		"Ericou"
 	],
 	"nombres": [
 		1,
+		-3.7,
 		-7
+	],
+	"person": [
+		1,
+		"John Doe",
+		"john@doe.fr",
+		"1991-12-07",
+		true
 	]
 }

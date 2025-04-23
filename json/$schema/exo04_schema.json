@@ -1,0 +1,25 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"additionalProperties": false,
+		"properties": {
+			"nom": {
+				"type": "string",
+				"minLength": 3,
+				"maxLength": 50,
+				"pattern": "^[A-ZÀ-Ÿ][a-zà-ÿ]+([-\\s'][A-ZÀ-Ÿa-zà-ÿ]+)*$"
+			},
+			"age": {
+				"type": "integer",
+				"exclusiveMinimum": 0
+			},
+			"email": {
+				"type": "string",
+				"format": "email"
+			}
+		},
+		"required": ["nom", "email"]
+	}
+}

@@ -1,0 +1,8 @@
+[
+	{
+		"$schema": "exo04_schema.json",
+		"nom": "Dunia",
+		"email": "jdunia@cfitech.be",
+		"age": 22
+	}
+]
