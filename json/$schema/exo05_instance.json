@@ -1,0 +1,29 @@
+{
+	"$schema": "exo05_schema.json",
+	"lang": "français",
+	"stagiaire": {
+		"id": 1,
+		"nom": "Mike",
+		"email": "mike@web.dev",
+		"age": 19,
+		"formation": "web dev"
+	},
+	"utilisateur_vente": {
+		"mdp": "hello-world",
+		"pseudo": "hello",
+		"role": "client"
+	},
+	"personne": {
+		"genre": "F",
+		"nom": "Doe",
+		"prenom": "Jane",
+		"ville": "San Diego",
+		"adresse": "Blue Hill Avenue",
+		"code_postal": 1001
+	},
+	"personne_permis": {
+		"age": 19,
+		"nom": "John",
+		"permis": true
+	}
+}

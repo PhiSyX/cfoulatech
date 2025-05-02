@@ -1,0 +1,118 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"lang": {
+			"type": "string",
+			"enum": ["français", "anglais", "allemand", "japonais"]
+		},
+		"stagiaire": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"nom": {
+					"type": "string",
+					"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$",
+					"minLength": 2,
+					"maxLength": 50
+				},
+				"email": {
+					"type": "string",
+					"format": "email"
+				},
+				"age": {
+					"type": "integer",
+					"minimum": 18
+				},
+				"formation": {
+					"type": "string",
+					"enum": ["web dev", "java dev", "technicien", "électricien"]
+				}
+			},
+			"required": ["id", "nom", "email", "age", "formation"]
+		},
+		"utilisateur_vente": {
+			"type": "object",
+			"properties": {
+				"pseudo": {
+					"type": "string",
+					"minLength": 5,
+					"maxLength": 15
+				},
+				"mdp": {
+					"type": "string",
+					"minLength": 8
+				},
+				"role": {
+					"type": "string",
+					"enum": ["admin", "vendeur", "client"]
+				}
+			}
+		},
+		"personne": {
+			"type": "object",
+			"properties": {
+				"nom": {
+					"type": "string",
+					"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$"
+				},
+				"prenom": {
+					"type": "string",
+					"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$"
+				},
+				"genre": {
+					"type": "string",
+					"enum": ["H", "F", "X"]
+				},
+				"ville": {
+					"type": "string"
+				},
+				"adresse": {
+					"type": "string"
+				},
+				"code_postal": {
+					"type": "integer",
+					"minimum": 1000
+				}
+			},
+			"dependencies": {
+				"adresse": ["code_postal"]
+			},
+			"required": ["nom", "prenom", "genre", "ville"]
+		},
+		"personne_permis": {
+			"type": "object",
+			"properties": {
+				"nom": {
+					"type": "string",
+					"pattern": "^[A-Z]([a-zA-Z-\\s'])*[a-z]$"
+				},
+				"age": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"permis": {
+					"type": "boolean"
+				}
+			},
+			"if": {
+				"properties": {
+					"age": { "minimum": 18 }
+				}
+			},
+			"then": {
+				"properties": {
+					"permis": { "const": true }
+				}
+			},
+			"else": {
+				"properties": {
+					"permis": { "const": false }
+				}
+			}
+		}
+	}
+}
