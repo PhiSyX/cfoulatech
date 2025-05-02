@@ -12,11 +12,12 @@ final class HomeController extends AbstractController
 	public function index(): Response
 	{
 		return $this->render('home/index.html.twig', [
-			"hero" => true,
-			"hero_title" => "Le sport, c'est la vie",
-			"hero_content" => 'Boost ta puissance et ta productivité en buvant nos boissons énergisantes <span class="hl">SportDrink</span>',
-			"hero_btn" => "Profite des 20% de réduction",
-			"hero_btn_link" => "app_home",
+			"hero" => [
+				"title" => "Le sport, c'est la vie",
+				"content" => 'Boost ta puissance et ta productivité en buvant nos boissons énergisantes <span class="hl">SportDrink</span>',
+				"action_text" => "Profite des 20% de réduction",
+				"action_link" => "app_home",
+			],
 		]);
 	}
 }

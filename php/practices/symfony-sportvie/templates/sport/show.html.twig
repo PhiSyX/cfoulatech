@@ -1,32 +1,75 @@
 {% extends "base.html.twig" %}
 
-{% block title "Sport " ~ sport.nom %}
+{% block title %}
+	{% if sport is null %}
+		Sport Introuvable
+	{% else %}
+		Sport {{ sport.nom }}
+	{% endif %}
+{% endblock %}
 
 {% block body %}
 
-	<nav aria-label="breadcrumb" class="breadcrumb-nav">
-		<div class="container">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="false">
-					<a href="{{ path('app_home') }}">Accueil</a>
-				</li>
-				<li class="breadcrumb-item" aria-current="false">
-					<a href="{{ path('app_sport') }}">Nos sports</a>
-				</li>
-				<li class="breadcrumb-item" aria-current="page">
-					{{ sport.nom }}
-				</li>
-			</ol>
-		</div>
-	</nav>
+	{% if sport is null %}
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" aria-current="false">
+						<a href="{{ path('app_home') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="{{ path('app_sport') }}">Nos sports</a>
+					</li>
+				</ol>
+			</div>
+		</nav>
 
-	<section class="page-sport container">
-		<h1>{{ sport.nom }}</h1>
+		<br>
 
-		<p>
-			{{ sport.regles }}
-		</p>
+		<section class="page-sport container">
+			<div class="alert alert-error">
+				Le sport à l'id <strong>{{ sport_id }}</strong> exister dans la base de données.
+			</div>
+		</section>
+	{% else %}
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" aria-current="false">
+						<a href="{{ path('app_home') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item" aria-current="false">
+						<a href="{{ path('app_sport') }}">Nos sports</a>
+					</li>
+					<li class="breadcrumb-item" aria-current="page">
+						Sport "{{ sport.nom }}"
+					</li>
+				</ol>
+			</div>
+		</nav>
 
-		{{ dump(sport) }}
-	</section>
+		<section class="page-sport">
+			<article class="container">
+				<h1>{{ sport.nom }}</h1>
+
+				<p class="sport-item">
+					{{ sport.regles }}
+				</p>
+
+				<footer>
+				<span>
+					Temps de jeu:
+					{{ sport.tempsDeJeu }} minutes
+				</span>
+
+					<time>
+						Écrit le {{ sport.createdAt.format('d/m/Y') }} à {{ sport.createdAt.format('H\\hi') }}
+					</time>
+				</footer>
+
+				{{ dump(sport) }}
+			</article>
+		</section>
+	{% endif %}
+
 {% endblock %}

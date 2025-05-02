@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\SportRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class SportController extends AbstractController
@@ -13,9 +14,7 @@ final class SportController extends AbstractController
 	public function index(SportRepository $sportRepository): Response
 	{
 		$sports = $sportRepository->findAll();
-		dump($sports);
 		return $this->render('sport/index.html.twig', [
-			'controller_name' => 'SportController',
 			'sports' => $sports,
 		]);
 	}
@@ -24,10 +23,12 @@ final class SportController extends AbstractController
 	public function show(SportRepository $sportRepository, int $id): Response
 	{
 		$sport = $sportRepository->find($id);
-		dump($sport);
+
+		// FIXME: handle id not found here
+
 		return $this->render('sport/show.html.twig', [
-			'controller_name' => 'SportController',
 			'sport' => $sport,
+			'sport_id' => $id,
 		]);
 	}
 }
