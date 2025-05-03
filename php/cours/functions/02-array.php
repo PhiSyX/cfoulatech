@@ -17,3 +17,6 @@ var_dump($tabs);
 rsort($tabs);
 var_dump($tabs);
 
+$a = "b";
+$b = "c";
+var_dump(compact("a", "b"));
