@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__) . "/fonctions_require.php";
+require dirname(__DIR__) . "/fns.php";
 
 $term1 = "soustraire";
 $term2 = "soustraction";

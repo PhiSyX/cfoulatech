@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__) . "/fonctions_require.php";
+require dirname(__DIR__) . "/fns.php";
 
 const ADD = 1;
 const SUB = 2;
@@ -20,6 +20,7 @@ function calc(int $op, float $l, float $r): float
 		case DIV:
 			return div($l, $r);
 	}
+	return 0;
 }
 
 if (yes_or_no("Voulez-vous faire un calcul?")) {

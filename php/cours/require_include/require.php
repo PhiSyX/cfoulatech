@@ -5,7 +5,7 @@
 // Le script ne va pas executer le reste du fichier, quand le fichier n'est pas
 // trouvé par le require ci-haut.
 
-require __DIR__ . "/fonctions_require.php";
+require __DIR__ . "/fns.php";
 
 echo "Hello\n";
 
