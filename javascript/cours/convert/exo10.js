@@ -21,7 +21,7 @@ function guess(price, userPrice) {
 const JUSTE_PRIX = rand(100);
 
 await prompt(
-	"Quel est le Juste prix ? (" + JUSTE_PRIX + ")",
+	`Quel est le Juste prix ? (${JUSTE_PRIX})`,
 	{
 		cast: "number",
 		filter(userPrice) {
@@ -39,5 +39,5 @@ await prompt(
 	},
 );
 
-write("Bravo, tu as trouvé le juste prix qui est de " + JUSTE_PRIX);
+write(`Bravo, tu as trouvé le juste prix qui est de ${JUSTE_PRIX}`);
 

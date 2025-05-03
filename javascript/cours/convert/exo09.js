@@ -1,6 +1,9 @@
 import { prompt } from "../utils/prompt.js";
 import { write } from "../utils/write.js";
 
+/**
+ * @type {"Python"|"Java"|"PHP"}
+ */
 let lang = await prompt(
 	"Quel est ton langage de programmation favoris entre le Python, Java et PHP ?",
 	{
