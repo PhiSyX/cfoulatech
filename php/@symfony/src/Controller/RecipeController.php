@@ -53,21 +53,28 @@ final class RecipeController extends AbstractController
 		name: "app_recipe_show",
 		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
 	)]
-	public function show(Request $req, string $slug, int $id): Response
+	public function show(
+		RecipeRepository $recipeRepository,
+		int              $id,
+		string           $slug,
+	): Response
 	{
+		$recipe = $recipeRepository->findOneBy(compact('id', 'slug'));
+
 		$user = [
 			"firstname" => "Mike",
 			"username" => "PhiSyX",
 		];
 
-		dump($slug);
-		dump($id);
-		dump($user);
+		//		dump($slug);
+		//		dump($id);
+		//		dump($user);
 
 		return $this->render("recipe/show.html.twig", [
 			"slug" => $slug,
 			"id" => $id,
 			"user" => $user,
+			"recipe" => $recipe,
 		]);
 	}
 

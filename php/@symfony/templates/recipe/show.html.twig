@@ -5,5 +5,7 @@
 {% block body %}
 	<h1>Bienvenue sur la recette n°{{ id }}</h1>
 	<h2>Recette créée par {{ user.firstname }} (<small>{{ user.username }}</small>)</h2>
-	<p>Comment faire un.e {{ slug | title }}!</p>
+	<h3>Comment faire un.e {{ recipe.title }}!</h3>
+	<p>{{ recipe.content | nl2br }}</p>
+	<small>{{ recipe.createdAt | date }}</small>
 {% endblock %}
