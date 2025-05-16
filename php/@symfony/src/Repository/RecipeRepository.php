@@ -11,10 +11,23 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RecipeRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Recipe::class);
-    }
+	public function __construct(ManagerRegistry $registry)
+	{
+		parent::__construct($registry, Recipe::class);
+	}
+
+	/**
+	 * @return Recipe[]
+	 */
+	public function findFromSmallerDuration(int $duration): array
+	{
+		return $this->createQueryBuilder("r")
+			->where("r.duration <= :duration")
+			->orderBy("r.duration", "ASC")
+			->setParameter("duration", $duration)
+			->getQuery()
+			->getResult();
+	}
 
 //    /**
 //     * @return Recipe[] Returns an array of Recipe objects

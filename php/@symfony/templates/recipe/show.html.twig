@@ -1,11 +1,14 @@
 {% extends "base.html.twig" %}
 
-{% block title "Page de la recette " ~ slug | title ~ "!" %}
+{#{% block title "#" ~ recipe.id ~ " " ~ recipe.slug %}#}
+{% block title %} #{{ recipe.id }} {{ recipe.slug }} {% endblock %}
 
 {% block body %}
-	<h1>Bienvenue sur la recette n°{{ id }}</h1>
-	<h2>Recette créée par {{ user.firstname }} (<small>{{ user.username }}</small>)</h2>
-	<h3>Comment faire un.e {{ recipe.title }}!</h3>
-	<p>{{ recipe.content | nl2br }}</p>
-	<small>{{ recipe.createdAt | date }}</small>
+	<article style="max-width: 80ch;" class="mx-auto">
+		<h1>Bienvenue sur la recette n°{{ recipe.id }}</h1>
+		<h2>Recette créée par {{ user.firstname }} (<small>{{ user.username }}</small>)</h2>
+		<h3>Comment faire un.e {{ recipe.title }}!</h3>
+		<p>{{ recipe.content | nl2br }}</p>
+		<small>{{ recipe.createdAt | date }}</small>
+	</article>
 {% endblock %}
