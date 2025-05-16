@@ -98,21 +98,9 @@
 					"type": "boolean"
 				}
 			},
-			"if": {
-				"properties": {
-					"age": { "minimum": 18 }
-				}
-			},
-			"then": {
-				"properties": {
-					"permis": { "const": true }
-				}
-			},
-			"else": {
-				"properties": {
-					"permis": { "const": false }
-				}
-			}
+			"if": { "properties": { "age": { "minimum": 18 } } },
+			"then": { "required": ["permis"] },
+			"else": { "not": { "required": ["permis"] } }
 		}
 	}
 }
