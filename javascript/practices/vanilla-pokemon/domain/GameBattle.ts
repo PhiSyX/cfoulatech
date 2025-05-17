@@ -34,19 +34,28 @@ export class GameBattle {
 		this.orderToursFighters = [p1, p2];
 	}
 
+	/**
+	 * Récupère le perdant en fonction de l'HP.
+	 */
 	loser(): Pokemon | false {
 		if (this.fighters[0].getHitPoints() <= 0) return this.fighters[0];
 		if (this.fighters[1].getHitPoints() <= 0) return this.fighters[1];
 		return false;
 	}
 
+	/**
+	 * Récupère le gagnant en fonction de l'HP.
+	 */
 	winner(): Pokemon | false {
 		if (this.fighters[0].getHitPoints() <= 0) return this.fighters[1];
 		if (this.fighters[1].getHitPoints() <= 0) return this.fighters[0];
 		return false;
 	}
 
-	requestAttack(attacker: Pokemon, defender: Pokemon, attack: Attack | string){
+	/**
+	 * Demande d'attaque à l'attaquant vers le défenseur.
+	 */
+	requestAttack(attacker: Pokemon, defender: Pokemon, attack: Attack) {
 		if (attacker.getName() === this.orderToursFighters[1].getName()) {
 			throw new BadFighterAttackError(defender.getName());
 		}
@@ -55,12 +64,13 @@ export class GameBattle {
 			throw new NotAliveError(attacker.getName());
 		}
 
-		let attackName: string = (typeof attack === "string")
-			? attack
-			: attack.name;
+		let attackName = attack.name;
 
 		let withAttack = attacker.getAttack(attackName);
-		if (!withAttack) throw new AttackNotFoundError(attacker.getName(), attackName);
+		if (!withAttack) {
+			throw new AttackNotFoundError(attacker.getName(), attackName);
+		}
+
 		attacker.attack(defender, withAttack);
 
 		this.history.push({
@@ -73,27 +83,24 @@ export class GameBattle {
 		this.orderToursFighters = [defender, attacker];
 	}
 
-	autoflow(
+	flow(
 		f1: Pokemon,
 		f2: Pokemon,
 		attack: Attack,
-		nextFn: (f1: Pokemon, f2: Pokemon) => void,
-		death: (w: Pokemon, d: Pokemon) => void,
+		whenAttack: (f1: Pokemon, f2: Pokemon, attack: Attack) => void,
+		onceDeath: (w: Pokemon, d: Pokemon) => void,
 		next: boolean = true,
 	) {
 		this.requestAttack(f1, f2, attack);
 
-		nextFn(f1, f2);
+		whenAttack(f1, f2, attack);
 
 		if (f2.isAlive()) {
 			if (next) {
-				setTimeout(
-					() => this.autoflow(f2, f1, randomArray(f2.getAttacks()), nextFn, death, false),
-					2_500,
-				);
+				setTimeout(() => this.flow(f2, f1, randomArray(f2.getAttacks()), whenAttack, onceDeath, false), 3_500);
 			}
 		} else {
-			death(f1, f2);
+			onceDeath(f1, f2);
 		}
 	}
 }

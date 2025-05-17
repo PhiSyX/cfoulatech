@@ -1,8 +1,4 @@
-import {
-	type PokemonType,
-	type PokemonTypeVariant,
-	PokemonTypeEnum,
-} from "./PokermonType.ts";
+import { type PokemonType, type PokemonTypeVariant, PokemonTypeEnum } from "./PokermonType.ts";
 
 import type { Pokemon } from "./Pokemon.ts";
 
@@ -26,11 +22,7 @@ export class Attack implements AttackProps {
 	public readonly power: AttackProps["power"];
 	public readonly type: AttackProps["type"];
 
-	constructor(
-		name: AttackProps["name"],
-		power: AttackProps["power"],
-		type: AttackProps["type"],
-	) {
+	constructor(name: AttackProps["name"], power: AttackProps["power"], type: AttackProps["type"]) {
 		this.name = name;
 		this.power = power;
 		this.type = type;
@@ -51,7 +43,7 @@ export class Attack implements AttackProps {
 				break;
 
 			case EffectivenessEnum.Faible:
-				power /= 2
+				power /= 2;
 				power -= levelDiff * 0.2;
 				break;
 
@@ -106,7 +98,7 @@ export class Attack implements AttackProps {
 						case PokemonTypeEnum.Glace:
 						case PokemonTypeEnum.Normal:
 						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Tenebre:
+						case PokemonTypeEnum.Tenebres:
 							return EffectivenessEnum.Forte;
 					}
 					break;
@@ -237,7 +229,7 @@ export class Attack implements AttackProps {
 
 				case PokemonTypeEnum.Psy:
 					switch (defType) {
-						case PokemonTypeEnum.Tenebre:
+						case PokemonTypeEnum.Tenebres:
 							return EffectivenessEnum.Rien;
 						case PokemonTypeEnum.Psy:
 						case PokemonTypeEnum.Acier:
@@ -282,7 +274,7 @@ export class Attack implements AttackProps {
 					switch (defType) {
 						case PokemonTypeEnum.Normal:
 							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Tenebre:
+						case PokemonTypeEnum.Tenebres:
 							return EffectivenessEnum.Faible;
 						case PokemonTypeEnum.Psy:
 						case PokemonTypeEnum.Roche:
@@ -290,11 +282,11 @@ export class Attack implements AttackProps {
 					}
 					break;
 
-				case PokemonTypeEnum.Tenebre:
+				case PokemonTypeEnum.Tenebres:
 					switch (defType) {
 						case PokemonTypeEnum.Combat:
 						case PokemonTypeEnum.Fee:
-						case PokemonTypeEnum.Tenebre:
+						case PokemonTypeEnum.Tenebres:
 							return EffectivenessEnum.Faible;
 						case PokemonTypeEnum.Psy:
 						case PokemonTypeEnum.Spectre:

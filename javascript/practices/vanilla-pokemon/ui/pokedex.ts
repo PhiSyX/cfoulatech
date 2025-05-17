@@ -1,17 +1,13 @@
 import type { Pokemon } from "../domain/Pokemon.ts";
 import { randomArray, randomNumber } from "../utils/helpers.ts";
 import { createBattleScreen } from "./battle.ts";
-import { audioDelay, useAudioEffect } from "./audio.ts";
-import {
-	changeImage,
-	changeText,
-	changeValue,
-	getTemplate, showElement,
-} from "./elements.ts";
+import { AudioEffect } from "./audio.ts";
+import { getTemplate } from "./elements.ts";
 
 interface PokedexListProps {
 	list: Array<Pokemon>;
 	opponent: Pokemon;
+	audio: AudioEffect;
 }
 
 interface PokedexListState {
@@ -21,6 +17,7 @@ interface PokedexListState {
 interface PokedexItemProps {
 	pokemon: Pokemon;
 	onSelect: () => void;
+	audio: AudioEffect;
 }
 
 class PokedexListUI {
@@ -41,93 +38,96 @@ class PokedexListUI {
 		this.headerLayout = document.querySelector("#header")!;
 		this.pokedexList = document.querySelector("#pokedex-list")!;
 		this.pokemonOpponent = document.querySelector("#pokemon-opponent")!;
-
 		this.battleFightBtn = document.querySelector("#pokemon-fight-btn")!;
+
 		this.battleFightBtn.addEventListener("click", this.gotoBattle);
 	}
 
 	gotoBattle = () => {
-		createBattleScreen(this.state.selected!, this.props.opponent)
-	}
+		let fighter = this.state.selected!;
+		createBattleScreen(fighter, this.props.opponent);
+	};
 
 	render() {
 		let $fragment = document.createDocumentFragment();
 
 		const whenSelectPokemon = (pokemon: Pokemon) => {
+			this.pokedexList.querySelector(".selected")?.classList.remove("selected");
+
+			this.battleFightBtn.removeAttribute("hidden");
+			let [pokemonCryId] = pokemon.getCry();
+			this.props.audio.playCry(pokemonCryId);
 			this.state.selected = pokemon;
 		};
 
-		$fragment.append(
-			...this.props.list.map(
-				(pokemon) => PokedexItemUI.from(pokemon, whenSelectPokemon),
-			),
-		);
+		$fragment.append(...this.props.list.map(
+			(pokemon) => PokedexItemUI.from(this.props.audio, pokemon, whenSelectPokemon)
+		));
 
 		return $fragment;
 	}
 
 	show() {
-		showElement(this.homeScreen);
-		showElement(this.headerLayout);
+		this.homeScreen.removeAttribute("hidden");
+		this.headerLayout.removeAttribute("hidden");
 		this.pokedexList.append(this.render());
-		this.pokemonOpponent.append(PokedexItemUI.from(this.props.opponent));
+		this.pokemonOpponent.append(PokedexItemUI.from(this.props.audio, this.props.opponent));
 	}
 }
 
 class PokedexItemUI {
-	static from(pokemon: Pokemon, onSelect: (pokemon: Pokemon) => void = () => {
-	}): HTMLElement {
-		return (new PokedexItemUI({
+	static from(audio: AudioEffect, pokemon: Pokemon, onSelect: (pokemon: Pokemon) => void = () => {}): HTMLElement {
+		return new PokedexItemUI({
+			audio,
 			pokemon,
 			onSelect: () => onSelect(pokemon),
-		})).render();
+		}).render();
 	}
 
 	props: PokedexItemProps;
 
-	battleFightBtn: HTMLButtonElement;
-	pokemonTemplate: HTMLDivElement;
-	pokedexList: HTMLDivElement;
+	template: HTMLDivElement;
+	name: HTMLHeadingElement;
+	// picture: HTMLImageElement;
 
 	constructor(props: PokedexItemProps) {
 		this.props = props;
-		this.pokemonTemplate = getTemplate("#tpl-pokedex-item");
-		this.pokedexList = document.querySelector("#pokedex-list")!;
-		this.battleFightBtn = document.querySelector("#pokemon-fight-btn")!;
+		this.template = getTemplate("#tpl-pokedex-item");
+		this.name = this.template.querySelector(".name")!;
 	}
 
 	render() {
-		this.pokemonTemplate.dataset.type = this.props.pokemon.getType().toString();
+		this.template.dataset.type = this.props.pokemon.getType().toString();
+		this.template.style.backgroundImage = `url(${this.props.pokemon.getPicture()})`;
 
-		changeImage(
-			this.pokemonTemplate.querySelector(".pic"),
-			this.props.pokemon.getPicture(),
-			this.props.pokemon.getName(),
-		);
-		changeText(this.pokemonTemplate.querySelector(".name"), this.props.pokemon.getName());
-		changeValue(this.pokemonTemplate.querySelector(".level output"), this.props.pokemon.getLevel());
-		changeValue(this.pokemonTemplate.querySelector(".type output"), this.props.pokemon.getType());
+		this.name.prepend(this.props.pokemon.getName());
 
-		this.pokemonTemplate.addEventListener("click", this.selectPokemon);
+		// FIXME
+		this.template.querySelector(".level output").value = this.props.pokemon.getLevel();
+		this.template.querySelector(".type output").value =  this.props.pokemon.getType();
 
-		return this.pokemonTemplate;
+		this.template.addEventListener("click", this.selectPokemon);
+
+		return this.template;
 	}
 
 	selectPokemon = () => {
-		this.pokedexList.querySelector(".selected")?.classList.remove("selected");
-		showElement(this.battleFightBtn);
-		let [pokemonCryId] = this.props.pokemon.getCry();
-		audioDelay(pokemonCryId, 0);
-		this.pokemonTemplate.classList.add("selected");
 		this.props.onSelect();
+		this.template.classList.add("selected");
 	};
 }
 
 export const createPokedexUI = (pokedex: Array<Pokemon>, opponents: Array<Pokemon>) => {
+	let audio = new AudioEffect();
+
 	let ui = new PokedexListUI({
 		list: pokedex.map((pokemon) => pokemon.withLevel(randomNumber(40, 100))),
 		opponent: randomArray(opponents).withLevel(randomNumber(40, 100)),
+		audio: audio,
 	});
+
 	ui.show();
-	useAudioEffect();
-}
+
+	audio.setupGlobal();
+	audio.setupPokedex();
+};

@@ -26,18 +26,13 @@
 <section id="pokedex-screen" class="container" hidden>
 	<template id="tpl-pokedex-item">
 		<article class="pokedex-item">
-			<img class="pic" src="" alt="">
-
-			<h1 class="name"></h1>
+			<h1 class="name">
+				<small class="type"><output class="badge"></output></small>
+			</h1>
 
 			<p class="level">
 				Niveau:
 				<output></output>
-			</p>
-
-			<p class="type">
-				Type:
-				<output class="badge"></output>
 			</p>
 		</article>
 	</template>
@@ -56,7 +51,7 @@
 		<div class="fighter">
 			<div>
 				<h1 class="name"><small class="level">Lv: </small></h1>
-				<progress class="hp-progress"></progress>
+				<meter class="hp-progress"></meter>
 				<p class="hp-diff" hidden></p>
 			</div>
 
@@ -67,9 +62,9 @@
 	</template>
 </section>
 
-<audio id="hover-effect" src="https://www.myinstants.com/media/sounds/tmpq91k5v_6.mp3"></audio>
-<audio id="battle-effect" src="https://kappa.vgmsite.com/soundtracks/pokemon-gold-silver-crystal/fozoptyemi/101.%20Battle%21%20%28Champion%29.mp3"></audio>
-<audio id="battle-victory-effect" src="https://www.myinstants.com/media/sounds/pokemon-red-blue-music-wild-pokemon-victory-theme-1.mp3"></audio>
+<audio id="btn-effect" src="https://www.myinstants.com/media/sounds/tmpq91k5v_6.mp3"></audio>
+<audio id="battle-sound" src="https://kappa.vgmsite.com/soundtracks/pokemon-gold-silver-crystal/fozoptyemi/101.%20Battle%21%20%28Champion%29.mp3"></audio>
+<audio id="battle-victory-sound" src="https://www.myinstants.com/media/sounds/pokemon-red-blue-music-wild-pokemon-victory-theme-1.mp3"></audio>
 <audio id="hit-effect" src="https://www.myinstants.com/media/sounds/hitmarker_2.mp3"></audio>
 
 <script type="module" src="/ui/main.ts"></script>

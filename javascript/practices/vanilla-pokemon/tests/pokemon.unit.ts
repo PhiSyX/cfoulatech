@@ -3,14 +3,26 @@ import { describe, expect, test } from "vitest";
 import {
 	AttackNotFoundError,
 	BadFighterAttackError,
-	GameBattle, NotAliveError,
+	GameBattle,
+	NotAliveError,
 } from "../domain/GameBattle.ts";
 import { Pokemon } from "../domain/Pokemon.ts";
 
-// const tortank   = () => new Pokemon("Tortank", "eau").withLevel(100).withMinimalLevel(36, 79).withMaximalLevel(100, 362);
-const tortank = () => new Pokemon("Tortank", "eau").withLevel(100).withMinimalLevel(79).withMaximalLevel(362);
-const dracaufeu = () => new Pokemon("Dracaufeu", "feu").withLevel(100).withMinimalLevel(78).withMaximalLevel(360);
-const lokhlass = () => new Pokemon("Lokhlass", ["eau", "glace"]).withLevel(40).withMinimalLevel(130).withMaximalLevel(464);
+const tortank = () =>
+	new Pokemon("Tortank", "eau")
+		.withLevel(100)
+		.withMinimalLevel(79)
+		.withMaximalLevel(362);
+const dracaufeu = () =>
+	new Pokemon("Dracaufeu", "feu")
+		.withLevel(100)
+		.withMinimalLevel(78)
+		.withMaximalLevel(360);
+const lokhlass = () =>
+	new Pokemon("Lokhlass", ["eau", "glace"])
+		.withLevel(40)
+		.withMinimalLevel(130)
+		.withMaximalLevel(464);
 
 describe("Pokemon", () => {
 	test("Règle: un pokémon n'a le droit d'attaquer qu'une seule fois", () => {
@@ -60,8 +72,9 @@ describe("Pokemon", () => {
 		).toThrowError(AttackNotFoundError);
 
 		let attack = attacker.getAttack("Hydrocanon")!;
-		expect(() => game.requestAttack(attacker, defender, attack))
-			.not.toThrowError(AttackNotFoundError);
+		expect(() =>
+			game.requestAttack(attacker, defender, attack),
+		).not.toThrowError(AttackNotFoundError);
 	});
 
 	test("Règle: un pokémon ne peut attaquer une fois mort", () => {
@@ -83,7 +96,9 @@ describe("Pokemon", () => {
 
 		game.requestAttack(attacker, defender, attack1);
 		game.requestAttack(defender, attacker, attack2);
-		expect(() => game.requestAttack(attacker, defender, attack1)).toThrowError(NotAliveError);
+		expect(() =>
+			game.requestAttack(attacker, defender, attack1),
+		).toThrowError(NotAliveError);
 	});
 
 	test("Fonctionnalité: Attaque d'un pokemon, perte de PV du défenseur", () => {
@@ -101,8 +116,7 @@ describe("Pokemon", () => {
 		expect(defender.isAlive()).toBeTruthy();
 
 		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() -
-			attack.calcPower(attacker, defender),
+			defender.maxHealth() - attack.calcPower(attacker, defender),
 		);
 	});
 
@@ -137,8 +151,7 @@ describe("Pokemon", () => {
 		game.requestAttack(attacker, defender, attack);
 
 		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() -
-			attack.calcPower(attacker, defender),
+			defender.maxHealth() - attack.calcPower(attacker, defender),
 		);
 	});
 
@@ -155,10 +168,9 @@ describe("Pokemon", () => {
 		let attack = attacker.getAttack("Feu d'Enfer")!;
 
 		game.requestAttack(attacker, defender, attack);
-		
+
 		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() -
-			attack.calcPower(attacker, defender),
+			defender.maxHealth() - attack.calcPower(attacker, defender),
 		);
 	});
 });

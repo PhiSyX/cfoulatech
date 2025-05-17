@@ -15,12 +15,11 @@ export const PokemonTypeEnum = {
 	Roche: "roche",
 	Sol: "sol",
 	Spectre: "spectre",
-	Tenebre: "ténèbres",
+	Tenebres: "ténèbres",
 	Vol: "vol",
 };
 
-export type PokemonTypeVariant = typeof PokemonTypeEnum[keyof typeof PokemonTypeEnum];
+export type PokemonTypeVariant =
+	(typeof PokemonTypeEnum)[keyof typeof PokemonTypeEnum];
 
-export type PokemonType =
-	| PokemonTypeVariant
-	| Array<PokemonTypeVariant>;
+export type PokemonType = PokemonTypeVariant | Array<PokemonTypeVariant>;
