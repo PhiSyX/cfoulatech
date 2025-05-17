@@ -318,4 +318,3 @@ export const pokemons: Array<Pokemon> = [
 	removeRandomArray(pokedex),
 	removeRandomArray(pokedex),
 ];
-console.log(pokedex);

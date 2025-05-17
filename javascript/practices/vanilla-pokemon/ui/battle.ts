@@ -210,13 +210,6 @@ class BattleFightUI
 					]);
 					victoryResume.append($item);
 				}
-
-				console.log("death", {
-					w: w.getName(),
-					d: d.getName(),
-					g1: w.getHitPoints(),
-					g2: d.getHitPoints(),
-				});
 			},
 		);
 	};
