@@ -1,11 +1,11 @@
-import type { Attack, AttackProps } from "./Attack.ts";
+import type { Attack } from "./Attack.ts";
 import type { Pokemon } from "./Pokemon.ts";
 import { randomArray } from "../utils/helpers.ts";
 
 interface HistoryAttack {
 	attacker: Pokemon;
 	defender: Pokemon;
-	attack: AttackProps["name"];
+	attack: Attack;
 	applied_at: Date;
 }
 
@@ -23,7 +23,7 @@ export class GameBattle {
 	/**
 	 * Historique de la partie
 	 */
-	private history: Array<HistoryAttack> = [];
+	history: Array<HistoryAttack> = [];
 
 	// ----------- //
 	// Constructor //
@@ -32,6 +32,10 @@ export class GameBattle {
 	constructor(p1: Pokemon, p2: Pokemon) {
 		this.fighters = [p1, p2];
 		this.orderToursFighters = [p1, p2];
+	}
+
+	countHits(from: Pokemon): number {
+		return this.history.filter((h) => h.attacker.getName() === from.getName()).length;
 	}
 
 	/**
@@ -74,7 +78,7 @@ export class GameBattle {
 		attacker.attack(defender, withAttack);
 
 		this.history.push({
-			attack: attackName,
+			attack: withAttack,
 			attacker,
 			defender,
 			applied_at: new Date(),

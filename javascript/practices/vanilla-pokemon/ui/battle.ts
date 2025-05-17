@@ -143,10 +143,11 @@ class BattleFightUI
 		this.#attacks.removeAttribute("hidden");
 
 		for (let attack of this.#props.fighter.getAttacks()) {
-			let $attackPower = span(attack.calcPower(this.#props.fighter, this.#props.opponent).toFixed(2), {
+			let power = attack.calcPower(this.#props.fighter, this.#props.opponent);
+			let $attackPower = span(Math.floor(power).toString(), {
 				attrs: {
 					className: ["badge", "text-align-right"],
-					title: `Puissance de base ${attack.power}`,
+					title: `Puissance ${power.toFixed(2)}`,
 				},
 			});
 
@@ -190,6 +191,25 @@ class BattleFightUI
 
 			(w, d) => {
 				this.#props.audio.playBattleVictorySound();
+
+				let victoryDialog = document.querySelector<HTMLDialogElement>("#victory-dialog")!;
+				victoryDialog.showPopover();
+				victoryDialog.addEventListener("blur", () => window.location.reload());
+
+				victoryDialog.querySelector(".name")!.append(w.getName());
+				victoryDialog.querySelector(".count-hits")!.append(this.#state.game.countHits(w).toString());
+				let victoryResume = victoryDialog.querySelector(".resume")!;
+
+				for (let history of this.#state.game.history) {
+					let $item = li([
+						history.attacker.getName(),
+						" a infligé ",
+						history.attack.calcPower(history.attacker, history.defender).toString(),
+						" points de dégâts avec ",
+						history.attack.name,
+					]);
+					victoryResume.append($item);
+				}
 
 				console.log("death", {
 					w: w.getName(),

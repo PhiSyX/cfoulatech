@@ -367,3 +367,12 @@ meter {
 	width: 100%;
 	padding-block: .5rem;
 }
+
+dialog {
+	padding-inline: 2rem;
+	border-radius: 12px;
+
+	h1 {
+		font-size: 1.5rem;
+	}
+}

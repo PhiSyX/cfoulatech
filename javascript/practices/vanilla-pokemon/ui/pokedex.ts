@@ -88,7 +88,6 @@ class PokedexItemUI {
 
 	template: HTMLDivElement;
 	name: HTMLHeadingElement;
-	// picture: HTMLImageElement;
 
 	constructor(props: PokedexItemProps) {
 		this.props = props;
