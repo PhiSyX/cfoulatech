@@ -1,0 +1,24 @@
+{
+	"name": "@phisyx/vanilla-pokemon",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"test:unit": "vitest --run",
+		"test:unit:watch": "vitest",
+		"test:e2e": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.52.0",
+		"@types/node": "^22.15.17",
+		"typescript": "~5.8.3",
+		"vite": "^6.3.5",
+		"vitest": "^0.34.6"
+	},
+	"dependencies": {
+		"normalize.css": "^8.0.1"
+	}
+}

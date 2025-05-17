@@ -1,0 +1,6 @@
+
+# Playwright
+node_modules/
+/tests/e2e/
+/tests/e2e-report/
+/blob-report/
