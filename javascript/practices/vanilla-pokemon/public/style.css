@@ -14,8 +14,8 @@ body {
 	height: 100%;
 	background: #212121;
 	color: #f7f7f7;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-	"Helvetica Neue", Arial, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	overflow: hidden;
 }
 
 html,
@@ -125,7 +125,7 @@ ul {
 }
 
 .header + section {
-	margin-top: 10rem;
+	margin-top: 3rem;
 }
 
 [data-type="normal"] {
@@ -365,7 +365,41 @@ ul {
 
 meter {
 	width: 100%;
-	padding-block: .5rem;
+}
+
+meter {
+	-webkit-appearance: none;
+}
+
+meter::-webkit-meter-bar {
+	background: #666;
+	-webkit-box-shadow: inset 0 0 2px 2px #555;
+	-moz-box-shadow: inset 0 0 2px 2px #555;
+	box-shadow: inset 0 0 2px 2px #555;
+}
+
+meter::-webkit-meter-bar,
+meter::-webkit-meter-optimum-value,
+meter::-webkit-meter-suboptimum-value,
+meter::-webkit-meter-even-less-good-value {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+meter::-webkit-meter-optimum-value {
+	background: #4fa2f7;
+	border: 1px solid #1560ad;
+}
+
+meter::-webkit-meter-suboptimum-value {
+	background: #f7c64f;
+	border: 1px solid #b9870d;
+}
+
+meter::-webkit-meter-even-less-good-value {
+	background: #f76f4f;
+	border: 1px solid #bd3413;
 }
 
 dialog {
