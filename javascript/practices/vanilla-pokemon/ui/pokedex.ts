@@ -1,5 +1,5 @@
 import type { Pokemon } from "../domain/Pokemon.ts";
-import { randomArray, randomNumber } from "../utils/helpers.ts";
+import { randomArray } from "../utils/helpers.ts";
 import { createBattleScreen } from "./battle.ts";
 import { AudioEffect } from "./audio.ts";
 import { getTemplate } from "./elements.ts";
@@ -60,9 +60,9 @@ class PokedexListUI {
 			this.state.selected = pokemon;
 		};
 
-		$fragment.append(...this.props.list.map(
-			(pokemon) => PokedexItemUI.from(this.props.audio, pokemon, whenSelectPokemon)
-		));
+		$fragment.append(
+			...this.props.list.map((pokemon) => PokedexItemUI.from(this.props.audio, pokemon, whenSelectPokemon)),
+		);
 
 		return $fragment;
 	}
@@ -96,6 +96,7 @@ class PokedexItemUI {
 	}
 
 	render() {
+		this.template.setAttribute("tabIndex", "-1");
 		this.template.dataset.type = this.props.pokemon.getType().toString();
 		this.template.style.backgroundImage = `url(${this.props.pokemon.getPicture()})`;
 
@@ -103,9 +104,10 @@ class PokedexItemUI {
 
 		// FIXME
 		this.template.querySelector(".level output").value = this.props.pokemon.getLevel();
-		this.template.querySelector(".type output").value =  this.props.pokemon.getType();
+		this.template.querySelector(".type output").value = this.props.pokemon.getType();
 
 		this.template.addEventListener("click", this.selectPokemon);
+		this.template.addEventListener("keydown", this.selectPokemonNav);
 
 		return this.template;
 	}
@@ -114,14 +116,26 @@ class PokedexItemUI {
 		this.props.onSelect();
 		this.template.classList.add("selected");
 	};
+
+	selectPokemonNav = (e: KeyboardEvent) => {
+		if (e.key === "ArrowLeft") {
+			this.template.previousElementSibling?.click();
+			this.template.previousElementSibling?.focus();
+		} else if (e.key === "ArrowRight") {
+			this.template.nextElementSibling?.click();
+			this.template.nextElementSibling?.focus();
+		} else if (e.key === "Enter" || e.key === " ") {
+			this.template.click();
+		}
+	};
 }
 
 export const createPokedexUI = (pokedex: Array<Pokemon>, opponents: Array<Pokemon>) => {
 	let audio = new AudioEffect();
 
 	let ui = new PokedexListUI({
-		list: pokedex.map((pokemon) => pokemon.withLevel(randomNumber(40, 100))),
-		opponent: randomArray(opponents).withLevel(randomNumber(40, 100)),
+		list: pokedex,
+		opponent: randomArray(opponents),
 		audio: audio,
 	});
 

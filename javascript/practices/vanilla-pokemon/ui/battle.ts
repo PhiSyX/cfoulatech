@@ -4,28 +4,24 @@ import { GameBattle } from "../domain/GameBattle.ts";
 import { button, fragment, getTemplate, li, span } from "./elements.ts";
 import { minmax } from "../utils/helpers.ts";
 
-interface BattleScreenProps
-{
+interface BattleScreenProps {
 	attacker: Pokemon;
 	defender: Pokemon;
 	audio: AudioEffect;
 }
 
-interface BattleFightProps
-{
+interface BattleFightProps {
 	fighter: Pokemon;
 	opponent: Pokemon;
 	controls: boolean;
 	audio: AudioEffect;
 }
 
-interface BattleScreenState
-{
+interface BattleScreenState {
 	game: GameBattle;
 }
 
-class BattleScreenUI
-{
+class BattleScreenUI {
 	props: BattleScreenProps;
 	state: BattleScreenState;
 
@@ -33,8 +29,7 @@ class BattleScreenUI
 	homeScreen: HTMLDivElement;
 	battleScreen: HTMLDivElement;
 
-	constructor(props: BattleScreenProps)
-	{
+	constructor(props: BattleScreenProps) {
 		this.props = props;
 		this.state = {
 			game: new GameBattle(this.props.attacker, this.props.defender),
@@ -45,8 +40,7 @@ class BattleScreenUI
 		this.battleScreen = document.querySelector("#battle-screen")!;
 	}
 
-	render()
-	{
+	render() {
 		return [
 			new BattleFightUI(
 				{
@@ -70,8 +64,7 @@ class BattleScreenUI
 		];
 	}
 
-	show()
-	{
+	show() {
 		this.homeScreen.setAttribute("hidden", "hidden");
 		this.headerLayout.setAttribute("hidden", "hidden");
 		this.battleScreen.removeAttribute("hidden");
@@ -79,8 +72,7 @@ class BattleScreenUI
 	}
 }
 
-class BattleFightUI
-{
+class BattleFightUI {
 	#props: BattleFightProps;
 	#state: BattleScreenState;
 
@@ -92,8 +84,7 @@ class BattleFightUI
 	#picture: HTMLImageElement;
 	#attacks: HTMLUListElement;
 
-	constructor(props: BattleFightProps, state: BattleScreenState)
-	{
+	constructor(props: BattleFightProps, state: BattleScreenState) {
 		this.#props = props;
 		this.#state = state;
 
@@ -107,8 +98,7 @@ class BattleFightUI
 		this.#attacks = $tpl.querySelector(".attacks")!;
 	}
 
-	render()
-	{
+	render() {
 		this.#template.id = `fighter-${this.#props.fighter.getId()}`;
 
 		this.#name.prepend(this.#props.fighter.getName(), " ");
@@ -158,7 +148,10 @@ class BattleFightUI
 						type: attack.type.toString(),
 					},
 				},
-				events: { click: this.handleAttackOpponent },
+				events: {
+					click: this.handleAttackOpponent,
+					keydown: this.moveIntoAttackList,
+				},
 			});
 
 			let $attack = li([$attackBtn]);
@@ -170,7 +163,6 @@ class BattleFightUI
 
 	handleAttackOpponent = (evt: MouseEvent) => {
 		let attack = this.#props.fighter.getAttack((evt.currentTarget as unknown as HTMLButtonElement).dataset.name!)!;
-
 
 		this.#state.game.flow(
 			this.#props.fighter,
@@ -213,10 +205,18 @@ class BattleFightUI
 			},
 		);
 	};
+
+	moveIntoAttackList = (evt: KeyboardEvent) => {
+		if (evt.key === "ArrowUp") {
+			evt.currentTarget?.parentElement?.previousElementSibling?.children.item(0)?.focus();
+		}
+		if (evt.key === "ArrowDown") {
+			evt.currentTarget?.parentElement?.nextElementSibling?.children.item(0)?.focus();
+		}
+	};
 }
 
-export function createBattleScreen(attacker: Pokemon, defender: Pokemon): void
-{
+export function createBattleScreen(attacker: Pokemon, defender: Pokemon): void {
 	let audio = new AudioEffect();
 
 	let screen = new BattleScreenUI({

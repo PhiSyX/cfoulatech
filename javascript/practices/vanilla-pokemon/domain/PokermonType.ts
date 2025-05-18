@@ -19,7 +19,6 @@ export const PokemonTypeEnum = {
 	Vol: "vol",
 };
 
-export type PokemonTypeVariant =
-	(typeof PokemonTypeEnum)[keyof typeof PokemonTypeEnum];
+export type PokemonTypeVariant = (typeof PokemonTypeEnum)[keyof typeof PokemonTypeEnum];
 
 export type PokemonType = PokemonTypeVariant | Array<PokemonTypeVariant>;

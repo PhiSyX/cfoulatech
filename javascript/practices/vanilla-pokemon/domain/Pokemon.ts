@@ -1,5 +1,6 @@
 import type { PokemonType } from "./PokermonType.ts";
 import { Attack, type AttackProps } from "./Attack.ts";
+import { minmax } from "../utils/helpers.ts";
 
 export class Pokemon {
 	private id?: string;
@@ -26,10 +27,7 @@ export class Pokemon {
 	}
 
 	withAttack(attack: AttackProps): this {
-		this.attackList.set(
-			attack.name,
-			new Attack(attack.name, attack.power, attack.type),
-		);
+		this.attackList.set(attack.name, new Attack(attack.name, attack.power, attack.type));
 		return this;
 	}
 
@@ -77,10 +75,7 @@ export class Pokemon {
 	}
 
 	getCry(): [id: string, url: string] {
-		return [
-			`cry-${this.getId()}`,
-			`https://play.pokemonshowdown.com/audio/cries/${this.getId()}.mp3`,
-		];
+		return [`cry-${this.getId()}`, `https://play.pokemonshowdown.com/audio/cries/${this.getId()}.mp3`];
 	}
 
 	getPicture(): string {
@@ -113,7 +108,7 @@ export class Pokemon {
 		const ratio = (this.currentLevel - minLevel) / (maxLevel - minLevel);
 		const hp = this.minHp + ratio * (this.maxHp - this.minHp);
 		if (Number.isNaN(hp)) return this.minHp;
-		return hp;
+		return minmax(hp, this.minHp, this.maxHp);
 	}
 
 	attack(defender: Pokemon, attack: Attack): boolean {

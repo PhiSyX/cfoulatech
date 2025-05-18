@@ -1,8 +1,8 @@
 /** Pokemons */
 
 import { Pokemon } from "./Pokemon.ts";
-import type { PokemonType } from "./PokermonType.ts";
-import { removeRandomArray } from "../utils/helpers.ts";
+import { PokemonTypeEnum, type PokemonType } from "./PokermonType.ts";
+import { randomNumber, removeRandomArray } from "../utils/helpers.ts";
 
 interface Attack {
 	name: string;
@@ -29,8 +29,8 @@ export const pokedex: Array<Pokemon> = (
 		{
 			number: 25,
 			name: "Pikachu",
-			type: "électrik",
-			weakness: ["sol"],
+			type: PokemonTypeEnum.Electrik,
+			weakness: [PokemonTypeEnum.Sol],
 			hp: {
 				min: 35,
 				max: 274,
@@ -39,30 +39,30 @@ export const pokedex: Array<Pokemon> = (
 				{
 					name: "Fatal-Foudre",
 					power: 110,
-					type: "électrik",
+					type: PokemonTypeEnum.Electrik,
 				},
 				{
 					name: "Queue de fer",
 					power: 100,
-					type: "acier",
+					type: PokemonTypeEnum.Acier,
 				},
 				{
 					name: "Tonnerre",
 					power: 90,
-					type: "électrik",
+					type: PokemonTypeEnum.Electrik,
 				},
 				{
 					name: "Plaquage",
 					power: 85,
-					type: "normal",
+					type: PokemonTypeEnum.Normal,
 				},
 			],
 		},
 		{
 			number: 150,
 			name: "Mewtwo",
-			type: "psy",
-			weakness: ["insecte", "spectre", "ténèbres"],
+			type: PokemonTypeEnum.Psy,
+			weakness: [PokemonTypeEnum.Insecte, PokemonTypeEnum.Spectre, PokemonTypeEnum.Tenebres],
 			hp: {
 				min: 106,
 				max: 416,
@@ -71,22 +71,22 @@ export const pokedex: Array<Pokemon> = (
 				{
 					name: "Psyko",
 					power: 90,
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 				},
 				{
 					name: "Frappe Psy",
 					power: 100,
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 				},
 				{
 					name: "Choc Mental",
 					power: 50,
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 				},
 				{
 					name: "Rafale Psy",
 					power: 65,
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 				},
 			],
 		},
@@ -94,8 +94,8 @@ export const pokedex: Array<Pokemon> = (
 			number: 144,
 			id: "articuno",
 			name: "Artikodin",
-			type: ["glace", "vol"],
-			weakness: ["feu", "électrik", "roche", "acier"],
+			type: [PokemonTypeEnum.Glace, PokemonTypeEnum.Vol],
+			weakness: [PokemonTypeEnum.Feu, PokemonTypeEnum.Electrik, PokemonTypeEnum.Roche, PokemonTypeEnum.Acier],
 			hp: {
 				min: 90,
 				max: 384,
@@ -104,22 +104,22 @@ export const pokedex: Array<Pokemon> = (
 				{
 					name: "Blizzard",
 					power: 110,
-					type: "glace",
+					type: PokemonTypeEnum.Glace,
 				},
 				{
 					name: "Vent Violent",
 					power: 110,
-					type: "vol",
+					type: PokemonTypeEnum.Vol,
 				},
 				{
 					name: "Laser Glace",
 					power: 90,
-					type: "glace",
+					type: PokemonTypeEnum.Glace,
 				},
 				{
 					name: "Lyophilisation",
 					power: 70,
-					type: "glace",
+					type: PokemonTypeEnum.Glace,
 				},
 			],
 		},
@@ -127,8 +127,14 @@ export const pokedex: Array<Pokemon> = (
 			number: 154,
 			id: "meganium",
 			name: "Méganium",
-			type: "plante",
-			weakness: ["feu", "glace", "poison", "vol", "insecte"],
+			type: PokemonTypeEnum.Plante,
+			weakness: [
+				PokemonTypeEnum.Feu,
+				PokemonTypeEnum.Glace,
+				PokemonTypeEnum.Poison,
+				PokemonTypeEnum.Vol,
+				PokemonTypeEnum.Insecte,
+			],
 			hp: {
 				min: 80,
 				max: 364,
@@ -136,22 +142,22 @@ export const pokedex: Array<Pokemon> = (
 			attacks: [
 				{
 					name: "Lance-Soleil",
-					type: "plante",
+					type: PokemonTypeEnum.Plante,
 					power: 120,
 				},
 				{
 					name: "Tempête Florale",
-					type: "plante",
+					type: PokemonTypeEnum.Plante,
 					power: 90,
 				},
 				{
 					name: "Plaquage",
-					type: "normal",
+					type: PokemonTypeEnum.Normal,
 					power: 65,
 				},
 				{
 					name: "Coupe",
-					type: "normal",
+					type: PokemonTypeEnum.Normal,
 					power: 50,
 				},
 			],
@@ -159,8 +165,8 @@ export const pokedex: Array<Pokemon> = (
 		{
 			number: 157,
 			name: "Typhlosion",
-			type: "feu",
-			weakness: ["eau", "glace"],
+			type: PokemonTypeEnum.Feu,
+			weakness: [PokemonTypeEnum.Eau, PokemonTypeEnum.Glace],
 			hp: {
 				min: 78,
 				max: 360,
@@ -168,22 +174,22 @@ export const pokedex: Array<Pokemon> = (
 			attacks: [
 				{
 					name: "Éruption",
-					type: "feu",
+					type: PokemonTypeEnum.Feu,
 					power: 150,
 				},
 				{
 					name: "Lance-Flammes",
-					type: "feu",
+					type: PokemonTypeEnum.Feu,
 					power: 90,
 				},
 				{
 					name: "Météores",
-					type: "normal",
+					type: PokemonTypeEnum.Normal,
 					power: 60,
 				},
 				{
 					name: "Vive-Attaque",
-					type: "normal",
+					type: PokemonTypeEnum.Normal,
 					power: 40,
 				},
 			],
@@ -192,8 +198,8 @@ export const pokedex: Array<Pokemon> = (
 			number: 160,
 			id: "feraligatr",
 			name: "Aligatueur",
-			type: "eau",
-			weakness: ["feu", "électrik"],
+			type: PokemonTypeEnum.Eau,
+			weakness: [PokemonTypeEnum.Feu, PokemonTypeEnum.Electrik],
 			hp: {
 				min: 80,
 				max: 374,
@@ -201,22 +207,22 @@ export const pokedex: Array<Pokemon> = (
 			attacks: [
 				{
 					name: "Surpuissance",
-					type: "combat",
+					type: PokemonTypeEnum.Combat,
 					power: 120,
 				},
 				{
 					name: "Hydrocanon",
-					type: "eau",
+					type: PokemonTypeEnum.Eau,
 					power: 110,
 				},
 				{
 					name: "Mâchouille",
-					type: "ténèbres",
+					type: PokemonTypeEnum.Tenebres,
 					power: 60,
 				},
 				{
 					name: "Morsure",
-					type: "ténèbres",
+					type: PokemonTypeEnum.Tenebres,
 					power: 60,
 				},
 			],
@@ -224,8 +230,14 @@ export const pokedex: Array<Pokemon> = (
 		{
 			number: 249,
 			name: "Lugia",
-			type: ["psy", "vol"],
-			weakness: ["électrik", "glace", "roche", "spectre", "ténèbres"],
+			type: [PokemonTypeEnum.Psy, PokemonTypeEnum.Vol],
+			weakness: [
+				PokemonTypeEnum.Electrik,
+				PokemonTypeEnum.Glace,
+				PokemonTypeEnum.Roche,
+				PokemonTypeEnum.Spectre,
+				PokemonTypeEnum.Tenebres,
+			],
 			hp: {
 				min: 106,
 				max: 416,
@@ -233,22 +245,22 @@ export const pokedex: Array<Pokemon> = (
 			attacks: [
 				{
 					name: "Piqué",
-					type: "vol",
+					type: PokemonTypeEnum.Vol,
 					power: 140,
 				},
 				{
 					name: "Hydrocanon",
-					type: "eau",
+					type: PokemonTypeEnum.Eau,
 					power: 120,
 				},
 				{
 					name: "Draco-Charge",
-					type: "dragon",
+					type: PokemonTypeEnum.Dragon,
 					power: 100,
 				},
 				{
-					name: "Vol",
-					type: "vol",
+					name: PokemonTypeEnum.Vol,
+					type: PokemonTypeEnum.Vol,
 					power: 90,
 				},
 			],
@@ -256,15 +268,15 @@ export const pokedex: Array<Pokemon> = (
 		{
 			number: 251,
 			name: "Celebi",
-			type: ["psy", "plante"],
+			type: [PokemonTypeEnum.Psy, PokemonTypeEnum.Plante],
 			weakness: [
-				"feu",
-				"glace",
-				"poison",
-				"vol",
-				"insecte",
-				"spectre",
-				"ténèbres",
+				PokemonTypeEnum.Feu,
+				PokemonTypeEnum.Glace,
+				PokemonTypeEnum.Poison,
+				PokemonTypeEnum.Vol,
+				PokemonTypeEnum.Insecte,
+				PokemonTypeEnum.Spectre,
+				PokemonTypeEnum.Tenebres,
 			],
 			hp: {
 				min: 100,
@@ -273,22 +285,22 @@ export const pokedex: Array<Pokemon> = (
 			attacks: [
 				{
 					name: "Tempête Verte",
-					type: "plante",
+					type: PokemonTypeEnum.Plante,
 					power: 130,
 				},
 				{
 					name: "Prescience",
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 					power: 120,
 				},
 				{
 					name: "Lance-Soleil",
-					type: "plante",
+					type: PokemonTypeEnum.Plante,
 					power: 120,
 				},
 				{
 					name: "Choc Mental",
-					type: "psy",
+					type: PokemonTypeEnum.Psy,
 					power: 50,
 				},
 			],
@@ -299,7 +311,8 @@ export const pokedex: Array<Pokemon> = (
 		.withId(pokemon.id)
 		.withNumber(pokemon.number)
 		.withMinimalLevel(pokemon.hp.min)
-		.withMaximalLevel(pokemon.hp.max);
+		.withMaximalLevel(pokemon.hp.max)
+		.withLevel(randomNumber(5, 100));
 
 	for (let attack of pokemon.attacks) {
 		new_pokemon = new_pokemon.withAttack({

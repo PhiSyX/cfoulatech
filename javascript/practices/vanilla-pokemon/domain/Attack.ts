@@ -29,7 +29,7 @@ export class Attack implements AttackProps {
 	}
 
 	calcPower(attacker: Pokemon, defender: Pokemon): number {
-		let levelDiff = Math.abs(attacker.getLevel() - defender.getLevel());
+		let levelDiff = attacker.getLevel() - defender.getLevel();
 
 		let power = this.power;
 		switch (this.effectiveness(defender.getType())) {
@@ -39,7 +39,7 @@ export class Attack implements AttackProps {
 				break;
 
 			case EffectivenessEnum.Normal:
-				power += levelDiff * 0.025;
+				power += levelDiff * 0.135;
 				break;
 
 			case EffectivenessEnum.Faible:

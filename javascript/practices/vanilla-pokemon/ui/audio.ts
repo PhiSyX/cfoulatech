@@ -22,10 +22,10 @@ export class AudioEffect {
 	setupGlobal() {
 		// Active l'effet sur tous les boutons
 		for (let $el of document.querySelectorAll("button")) {
-			$el.removeEventListener("click", this.#playButtonEffect);
+			$el.removeEventListener("focus", this.#playButtonEffect);
 			$el.removeEventListener("mouseenter", this.#playButtonEffect);
 
-			$el.addEventListener("click", this.#playButtonEffect);
+			$el.addEventListener("focus", this.#playButtonEffect);
 			$el.addEventListener("mouseenter", this.#playButtonEffect);
 		}
 	}
