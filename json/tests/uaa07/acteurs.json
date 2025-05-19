@@ -1,0 +1,87 @@
+[
+	{
+		"id": 1,
+		"nom": "Benoît Poelvoorde",
+		"email": "benoit@poelvoorde.be",
+		"site": "https://benoitpoelvoorde.be",
+		"nationalite": "Belge",
+		"genre": "H",
+		"age": 60,
+		"film": {
+			"titre": "C'est arrivé près de chez nous",
+			"note": 7.5,
+			"date_sortie": "1992-12-07",
+			"genres": ["Drame", "Documentaire", "Action"],
+			"enSalle": false,
+			"langues": ["français", "anglais", "néerlandais"]
+		}
+	},
+	{
+		"id": 2,
+		"nom": "Vincent Cassel",
+		"email": "vincent@cassel.fr",
+		"site": "https://www.vincentcassel.com/",
+		"nationalite": "Française",
+		"genre": "H",
+		"age": 58,
+		"film": {
+			"titre": "La Haine",
+			"note": 9.5,
+			"date_sortie": "1995-12-07",
+			"genres": ["Thriller", "Drame", "Politique"],
+			"enSalle": false,
+			"langues": ["français", "anglais"]
+		}
+	},
+	{
+		"id": 3,
+		"nom": "Scarlett Johansson",
+		"email": "scarlett@johansson.com",
+		"site": "https://www.s-johansson.org/",
+		"nationalite": "Américaine",
+		"genre": "F",
+		"age": 40,
+		"film": {
+			"titre": "L'Irrésistible North",
+			"note": 4.5,
+			"date_sortie": "1994-12-07",
+			"genres": ["Action", "Aventure", "Comédie"],
+			"enSalle": false,
+			"langues": ["français", "anglais"]
+		}
+	},
+	{
+		"id": 4,
+		"nom": "Emma Watson",
+		"email": "emma@watson.com",
+		"site": "https://www.emmawatson.net/",
+		"nationalite": "Britannique",
+		"genre": "F",
+		"age": 35,
+		"film": {
+			"titre": "Harry Potter à l'école des sorciers",
+			"note": 95,
+			"date_sortie": "2001-12-07",
+			"genres": ["Science-Fiction", "Aventure", "Comédie"],
+			"enSalle": true,
+			"langues": ["français", "anglais", "néerlandais", "italien"]
+		}
+	},
+	{
+		"id": 5,
+		"nom": "Bella Ramsey",
+		"email": "bella@ramsey.com",
+		"site": "http://bellaramsey.com/",
+		"nationalite": "Américaine",
+		"genre": "X",
+		"age": 21,
+		"film": {
+			"titre": "Catherine Called Birdy",
+			"note": 5.0,
+			"date_sortie": "2022-12-07",
+			"genres": ["Action", "Fiction d'apprentissage", "Comédie"],
+			"enSalle": false,
+			"langues": ["français", "anglais"]
+		}
+	}
+]
