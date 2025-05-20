@@ -53,6 +53,8 @@ const h = <T extends keyof HTMLElementTagNameMap>(
 	}
 
 	if (attributes) {
+		delete attributes?.event;
+
 		for (let [attributeName, attributeValue] of Object.entries(attributes)) {
 			$el.setAttribute(attributeName, attributeValue?.toString()!);
 		}
@@ -65,7 +67,6 @@ const h = <T extends keyof HTMLElementTagNameMap>(
 			// @ts-expect-error
 			$el.addEventListener(eventName, handler);
 		}
-		delete attributes?.event;
 	}
 
 	return $el;

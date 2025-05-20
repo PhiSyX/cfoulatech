@@ -20,9 +20,6 @@ export class FakeAttackStore implements AttackStore {
 		return this.#dataset;
 	}
 
-	/**
-	 * @throws {AttackNotFoundError}
-	 */
 	findByName(name: string, attacksIds: Array<number> = []): Attack {
 		let record = this.#dataset.find((item) => item.getName() === name);
 		if (typeof record === "undefined") {

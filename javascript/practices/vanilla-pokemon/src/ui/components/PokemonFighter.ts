@@ -66,17 +66,17 @@ class PokemonFighter {
 				]),
 				ul(
 					(this.#props.attack?.list || []).map((attack) => {
+						let power = attack.calcPower(this.#props.fighter, this.#props.attack?.opponent!);
 						return li([
 							button(
 								[
 									span(
 										[
-											attack
-												.calcPower(this.#props.fighter, this.#props.attack?.opponent!)
-												.toString(),
+											power.toFixed(0).toString(),
 										],
 										{
 											className: ["badge", "text-align-right"],
+											title: `Puissance ${power}`,
 										},
 									),
 									" ",

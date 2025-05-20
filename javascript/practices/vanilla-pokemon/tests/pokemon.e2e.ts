@@ -6,9 +6,9 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Pokemon", () => {
 	test("Simulation d'une attaque", async ({ page }) => {
-		let $pokemon = await page.$("article.pokedex-item:nth-child(1)");
+		let $pokemon = await page.$("article.pokemon-detail:nth-child(1)");
 		await $pokemon?.click();
-		await page.getByText("Lancer le combat").click();
+		await page.getByText("Lancer le combat").click({ delay: 500 });
 		let $attackerFighter = await page.$("#battle-screen .fighter:last-of-type");
 		let $attackerAttackBtn = await $attackerFighter?.$("button:nth-child(1)");
 		let $attackerAttackPower = await $attackerAttackBtn?.$("span");
