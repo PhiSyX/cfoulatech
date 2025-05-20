@@ -10,6 +10,10 @@ export class PokemonAttack {
 		this.#attack = attack;
 	}
 
+	getAttack(): Attack {
+		return this.#attack;
+	}
+
 	getPokemon(): Pokemon {
 		return this.#pokemon;
 	}

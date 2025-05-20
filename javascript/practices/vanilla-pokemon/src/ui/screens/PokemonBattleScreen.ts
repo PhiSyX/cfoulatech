@@ -1,12 +1,12 @@
 import type { Pokemon } from "../../domain/entities/Pokemon.ts";
 import { pokemonFighter } from "../components/PokemonFighter.ts";
 import { GameAtmosphere } from "../audio/GameAtmosphere.ts";
-import type { Attack } from "../../domain/entities/Attack.ts";
+import { type Attack, EffectivenessEnum } from "../../domain/entities/Attack.ts";
 import { MyAttackStore } from "../stores/MyAttackStore.ts";
 import { GameBattle } from "../../domain/GameBattle.ts";
 import { MyPokedexStore } from "../stores/MyPokedexStore.ts";
 import { PokemonAttack } from "../../domain/entities/PokemonAttack.ts";
-import { li } from "../dom/element.ts";
+import { dialog, li } from "../dom/element.ts";
 import { AudioEffect } from "../audio/AudioEffect.ts";
 
 export function createPokemonBattleScreen(
@@ -61,7 +61,7 @@ class PokemonBattleScreen {
 				(f1, f2) => {
 					this.#audioEffect.hit();
 
-					let $f1 = document.querySelector(`#fighter-${f1.getId()}`)!;
+					let $f1 = document.querySelector(`#fighter-${f1.getPokemon().getId()}`)!;
 					$f1.removeAttribute("data-type");
 					let $f2 = document.querySelector(`#fighter-${f2.getId()}`)!;
 					$f2.setAttribute("data-type", f2.getTypes().toString());
@@ -70,6 +70,32 @@ class PokemonBattleScreen {
 					let $f2HpProgress = $f2.querySelector<HTMLMeterElement>(".hp-progress")!;
 					$f2HpProgress.value = f2.getHitPoints();
 					$f2HpProgress.dispatchEvent(new CustomEvent("change"));
+
+					let message = "";
+
+					switch (f1.getAttack().effectiveness(f2.getTypes())) {
+						case EffectivenessEnum.Faible:
+							message = "Ca n'est pas très efficace...";
+							break;
+						case EffectivenessEnum.Forte:
+							message = "C'est super efficace !"
+							break;
+						case EffectivenessEnum.Rien:
+							message = `Cette attaque n'affecte pas ${f2.getName()}.`;
+							break;
+					}
+
+					let msgPreview = this.#battleScreen.querySelector("#message-preview")!;
+					if (message.length > 0) {
+						msgPreview.dataset.type = f1.getPokemon().getTypes().toString();
+						msgPreview.setAttribute("open", "");
+						msgPreview.textContent = message;
+						setTimeout(() => {
+							msgPreview.removeAttribute("open");
+						}, 2_000);
+					} else {
+						msgPreview.removeAttribute("open");
+					}
 				},
 				(w, _) => {
 					this.#gameAtmosphere.victory();
@@ -98,6 +124,7 @@ class PokemonBattleScreen {
 
 		return [
 			pokemonFighter(this.#props.defender),
+			dialog([], { id: "message-preview" }),
 			pokemonFighter(this.#props.attacker, {
 				onAttack,
 				list: this.#props.attacks,

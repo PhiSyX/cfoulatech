@@ -27,7 +27,7 @@ let pokedex = [
 		name: "Pikachu",
 		types: [PokemonTypeEnum.Electrik],
 		weakness: [PokemonTypeEnum.Sol],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 35,
 			max: 274,
@@ -39,7 +39,7 @@ let pokedex = [
 		name: "Mewtwo",
 		types: [PokemonTypeEnum.Psy],
 		weakness: [PokemonTypeEnum.Insecte, PokemonTypeEnum.Spectre, PokemonTypeEnum.Tenebres],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 106,
 			max: 416,
@@ -52,7 +52,7 @@ let pokedex = [
 		name: "Artikodin",
 		types: [PokemonTypeEnum.Glace, PokemonTypeEnum.Vol],
 		weakness: [PokemonTypeEnum.Feu, PokemonTypeEnum.Electrik, PokemonTypeEnum.Roche, PokemonTypeEnum.Acier],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 90,
 			max: 384,
@@ -71,7 +71,7 @@ let pokedex = [
 			PokemonTypeEnum.Vol,
 			PokemonTypeEnum.Insecte,
 		],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 80,
 			max: 364,
@@ -83,7 +83,7 @@ let pokedex = [
 		name: "Typhlosion",
 		types: [PokemonTypeEnum.Feu],
 		weakness: [PokemonTypeEnum.Eau, PokemonTypeEnum.Glace],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 78,
 			max: 360,
@@ -96,7 +96,7 @@ let pokedex = [
 		name: "Aligatueur",
 		types: [PokemonTypeEnum.Eau],
 		weakness: [PokemonTypeEnum.Feu, PokemonTypeEnum.Electrik],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 80,
 			max: 374,
@@ -114,7 +114,7 @@ let pokedex = [
 			PokemonTypeEnum.Spectre,
 			PokemonTypeEnum.Tenebres,
 		],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 106,
 			max: 416,
@@ -134,7 +134,7 @@ let pokedex = [
 			PokemonTypeEnum.Spectre,
 			PokemonTypeEnum.Tenebres,
 		],
-		level: randomNumber(5, 100),
+		level: randomNumber(40, 100),
 		hp: {
 			min: 100,
 			max: 404,

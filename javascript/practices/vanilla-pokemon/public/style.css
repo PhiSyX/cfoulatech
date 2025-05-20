@@ -286,7 +286,7 @@ ul {
 	margin-top: 4rem;
 	padding: 3rem;
 	background-color: CanvasText;
-	border-radius: 4px;
+	outline: 10px ridge Canvas;
 	overflow: hidden;
 	box-shadow: 0 3px 999px 16px var(--text-color);
 }
@@ -336,7 +336,7 @@ ul {
 	padding-inline: 1.5rem;
 	align-content: center;
 	list-style: none;
-	border-radius: 4px;
+	outline: 10px ridge;
 	overflow: hidden;
 	background: #070f13;
 	border: 1px solid #0a1f29;
@@ -351,10 +351,10 @@ ul {
 	button {
 		display: inline-grid;
 		grid-template-columns: 50px 1fr;
-		gap: 1rem;
 		align-items: center;
+		gap: 1rem;
+		padding: 0.5rem;
 		border: none;
-		border-radius: 4px;
 		background: transparent;
 		color: canvas;
 		cursor: pointer;
@@ -367,6 +367,11 @@ ul {
 
 		&:hover {
 			background: #152731;
+		}
+
+		&:focus-within {
+			outline: 10px ridge var(--color);
+			color: highlighttext;
 		}
 	}
 }
@@ -412,6 +417,8 @@ meter::-webkit-meter-even-less-good-value {
 
 dialog {
 	padding-inline: 2rem;
+	background: var(--color, inherit);
+	color: var(--color-text, inherit);
 	border-radius: 12px;
 
 	h1 {

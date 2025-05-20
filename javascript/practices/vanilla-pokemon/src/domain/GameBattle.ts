@@ -66,7 +66,7 @@ export class GameBattle {
 	flow(
 		attacker: PokemonAttack,
 		defender: Pokemon,
-		alive: (f1: Pokemon, f2: Pokemon) => void,
+		alive: (f1: PokemonAttack, f2: Pokemon) => void,
 		death: (w: Pokemon, d: Pokemon) => void,
 		next: boolean = true,
 	): void {
@@ -76,7 +76,7 @@ export class GameBattle {
 			let def = this.pokedexStore.find(defender.getId());
 
 			alive(
-				attacker.getPokemon(),
+				attacker,
 				def,
 			);
 
@@ -97,7 +97,7 @@ export class GameBattle {
 						death,
 						false,
 					)
-				}, 2_500);
+				}, 5_000);
 			}
 		} catch (e) {
 			console.error(e);

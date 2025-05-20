@@ -162,3 +162,8 @@ export const span = (
 	children: HChildren,
 	props?: HAttrs & { event?: HEvent },
 ) => h("span", children, props, props?.event);
+
+export const dialog = (
+	children: HChildren,
+	props?: HAttrs & { event?: HEvent },
+) => h("dialog", children, props, props?.event);
