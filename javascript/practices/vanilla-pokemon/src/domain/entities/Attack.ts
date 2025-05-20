@@ -1,61 +1,51 @@
-import { type PokemonType, type PokemonTypeVariant, PokemonTypeEnum } from "./PokermonType.ts";
+import {
+	Pokemon,
+	PokemonTypeEnum,
+	type PokemonTypeVariant,
+} from "./Pokemon.ts";
 
-import type { Pokemon } from "./Pokemon.ts";
+export class Attack {
+	#id?: number
+	#name!: string;
+	#power!: number;
+	#types!: Array<PokemonTypeVariant>;
 
-export const EffectivenessEnum = {
-	Forte: "forte",
-	Faible: "faible",
-	Normal: "normal",
-	Rien: "rien",
-} as const;
-
-export type EffectivenessVariant = (typeof EffectivenessEnum)[keyof typeof EffectivenessEnum];
-
-export interface AttackProps {
-	name: string;
-	power: number;
-	type: PokemonType;
-}
-
-export class Attack implements AttackProps {
-	public readonly name: AttackProps["name"];
-	public readonly power: AttackProps["power"];
-	public readonly type: AttackProps["type"];
-
-	constructor(name: AttackProps["name"], power: AttackProps["power"], type: AttackProps["type"]) {
-		this.name = name;
-		this.power = power;
-		this.type = type;
+	constructor(id?: number) {
+		this.#id = id;
 	}
 
-	calcPower(attacker: Pokemon, defender: Pokemon): number {
-		let levelDiff = attacker.getLevel() - defender.getLevel();
-
-		let power = this.power;
-		switch (this.effectiveness(defender.getType())) {
-			case EffectivenessEnum.Forte:
-				power *= 2;
-				power += levelDiff * 0.1;
-				break;
-
-			case EffectivenessEnum.Normal:
-				power += levelDiff * 0.135;
-				break;
-
-			case EffectivenessEnum.Faible:
-				power /= 2;
-				power -= levelDiff * 0.2;
-				break;
-
-			case EffectivenessEnum.Rien:
-				power = 0;
-				break;
-		}
-
-		return power;
+	getId(): number {
+		return this.#id!;
 	}
 
-	effectiveness(pokemonType: PokemonType): EffectivenessVariant {
+	setName(name: string): this {
+		this.#name = name;
+		return this;
+	}
+
+	getName(): string {
+		return this.#name;
+	}
+
+	setPower(power: number): this {
+		this.#power = power;
+		return this;
+	}
+
+	getPower(): number {
+		return this.#power;
+	}
+
+	getTypes(): Array<PokemonTypeVariant> {
+		return this.#types;
+	}
+
+	setTypes(types: Array<PokemonTypeVariant>): this {
+		this.#types = types;
+		return this;
+	}
+
+	effectiveness(pokemonTypes: Array<PokemonTypeVariant>) {
 		let effect = (offType: PokemonTypeVariant, defType: PokemonTypeVariant) => {
 			switch (offType) {
 				case PokemonTypeEnum.Acier:
@@ -318,19 +308,47 @@ export class Attack implements AttackProps {
 			return fo || no || fa || ri || EffectivenessEnum.Normal;
 		};
 
-		if (Array.isArray(this.type)) {
-			let effectiveness = this.type.flatMap((t) => {
-				if (Array.isArray(pokemonType)) return pokemonType.map((pt) => effect(t, pt));
-				return effect(t, pokemonType);
-			});
-			return choose(effectiveness);
+		let effectiveness = this.#types.flatMap((t) => {
+			return pokemonTypes.map((pt) => effect(t, pt));
+		});
+
+		return choose(effectiveness);
+	}
+
+	calcPower(attacker: Pokemon, defender: Pokemon)
+	{
+		let levelDiff = attacker.getLevel() - defender.getLevel();
+		let power = this.getPower();
+
+		switch (this.effectiveness(defender.getTypes())) {
+			case EffectivenessEnum.Forte:
+				power *= 2;
+				power += levelDiff * 0.1;
+				break;
+
+			case EffectivenessEnum.Normal:
+				power += levelDiff * 0.135;
+				break;
+
+			case EffectivenessEnum.Faible:
+				power /= 2;
+				power -= levelDiff * 0.2;
+				break;
+
+			case EffectivenessEnum.Rien:
+				power = 0;
+				break;
 		}
 
-		if (Array.isArray(pokemonType)) {
-			let effectiveness = pokemonType.map((pt) => effect(this.type, pt));
-			return choose(effectiveness);
-		}
-
-		return effect(this.type, pokemonType);
+		return power;
 	}
 }
+
+export const EffectivenessEnum = {
+	Forte: "forte",
+	Faible: "faible",
+	Normal: "normal",
+	Rien: "rien",
+} as const;
+
+export type EffectivenessVariant = (typeof EffectivenessEnum)[keyof typeof EffectivenessEnum];

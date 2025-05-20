@@ -1,176 +1,72 @@
 import { describe, expect, test } from "vitest";
 
-import {
-	AttackNotFoundError,
-	BadFighterAttackError,
-	GameBattle,
-	NotAliveError,
-} from "../domain/GameBattle.ts";
-import { Pokemon } from "../domain/Pokemon.ts";
+import { FakePokedexStore } from "./FakePokedexStore.ts";
+import { FakeAttackStore } from "./FakeAttackStore.ts";
 
-const tortank = () =>
-	new Pokemon("Tortank", "eau")
-		.withLevel(100)
-		.withMinimalLevel(79)
-		.withMaximalLevel(362);
-const dracaufeu = () =>
-	new Pokemon("Dracaufeu", "feu")
-		.withLevel(100)
-		.withMinimalLevel(78)
-		.withMaximalLevel(360);
-const lokhlass = () =>
-	new Pokemon("Lokhlass", ["eau", "glace"])
-		.withLevel(40)
-		.withMinimalLevel(130)
-		.withMaximalLevel(464);
+import { GameBattle } from "../src/domain/GameBattle.ts";
+import { BadFighterAttackError } from "../src/domain/errors/BadFighterError.ts";
+import { AttackNotAvailableError } from "../src/domain/errors/AttackNotAvailableError.ts";
+import { FighterNotAliveError } from "../src/domain/errors/FighterNotAliveError.ts";
+import { EffectivenessEnum } from "../src/domain/entities/Attack.ts";
+import { PokemonTypeEnum } from "../src/domain/entities/Pokemon.ts";
 
 describe("Pokemon", () => {
 	test("Règle: un pokémon n'a le droit d'attaquer qu'une seule fois", () => {
-		let attacker = tortank().withAttack({
-			name: "Hydrocanon",
-			power: 110,
-			type: ["eau"],
-		});
-		let defender = dracaufeu().withAttack({
-			name: "Deflagration",
-			power: 110,
-			type: ["feu"],
-		});
-
-		let game = new GameBattle(attacker, defender);
-
-		let attack1 = attacker.getAttack("Hydrocanon")!;
-		game.requestAttack(attacker, defender, attack1);
-		expect(() =>
-			game.requestAttack(attacker, defender, attack1),
-		).toThrowError(BadFighterAttackError);
-
-		let attack2 = defender.getAttack("Deflagration")!;
-		game.requestAttack(defender, attacker, attack2);
-		expect(() =>
-			game.requestAttack(defender, attacker, attack2),
-		).toThrowError(BadFighterAttackError);
+		let fakePokedexStore = new FakePokedexStore();
+		let fakeAttackStore = new FakeAttackStore();
+		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
+		gameBattle.attack("Tortank", "Dracaufeu", "Hydrocanon");
+		expect(() => gameBattle.attack("Tortank", "Dracaufeu", "Hydrocanon")).toThrowError(BadFighterAttackError);
 	});
 
 	test("Règle: un pokémon n'attaque qu'avec ses propres attaques", () => {
-		let attacker = tortank().withAttack({
-			name: "Hydrocanon",
-			power: 110,
-			type: ["eau"],
-		});
-		let defender = dracaufeu().withAttack({
-			name: "Deflagration",
-			power: 110,
-			type: ["feau"],
-		});
-
-		let game = new GameBattle(attacker, defender);
-
-		let notFoundAttack = defender.getAttack("Deflagration")!;
-		expect(() =>
-			game.requestAttack(attacker, defender, notFoundAttack),
-		).toThrowError(AttackNotFoundError);
-
-		let attack = attacker.getAttack("Hydrocanon")!;
-		expect(() =>
-			game.requestAttack(attacker, defender, attack),
-		).not.toThrowError(AttackNotFoundError);
+		let fakePokedexStore = new FakePokedexStore();
+		let fakeAttackStore = new FakeAttackStore();
+		let pokemon = fakePokedexStore.findByName("Tortank");
+		expect(() => fakeAttackStore.findByName("Déflagration", pokemon.getAttacks())).toThrowError(AttackNotAvailableError);
 	});
 
 	test("Règle: un pokémon ne peut attaquer une fois mort", () => {
-		let attacker = tortank().withAttack({
-			name: "Hydrocanon",
-			power: 110,
-			type: ["eau"],
-		});
-		let defender = dracaufeu().withAttack({
-			name: "Deflagration",
-			power: 3000,
-			type: ["feu"],
-		});
-
-		let game = new GameBattle(attacker, defender);
-
-		let attack1 = attacker.getAttack("Hydrocanon")!;
-		let attack2 = defender.getAttack("Deflagration")!;
-
-		game.requestAttack(attacker, defender, attack1);
-		game.requestAttack(defender, attacker, attack2);
-		expect(() =>
-			game.requestAttack(attacker, defender, attack1),
-		).toThrowError(NotAliveError);
+		let fakePokedexStore = new FakePokedexStore();
+		let fakeAttackStore = new FakeAttackStore();
+		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
+		fakePokedexStore.findByName("Dracaufeu").setHitPoints(0);
+		expect(() => gameBattle.attack("Dracaufeu", "Tortank", "Déflagration")).toThrowError(FighterNotAliveError);
 	});
 
 	test("Fonctionnalité: Attaque d'un pokemon, perte de PV du défenseur", () => {
-		let attacker = tortank().withAttack({
-			name: "Morsure",
-			power: 60,
-			type: "ténèbres",
-		});
-
-		let defender = dracaufeu();
-		let game = new GameBattle(attacker, defender);
-
-		let attack = attacker.getAttack("Morsure")!;
-		game.requestAttack(attacker, defender, attack);
-		expect(defender.isAlive()).toBeTruthy();
-
-		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() - attack.calcPower(attacker, defender),
-		);
+		let fakePokedexStore = new FakePokedexStore();
+		let fakeAttackStore = new FakeAttackStore();
+		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
+		let tortank = fakePokedexStore.findByName("Tortank").setHitPoints(100);
+		let prevHp = tortank.getHitPoints();
+		gameBattle.attack("Dracaufeu", "Tortank", "Déflagration");
+		let currentHp = tortank.getHitPoints();
+		expect(currentHp).not.toBe(prevHp);
+		expect(tortank.isAlive()).toBeTruthy();
 	});
 
 	test("Fonctionnalité: Attaque d'un pokemon provoquant la mort du défenseur", () => {
-		let attacker = tortank().withAttack({
-			name: "Anti-Air",
-			type: "roche",
-			power: 3000,
-		});
-		let defender = dracaufeu();
-		let game = new GameBattle(attacker, defender);
-
-		let attack = attacker.getAttack("Anti-Air")!;
-		game.requestAttack(attacker, defender, attack);
-
-		expect(defender.isAlive()).toBeFalsy();
-		expect(game.loser()).toBe(defender);
-		expect(game.winner()).toBe(attacker);
+		let fakePokedexStore = new FakePokedexStore();
+		let fakeAttackStore = new FakeAttackStore();
+		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
+		let dracaufeu = fakePokedexStore.findByName("Dracaufeu");
+		let prevHp = dracaufeu.getHitPoints();
+		gameBattle.attack("Tortank", "Dracaufeu", "Hydrocanon");
+		let currentHp = dracaufeu.getHitPoints();
+		expect(currentHp).not.toBe(prevHp);
+		expect(dracaufeu.isAlive()).toBeFalsy();
 	});
 
 	test("Fonctionnalité: Efficacité d'attaque faible", () => {
-		let attacker = dracaufeu().withAttack({
-			name: "Lance-flemme",
-			type: ["feu"],
-			power: 110,
-		});
-		let defender = tortank();
-		let game = new GameBattle(attacker, defender);
-
-		let attack = attacker.getAttack("Lance-flemme")!;
-
-		game.requestAttack(attacker, defender, attack);
-
-		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() - attack.calcPower(attacker, defender),
-		);
+		let fakeAttackStore = new FakeAttackStore();
+		let hydrocanon = fakeAttackStore.findByName("Hydrocanon", [1]);
+		expect(hydrocanon.effectiveness([PokemonTypeEnum.Eau])).toBe(EffectivenessEnum.Faible);
 	});
 
 	test("Fonctionnalité: Efficacité d'attaque forte", () => {
-		let attacker = dracaufeu().withAttack({
-			name: "Feu d'Enfer",
-			type: ["feu"],
-			power: 100,
-		});
-		let defender = lokhlass();
-
-		let game = new GameBattle(attacker, defender);
-
-		let attack = attacker.getAttack("Feu d'Enfer")!;
-
-		game.requestAttack(attacker, defender, attack);
-
-		expect(defender.getHitPoints()).toBe(
-			defender.maxHealth() - attack.calcPower(attacker, defender),
-		);
+		let fakeAttackStore = new FakeAttackStore();
+		let hydrocanon = fakeAttackStore.findByName("Déflagration", [2]);
+		expect(hydrocanon.effectiveness([PokemonTypeEnum.Plante])).toBe(EffectivenessEnum.Forte);
 	});
 });

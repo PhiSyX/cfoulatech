@@ -147,6 +147,14 @@ ul {
 	--color: #cdcdcd;
 }
 
+[data-type="combat"] {
+	--color: #784a4a;
+}
+
+[data-type="ténèbres"] {
+	--color: #454451;
+}
+
 [data-type="plante"] {
 	--color: #9bcc50;
 	--color-text: black;
@@ -196,11 +204,11 @@ ul {
 	gap: 1rem;
 }
 
-.pokedex-list .pokedex-item {
+.pokedex-list .pokemon-detail {
 	cursor: pointer;
 }
 
-.pokedex-item {
+.pokemon-detail {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -246,7 +254,7 @@ ul {
 	color: Canvas;
 	border-radius: 8px;
 
-	.pokedex-item {
+	.pokemon-detail {
 		margin-inline: auto;
 		max-width: 350px;
 		pointer-events: none;

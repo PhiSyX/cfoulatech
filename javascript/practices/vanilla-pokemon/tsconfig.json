@@ -24,9 +24,8 @@
 		"noUncheckedSideEffectImports": true
 	},
 	"include": [
-		"domain",
+		"src",
 		"tests",
-		"ui",
 		"utils"
 	]
 }
