@@ -1,0 +1,27 @@
+<article class="data-bindings">
+  <h1>Hello {{ firstname }}</h1>
+
+  <hr>
+
+  <img [src]="imageSrc" alt="Image source" width="200" height="200">
+
+  <hr>
+
+  <a [href]="githubUrl" target="_blank" rel="noopener noreferer">{{ githubLabel }}</a>
+
+  <hr>
+
+  <input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked"> {{ isChecked }}
+
+  <hr>
+
+  <button [disabled]="isDisabled">Envoyer</button>
+  <br>
+  <button (click)="toggleDisable()">{{ toggleBtn }} le bouton envoyer</button>
+
+  <hr>
+
+  <input [(ngModel)]="inputModel" type="text">
+  <button (click)="showMessage()">Afficher le message dans un alert</button>
+  <p>{{ inputModel }}</p>
+</article>
