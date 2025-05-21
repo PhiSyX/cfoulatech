@@ -1,12 +1,12 @@
 {
-	"name": "@phisyx/vanilla-pokemon-js",
+	"name": "@phisyx/vanilla-pokemon-ts",
 	"private": true,
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"term": "node --disable-warning=ExperimentalWarning src/term/main.js",
-		"build": "vite build",
+		"term": "node --disable-warning=ExperimentalWarning ./src/term/main.ts",
+		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"test:unit": "vitest --run",
 		"test:unit:watch": "vitest",
@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.52.0",
 		"@types/node": "^22.15.17",
+		"typescript": "~5.8.3",
 		"vite": "^6.3.5",
 		"vitest": "^3.1.4"
 	},

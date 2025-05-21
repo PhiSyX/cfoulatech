@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Pokemon</title>
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header id="header" role="banner" class="header container" hidden>
+	<nav class="navbar" role="navigation">
+		<ul role="list">
+			<li><a href="#pokedex-screen">Pokedex</a></li>
+		</ul>
+
+		<ul>
+			<li>
+				<button id="pokemon-fight-btn" hidden>Lancer le combat</button>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<section id="pokedex-screen" class="container" hidden>
+	<div class="pokedex-wrapper">
+		<div id="pokemon-list" class="pokedex-list"></div>
+
+		<aside id="pokemon-opponent">
+			<h2>Adversaire</h2>
+		</aside>
+	</div>
+</section>
+
+<section id="battle-screen" class="container" hidden>
+</section>
+
+<dialog id="victory-dialog" popover>
+	<h1>Bravo à <small class="name"></small> qui a gagné en <small class="count-hits"></small> coups !</h1>
+	<h2>Résumé :</h2>
+	<ol class="resume"></ol>
+</dialog>
+
+<audio id="btn-effect" src="https://www.myinstants.com/media/sounds/tmpq91k5v_6.mp3"></audio>
+<audio id="battle-sound" src="https://kappa.vgmsite.com/soundtracks/pokemon-gold-silver-crystal/fozoptyemi/101.%20Battle%21%20%28Champion%29.mp3"></audio>
+<audio id="battle-victory-sound" src="https://www.myinstants.com/media/sounds/pokemon-red-blue-music-wild-pokemon-victory-theme-1.mp3"></audio>
+<audio id="hit-effect" src="https://www.myinstants.com/media/sounds/hitmarker_2.mp3"></audio>
+
+<script type="module" src="/src/web/main.ts"></script>
+</body>
+</html>
