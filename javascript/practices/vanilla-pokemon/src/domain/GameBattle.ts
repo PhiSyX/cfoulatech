@@ -1,12 +1,12 @@
 import type { PokedexStore } from "./stores/PokedexStore.ts";
 import type { AttackStore } from "./stores/AttackStore.ts";
+import type { Pokemon } from "./entities/Pokemon.ts";
+import type { Attack } from "./entities/Attack.ts";
 
 import { ToAttackPokemon } from "./actions/ToAttackPokemon.ts";
 import { BadFighterAttackError } from "./errors/BadFighterError.ts";
-import type { Pokemon } from "./entities/Pokemon.ts";
 import { PokemonAttack } from "./entities/PokemonAttack.ts";
 import { randomArray } from "../shared/helpers.ts";
-import type { Attack } from "./entities/Attack.ts";
 
 interface HistoryAttack {
 	from: Pokemon;
@@ -15,16 +15,18 @@ interface HistoryAttack {
 	applied_at: Date;
 }
 
+const ATTACK_AFTER: number = 5_000;
+
 export class GameBattle {
-	pokedexStore: PokedexStore;
-	attackStore: AttackStore;
+	#pokedexStore: PokedexStore;
+	#attackStore: AttackStore;
 
 	#orderFighters: [f1: string, f2: string] | null = null;
 	#history: Array<HistoryAttack> = [];
 
 	constructor(pokedexStore: PokedexStore, attackStore: AttackStore) {
-		this.pokedexStore = pokedexStore;
-		this.attackStore = attackStore;
+		this.#pokedexStore = pokedexStore;
+		this.#attackStore = attackStore;
 	}
 
 	attack(attackerName: string, defenderName: string, attackName: string): void {
@@ -36,7 +38,7 @@ export class GameBattle {
 			throw new BadFighterAttackError(attackerName);
 		}
 
-		let toAttackPokemon = new ToAttackPokemon(this.pokedexStore, this.attackStore);
+		let toAttackPokemon = new ToAttackPokemon(this.#pokedexStore, this.#attackStore);
 		const { attack, attacker, defender } = toAttackPokemon.execute({
 			attackerName,
 			defenderName,
@@ -53,35 +55,34 @@ export class GameBattle {
 		})
 	}
 
-	countHits(pokemon: Pokemon) {
+	countHits(pokemon: Pokemon): number {
 		return this.#history.filter(
-			(h) => h.from.getName() === pokemon.getName()
+			(h) => h.from.getName() === pokemon.getName(),
 		).length;
 	}
 
-	getHistory() {
+	getHistory(): Array<HistoryAttack> {
 		return this.#history;
 	}
 
 	flow(
 		attacker: PokemonAttack,
 		defender: Pokemon,
-		alive: (f1: PokemonAttack, f2: Pokemon) => void,
-		death: (w: Pokemon, d: Pokemon) => void,
+		state: {
+			alive: (f1: PokemonAttack, f2: Pokemon) => void,
+			death: (w: Pokemon, d: Pokemon) => void,
+		},
 		next: boolean = true,
 	): void {
 		try {
 			this.attack(attacker.getPokemonName(), defender.getName(), attacker.getAttackName());
 
-			let def = this.pokedexStore.find(defender.getId());
+			let def = this.#pokedexStore.find(defender.getId());
 
-			alive(
-				attacker,
-				def,
-			);
+			state.alive(attacker, def);
 
 			if (!def.isAlive()) {
-				death(attacker.getPokemon(), def)
+				state.death(attacker.getPokemon(), def)
 				return;
 			}
 
@@ -90,14 +91,13 @@ export class GameBattle {
 					this.flow(
 						new PokemonAttack(
 							def,
-							randomArray(this.attackStore.fromPokemon(def.getAttacks())),
+							randomArray(this.#attackStore.fromPokemon(def.getAttacks())),
 						),
 						attacker.getPokemon(),
-						alive,
-						death,
+						state,
 						false,
 					)
-				}, 5_000);
+				}, ATTACK_AFTER);
 			}
 		} catch (e) {
 			console.error(e);

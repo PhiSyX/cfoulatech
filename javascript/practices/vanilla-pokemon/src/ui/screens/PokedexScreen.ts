@@ -3,7 +3,7 @@ import { fragment } from "../dom/element.ts";
 import { MyPokedexStore } from "../stores/MyPokedexStore.ts";
 import type { Pokemon } from "../../domain/entities/Pokemon.ts";
 import { pokemonDetail } from "../components/PokemonDetail.ts";
-import { randomArray, removeRandomArray } from "../../shared/helpers.ts";
+import { removeRandomArray } from "../../shared/helpers.ts";
 import { createPokemonBattleScreen } from "./PokemonBattleScreen.ts";
 import { AudioEffect } from "../audio/AudioEffect.ts";
 
@@ -11,12 +11,7 @@ export function createPokedexScreen() {
 	let pokedexStore = new MyPokedexStore();
 
 	let pokedex = pokedexStore.all();
-	let opponent = randomArray([
-		removeRandomArray(pokedex),
-		removeRandomArray(pokedex),
-		removeRandomArray(pokedex),
-		removeRandomArray(pokedex),
-	]);
+	let opponent = removeRandomArray(pokedex);
 
 	let screen = new PokedexScreen(new AudioEffect(), new GameAtmosphere(), {
 		opponent: opponent,

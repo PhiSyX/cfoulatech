@@ -1,15 +1,8 @@
 import type { AttackStore } from "../../domain/stores/AttackStore.ts";
 import { Attack } from "../../domain/entities/Attack.ts";
-import {
-	AttackNotFoundError,
-} from "../../domain/errors/AttackNotFoundError.ts";
-import {
-	AttackNotAvailableError,
-} from "../../domain/errors/AttackNotAvailableError.ts";
-import {
-	PokemonTypeEnum,
-	type PokemonTypeVariant,
-} from "../../domain/entities/Pokemon.ts";
+import { AttackNotFoundError } from "../../domain/errors/AttackNotFoundError.ts";
+import { AttackNotAvailableError } from "../../domain/errors/AttackNotAvailableError.ts";
+import { PokemonTypeEnum, type PokemonTypeVariant } from "../../domain/entities/Pokemon.ts";
 
 interface AttackItem {
 	id: number;
@@ -215,9 +208,6 @@ export class MyAttackStore implements AttackStore {
 		});
 	}
 
-	/**
-	 * @throws {AttackNotFoundError}
-	 */
 	findByName(name: string, attacksIds: Array<number> = []): Attack {
 		let record = this.#dataset.find((item) => item.name === name);
 		if (typeof record === "undefined") {

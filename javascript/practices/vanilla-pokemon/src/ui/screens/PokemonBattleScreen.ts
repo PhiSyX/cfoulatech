@@ -39,6 +39,7 @@ class PokemonBattleScreen {
 
 	/** Les éléments HTML de l'écran */
 	#battleScreen: HTMLDivElement;
+	#victoryDialog: HTMLDialogElement;
 
 	constructor(
 		audioEffect: AudioEffect,
@@ -51,87 +52,90 @@ class PokemonBattleScreen {
 		this.#gameBattle = gameBattle;
 		this.#props = props;
 		this.#battleScreen = document.querySelector("#battle-screen")!;
+		this.#victoryDialog = document.querySelector("#victory-dialog")!;
 	}
 
 	render() {
-		const onAttack = (attack: Attack) => {
-			this.#gameBattle.flow(
-				new PokemonAttack(this.#props.attacker, attack),
-				this.#props.defender,
-				(f1, f2) => {
-					this.#audioEffect.hit();
-
-					let $f1 = document.querySelector(`#fighter-${f1.getPokemon().getId()}`)!;
-					$f1.removeAttribute("data-type");
-					let $f2 = document.querySelector(`#fighter-${f2.getId()}`)!;
-					$f2.setAttribute("data-type", f2.getTypes().toString());
-
-
-					let $f2HpProgress = $f2.querySelector<HTMLMeterElement>(".hp-progress")!;
-					$f2HpProgress.value = f2.getHitPoints();
-					$f2HpProgress.dispatchEvent(new CustomEvent("change"));
-
-					let message = "";
-
-					switch (f1.getAttack().effectiveness(f2.getTypes())) {
-						case EffectivenessEnum.Faible:
-							message = "Ca n'est pas très efficace...";
-							break;
-						case EffectivenessEnum.Forte:
-							message = "C'est super efficace !"
-							break;
-						case EffectivenessEnum.Rien:
-							message = `Cette attaque n'affecte pas ${f2.getName()}.`;
-							break;
-					}
-
-					let msgPreview = this.#battleScreen.querySelector("#message-preview")!;
-					if (message.length > 0) {
-						msgPreview.dataset.type = f1.getPokemon().getTypes().toString();
-						msgPreview.setAttribute("open", "");
-						msgPreview.textContent = message;
-						setTimeout(() => {
-							msgPreview.removeAttribute("open");
-						}, 2_000);
-					} else {
-						msgPreview.removeAttribute("open");
-					}
-				},
-				(w, _) => {
-					this.#gameAtmosphere.victory();
-
-					let victoryDialog = document.querySelector<HTMLDialogElement>("#victory-dialog")!;
-					victoryDialog.showPopover();
-					victoryDialog.addEventListener("blur", () => window.location.reload());
-
-					victoryDialog.querySelector(".name")!.append(w.getName());
-					victoryDialog.querySelector(".count-hits")!.append(this.#gameBattle.countHits(w).toString());
-					let victoryResume = victoryDialog.querySelector(".resume")!;
-
-					for (let history of this.#gameBattle.getHistory()) {
-						let $item = li([
-							history.from.getName(),
-							" a infligé ",
-							history.attack.calcPower(history.from, history.to).toString(),
-							" points de dégâts avec ",
-							history.attack.getName(),
-						]);
-						victoryResume.append($item);
-					}
-				},
-			);
-		};
 
 		return [
 			pokemonFighter(this.#props.defender),
 			dialog([], { id: "message-preview" }),
 			pokemonFighter(this.#props.attacker, {
-				onAttack,
+				onAttack: this.onAttack,
 				list: this.#props.attacks,
 				opponent: this.#props.defender,
 			}),
 		];
 	}
+
+	onAttack = (attack: Attack) => {
+		const whenAlive = (f1: PokemonAttack, f2: Pokemon) => {
+			this.#audioEffect.hit();
+
+			let $f1 = document.querySelector(`#fighter-${f1.getPokemon().getId()}`)!;
+			$f1.removeAttribute("data-type");
+			let $f2 = document.querySelector(`#fighter-${f2.getId()}`)!;
+			$f2.setAttribute("data-type", f2.getTypes().toString());
+
+
+			let $f2HpProgress = $f2.querySelector<HTMLMeterElement>(".hp-progress")!;
+			$f2HpProgress.value = f2.getHitPoints();
+			$f2HpProgress.dispatchEvent(new CustomEvent("change"));
+
+			let message = "";
+
+			switch (f1.getAttack().effectiveness(f2.getTypes())) {
+				case EffectivenessEnum.Faible:
+					message = "Ca n'est pas très efficace...";
+					break;
+				case EffectivenessEnum.Forte:
+					message = "C'est super efficace !"
+					break;
+				case EffectivenessEnum.Rien:
+					message = `Cette attaque n'affecte pas ${f2.getName()}.`;
+					break;
+			}
+
+			let msgPreview = this.#battleScreen.querySelector<HTMLDialogElement>("#message-preview")!;
+			if (message.length > 0) {
+				msgPreview.dataset.type = f1.getPokemon().getTypes().toString();
+				msgPreview.setAttribute("open", "");
+				msgPreview.textContent = message;
+				setTimeout(() => {
+					msgPreview.removeAttribute("open");
+				}, 2_000);
+			} else {
+				msgPreview.removeAttribute("open");
+			}
+		};
+
+		const whenDeath = (w: Pokemon, _: Pokemon) => {
+			this.#gameAtmosphere.victory();
+
+			this.#victoryDialog.showPopover();
+			this.#victoryDialog.addEventListener("blur", () => window.location.reload());
+			this.#victoryDialog.querySelector(".name")!.append(w.getName());
+			this.#victoryDialog.querySelector(".count-hits")!.append(this.#gameBattle.countHits(w).toString());
+
+			this.#victoryDialog.querySelector(".resume")!.append(
+				...this.#gameBattle.getHistory().map((history) => li([
+						history.from.getName(),
+						" a infligé ",
+						history.attack.calcPower(history.from, history.to).toString(),
+						" points de dégâts avec ",
+						history.attack.getName(),
+					]),
+				),
+			);
+		};
+
+		this.#gameBattle.flow(
+			new PokemonAttack(this.#props.attacker, attack),
+			this.#props.defender,
+			whenAlive,
+			whenDeath,
+		);
+	};
 
 	mount() {
 		this.#battleScreen.removeAttribute("hidden");

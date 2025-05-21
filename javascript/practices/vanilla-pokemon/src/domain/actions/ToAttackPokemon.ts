@@ -17,29 +17,29 @@ type Output = {
 };
 
 export class ToAttackPokemon {
-	pokedexStore: PokedexStore;
-	attackStore: AttackStore;
+	#pokedexStore: PokedexStore;
+	#attackStore: AttackStore;
 
 	constructor(pokedexStore: PokedexStore, attackStore: AttackStore) {
-		this.pokedexStore = pokedexStore;
-		this.attackStore = attackStore;
+		this.#pokedexStore = pokedexStore;
+		this.#attackStore = attackStore;
 	}
 
 	execute({ attackerName, defenderName, attackName }: Input): Output {
-		let attacker = this.pokedexStore.findByName(attackerName);
+		let attacker = this.#pokedexStore.findByName(attackerName);
 
 		if (!attacker.isAlive()) {
 			throw new FighterNotAliveError(attackerName);
 		}
 
-		let attack = this.attackStore.findByName(attackName, attacker.getAttacks());
+		let attack = this.#attackStore.findByName(attackName, attacker.getAttacks());
 
-		let defender = this.pokedexStore.findByName(defenderName);
+		let defender = this.#pokedexStore.findByName(defenderName);
 		if (!defender.isAlive()) {
 			throw new FighterNotAliveError(defenderName);
 		}
 		let power = attack.calcPower(attacker, defender);
-		this.pokedexStore.updateHitPoints(
+		this.#pokedexStore.updateHitPoints(
 			defender.getId(),
 			defender.getHitPoints() - power,
 		);

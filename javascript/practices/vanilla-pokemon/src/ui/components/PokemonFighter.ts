@@ -1,6 +1,18 @@
 import type { Pokemon } from "../../domain/entities/Pokemon.ts";
 import type { Attack } from "../../domain/entities/Attack.ts";
-import { button, div, h1, header, img, li, meter, p, small, span, ul } from "../dom/element.ts";
+import {
+	button,
+	div,
+	h1,
+	header,
+	img,
+	li,
+	meter,
+	p,
+	small,
+	span,
+	ul,
+} from "../dom/element.ts";
 import { minmax } from "../../shared/helpers.ts";
 
 export function pokemonFighter(fighter: Pokemon, attack?: PokemonFighterProps["attack"]) {
@@ -71,9 +83,7 @@ class PokemonFighter {
 							button(
 								[
 									span(
-										[
-											power.toFixed(0).toString(),
-										],
+										[power.toFixed(0)],
 										{
 											className: ["badge", "text-align-right"],
 											title: `Puissance ${power}`,

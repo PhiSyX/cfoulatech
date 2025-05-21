@@ -1,25 +1,8 @@
 import type { PokedexStore } from "../../domain/stores/PokedexStore.ts";
 import { Pokemon } from "../../domain/entities/Pokemon.ts";
 import { PokemonNotFound } from "../../domain/errors/PokemonNotFound.ts";
-import {
-	PokemonTypeEnum,
-	type PokemonTypeVariant,
-} from "../../domain/entities/Pokemon.ts";
+import { PokemonTypeEnum } from "../../domain/entities/Pokemon.ts";
 import { randomNumber } from "../../shared/helpers.ts";
-
-type PokedexDetail = {
-	id: number;
-	name_en?: string;
-	name: string;
-	level: number;
-	types: Array<PokemonTypeVariant>;
-	weakness: Array<PokemonTypeVariant>;
-	hp: {
-		min: number;
-		max: number;
-	};
-	attacks: Array<number>;
-}
 
 let pokedex = [
 	{
