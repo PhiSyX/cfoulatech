@@ -1,4 +1,4 @@
-import { Pokemon } from "../entities/Pokemon.ts";
+import type { Pokemon } from "../entities/Pokemon.js";
 
 export interface PokedexStore {
 	all(): Array<Pokemon>;

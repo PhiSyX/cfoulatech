@@ -18,7 +18,9 @@ test.describe("Pokemon", () => {
 		let attackPowerTitle = (await $attackerAttackPower?.getAttribute("title"))?.slice("Puissance ".length);
 		await $attackerAttackBtn?.click();
 		let newProgressValue = await $defenderProgress?.getAttribute("value");
+		// @ts-expect-error
 		expect(Math.round(Number.parseFloat(newProgressValue))).toBe(
+			// @ts-expect-error
 			Math.round(Number.parseFloat(progressValue) - Number.parseFloat(attackPowerTitle)),
 		);
 	});

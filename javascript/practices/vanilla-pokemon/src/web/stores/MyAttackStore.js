@@ -1,16 +1,10 @@
-// @ts-nocheck
-
 import { Attack } from "../../domain/entities/Attack.js";
-import {
-	AttackNotFoundError,
-} from "../../domain/errors/AttackNotFoundError.js";
-import {
-	AttackNotAvailableError,
-} from "../../domain/errors/AttackNotAvailableError.js";
 import { PokemonTypeEnum } from "../../domain/entities/Pokemon.js";
+import { AttackNotAvailableError } from "../../domain/errors/AttackNotAvailableError.js";
+import { AttackNotFoundError } from "../../domain/errors/AttackNotFoundError.js";
+import { shuffle } from "../../shared/helpers.js";
 
-export class MyAttackStore
-{
+export class MyAttackStore {
 	#dataset = [
 		{
 			id: 1,
@@ -36,7 +30,6 @@ export class MyAttackStore
 			power: 85,
 			types: [PokemonTypeEnum.Normal],
 		},
-
 		{
 			id: 5,
 			name: "Psyko",
@@ -61,7 +54,6 @@ export class MyAttackStore
 			power: 65,
 			types: [PokemonTypeEnum.Psy],
 		},
-
 		{
 			id: 9,
 			name: "Blizzard",
@@ -86,7 +78,6 @@ export class MyAttackStore
 			power: 70,
 			types: [PokemonTypeEnum.Glace],
 		},
-
 		{
 			id: 13,
 			name: "Lance-Soleil",
@@ -105,7 +96,6 @@ export class MyAttackStore
 			types: [PokemonTypeEnum.Normal],
 			power: 50,
 		},
-
 		{
 			id: 17,
 			name: "Éruption",
@@ -130,7 +120,6 @@ export class MyAttackStore
 			types: [PokemonTypeEnum.Normal],
 			power: 40,
 		},
-
 		{
 			id: 21,
 			name: "Surpuissance",
@@ -155,7 +144,6 @@ export class MyAttackStore
 			types: [PokemonTypeEnum.Tenebres],
 			power: 60,
 		},
-
 		{
 			id: 25,
 			name: "Piqué",
@@ -174,7 +162,6 @@ export class MyAttackStore
 			types: [PokemonTypeEnum.Vol],
 			power: 90,
 		},
-
 		{
 			id: 29,
 			name: "Tempête Verte",
@@ -189,38 +176,47 @@ export class MyAttackStore
 		},
 	];
 
-	all()
-	{
-		return this.#dataset.map((attack) => {
-			return (new Attack(attack.id))
+	/**
+	 * Toutes les attaques
+	 */
+	all() {
+		return shuffle(this.#dataset).map((attack) =>
+			new Attack(attack.id)
 				.setName(attack.name)
 				.setTypes(attack.types)
 				.setPower(attack.power)
-		});
+		);
 	}
 
-	fromPokemon(ids)
-	{
-		return this.#dataset.filter((attack) => ids.includes(attack.id)).map((attack) => {
-			return (new Attack(attack.id))
-				.setName(attack.name)
-				.setTypes(attack.types)
-				.setPower(attack.power)
-		});
+	/**
+	 * Toutes les attaques d'un pokemon
+	 * @param {import("../../domain/entities/Pokemon.js").Pokemon} pokemon
+	 */
+	fromPokemon(pokemon) {
+		return this.#dataset
+			.filter((attack) => pokemon.getAttacks().includes(attack.id))
+			.map((attack) =>
+				new Attack(attack.id)
+					.setName(attack.name)
+					.setTypes(attack.types)
+					.setPower(attack.power)
+			);
 	}
 
-	findByName(name, attacksIds = [])
-	{
+	/**
+	 * Cherche une attaque en fonction du nom
+	 * @param {string} name
+	 */
+	findByName(name, attacksIds = []) {
 		let record = this.#dataset.find((item) => item.name === name);
 		if (typeof record === "undefined") {
 			throw new AttackNotFoundError(name);
 		}
+
 		if (!attacksIds.includes(record.id)) {
 			throw new AttackNotAvailableError(name);
 		}
-		return (new Attack(record.id))
-			.setName(record.name)
-			.setTypes(record.types)
-			.setPower(record.power);
+
+		return new Attack(record.id).setName(record.name).setTypes(record.types).setPower(record.power);
 	}
 }

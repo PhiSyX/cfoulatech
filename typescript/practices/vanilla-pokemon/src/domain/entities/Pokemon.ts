@@ -1,4 +1,4 @@
-import { minmax } from "../../shared/helpers.ts";
+import { minmax } from "../../shared/helpers.js";
 
 export class Pokemon {
 	#id?: number;

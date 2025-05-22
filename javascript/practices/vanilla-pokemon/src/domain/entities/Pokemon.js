@@ -1,32 +1,55 @@
-// @ts-nocheck
-
 import { minmax } from "../../shared/helpers.js";
 
-export class Pokemon
-{
-	#id;
-	#nameFR;
-	#nameEN;
-	#attacks;
-	#minHp;
-	#hp;
-	#maxHp;
+export class Pokemon {
+	// --------- //
+	// Propriété //
+	// --------- //
 
+	/**
+	 * @type {number}
+	 */
+	#id;
+	/**
+	 * @type {string}
+	 */
+	#nameFR;
+	/**
+	 * @type {string}
+	 */
+	#nameEN;
+	/**
+	 * @type {Array<number>}
+	 */
+	#attacks = [];
+	#minHp = 0;
+	#hp = 0;
+	#maxHp = 0;
+	/**
+	 * @type {number}
+	 */
 	#level;
+	/**
+	 * @type {Array<string>}
+	 */
 	#types;
 
-	constructor(id)
-	{
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	constructor(id) {
 		this.#id = id;
 	}
 
-	getId()
-	{
+	// --------------- //
+	// Getter | Setter //
+	// --------------- //
+
+	getId() {
 		return this.#id;
 	}
 
-	setName(fr, en)
-	{
+	setName(fr, en) {
 		this.#nameFR = fr;
 		this.#nameEN = fr;
 		if (en) {
@@ -35,73 +58,65 @@ export class Pokemon
 		return this;
 	}
 
-	getName(options = { lang: "fr" })
-	{
+	getName(options = { lang: "fr" }) {
 		if (options?.lang === "en") {
 			return this.#nameEN;
 		}
 		return this.#nameFR;
 	}
 
-	getAttacks()
-	{
+	getAttacks() {
 		return this.#attacks;
 	}
 
-	setAttacks(attacks)
-	{
+	setAttacks(attacks) {
 		this.#attacks = attacks;
 		return this;
 	}
 
-	getHitPoints()
-	{
+	getHitPoints() {
 		return this.#hp;
 	}
 
-	setMinHp(minHp)
-	{
+	setMinHp(minHp) {
 		this.#minHp = minHp;
 		return this;
 	}
 
-	setHitPoints(hp)
-	{
+	setHitPoints(hp) {
 		this.#hp = hp;
 		return this;
 	}
 
-	setMaxHp(maxHp)
-	{
+	setMaxHp(maxHp) {
 		this.#maxHp = maxHp;
 		return this;
 	}
 
-	getLevel()
-	{
+	getLevel() {
 		return this.#level;
 	}
 
-	setLevel(level)
-	{
+	setLevel(level) {
 		this.#level = level;
 		this.#hp = this.maxHealth();
 		return this;
 	}
 
-	getTypes()
-	{
+	getTypes() {
 		return this.#types;
 	}
 
-	setTypes(types)
-	{
+	setTypes(types) {
 		this.#types = types;
 		return this;
 	}
 
-	maxHealth()
-	{
+	// ------- //
+	// Méthode // -> Publique
+	// ------- //
+
+	maxHealth() {
 		const minLevel = 5;
 		const maxLevel = 100;
 		if (this.#level < minLevel) return this.#minHp;
@@ -112,8 +127,7 @@ export class Pokemon
 		return minmax(hp, this.#minHp, this.#maxHp);
 	}
 
-	isAlive()
-	{
+	isAlive() {
 		return this.#hp > 0;
 	}
 }

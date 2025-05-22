@@ -1,23 +1,7 @@
-import type { Pokemon } from "../../domain/entities/Pokemon.ts";
-import type { Attack } from "../../domain/entities/Attack.ts";
-import {
-	button,
-	div,
-	h1,
-	header,
-	img,
-	li,
-	meter,
-	p,
-	small,
-	span,
-	ul,
-} from "../dom/element.ts";
-import { minmax } from "../../shared/helpers.ts";
-
-export function pokemonFighter(fighter: Pokemon, attack?: PokemonFighterProps["attack"]) {
-	return new PokemonFighter({ fighter, attack }).render();
-}
+import type { Attack } from "../../domain/entities/Attack.js";
+import type { Pokemon } from "../../domain/entities/Pokemon.js";
+import { minmax } from "../../shared/helpers.js";
+import { button, div, h1, header, img, li, meter, p, small, span, ul } from "../helpers/element.js";
 
 interface PokemonFighterProps {
 	fighter: Pokemon;
@@ -28,14 +12,45 @@ interface PokemonFighterProps {
 	};
 }
 
+/**
+ * Rend un composant DOM PokemonFighter.
+ */
+export function pokemonFighter(
+	fighter: PokemonFighterProps["fighter"],
+	attack?: PokemonFighterProps["attack"],
+): HTMLElement {
+	return new PokemonFighter({ fighter, attack }).render();
+}
+
+/**
+ * Composant DOM PokemonFighter.
+ */
 class PokemonFighter {
+	// --------- //
+	// Propriété //
+	// --------- //
+
+	/**
+	 * Les propriétés du composant.
+	 */
 	#props: PokemonFighterProps;
+
+	// ----------- //
+	// Constructor //
+	// ----------- //
 
 	constructor(props: PokemonFighterProps) {
 		this.#props = props;
 	}
 
-	render() {
+	// ------- //
+	// Méthode //
+	// ------- //
+
+	/**
+	 * Rendu du composant DOM.
+	 */
+	render(): HTMLElement {
 		let maxHealth = this.#props.fighter.maxHealth();
 		let hpDiff = p([], { className: "hp-diff" });
 
@@ -72,6 +87,7 @@ class PokemonFighter {
 					),
 					meter(this.#props.fighter.getHitPoints(), maxHealth, {
 						className: "hp-progress",
+						// @ts-expect-error
 						event: { change: displayHitPoints },
 					}),
 					hpDiff,
@@ -82,13 +98,10 @@ class PokemonFighter {
 						return li([
 							button(
 								[
-									span(
-										[power.toFixed(0)],
-										{
-											className: ["badge", "text-align-right"],
-											title: `Puissance ${power}`,
-										},
-									),
+									span([power.toFixed(0)], {
+										className: ["badge", "text-align-right"],
+										title: `Puissance ${power}`,
+									}),
 									" ",
 									attack.getName(),
 								],
@@ -97,6 +110,7 @@ class PokemonFighter {
 										name: attack.getName(),
 										type: attack.getTypes().toString(),
 									},
+									// @ts-expect-error
 									event: {
 										click: () => this.#props.attack?.onAttack(attack),
 										keydown: moveIntoAttackList,
@@ -116,6 +130,7 @@ class PokemonFighter {
 				id: `fighter-${this.#props.fighter.getId()}`,
 				className: "fighter",
 				dataset: {
+					// @ts-expect-error
 					type: this.#props.attack && this.#props.fighter.getTypes().toString(),
 				},
 			},

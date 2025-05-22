@@ -1,36 +1,49 @@
-// @ts-nocheck
-
-import {
-	button,
-	div,
-	h1,
-	header,
-	img,
-	li,
-	meter,
-	p,
-	small,
-	span,
-	ul,
-} from "../dom/element.js";
 import { minmax } from "../../shared/helpers.js";
+import { button, div, h1, header, img, li, meter, p, small, span, ul } from "../helpers/element.js";
 
-export function pokemonFighter(fighter, attack)
-{
+/**
+ * Rend un composant DOM PokemonFighter.
+ * @param {PokemonFighterProps["fighter"]} fighter
+ * @param {PokemonFighterProps["attack"]} attack
+ * @returns {HTMLElement}
+ */
+export function pokemonFighter(fighter, attack) {
 	return new PokemonFighter({ fighter, attack }).render();
 }
 
-class PokemonFighter
-{
+const POKEMON_POSTER = "https://www.shinyhunters.com/images/regular/{id}.gif";
+
+/**
+ * Composant DOM PokemonFighter.
+ */
+class PokemonFighter {
+	// --------- //
+	// Propriété //
+	// --------- //
+	/**
+	 * Les propriétés du composant.
+	 * @type {PokemonFighterProps}
+	 */
 	#props;
 
-	constructor(props)
-	{
+	// ----------- //
+	// Constructor //
+	// ----------- //
+	/**
+	 * @param {PokemonFighterProps} props
+	 */
+	constructor(props) {
 		this.#props = props;
 	}
 
-	render()
-	{
+	// ------- //
+	// Méthode //
+	// ------- //
+	/**
+	 * Rendu du composant DOM.
+	 * @returns {HTMLElement}
+	 */
+	render() {
 		let maxHealth = this.#props.fighter.maxHealth();
 		let hpDiff = p([], { className: "hp-diff" });
 
@@ -39,20 +52,29 @@ class PokemonFighter
 			hpDiff.textContent = `${hp.toFixed(0)} / ${maxHealth.toFixed(0)}`;
 		};
 
-		displayHitPoints();
-
+		/**
+		 * @param {KeyboardEvent} evt
+		 */
 		const moveIntoAttackList = (evt) => {
 			let li = evt.currentTarget.parentElement;
-			console.log(li);
-			if (evt.key === "ArrowUp") {
-				let firstBtnFromPrevLi = li.previousElementSibling.children[0];
-				firstBtnFromPrevLi.focus();
-			}
-			if (evt.key === "ArrowDown") {
-				let firstBtnFromNextLi = li.nextElementSibling.children[0];
-				firstBtnFromNextLi.focus();
+			switch (evt.key) {
+				case "ArrowUp":
+					{
+						let firstBtnFromPrevLi = li.previousElementSibling.children[0];
+						firstBtnFromPrevLi?.focus();
+					}
+					break;
+
+				case "ArrowDown":
+					{
+						let firstBtnFromNextLi = li.nextElementSibling.children[0];
+						firstBtnFromNextLi?.focus();
+					}
+					break;
 			}
 		};
+
+		displayHitPoints();
 
 		return div(
 			[
@@ -61,7 +83,7 @@ class PokemonFighter
 						[
 							this.#props.fighter.getName(),
 							" ",
-							small(["Lv: ", this.#props.fighter.getLevel().toString()], { className: "level" }),
+							small(["Lv: ", this.#props.fighter.getLevel()], { className: "level" }),
 						],
 						{ className: "name" },
 					),
@@ -77,20 +99,17 @@ class PokemonFighter
 						return li([
 							button(
 								[
-									span(
-										[power.toFixed(0)],
-										{
-											className: ["badge", "text-align-right"],
-											title: `Puissance ${power}`,
-										},
-									),
+									span([power.toFixed(0)], {
+										className: ["badge", "text-align-right"],
+										title: `Puissance ${power}`,
+									}),
 									" ",
 									attack.getName(),
 								],
 								{
 									dataset: {
 										name: attack.getName(),
-										type: attack.getTypes().toString(),
+										type: attack.getTypes(),
 									},
 									event: {
 										click: () => this.#props.attack?.onAttack(attack),
@@ -102,7 +121,7 @@ class PokemonFighter
 					}),
 					{ className: "attacks", hidden: !this.#props.attack },
 				),
-				img(`https://www.shinyhunters.com/images/regular/${this.#props.fighter.getId()}.gif`, {
+				img(POKEMON_POSTER.replace("{id}", this.#props.fighter.getId()), {
 					className: "pic",
 					height: 200,
 				}),
@@ -111,9 +130,15 @@ class PokemonFighter
 				id: `fighter-${this.#props.fighter.getId()}`,
 				className: "fighter",
 				dataset: {
-					type: this.#props.attack && this.#props.fighter.getTypes().toString(),
+					type: this.#props.attack && this.#props.fighter.getTypes(),
 				},
 			},
 		);
 	}
 }
+
+/**
+ * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
+ * @typedef {import("../../domain/entities/Attack.js").Attack} Attack
+ * @typedef {{ fighter: Pokemon; attack?: { list: Array<Attack>; onAttack: (_: Attack) => void; opponent: Pokemon; }; }} PokemonFighterProps
+ */

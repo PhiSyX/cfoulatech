@@ -1,12 +1,11 @@
-import type { PokedexStore } from "./stores/PokedexStore.ts";
-import type { AttackStore } from "./stores/AttackStore.ts";
-import type { Pokemon } from "./entities/Pokemon.ts";
-import type { Attack } from "./entities/Attack.ts";
-
-import { ToAttackPokemon } from "./actions/ToAttackPokemon.ts";
-import { BadFighterAttackError } from "./errors/BadFighterError.ts";
-import { PokemonAttack } from "./entities/PokemonAttack.ts";
-import { randomArray } from "../shared/helpers.ts";
+import { randomArray } from "../shared/helpers.js";
+import { ToAttackPokemon } from "./actions/ToAttackPokemon.js";
+import type { Attack } from "./entities/Attack.js";
+import type { Pokemon } from "./entities/Pokemon.js";
+import { PokemonAttack } from "./entities/PokemonAttack.js";
+import { BadFighterAttackError } from "./errors/BadFighterAttackError.js";
+import type { AttackStore } from "./stores/AttackStore.js";
+import type { PokedexStore } from "./stores/PokedexStore.js";
 
 interface HistoryAttack {
 	from: Pokemon;
@@ -52,13 +51,11 @@ export class GameBattle {
 			attack: attack,
 			to: defender,
 			from: attacker,
-		})
+		});
 	}
 
 	countHits(pokemon: Pokemon): number {
-		return this.#history.filter(
-			(h) => h.from.getName() === pokemon.getName(),
-		).length;
+		return this.#history.filter((h) => h.from.getName() === pokemon.getName()).length;
 	}
 
 	getHistory(): Array<HistoryAttack> {
@@ -69,8 +66,8 @@ export class GameBattle {
 		attacker: PokemonAttack,
 		defender: Pokemon,
 		state: {
-			alive: (f1: PokemonAttack, f2: Pokemon) => void,
-			death: (w: Pokemon, d: Pokemon) => void,
+			alive: (f1: PokemonAttack, f2: Pokemon) => void;
+			death: (w: Pokemon, d: Pokemon) => void;
 		},
 		next: boolean = true,
 	): void {
@@ -82,21 +79,18 @@ export class GameBattle {
 			state.alive(attacker, def);
 
 			if (!def.isAlive()) {
-				state.death(attacker.getPokemon(), def)
+				state.death(attacker.getPokemon(), def);
 				return;
 			}
 
 			if (next) {
 				setTimeout(() => {
 					this.flow(
-						new PokemonAttack(
-							def,
-							randomArray(this.#attackStore.fromPokemon(def.getAttacks())),
-						),
+						new PokemonAttack(def, randomArray(this.#attackStore.fromPokemon(def.getAttacks()))),
 						attacker.getPokemon(),
 						state,
 						false,
-					)
+					);
 				}, ATTACK_AFTER);
 			}
 		} catch (e) {

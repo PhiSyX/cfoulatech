@@ -1,23 +1,37 @@
-import { GameAtmosphere } from "../audio/GameAtmosphere.ts";
-import { fragment } from "../dom/element.ts";
-import { MyPokedexStore } from "../stores/MyPokedexStore.ts";
-import type { Pokemon } from "../../domain/entities/Pokemon.ts";
-import { pokemonDetail } from "../components/PokemonDetail.ts";
-import { removeRandomArray } from "../../shared/helpers.ts";
-import { createPokemonBattleScreen } from "./PokemonBattleScreen.ts";
-import { AudioEffect } from "../audio/AudioEffect.ts";
+import type { Pokemon } from "../../domain/entities/Pokemon.js";
+import { removeRandomArray } from "../../shared/helpers.js";
+import { AudioEffect } from "../audio/AudioEffect.js";
+import { GameAtmosphere } from "../audio/GameAtmosphere.js";
+import { pokemonDetail } from "../components/PokemonDetail.js";
+import { fragment } from "../helpers/element.js";
+import { MyPokedexStore } from "../stores/MyPokedexStore.js";
+import { createPokemonBattleScreen } from "./PokemonBattleScreen.js";
 
-export function createPokedexScreen() {
+/**
+ * Crée l'écran des choix de pokemon.
+ */
+export function createPokedexScreen(): void {
 	let pokedexStore = new MyPokedexStore();
 
 	let pokedex = pokedexStore.all();
 	let opponent = removeRandomArray(pokedex);
 
-	let screen = new PokedexScreen(new AudioEffect(), new GameAtmosphere(), {
-		opponent: opponent,
-		list: pokedex,
-	});
+	let screen = new PokedexScreen(
+		{
+			audioEffect: new AudioEffect(),
+			gameAtmosphere: new GameAtmosphere(),
+		},
+		{ opponent, list: pokedex },
+	);
 	screen.mount();
+}
+
+/**
+ * @typedef {{ audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere; }} PokedexScreenContext
+ */
+interface PokedexScreenContext {
+	audioEffect: AudioEffect;
+	gameAtmosphere: GameAtmosphere;
 }
 
 interface PokedexScreenProps {
@@ -29,27 +43,32 @@ interface PokedexScreenState {
 	selectedFighter?: Pokemon;
 }
 
+/**
+ * Écran Pokedex
+ */
 class PokedexScreen {
-	#audioEffect: AudioEffect;
-	#gameAtmosphere: GameAtmosphere;
+	// --------- //
+	// Propriété //
+	// --------- //
 
+	#ctx: PokedexScreenContext;
 	#props: PokedexScreenProps;
 	#state: PokedexScreenState;
 
 	/* Les éléments du DOM */
+
 	#headerLayout: HTMLDivElement;
 	#pokemonFightBtn: HTMLButtonElement;
 	#pokedexScreen: HTMLDivElement;
 	#pokemonList: HTMLDivElement;
 	#pokemonOpponent: HTMLDivElement;
 
-	constructor(
-		audioEffect: AudioEffect,
-		gameAtmosphere: GameAtmosphere,
-		props: PokedexScreenProps
-	) {
-		this.#audioEffect = audioEffect;
-		this.#gameAtmosphere = gameAtmosphere;
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	constructor(ctx: PokedexScreenContext, props: PokedexScreenProps) {
+		this.#ctx = ctx;
 		this.#props = props;
 		this.#state = {};
 
@@ -69,29 +88,39 @@ class PokedexScreen {
 		});
 	}
 
-	render() {
+	// ------- //
+	// Méthode //
+	// ------- //
+
+	/**
+	 * Rendu de l'écran.
+	 */
+	render(): DocumentFragment {
+		/**
+		 * Lorsque un pokemon est sélectionné
+		 */
 		let whenSelectPokemon = (pokemon: Pokemon) => {
 			this.#pokemonList.querySelector(".selected")?.classList.remove("selected");
 			this.#headerLayout.querySelector("#pokemon-fight-btn")?.removeAttribute("hidden");
-			this.#gameAtmosphere.cry(pokemon);
+			this.#ctx.gameAtmosphere.cry(pokemon);
 			this.#state.selectedFighter = pokemon;
 		};
 
-		return fragment(this.#props.list.map((pokemon) => {
-			return pokemonDetail({
-				pokemon,
-				onSelect: whenSelectPokemon,
-			});
-		}));
+		return fragment(
+			this.#props.list.map((pokemon) => {
+				return pokemonDetail({
+					pokemon,
+					onSelect: whenSelectPokemon,
+				});
+			}),
+		);
 	}
 
-	mount() {
+	mount(): void {
 		this.#headerLayout.removeAttribute("hidden");
 		this.#pokedexScreen.removeAttribute("hidden");
 		this.#pokemonList.append(this.render());
-		this.#pokemonOpponent.append(
-			pokemonDetail({ pokemon: this.#props.opponent }),
-		);
-		this.#audioEffect.useButtonsEffect();
+		this.#pokemonOpponent.append(pokemonDetail({ pokemon: this.#props.opponent }));
+		this.#ctx.audioEffect.useButtonsEffect();
 	}
 }

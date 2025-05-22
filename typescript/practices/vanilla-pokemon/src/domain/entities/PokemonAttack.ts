@@ -1,9 +1,9 @@
-import type { Attack } from "./Attack.ts";
-import type { Pokemon } from "./Pokemon.ts";
+import type { Attack } from "./Attack.js";
+import type { Pokemon } from "./Pokemon.js";
 
 export class PokemonAttack {
 	#pokemon: Pokemon;
-	#attack: Attack
+	#attack: Attack;
 
 	constructor(pokemon: Pokemon, attack: Attack) {
 		this.#pokemon = pokemon;

@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import { Pokemon } from "../../domain/entities/Pokemon.js";
-import { PokemonNotFound } from "../../domain/errors/PokemonNotFound.js";
 import { PokemonTypeEnum } from "../../domain/entities/Pokemon.js";
-import { randomNumber } from "../../shared/helpers.js";
+import { PokemonNotFoundError } from "../../domain/errors/PokemonNotFoundError.js";
+import { randomNumber, shuffle } from "../../shared/helpers.js";
 
 let pokedex = [
 	{
@@ -125,45 +123,52 @@ let pokedex = [
 		},
 		attacks: [29, 30, 13, 7],
 	},
-].map((detail) => {
-	return (new Pokemon(detail.id))
+].map((detail) =>
+	new Pokemon(detail.id)
 		.setName(detail.name, detail.name_en)
 		.setTypes(detail.types)
 		.setMinHp(detail.hp.min)
 		.setMaxHp(detail.hp.max)
 		.setAttacks(detail.attacks)
-		.setLevel(detail.level)
-});
+		.setLevel(detail.level),
+);
 
-export class MyPokedexStore
-{
+export class MyPokedexStore {
 	#dataset = pokedex;
 
-	all()
-	{
-		return [...this.#dataset];
+	/**
+	 * Pokedex
+	 */
+	all() {
+		return shuffle([...this.#dataset]);
 	}
 
-	find(id)
-	{
+	/**
+	 * Cherche un pokemon en fonction de son ID.
+	 */
+	find(id) {
 		let record = this.#dataset.find((item) => item.getId() === id);
 		if (typeof record === "undefined") {
-			throw new PokemonNotFound(id);
+			throw new PokemonNotFoundError(id);
 		}
 		return record;
 	}
 
-	findByName(name)
-	{
+	/**
+	 * Cherche un pokemon en fonction de son nom.
+	 */
+	findByName(name) {
 		let record = this.#dataset.find((item) => item.getName() === name);
 		if (typeof record === "undefined") {
-			throw new PokemonNotFound(name);
+			throw new PokemonNotFoundError(name);
 		}
 		return record;
 	}
 
-	updateHitPoints(id, hp)
-	{
+	/**
+	 * Met à jour les points de vie d'un pokemon en fonction de son ID.
+	 */
+	updateHitPoints(id, hp) {
 		let record = this.find(id);
 		record.setHitPoints(hp);
 	}

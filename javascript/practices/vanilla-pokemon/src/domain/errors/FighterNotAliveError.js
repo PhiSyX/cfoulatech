@@ -1,7 +1,8 @@
-// @ts-nocheck
-
 export class FighterNotAliveError extends Error {
-	constructor(attackerName) {
-		super(`Le pokémon ${attackerName} n'est plus en vie.`);
+	/**
+	 * @param {string} pokemonName Le nom du pokemon n'étant plus en vie.
+	 */
+	constructor(pokemonName) {
+		super(`Le pokemon ${pokemonName} n'est plus en vie.`);
 	}
 }

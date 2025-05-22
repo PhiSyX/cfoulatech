@@ -1,21 +1,21 @@
-export const fragment = (children: Array<Node | string>) => {
-	let $frament = document.createDocumentFragment();
-	$frament.append(...children);
-	return $frament;
-};
-
 type HChildren = Array<Node | HTMLElement | string>;
 
 type HAttrs = Partial<{
 	className: Array<{ toString(): string }> | { toString(): string };
 	hidden: boolean;
-	dataset: { [key: string]: { toString(): string }; };
+	dataset: { [key: string]: { toString(): string } };
 	style: { [key: string]: { toString(): string } };
 	[k: string]: { toString(): string };
 }>;
 
 type HEvent = {
 	[K in keyof HTMLElementEventMap]: (e: HTMLElementEventMap[K]) => void;
+};
+
+export const fragment = (children: HChildren) => {
+	let $frament = document.createDocumentFragment();
+	$frament.append(...children);
+	return $frament;
 };
 
 const h = <T extends keyof HTMLElementTagNameMap>(
@@ -72,36 +72,20 @@ const h = <T extends keyof HTMLElementTagNameMap>(
 	return $el;
 };
 
-export const article = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("article", children, props, props?.event);
+export const article = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("article", children, props, props?.event);
 
-export const h1 = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("h1", children, props, props?.event);
+export const h1 = (children: HChildren, props?: HAttrs & { event?: HEvent }) => h("h1", children, props, props?.event);
 
-export const small = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("small", children, props, props?.event);
+export const small = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("small", children, props, props?.event);
 
-export const output = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("output", children, props, props?.event);
+export const output = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("output", children, props, props?.event);
 
-export const p = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("p", children, props, props?.event);
+export const p = (children: HChildren, props?: HAttrs & { event?: HEvent }) => h("p", children, props, props?.event);
 
-export const audio = (
-	src: string,
-	props: HAttrs & { event?: HEvent } & { id: string },
-) => {
-
+export const audio = (src: string, props: HAttrs & { event?: HEvent } & { id: string }) => {
 	let $el = document.querySelector<HTMLAudioElement>(`#${props.id}`);
 	if (!$el) {
 		$el = h("audio", [], props, props?.event);
@@ -111,21 +95,13 @@ export const audio = (
 	return $el;
 };
 
-export const div = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("div", children, props, props?.event);
+export const div = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("div", children, props, props?.event);
 
-export const header = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("header", children, props, props?.event);
+export const header = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("header", children, props, props?.event);
 
-export const meter = (
-	value: number,
-	max: number,
-	props: HAttrs & { event?: HEvent } = {},
-) => {
+export const meter = (value: number, max: number, props: HAttrs & { event?: HEvent } = {}) => {
 	props.optimum ??= max;
 	props.low ??= max / 6;
 	props.high ??= max / 2;
@@ -134,36 +110,21 @@ export const meter = (
 	props.value = value;
 	return h("meter", [], props, props?.event);
 };
-export const ul = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("ul", children, props, props?.event);
+export const ul = (children: HChildren, props?: HAttrs & { event?: HEvent }) => h("ul", children, props, props?.event);
 
-export const img = (
-	src: string,
-	props?: HAttrs & { event?: HEvent },
-) => {
+export const img = (src: string, props?: HAttrs & { event?: HEvent }) => {
 	let $el = h("img", [], props, props?.event);
 	$el.src = src;
 	return $el;
 };
 
-export const li = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("li", children, props, props?.event);
+export const li = (children: HChildren, props?: HAttrs & { event?: HEvent }) => h("li", children, props, props?.event);
 
-export const button = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("button", children, props, props?.event);
+export const button = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("button", children, props, props?.event);
 
-export const span = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("span", children, props, props?.event);
+export const span = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("span", children, props, props?.event);
 
-export const dialog = (
-	children: HChildren,
-	props?: HAttrs & { event?: HEvent },
-) => h("dialog", children, props, props?.event);
+export const dialog = (children: HChildren, props?: HAttrs & { event?: HEvent }) =>
+	h("dialog", children, props, props?.event);

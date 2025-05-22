@@ -1,8 +1,8 @@
-import type { PokedexStore } from "../stores/PokedexStore.ts";
-import type { AttackStore } from "../stores/AttackStore.ts";
-import type { Pokemon } from "../entities/Pokemon.ts";
-import { FighterNotAliveError } from "../errors/FighterNotAliveError.ts";
-import { Attack  } from "../entities/Attack.ts";
+import type { Attack } from "../entities/Attack.js";
+import type { Pokemon } from "../entities/Pokemon.js";
+import { FighterNotAliveError } from "../errors/FighterNotAliveError.js";
+import type { AttackStore } from "../stores/AttackStore.js";
+import type { PokedexStore } from "../stores/PokedexStore.js";
 
 type Input = {
 	attackerName: string;
@@ -39,11 +39,7 @@ export class ToAttackPokemon {
 			throw new FighterNotAliveError(defenderName);
 		}
 		let power = attack.calcPower(attacker, defender);
-		this.#pokedexStore.updateHitPoints(
-			defender.getId(),
-			defender.getHitPoints() - power,
-		);
+		this.#pokedexStore.updateHitPoints(defender.getId(), defender.getHitPoints() - power);
 		return { attack, attacker, defender };
 	}
 }
-

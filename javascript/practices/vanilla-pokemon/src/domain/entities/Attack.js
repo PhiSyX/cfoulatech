@@ -1,59 +1,91 @@
-// @ts-nocheck
-
 import { PokemonTypeEnum } from "./Pokemon.js";
 
-export class Attack
-{
+export class Attack {
+	// --------- //
+	// Propriété //
+	// --------- //
+
+	/**
+	 * @type {number}
+	 */
 	#id;
+	/**
+	 * @type {string}
+	 */
 	#name;
+	/**
+	 * @type {number}
+	 */
 	#power;
+	/**
+	 * @type {Array<string>}
+	 */
 	#types;
 
-	constructor(id)
-	{
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	/**
+	 * @param {number} id
+	 */
+	constructor(id) {
 		this.#id = id;
 	}
 
-	getId()
-	{
+	// --------------- //
+	// Getter | Setter //
+	// --------------- //
+
+	getId() {
 		return this.#id;
 	}
 
-	setName(name)
-	{
+	/**
+	 * @param {string} name
+	 */
+	setName(name) {
 		this.#name = name;
 		return this;
 	}
 
-	getName()
-	{
+	getName() {
 		return this.#name;
 	}
 
-	setPower(power)
-	{
+	/**
+	 * @param {number} power
+	 */
+	setPower(power) {
 		this.#power = power;
 		return this;
 	}
 
-	getPower()
-	{
+	getPower() {
 		return this.#power;
 	}
 
-	getTypes()
-	{
-		return this.#types;
-	}
-
-	setTypes(types)
-	{
+	/**
+	 * @param {Array<string>} types
+	 */
+	setTypes(types) {
 		this.#types = types;
 		return this;
 	}
 
-	effectiveness(pokemonTypes)
-	{
+	getTypes() {
+		return this.#types;
+	}
+
+	// ------- //
+	// Méthode // -> Publique
+	// ------- //
+
+	/**
+	 * @param {Array<string>} pokemonTypes
+	 * @returns {"forte"|"normal"|"faible"|"rien"}
+	 */
+	effectiveness(pokemonTypes) {
 		let effect = (offType, defType) => {
 			switch (offType) {
 				case PokemonTypeEnum.Acier:
@@ -69,7 +101,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Eau:
 					switch (defType) {
 						case PokemonTypeEnum.Eau:
@@ -82,7 +113,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Combat:
 					switch (defType) {
 						case PokemonTypeEnum.Spectre:
@@ -100,7 +130,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Dragon:
 					switch (defType) {
 						case PokemonTypeEnum.Fee:
@@ -111,7 +140,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Electrik:
 					switch (defType) {
 						case PokemonTypeEnum.Sol:
@@ -125,7 +153,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Fee:
 					switch (defType) {
 						case PokemonTypeEnum.Acier:
@@ -138,7 +165,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Feu:
 					switch (defType) {
 						case PokemonTypeEnum.Dragon:
@@ -153,7 +179,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Glace:
 					switch (defType) {
 						case PokemonTypeEnum.Acier:
@@ -168,7 +193,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Insecte:
 					switch (defType) {
 						case PokemonTypeEnum.Feu:
@@ -185,7 +209,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Normal:
 					switch (defType) {
 						case PokemonTypeEnum.Spectre:
@@ -195,7 +218,6 @@ export class Attack
 							return EffectivenessEnum.Faible;
 					}
 					break;
-
 				case PokemonTypeEnum.Plante:
 					switch (defType) {
 						case PokemonTypeEnum.Acier:
@@ -211,7 +233,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Poison:
 					switch (defType) {
 						case PokemonTypeEnum.Poison:
@@ -224,7 +245,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Psy:
 					switch (defType) {
 						case PokemonTypeEnum.Tenebres:
@@ -237,7 +257,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Roche:
 					switch (defType) {
 						case PokemonTypeEnum.Combat:
@@ -251,7 +270,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Sol:
 					switch (defType) {
 						case PokemonTypeEnum.Vol:
@@ -267,7 +285,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Spectre:
 					switch (defType) {
 						case PokemonTypeEnum.Normal:
@@ -279,7 +296,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Tenebres:
 					switch (defType) {
 						case PokemonTypeEnum.Combat:
@@ -291,7 +307,6 @@ export class Attack
 							return EffectivenessEnum.Forte;
 					}
 					break;
-
 				case PokemonTypeEnum.Vol:
 					switch (defType) {
 						case PokemonTypeEnum.Electrik:
@@ -323,8 +338,12 @@ export class Attack
 		return choose(effectiveness);
 	}
 
-	calcPower(attacker, defender)
-	{
+	/**
+	 * @param {import("./Pokemon.js").Pokemon} attacker
+	 * @param {import("./Pokemon.js").Pokemon} defender
+	 * @returns {number}
+	 */
+	calcPower(attacker, defender) {
 		let levelDiff = attacker.getLevel() - defender.getLevel();
 		let power = this.getPower();
 
@@ -333,16 +352,13 @@ export class Attack
 				power *= 2;
 				power += levelDiff * 0.1;
 				break;
-
 			case EffectivenessEnum.Normal:
 				power += levelDiff * 0.135;
 				break;
-
 			case EffectivenessEnum.Faible:
 				power /= 2;
 				power -= levelDiff * 0.2;
 				break;
-
 			case EffectivenessEnum.Rien:
 				power = 0;
 				break;

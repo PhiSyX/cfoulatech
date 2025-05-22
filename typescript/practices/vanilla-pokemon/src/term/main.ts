@@ -1,29 +1,25 @@
-import { stdin, stdout, exit } from "node:process";
+import type { Pokemon } from "../domain/entities/Pokemon.js";
+
+import { exit, stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
-import { GameBattle } from "../domain/GameBattle.ts";
-import { MyPokedexStore } from "./stores/MyPokedexStore.ts";
-import { MyAttackStore } from "./stores/MyAttackStore.ts";
-import { removeRandomArray } from "../shared/helpers.ts";
-import { Pokemon } from "../domain/entities/Pokemon.ts";
-import { PokemonAttack } from "../domain/entities/PokemonAttack.ts";
+import { GameBattle } from "../domain/GameBattle.js";
+import { PokemonAttack } from "../domain/entities/PokemonAttack.js";
+import { removeRandomArray } from "../shared/helpers.js";
+import { MyAttackStore } from "./stores/MyAttackStore.js";
+import { MyPokedexStore } from "./stores/MyPokedexStore.js";
 
 let pokedexStore: MyPokedexStore = new MyPokedexStore();
 let attackStore: MyAttackStore = new MyAttackStore();
 
-let gameBattle = new GameBattle(
-	pokedexStore,
-	new MyAttackStore(),
-);
+let gameBattle = new GameBattle(pokedexStore, new MyAttackStore());
 
-let readline = createInterface(stdin, stdout)
+let readline = createInterface(stdin, stdout);
 
 let pokedex = pokedexStore.all();
 let attacker: Pokemon | null = null;
 let opponent = removeRandomArray(pokedex);
 
-console.log(
-	`Vous vous apprêtez à affronter le pokémon ${opponent.getName()} (niveau ${opponent.getLevel()})`,
-);
+console.log(`Vous vous apprêtez à affronter le pokémon ${opponent.getName()} (niveau ${opponent.getLevel()})`);
 
 while (attacker === null) {
 	let userInputPokemon = await readline.question(
@@ -73,12 +69,14 @@ while (true) {
 	try {
 		let attacks = attackStore.fromPokemon(attacker.getAttacks());
 		console.log(`[${attacker.getName()}]: Choisir une attaque `);
-		console.table(attacks.map((attack) => {
-			return {
-				name: attack.getName(),
-				power: attack.calcPower(attacker, opponent),
-			}
-		}));
+		console.table(
+			attacks.map((attack) => {
+				return {
+					name: attack.getName(),
+					power: attack.calcPower(attacker, opponent),
+				};
+			}),
+		);
 		let userInputAttack = await readline.question("");
 		let attack = attackStore.findByName(userInputAttack.trim(), attacker.getAttacks())!;
 
@@ -92,10 +90,12 @@ while (true) {
 			true,
 		);
 	} catch (e) {
+		// @ts-expect-error
 		if (e.message.indexOf("readline") >= 0) {
 			break;
 		}
 
+		// @ts-expect-error
 		console.error("Erreur:", e.message, "\n");
 	}
 }

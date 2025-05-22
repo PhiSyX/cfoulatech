@@ -1,14 +1,12 @@
 import { describe, expect, test } from "vitest";
-
-import { FakePokedexStore } from "./FakePokedexStore.ts";
-import { FakeAttackStore } from "./FakeAttackStore.ts";
-
-import { GameBattle } from "../src/domain/GameBattle.ts";
-import { BadFighterAttackError } from "../src/domain/errors/BadFighterError.ts";
-import { AttackNotAvailableError } from "../src/domain/errors/AttackNotAvailableError.ts";
-import { FighterNotAliveError } from "../src/domain/errors/FighterNotAliveError.ts";
-import { EffectivenessEnum } from "../src/domain/entities/Attack.ts";
-import { PokemonTypeEnum } from "../src/domain/entities/Pokemon.ts";
+import { GameBattle } from "../src/domain/GameBattle.js";
+import { EffectivenessEnum } from "../src/domain/entities/Attack.js";
+import { PokemonTypeEnum } from "../src/domain/entities/Pokemon.js";
+import { AttackNotAvailableError } from "../src/domain/errors/AttackNotAvailableError.js";
+import { BadFighterAttackError } from "../src/domain/errors/BadFighterAttackError.js";
+import { FighterNotAliveError } from "../src/domain/errors/FighterNotAliveError.js";
+import { FakeAttackStore } from "./FakeAttackStore.js";
+import { FakePokedexStore } from "./FakePokedexStore.js";
 
 describe("Pokemon", () => {
 	test("Règle: un pokémon n'a le droit d'attaquer qu'une seule fois", () => {
@@ -23,7 +21,9 @@ describe("Pokemon", () => {
 		let fakePokedexStore = new FakePokedexStore();
 		let fakeAttackStore = new FakeAttackStore();
 		let pokemon = fakePokedexStore.findByName("Tortank");
-		expect(() => fakeAttackStore.findByName("Déflagration", pokemon.getAttacks())).toThrowError(AttackNotAvailableError);
+		expect(() => fakeAttackStore.findByName("Déflagration", pokemon.getAttacks())).toThrowError(
+			AttackNotAvailableError,
+		);
 	});
 
 	test("Règle: un pokémon ne peut attaquer une fois mort", () => {

@@ -1,27 +1,51 @@
-// @ts-nocheck
+import { audio } from "../helpers/element.js";
 
-import { audio } from "../dom/element.js";
+const POKEMON_CRY = "https://play.pokemonshowdown.com/audio/cries/{pokemon_en}.mp3";
 
-export class GameAtmosphere
-{
+/**
+ * Ambiance du jeu.
+ */
+export class GameAtmosphere {
+	// --------- //
+	// Propriété //
+	// --------- //
+	/**
+	 * @type {HTMLAudioElement}
+	 */
 	#battleSound;
+	/**
+	 * @type {HTMLAudioElement}
+	 */
 	#battleVictorySound;
-
+	/**
+	 * @type {HTMLAudioElement|null}
+	 */
 	#currentMusic = null;
+	/**
+	 * @type {HTMLAudioElement|null}
+	 */
 	#currentCry = null;
 
-	constructor()
-	{
+	// ----------- //
+	// Constructor //
+	// ----------- //
+
+	constructor() {
 		this.#battleSound = document.querySelector("#battle-sound");
 		this.#battleVictorySound = document.querySelector("#battle-victory-sound");
 	}
 
-	cry(pokemon)
-	{
-		this.#currentCry?.pause();
+	// ------- //
+	// Méthode //
+	// ------- //
 
+	/**
+	 * Joue le crie d'un pokemon.
+	 */
+	cry(pokemon) {
+		this.#currentCry?.pause();
 		let pokemonName_en = pokemon.getName({ lang: "en" }).toLowerCase();
-		let src = `https://play.pokemonshowdown.com/audio/cries/${pokemonName_en}.mp3`;
+		let src = POKEMON_CRY.replace("{pokemon_en}", pokemonName_en);
 		let audioElement = audio(src, {
 			id: `cry-${pokemonName_en}`,
 			event: {
@@ -35,29 +59,29 @@ export class GameAtmosphere
 		this.#currentCry = audioElement;
 	}
 
-	battle()
-	{
+	/**
+	 * Joue la musique de combat.
+	 */
+	battle() {
 		this.#currentMusic?.pause();
-
 		setTimeout(() => {
 			this.#currentMusic = this.#battleSound;
 			void this.#battleSound.play();
 		}, 500);
-
 		this.#battleSound.addEventListener("ended", () => {
 			this.#currentMusic = null;
 		});
 	}
 
-	victory()
-	{
+	/**
+	 * Joue la musique de victoire d'un combat.
+	 */
+	victory() {
 		this.#currentMusic?.pause();
-
 		setTimeout(() => {
 			this.#currentMusic = this.#battleVictorySound;
 			void this.#battleVictorySound.play();
 		}, 500);
-
 		this.#battleVictorySound.addEventListener("ended", () => {
 			this.#currentMusic = null;
 		});

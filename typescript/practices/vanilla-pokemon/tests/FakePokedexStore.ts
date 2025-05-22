@@ -1,9 +1,6 @@
-import type {
-	PokedexStore,
-} from "../src/domain/stores/PokedexStore.ts";
-import { Pokemon } from "../src/domain/entities/Pokemon.ts";
-import { PokemonNotFound } from "../src/domain/errors/PokemonNotFound.ts";
-import { PokemonTypeEnum } from "../src/domain/entities/Pokemon.ts";
+import { Pokemon, PokemonTypeEnum } from "../src/domain/entities/Pokemon.js";
+import { PokemonNotFoundError } from "../src/domain/errors/PokemonNotFoundError.js";
+import type { PokedexStore } from "../src/domain/stores/PokedexStore.js";
 
 export class FakePokedexStore implements PokedexStore {
 	#dataset: Array<Pokemon> = [
@@ -11,13 +8,17 @@ export class FakePokedexStore implements PokedexStore {
 			.setName("Dracaufeu")
 			.setTypes([PokemonTypeEnum.Feu, PokemonTypeEnum.Vol])
 			.setLevel(10)
-			.setMinHp(40).setHitPoints(45).setMaxHp(50)
+			.setMinHp(40)
+			.setHitPoints(45)
+			.setMaxHp(50)
 			.setAttacks([2]),
 		new Pokemon(9)
 			.setName("Tortank")
 			.setTypes([PokemonTypeEnum.Eau])
 			.setLevel(10)
-			.setMinHp(40).setHitPoints(45).setMaxHp(50)
+			.setMinHp(40)
+			.setHitPoints(45)
+			.setMaxHp(50)
 			.setAttacks([1]),
 	];
 
@@ -28,7 +29,7 @@ export class FakePokedexStore implements PokedexStore {
 	find(id: number): Pokemon {
 		let record = this.#dataset.find((item) => item.getId() === id);
 		if (typeof record === "undefined") {
-			throw new PokemonNotFound(id);
+			throw new PokemonNotFoundError(id);
 		}
 		return record;
 	}
@@ -36,7 +37,7 @@ export class FakePokedexStore implements PokedexStore {
 	findByName(name: string): Pokemon {
 		let record = this.#dataset.find((item) => item.getName() === name);
 		if (typeof record === "undefined") {
-			throw new PokemonNotFound(name);
+			throw new PokemonNotFoundError(name);
 		}
 		return record;
 	}

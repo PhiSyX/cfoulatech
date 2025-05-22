@@ -3,8 +3,8 @@
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
 	box-sizing: border-box;
 }
 
@@ -12,10 +12,10 @@ html,
 body {
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 	background: #212121;
 	color: #f7f7f7;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-	overflow: hidden;
 }
 
 html,
@@ -33,29 +33,28 @@ ul {
 .header {
 	position: sticky;
 	top: 2rem;
-	left: 2rem;
 	right: 2rem;
+	left: 2rem;
 	padding: 1rem;
-	background-image: url(https://external-preview.redd.it/odqgKwzacwZw_9VTCnFXkBhVcAMCX5UUb_rkIiSpzf4.jpg?auto=webp&s=4b6b05530eed1aa37621b58932187797641cf493);
-	background-repeat: no-repeat;
-	background-color: CanvasText;
-	border-radius: 4px;
-	box-shadow: 0 3px 999px 16px var(--text-color);
-
-	background-size: 100%;
-	background-position-x: 9999px;
-
 	animation-name: defile1, defile2;
 	animation-duration: 2s, 5s;
+	animation-delay: 0s, 5s;
 	animation-iteration-count: 1, infinite;
 	animation-direction: alternate, alternate;
-	animation-delay: 0s, 5s;
+	border-radius: 4px;
+	background-color: CanvasText;
+	background-image: url("https://external-preview.redd.it/odqgKwzacwZw_9VTCnFXkBhVcAMCX5UUb_rkIiSpzf4.jpg?auto=webp&s=4b6b05530eed1aa37621b58932187797641cf493");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0 3px 999px 16px var(--text-color);
+	background-position-x: 9999px;
 }
 
 @keyframes defile1 {
 	0% {
 		background-position-x: 500px;
 	}
+
 	100% {
 		background-position-x: 9999px;
 	}
@@ -78,33 +77,36 @@ ul {
 
 .header ul {
 	display: flex;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 .header ul li button {
 	padding: 0.5rem;
+	animation: bounce 1s;
 	border: none;
 	border-radius: 4px;
 	background: var(--text-color);
-	cursor: pointer;
-	color: white;
 	box-shadow: 0 0 14px 3px #212121;
-	animation: bounce 1s;
+	color: #ffffff;
+	cursor: pointer;
 }
 
 @keyframes bounce {
-	from,
-	to {
+	0%,
+	100% {
 		transform: scale(1, 1);
 	}
+
 	25% {
 		transform: scale(0.9, 1.1);
 	}
+
 	50% {
 		transform: scale(1.1, 0.9);
 	}
+
 	75% {
 		transform: scale(0.95, 1.05);
 	}
@@ -114,7 +116,7 @@ ul {
 	display: inline-block;
 	padding: 1rem;
 	color: var(--text-color);
-	font-weight: bold;
+	font-weight: 700;
 	text-decoration: none;
 }
 
@@ -129,8 +131,8 @@ ul {
 }
 
 [data-type="normal"] {
-	--color: white;
-	--color-text: black;
+	--color: #ffffff;
+	--color-text: #000000;
 }
 
 [data-type="dragon"] {
@@ -139,12 +141,12 @@ ul {
 
 [data-type="glace"] {
 	--color: #a2c9e0;
-	--color-text: black;
+	--color-text: #000000;
 }
 
 [data-type="vol"] {
 	--color: #e3e2be;
-	--color-text: black;
+	--color-text: #000000;
 }
 
 [data-type="acier"] {
@@ -161,7 +163,7 @@ ul {
 
 [data-type="plante"] {
 	--color: #9bcc50;
-	--color-text: black;
+	--color-text: #000000;
 }
 
 [data-type="électrik"] {
@@ -183,7 +185,7 @@ ul {
 
 [data-type="glace,vol"] {
 	--color: #94ceea;
-	--color-text: black;
+	--color-text: #000000;
 }
 
 [data-type="psy,plante"] {
@@ -214,33 +216,33 @@ ul {
 }
 
 .pokemon-detail {
-	position: relative;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	min-width: 260px;
 	padding: 1rem;
 	padding-top: 230px;
 	border: 4px solid transparent;
-	outline-color: var(--color);
 	border-radius: 40px;
-	user-select: none;
-	background-position: top center;
+	outline-color: var(--color);
 	background-repeat: no-repeat;
+	background-position: top center;
 	background-size: 100%;
+	user-select: none;
 
 	h1 {
-		text-align: left;
 		font-size: 1.5rem;
+		text-align: left;
 	}
 
 	small {
-		vertical-align: middle;
 		font-size: .7rem;
+		vertical-align: middle;
 	}
 
 	p {
-		text-align: left;
 		margin-block: 4px;
+		text-align: left;
 	}
 
 	&.selected {
@@ -255,22 +257,22 @@ ul {
 .pokedex-wrapper aside {
 	min-width: 350px;
 	height: 100%;
+	border-radius: 8px;
 	background-color: CanvasText;
 	color: Canvas;
-	border-radius: 8px;
 
 	.pokemon-detail {
-		margin-inline: auto;
 		max-width: 350px;
-		pointer-events: none;
-		background-size: auto;
+		margin-inline: auto;
 		outline: none;
+		background-size: auto;
+		pointer-events: none;
 	}
 }
 
 #pokemon-opponent h2 {
-	text-align: right;
 	padding-inline: 1rem;
+	text-align: right;
 }
 
 .badge {
@@ -290,9 +292,9 @@ ul {
 	height: calc(100% - 120px);
 	margin-top: 4rem;
 	padding: 3rem;
-	background-color: CanvasText;
-	outline: 10px ridge Canvas;
 	overflow: hidden;
+	outline: 10px ridge Canvas;
+	background-color: CanvasText;
 	box-shadow: 0 3px 999px 16px var(--text-color);
 }
 
@@ -332,19 +334,19 @@ ul {
 }
 
 .fighter:not([data-type]) .attacks {
-	opacity: 0.5;
+	opacity: 50%;
 	pointer-events: none;
 }
 
 .attacks {
-	gap: 8px;
-	padding-inline: 1.5rem;
 	align-content: center;
-	list-style: none;
-	outline: 10px ridge;
+	padding-inline: 1.5rem;
 	overflow: hidden;
-	background: #070f13;
 	border: 1px solid #0a1f29;
+	outline: 10px ridge;
+	background: #070f13;
+	list-style: none;
+	gap: 8px;
 
 	li,
 	button {
@@ -366,62 +368,55 @@ ul {
 
 		span {
 			display: inline-block;
-			text-align: center;
 			font-size: 12px;
+			text-align: center;
 		}
 
 		&:hover,
 		&:focus-within {
-			background: #152731;
 			outline: 10px ridge var(--color);
+			background: #152731;
 		}
 	}
 }
 
 meter {
+	appearance: none;
 	width: 100%;
 }
 
-meter {
-	-webkit-appearance: none;
-}
-
 meter::-webkit-meter-bar {
-	background: #666;
-	-webkit-box-shadow: inset 0 0 2px 2px #555;
-	-moz-box-shadow: inset 0 0 2px 2px #555;
-	box-shadow: inset 0 0 2px 2px #555;
+	background: #666666;
+	box-shadow: inset 0 0 2px 2px #555555;
 }
 
 meter::-webkit-meter-bar,
 meter::-webkit-meter-optimum-value,
 meter::-webkit-meter-suboptimum-value,
 meter::-webkit-meter-even-less-good-value {
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
 meter::-webkit-meter-optimum-value {
-	background: #4fa2f7;
 	border: 1px solid #1560ad;
+	background: #4fa2f7;
 }
 
 meter::-webkit-meter-suboptimum-value {
-	background: #f7c64f;
 	border: 1px solid #b9870d;
+	background: #f7c64f;
 }
 
 meter::-webkit-meter-even-less-good-value {
-	background: #f76f4f;
 	border: 1px solid #bd3413;
+	background: #f76f4f;
 }
 
 dialog {
 	padding-inline: 2rem;
+	outline: 10px ridge var(--color, #ffffff);
 	background: var(--color, inherit);
 	color: var(--color-text, inherit);
-	outline: 10px ridge var(--color, white);
 
 	h1 {
 		font-size: 1.5rem;

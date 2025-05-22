@@ -1,8 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "ES2020",
-		"useDefineForClassFields": true,
-		"module": "ESNext",
+		"target": "ESNext",
+		"module": "NodeNext",
 		"lib": [
 			"ES2020",
 			"DOM",
@@ -10,11 +9,12 @@
 		],
 		"skipLibCheck": true,
 		/* Bundler mode */
-		"moduleResolution": "bundler",
+		"moduleResolution": "nodenext",
 		"allowImportingTsExtensions": false,
 		"verbatimModuleSyntax": true,
 		"moduleDetection": "force",
 		"noEmit": false,
+		"outDir": "dist",
 		/* Linting */
 		"strict": true,
 		"noUnusedLocals": true,

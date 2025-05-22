@@ -1,11 +1,7 @@
-import {
-	Pokemon,
-	PokemonTypeEnum,
-	type PokemonTypeVariant,
-} from "./Pokemon.ts";
+import { type Pokemon, PokemonTypeEnum, type PokemonTypeVariant } from "./Pokemon.js";
 
 export class Attack {
-	#id?: number
+	#id?: number;
 	#name!: string;
 	#power!: number;
 	#types!: Array<PokemonTypeVariant>;
@@ -315,8 +311,7 @@ export class Attack {
 		return choose(effectiveness);
 	}
 
-	calcPower(attacker: Pokemon, defender: Pokemon)
-	{
+	calcPower(attacker: Pokemon, defender: Pokemon) {
 		let levelDiff = attacker.getLevel() - defender.getLevel();
 		let power = this.getPower();
 

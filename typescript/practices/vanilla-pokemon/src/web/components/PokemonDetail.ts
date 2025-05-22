@@ -1,53 +1,83 @@
-import type { Pokemon } from "../../domain/entities/Pokemon.ts";
-import { article, h1, output, p, small } from "../dom/element.ts";
+import type { Pokemon } from "../../domain/entities/Pokemon.js";
+import { article, h1, output, p, small } from "../helpers/element.js";
 
 interface PokemonDetailProps {
 	pokemon: Pokemon;
 	onSelect: () => void;
 }
 
+/**
+ * Rend un composant DOM PokemonDetail.
+ */
 export function pokemonDetail(props: {
-	pokemon: Pokemon;
+	pokemon: PokemonDetailProps["pokemon"];
 	onSelect?: (pokemon: Pokemon) => void;
-}) {
+}): HTMLElement {
 	return new PokemonDetail({
 		pokemon: props.pokemon,
 		onSelect: () => props.onSelect?.(props.pokemon),
 	}).render();
 }
 
+const PICTURE_POKEMON = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/{id}.png";
+
+/**
+ * Composant DOM PokemonDetail.
+ */
 class PokemonDetail {
+	// --------- //
+	// Propriété //
+	// --------- //
+
+	/**
+	 * Les propriétés du composant.
+	 */
 	#props: PokemonDetailProps;
+
+	// ----------- //
+	// Constructor //
+	// ----------- //
 
 	constructor(props: PokemonDetailProps) {
 		this.#props = props;
 	}
 
-	#selectPokemon = (e: MouseEvent) => {
+	/**
+	 * Sélectionne le pokemon.
+	 */
+	#selectPokemon = (evt: PointerEvent) => {
 		this.#props.onSelect();
+
 		// @ts-expect-error
-		e.currentTarget?.classList.add("selected");
+		evt.currentTarget?.classList.add("selected");
 	};
 
-	#selectPokemonNav = (e: KeyboardEvent) => {
-		let btn = e.currentTarget as HTMLButtonElement;
+	/**
+	 * Sélectionne un pokemon en naviguant avec les flèches directionnelles du
+	 * clavier.
+	 */
+	#selectPokemonFromKeyboard = (evt: KeyboardEvent) => {
+		let btn = evt.currentTarget as HTMLButtonElement;
 
-		if (e.key === "ArrowLeft") {
-			let parentLi = btn.previousElementSibling as HTMLLIElement;
-			parentLi.click();
-			parentLi.focus();
-		} else if (e.key === "ArrowRight") {
-			let parentLi = btn.nextElementSibling as HTMLLIElement;
-			parentLi.click();
-			parentLi.focus();
-		} else if (e.key === "Enter" || e.key === " ") {
+		if (evt.key === "ArrowLeft") {
+			let parentLi = btn.previousElementSibling as HTMLLIElement | null;
+			parentLi?.click();
+			parentLi?.focus();
+		} else if (evt.key === "ArrowRight") {
+			let parentLi = btn.nextElementSibling as HTMLLIElement | null;
+			parentLi?.click();
+			parentLi?.focus();
+		} else if (evt.key === "Enter" || evt.key === " ") {
 			btn.click();
 		}
 	};
 
-	render() {
+	/**
+	 * Fonction de rendu d'un composant DOM.
+	 */
+	render(): HTMLElement {
 		let zeroedId = this.#props.pokemon.getId().toString().padStart(3, "0");
-		let picture = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/${zeroedId}.png`;
+		let picture = PICTURE_POKEMON.replace("{id}", zeroedId);
 
 		return article(
 			[
@@ -74,8 +104,9 @@ class PokemonDetail {
 					backgroundImage: `url(${picture})`,
 				},
 				event: {
+					// @ts-expect-error
 					click: this.#selectPokemon,
-					keydown: this.#selectPokemonNav,
+					keydown: this.#selectPokemonFromKeyboard,
 				},
 			},
 		);

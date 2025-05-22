@@ -1,8 +1,8 @@
-import type { AttackStore } from "../../domain/stores/AttackStore.ts";
-import { Attack } from "../../domain/entities/Attack.ts";
-import { AttackNotFoundError } from "../../domain/errors/AttackNotFoundError.ts";
-import { AttackNotAvailableError } from "../../domain/errors/AttackNotAvailableError.ts";
-import { PokemonTypeEnum, type PokemonTypeVariant } from "../../domain/entities/Pokemon.ts";
+import type { AttackStore } from "../../domain/stores/AttackStore.js";
+import { Attack } from "../../domain/entities/Attack.js";
+import { AttackNotFoundError } from "../../domain/errors/AttackNotFoundError.js";
+import { AttackNotAvailableError } from "../../domain/errors/AttackNotAvailableError.js";
+import { PokemonTypeEnum, type PokemonTypeVariant } from "../../domain/entities/Pokemon.js";
 
 interface AttackItem {
 	id: number;
@@ -192,20 +192,16 @@ export class MyAttackStore implements AttackStore {
 
 	all(): Array<Attack> {
 		return this.#dataset.map((attack) => {
-			return (new Attack(attack.id))
-				.setName(attack.name)
-				.setTypes(attack.types)
-				.setPower(attack.power)
+			return new Attack(attack.id).setName(attack.name).setTypes(attack.types).setPower(attack.power);
 		});
 	}
 
 	fromPokemon(ids: Array<number>): Array<Attack> {
-		return this.#dataset.filter((attack) => ids.includes(attack.id)).map((attack) => {
-			return (new Attack(attack.id))
-				.setName(attack.name)
-				.setTypes(attack.types)
-				.setPower(attack.power)
-		});
+		return this.#dataset
+			.filter((attack) => ids.includes(attack.id))
+			.map((attack) => {
+				return new Attack(attack.id).setName(attack.name).setTypes(attack.types).setPower(attack.power);
+			});
 	}
 
 	findByName(name: string, attacksIds: Array<number> = []): Attack {
@@ -216,9 +212,6 @@ export class MyAttackStore implements AttackStore {
 		if (!attacksIds.includes(record.id)) {
 			throw new AttackNotAvailableError(name);
 		}
-		return (new Attack(record.id))
-			.setName(record.name)
-			.setTypes(record.types)
-			.setPower(record.power);
+		return new Attack(record.id).setName(record.name).setTypes(record.types).setPower(record.power);
 	}
 }
