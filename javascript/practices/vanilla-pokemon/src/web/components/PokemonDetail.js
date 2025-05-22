@@ -126,4 +126,3 @@ class PokemonDetail {
  * @typedef {{ pokemon: Pokemon; onSelect: () => void; }} PokemonDetailProps
  * @typedef {{ pokemon: Pokemon; onSelect?: (pokemon: Pokemon) => void }} PokemonDetailFnProps
  */
-x;
