@@ -177,7 +177,7 @@ export class MyAttackStore {
 	];
 
 	/**
-	 * Toutes les attaques
+	 * Récupère toutes les attaques.
 	 */
 	all() {
 		return shuffle(this.#dataset).map((attack) =>
@@ -189,8 +189,9 @@ export class MyAttackStore {
 	}
 
 	/**
-	 * Toutes les attaques d'un pokemon
-	 * @param {import("../../domain/entities/Pokemon.js").Pokemon} pokemon
+	 * Récupère toutes les attaques d'un pokemon
+	 * @param {Pokemon} pokemon
+	 * @returns {Array<Attack>}
 	 */
 	fromPokemon(pokemon) {
 		return this.#dataset
@@ -206,9 +207,13 @@ export class MyAttackStore {
 	/**
 	 * Cherche une attaque en fonction du nom
 	 * @param {string} name
+	 * @throws {AttackNotFoundError}
+	 * @throws {AttackNotAvailableError}
+	 * @returns {Attack}
 	 */
 	findByName(name, attacksIds = []) {
 		let record = this.#dataset.find((item) => item.name === name);
+
 		if (typeof record === "undefined") {
 			throw new AttackNotFoundError(name);
 		}
@@ -220,3 +225,7 @@ export class MyAttackStore {
 		return new Attack(record.id).setName(record.name).setTypes(record.types).setPower(record.power);
 	}
 }
+
+/**
+ * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
+ */

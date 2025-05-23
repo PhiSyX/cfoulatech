@@ -270,9 +270,13 @@ ul {
 	}
 }
 
+#pokemon-opponent .pokemon-detail {
+	align-items: center;
+}
+
 #pokemon-opponent h2 {
 	padding-inline: 1rem;
-	text-align: right;
+	text-align: center;
 }
 
 .badge {

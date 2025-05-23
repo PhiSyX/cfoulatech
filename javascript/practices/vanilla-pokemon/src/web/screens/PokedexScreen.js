@@ -7,7 +7,7 @@ import { MyPokedexStore } from "../stores/MyPokedexStore.js";
 import { createPokemonBattleScreen } from "./PokemonBattleScreen.js";
 
 /**
- * Crée l'écran des choix de pokemon.
+ * Crée l'écran de sélection d'un pokemon.
  */
 export function createPokedexScreen() {
 	let pokedexStore = new MyPokedexStore();
@@ -19,7 +19,7 @@ export function createPokedexScreen() {
 	let gameAtmosphere = new GameAtmosphere();
 
 	let screen = new PokedexScreen(
-		{ audioEffect, gameAtmosphere },
+		{ audioEffect, gameAtmosphere },
 		{ opponent, list: pokedex },
 	);
 
@@ -46,7 +46,7 @@ class PokedexScreen {
 	 * L'état local du composant.
 	 * @type {PokedexScreenState}
 	 */
-	#state;
+	#state = {};
 
 	/** Les éléments du DOM */
 
@@ -81,7 +81,6 @@ class PokedexScreen {
 	constructor(ctx, props) {
 		this.#ctx = ctx;
 		this.#props = props;
-		this.#state = {};
 
 		this.#headerLayout = document.querySelector("#header");
 		this.#pokemonFightBtn = this.#headerLayout.querySelector("#pokemon-fight-btn");
@@ -112,22 +111,24 @@ class PokedexScreen {
 	 */
 	render() {
 		/**
-		 * Lorsque un pokemon est sélectionné
+		 * Lorsque un pokemon est sélectionné :
 		 */
 		let whenSelectPokemon = (pokemon) => {
+			this.#state.selectedFighter = pokemon;
+
+			// Modification du DOM
 			this.#pokemonList.querySelector(".selected")?.classList.remove("selected");
 			this.#headerLayout.querySelector("#pokemon-fight-btn")?.removeAttribute("hidden");
+
+			// Joue le cri du pokemon
 			this.#ctx.gameAtmosphere.cry(pokemon);
-			this.#state.selectedFighter = pokemon;
 		};
 
 		return fragment(
-			this.#props.list.map((pokemon) => {
-				return pokemonDetail({
-					pokemon,
-					onSelect: whenSelectPokemon,
-				});
-			}),
+			this.#props.list.map((pokemon) => pokemonDetail({
+				pokemon,
+				onSelect: whenSelectPokemon,
+			})),
 		);
 	}
 

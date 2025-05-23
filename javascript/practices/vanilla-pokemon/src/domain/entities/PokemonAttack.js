@@ -1,9 +1,11 @@
 export class PokemonAttack {
 	/**
+	 * Pokemon attaquant.
 	 * @type {Pokemon}
 	 */
 	#pokemon;
 	/**
+	 * Attaque du pokemon.
 	 * @type {Attack}
 	 */
 	#attack;
@@ -13,6 +15,7 @@ export class PokemonAttack {
 	// ----------- //
 
 	/**
+	 * Construit la classe PokemonAttack.
 	 * @param {Pokemon} pokemon
 	 * @param {Attack} attack
 	 */

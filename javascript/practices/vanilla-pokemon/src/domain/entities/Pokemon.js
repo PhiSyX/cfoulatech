@@ -59,7 +59,7 @@ export class Pokemon {
 	}
 
 	getName(options = { lang: "fr" }) {
-		if (options?.lang === "en") {
+		if (options.lang === "en") {
 			return this.#nameEN;
 		}
 		return this.#nameFR;

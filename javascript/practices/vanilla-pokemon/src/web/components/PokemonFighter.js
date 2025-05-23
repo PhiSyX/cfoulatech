@@ -1,5 +1,5 @@
 import { minmax } from "../../shared/helpers.js";
-import { button, div, h1, header, img, li, meter, p, small, span, ul } from "../helpers/element.js";
+import { button, div, h1, header, img, li, meter, paragraph, small, span, ul } from "../helpers/element.js";
 
 /**
  * Rend un composant DOM PokemonFighter.
@@ -45,7 +45,7 @@ class PokemonFighter {
 	 */
 	render() {
 		let maxHealth = this.#props.fighter.maxHealth();
-		let hpDiff = p([], { className: "hp-diff" });
+		let hpDiff = paragraph([], { className: "hp-diff" });
 
 		const displayHitPoints = () => {
 			let hp = minmax(this.#props.fighter.getHitPoints(), 0, maxHealth);
@@ -59,18 +59,16 @@ class PokemonFighter {
 			let li = evt.currentTarget.parentElement;
 			switch (evt.key) {
 				case "ArrowUp":
-					{
-						let firstBtnFromPrevLi = li.previousElementSibling.children[0];
-						firstBtnFromPrevLi?.focus();
-					}
-					break;
+				{
+					let firstBtnFromPrevLi = li.previousElementSibling.children[0];
+					firstBtnFromPrevLi?.focus();
+				} break;
 
 				case "ArrowDown":
-					{
-						let firstBtnFromNextLi = li.nextElementSibling.children[0];
-						firstBtnFromNextLi?.focus();
-					}
-					break;
+				{
+					let firstBtnFromNextLi = li.nextElementSibling.children[0];
+					firstBtnFromNextLi?.focus();
+				} break;
 			}
 		};
 
@@ -83,16 +81,25 @@ class PokemonFighter {
 						[
 							this.#props.fighter.getName(),
 							" ",
-							small(["Lv: ", this.#props.fighter.getLevel()], { className: "level" }),
+							small(
+								[
+									"Lv: ",
+									this.#props.fighter.getLevel(),
+								],
+								{ className: "level" },
+							),
 						],
 						{ className: "name" },
 					),
+
 					meter(this.#props.fighter.getHitPoints(), maxHealth, {
 						className: "hp-progress",
 						event: { change: displayHitPoints },
 					}),
+
 					hpDiff,
 				]),
+
 				ul(
 					(this.#props.attack?.list || []).map((attack) => {
 						let power = attack.calcPower(this.#props.fighter, this.#props.attack?.opponent);
@@ -121,6 +128,7 @@ class PokemonFighter {
 					}),
 					{ className: "attacks", hidden: !this.#props.attack },
 				),
+
 				img(POKEMON_POSTER.replace("{id}", this.#props.fighter.getId()), {
 					className: "pic",
 					height: 200,

@@ -1,8 +1,8 @@
 /**
  * Retourne un nombre aléatoire en deux limites.
- * @param {number} max
- * @param {number} min
- * @returns {number}
+ * @param {number} min - Limite minimale
+ * @param {number} max - Limite maximale
+ * @returns {number} Nombre aléatoire entre les deux limites.
  */
 export function randomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
@@ -26,9 +26,14 @@ export function removeRandomArray(mut_arr) {
 }
 
 /**
- * @param {number} val
- * @param {number} min
- * @param {number} max
+ * Retourne un nombre ENTRE un nombre d'une valeur MINIMALE et un nombre d'une
+ * valeur MAXIMALE.
+ * Si le nombre `val` est plus petit que `min`, le résultat est `min` si le
+ * nombre `val` est plus grand que `max`, le résultat est `max`.
+ *
+ * @param {number} val - nombre utilisateur
+ * @param {number} min - nombre minimal
+ * @param {number} max - nombre maximal
  * @returns {number}
  */
 export function minmax(val, min, max) {

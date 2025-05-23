@@ -9,13 +9,6 @@ import { MyAttackStore } from "../stores/MyAttackStore.js";
 import { MyPokedexStore } from "../stores/MyPokedexStore.js";
 
 /**
- * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
- * @typedef {import("../../domain/entities/Attack.js").Attack}Attack
- * @typedef {{attacker: Pokemon; defender: Pokemon; attacks: Array<Attack>}} PokemonBattleScreenProps
- * @typedef {{audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere; gameBattle: GameBattle;}} PokemonBattleScreenContext
- */
-
-/**
  * Crée l'écran de combat.
  * @param {PokemonBattleScreenProps["attacker"]} attacker
  * @param {PokemonBattleScreenProps["defender"]} defender
@@ -24,14 +17,16 @@ export function createPokemonBattleScreen(attacker, defender) {
 	let pokedexStore = new MyPokedexStore();
 	let attackStore = new MyAttackStore();
 	let attacks = attackStore.fromPokemon(attacker);
+
+	let audioEffect = new AudioEffect();
+	let gameAtmosphere = new GameAtmosphere();
+	let gameBattle = new GameBattle(pokedexStore, attackStore);
+
 	let screen = new PokemonBattleScreen(
-		{
-			gameBattle: new GameBattle(pokedexStore, attackStore),
-			audioEffect: new AudioEffect(),
-			gameAtmosphere: new GameAtmosphere(),
-		},
+		{ audioEffect, gameAtmosphere, gameBattle },
 		{ attacker, defender, attacks },
 	);
+
 	screen.mount();
 }
 
@@ -85,7 +80,9 @@ class PokemonBattleScreen {
 	render() {
 		return [
 			pokemonFighter(this.#props.defender),
+
 			dialog([], { id: "message-preview" }),
+
 			pokemonFighter(this.#props.attacker, {
 				onAttack: this.onAttack,
 				list: this.#props.attacks,
@@ -96,29 +93,29 @@ class PokemonBattleScreen {
 
 	/**
 	 * Lorsqu'un bouton d'attaque est appuyé.
-	 * @param {Attack} attack
+	 * @param {Attack} attack - Attaque d'un pokemon.
 	 */
 	onAttack = (attack) => {
 		/**
 		 * Lorsque l'attaque ne provoque pas la mort du pokemon.
-		 * @param {PokemonAttack} f1
-		 * @param {Pokemon} f2
+		 * @param {PokemonAttack} a - Attaquant
+		 * @param {Pokemon} d - Défenseur
 		 */
-		const whenAlive = (f1, f2) => {
+		const whenAlive = (a, d) => {
 			this.#ctx.audioEffect.hit();
 
-			let $f1 = document.querySelector(`#fighter-${f1.getPokemon().getId()}`);
+			let $f1 = document.querySelector(`#fighter-${a.getPokemon().getId()}`);
 			$f1.removeAttribute("data-type");
-			let $f2 = document.querySelector(`#fighter-${f2.getId()}`);
-			$f2.setAttribute("data-type", f2.getTypes().toString());
+			let $f2 = document.querySelector(`#fighter-${d.getId()}`);
+			$f2.setAttribute("data-type", d.getTypes());
 
 			let $f2HpProgress = $f2.querySelector(".hp-progress");
-			$f2HpProgress.value = f2.getHitPoints();
+			$f2HpProgress.value = d.getHitPoints();
 			$f2HpProgress.dispatchEvent(new CustomEvent("change"));
 
-			let message = `${f1.getPokemonName()} attaque ${f1.getAttackName()}. `;
+			let message = `${a.getPokemonName()} attaque ${a.getAttackName()}. `;
 
-			switch (f1.getAttack().effectiveness(f2.getTypes())) {
+			switch (a.getAttack().effectiveness(d)) {
 				case EffectivenessEnum.Faible:
 					message += "Ca n'est pas très efficace...";
 					break;
@@ -126,13 +123,13 @@ class PokemonBattleScreen {
 					message += "C'est super efficace !";
 					break;
 				case EffectivenessEnum.Rien:
-					message += `Cette attaque n'affecte pas ${f2.getName()}.`;
+					message += `Cette attaque n'affecte pas ${d.getName()}.`;
 					break;
 			}
 
 			let msgPreview = this.#battleScreen.querySelector("#message-preview");
 			if (message.length > 0) {
-				msgPreview.dataset.type = f1.getPokemon().getTypes().toString();
+				msgPreview.dataset.type = a.getPokemon().getTypes().toString();
 				msgPreview.setAttribute("open", "");
 				msgPreview.textContent = message;
 				setTimeout(() => {
@@ -145,8 +142,8 @@ class PokemonBattleScreen {
 
 		/**
 		 * Lorsque l'attaque provoque la mort du pokemon.
-		 * @param {Pokemon} w
-		 * @param {Pokemon} _l
+		 * @param {Pokemon} w - Gagnant
+		 * @param {Pokemon} _l - Perdant
 		 */
 		const whenDeath = (w, _l) => {
 			this.#ctx.gameAtmosphere.victory();
@@ -181,3 +178,10 @@ class PokemonBattleScreen {
 		this.#ctx.gameAtmosphere.battle();
 	}
 }
+
+/**
+ * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
+ * @typedef {import("../../domain/entities/Attack.js").Attack}Attack
+ * @typedef {{attacker: Pokemon; defender: Pokemon; attacks: Array<Attack>}} PokemonBattleScreenProps
+ * @typedef {{audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere; gameBattle: GameBattle;}} PokemonBattleScreenContext
+ */

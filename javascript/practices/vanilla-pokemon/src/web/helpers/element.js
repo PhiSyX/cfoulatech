@@ -52,7 +52,7 @@ export const article = (children, props) => h("article", children, props, props?
 export const h1 = (children, props) => h("h1", children, props, props?.event);
 export const small = (children, props) => h("small", children, props, props?.event);
 export const output = (children, props) => h("output", children, props, props?.event);
-export const p = (children, props) => h("p", children, props, props?.event);
+export const paragraph = (children, props) => h("p", children, props, props?.event);
 export const audio = (src, props) => {
 	let $el = document.querySelector(`#${props.id}`);
 	if (!$el) {

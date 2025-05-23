@@ -1,26 +1,237 @@
 import { PokemonTypeEnum } from "./Pokemon.js";
 
+export const EffectivenessEnum = {
+	Forte: "forte",
+	Faible: "faible",
+	Normal: "normal",
+	Rien: "rien",
+};
+
 export class Attack {
 	// --------- //
 	// Propriété //
 	// --------- //
 
 	/**
+	 * ID de l'attaque.
 	 * @type {number}
 	 */
 	#id;
 	/**
+	 * Le nom de l'attaque.
 	 * @type {string}
 	 */
 	#name;
 	/**
+	 * La puissance de base de l'attaque.
 	 * @type {number}
 	 */
 	#power;
 	/**
+	 * Les types de l'attaque.
 	 * @type {Array<string>}
 	 */
 	#types;
+
+	/**
+	 * OffType: {
+	 * 	DefType: Effectiveness
+	 * }
+	 */
+	#effectiveness = {
+		[PokemonTypeEnum.Acier]: {
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Electrik]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Fee]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Eau]: {
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Combat]: {
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Rien,
+
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Psy]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Normal]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Tenebres]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Dragon]: {
+			[PokemonTypeEnum.Fee]: EffectivenessEnum.Rien,
+
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Electrik]: {
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Rien,
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Fee]: {
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Feu]: {
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Glace]: {
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Insecte]: {
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Fee]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Psy]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Normal]: {
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Rien,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Faible,
+		},
+
+		[PokemonTypeEnum.Plante]: {
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Dragon]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Eau]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Poison]: {
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Fee]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Psy]: {
+			[PokemonTypeEnum.Tenebres]: EffectivenessEnum.Rien,
+
+			[PokemonTypeEnum.Psy]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Roche]: {
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Sol]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Glace]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Sol]: {
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Rien,
+
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Plante]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Feu]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Electrik]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Poison]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Spectre]: {
+			[PokemonTypeEnum.Normal]: EffectivenessEnum.Rien,
+
+			[PokemonTypeEnum.Tenebres]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Psy]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Tenebres]: {
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Fee]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Tenebres]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Psy]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Spectre]: EffectivenessEnum.Forte,
+		},
+
+		[PokemonTypeEnum.Vol]: {
+			[PokemonTypeEnum.Electrik]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Roche]: EffectivenessEnum.Faible,
+			[PokemonTypeEnum.Acier]: EffectivenessEnum.Faible,
+
+			[PokemonTypeEnum.Combat]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Insecte]: EffectivenessEnum.Forte,
+			[PokemonTypeEnum.Vol]: EffectivenessEnum.Forte,
+		},
+	};
 
 	// ----------- //
 	// Constructor //
@@ -82,245 +293,13 @@ export class Attack {
 	// ------- //
 
 	/**
-	 * @param {Array<string>} pokemonTypes
-	 * @returns {"forte"|"normal"|"faible"|"rien"}
+	 * Efficacité d'une attaque en fonction des types d'un pokemon.
+	 * @param {Pokemon} pokemon
+	 * @returns {"forte" | "normal" | "faible" | "rien"}
 	 */
-	effectiveness(pokemonTypes) {
+	effectiveness(pokemon) {
 		let effect = (offType, defType) => {
-			switch (offType) {
-				case PokemonTypeEnum.Acier:
-					switch (defType) {
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Electrik:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Glace:
-						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Fee:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Eau:
-					switch (defType) {
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Plante:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Sol:
-						case PokemonTypeEnum.Roche:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Combat:
-					switch (defType) {
-						case PokemonTypeEnum.Spectre:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Poison:
-						case PokemonTypeEnum.Vol:
-						case PokemonTypeEnum.Psy:
-						case PokemonTypeEnum.Insecte:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Glace:
-						case PokemonTypeEnum.Normal:
-						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Tenebres:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Dragon:
-					switch (defType) {
-						case PokemonTypeEnum.Fee:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Acier:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Dragon:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Electrik:
-					switch (defType) {
-						case PokemonTypeEnum.Sol:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Glace:
-						case PokemonTypeEnum.Plante:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Vol:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Fee:
-					switch (defType) {
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Poison:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Spectre:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Feu:
-					switch (defType) {
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Roche:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Glace:
-						case PokemonTypeEnum.Insecte:
-						case PokemonTypeEnum.Plante:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Glace:
-					switch (defType) {
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Glace:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Plante:
-						case PokemonTypeEnum.Sol:
-						case PokemonTypeEnum.Vol:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Insecte:
-					switch (defType) {
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Poison:
-						case PokemonTypeEnum.Vol:
-						case PokemonTypeEnum.Spectre:
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Fee:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Plante:
-						case PokemonTypeEnum.Psy:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Normal:
-					switch (defType) {
-						case PokemonTypeEnum.Spectre:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Roche:
-							return EffectivenessEnum.Faible;
-					}
-					break;
-				case PokemonTypeEnum.Plante:
-					switch (defType) {
-						case PokemonTypeEnum.Acier:
-						case PokemonTypeEnum.Dragon:
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Insecte:
-						case PokemonTypeEnum.Plante:
-						case PokemonTypeEnum.Vol:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Eau:
-						case PokemonTypeEnum.Sol:
-						case PokemonTypeEnum.Roche:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Poison:
-					switch (defType) {
-						case PokemonTypeEnum.Poison:
-						case PokemonTypeEnum.Sol:
-						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Spectre:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Fee:
-						case PokemonTypeEnum.Plante:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Psy:
-					switch (defType) {
-						case PokemonTypeEnum.Tenebres:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Psy:
-						case PokemonTypeEnum.Acier:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Poison:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Roche:
-					switch (defType) {
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Sol:
-						case PokemonTypeEnum.Acier:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Glace:
-						case PokemonTypeEnum.Vol:
-						case PokemonTypeEnum.Insecte:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Sol:
-					switch (defType) {
-						case PokemonTypeEnum.Vol:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Insecte:
-						case PokemonTypeEnum.Plante:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Feu:
-						case PokemonTypeEnum.Electrik:
-						case PokemonTypeEnum.Poison:
-						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Acier:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Spectre:
-					switch (defType) {
-						case PokemonTypeEnum.Normal:
-							return EffectivenessEnum.Rien;
-						case PokemonTypeEnum.Tenebres:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Psy:
-						case PokemonTypeEnum.Roche:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Tenebres:
-					switch (defType) {
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Fee:
-						case PokemonTypeEnum.Tenebres:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Psy:
-						case PokemonTypeEnum.Spectre:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-				case PokemonTypeEnum.Vol:
-					switch (defType) {
-						case PokemonTypeEnum.Electrik:
-						case PokemonTypeEnum.Roche:
-						case PokemonTypeEnum.Acier:
-							return EffectivenessEnum.Faible;
-						case PokemonTypeEnum.Combat:
-						case PokemonTypeEnum.Insecte:
-						case PokemonTypeEnum.Vol:
-							return EffectivenessEnum.Forte;
-					}
-					break;
-			}
-			return EffectivenessEnum.Normal;
+			return this.#effectiveness[offType][defType] || EffectivenessEnum.Normal;
 		};
 
 		let choose = (es) => {
@@ -331,34 +310,39 @@ export class Attack {
 			return fo || no || fa || ri || EffectivenessEnum.Normal;
 		};
 
-		let effectiveness = this.#types.flatMap((t) => {
-			return pokemonTypes.map((pt) => effect(t, pt));
-		});
-
-		return choose(effectiveness);
+		return choose(this.#types.flatMap((t) => pokemon.getTypes().map((pt) => effect(t, pt))));
 	}
 
 	/**
-	 * @param {import("./Pokemon.js").Pokemon} attacker
-	 * @param {import("./Pokemon.js").Pokemon} defender
+	 * Calcule la puissance d'une attaque en fonction de:
+	 *
+	 * 	1. La différence de niveau des pokemon's
+	 * 	2. Des types du défenseur et du type d'attaque.
+	 *
+	 * @param {Pokemon} attacker
+	 * @param {Pokemon} defender
 	 * @returns {number}
 	 */
 	calcPower(attacker, defender) {
 		let levelDiff = attacker.getLevel() - defender.getLevel();
 		let power = this.getPower();
 
-		switch (this.effectiveness(defender.getTypes())) {
+		switch (this.effectiveness(defender)) {
+			// Puissance d'attaque x2
 			case EffectivenessEnum.Forte:
 				power *= 2;
 				power += levelDiff * 0.1;
 				break;
+			// Puissance normale
 			case EffectivenessEnum.Normal:
 				power += levelDiff * 0.135;
 				break;
+			// Puissance d'attaque /2
 			case EffectivenessEnum.Faible:
 				power /= 2;
 				power -= levelDiff * 0.2;
 				break;
+			// Aucun effet sur le pokemon
 			case EffectivenessEnum.Rien:
 				power = 0;
 				break;
@@ -368,9 +352,6 @@ export class Attack {
 	}
 }
 
-export const EffectivenessEnum = {
-	Forte: "forte",
-	Faible: "faible",
-	Normal: "normal",
-	Rien: "rien",
-};
+/**
+ * @typedef {import("./Pokemon.js").Pokemon} Pokemon
+ */

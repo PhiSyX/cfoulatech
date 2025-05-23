@@ -9,10 +9,12 @@ export class ToAttackPokemon {
 	// --------- //
 
 	/**
+	 * Magasin de données liés au Pokedex.
 	 * @type {PokedexStore}
 	 */
 	#pokedexStore;
 	/**
+	 * Magasin de données liés aux attaques.
 	 * @type {AttackStore}
 	 */
 	#attackStore;
@@ -21,6 +23,10 @@ export class ToAttackPokemon {
 	// Méthode // -> Publique
 	// ------- //
 
+	/**
+	 * @param {PokedexStore} pokedexStore
+	 * @param {AttackStore} attackStore
+	 */
 	constructor(pokedexStore, attackStore) {
 		this.#pokedexStore = pokedexStore;
 		this.#attackStore = attackStore;
@@ -31,7 +37,9 @@ export class ToAttackPokemon {
 	// ------- //
 
 	/**
+	 * Execute l'action.
 	 * @param {Input} input
+	 * @throws {FighterNotAliveError}
 	 * @returns {Output}
 	 */
 	execute({ attackerName, defenderName, attackName }) {

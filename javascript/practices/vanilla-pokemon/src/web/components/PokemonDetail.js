@@ -1,4 +1,4 @@
-import { article, h1, output, p, small } from "../helpers/element.js";
+import { article, h1, output, paragraph, small } from "../helpers/element.js";
 
 /**
  * Rend un composant DOM PokemonDetail.
@@ -60,25 +60,39 @@ class PokemonDetail {
 	 */
 	#selectPokemonFromKeyboard = (evt) => {
 		/**
+		 * Récupération du bouton à partir de l'événement.
 		 * @type {HTMLButtonElement}
 		 */
 		let btn = evt.currentTarget;
-		if (evt.key === "ArrowLeft") {
-			/**
-			 * @type {HTMLLIElement | null}
-			 */
-			let parentLi = btn.previousElementSibling;
-			parentLi?.click();
-			parentLi?.focus();
-		} else if (evt.key === "ArrowRight") {
-			/**
-			 * @type {HTMLLIElement | null}
-			 */
-			let parentLi = btn.nextElementSibling;
-			parentLi?.click();
-			parentLi?.focus();
-		} else if (evt.key === "Enter" || evt.key === " ") {
-			btn.click();
+
+		switch (evt.key) {
+			// Flèche de gauche
+			case "ArrowLeft":
+			{
+				/**
+				 * @type {HTMLLIElement | null}
+				 */
+				let parentLi = btn.previousElementSibling;
+				parentLi?.click();
+				parentLi?.focus();
+			} break;
+
+			// Flèche de droite
+			case "ArrowRight":
+			{
+				/**
+				 * @type {HTMLLIElement | null}
+				 */
+				let parentLi = btn.nextElementSibling;
+				parentLi?.click();
+				parentLi?.focus();
+			} break;
+
+			case "Enter":
+			case " ":
+			{
+				btn.click();
+			} break;
 		}
 	};
 
@@ -95,13 +109,21 @@ class PokemonDetail {
 					[
 						this.#props.pokemon.getName(),
 						" ",
-						small([output([this.#props.pokemon.getTypes()], { className: "badge" })], {
-							className: "type",
-						}),
+						small(
+							[ output([this.#props.pokemon.getTypes()], { className: "badge" }) ],
+							{ className: "type" },
+						),
 					],
 					{ className: "name" },
 				),
-				p(["Niveau: ", output([this.#props.pokemon.getLevel()])], { className: "level" }),
+
+				paragraph(
+					[
+						"Niveau: ",
+						this.#props.pokemon.getLevel(),
+					],
+					{ className: "level" },
+				),
 			],
 			{
 				className: "pokemon-detail",
