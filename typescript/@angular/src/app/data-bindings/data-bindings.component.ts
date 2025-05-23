@@ -2,37 +2,43 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-data-bindings',
-  imports: [
-    FormsModule,
-  ],
-  templateUrl: './data-bindings.component.html',
-  styleUrl: './data-bindings.component.css',
+	selector: 'app-data-bindings',
+	imports: [
+		FormsModule,
+	],
+	templateUrl: './data-bindings.component.html',
+	styleUrl: './data-bindings.component.css',
 })
 export class DataBindingsComponent {
-  firstname = "Mike";
+	public firstname: string = "";
 
-  imageSrc = "oeil.jpg";
+	public imageSrc: string = "oeil.jpg";
 
-  githubLabel = "GitHub PhiSyX";
-  githubUrl = "https://github.com/PhiSyX";
+	public githubLabel: string = "GitHub PhiSyX";
+	public githubUrl: string = "https://github.com/PhiSyX";
 
-  isChecked = true;
+	public isChecked: boolean = true;
+	public isDisabled: boolean = false
 
-  isDisabled = false
-  toggleBtn = "Désactiver";
-  toggleDisable() {
-    this.isDisabled = ! this.isDisabled;
-    if (this.isDisabled) {
-      this.toggleBtn = "Activer";
-    } else {
-      this.toggleBtn = "Désactiver";
-    }
-  }
+	public toggleBtn: string = "Désactiver";
 
-  inputModel = "Mon message";
+	public toggleDisable(): void {
+		this.isDisabled = !this.isDisabled;
+		if (this.isDisabled) {
+			this.toggleBtn = "Activer";
+		} else {
+			this.toggleBtn = "Désactiver";
+		}
+	}
 
-  showMessage() {
-    alert(this.inputModel);
-  }
+	public inputModel: string = "Mon message";
+
+	public showMessage(): void {
+		alert(this.inputModel);
+	}
+
+	public showFirstname(): void
+	{
+		alert(`Bonjour ${this.firstname} !`);
+	}
 }

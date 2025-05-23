@@ -1,10 +1,10 @@
 .data-bindings {
-  display: inline-grid;
-  padding: 1rem;
-  background: #ffc3bc;
-  border-radius: 1rem;
+	display: inline-grid;
+	padding: 1rem;
+	background: #ffc3bc;
+	border-radius: 1rem;
 }
 
 hr {
-  border: 1px solid #f2a9a1;
+	border: 1px solid #f2a9a1;
 }

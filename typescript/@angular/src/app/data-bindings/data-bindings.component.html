@@ -1,27 +1,38 @@
 <article class="data-bindings">
-  <h1>Hello {{ firstname }}</h1>
+	<h1>Hello {{ firstname }}</h1>
 
-  <hr>
+	<hr>
 
-  <img [src]="imageSrc" alt="Image source" width="200" height="200">
+	<img [src]="imageSrc" alt="Image source" width="200" height="200">
 
-  <hr>
+	<hr>
 
-  <a [href]="githubUrl" target="_blank" rel="noopener noreferer">{{ githubLabel }}</a>
+	<a [href]="githubUrl" target="_blank" rel="noopener noreferer">{{ githubLabel }}</a>
 
-  <hr>
+	<hr>
 
-  <input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked"> {{ isChecked }}
+	<input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked"> {{ isChecked ? 'Coché' : 'Décoché' }}
 
-  <hr>
+	<hr>
 
-  <button [disabled]="isDisabled">Envoyer</button>
-  <br>
-  <button (click)="toggleDisable()">{{ toggleBtn }} le bouton envoyer</button>
+	<button [disabled]="isDisabled">Envoyer</button>
+	<br>
+	<button (click)="toggleDisable()">{{ toggleBtn }} le bouton envoyer</button>
 
-  <hr>
+	<hr>
 
-  <input [(ngModel)]="inputModel" type="text">
-  <button (click)="showMessage()">Afficher le message dans un alert</button>
-  <p>{{ inputModel }}</p>
+	<input [(ngModel)]="inputModel" type="text">
+	<button (click)="showMessage()">Afficher le message dans un alert</button>
+	<p>{{ inputModel }}</p>
+
+	<hr>
+
+	<label for="firstname">Prénom:</label>
+	<input [(ngModel)]="firstname" type="text" id="firstname">
+	<button
+		[disabled]="firstname.trim().length === 0"
+		(click)="showFirstname()"
+	>
+		Valider
+	</button>
 </article>
