@@ -6,29 +6,47 @@ export class Pokemon {
 	// --------- //
 
 	/**
+	 * Identifiant du pokemon.
 	 * @type {number}
 	 */
 	#id;
 	/**
+	 * Nom français du pokemon.
 	 * @type {string}
 	 */
 	#nameFR;
 	/**
+	 * Nom anglais du pokemon.
 	 * @type {string}
 	 */
 	#nameEN;
 	/**
+	 * Liste d'attaques (ID) du pokemon.
 	 * @type {Array<number>}
 	 */
 	#attacks = [];
+	/**
+	 * Le minimum de points de vie d'un pokemon.
+	 * @type {number}
+	 */
 	#minHp = 0;
+	/**
+	 * Les points de vie d'un pokemon.
+	 * @type {number}
+	 */
 	#hp = 0;
+	/**
+	 * Le maximum de points de vie d'un pokemon.
+	 * @type {number}
+	 */
 	#maxHp = 0;
 	/**
+	 * Le niveau d'un pokemon.
 	 * @type {number}
 	 */
 	#level;
 	/**
+	 * Les types d'un pokemon.
 	 * @type {Array<string>}
 	 */
 	#types;
@@ -37,6 +55,9 @@ export class Pokemon {
 	// Constructor //
 	// ----------- //
 
+	/**
+	 * @param {number} id
+	 */
 	constructor(id) {
 		this.#id = id;
 	}
