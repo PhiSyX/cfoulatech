@@ -50,27 +50,37 @@ class PokemonBattleScreen {
 
 	/** Les éléments HTML de l'écran */
 	/**
+	 * Élément DOM de l'écran de combat.
 	 * @type {HTMLDivElement}
 	 */
 	#battleScreen;
 	/**
+	 * Élément DOM de la boite de dialogue de victoire.
 	 * @type {HTMLDialogElement}
 	 */
 	#victoryDialog;
+	/**
+	 * Élément DOM de la boite de dialogue de prévisualisation de message.
+	 * @type {HTMLDialogElement}
+	 */
+	#messagePreviewDialog;
 
 	// ----------- //
 	// Constructor //
 	// ----------- //
 
 	/**
+	 * Construit la classe PokemonBattleScreen
 	 * @param {PokemonBattleScreenContext} ctx
 	 * @param {PokemonBattleScreenProps} props
 	 */
 	constructor(ctx, props) {
 		this.#ctx = ctx;
 		this.#props = props;
+
 		this.#battleScreen = document.querySelector("#battle-screen");
 		this.#victoryDialog = document.querySelector("#victory-dialog");
+		this.#messagePreviewDialog = dialog([], { id: "message-preview" });
 	}
 
 	/**
@@ -79,12 +89,10 @@ class PokemonBattleScreen {
 	 */
 	render() {
 		return [
+			this.#messagePreviewDialog,
 			pokemonFighter(this.#props.defender),
-
-			dialog([], { id: "message-preview" }),
-
 			pokemonFighter(this.#props.attacker, {
-				onAttack: this.onAttack,
+				onAttack: this.#onAttack,
 				list: this.#props.attacks,
 				opponent: this.#props.defender,
 			}),
@@ -95,79 +103,90 @@ class PokemonBattleScreen {
 	 * Lorsqu'un bouton d'attaque est appuyé.
 	 * @param {Attack} attack - Attaque d'un pokemon.
 	 */
-	onAttack = (attack) => {
-		/**
-		 * Lorsque l'attaque ne provoque pas la mort du pokemon.
-		 * @param {PokemonAttack} a - Attaquant
-		 * @param {Pokemon} d - Défenseur
-		 */
-		const whenAlive = (a, d) => {
-			this.#ctx.audioEffect.hit();
-
-			let $f1 = document.querySelector(`#fighter-${a.getPokemon().getId()}`);
-			$f1.removeAttribute("data-type");
-			let $f2 = document.querySelector(`#fighter-${d.getId()}`);
-			$f2.setAttribute("data-type", d.getTypes());
-
-			let $f2HpProgress = $f2.querySelector(".hp-progress");
-			$f2HpProgress.value = d.getHitPoints();
-			$f2HpProgress.dispatchEvent(new CustomEvent("change"));
-
-			let message = `${a.getPokemonName()} attaque ${a.getAttackName()}. `;
-
-			switch (a.getAttack().effectiveness(d)) {
-				case EffectivenessEnum.Faible:
-					message += "Ca n'est pas très efficace...";
-					break;
-				case EffectivenessEnum.Forte:
-					message += "C'est super efficace !";
-					break;
-				case EffectivenessEnum.Rien:
-					message += `Cette attaque n'affecte pas ${d.getName()}.`;
-					break;
-			}
-
-			let msgPreview = this.#battleScreen.querySelector("#message-preview");
-			if (message.length > 0) {
-				msgPreview.dataset.type = a.getPokemon().getTypes().toString();
-				msgPreview.setAttribute("open", "");
-				msgPreview.textContent = message;
-				setTimeout(() => {
-					msgPreview.removeAttribute("open");
-				}, 2_500);
-			} else {
-				msgPreview.removeAttribute("open");
-			}
-		};
-
-		/**
-		 * Lorsque l'attaque provoque la mort du pokemon.
-		 * @param {Pokemon} w - Gagnant
-		 * @param {Pokemon} _l - Perdant
-		 */
-		const whenDeath = (w, _l) => {
-			this.#ctx.gameAtmosphere.victory();
-			this.#victoryDialog.showPopover();
-			this.#victoryDialog.addEventListener("blur", () => window.location.reload());
-			this.#victoryDialog.querySelector(".name").append(w.getName());
-			this.#victoryDialog.querySelector(".count-hits").append(this.#ctx.gameBattle.countHits(w).toString());
-			this.#victoryDialog.querySelector(".resume").append(
-				...this.#ctx.gameBattle.getHistory().map((history) =>
-					li([
-						history.from.getName(),
-						" a infligé ",
-						history.attack.calcPower(history.from, history.to).toString(),
-						" points de dégâts avec ",
-						history.attack.getName(),
-					]),
-				),
-			);
-		};
-
+	#onAttack = (attack) => {
 		this.#ctx.gameBattle.flow(
 			new PokemonAttack(this.#props.attacker, attack),
 			this.#props.defender,
-			{ alive: whenAlive, death: whenDeath },
+			{ alive: this.#whenAlive, death: this.#whenDeath },
+		);
+	};
+
+	/**
+	 * Lorsque l'attaque ne provoque pas la mort du pokemon.
+	 * @param {PokemonAttack} a - Attaquant
+	 * @param {Pokemon} d - Défenseur
+	 */
+	#whenAlive = (a, d) => {
+		this.#ctx.audioEffect.hit();
+
+		/**
+		 * @type {HTMLDivElement}
+		 */
+		let $f1 = document.querySelector(`#fighter-${a.getPokemon().getId()}`);
+		$f1.removeAttribute("data-type");
+		/**
+		 * @type {HTMLDivElement}
+		 */
+		let $f2 = document.querySelector(`#fighter-${d.getId()}`);
+		$f2.setAttribute("data-type", d.getTypes());
+
+		/**
+		 * @type {HTMLMeterElement}
+		 */
+		let $f2HpProgress = $f2.querySelector(".hp-progress");
+		$f2HpProgress.value = d.getHitPoints();
+		$f2HpProgress.dispatchEvent(new Event("change"));
+
+		let message = `${a.getPokemonName()} attaque ${a.getAttackName()}. `;
+
+		switch (a.getAttack().effectiveness(d)) {
+			case EffectivenessEnum.Faible:
+				message += "Ca n'est pas très efficace...";
+				break;
+			case EffectivenessEnum.Forte:
+				message += "C'est super efficace !";
+				break;
+			case EffectivenessEnum.Rien:
+				message += `Cette attaque n'affecte pas ${d.getName()}.`;
+				break;
+		}
+
+		/**
+		 * @type {HTMLDialogElement}
+		 */
+		if (message.length > 0) {
+			this.#messagePreviewDialog.dataset.type = a.getPokemon().getTypes();
+			this.#messagePreviewDialog.setAttribute("open", "");
+			this.#messagePreviewDialog.textContent = message;
+			setTimeout(() => {
+				this.#messagePreviewDialog.removeAttribute("open");
+			}, 2_500);
+		} else {
+			this.#messagePreviewDialog.removeAttribute("open");
+		}
+	};
+
+	/**
+	 * Lorsque l'attaque provoque la mort du pokemon.
+	 * @param {Pokemon} w - Gagnant
+	 * @param {Pokemon} _l - Perdant
+	 */
+	#whenDeath = (w, _l) => {
+		this.#ctx.gameAtmosphere.victory();
+		this.#victoryDialog.showPopover();
+		this.#victoryDialog.addEventListener("blur", () => window.location.reload());
+		this.#victoryDialog.querySelector(".name")?.append(w.getName());
+		this.#victoryDialog.querySelector(".count-hits")?.append(this.#ctx.gameBattle.countHits(w));
+		this.#victoryDialog.querySelector(".resume")?.append(
+			...this.#ctx.gameBattle.getHistory().map((history) =>
+				li([
+					history.from.getName(),
+					" a infligé ",
+					history.attack.calcPower(history.from, history.to),
+					" points de dégâts avec ",
+					history.attack.getName(),
+				]),
+			),
 		);
 	};
 

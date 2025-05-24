@@ -10,6 +10,10 @@ export function randomNumber(min, max) {
 
 /**
  * Renvoie un élément aléatoire d'un tableau.
+ *
+ * @template T
+ * @param {Array<T>} arr
+ * @return T
  */
 export function randomArray(arr) {
 	return arr[Math.floor(Math.random() * arr.length)];
@@ -17,6 +21,9 @@ export function randomArray(arr) {
 
 /**
  * Renvoie un élément aléatoire d'un tableau et le supprime du tableau.
+ * @template T
+ * @param {Array<T>} mut_arr
+ * @return T
  */
 export function removeRandomArray(mut_arr) {
 	let index = Math.floor(Math.random() * mut_arr.length);
@@ -42,6 +49,10 @@ export function minmax(val, min, max) {
 
 /**
  * Mélange un tableau
+ *
+ * @template T
+ * @param {Array<T>} arr
+ * @return Array<T>
  */
 export function shuffle(arr) {
 	return arr

@@ -1,5 +1,4 @@
-import { Pokemon } from "../../domain/entities/Pokemon.js";
-import { PokemonTypeEnum } from "../../domain/entities/Pokemon.js";
+import { Pokemon, PokemonTypeEnum } from "../../domain/entities/Pokemon.js";
 import { PokemonNotFoundError } from "../../domain/errors/PokemonNotFoundError.js";
 import { randomNumber, shuffle } from "../../shared/helpers.js";
 
@@ -118,8 +117,9 @@ export class MyPokedexStore {
 
 	/**
 	 * Cherche un pokemon en fonction de son ID.
-	 * @throws {PokemonNotFoundError}
+	 * @param {number} id - ID d'un pokemon
 	 * @returns {Pokemon}
+	 * @throws {PokemonNotFoundError}
 	 */
 	find(id) {
 		let record = this.#dataset.find((item) => item.getId() === id);
@@ -131,9 +131,9 @@ export class MyPokedexStore {
 
 	/**
 	 * Cherche un pokemon en fonction de son nom.
-	 * @param {string} name
-	 * @throws {PokemonNotFoundError}
+	 * @param {string} name - Le nom d'un pokemon
 	 * @returns {Pokemon}
+	 * @throws {PokemonNotFoundError}
 	 */
 	findByName(name) {
 		let record = this.#dataset.find(
@@ -150,7 +150,7 @@ export class MyPokedexStore {
 
 	/**
 	 * Met à jour les points de vie d'un pokemon en fonction de son ID.
-	 * @param {number} id - Identifiant d'un pokemon.
+	 * @param {number} id - ID d'un pokemon.
 	 * @param {number} hp - Nombre de points de vie à re-définir.
 	 */
 	updateHitPoints(id, hp) {

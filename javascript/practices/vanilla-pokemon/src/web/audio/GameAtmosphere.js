@@ -10,18 +10,22 @@ export class GameAtmosphere {
 	// Propriété //
 	// --------- //
 	/**
+	 * Element DOM AUDIO de la musique de combat.
 	 * @type {HTMLAudioElement}
 	 */
 	#battleSound;
 	/**
+	 * Element DOM AUDIO de la musique de victoire.
 	 * @type {HTMLAudioElement}
 	 */
 	#battleVictorySound;
 	/**
+	 * Musique jouée en cours d'écoute.
 	 * @type {HTMLAudioElement|null}
 	 */
 	#currentMusic = null;
 	/**
+	 * Cri pokemon en cours d'écoute.
 	 * @type {HTMLAudioElement|null}
 	 */
 	#currentCry = null;
@@ -41,18 +45,16 @@ export class GameAtmosphere {
 
 	/**
 	 * Joue le crie d'un pokemon.
+	 * @param {Pokemon} pokemon
 	 */
 	cry(pokemon) {
 		this.#currentCry?.pause();
 		let pokemonName_en = pokemon.getName({ lang: "en" }).toLowerCase();
 		let src = POKEMON_CRY.replace("{pokemon_en}", pokemonName_en);
-		let audioElement = audio(src, {
-			id: `cry-${pokemonName_en}`,
-			event: {
-				ended: () => {
-					this.#currentCry = null;
-				},
-			},
+		let audioElement = audio(src, { id: `cry-${pokemonName_en}` }, {
+			ended: () => {
+				this.#currentCry = null;
+			}
 		});
 		audioElement.currentTime = 0;
 		void audioElement.play();
@@ -87,3 +89,7 @@ export class GameAtmosphere {
 		});
 	}
 }
+
+/**
+ * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
+ */

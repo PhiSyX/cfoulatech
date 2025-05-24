@@ -51,22 +51,27 @@ class PokedexScreen {
 	/** Les éléments du DOM */
 
 	/**
+	 * L'en-tête DOM de l'écran PokedexScreen
 	 * @type {HTMLDivElement}
 	 */
 	#headerLayout;
 	/**
+	 * Le bouton DOM de lancement du combat.
 	 * @type {HTMLButtonElement}
 	 */
 	#pokemonFightBtn;
 	/**
+	 * L'élément DOM principal de l'écran Pokedex.
 	 * @type {HTMLDivElement}
 	 */
 	#pokedexScreen;
 	/**
+	 * Element DOM contenant la liste des combattants
 	 * @type {HTMLDivElement}
 	 */
 	#pokemonList;
 	/**
+	 * Element DOM montrant le pokemon ennemie.
 	 * @type {HTMLDivElement}
 	 */
 	#pokemonOpponent;
@@ -75,6 +80,7 @@ class PokedexScreen {
 	// Constructor //
 	// ----------- //
 	/**
+	 * Construit l'écran PokedexScreenContext
 	 * @param {PokedexScreenContext} ctx
 	 * @param {PokedexScreenProps} props
 	 */
@@ -106,12 +112,14 @@ class PokedexScreen {
 	};
 
 	/**
-	 * Rendu de l'écran.
+	 * Rendu de l'écran Pokedex.
 	 * @returns {DocumentFragment}
 	 */
 	render() {
 		/**
 		 * Lorsque un pokemon est sélectionné :
+		 *
+		 * @param {Pokemon} pokemon
 		 */
 		let whenSelectPokemon = (pokemon) => {
 			this.#state.selectedFighter = pokemon;

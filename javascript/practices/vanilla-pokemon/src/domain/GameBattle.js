@@ -14,12 +14,12 @@ export class GameBattle {
 	// --------- //
 
 	/**
-	 * Magasin de données liés au pokedex.
+	 * Magasin de données lié au pokedex.
 	 * @type {PokedexStore}
 	 */
 	#pokedexStore;
 	/**
-	 * Magasin de données liés aux attaques.
+	 * Magasin de données lié aux attaques.
 	 * @type {AttackStore}
 	 */
 	#attackStore;

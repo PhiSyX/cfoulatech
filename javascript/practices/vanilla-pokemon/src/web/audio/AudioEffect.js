@@ -33,6 +33,7 @@ export class AudioEffect {
 		for (let btn of Array.from(document.querySelectorAll("button"))) {
 			btn.removeEventListener("focus", this.select);
 			btn.removeEventListener("mouseenter", this.select);
+
 			btn.addEventListener("focus", this.select);
 			btn.addEventListener("mouseenter", this.select);
 		}

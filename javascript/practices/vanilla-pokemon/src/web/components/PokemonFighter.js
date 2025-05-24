@@ -4,7 +4,7 @@ import { button, div, h1, header, img, li, meter, paragraph, small, span, ul } f
 /**
  * Rend un composant DOM PokemonFighter.
  * @param {PokemonFighterProps["fighter"]} fighter
- * @param {PokemonFighterProps["attack"]} attack
+ * @param {PokemonFighterProps["attack"]} [attack]
  * @returns {HTMLElement}
  */
 export function pokemonFighter(fighter, attack) {
@@ -30,6 +30,7 @@ class PokemonFighter {
 	// Constructor //
 	// ----------- //
 	/**
+	 * Construit le composant PokemonFighter
 	 * @param {PokemonFighterProps} props
 	 */
 	constructor(props) {
@@ -52,26 +53,6 @@ class PokemonFighter {
 			hpDiff.textContent = `${hp.toFixed(0)} / ${maxHealth.toFixed(0)}`;
 		};
 
-		/**
-		 * @param {KeyboardEvent} evt
-		 */
-		const moveIntoAttackList = (evt) => {
-			let li = evt.currentTarget.parentElement;
-			switch (evt.key) {
-				case "ArrowUp":
-				{
-					let firstBtnFromPrevLi = li.previousElementSibling.children[0];
-					firstBtnFromPrevLi?.focus();
-				} break;
-
-				case "ArrowDown":
-				{
-					let firstBtnFromNextLi = li.nextElementSibling.children[0];
-					firstBtnFromNextLi?.focus();
-				} break;
-			}
-		};
-
 		displayHitPoints();
 
 		return div(
@@ -82,20 +63,19 @@ class PokemonFighter {
 							this.#props.fighter.getName(),
 							" ",
 							small(
-								[
-									"Lv: ",
-									this.#props.fighter.getLevel(),
-								],
+								["Lv: ", this.#props.fighter.getLevel()],
 								{ className: "level" },
 							),
 						],
 						{ className: "name" },
 					),
 
-					meter(this.#props.fighter.getHitPoints(), maxHealth, {
-						className: "hp-progress",
-						event: { change: displayHitPoints },
-					}),
+					meter(
+						this.#props.fighter.getHitPoints(),
+						maxHealth,
+						{ className: "hp-progress" },
+						{ change: displayHitPoints }
+					),
 
 					hpDiff,
 				]),
@@ -114,15 +94,12 @@ class PokemonFighter {
 									attack.getName(),
 								],
 								{
-									dataset: {
-										name: attack.getName(),
-										type: attack.getTypes(),
-									},
-									event: {
-										click: () => this.#props.attack?.onAttack(attack),
-										keydown: moveIntoAttackList,
-									},
+									dataset: { name: attack.getName(), type: attack.getTypes() },
 								},
+								{
+									click: () => this.#props.attack?.onAttack(attack),
+									keydown: this.#moveIntoAttackList,
+								}
 							),
 						]);
 					}),
@@ -137,12 +114,45 @@ class PokemonFighter {
 			{
 				id: `fighter-${this.#props.fighter.getId()}`,
 				className: "fighter",
-				dataset: {
-					type: this.#props.attack && this.#props.fighter.getTypes(),
-				},
+				dataset: { type: this.#props.attack && this.#props.fighter.getTypes() },
 			},
 		);
 	}
+
+
+	/**
+	 * Se déplace dans la liste des combattants de l'écran de Pokedex.
+	 * @param {KeyboardEvent} evt
+	 */
+	#moveIntoAttackList = (evt) => {
+		/**
+		 * @type {HTMLButtonElement}
+		 */
+		let $btn = evt.currentTarget;
+		/**
+		 * @type {HTMLLIElement}
+		 */
+		let $li = $btn.parentElement;
+		switch (evt.key) {
+			case "ArrowUp":
+			{
+				/**
+				 * @type {HTMLLIElement|null}
+				 */
+				let previousLi = $li.previousElementSibling?.children[0];
+				previousLi?.focus();
+			} break;
+
+			case "ArrowDown":
+			{
+				/**
+				 * @type {HTMLLIElement|null}
+				 */
+				let nextLi = $li.nextElementSibling?.children[0];
+				nextLi?.focus();
+			} break;
+		}
+	};
 }
 
 /**

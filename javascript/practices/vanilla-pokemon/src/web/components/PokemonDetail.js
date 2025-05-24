@@ -50,7 +50,7 @@ class PokemonDetail {
 	 */
 	#selectPokemon = (evt) => {
 		this.#props.onSelect();
-		evt.currentTarget?.classList.add("selected");
+		evt.currentTarget.classList.add("selected");
 	};
 
 	/**
@@ -110,7 +110,7 @@ class PokemonDetail {
 						this.#props.pokemon.getName(),
 						" ",
 						small(
-							[ output([this.#props.pokemon.getTypes()], { className: "badge" }) ],
+							[output([this.#props.pokemon.getTypes()], { className: "badge" })],
 							{ className: "type" },
 						),
 					],
@@ -118,27 +118,20 @@ class PokemonDetail {
 				),
 
 				paragraph(
-					[
-						"Niveau: ",
-						this.#props.pokemon.getLevel(),
-					],
+					["Niveau: ", this.#props.pokemon.getLevel(),],
 					{ className: "level" },
 				),
 			],
 			{
 				className: "pokemon-detail",
 				tabIndex: -1,
-				dataset: {
-					type: this.#props.pokemon.getTypes(),
-				},
-				style: {
-					backgroundImage: `url(${picture})`,
-				},
-				event: {
-					click: this.#selectPokemon,
-					keydown: this.#selectPokemonFromKeyboard,
-				},
+				dataset: { type: this.#props.pokemon.getTypes() },
+				style: { backgroundImage: `url(${picture})` },
 			},
+			{
+				click: this.#selectPokemon,
+				keydown: this.#selectPokemonFromKeyboard,
+			}
 		);
 	}
 }

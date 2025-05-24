@@ -207,6 +207,7 @@ export class MyAttackStore {
 	/**
 	 * Cherche une attaque en fonction du nom
 	 * @param {string} name
+	 * @param {Array<number>} [attacksIds=[]]
 	 * @throws {AttackNotFoundError}
 	 * @throws {AttackNotAvailableError}
 	 * @returns {Attack}

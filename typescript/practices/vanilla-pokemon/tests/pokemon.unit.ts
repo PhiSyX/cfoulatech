@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { GameBattle } from "../src/domain/GameBattle.js";
-import { EffectivenessEnum } from "../src/domain/entities/Attack.js";
+import { Attack, EffectivenessEnum } from "../src/domain/entities/Attack.js";
 import { PokemonTypeEnum } from "../src/domain/entities/Pokemon.js";
 import { AttackNotAvailableError } from "../src/domain/errors/AttackNotAvailableError.js";
 import { BadFighterAttackError } from "../src/domain/errors/BadFighterAttackError.js";
@@ -13,7 +13,10 @@ describe("Pokemon", () => {
 		let fakePokedexStore = new FakePokedexStore();
 		let fakeAttackStore = new FakeAttackStore();
 		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
+
+		// Première attaque
 		gameBattle.attack("Tortank", "Dracaufeu", "Hydrocanon");
+		// Seconde attaque
 		expect(() => gameBattle.attack("Tortank", "Dracaufeu", "Hydrocanon")).toThrowError(BadFighterAttackError);
 	});
 
@@ -21,16 +24,21 @@ describe("Pokemon", () => {
 		let fakePokedexStore = new FakePokedexStore();
 		let fakeAttackStore = new FakeAttackStore();
 		let pokemon = fakePokedexStore.findByName("Tortank");
-		expect(() => fakeAttackStore.findByName("Déflagration", pokemon.getAttacks())).toThrowError(
-			AttackNotAvailableError,
-		);
+
+		// Attaque connue
+		expect(fakeAttackStore.findByName("Hydrocanon", pokemon.getAttacks())).toBeInstanceOf(Attack);
+		// Attaque inconnue
+		expect(() => fakeAttackStore.findByName("Déflagration", pokemon.getAttacks())).toThrowError(AttackNotAvailableError);
 	});
 
-	test("Règle: un pokémon ne peut attaquer une fois mort", () => {
+	test("Règle: un pokémon ne peut pas attaquer une fois mort", () => {
 		let fakePokedexStore = new FakePokedexStore();
 		let fakeAttackStore = new FakeAttackStore();
 		let gameBattle = new GameBattle(fakePokedexStore, fakeAttackStore);
-		fakePokedexStore.findByName("Dracaufeu").setHitPoints(0);
+
+		fakePokedexStore.findByName("Dracaufeu")
+			// Met à zéro les points de vies du Pokemon.
+			.setHitPoints(0);
 		expect(() => gameBattle.attack("Dracaufeu", "Tortank", "Déflagration")).toThrowError(FighterNotAliveError);
 	});
 
@@ -60,13 +68,13 @@ describe("Pokemon", () => {
 
 	test("Fonctionnalité: Efficacité d'attaque faible", () => {
 		let fakeAttackStore = new FakeAttackStore();
-		let hydrocanon = fakeAttackStore.findByName("Hydrocanon", [1]);
+		let hydrocanon = fakeAttackStore.findByName("Hydrocanon");
 		expect(hydrocanon.effectiveness([PokemonTypeEnum.Eau])).toBe(EffectivenessEnum.Faible);
 	});
 
 	test("Fonctionnalité: Efficacité d'attaque forte", () => {
 		let fakeAttackStore = new FakeAttackStore();
-		let hydrocanon = fakeAttackStore.findByName("Déflagration", [2]);
+		let hydrocanon = fakeAttackStore.findByName("Déflagration");
 		expect(hydrocanon.effectiveness([PokemonTypeEnum.Plante])).toBe(EffectivenessEnum.Forte);
 	});
 });
