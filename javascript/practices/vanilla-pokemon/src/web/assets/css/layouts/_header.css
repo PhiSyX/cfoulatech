@@ -1,0 +1,99 @@
+.header {
+	position: sticky;
+	top: 2rem;
+	right: 2rem;
+	left: 2rem;
+	padding: 1rem;
+	animation-name: defile1, defile2;
+	animation-duration: 2s, 5s;
+	animation-delay: 0s, 5s;
+	animation-iteration-count: 1, infinite;
+	animation-direction: alternate, alternate;
+	border-radius: 4px;
+	background-color: CanvasText;
+	background-image: url("https://external-preview.redd.it/odqgKwzacwZw_9VTCnFXkBhVcAMCX5UUb_rkIiSpzf4.jpg?auto=webp&s=4b6b05530eed1aa37621b58932187797641cf493");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0 3px 999px 16px var(--text-color);
+	background-position-x: 9999px;
+}
+
+@keyframes defile1 {
+	0% {
+		background-position-x: 500px;
+	}
+
+	100% {
+		background-position-x: 9999px;
+	}
+}
+
+@keyframes defile2 {
+	30% {
+		background-position-x: 100px;
+		background-position-y: -20px;
+	}
+
+	80% {
+		background-position-x: 0;
+	}
+
+	100% {
+		background-position-y: -50px;
+	}
+}
+
+.header ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.header ul li button {
+	padding: 0.5rem;
+	animation: bounce 1s;
+	border: none;
+	border-radius: 4px;
+	background: var(--text-color);
+	box-shadow: 0 0 14px 3px #212121;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: scale(1, 1);
+	}
+
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}
+
+.header ul li a {
+	display: inline-block;
+	padding: 1rem;
+	color: var(--text-color);
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.header .navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header + section {
+	margin-top: 3rem;
+}

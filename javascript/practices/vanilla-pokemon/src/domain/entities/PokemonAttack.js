@@ -50,5 +50,5 @@ export class PokemonAttack {
 
 /**
  * @typedef {import("./Pokemon.js").Pokemon} Pokemon
- * @typedef {import("./Attack.js").Attack}Attack
+ * @typedef {import("./Attack.js").Attack} Attack
  */

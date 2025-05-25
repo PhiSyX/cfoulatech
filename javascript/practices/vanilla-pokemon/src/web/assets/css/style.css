@@ -1,0 +1,21 @@
+@import "./reset/_normalize.css" layer(reset);
+
+@import "./bases/_colors.css" layer(bases);
+@import "./bases/_bases.css" layer(bases);
+@import "./bases/_elements.css" layer(bases);
+
+@import "./layouts/_header.css" layer(layouts);
+
+@import "./components/_badge.css" layer(components);
+@import "./components/_progress.css" layer(components);
+@import "./components/_pokemon-detail.css" layer(components);
+@import "./components/_pokemon-fighter.css" layer(components);
+
+@import "./screens/_pokedex-screen.css" layer(screens);
+@import "./screens/_pokemon-battle-screen.css" layer(screens);
+
+:root {
+	--text-color: #63a1db;
+}
+
+@layer reset, bases, layouts, components, screens;

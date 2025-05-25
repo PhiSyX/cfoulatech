@@ -1,4 +1,4 @@
-import { removeRandomArray } from "../../shared/helpers.js";
+import { removeRandomArray, shuffle } from "../../shared/helpers.js";
 import { AudioEffect } from "../audio/AudioEffect.js";
 import { GameAtmosphere } from "../audio/GameAtmosphere.js";
 import { pokemonDetail } from "../components/PokemonDetail.js";
@@ -12,7 +12,7 @@ import { createPokemonBattleScreen } from "./PokemonBattleScreen.js";
 export function createPokedexScreen() {
 	let pokedexStore = new MyPokedexStore();
 
-	let pokedex = pokedexStore.all();
+	let pokedex = shuffle(pokedexStore.all());
 	let opponent = removeRandomArray(pokedex);
 
 	let audioEffect = new AudioEffect();

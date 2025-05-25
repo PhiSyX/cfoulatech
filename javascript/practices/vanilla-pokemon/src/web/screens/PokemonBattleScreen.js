@@ -18,15 +18,15 @@ export function createPokemonBattleScreen(attacker, defender) {
 	let gameStore = new MyGameStore();
 	let pokedexStore = new MyPokedexStore();
 	let attackStore = new MyAttackStore();
-
-	let attacks = attackStore.fromPokemon(attacker);
+	let gameBattle = new GameBattle(gameStore, pokedexStore, attackStore);
 
 	let audioEffect = new AudioEffect();
 	let gameAtmosphere = new GameAtmosphere();
-	let gameBattle = new GameBattle(gameStore, pokedexStore, attackStore);
+	
+	let attacks = attackStore.fromPokemon(attacker);
 
 	let screen = new PokemonBattleScreen(
-		{ audioEffect, gameAtmosphere, gameBattle },
+		{ gameBattle, audioEffect, gameAtmosphere },
 		{ attacker, defender, attacks },
 	);
 
@@ -99,7 +99,7 @@ class PokemonBattleScreen {
 			this.#messagePreviewDialog,
 			pokemonFighter(this.#props.defender),
 			pokemonFighter(this.#props.attacker, {
-				onAttack: this.#onAttack,
+				onAttack: this.#handleClickAttack,
 				list: this.#props.attacks,
 				opponent: this.#props.defender,
 			}),
@@ -121,8 +121,8 @@ class PokemonBattleScreen {
 	 * Lorsqu'un bouton d'attaque est appuyé.
 	 * @param {Attack} attack - Attaque d'un pokemon.
 	 */
-	#onAttack = (attack) => {
-		this.#ctx.gameBattle.flow(
+	#handleClickAttack = (attack) => {
+		this.#ctx.gameBattle.attack(
 			new PokemonAttack(this.#props.attacker, attack),
 			this.#props.defender,
 			{ alive: this.#whenAlive, death: this.#whenDeath },

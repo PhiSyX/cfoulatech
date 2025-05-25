@@ -7,7 +7,7 @@ export class MyGameStore {
 	/**
 	 * Ordre des combattants : le premier `p1` est celui qui doit attaquer,
 	 * le second `p2` est celui qui se défend face à l'attaquant `p1`.
-	 * @type {[p1: string, p2: string]|null}
+	 * @type {[ p1: string, p2: string ]|null}
 	 */
 	#orderFighters = null;
 

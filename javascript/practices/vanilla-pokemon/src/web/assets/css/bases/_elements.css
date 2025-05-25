@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: #212121;
+	color: #f7f7f7;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+
+dialog {
+	padding-inline: 2rem;
+	outline: 10px ridge var(--pokemon-type-surface, #ffffff);
+	background: var(--pokemon-type-surface, inherit);
+	color: var(--pokemon-type-on-surface, inherit);
+
+	h1 {
+		font-size: 1.5rem;
+	}
+}

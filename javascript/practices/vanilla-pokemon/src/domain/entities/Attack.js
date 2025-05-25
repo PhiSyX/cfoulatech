@@ -4,10 +4,10 @@ import { PokemonTypeEnum } from "./Pokemon.js";
  * Les différentes efficacités d'attaques.
  */
 export const EffectivenessEnum = {
-	Forte: "forte",
+	Forte:  "forte",
 	Faible: "faible",
 	Normal: "normal",
-	Rien: "rien",
+	Rien:   "rien",
 };
 
 /**
@@ -43,7 +43,7 @@ export class Attack {
 	 * OffType: {
 	 * 		DefType: Effectiveness
 	 * }
-	 * 
+	 *
 	 * @type {Effectiveness}
 	 */
 	#effectiveness = {
@@ -347,7 +347,7 @@ export class Attack {
 		 */
 		const chooseEffectiveness = ($enum) => {
 			return $enum.find((variant) =>
-				variant === EffectivenessEnum.Forte ||
+				variant === EffectivenessEnum.Forte  ||
 				variant === EffectivenessEnum.Normal ||
 				variant === EffectivenessEnum.Faible ||
 				variant === EffectivenessEnum.Rien
@@ -355,7 +355,7 @@ export class Attack {
 		};
 
 		return chooseEffectiveness(
-			this.#types.flatMap((offType) => 
+			this.#types.flatMap((offType) =>
 				pokemon.getTypes().map((defType) => getEffectiveness(offType, defType))
 			)
 		);
@@ -402,15 +402,13 @@ export class Attack {
 
 /**
  * @typedef {import("./Pokemon.js").Pokemon} Pokemon
- * @typedef {import("./Pokemon.js").PokemonTypeEnum} PokemonTypeEnum
  *
  * @typedef {typeof PokemonTypeEnum[keyof typeof PokemonTypeEnum]} PokemonTypeEnumVariant
+ * @typedef {typeof EffectivenessEnum[keyof typeof EffectivenessEnum]} EffectivenessEnumVariant
  *
  * @typedef {{
- * 		[O in PokemonTypeEnumVariant]: {
+ * 		[O in PokemonTypeEnumVariant]: Partial<{
  * 			[D in PokemonTypeEnumVariant]: EffectivenessEnumVariant
- * 		}
+ * 		}>
  * }} Effectiveness
- *
- * @typedef {typeof EffectivenessEnum[keyof typeof EffectivenessEnum]} EffectivenessEnumVariant
  */

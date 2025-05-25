@@ -1,0 +1,77 @@
+.pokemon-fighter {
+	display: flex;
+	justify-content: space-between;
+}
+
+.pokemon-fighter p {
+	margin: 0;
+}
+
+.pokemon-fighter .pic {
+	filter: drop-shadow(2px 4px 16px var(--pokemon-type-surface));
+	height: 200px;
+}
+
+.pokemon-fighter:last-of-type .pic {
+	transform: rotateY(190deg);
+}
+
+.pokemon-fighter .name {
+	margin: 0;
+}
+
+.pokemon-fighter:last-of-type {
+	flex-direction: row-reverse;
+}
+
+.pokemon-fighter:not([data-type]) .attacks {
+	opacity: 50%;
+	pointer-events: none;
+}
+
+.pokemon-fighter .attacks:not([hidden]) {
+	display: grid;
+}
+
+.pokemon-fighter .attacks {
+	max-height: 220px;
+	gap: 8px;
+	align-content: center;
+	padding-inline: 1.5rem;
+	overflow: hidden;
+	border: 1px solid #0a1f29;
+	outline: 10px ridge;
+	background: #070f13;
+	list-style: none;
+
+	li,
+	button {
+		display: inline-block;
+		width: 100%;
+		text-align: left;
+	}
+
+	button {
+		display: inline-grid;
+		grid-template-columns: 50px 1fr;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.5rem;
+		border: none;
+		background: transparent;
+		color: canvas;
+		cursor: pointer;
+
+		span {
+			display: inline-block;
+			font-size: 12px;
+			text-align: center;
+		}
+
+		&:hover,
+		&:focus-within {
+			outline: 10px ridge var(--pokemon-type-surface);
+			background: #152731;
+		}
+	}
+}

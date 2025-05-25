@@ -113,7 +113,7 @@ class PokemonFighter {
 			],
 			{
 				id: `fighter-${this.#props.fighter.getId()}`,
-				className: "fighter",
+				className: "pokemon-fighter",
 				dataset: { type: this.#props.attack && this.#props.fighter.getTypes() },
 			},
 		);

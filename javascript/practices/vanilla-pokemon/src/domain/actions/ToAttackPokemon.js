@@ -1,4 +1,5 @@
 import { PokemonAttack } from "../entities/PokemonAttack.js";
+import { BadFighterAttackError } from "../errors/BadFighterAttackError.js";
 import { FighterNotAliveError } from "../errors/FighterNotAliveError.js";
 
 /**
@@ -8,7 +9,11 @@ export class ToAttackPokemon {
 	// --------- //
 	// Propriété //
 	// --------- //
-
+	/**
+	 * Magasin de données lié à un combat.
+	 * @type {GameStoreContract}
+	 */
+	#gameStore;
 	/**
 	 * Magasin de données lié au Pokedex.
 	 * @type {PokedexStoreContract}
@@ -26,10 +31,12 @@ export class ToAttackPokemon {
 
 	/**
 	 * Construit l'action ToAttackPokemon
+	 * @param {GameStoreContract} gameStore
 	 * @param {PokedexStoreContract} pokedexStore
 	 * @param {AttackStoreContract} attackStore
 	 */
-	constructor(pokedexStore, attackStore) {
+	constructor(gameStore, pokedexStore, attackStore) {
+		this.#gameStore = gameStore;
 		this.#pokedexStore = pokedexStore;
 		this.#attackStore = attackStore;
 	}
@@ -45,6 +52,10 @@ export class ToAttackPokemon {
 	 * @returns {Output}
 	 */
 	execute({ attackerName, defenderName, attackName }) {
+		if ( ! this.#gameStore.check(attackerName, defenderName)) {
+			throw new BadFighterAttackError(attackerName);
+		}
+
 		let attacker = this.#pokedexStore.findByName(attackerName);
 		if (!attacker.isAlive()) {
 			throw new FighterNotAliveError(attackerName);
@@ -56,7 +67,11 @@ export class ToAttackPokemon {
 		}
 		let power = attack.calcPower(attacker, defender);
 		this.#pokedexStore.updateHitPoints(defender.getId(), defender.getHitPoints() - power);
-		return { attacker: new PokemonAttack(attacker, attack), defender };
+
+		let pokemonAttack = new PokemonAttack(attacker, attack);
+		this.#gameStore.addHistory(pokemonAttack, defender);
+
+		return { attacker: pokemonAttack, defender };
 	}
 }
 
@@ -64,6 +79,11 @@ export class ToAttackPokemon {
 /**
  * @typedef {import("../entities/Pokemon.js").Pokemon} Pokemon
  * @typedef {import("../entities/Attack.js").Attack} Attack
+ *
+ * @typedef {{
+ * 		addHistory(attacker:PokemonAttack, defender:Pokemon): void;
+ * 		check(attackerName: string, defenderName: string): boolean;
+ * }} GameStoreContract
  *
  * @typedef {{
  * 		findByName(name: string): Pokemon;

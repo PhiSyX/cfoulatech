@@ -1,0 +1,23 @@
+#battle-screen:not([hidden]) {
+	display: flex;
+}
+
+#battle-screen {
+	flex-direction: column;
+	height: calc(100% - 120px);
+	margin-top: 4rem;
+	padding: 3rem;
+	overflow: hidden;
+	outline: 10px ridge Canvas;
+	background-color: CanvasText;
+	box-shadow: 0 3px 999px 16px var(--text-color);
+}
+
+#battle-screen > div {
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+#battle-screen .hp-progress {
+	width: 100%;
+}

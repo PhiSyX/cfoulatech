@@ -1,0 +1,70 @@
+:root {
+	--pokemon-type-surface: inherit;
+	--pokemon-type-on-surface: inherit;
+}
+
+[data-type="normal"] {
+	--pokemon-type-surface: #ffffff;
+	--pokemon-type-on-surface: #000000;
+}
+
+[data-type="dragon"] {
+	--pokemon-type-surface: #108f44;
+}
+
+[data-type="glace"] {
+	--pokemon-type-surface: #a2c9e0;
+	--pokemon-type-on-surface: #000000;
+}
+
+[data-type="vol"] {
+	--pokemon-type-surface: #e3e2be;
+	--pokemon-type-on-surface: #000000;
+}
+
+[data-type="acier"] {
+	--pokemon-type-surface: #cdcdcd;
+}
+
+[data-type="combat"] {
+	--pokemon-type-surface: #784a4a;
+}
+
+[data-type="ténèbres"] {
+	--pokemon-type-surface: #454451;
+}
+
+[data-type="plante"] {
+	--pokemon-type-surface: #9bcc50;
+	--pokemon-type-on-surface: #000000;
+}
+
+[data-type="électrik"] {
+	--pokemon-type-surface: #eed535;
+	--pokemon-type-on-surface: #212121;
+}
+
+[data-type="psy"] {
+	--pokemon-type-surface: #f366b9;
+}
+
+[data-type="eau"] {
+	--pokemon-type-surface: #15719e;
+}
+
+[data-type="feu"] {
+	--pokemon-type-surface: #d44343;
+}
+
+[data-type="glace,vol"] {
+	--pokemon-type-surface: #94ceea;
+	--pokemon-type-on-surface: #000000;
+}
+
+[data-type="psy,plante"] {
+	--pokemon-type-surface: #5e50cc;
+}
+
+[data-type="psy,vol"] {
+	--pokemon-type-surface: #a39beb;
+}

@@ -1,0 +1,12 @@
+:root {
+	--badge-surface: var(--pokemon-type-surface);
+	--badge-on-surface: var(--pokemon-type-on-surface, inherit);
+}
+
+.badge {
+	display: inline-block;
+	padding: 4px;
+	border-radius: 4px;
+	background: var(--badge-surface, var(--pokemon-type-surface));
+	color: var(--badge-on-surface, var(--pokemon-type-on-surface));
+}
