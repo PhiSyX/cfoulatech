@@ -7,5 +7,6 @@ export class PokemonNotFoundError extends Error {
 			pokemonName = `à l'id ${pokemonName}`;
 		}
 		super(`Le pokemon ${pokemonName} n'existe pas dans notre base de données`);
+		this.name = "PokemonNotFoundError";
 	}
 }

@@ -1,9 +1,8 @@
 import { audio } from "../helpers/element.js";
-
-const POKEMON_CRY = "https://play.pokemonshowdown.com/audio/cries/{pokemon_en}.mp3";
+import { POKEMON_CRY } from "../stores/MyPokedexStore.js";
 
 /**
- * Ambiance du jeu.
+ * Classe représentant l'ambiance du jeu.
  */
 export class GameAtmosphere {
 	// --------- //
@@ -28,7 +27,12 @@ export class GameAtmosphere {
 	 * Cri pokemon en cours d'écoute.
 	 * @type {HTMLAudioElement|null}
 	 */
-	#currentCry = null;
+	#currentCry = null
+	/**
+	 * URL Audio des cries du pokemon
+	 * @type {string}
+	 */
+	#cryUrl;
 
 	// ----------- //
 	// Constructor //
@@ -37,6 +41,7 @@ export class GameAtmosphere {
 	constructor() {
 		this.#battleSound = document.querySelector("#battle-sound");
 		this.#battleVictorySound = document.querySelector("#battle-victory-sound");
+		this.#cryUrl = POKEMON_CRY;
 	}
 
 	// ------- //
@@ -50,7 +55,7 @@ export class GameAtmosphere {
 	cry(pokemon) {
 		this.#currentCry?.pause();
 		let pokemonName_en = pokemon.getName({ lang: "en" }).toLowerCase();
-		let src = POKEMON_CRY.replace("{pokemon_en}", pokemonName_en);
+		let src = this.#cryUrl.replace("{pokemon_en}", pokemonName_en);
 		let audioElement = audio(src, { id: `cry-${pokemonName_en}` }, {
 			ended: () => {
 				this.#currentCry = null;

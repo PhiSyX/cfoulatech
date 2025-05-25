@@ -12,7 +12,7 @@ export function randomNumber(min, max) {
  * Renvoie un élément aléatoire d'un tableau.
  *
  * @template T
- * @param {Array<T>} arr
+ * @param {Array<T>} arr - Tableau d'origine immuable.
  * @return T
  */
 export function randomArray(arr) {
@@ -21,8 +21,11 @@ export function randomArray(arr) {
 
 /**
  * Renvoie un élément aléatoire d'un tableau et le supprime du tableau.
+ * 
+ * /!\ Cette fonction influe sur le tableau d'origine.
+ * 
  * @template T
- * @param {Array<T>} mut_arr
+ * @param {Array<T>} mut_arr - Tableau d'origine MUTABlE.
  * @return T
  */
 export function removeRandomArray(mut_arr) {
@@ -38,9 +41,9 @@ export function removeRandomArray(mut_arr) {
  * Si le nombre `val` est plus petit que `min`, le résultat est `min` si le
  * nombre `val` est plus grand que `max`, le résultat est `max`.
  *
- * @param {number} val - nombre utilisateur
- * @param {number} min - nombre minimal
- * @param {number} max - nombre maximal
+ * @param {number} val - nombre utilisateur.
+ * @param {number} min - nombre minimal.
+ * @param {number} max - nombre maximal.
  * @returns {number}
  */
 export function minmax(val, min, max) {
@@ -48,15 +51,17 @@ export function minmax(val, min, max) {
 }
 
 /**
- * Mélange un tableau
- *
+ * Mélange les éléments d'un tableau et retourne un nouveau tableau.
  * @template T
- * @param {Array<T>} arr
- * @return Array<T>
+ * @param {Array<T>} arr - Tableau d'origine immuable.
+ * @returns {Array<T>} - Nouveau tableau avec tous les éléments mélangés.
  */
 export function shuffle(arr) {
 	return arr
-		.map((a) => ({ sort: Math.random(), value: a }))
-		.sort((a, b) => a.sort - b.sort)
-		.map((a) => a.value);
+		// Ajoute un poids aléatoire aux éléments
+		.map((item) => ({ weight: Math.random(), value: item }))
+		// Trie les éléments de manière ascendante en fonction du poids
+		.sort((a, b) => a.weight - b.weight)
+		// Retrait du poids, parce qu'on s'en fiche dans le retour.
+		.map((sortItem) => sortItem.value);
 }

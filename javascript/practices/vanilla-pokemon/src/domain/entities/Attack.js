@@ -1,5 +1,8 @@
 import { PokemonTypeEnum } from "./Pokemon.js";
 
+/**
+ * Les différentes efficacités d'attaques.
+ */
 export const EffectivenessEnum = {
 	Forte: "forte",
 	Faible: "faible",
@@ -7,6 +10,9 @@ export const EffectivenessEnum = {
 	Rien: "rien",
 };
 
+/**
+ * Classe représentant une attaque.
+ */
 export class Attack {
 	// --------- //
 	// Propriété //
@@ -29,14 +35,16 @@ export class Attack {
 	#power;
 	/**
 	 * Les types de l'attaque.
-	 * @type {Array<string>}
+	 * @type {Array<PokemonTypeEnumVariant>}
 	 */
 	#types;
 
 	/**
 	 * OffType: {
-	 * 	DefType: Effectiveness
+	 * 		DefType: Effectiveness
 	 * }
+	 * 
+	 * @type {Effectiveness}
 	 */
 	#effectiveness = {
 		[PokemonTypeEnum.Acier]: {
@@ -238,7 +246,8 @@ export class Attack {
 	// ----------- //
 
 	/**
-	 * @param {number} id
+	 * Construit la classe Attack.
+	 * @param {number} id - ID de l'attaque
 	 */
 	constructor(id) {
 		this.#id = id;
@@ -248,69 +257,108 @@ export class Attack {
 	// Getter | Setter //
 	// --------------- //
 
+	/**
+	 * ID de l'attaque
+	 * @returns {number}
+	 */
 	getId() {
 		return this.#id;
 	}
 
 	/**
+	 * Nom de l'attaque.
+	 * @returns {string}
+	 */
+	getName() {
+		return this.#name;
+	}
+
+
+	/**
+	 * Défini le nom de l'attaque.
 	 * @param {string} name
+	 * @returns {Attack}
 	 */
 	setName(name) {
 		this.#name = name;
 		return this;
 	}
 
-	getName() {
-		return this.#name;
+	/**
+	 * Puissance de base de l'attaque.
+	 * @returns {number}
+	 */
+	getPower() {
+		return this.#power;
 	}
 
 	/**
+	 * Défini la puissance de base de l'attaque.
 	 * @param {number} power
+	 * @returns {Attack}
 	 */
 	setPower(power) {
 		this.#power = power;
 		return this;
 	}
 
-	getPower() {
-		return this.#power;
+	/**
+	 * Les types de l'attaques.
+	 * @returns {Array<PokemonTypeEnumVariant>}
+	 */
+	getTypes() {
+		return this.#types;
 	}
 
 	/**
-	 * @param {Array<string>} types
+	 * Défini les types de l'attaque.
+	 * @param {Array<PokemonTypeEnumVariant>} types
+	 * @returns {Attack}
 	 */
 	setTypes(types) {
 		this.#types = types;
 		return this;
 	}
 
-	getTypes() {
-		return this.#types;
-	}
-
 	// ------- //
-	// Méthode // -> Publique
+	// Méthode // → Publique
 	// ------- //
 
 	/**
 	 * Efficacité d'une attaque en fonction des types d'un pokemon.
 	 * @param {Pokemon} pokemon
-	 * @returns {"forte" | "normal" | "faible" | "rien"}
+	 * @returns {EffectivenessEnumVariant}
 	 */
 	effectiveness(pokemon) {
-		let effect = (offType, defType) => {
+		/**
+		 * Récupère l'efficacité d'une attaque.
+		 * @param {PokemonTypeEnumVariant} offType
+		 * @param {PokemonTypeEnumVariant} defType
+		 * @returns {EffectivenessEnumVariant}
+		 */
+		const getEffectiveness = (offType, defType) => {
 			return this.#effectiveness[offType][defType] || EffectivenessEnum.Normal;
 		};
 
-		let choose = (es) => {
-			let fo = es.find((e) => e === EffectivenessEnum.Forte);
-			let no = es.find((e) => e === EffectivenessEnum.Normal);
-			let fa = es.find((e) => e === EffectivenessEnum.Faible);
-			let ri = es.find((e) => e === EffectivenessEnum.Rien);
-			return fo || no || fa || ri || EffectivenessEnum.Normal;
+		/**
+		 * Choisis l'efficacité la plus importe pour une attaque vers la moins importante.
+		 * @param {Array<EffectivenessEnumVariant>} $enum
+		 * @returns {EffectivenessEnumVariant}
+		 */
+		const chooseEffectiveness = ($enum) => {
+			return $enum.find((variant) =>
+				variant === EffectivenessEnum.Forte ||
+				variant === EffectivenessEnum.Normal ||
+				variant === EffectivenessEnum.Faible ||
+				variant === EffectivenessEnum.Rien
+			) || EffectivenessEnum.Normal;
 		};
 
-		return choose(this.#types.flatMap((t) => pokemon.getTypes().map((pt) => effect(t, pt))));
+		return chooseEffectiveness(
+			this.#types.flatMap((offType) => 
+				pokemon.getTypes().map((defType) => getEffectiveness(offType, defType))
+			)
+		);
 	}
 
 	/**
@@ -354,4 +402,15 @@ export class Attack {
 
 /**
  * @typedef {import("./Pokemon.js").Pokemon} Pokemon
+ * @typedef {import("./Pokemon.js").PokemonTypeEnum} PokemonTypeEnum
+ *
+ * @typedef {typeof PokemonTypeEnum[keyof typeof PokemonTypeEnum]} PokemonTypeEnumVariant
+ *
+ * @typedef {{
+ * 		[O in PokemonTypeEnumVariant]: {
+ * 			[D in PokemonTypeEnumVariant]: EffectivenessEnumVariant
+ * 		}
+ * }} Effectiveness
+ *
+ * @typedef {typeof EffectivenessEnum[keyof typeof EffectivenessEnum]} EffectivenessEnumVariant
  */

@@ -1,20 +1,20 @@
 import { minmax } from "../../shared/helpers.js";
 import { button, div, h1, header, img, li, meter, paragraph, small, span, ul } from "../helpers/element.js";
+import { POKEMON_FIGHTER_POSTER } from "../stores/MyGameStore.js";
 
 /**
- * Rend un composant DOM PokemonFighter.
+ * Effectue le rendu du composant PokemonFighter.
  * @param {PokemonFighterProps["fighter"]} fighter
  * @param {PokemonFighterProps["attack"]} [attack]
  * @returns {HTMLElement}
  */
 export function pokemonFighter(fighter, attack) {
-	return new PokemonFighter({ fighter, attack }).render();
+	return new PokemonFighter({ fighter, attack, poster: POKEMON_FIGHTER_POSTER })
+		.render();
 }
 
-const POKEMON_POSTER = "https://www.shinyhunters.com/images/regular/{id}.gif";
-
 /**
- * Composant DOM PokemonFighter.
+ * Classe représentant le composant DOM PokemonFighter.
  */
 class PokemonFighter {
 	// --------- //
@@ -38,7 +38,7 @@ class PokemonFighter {
 	}
 
 	// ------- //
-	// Méthode //
+	// Méthode // -> Publique
 	// ------- //
 	/**
 	 * Rendu du composant DOM.
@@ -88,7 +88,7 @@ class PokemonFighter {
 								[
 									span([power.toFixed(0)], {
 										className: ["badge", "text-align-right"],
-										title: `Puissance ${power}`,
+										title: `Puissance ${power} - Base ${attack.getPower()}`,
 									}),
 									" ",
 									attack.getName(),
@@ -106,7 +106,7 @@ class PokemonFighter {
 					{ className: "attacks", hidden: !this.#props.attack },
 				),
 
-				img(POKEMON_POSTER.replace("{id}", this.#props.fighter.getId()), {
+				img(this.#props.poster.replace("{id}", this.#props.fighter.getId()), {
 					className: "pic",
 					height: 200,
 				}),
@@ -119,6 +119,9 @@ class PokemonFighter {
 		);
 	}
 
+	// ------- //
+	// Méthode // -> Privée
+	// ------- //
 
 	/**
 	 * Se déplace dans la liste des combattants de l'écran de Pokedex.
@@ -158,5 +161,14 @@ class PokemonFighter {
 /**
  * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
  * @typedef {import("../../domain/entities/Attack.js").Attack} Attack
- * @typedef {{ fighter: Pokemon; attack?: { list: Array<Attack>; onAttack: (_: Attack) => void; opponent: Pokemon; }; }} PokemonFighterProps
+ *
+ * @typedef {{
+ * 		fighter: Pokemon;
+ * 		poster: `${string}{id}${string}`;
+ * 		attack?: {
+ * 			list: Array<Attack>;
+ * 			onAttack: (_: Attack) => void;
+ * 			opponent: Pokemon;
+ * 		};
+ * }} PokemonFighterProps
  */

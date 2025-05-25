@@ -6,6 +6,7 @@ import { GameAtmosphere } from "../audio/GameAtmosphere.js";
 import { pokemonFighter } from "../components/PokemonFighter.js";
 import { dialog, li } from "../helpers/element.js";
 import { MyAttackStore } from "../stores/MyAttackStore.js";
+import { MyGameStore } from "../stores/MyGameStore.js";
 import { MyPokedexStore } from "../stores/MyPokedexStore.js";
 
 /**
@@ -14,13 +15,15 @@ import { MyPokedexStore } from "../stores/MyPokedexStore.js";
  * @param {PokemonBattleScreenProps["defender"]} defender
  */
 export function createPokemonBattleScreen(attacker, defender) {
+	let gameStore = new MyGameStore();
 	let pokedexStore = new MyPokedexStore();
 	let attackStore = new MyAttackStore();
+
 	let attacks = attackStore.fromPokemon(attacker);
 
 	let audioEffect = new AudioEffect();
 	let gameAtmosphere = new GameAtmosphere();
-	let gameBattle = new GameBattle(pokedexStore, attackStore);
+	let gameBattle = new GameBattle(gameStore, pokedexStore, attackStore);
 
 	let screen = new PokemonBattleScreen(
 		{ audioEffect, gameAtmosphere, gameBattle },
@@ -31,7 +34,7 @@ export function createPokemonBattleScreen(attacker, defender) {
 }
 
 /**
- * Écran de combat
+ * Classe représentant l'écran de combat.
  */
 class PokemonBattleScreen {
 	// --------- //
@@ -83,6 +86,10 @@ class PokemonBattleScreen {
 		this.#messagePreviewDialog = dialog([], { id: "message-preview" });
 	}
 
+	// ------- //
+	// Méthode // -> Publique
+	// ------- //
+
 	/**
 	 * Rendu du composant DOM.
 	 * @returns {Array<HTMLElement>}
@@ -98,6 +105,17 @@ class PokemonBattleScreen {
 			}),
 		];
 	}
+
+	mount() {
+		this.#battleScreen.removeAttribute("hidden");
+		this.#battleScreen.append(...this.render());
+		this.#ctx.audioEffect.useButtonsEffect();
+		this.#ctx.gameAtmosphere.battle();
+	}
+
+	// ------- //
+	// Méthode // -> Privée
+	// ------- //
 
 	/**
 	 * Lorsqu'un bouton d'attaque est appuyé.
@@ -189,18 +207,11 @@ class PokemonBattleScreen {
 			),
 		);
 	};
-
-	mount() {
-		this.#battleScreen.removeAttribute("hidden");
-		this.#battleScreen.append(...this.render());
-		this.#ctx.audioEffect.useButtonsEffect();
-		this.#ctx.gameAtmosphere.battle();
-	}
 }
 
 /**
  * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
- * @typedef {import("../../domain/entities/Attack.js").Attack}Attack
- * @typedef {{attacker: Pokemon; defender: Pokemon; attacks: Array<Attack>}} PokemonBattleScreenProps
+ * @typedef {import("../../domain/entities/Attack.js").Attack} Attack
+ * @typedef {{attacker: Pokemon; defender: Pokemon; attacks: Array<Attack>;}} PokemonBattleScreenProps
  * @typedef {{audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere; gameBattle: GameBattle;}} PokemonBattleScreenContext
  */

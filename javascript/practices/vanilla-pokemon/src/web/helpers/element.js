@@ -1,4 +1,5 @@
 /**
+ * Construit un Fragment.
  * @param {Children} children
  * @returns {DocumentFragment}
  */
@@ -9,6 +10,7 @@ export const fragment = (children) => {
 };
 
 /**
+ * Construit un élément du DOM dynamiquement.
  * @param {string} tagName
  * @param {Children} children
  * @param {Attributes} [attributes]
@@ -18,8 +20,11 @@ export const fragment = (children) => {
 const h = (tagName, children, attributes, events) => {
 	let $el = document.createElement(tagName);
 	if (attributes?.className) {
-		if (Array.isArray(attributes.className)) $el.classList.add(...attributes.className);
-		else $el.classList.add(attributes.className.toString());
+		if (Array.isArray(attributes.className)) {
+			$el.classList.add(...attributes.className);
+		} else {
+			$el.classList.add(attributes.className.toString());
+		}
 		delete attributes.className;
 	}
 	if (attributes?.dataset) {
@@ -47,7 +52,7 @@ const h = (tagName, children, attributes, events) => {
 	/**
 	 * @param {Children[number]} child
 	 */
-	function appendChild(child) {
+	const appendChild = (child) => {
 		if (Array.isArray(child)) {
 			appendChildren(child);
 			return;
@@ -63,7 +68,7 @@ const h = (tagName, children, attributes, events) => {
 	/**
 	 * @param {Children} children
 	 */
-	function appendChildren(children) {
+	const appendChildren = (children) => {
 		for (let child of children) {
 			appendChild(child);
 		}
@@ -81,6 +86,7 @@ const h = (tagName, children, attributes, events) => {
 };
 
 /**
+ * Construit un élément DOM : article
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -88,6 +94,7 @@ const h = (tagName, children, attributes, events) => {
  */
 export const article = (children, props, events) => h("article", children, props, events);
 /**
+ * Construit un élément DOM : h1
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -95,6 +102,7 @@ export const article = (children, props, events) => h("article", children, props
  */
 export const h1 = (children, props, events) => h("h1", children, props, events);
 /**
+ * Construit un élément DOM : small
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -102,6 +110,7 @@ export const h1 = (children, props, events) => h("h1", children, props, events);
  */
 export const small = (children, props, events) => h("small", children, props, events);
 /**
+ * Construit un élément DOM : output
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -109,6 +118,7 @@ export const small = (children, props, events) => h("small", children, props, ev
  */
 export const output = (children, props, events) => h("output", children, props, events);
 /**
+ * Construit un élément DOM : paragraph
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -116,6 +126,7 @@ export const output = (children, props, events) => h("output", children, props, 
  */
 export const paragraph = (children, props, events) => h("p", children, props, events);
 /**
+ * Récupère ou construit un élément DOM : audio
  * @param {string} src
  * @param {AudioProps & Attributes} props
  * @param {Events} [events]
@@ -138,6 +149,7 @@ export const audio = (src, props, events) => {
 	return $el;
 };
 /**
+ * Construit un élément DOM : div
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -145,6 +157,7 @@ export const audio = (src, props, events) => {
  */
 export const div = (children, props, events) => h("div", children, props, events);
 /**
+ * Construit un élément DOM : header
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -152,6 +165,7 @@ export const div = (children, props, events) => h("div", children, props, events
  */
 export const header = (children, props, events) => h("header", children, props, events);
 /**
+ * Construit un élément DOM : meter
  * @param {number} value
  * @param {number} max
  * @param {MeterProps & Attributes} [props]
@@ -168,6 +182,7 @@ export const meter = (value, max, props = {value, max}, events = {}) => {
 	return h("meter", [], props, events);
 };
 /**
+ * Construit un élément DOM : ul
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -175,6 +190,7 @@ export const meter = (value, max, props = {value, max}, events = {}) => {
  */
 export const ul = (children, props, events) => h("ul", children, props, events);
 /**
+ * Construit un élément DOM : img
  * @param {string} src
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -189,6 +205,7 @@ export const img = (src, props, events) => {
 	return $el;
 }
 /**
+ * Construit un élément DOM : li
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -196,6 +213,7 @@ export const img = (src, props, events) => {
  */
 export const li = (children, props, events) => h("li", children, props, events);
 /**
+ * Construit un élément DOM : button
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -203,6 +221,7 @@ export const li = (children, props, events) => h("li", children, props, events);
  */
 export const button = (children, props, events) => h("button", children, props, events);
 /**
+ * Construit un élément DOM : span
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]
@@ -210,6 +229,7 @@ export const button = (children, props, events) => h("button", children, props, 
  */
 export const span = (children, props, events) => h("span", children, props, events);
 /**
+ * Construit un élément DOM : dialog
  * @param {Children} children
  * @param {Attributes} [props]
  * @param {Events} [events]

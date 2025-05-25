@@ -1,3 +1,4 @@
+import { PokemonAttack } from "../entities/PokemonAttack.js";
 import { FighterNotAliveError } from "../errors/FighterNotAliveError.js";
 
 /**
@@ -9,23 +10,24 @@ export class ToAttackPokemon {
 	// --------- //
 
 	/**
-	 * Magasin de données liés au Pokedex.
-	 * @type {PokedexStore}
+	 * Magasin de données lié au Pokedex.
+	 * @type {PokedexStoreContract}
 	 */
 	#pokedexStore;
 	/**
-	 * Magasin de données liés aux attaques.
-	 * @type {AttackStore}
+	 * Magasin de données lié aux attaques.
+	 * @type {AttackStoreContract}
 	 */
 	#attackStore;
 
-	// ------- //
-	// Méthode // -> Publique
-	// ------- //
+	// ----------- //
+	// Constructor //
+	// ----------- //
 
 	/**
-	 * @param {PokedexStore} pokedexStore
-	 * @param {AttackStore} attackStore
+	 * Construit l'action ToAttackPokemon
+	 * @param {PokedexStoreContract} pokedexStore
+	 * @param {AttackStoreContract} attackStore
 	 */
 	constructor(pokedexStore, attackStore) {
 		this.#pokedexStore = pokedexStore;
@@ -33,7 +35,7 @@ export class ToAttackPokemon {
 	}
 
 	// ------- //
-	// Méthode // -> Publique
+	// Méthode // → Publique
 	// ------- //
 
 	/**
@@ -54,18 +56,24 @@ export class ToAttackPokemon {
 		}
 		let power = attack.calcPower(attacker, defender);
 		this.#pokedexStore.updateHitPoints(defender.getId(), defender.getHitPoints() - power);
-		return { attack, attacker, defender };
+		return { attacker: new PokemonAttack(attacker, attack), defender };
 	}
 }
 
 
 /**
  * @typedef {import("../entities/Pokemon.js").Pokemon} Pokemon
- * @typedef {import("../entities/Attack.js").Attack}Attack
+ * @typedef {import("../entities/Attack.js").Attack} Attack
  *
- * @typedef {{findByName(name: string): Pokemon; updateHitPoints(id: number, hp: number): void;}} PokedexStore
- * @typedef {{findByName(name: string, attacks_ids: Array<number>): Attack;}} AttackStore
+ * @typedef {{
+ * 		findByName(name: string): Pokemon;
+ * 		updateHitPoints(id: number, hp: number): void;
+ * }} PokedexStoreContract
+ *
+ * @typedef {{
+ * 		findByName(name: string, attacks_ids?: Array<number>): Attack;
+ * }} AttackStoreContract
  *
  * @typedef {{attackerName: string; defenderName: string; attackName: string;}} Input
- * @typedef {{attack: Attack; attacker: Pokemon; defender: Pokemon;}} Output
+ * @typedef {{attacker: PokemonAttack; defender: Pokemon;}} Output
  */

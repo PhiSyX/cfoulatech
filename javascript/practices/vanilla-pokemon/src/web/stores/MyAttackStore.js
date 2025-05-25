@@ -4,6 +4,9 @@ import { AttackNotAvailableError } from "../../domain/errors/AttackNotAvailableE
 import { AttackNotFoundError } from "../../domain/errors/AttackNotFoundError.js";
 import { shuffle } from "../../shared/helpers.js";
 
+/**
+ * Magasin de données concernant les attaques.
+ */
 export class MyAttackStore {
 	#dataset = [
 		{
@@ -178,6 +181,7 @@ export class MyAttackStore {
 
 	/**
 	 * Récupère toutes les attaques.
+	 * @return {Array<Attack>}
 	 */
 	all() {
 		return shuffle(this.#dataset).map((attack) =>
@@ -219,7 +223,7 @@ export class MyAttackStore {
 			throw new AttackNotFoundError(name);
 		}
 
-		if (!attacksIds.includes(record.id)) {
+		if ( ! attacksIds.includes(record.id)) {
 			throw new AttackNotAvailableError(name);
 		}
 

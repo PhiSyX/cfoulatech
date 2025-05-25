@@ -1,3 +1,6 @@
+/**
+ * Classe représentant un Pokemon attaquant qui transporte une attaque (Attack).
+ */
 export class PokemonAttack {
 	/**
 	 * Pokemon attaquant.

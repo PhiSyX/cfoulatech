@@ -3,7 +3,7 @@ import { AudioEffect } from "../audio/AudioEffect.js";
 import { GameAtmosphere } from "../audio/GameAtmosphere.js";
 import { pokemonDetail } from "../components/PokemonDetail.js";
 import { fragment } from "../helpers/element.js";
-import { MyPokedexStore } from "../stores/MyPokedexStore.js";
+import { MyPokedexStore, POKEMON_DETAIL_POSTER } from "../stores/MyPokedexStore.js";
 import { createPokemonBattleScreen } from "./PokemonBattleScreen.js";
 
 /**
@@ -27,7 +27,7 @@ export function createPokedexScreen() {
 }
 
 /**
- * Écran Pokedex
+ * Classe représentant l'écran Pokedex
  */
 class PokedexScreen {
 	// --------- //
@@ -98,18 +98,8 @@ class PokedexScreen {
 	}
 
 	// ------- //
-	// Méthode //
+	// Méthode // -> Publique
 	// ------- //
-
-	/**
-	 * Navigue vers l'écran de combat
-	 */
-	#gotoBattleScreen = () => {
-		this.#headerLayout.setAttribute("hidden", "hidden");
-		this.#pokedexScreen.setAttribute("hidden", "hidden");
-		let selectedFighter = this.#state.selectedFighter;
-		createPokemonBattleScreen(selectedFighter, this.#props.opponent);
-	};
 
 	/**
 	 * Rendu de l'écran Pokedex.
@@ -135,6 +125,7 @@ class PokedexScreen {
 		return fragment(
 			this.#props.list.map((pokemon) => pokemonDetail({
 				pokemon,
+				poster: POKEMON_DETAIL_POSTER,
 				onSelect: whenSelectPokemon,
 			})),
 		);
@@ -144,14 +135,28 @@ class PokedexScreen {
 		this.#headerLayout.removeAttribute("hidden");
 		this.#pokedexScreen.removeAttribute("hidden");
 		this.#pokemonList.append(this.render());
-		this.#pokemonOpponent.append(pokemonDetail({ pokemon: this.#props.opponent }));
+		this.#pokemonOpponent.append(pokemonDetail({ pokemon: this.#props.opponent, poster: POKEMON_DETAIL_POSTER }));
 		this.#ctx.audioEffect.useButtonsEffect();
 	}
+
+	// ------- //
+	// Méthode // -> Privée
+	// ------- //
+
+	/**
+	 * Navigue vers l'écran de combat
+	 */
+	#gotoBattleScreen = () => {
+		this.#headerLayout.setAttribute("hidden", "hidden");
+		this.#pokedexScreen.setAttribute("hidden", "hidden");
+		let selectedFighter = this.#state.selectedFighter;
+		createPokemonBattleScreen(selectedFighter, this.#props.opponent);
+	};
 }
 
 /**
  * @typedef {import("../../domain/entities/Pokemon.js").Pokemon} Pokemon
- * @typedef {{ audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere;}} PokedexScreenContext
+ * @typedef {{audioEffect: AudioEffect; gameAtmosphere: GameAtmosphere;}} PokedexScreenContext
  * @typedef {{list: Array<Pokemon>; opponent: Pokemon;}} PokedexScreenProps
  * @typedef {{selectedFighter?: Pokemon;}} PokedexScreenState
  */

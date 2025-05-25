@@ -4,5 +4,6 @@ export class BadFighterAttackError extends Error {
 	 */
 	constructor(pokemonName) {
 		super(`C'est au tour de ${pokemonName} de jouer.`);
+		this.name = "BadFighterAttackError";
 	}
 }

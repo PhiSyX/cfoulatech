@@ -2,6 +2,9 @@ import { Pokemon, PokemonTypeEnum } from "../../domain/entities/Pokemon.js";
 import { PokemonNotFoundError } from "../../domain/errors/PokemonNotFoundError.js";
 import { randomNumber, shuffle } from "../../shared/helpers.js";
 
+export const POKEMON_DETAIL_POSTER = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/{id}.png";
+export const POKEMON_CRY = "https://play.pokemonshowdown.com/audio/cries/{pokemon_en}.mp3";
+
 let pokedex = [
 	{
 		id: 25,
@@ -104,6 +107,9 @@ let pokedex = [
 		.setLevel(detail.level),
 );
 
+/**
+ * Magasin de données concernant le pokedex.
+ */
 export class MyPokedexStore {
 	#dataset = pokedex;
 

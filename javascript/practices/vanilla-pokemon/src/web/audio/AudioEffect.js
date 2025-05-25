@@ -1,5 +1,5 @@
 /**
- * Effet sonore
+ * Classe représentant les effets sonores du jeu.
  */
 export class AudioEffect {
 	// --------- //

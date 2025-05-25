@@ -4,5 +4,6 @@ export class FighterNotAliveError extends Error {
 	 */
 	constructor(pokemonName) {
 		super(`Le pokemon ${pokemonName} n'est plus en vie.`);
+		this.name = "FighterNotAliveError";
 	}
 }

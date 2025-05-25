@@ -12,27 +12,22 @@ export class GameBattle {
 	// --------- //
 	// Propriété //
 	// --------- //
+	/**
+	 * Magasin de données lié à un combat.
+	 * @type {GameStoreContract}
+	 */
+	#gameStore;
 
 	/**
 	 * Magasin de données lié au pokedex.
-	 * @type {PokedexStore}
+	 * @type {PokedexStoreContract}
 	 */
 	#pokedexStore;
 	/**
 	 * Magasin de données lié aux attaques.
-	 * @type {AttackStore}
+	 * @type {AttackStoreContract}
 	 */
 	#attackStore;
-	/**
-	 * Ordre des combattants : le premier `p1` est celui qui doit attaquer,
-	 * le second `p2` est celui qui se défend face à l'attaquant `p1`.
-	 * @type {[p1: string, p2: string]|null}
-	 */
-	#orderFighters = null;
-	/**
-	 * Historique de combat.
-	 */
-	#history = [];
 
 	// ----------- //
 	// Constructor //
@@ -40,10 +35,12 @@ export class GameBattle {
 
 	/**
 	 * Construit la classe de jeu de combat.
-	 * @param {PokedexStore} pokedexStore
-	 * @param {AttackStore} attackStore
+	 * @param {GameStoreContract} gameStore
+	 * @param {PokedexStoreContract} pokedexStore
+	 * @param {AttackStoreContract} attackStore
 	 */
-	constructor(pokedexStore, attackStore) {
+	constructor(gameStore, pokedexStore, attackStore) {
+		this.#gameStore = gameStore;
 		this.#pokedexStore = pokedexStore;
 		this.#attackStore = attackStore;
 	}
@@ -56,11 +53,11 @@ export class GameBattle {
 	 * Récupère l'historique.
 	 */
 	getHistory() {
-		return this.#history;
+		return this.#gameStore.getHistory();
 	}
 
 	// ------- //
-	// Méthode // -> Publique
+	// Méthode // → Publique
 	// ------- //
 
 	/**
@@ -71,30 +68,12 @@ export class GameBattle {
 	 * @returns {{ defender: Pokemon; }} Pokemon Défenseur
 	 */
 	attack(attackerName, defenderName, attackName) {
-		if (this.#orderFighters === null) {
-			this.#orderFighters = [attackerName, defenderName];
-		}
-
-		if (this.#orderFighters[1] === attackerName) {
+		if ( ! this.#gameStore.check(attackerName, defenderName)) {
 			throw new BadFighterAttackError(attackerName);
 		}
-
 		let toAttackPokemon = new ToAttackPokemon(this.#pokedexStore, this.#attackStore);
-		const { attack, attacker, defender } = toAttackPokemon.execute({
-			attackerName,
-			defenderName,
-			attackName,
-		});
-
-		this.#orderFighters = [defenderName, attackerName];
-
-		this.#history.push({
-			applied_at: new Date(),
-			attack: attack,
-			to: defender,
-			from: attacker,
-		});
-
+		const { attacker, defender } = toAttackPokemon.execute({ attackerName, defenderName, attackName });
+		this.#gameStore.addHistory(attacker, defender);
 		return { defender };
 	}
 
@@ -104,7 +83,7 @@ export class GameBattle {
 	 * @returns {number}
 	 */
 	countHits(pokemon) {
-		return this.#history.filter((h) => h.from.getName() === pokemon.getName()).length;
+		return this.getHistory().filter((h) => h.from.getName() === pokemon.getName()).length;
 	}
 
 	/**
@@ -112,7 +91,8 @@ export class GameBattle {
 	 * @param {PokemonAttack} attacker - Pokemon Attaquant
 	 * @param {Pokemon} defender - Pokemon Défenseur
 	 * @param {{alive(f1: PokemonAttack, f2: Pokemon): void; death(w: Pokemon, l: Pokemon): void;}} state
-	 * @recursive @param {boolean} [next=true] - Doit-on continuer le processus d'attaque.
+	 * @param {boolean} [next=true] - Doit-on continuer le processus d'attaque.
+	 * @recursive
 	 */
 	flow(attacker, defender, state, next = true) {
 		try {
@@ -146,8 +126,24 @@ export class GameBattle {
 
 /**
  * @typedef {import("./entities/Pokemon.js").Pokemon} Pokemon
- * @typedef {import("./entities/Attack.js").Attack}Attack
+ * @typedef {import("./entities/Attack.js").Attack} Attack
  *
- * @typedef {{find(id: number): Pokemon;}} PokedexStore
- * @typedef {{fromPokemon(pokemon: Pokemon): Array<Attack>;}} AttackStore
+ * @typedef {{
+ * 		addHistory(attacker:PokemonAttack, defender:Pokemon): void;
+ * 		getHistory(): Array<{applied_at: Date; attack: Attack; to: Pokemon; from: Pokemon;}>;
+ * 		check(attackerName: string, defenderName: string): boolean;
+ * }} GameStoreContract
+ *
+ * @typedef {{
+ * 		all(): Array<Pokemon>;
+ * 		find(id: number): Pokemon;
+ * 		findByName(name: string): Pokemon;
+ * 	    updateHitPoints(id: number, hp: number): void;
+ * }} PokedexStoreContract
+ *
+ * @typedef {{
+ * 		all(): Array<Attack>;
+ * 		findByName(name: string, attacksIds?: Array<number>): Attack;
+ * 		fromPokemon(pokemon: Pokemon): Array<Attack>;
+ * }} AttackStoreContract
  */
