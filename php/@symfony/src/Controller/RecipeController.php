@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -153,6 +154,19 @@ final class RecipeController extends AbstractController
 		$em->flush();
 
 		return $this->json($recipe);
+	}
+
+	#[Route(
+		path: "/recette/{id}/edit",
+		requirements: ["id" => '\d+'],
+		name: "app_recipe_edit",
+	)]
+	public function edit(Recipe $recipe): Response {
+		$form = $this->createForm(RecipeType::class, $recipe);
+		return $this->render("recipe/edit.html.twig", [
+			"recipe" => $recipe,
+			"myForm" => $form,
+		]);
 	}
 
 	#[Route(
