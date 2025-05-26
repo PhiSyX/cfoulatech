@@ -154,4 +154,89 @@ final class RecipeController extends AbstractController
 
 		return $this->json($recipe);
 	}
+
+	#[Route(
+		path: "/recette/{id}/edit",
+		requirements: ["id" => '\d+'],
+		methods: ["PUT"]
+	)]
+	public function update(
+		int                    $id,
+		RecipeRepository       $recipeRepository,
+		EntityManagerInterface $em,
+	): Response
+	{
+		$recipe = $recipeRepository->find($id);
+		$recipe->setTitle("Omelette");
+		$em->persist($recipe);
+		$em->flush();
+
+		return $this->json(compact("recipe"));
+	}
+
+	#[Route(
+		path: "/recette/{id}/delete",
+		requirements: ["id" => '\d+'],
+		methods: ["DELETE"]
+	)]
+	public function delete(
+		int                    $id,
+		RecipeRepository       $recipeRepository,
+		EntityManagerInterface $em,
+	): Response
+	{
+		$recipe = $recipeRepository->find($id);
+		$em->remove($recipe);
+		$em->flush();
+
+		return $this->json(compact("recipe"));
+	}
+
+	/*
+	#[Route(path: "/recette/exo12")]
+	public function exo12(EntityManagerInterface $em): Response
+	{
+		$recipe1 = (new Recipe())
+			->setCreatedAt(new DateTimeImmutable())
+			->setUpdatedAt(new DateTimeImmutable())
+			->setTitle("Exo 12 #1")
+			->setContent("Le contenu de l'exo 12 #1")
+			->setSlug("exo12-1");
+
+		$recipe2 = (new Recipe())
+			->setCreatedAt(new DateTimeImmutable())
+			->setUpdatedAt(new DateTimeImmutable())
+			->setTitle("Exo 12 #2")
+			->setContent("Le contenu de l'exo 12 #2")
+			->setSlug("exo12-2");
+
+		$em->persist($recipe1);
+		$em->persist($recipe2);
+		$em->flush();
+
+		return $this->json(compact("recipe1", "recipe2"));
+	}
+
+	#[Route(path: "/recette/exo13")]
+	public function exo13(EntityManagerInterface $em): Response
+	{
+		$recipe = $em->getRepository(Recipe::class)->find(5);
+		$recipe
+			->setTitle("Exo 12")
+			->setSlug("exo12")
+			->setContent("Le contenu de l'exo 12");
+		$em->persist($recipe);
+		$em->flush();
+		return $this->json(compact("recipe"));
+	}
+
+	#[Route(path: "/recette/exo14")]
+	public function exo14(EntityManagerInterface $em): Response
+	{
+		$recipe = $em->getRepository(Recipe::class)->find(6);
+		$em->remove($recipe);
+		$em->flush();
+		return new Response("Recette id 6 bien supprimé");
+	}
+	*/
 }
