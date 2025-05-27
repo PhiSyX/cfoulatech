@@ -1,0 +1,97 @@
+<article>
+	<h1>Directives structurelles</h1>
+
+	<div class="ng-if">
+		<label for="intern">Stagiaire : </label>
+		<input type="text" list="interns" [(ngModel)]="intern">
+
+		<div *ngIf="interns.includes(intern)">
+			<button (click)="markAsAway()">Marquer absent</button>
+			<button (click)="markAsNoLongerAway()">Marquer présent</button>
+			<p *ngIf="isAway">Le stagiaire <strong>{{ intern }}</strong> est absent</p>
+		</div>
+	</div>
+
+	<div class="ng-for">
+		<h2>Liste des formateurs</h2>
+		<ul>
+			<li *ngFor="let trainer of trainers">
+				{{ trainer }}
+			</li>
+		</ul>
+
+		<datalist id="trainers">
+			<option *ngFor="let trainer of trainers" [value]="trainer">
+				{{ trainer }}
+			</option>
+		</datalist>
+	</div>
+
+	<div class="ng-switch">
+		<p>Choisir le role</p>
+		<select [(ngModel)]="role">
+			<option [value]="Role.Admin">Admin</option>
+			<option [value]="Role.Trainer">Formateur</option>
+			<option [value]="Role.Intern">Stagiaire</option>
+		</select>
+
+		<ul [ngSwitch]="role">
+			<li *ngSwitchCase="Role.Admin">Tu es admin</li>
+			<li *ngSwitchCase="Role.Trainer">Tu es formateur</li>
+			<li *ngSwitchCase="Role.Intern">Tu es stagiaire</li>
+		</ul>
+
+	</div>
+
+	<div class="exo1">
+		<p *ngIf="isLoggedIn">Bienvenue sur votre espace stagiaire</p>
+	</div>
+
+	<div class="exo2">
+		<label>
+			État de la formation :
+			<input type="checkbox" [(ngModel)]="isTrainingActive">
+		</label>
+
+		<ng-container *ngIf="isTrainingActive; else pause">
+			<p>Formation en cours</p>
+		</ng-container>
+		<ng-template #pause>
+			<p>En pause</p>
+		</ng-template>
+	</div>
+
+	<div class="exo3">
+		<input [(ngModel)]="score" type="number" min="0" max="20">
+
+		<ng-container *ngIf="score >= 10; else failed">
+			<p>Vous avez réussie</p>
+		</ng-container>
+		<ng-template #failed>
+			<p>Vous avez échoué</p>
+		</ng-template>
+	</div>
+
+	<div class="exo4">
+		<label for="trainer-available">
+			À cocher :
+			<input [(ngModel)]="isTrainerAvailable" type="checkbox" id="trainer-available">
+		</label>
+		<p *ngIf="isTrainerAvailable">Formateur disponible</p>
+	</div>
+
+	<div class="exo5">
+		<h2>Liste des stagiaires</h2>
+		<ul>
+			<li *ngFor="let _intern of interns">
+				{{ _intern }}
+			</li>
+		</ul>
+	</div>
+
+	<div class="exo6">
+		<input [(ngModel)]="intern" type="text" placeholder="Timothy">
+		<button (click)="addIntern()">Ajouter le stagiaire</button>
+	</div>
+
+</article>

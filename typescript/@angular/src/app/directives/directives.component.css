@@ -1,0 +1,17 @@
+.ng-if,
+.ng-for,
+.ng-switch {
+	padding: 8px;
+}
+
+.ng-if {
+	background: rgba(255, 0, 0, 0.5);
+}
+
+.ng-switch {
+	background: rgba(255, 157, 0, 0.5);
+}
+
+.ng-for {
+	background: rgba(144, 255, 0, 0.5);
+}
