@@ -3,7 +3,7 @@ export const POKEMON_FIGHTER_POSTER = "https://www.shinyhunters.com/images/regul
 /**
  * Magasin de données concernant une partie en cours.
  */
-export class MyGameStore {
+export class GameStore {
 	/**
 	 * Ordre des combattants : le premier `p1` est celui qui doit attaquer,
 	 * le second `p2` est celui qui se défend face à l'attaquant `p1`.

@@ -6,10 +6,12 @@ export class AudioEffect {
 	// Propriété //
 	// --------- //
 	/**
+	 * Element audio concernant un effet de selection sur les boutons
 	 * @type {HTMLAudioElement}
 	 */
 	#selectionButtonEffect;
 	/**
+	 * Element audio concernant un effet de frappe d'un Pokemon.
 	 * @type {HTMLAudioElement}
 	 */
 	#hitPokemonEffect;

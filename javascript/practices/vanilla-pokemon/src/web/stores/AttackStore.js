@@ -182,7 +182,7 @@ let attacks = [
 /**
  * Magasin de données concernant les attaques.
  */
-export class MyAttackStore {
+export class AttackStore {
 	#dataset = attacks;
 
 	/**

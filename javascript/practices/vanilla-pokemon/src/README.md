@@ -1,4 +1,4 @@
-Les choses que l'on n'a pas vu :
+Les choses que l'on n'a pas vues :
 
 1. JS Doc.
 2. Les exceptions (`throw new Error`).
@@ -9,4 +9,3 @@ Les choses que l'on n'a pas vu :
 7. `domElement.dispatchEvent(new Event("name-event"))`
 8. `domDialog.showPopover()` / `domDialog.hidePopover()`
 9. `window.location.reload()`
-10. 

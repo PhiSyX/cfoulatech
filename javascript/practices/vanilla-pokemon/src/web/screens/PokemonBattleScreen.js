@@ -5,9 +5,9 @@ import { AudioEffect } from "../audio/AudioEffect.js";
 import { GameAtmosphere } from "../audio/GameAtmosphere.js";
 import { pokemonFighter } from "../components/PokemonFighter.js";
 import { dialog, li } from "../helpers/element.js";
-import { MyAttackStore } from "../stores/MyAttackStore.js";
-import { MyGameStore } from "../stores/MyGameStore.js";
-import { MyPokedexStore } from "../stores/MyPokedexStore.js";
+import { AttackStore } from "../stores/AttackStore.js";
+import { GameStore } from "../stores/GameStore.js";
+import { PokedexStore } from "../stores/PokedexStore.js";
 
 /**
  * Crée l'écran de combat.
@@ -15,14 +15,14 @@ import { MyPokedexStore } from "../stores/MyPokedexStore.js";
  * @param {PokemonBattleScreenProps["defender"]} defender
  */
 export function createPokemonBattleScreen(attacker, defender) {
-	let gameStore = new MyGameStore();
-	let pokedexStore = new MyPokedexStore();
-	let attackStore = new MyAttackStore();
+	let gameStore = new GameStore();
+	let pokedexStore = new PokedexStore();
+	let attackStore = new AttackStore();
 	let gameBattle = new GameBattle(gameStore, pokedexStore, attackStore);
 
 	let audioEffect = new AudioEffect();
 	let gameAtmosphere = new GameAtmosphere();
-	
+
 	let attacks = attackStore.fromPokemon(attacker);
 
 	let screen = new PokemonBattleScreen(

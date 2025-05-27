@@ -1,5 +1,5 @@
 import { audio } from "../helpers/element.js";
-import { POKEMON_CRY } from "../stores/MyPokedexStore.js";
+import { POKEMON_CRY } from "../stores/PokedexStore.js";
 
 /**
  * Classe représentant l'ambiance du jeu.

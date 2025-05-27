@@ -1,6 +1,6 @@
 import { minmax } from "../../shared/helpers.js";
 import { button, div, h1, header, img, li, meter, paragraph, small, span, ul } from "../helpers/element.js";
-import { POKEMON_FIGHTER_POSTER } from "../stores/MyGameStore.js";
+import { POKEMON_FIGHTER_POSTER } from "../stores/GameStore.js";
 
 /**
  * Effectue le rendu du composant PokemonFighter.

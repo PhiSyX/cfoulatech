@@ -110,7 +110,7 @@ let pokedex = [
 /**
  * Magasin de données concernant le pokedex.
  */
-export class MyPokedexStore {
+export class PokedexStore {
 	#dataset = pokedex;
 
 	/**

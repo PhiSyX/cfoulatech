@@ -3,14 +3,14 @@ import { AudioEffect } from "../audio/AudioEffect.js";
 import { GameAtmosphere } from "../audio/GameAtmosphere.js";
 import { pokemonDetail } from "../components/PokemonDetail.js";
 import { fragment } from "../helpers/element.js";
-import { MyPokedexStore, POKEMON_DETAIL_POSTER } from "../stores/MyPokedexStore.js";
+import { PokedexStore, POKEMON_DETAIL_POSTER } from "../stores/PokedexStore.js";
 import { createPokemonBattleScreen } from "./PokemonBattleScreen.js";
 
 /**
  * Crée l'écran de sélection d'un pokemon.
  */
 export function createPokedexScreen() {
-	let pokedexStore = new MyPokedexStore();
+	let pokedexStore = new PokedexStore();
 
 	let pokedex = shuffle(pokedexStore.all());
 	let opponent = removeRandomArray(pokedex);
@@ -111,7 +111,7 @@ class PokedexScreen {
 		 *
 		 * @param {Pokemon} pokemon
 		 */
-		let whenSelectPokemon = (pokemon) => {
+		const whenSelectPokemon = (pokemon) => {
 			this.#state.selectedFighter = pokemon;
 
 			// Modification du DOM
