@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+ul {
+	list-style-type: lower-greek;
+}
+
+button,
+select,
+input {
+	margin-block: 4px;
+	padding: 4px;
+	border-radius: 4px;
+	background: canvas;
+}
+
+
+.exo1,
+.exo2,
+.exo3,
+.exo4,
+.exo5,
+.exo6,
+.exo7,
+.exo8,
+.exo9,
+.exo10 {
+	padding: 8px;
+}
+
+.exo1 {
+	background: rgba(0, 255, 51, 0.5);
+}
+
+.exo2 {
+	background: rgba(0, 255, 187, 0.5);
+}
+
+.exo3 {
+	background: rgba(0, 111, 255, 0.5);
+}
+
+.exo4 {
+	background: rgba(0, 17, 255, 0.5);
+}
+
+.exo5 {
+	background: rgba(81, 0, 255, 0.5);
+}
+
+.exo6 {
+	background: rgba(200, 0, 255, 0.5);
+}
+
+.exo7 {
+	background: rgba(255, 0, 149, 0.5);
+}
+
+.exo8 {
+	background: rgba(255, 0, 17, 0.5);
+}
+
+.exo9 {
+	background: rgba(255, 157, 0, 0.5);
+}
+
+.exo10 {
+	background: rgba(255, 225, 0, 0.5);
+}

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-	selector: 'app-data-bindings',
+	selector: "app-data-bindings",
 	imports: [
 		FormsModule,
 	],
-	templateUrl: './data-bindings.component.html',
-	styleUrl: './data-bindings.component.css',
+	templateUrl: "./data-bindings.component.html",
+	styleUrl: "./data-bindings.component.css",
+	standalone: true,
 })
 export class DataBindingsComponent {
 	public firstname: string = "";
@@ -37,8 +38,15 @@ export class DataBindingsComponent {
 		alert(this.inputModel);
 	}
 
-	public showFirstname(): void
-	{
+	public showFirstname(): void {
 		alert(`Bonjour ${this.firstname} !`);
 	}
+
+	/* Ex checkbox */
+	public belgique: boolean = false;
+	public france: boolean = false;
+	public italie: boolean = true;
+
+	/* Ex select */
+	public pays: string = "belgique";
 }
