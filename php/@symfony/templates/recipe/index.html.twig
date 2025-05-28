@@ -10,9 +10,9 @@
 	<ul>
 		{% for recipe in recipes %}
 			<li>
-				<a href="{{ path("app_recipe_show", { id: recipe.id, slug: recipe.slug }) }}">
-					{{ recipe.title }}
-				</a>
+				<a href="{{ path('app_recipe_show', { id: recipe.id, slug: recipe.slug }) }}">{{ recipe.title }}</a>
+				-
+				<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}">Éditer</a>
 			</li>
 		{% else %}
 			<p>Il n'y a pas de recettes.</p>

@@ -1,4 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
+
 {% block title %}
 	Edition de la recette {{ recipe.id }}
 {% endblock %}
@@ -7,7 +8,6 @@
 	<article style="max-width: 80ch;" class="mx-auto">
 		<h1>Edition de la recette n°{{ recipe.id }}</h1>
 		<h2>{{ recipe.title }}!</h2>
-		<hr>
 		{{ form(myForm) }}
 	</article>
 {% endblock %}

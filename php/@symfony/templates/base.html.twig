@@ -13,7 +13,7 @@
 
 	{% block javascripts %}
 		{% block importmap %}
-			{{ importmap('app') }}
+			{{ importmap("app") }}
 		{% endblock %}
 
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -25,13 +25,15 @@
 	{% endblock %}
 </head>
 <body>
-{% include 'layouts/partials/_icons.svg.twig' %}
-{% include 'layouts/partials/_nav.html.twig' %}
+{% include "layouts/partials/_icons.svg.twig" %}
+{% include "layouts/partials/_nav.html.twig" %}
 
 <div class="container py-5">
+	{% include "layouts/partials/_flash.html.twig" %}
+
 	{% block body %}{% endblock %}
 </div>
 
-{% include 'layouts/partials/_footer.html.twig' %}
+{% include "layouts/partials/_footer.html.twig" %}
 </body>
 </html>

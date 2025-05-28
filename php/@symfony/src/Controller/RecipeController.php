@@ -24,7 +24,7 @@ final class RecipeController extends AbstractController
 					"duration",
 					0,
 					\FILTER_VALIDATE_INT,
-					['flags' => FILTER_NULL_ON_FAILURE],
+					["flags" => FILTER_NULL_ON_FAILURE],
 				),
 			);
 		} else {
@@ -42,8 +42,8 @@ final class RecipeController extends AbstractController
 	// expressions régulières.
 	#[Route(
 		path: "/recette/{slug}-{id}",
-		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
-		name: 'app_recipe_show',
+		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
+		name: "app_recipe_show",
 	)]
 	public function show(Request $req): Response
 	{
@@ -66,7 +66,7 @@ final class RecipeController extends AbstractController
 	#[Route(
 		path: "/recette/{slug}-{id}",
 		name: "app_recipe_show",
-		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
+		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
 	public function show(
 		RecipeRepository $recipeRepository,
@@ -77,9 +77,9 @@ final class RecipeController extends AbstractController
 		$recipe = $recipeRepository->find($id);
 
 		if ($slug !== $recipe->getSlug()) {
-			return $this->redirectToRoute('app_recipe_show', [
-				'id' => $id,
-				'slug' => $recipe->getSlug(),
+			return $this->redirectToRoute("app_recipe_show", [
+				"id" => $id,
+				"slug" => $recipe->getSlug(),
 			]);
 		}
 
@@ -105,8 +105,8 @@ final class RecipeController extends AbstractController
 	// expressions régulières.
 	#[Route(
 		path: "/api/recette/{slug}-{id}",
-		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
-		name: 'api_recipe_show',
+		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
+		name: "api_recipe_show",
 	)]
 	public function api_show(Request $req, string $slug, int $id): Response
 	{
@@ -124,7 +124,7 @@ final class RecipeController extends AbstractController
 	#[Route(
 		path: "/api/recette/{slug}-{id}",
 		name: "api_recipe_show",
-		requirements: ["slug" => '[\w\d-]+', "id" => '\d+'],
+		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
 	public function api_show(Request $req, string $slug, int $id): Response
 	{
@@ -158,11 +158,22 @@ final class RecipeController extends AbstractController
 
 	#[Route(
 		path: "/recette/{id}/edit",
-		requirements: ["id" => '\d+'],
 		name: "app_recipe_edit",
+		requirements: ["id" => "\d+"],
 	)]
-	public function edit(Recipe $recipe): Response {
-		$form = $this->createForm(RecipeType::class, $recipe);
+	public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
+	{
+		$form = $this->createForm(RecipeType::class, $recipe)->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em->flush();
+			$this->addFlash("success", "Le recette a bien été modifié");
+			return $this->redirectToRoute('app_recipe_show', [
+				"id"   => $recipe->getId(),
+				'slug' => $recipe->getSlug(),
+			]);
+		}
+
 		return $this->render("recipe/edit.html.twig", [
 			"recipe" => $recipe,
 			"myForm" => $form,
@@ -170,8 +181,8 @@ final class RecipeController extends AbstractController
 	}
 
 	#[Route(
-		path: "/recette/{id}/edit",
-		requirements: ["id" => '\d+'],
+		path: "/recette/{id}/update",
+		requirements: ["id" => "\d+"],
 		methods: ["PUT"]
 	)]
 	public function update(
@@ -190,7 +201,7 @@ final class RecipeController extends AbstractController
 
 	#[Route(
 		path: "/recette/{id}/delete",
-		requirements: ["id" => '\d+'],
+		requirements: ["id" => "\d+"],
 		methods: ["DELETE"]
 	)]
 	public function delete(
