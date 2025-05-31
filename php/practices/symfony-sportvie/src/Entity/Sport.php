@@ -24,7 +24,7 @@ class Sport
 	#[ORM\Column]
 	private ?int $tempsDeJeu = null;
 
-	#[ORM\Column]
+	#[ORM\Column(type: Types::DATE_IMMUTABLE)]
 	private ?\DateTimeImmutable $createdAt = null;
 
 	public function getId(): ?int

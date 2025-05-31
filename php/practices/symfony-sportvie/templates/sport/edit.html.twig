@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="page-sport">
+		<article class="container">
+			<h1>Éditer le sport : {{ sport.nom }}</h1>
+
+			{{ form(sportForm) }}
+		</article>
+	</section>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

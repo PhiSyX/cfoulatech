@@ -282,6 +282,11 @@ header[role="banner"] nav a {
 	border-radius: 4px;
 }
 
+.alert-success {
+	color: #86d107;;
+	background: #2B3E06;
+}
+
 .alert-error {
 	color: #e11e1e;
 	background: #f59c9c;
@@ -290,4 +295,29 @@ header[role="banner"] nav a {
 .page-sport {
 	background: #fff;
 	padding-block: 1rem;
+}
+
+form div > * + * {
+	margin-top: 8px;
+}
+
+form div > div {
+	display: flex;
+	align-items: center;
+}
+
+label {
+	width: 15%;
+}
+
+button, input, textarea {
+	width: calc(100% - 15%);
+	padding: .5rem;
+	border-radius: 4px;
+	border: 1px solid gainsboro;
+}
+
+button {
+	width: 100%;
+	cursor: pointer;
 }
