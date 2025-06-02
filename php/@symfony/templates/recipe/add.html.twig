@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Création d'une recette
+{% endblock %}
+
+{% block body %}
+	<article style="max-width: 80ch;" class="mx-auto">
+		<h1>Création d'une recette</h1>
+		{{ form(myRecipeForm) }}
+	</article>
+{% endblock %}

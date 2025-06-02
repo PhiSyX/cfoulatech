@@ -7,7 +7,11 @@
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
 		<h1>Edition de la recette n°{{ recipe.id }}</h1>
-		<h2>{{ recipe.title }}!</h2>
+		<h2>
+			<a href="{{ path('app_recipe_show', { id: recipe.id, slug: recipe.slug }) }}">
+				{{ recipe.title }}
+			</a>
+		</h2>
 		{{ form(myForm) }}
 	</article>
 {% endblock %}

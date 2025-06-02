@@ -1,18 +1,49 @@
 {% extends "base.html.twig" %}
 
-{#{% block title "#" ~ recipe.id ~ " " ~ recipe.slug %}#}
+{# {% block title "#" ~ recipe.id ~ " " ~ recipe.slug %} #}
 {% block title %} #{{ recipe.id }} {{ recipe.slug }} {% endblock %}
 
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
-		<h1>
-			Bienvenue sur la recette n°{{ recipe.id }}
-			<small>(<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}">Éditer</a>)</small>
-		</h1>
-		<h2>Recette créée par {{ user.firstname }} (<small>{{ user.username }}</small>)</h2>
-		<h3>Comment faire un.e {{ recipe.title }}!</h3>
+		<h1>{{ recipe.title }}!</h1>
+
+		<img src="https://pbs.twimg.com/media/EdDUBw0WkAAQLJ1?format=jpg&name=large"
+			 height="750px"
+			 class="img-fluid"
+		>
+
 		<p>{{ recipe.content | nl2br }}</p>
-		<small>{{ recipe.createdAt | date }}</small>
-		{{ dump(recipe) }}
+
+		<time>{{ recipe.createdAt | date }}</time>
+
+		<footer>
+			<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">Editer</a>
+
+			{# Attention Faille CSRF
+			<a
+				href="{{ path('app_recipe_delete', { id: recipe.id }) }}"
+				class="btn btn-danger"
+				onclick="return confirm('Voulez-vous vraiment supprimer cette recette?')"
+			>
+				Supprimer
+			</a>
+			#}
+
+			<form action="{{ path('app_recipe_delete', {id: recipe.id}) }}" method="POST" class="d-none"></form>
+			<a
+				href="#"
+				class="btn btn-danger"
+				onclick="return confirm('Voulez-vous vraiment supprimer cette recette?') && this.previousElementSibling.submit()"
+			>
+				Supprimer
+			</a>
+
+			<a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">Retour</a>
+		</footer>
+
+		<details>
+			<summary>Debug</summary>
+			{{ dump(recipe) }}
+		</details>
 	</article>
 {% endblock %}

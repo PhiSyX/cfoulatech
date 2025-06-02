@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{# {% block title %}Liste des recettes !{% endblock %} #}
+{% block title "Liste des recettes !" %}
+
+{% block body %}
+
+	<h1>
+		Liste de recettes
+		<a href="{{ path('app_recipe_create') }}" class="btn btn-primary float-end">
+			Créer une recette
+		</a>
+	</h1>
+
+	<ul>
+		{% for recipe in recipes %}
+			<li class="d-flex align-items-center gap-2">
+				<a href="{{ path('app_recipe_show', { id: recipe.id, slug: recipe.slug }) }}">{{ recipe.title }}</a>
+				-
+				<div class="d-flex align-items-center">
+					<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}">Éditer</a>
+					<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="post">
+						<input type="hidden" name="_method" value="DELETE">
+						<button
+							class="btn btn-link text-danger"
+							type="submit"
+							onclick="return confirm('Voulez-vous vraiment supprimer cette recette ?')"
+						>
+							Supprimer
+						</button>
+					</form>
+				</div>
+			</li>
+		{% else %}
+			<p>Il n'y a pas de recettes.</p>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

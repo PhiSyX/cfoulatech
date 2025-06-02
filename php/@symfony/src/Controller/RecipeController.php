@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RecipeController extends AbstractController
 {
-	#[Route(path: "/recette", name: "app_recipe_index")]
+	#[Route("/recette", name: "app_recipe_index")]
 	public function index(Request $req, RecipeRepository $recipeRepository): Response
 	{
 		if ($req->query->has("duration")) {
@@ -41,7 +41,7 @@ final class RecipeController extends AbstractController
 	// Valider la valeur de ces chemins via leur nom, en utilisant les
 	// expressions régulières.
 	#[Route(
-		path: "/recette/{slug}-{id}",
+		"/recette/{slug}-{id}",
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 		name: "app_recipe_show",
 	)]
@@ -64,7 +64,7 @@ final class RecipeController extends AbstractController
 	// Valider la valeur de ces chemins via leur nom, en utilisant les
 	// expressions régulières.
 	#[Route(
-		path: "/recette/{slug}-{id}",
+		"/recette/{slug}-{id}",
 		name: "app_recipe_show",
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
@@ -104,7 +104,7 @@ final class RecipeController extends AbstractController
 	// Valider la valeur de ces chemins via leur nom, en utilisant les
 	// expressions régulières.
 	#[Route(
-		path: "/api/recette/{slug}-{id}",
+		"/api/recette/{slug}-{id}",
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 		name: "api_recipe_show",
 	)]
@@ -122,7 +122,7 @@ final class RecipeController extends AbstractController
 	// Valider la valeur de ces chemins via leur nom, en utilisant les
 	// expressions régulières.
 	#[Route(
-		path: "/api/recette/{slug}-{id}",
+		"/api/recette/{slug}-{id}",
 		name: "api_recipe_show",
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
@@ -133,13 +133,26 @@ final class RecipeController extends AbstractController
 		return $this->json(compact("id", "slug"));
 	}
 
-//	#[Route(path: "/recette/create", name: "app_recipe_create")]
-//	public function create(): Response
-//	{
-//		return $this->create([]);
-//	}
+	#[Route("/recette/create", name: "app_recipe_create", methods: ["GET", "POST"])]
+	public function add(Request $req, EntityManagerInterface $em): Response
+	{
+		$recipe = (new Recipe())
+			->setCreatedAt(new DateTimeImmutable())
+			->setUpdatedAt(new DateTimeImmutable());
 
-	#[Route(path: "/recette/create", methods: ["POST"])]
+		$form = $this->createForm(RecipeType::class, $recipe)->handleRequest($req);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em->persist($recipe);
+			$em->flush();
+			$this->addFlash("success", "La recette a bien été crée");
+			return $this->redirectToRoute("app_recipe_index");
+		}
+		return $this->render("recipe/add.html.twig", [
+			"myRecipeForm" => $form,
+		]);
+	}
+
+	#[Route("/recette/create", methods: ["POST"])]
 	public function store(EntityManagerInterface $em): Response
 	{
 		$recipe = (new Recipe())
@@ -157,20 +170,25 @@ final class RecipeController extends AbstractController
 	}
 
 	#[Route(
-		path: "/recette/{id}/edit",
+		"/recette/{id}/edit",
 		name: "app_recipe_edit",
 		requirements: ["id" => "\d+"],
 	)]
 	public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
 	{
-		$form = $this->createForm(RecipeType::class, $recipe)->handleRequest($request);
+		$form = $this->createForm(
+			RecipeType::class,
+			$recipe,
+			["label" => ["save" => "Éditer"]],
+		)->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$recipe->setUpdatedAt(new DateTimeImmutable());
 			$em->flush();
 			$this->addFlash("success", "Le recette a bien été modifié");
-			return $this->redirectToRoute('app_recipe_show', [
-				"id"   => $recipe->getId(),
-				'slug' => $recipe->getSlug(),
+			return $this->redirectToRoute("app_recipe_show", [
+				"id" => $recipe->getId(),
+				"slug" => $recipe->getSlug(),
 			]);
 		}
 
@@ -181,7 +199,7 @@ final class RecipeController extends AbstractController
 	}
 
 	#[Route(
-		path: "/recette/{id}/update",
+		"/recette/{id}/update",
 		requirements: ["id" => "\d+"],
 		methods: ["PUT"]
 	)]
@@ -200,21 +218,20 @@ final class RecipeController extends AbstractController
 	}
 
 	#[Route(
-		path: "/recette/{id}/delete",
+		"/recette/{id}/delete",
+		name: "app_recipe_delete",
 		requirements: ["id" => "\d+"],
-		methods: ["DELETE"]
 	)]
 	public function delete(
-		int                    $id,
-		RecipeRepository       $recipeRepository,
+		Recipe                 $recipe,
 		EntityManagerInterface $em,
 	): Response
 	{
-		$recipe = $recipeRepository->find($id);
+		$title = $recipe->getTitle();
 		$em->remove($recipe);
 		$em->flush();
-
-		return $this->json(compact("recipe"));
+		$this->addFlash("success", "Le recette " . $title . " a bien été supprimé");
+		return $this->redirectToRoute("app_recipe_index");
 	}
 
 	/*
