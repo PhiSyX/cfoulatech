@@ -15,6 +15,7 @@ target/
 *.jpg
 *.jpeg
 *.webp
+*.class
 
 package-lock.json
 pnpm-lock.yaml
