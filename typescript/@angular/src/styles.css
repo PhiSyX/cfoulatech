@@ -11,11 +11,23 @@ button,
 select,
 input {
 	margin-block: 4px;
+	margin-right: 4px;
 	padding: 4px;
+	border: 4px double currentColor;
 	border-radius: 4px;
 	background: canvas;
 }
 
+.flex {
+	--gap: 1rem;
+	display: flex;
+	gap: var(--gap);
+	align-items: start;
+}
+
+.flex-full {
+	flex-grow: 1;
+}
 
 .exo1,
 .exo2,

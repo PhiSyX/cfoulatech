@@ -1,9 +1,3 @@
-.flex {
-	display: flex;
-	gap: 1rem;
-	align-items: start;
-}
-
 .data-bindings {
 	display: inline-grid;
 	padding: 1rem;

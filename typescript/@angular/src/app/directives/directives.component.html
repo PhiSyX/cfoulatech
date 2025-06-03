@@ -1,18 +1,18 @@
 <article>
 	<h1>Directives structurelles</h1>
 
-	<div class="ng-if">
+	<div class="ng-if" hidden>
 		<label for="intern">Stagiaire : </label>
-		<input type="text" list="interns" [(ngModel)]="intern">
+		<input type="text" list="interns" [(ngModel)]="internModel">
 
-		<div *ngIf="interns.includes(intern)">
+		<div *ngIf="interns.includes(internModel)">
 			<button (click)="markAsAway()">Marquer absent</button>
 			<button (click)="markAsNoLongerAway()">Marquer présent</button>
-			<p *ngIf="isAway">Le stagiaire <strong>{{ intern }}</strong> est absent</p>
+			<p *ngIf="isAway">Le stagiaire <strong>{{ internModel }}</strong> est absent</p>
 		</div>
 	</div>
 
-	<div class="ng-for">
+	<div class="ng-for" hidden>
 		<h2>Liste des formateurs</h2>
 		<ul>
 			<li *ngFor="let trainer of trainers">
@@ -27,7 +27,7 @@
 		</datalist>
 	</div>
 
-	<div class="ng-switch">
+	<div class="ng-switch" hidden>
 		<p>Choisir le role</p>
 		<select [(ngModel)]="role">
 			<option [value]="Role.Admin">Admin</option>
@@ -43,11 +43,11 @@
 
 	</div>
 
-	<div class="exo1">
+	<div class="exo1" hidden>
 		<p *ngIf="isLoggedIn">Bienvenue sur votre espace stagiaire</p>
 	</div>
 
-	<div class="exo2">
+	<div class="exo2" hidden>
 		<label>
 			État de la formation :
 			<input type="checkbox" [(ngModel)]="isTrainingActive">
@@ -61,7 +61,7 @@
 		</ng-template>
 	</div>
 
-	<div class="exo3">
+	<div class="exo3" hidden>
 		<input [(ngModel)]="score" type="number" min="0" max="20">
 
 		<ng-container *ngIf="score >= 10; else failed">
@@ -72,7 +72,7 @@
 		</ng-template>
 	</div>
 
-	<div class="exo4">
+	<div class="exo4" hidden>
 		<label for="trainer-available">
 			À cocher :
 			<input [(ngModel)]="isTrainerAvailable" type="checkbox" id="trainer-available">
@@ -80,18 +80,53 @@
 		<p *ngIf="isTrainerAvailable">Formateur disponible</p>
 	</div>
 
-	<div class="exo5">
+	<div class="exo5" hidden>
 		<h2>Liste des stagiaires</h2>
 		<ul>
-			<li *ngFor="let _intern of interns">
-				{{ _intern }}
+			<li *ngFor="let intern of interns">
+				{{ intern }}
 			</li>
 		</ul>
 	</div>
 
-	<div class="exo6">
-		<input [(ngModel)]="intern" type="text" placeholder="Timothy">
+	<div class="exo6" hidden>
+		<input [(ngModel)]="internModel" type="text" placeholder="Timothy">
 		<button (click)="addIntern()">Ajouter le stagiaire</button>
 	</div>
 
+	<div class="exo7" hidden>
+		<div class="flex" style="--gap: 0;">
+			<input
+				[(ngModel)]="trainingModel"
+				type="text"
+				placeholder="Nom de formation"
+				class="card-input flex-full"
+			>
+			<button class="card-btn" (click)="addTraining()">Ajouter</button>
+		</div>
+		<div class="cards">
+			<article *ngFor="let training of trainings" class="card">
+				<h1 class="card-title">{{ training }}</h1>
+			</article>
+		</div>
+	</div>
+
+	<div class="exo8">
+		<ul>
+			<li style="list-style: none;counter-reset:chapter-count 1;">
+				<input placeholder="Nom" type="text" [(ngModel)]="evaluationNom">
+				<input placeholder="Note" type="number" min="0" max="20" [(ngModel)]="evaluationNote">
+				<button (click)="addEvaluation()">Ajouter</button>
+			</li>
+			<li *ngFor="let evaluation of evaluations">
+				Evaluation de {{ evaluation.nom }} : {{ evaluation.note }}/20
+				<button (click)="delEvaluation(evaluation)">x</button>
+			</li>
+		</ul>
+		<p *ngIf="evaluationMoyenne >=0">
+			La moyenne des évaluations est de {{ evaluationMoyenne }}
+		</p>
+
+
+	</div>
 </article>

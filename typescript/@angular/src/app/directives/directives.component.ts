@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 const Role = {
 	Admin: "admin",
@@ -49,15 +49,80 @@ export class DirectivesComponent {
 
 	public isTrainerAvailable: boolean = true;
 
-	public intern: string = "";
+	public internModel: string = "";
 	public interns: Array<string> = ["Say", "Carina", "Erica", "Mohamed-Ali", "Mona", "Josué"];
 
 	public addIntern(): void {
-		if (this.intern.trim().length === 0) {
+		let intern = this.internModel.trim();
+		if (intern.length === 0) {
+			alert("Entrez un nom de stagiaire.");
 			return;
 		}
-		
-		this.interns.push(this.intern);
-		this.intern = "";
+
+		// Le stagiaire est déjà existant
+		if (this.interns.includes(intern)) {
+			alert(`Le stagiaire ${intern} est déjà existant.`);
+			this.internModel = "";
+			return;
+		}
+
+		// Ajout du stagiaire
+		this.interns.push(intern);
+		this.internModel = "";
+	}
+
+
+	public trainingModel: string = "";
+	public trainings: Array<string> = ["Web", "HelpDesk", "Cyber Sécurité"];
+
+	public addTraining(): void {
+		if (this.trainingModel.trim().length === 0) {
+			return;
+		}
+		this.trainings.push(this.trainingModel);
+		this.trainingModel = "";
+	}
+
+	public evaluationNom: string = "";
+	public evaluationNote: number = 0;
+	public evaluations: Array<{ nom: string; note: number; }> = [
+		{ nom: "Mohamed Ali", note: 17 },
+		{ nom: "Tim", note: 12 },
+		{ nom: "Mike", note: 20 },
+	];
+
+	public addEvaluation(): void {
+		if (this.evaluationNom.trim().length === 0) {
+			alert("Entrez un nom");
+			return;
+		}
+
+		let note = Number(this.evaluationNote);
+
+		if (note < 0 || note > 20) {
+			alert("Entrez une note entre 0 et 20");
+			return;
+		}
+
+		this.evaluations.push({
+			nom: this.evaluationNom.trim(),
+			note,
+		});
+
+		this.evaluationNom = "";
+		this.evaluationNote = 0;
+	}
+
+	public get evaluationMoyenne(): number {
+		let totalEval = this.evaluations.length;
+		return (
+			this.evaluations.reduce(
+				(totalAcc, evaluation) => totalAcc + evaluation.note, 0,
+			) / totalEval
+		);
+	}
+
+	public delEvaluation(evaluation: { nom: string; note: number; }): void {
+		this.evaluations = this.evaluations.filter((e) => e.nom !== evaluation.nom);
 	}
 }
