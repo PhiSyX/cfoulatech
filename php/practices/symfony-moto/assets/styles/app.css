@@ -1,0 +1,145 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: system-ui, -apple-system, blinkmacsystemfont, "Segoe UI",
+    roboto, oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: black;
+    color: white;
+}
+
+img, .btn, .header-brand {
+    user-select: none;
+}
+
+html,
+body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    color: white;
+
+    &.with-hero {
+        min-height: 80vh;
+    }
+
+    a {
+        color: #c0bfbf;
+    }
+}
+
+header[role="banner"] {
+    position: sticky;
+    top: 0;
+    height: 130px;
+    padding-inline: 10vw;
+    backdrop-filter: blur(5px);
+}
+
+header[role="banner"] nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+header[role="banner"] nav ul {
+    list-style: none;
+
+    display: flex;
+    gap: .5rem;
+    justify-content: end;
+    align-items: center;
+
+    &[role="list"] {
+        flex-grow: 1;
+    }
+}
+
+header[role="banner"] nav a {
+    display: inline-block;
+    padding: .75rem .85rem;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out;
+
+    &:hover,
+    &:focus-within,
+    &[aria-current="page"] {
+        color: #e9002b;
+        outline: none;
+    }
+}
+
+.header-brand {
+    text-transform: uppercase;
+    font-size: 32px;
+
+    a {
+        color: white !important;
+        border-bottom: 0 !important;
+    }
+}
+
+.hl {
+    display: inline-block;
+    color: #c60404;
+    text-transform: capitalize;
+}
+
+.container {
+    max-width: 80ch;
+    margin-inline: auto;
+}
+
+.alert {
+    padding: 2rem;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #86d107;;
+    background: #2B3E06;
+}
+
+.alert-error {
+    color: #e11e1e;
+    background: #f59c9c;
+}
+
+label {
+    display: inline-block;
+    width: 15%;
+    cursor: pointer;
+}
+
+button, input, textarea {
+    width: calc(100% - 15%);
+    padding: .5rem;
+    border-radius: 4px;
+    border: 1px solid gainsboro;
+}
+
+button {
+    width: 100%;
+    cursor: pointer;
+}
+
+.card {
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 4px;
+
+    h1 {
+        margin: 0;
+    }
+}

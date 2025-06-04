@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+<section class="header">
+    <header role="banner">
+        <nav>
+            <ul>
+                <li class=header-brand>
+                    <a href="./">Moto<span class="hl">Vie</span></a>
+                </li>
+            </ul>
+
+            <ul role="list">
+            </ul>
+        </nav>
+    </header>
+
+</section>
+
+{% block body %}{% endblock %}
+</body>
+</html>
