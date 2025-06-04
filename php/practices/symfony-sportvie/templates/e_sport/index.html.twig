@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ESport index{% endblock %}
+
+{% block body %}
+	<section class="page-sport">
+		<div class="container">
+			<h1>ESport index</h1>
+
+			<table class="table">
+				<thead>
+				<tr>
+					<th>Id</th>
+					<th>NomDuJeu</th>
+					<th>TypeDeJeu</th>
+					<th>RegleDuJeu</th>
+					<th>NbJoueurEquipe</th>
+					<th>DateDeSortie</th>
+					<th>PourAdulte</th>
+					<th>actions</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for e_sport in e_sports %}
+					<tr>
+						<td>{{ e_sport.id }}</td>
+						<td>{{ e_sport.nomDuJeu }}</td>
+						<td>{{ e_sport.typeDeJeu }}</td>
+						<td>{{ e_sport.regleDuJeu }}</td>
+						<td>{{ e_sport.nbJoueurEquipe }}</td>
+						<td>{{ e_sport.dateDeSortie ? e_sport.dateDeSortie|date('Y-m-d') : '' }}</td>
+						<td>{{ e_sport.pourAdulte ? 'Yes' : 'No' }}</td>
+						<td>
+							<a href="{{ path('app_e_sport_show', {'id': e_sport.id}) }}">show</a>
+							<a href="{{ path('app_e_sport_edit', {'id': e_sport.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">no records found</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_e_sport_new') }}">Create new</a>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ESport{% endblock %}
+
+{% block body %}
+	<section class="page-sport">
+		<div class="container">
+			<h1>Create new ESport</h1>
+			{{ include('e_sport/_form.html.twig') }}
+			<a href="{{ path('app_e_sport_index') }}">back to list</a>
+		</div>
+	</section>
+{% endblock %}

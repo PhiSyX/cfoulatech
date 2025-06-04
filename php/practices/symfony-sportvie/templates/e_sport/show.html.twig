@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ESport{% endblock %}
+
+{% block body %}
+	<section class="page-sport">
+		<div class="container">
+			<h1>ESport</h1>
+
+			<table class="table">
+				<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ e_sport.id }}</td>
+				</tr>
+				<tr>
+					<th>NomDuJeu</th>
+					<td>{{ e_sport.nomDuJeu }}</td>
+				</tr>
+				<tr>
+					<th>TypeDeJeu</th>
+					<td>{{ e_sport.typeDeJeu }}</td>
+				</tr>
+				<tr>
+					<th>RegleDuJeu</th>
+					<td>{{ e_sport.regleDuJeu }}</td>
+				</tr>
+				<tr>
+					<th>NbJoueurEquipe</th>
+					<td>{{ e_sport.nbJoueurEquipe }}</td>
+				</tr>
+				<tr>
+					<th>DateDeSortie</th>
+					<td>{{ e_sport.dateDeSortie ? e_sport.dateDeSortie|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>PourAdulte</th>
+					<td>{{ e_sport.pourAdulte ? 'Yes' : 'No' }}</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_e_sport_index') }}">back to list</a>
+
+			<a href="{{ path('app_e_sport_edit', {'id': e_sport.id}) }}">edit</a>
+
+			{{ include('e_sport/_delete_form.html.twig') }}
+		</div>
+	</section>
+{% endblock %}
