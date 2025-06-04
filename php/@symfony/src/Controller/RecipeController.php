@@ -230,7 +230,7 @@ final class RecipeController extends AbstractController
 		$title = $recipe->getTitle();
 		$em->remove($recipe);
 		$em->flush();
-		$this->addFlash("success", "Le recette " . $title . " a bien été supprimé");
+		$this->addFlash("info", "Le recette " . $title . " a bien été supprimé");
 		return $this->redirectToRoute("app_recipe_index");
 	}
 

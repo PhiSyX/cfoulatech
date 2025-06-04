@@ -4,8 +4,10 @@
 	Liste des recettes
 {% endblock %}
 
+{% set totalRecipes = recipes | length %}
+
 {% block body %}
-	<h1>Bienvenue dans la liste des Recettes</h1>
+	<h1>Bienvenue dans la liste des Recettes ({{ totalRecipes }})</h1>
 
 	<section class="row">
 		{% for recipe in recipes %}
@@ -13,12 +15,14 @@
 				class="card max-w-sm col-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 my-8 mr-4"
 				data-type="post"
 			>
-				<h1>
-					<a href={{ path('app_recipe_show', {id : recipe.id, slug : recipe.slug}) }}>{{ recipe.title }} </a>
+				<h1 class="h2">
+					<a href="{{ path('app_recipe_show', { id : recipe.id, slug : recipe.slug }) }}">
+						{{ recipe.title | u.truncate(20, "...", false) }}
+					</a>
 				</h1>
 				<img src="https://pbs.twimg.com/media/EdDUBw0WkAAQLJ1?format=jpg&name=large" width="150"
 					 height="200">
-				<p>Submitted {{ recipe.createdAt |date }}</p>
+				<p>Envoyé {{ recipe.createdAt | ago(locale = "fr") }}</p>
 			</article>
 		{% else %}
 			<p>Pas encore de recette</p>

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {# {% block title "#" ~ recipe.id ~ " " ~ recipe.slug %} #}
-{% block title %} #{{ recipe.id }} {{ recipe.slug }} {% endblock %}
+{% block title %}#{{ recipe.id }} {{ recipe.slug }}{% endblock %}
 
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
@@ -14,7 +14,8 @@
 
 		<p>{{ recipe.content | nl2br }}</p>
 
-		<time>{{ recipe.createdAt | date }}</time>
+		<p>Envoyé le <time>{{ recipe.createdAt | date('d/m/Y') }}</time></p>
+		<p>Mis à jour le <time>{{ recipe.updatedAt | date('d/m/Y h:i') }}</time></p>
 
 		<footer>
 			<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">Editer</a>
@@ -29,7 +30,7 @@
 			</a>
 			#}
 
-			<form action="{{ path('app_recipe_delete', {id: recipe.id}) }}" method="POST" class="d-none"></form>
+			<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="POST" class="d-none"></form>
 			<a
 				href="#"
 				class="btn btn-danger"

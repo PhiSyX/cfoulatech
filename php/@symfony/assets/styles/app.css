@@ -1,3 +1,22 @@
 body {
 	background-color: whitesmoke;
 }
+
+.alert {
+	padding: 1rem;
+	color: white;
+	text-align: center;
+}
+
+.alert-danger,
+.alert-error {
+	background-color: red;
+}
+
+.alert-success {
+	background-color: green;
+}
+
+.alert-info {
+	background-color: blue;
+}
