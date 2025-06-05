@@ -4,6 +4,7 @@ public class CharacterType
 {
 	public static void main(String[] args)
 	{
+		// 2 octets (16-bit non signé)
 		char anyLetter = 'S';
 		System.out.println(anyLetter);
 
