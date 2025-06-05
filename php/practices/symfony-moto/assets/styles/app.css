@@ -122,11 +122,37 @@ label {
     cursor: pointer;
 }
 
-button, input, textarea {
+.container a {
+    color: gainsboro;
+    text-decoration: underline;
+}
+
+a.btn {
+    background: buttonface;
+    color: buttontext;
+    text-decoration: none;
+}
+
+button.btn {
+    margin-bottom: 1rem;
+}
+
+.btn, button, input, textarea {
     width: calc(100% - 15%);
     padding: .5rem;
     border-radius: 4px;
     border: 1px solid gainsboro;
+}
+
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-danger {
+    color: #e11e1e;
+    background: #f59c9c;
+    border-color: currentColor;
 }
 
 button {
@@ -136,10 +162,77 @@ button {
 
 .card {
     padding: 1rem;
+    margin-bottom: 1rem;
     border: 1px solid;
     border-radius: 4px;
 
     h1 {
         margin: 0;
     }
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 > a {
+        color: SelectedItem;
+        text-decoration: none;
+        transition: color 250ms ease-in-out;
+    }
+
+    h1 > a:hover {
+        color: Highlight;
+    }
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+
+    button {
+        margin: 0 !important;
+        padding-inline: .75rem;
+    }
+}
+
+.container form,
+.container form > div {
+    display: grid;
+    gap: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead,
+table > tbody > tr > th {
+    background: #c50605;
+    color: Canvas;
+    font-weight: 700;
+}
+
+table > tbody > tr > th {
+    width: 10%;
+}
+
+tbody > tr {
+    background: #ee4242;
+    color: CanvasText;
+}
+
+tbody > tr:nth-child(odd) {
+    background: #ff6969;
+}
+
+tbody > tr:hover {
+    background: Canvas;
+}
+
+th,
+td {
+    padding: .5rem;
 }

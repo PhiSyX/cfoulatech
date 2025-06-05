@@ -15,10 +15,8 @@ class MotoForm extends AbstractType
             ->add('nom')
             ->add('marque')
             ->add('couleur')
-            ->add('annee')
-            ->add('prix')
-            ->add('image')
-        ;
+            ->add('annee', options: ["label" => "Année"])
+            ->add('prix');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

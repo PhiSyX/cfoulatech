@@ -3,11 +3,10 @@
 {% block title %}Edit Moto{% endblock %}
 
 {% block body %}
-    <h1>Edit Moto</h1>
+    <a href="{{ path('app_moto_index') }}">Retour à la liste des motos</a>
+    <h1>Modifier la moto {{ moto.nom }}</h1>
 
-    {{ include('moto/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_moto_index') }}">back to list</a>
+    {{ include('moto/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     {{ include('moto/_delete_form.html.twig') }}
 {% endblock %}
