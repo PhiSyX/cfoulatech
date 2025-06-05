@@ -1,4 +1,4 @@
-package exo.basics;
+package basics;
 
 public class MySecondClass
 {
