@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@types/bootstrap": "^5.2.10",
 		"sass-embedded": "catalog:",
 		"vite": "^6.3.5"
 	},
