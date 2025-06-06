@@ -111,7 +111,7 @@
 		</div>
 	</div>
 
-	<div class="exo8">
+	<div class="exo8" hidden>
 		<ul>
 			<li style="list-style: none;counter-reset:chapter-count 1;">
 				<input placeholder="Nom" type="text" [(ngModel)]="evaluationNom">
@@ -128,5 +128,33 @@
 		</p>
 
 
+	</div>
+
+	<div class="ng-class">
+		<div [ngClass]="myClass">
+			hello
+		</div>
+
+		<div [ngClass]="{ hello: isHello, world: isWorld }">
+			hello world
+		</div>
+
+		<button (click)="isHello = true" class="btn btn-primary">Hello</button>
+		<button (click)="isWorld = true" class="btn btn-secondary">World</button>
+
+		<div [ngClass]="color">
+			hello color
+		</div>
+		<button (click)="color = 'red'" class="btn btn-danger">Changer couleur</button>
+	</div>
+
+	<div class="ng-style">
+		<div [ngStyle]="myStyle">
+			hello style
+		</div>
+
+		<button (click)="changeStyle('blue', '22px')">
+			changer
+		</button>
 	</div>
 </article>

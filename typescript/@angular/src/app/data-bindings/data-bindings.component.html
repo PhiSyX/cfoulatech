@@ -12,27 +12,31 @@
 
 		<hr>
 
-		<input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked"> {{ isChecked ? 'Coché' : 'Décoché' }}
+		<div>
+			<input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked" class="form-check-inline">
+			<label for="x">{{ isChecked ? 'Coché' : 'Décoché' }}</label>
+		</div>
 
 		<hr>
 
-		<button [disabled]="isDisabled">Envoyer</button>
+		<button [disabled]="isDisabled" class="btn btn-primary">Envoyer</button>
 		<br>
-		<button (click)="toggleDisable()">{{ toggleBtn }} le bouton envoyer</button>
+		<button (click)="toggleDisable()" class="btn btn-secondary">{{ toggleBtn }} le bouton envoyer</button>
 
 		<hr>
 
-		<input [(ngModel)]="inputModel" type="text">
-		<button (click)="showMessage()">Afficher le message dans un alert</button>
+		<input [(ngModel)]="inputModel" type="text" class="form-control">
+		<button (click)="showMessage()" class="btn btn-info">Afficher le message dans un alert</button>
 		<p>{{ inputModel }}</p>
 
 		<hr>
 
 		<label for="firstname">Prénom:</label>
-		<input [(ngModel)]="firstname" type="text" id="firstname">
+		<input [(ngModel)]="firstname" type="text" id="firstname" class="form-control">
 		<button
 			[disabled]="firstname.trim().length === 0"
 			(click)="showFirstname()"
+			class="btn btn-primary"
 		>
 			Valider
 		</button>
@@ -42,15 +46,15 @@
 	<article class="data-bindings">
 		<ul>
 			<li>
-				<input type="checkbox" name="be" id="be" [(ngModel)]="belgique">
+				<input type="checkbox" name="be" id="be" [(ngModel)]="belgique" class="form-check-inline">
 				<label for="be">Belgique</label>
 			</li>
 			<li>
-				<input type="checkbox" name="fr" id="fr" [(ngModel)]="france">
+				<input type="checkbox" name="fr" id="fr" [(ngModel)]="france" class="form-check-inline">
 				<label for="fr">France</label>
 			</li>
 			<li>
-				<input type="checkbox" name="it" id="it" [(ngModel)]="italie">
+				<input type="checkbox" name="it" id="it" [(ngModel)]="italie" class="form-check-inline">
 				<label for="it">Italie</label>
 			</li>
 		</ul>
@@ -59,11 +63,11 @@
 
 		<label for="countries">Choisir pays</label>
 
-		<input type="text" name="countries" id="countries" list="countries-list" [(ngModel)]="pays">
+		<input type="text" name="countries" id="countries" list="countries-list" [(ngModel)]="pays" class="form-control">
 
 		ou
 
-		<select name="countries-select" [(ngModel)]="pays">
+		<select name="countries-select" [(ngModel)]="pays" class="form-select">
 			<option value="belgique">Belgique</option>
 			<option value="france">France</option>
 			<option value="italie">Italie</option>

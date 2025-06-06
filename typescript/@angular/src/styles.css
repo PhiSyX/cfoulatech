@@ -1,21 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-*, *::before, *::after {
-	box-sizing: border-box;
-}
-
 ul {
 	list-style-type: lower-greek;
-}
-
-button,
-select,
-input {
-	margin-block: 4px;
-	margin-right: 4px;
-	padding: 4px;
-	border: 4px double currentColor;
-	border-radius: 4px;
-	background: canvas;
 }
 
 .flex {

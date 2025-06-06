@@ -72,3 +72,25 @@
 	background-color: #3a223a;
 	color: #fff;
 }
+
+.ng-class-directive {
+	background: #f95a5a;
+}
+
+.ng-class-directive-2 {
+	padding: 8px;
+}
+
+.hello {
+	margin: 8px;
+}
+.world {
+	padding: 8px;
+}
+
+.red {
+	background: red;
+}
+.blue {
+	background: blue;
+}

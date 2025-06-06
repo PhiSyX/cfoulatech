@@ -1,5 +1,12 @@
 import { Component } from "@angular/core";
-import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+import {
+	NgClass,
+	NgForOf,
+	NgIf,
+	NgStyle,
+	NgSwitch,
+	NgSwitchCase,
+} from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 const Role = {
@@ -18,6 +25,8 @@ type RoleVariant = typeof Role[keyof typeof Role];
 		NgForOf,
 		NgSwitch,
 		NgSwitchCase,
+		NgClass,
+		NgStyle,
 	],
 	templateUrl: "./directives.component.html",
 	styleUrl: "./directives.component.css",
@@ -124,5 +133,18 @@ export class DirectivesComponent {
 
 	public delEvaluation(evaluation: { nom: string; note: number; }): void {
 		this.evaluations = this.evaluations.filter((e) => e.nom !== evaluation.nom);
+	}
+
+	public myClass: Array<string> = ["ng-class-directive", "ng-class-directive-2"];
+
+	public isHello: boolean = false;
+	public isWorld: boolean = false;
+	public color: string = "blue";
+
+	public myStyle = { color: 'red', fontSize: '16px' };
+
+	public changeStyle(color: string, fontSize: string): void {
+		this.myStyle.color = color;
+		this.myStyle.fontSize = fontSize;
 	}
 }
