@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -22,7 +21,9 @@ class RecipeType extends AbstractType
 	{
 		$saveLabel = $options["label"]["save"] ?? "Envoyer";
 		$builder
-			->add("title", TextType::class, ["label" => "Titre"])
+			->add("title", TextType::class, [
+				"label" => "Titre",
+			])
 			->add("slug", HiddenType::class)
 			->add("content", TextareaType::class, ["label" => "Description de la recette"])
 			->add("duration", NumberType::class, ["label" => "Durée de la préparation"])
