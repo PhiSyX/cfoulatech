@@ -1,0 +1,22 @@
+<div class="stagiaire">
+	<div class="exo1">
+		<p>Le nom de l'étudiant est <strong>{{ studentName }}</strong></p>
+	</div>
+
+	<div class="exo2">
+		<ul>
+			<li *ngFor="let language of languages">{{ language }}</li>
+		</ul>
+	</div>
+
+	<div class="exo3">
+		<button (click)="emettreValidationInscription()" class="btn btn-primary">
+			Valider inscription
+		</button>
+	</div>
+
+	<div class="exo4">
+		<input type="number" [(ngModel)]="note" max="20" min="0">
+		<button (click)="emettreNote()" class="btn btn-primary">Prendre note</button>
+	</div>
+</div>

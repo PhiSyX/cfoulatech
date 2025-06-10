@@ -4,14 +4,30 @@ import { ServiceComponent } from "./service/service.component";
 import { HomeComponent } from "./home/home.component";
 import { DataBindingsComponent } from "./data-bindings/data-bindings.component";
 import { DirectivesComponent } from './directives/directives.component';
+import { FormateurComponent } from './io/formateur/formateur.component';
+import { InputComponent } from './io/input/input.component';
+import { OutputComponent } from './io/output/output.component';
 
 @Component({
 	selector: "app-root",
-	imports: [RouterOutlet, HomeComponent, ServiceComponent, DataBindingsComponent, DirectivesComponent],
+	imports: [
+		RouterOutlet,
+		HomeComponent,
+		ServiceComponent,
+		DataBindingsComponent,
+		DirectivesComponent,
+		InputComponent,
+		FormateurComponent,
+		OutputComponent,
+	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
 	standalone: true,
 })
 export class AppComponent {
 	title = "Angular";
+
+	alert(name: string) {
+		console.log(name);
+	}
 }
