@@ -3,13 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\RecipeRepository;
+use App\Validator\Badwords;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ORM\Table(name: "recipes")]
+#[UniqueEntity("title", message: "The recipe title is already in use")]
 class Recipe
 {
 	#[ORM\Id]
@@ -17,7 +20,7 @@ class Recipe
 	#[ORM\Column]
 	private ?int $id = null;
 
-	#[ORM\Column(length: 255)]
+	#[ORM\Column(length: 255, unique: true)]
 	#[Assert\NotBlank(message: "Le titre est obligatoire.")]
 	#[Assert\Length(
 		min: 10,
@@ -25,13 +28,7 @@ class Recipe
 		minMessage: "Le titre doit avoir plus de {{ limit }} caractères.",
 		maxMessage: "Le titre doit avoir moins de {{ limit }} caractères."
 	)]
-	#[Assert\AtLeastOneOf(
-		[
-			new Assert\NotEqualTo("Merde", message: "Ce titre est trop vulgaire.")
-		],
-		message: ""
-	)]
-	//	#[Assert\NotEqualTo("Merde", message: "Ce titre est trop vulgaire.")]
+	#[Badwords(["Merde", "Prout"])]
 	private ?string $title = null;
 
 	#[ORM\Column(length: 255)]
@@ -60,6 +57,9 @@ class Recipe
 		message: "La durée ne doit pas dépasser 24h en minutes, autrement dit {{ compared_value }} minutes."
 	)]
 	private ?int $duration = null;
+
+	#[ORM\Column(length: 500, nullable: true)]
+	private ?string $imageName = null;
 
 	public function getId(): ?int
 	{
@@ -134,6 +134,18 @@ class Recipe
 	public function setDuration(?int $duration): static
 	{
 		$this->duration = $duration;
+
+		return $this;
+	}
+
+	public function getImageName(): ?string
+	{
+		return $this->imageName;
+	}
+
+	public function setImageName(?string $imageName): static
+	{
+		$this->imageName = $imageName;
 
 		return $this;
 	}

@@ -20,8 +20,9 @@
 						{{ recipe.title | u.truncate(20, "...", false) }}
 					</a>
 				</h1>
-				<img src="https://pbs.twimg.com/media/EdDUBw0WkAAQLJ1?format=jpg&name=large" width="150"
-					 height="200">
+				{% if recipe.imageName %}
+					<img src="{{ recipe.imageName }}" width="100%" height="100%" style="object-fit: cover">
+				{% endif %}
 				<p>Envoyé {{ recipe.createdAt | ago(locale = "fr") }}</p>
 			</article>
 		{% else %}

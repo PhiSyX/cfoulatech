@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,11 +22,10 @@ class RecipeType extends AbstractType
 	{
 		$saveLabel = $options["label"]["save"] ?? "Envoyer";
 		$builder
-			->add("title", TextType::class, [
-				"label" => "Titre",
-			])
+			->add("title", TextType::class, ["label" => "Titre"])
 			->add("slug", HiddenType::class)
 			->add("content", TextareaType::class, ["label" => "Description de la recette"])
+			->add("imageName", URLType::class, ["label" => "URL de l'image"])
 			->add("duration", NumberType::class, ["label" => "Durée de la préparation"])
 			->add("save", SubmitType::class, ["label" => $saveLabel . " la recette"])
 			->addEventListener(FormEvents::PRE_SUBMIT, $this->preSubmit(...));
@@ -35,7 +35,7 @@ class RecipeType extends AbstractType
 	{
 		$data = $event->getData();
 		$slugger = new AsciiSlugger();
-		$slug = strtolower($slugger->slug($data["title"]));
+		$slug = $slugger->slug($data["title"])->lower()->toString();
 		if (empty($data["slug"]) || $data["slug"] !== $slug) {
 			$data["slug"] = $slug;
 			$event->setData($data);

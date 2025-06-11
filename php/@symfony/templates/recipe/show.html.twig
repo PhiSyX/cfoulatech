@@ -7,15 +7,23 @@
 	<article style="max-width: 80ch;" class="mx-auto">
 		<h1>{{ recipe.title }}!</h1>
 
-		<img src="https://pbs.twimg.com/media/EdDUBw0WkAAQLJ1?format=jpg&name=large"
-			 height="750px"
-			 class="img-fluid"
-		>
+		{% if recipe.imageName %}
+			<img src="{{ recipe.imageName }}"
+				 height="750%"
+				 class="img-fluid"
+			>
+		{% endif %}
 
 		<p>{{ recipe.content | nl2br }}</p>
 
-		<p>Envoyé le <time>{{ recipe.createdAt | date('d/m/Y') }}</time></p>
-		<p>Mis à jour le <time>{{ recipe.updatedAt | date('d/m/Y h:i') }}</time></p>
+		<p>
+			Envoyé le
+			<time>{{ recipe.createdAt | date('d/m/Y') }}</time>
+		</p>
+		<p>
+			Mis à jour le
+			<time>{{ recipe.updatedAt | date('d/m/Y h:i') }}</time>
+		</p>
 
 		<footer>
 			<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">Editer</a>
