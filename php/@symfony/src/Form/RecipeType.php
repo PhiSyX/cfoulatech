@@ -25,7 +25,10 @@ class RecipeType extends AbstractType
 			->add("title", TextType::class, ["label" => "Titre"])
 			->add("slug", HiddenType::class)
 			->add("content", TextareaType::class, ["label" => "Description de la recette"])
-			->add("imageName", URLType::class, ["label" => "URL de l'image"])
+			->add("imageName", URLType::class, [
+				"label" => "URL de l'image",
+				"default_protocol" => "https"
+			])
 			->add("duration", NumberType::class, ["label" => "Durée de la préparation"])
 			->add("save", SubmitType::class, ["label" => $saveLabel . " la recette"])
 			->addEventListener(FormEvents::PRE_SUBMIT, $this->preSubmit(...));

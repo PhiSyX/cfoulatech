@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ORM\Table(name: "recipes")]
-#[UniqueEntity("title", message: "The recipe title is already in use")]
+#[UniqueEntity("title")]
 class Recipe
 {
 	#[ORM\Id]
@@ -21,13 +21,8 @@ class Recipe
 	private ?int $id = null;
 
 	#[ORM\Column(length: 255, unique: true)]
-	#[Assert\NotBlank(message: "Le titre est obligatoire.")]
-	#[Assert\Length(
-		min: 10,
-		max: 50,
-		minMessage: "Le titre doit avoir plus de {{ limit }} caractères.",
-		maxMessage: "Le titre doit avoir moins de {{ limit }} caractères."
-	)]
+	#[Assert\NotBlank]
+	#[Assert\Length(min: 10, max: 50)]
 	#[Badwords(["Merde", "Prout"])]
 	private ?string $title = null;
 
@@ -35,11 +30,8 @@ class Recipe
 	private ?string $slug = null;
 
 	#[ORM\Column(type: Types::TEXT)]
-	#[Assert\NotBlank(message: "Le contenu est obligatoire.")]
-	#[Assert\Length(
-		min: 20,
-		minMessage: "Le titre doit avoir plus de {{ limit }} caractères.",
-	)]
+	#[Assert\NotBlank]
+	#[Assert\Length(min: 20)]
 	private ?string $content = null;
 
 	#[ORM\Column]
@@ -49,13 +41,8 @@ class Recipe
 	private ?DateTimeImmutable $updatedAt = null;
 
 	#[ORM\Column(nullable: true)]
-	#[Assert\Positive(
-		message: "La durée doit être un nombre positif correspondant à des minutes de 1 et 1440."
-	)]
-	#[Assert\LessThan(
-		1440,
-		message: "La durée ne doit pas dépasser 24h en minutes, autrement dit {{ compared_value }} minutes."
-	)]
+	#[Assert\Positive]
+	#[Assert\LessThan(1440)]
 	private ?int $duration = null;
 
 	#[ORM\Column(length: 500, nullable: true)]
