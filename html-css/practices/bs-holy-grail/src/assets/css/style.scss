@@ -1,0 +1,26 @@
+@import "bootstrap/scss/bootstrap";
+
+.content {
+	height: calc(100% - 120px) !important;
+}
+
+.text-shadow-sm {
+	text-shadow: 1px 1px 2px #000;
+}
+
+.badge-sm {
+	font-size: 12px !important;
+	vertical-align: sub;
+}
+
+.sidebar {
+	background: hsl(216deg 13.51% 92.75%);
+}
+
+.navbar {
+	background-color: hsl(210deg 16.67% 97.65%);
+}
+
+footer {
+	background-color: hsl(210deg 16.67% 97.65%);
+}

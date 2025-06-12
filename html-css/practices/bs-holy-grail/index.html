@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-100">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Bootstrap Holy Grail</title>
+	<link rel="shortcut icon" href="src/assets/favicon/favicon.ico" type="image/x-icon" sizes="32x32"/>
+	<link rel="apple-touch-icon" href="src/assets/favicon/apple-touch-icon.png">
+	<link rel="manifest" href="src/assets/favicon/site.webmanifest"/>
+</head>
+
+<body class="h-100 overflow-hidden">
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">John Doe</a>
+	</div>
+</nav>
+
+<div class="content">
+	<div class="h-100 d-flex">
+		<div class="col-2 d-flex flex-column  flex-shrink-0 sidebar">
+			<ul class="nav flex-column m-2 p-2 flex-grow-1">
+				<li class="nav-item">
+					<a class="nav-link active bg-primary text-light rounded" aria-current="page" href="#">
+						Dashboard
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						Artists
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						Projects
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						Sales
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav flex-column m-2 p-2">
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						Settings
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-danger" href="#">
+						Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col bg-white p-4 overflow-auto">
+			<h1 class="h2 my-4 d-flex align-items-center justify-content-between">
+				<span>In the last 30 days.</span>
+				<small class="m-0 badge badge-sm text-bg-primary">
+					12/06/2025
+				</small>
+			</h1>
+
+			<div class="d-flex gap-2">
+				<div class="p-3 bg-dark text-light rounded w-100">
+					<strong>250</strong>
+					<p>New artists</p>
+				</div>
+				<div class="p-3 bg-dark text-light rounded w-100">
+					<strong>250</strong>
+					<p>New artists</p>
+				</div>
+				<div class="p-3 bg-dark text-light rounded w-100">
+					<strong>250</strong>
+					<p>New artists</p>
+				</div>
+			</div>
+
+			<h2 class="h3 my-4">All Artists</h2>
+
+			<table class="table table-striped">
+				<thead class="table-light">
+				<tr>
+					<th>Artist</th>
+					<th>Status</th>
+					<th>Ratings</th>
+					<th>Projects sold</th>
+					<th>Highest sale</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						Bob Marley
+					</td>
+					<td>
+						<div class="badge text-bg-success">Success</div>
+					</td>
+					<td>
+						<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+							 aria-valuemin="0" aria-valuemax="100">
+							<div class="progress-bar" style="width: 10%"></div>
+						</div>
+					</td>
+					<td>13554€</td>
+					<td>55464784€</td>
+				</tr>
+
+				<tr>
+					<td>
+						Lindy Cloppers
+					</td>
+					<td>
+						<div class="badge text-bg-info">Pending</div>
+					</td>
+					<td>
+						<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+							 aria-valuemin="0" aria-valuemax="100">
+							<div class="progress-bar" style="width: 25%"></div>
+						</div>
+					</td>
+					<td>13554€</td>
+					<td>55464784€</td>
+				</tr>
+
+				<tr>
+					<td>
+						David Ghetto
+					</td>
+					<td>
+						<div class="badge text-bg-secondary">Unverified</div>
+					</td>
+					<td>
+						<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+							 aria-valuemin="0" aria-valuemax="100">
+							<div class="progress-bar" style="width: 50%"></div>
+						</div>
+					</td>
+					<td>13554€</td>
+					<td>55464784€</td>
+				</tr>
+
+				<tr>
+					<td>
+						Angelique Kidjo
+					</td>
+					<td>
+						<div class="badge text-bg-success">Success</div>
+					</td>
+					<td>
+						<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+							 aria-valuemin="0" aria-valuemax="100">
+							<div class="progress-bar" style="width: 100%"></div>
+						</div>
+					</td>
+					<td>13554€</td>
+					<td>55464784€</td>
+				</tr>
+
+				<tr>
+					<td>
+						Sharhabil Ahmed
+					</td>
+					<td>
+						<div class="badge text-bg-success">Success</div>
+					</td>
+					<td>
+						<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+							 aria-valuemin="0" aria-valuemax="100">
+							<div class="progress-bar" style="width: 75%"></div>
+						</div>
+					</td>
+					<td>13554€</td>
+					<td>55464784€</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-3 flex-shrink-0 sidebar p-3">
+			<h2 class="h5">Informations</h2>
+
+			<div class="border border-1 border-secondary-subtle bg-light-subtle p-3 rounded">
+				<strong>Statistiques</strong>
+				<p>Information complémentaire</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="h-50 p-3">
+	Footer
+</footer>
+
+<script type="module" src="/src/assets/js/main.js"></script>
+</body>
+</html>
