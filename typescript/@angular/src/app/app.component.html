@@ -7,13 +7,6 @@
 	<hr>
 
 	<details>
-		<summary>Service</summary>
-		<app-service/>
-	</details>
-
-	<hr>
-
-	<details>
 		<summary>Data Bindings</summary>
 		<app-data-bindings/>
 	</details>
@@ -27,13 +20,27 @@
 
 	<hr>
 
-	<details open>
+	<details>
 		<summary>IO</summary>
 		<app-input firstname="Mike" group="Web"/>
 		<hr>
 		<app-output firstname="Erica" group="group" (prendrePresence)="alert($event)"/>
 		<hr>
-		<app-formateur />
+		<app-formateur/>
+	</details>
+
+	<hr>
+
+	<details open>
+		<summary>Service</summary>
+		<app-service/>
+	</details>
+
+	<br>
+
+	<details>
+		<summary>State</summary>
+		<app-state/>
 	</details>
 
 	<router-outlet/>

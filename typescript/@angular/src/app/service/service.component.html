@@ -1,1 +1,12 @@
-<p>service works!</p>
+<div>
+	<ul>
+		<app-add-intern/>
+		<li *ngFor="let stagiaire of internList">
+			{{ stagiaire }}
+		</li>
+	</ul>
+
+	<hr>
+
+	<app-list-room/>
+</div>
