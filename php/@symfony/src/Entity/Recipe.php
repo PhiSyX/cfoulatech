@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\Timestampable;
 use App\Repository\RecipeRepository;
 use App\Validator\Badwords;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity("title")]
 class Recipe
 {
+	use Timestampable;
+
 	#[ORM\Id]
 	#[ORM\GeneratedValue]
 	#[ORM\Column]
@@ -33,13 +35,6 @@ class Recipe
 	#[Assert\NotBlank]
 	#[Assert\Length(min: 20)]
 	private ?string $content = null;
-
-	#[ORM\Column]
-	private ?DateTimeImmutable $createdAt = null;
-
-	#[ORM\Column]
-	private ?DateTimeImmutable $updatedAt = null;
-
 	#[ORM\Column(nullable: true)]
 	#[Assert\Positive]
 	#[Assert\LessThan(1440)]
@@ -47,6 +42,10 @@ class Recipe
 
 	#[ORM\Column(length: 500, nullable: true)]
 	private ?string $imageName = null;
+
+	#[ORM\ManyToOne(inversedBy: 'recipes')]
+	#[ORM\JoinColumn(nullable: false)]
+	private ?User $user = null;
 
 	public function getId(): ?int
 	{
@@ -89,30 +88,6 @@ class Recipe
 		return $this;
 	}
 
-	public function getCreatedAt(): ?DateTimeImmutable
-	{
-		return $this->createdAt;
-	}
-
-	public function setCreatedAt(DateTimeImmutable $createdAt): static
-	{
-		$this->createdAt = $createdAt;
-
-		return $this;
-	}
-
-	public function getUpdatedAt(): ?DateTimeImmutable
-	{
-		return $this->updatedAt;
-	}
-
-	public function setUpdatedAt(DateTimeImmutable $updatedAt): static
-	{
-		$this->updatedAt = $updatedAt;
-
-		return $this;
-	}
-
 	public function getDuration(): ?int
 	{
 		return $this->duration;
@@ -133,6 +108,18 @@ class Recipe
 	public function setImageName(?string $imageName): static
 	{
 		$this->imageName = $imageName;
+
+		return $this;
+	}
+
+	public function getUser(): ?User
+	{
+		return $this->user;
+	}
+
+	public function setUser(?User $user): static
+	{
+		$this->user = $user;
 
 		return $this;
 	}
