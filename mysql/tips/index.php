@@ -12,10 +12,7 @@
 </head>
 
 <body class="container">
-	<div class="logo">
-		<div class="logo-fav">Vie</div>
-		<div class="logo-text">SQL Vie</div>
-	</div>
+	<?php include "assets/svg/logo.svg" ?>
 
 	<h1>
 		<small>Aide-mémoire</small>

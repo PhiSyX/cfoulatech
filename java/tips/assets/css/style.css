@@ -20,29 +20,9 @@ body {
 	padding-inline: 5vw;
 }
 
-.logo {
-	display: flex;
-	align-items: center;
-	gap: 2.5rem;
-	padding: 5rem;
-	background: #51cddb;
-	font-family: fantasy, system-ui, sans-serif !important;
-}
-
-.logo-fav {
-	padding: 8px;
-	border-radius: 8px;
-	background: #292826;
-	font-size: 100px;
-}
-
-.logo-text {
-	color: #292826;
-	font-size: 70px;
-}
-
 .flex {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .f-size\=12px {
