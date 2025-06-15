@@ -12,7 +12,10 @@
 </head>
 
 <body class="container">
-	<?php include "assets/svg/vie.svg"; ?>
+	<div class="logo">
+		<div class="logo-fav">Vie</div>
+		<div class="logo-text">Java Vie</div>
+	</div>
 
 	<h1>
 		<small>Aide-mémoire</small>

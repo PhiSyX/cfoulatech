@@ -1,0 +1,209 @@
+html,
+body {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: #212121;
+	color: #f7f7f7;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+		sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.container {
+	max-width: 80ch;
+	margin-block: 10vh;
+	margin-inline: auto;
+	padding-inline: 5vw;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+	padding: 5rem;
+	background: #51cddb;
+	font-family: fantasy, system-ui, sans-serif !important;
+}
+
+.logo-fav {
+	padding: 8px;
+	border-radius: 8px;
+	background: #292826;
+	font-size: 100px;
+}
+
+.logo-text {
+	color: #292826;
+	font-size: 70px;
+}
+
+.flex {
+	display: flex;
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.text-center {
+	text-align: center;
+}
+
+dt {
+	color: orange;
+}
+
+.f-size\=12px {
+	font-size: 12px;
+}
+
+h1 small {
+	float: right;
+	color: #51cddb;
+	font-size: 0.5em;
+	font-variant: small-caps;
+}
+
+a {
+	color: #4183c4;
+	text-decoration: none;
+}
+
+strong {
+	color: #ffd27b;
+}
+
+hr {
+	border-color: #4a4747;
+}
+
+code:not([class*="language"]) {
+	color: #51cddb;
+}
+
+.mem {
+	display: inline-block;
+	margin-bottom: 25px;
+	border-collapse: collapse;
+	font-size: 14px;
+	vertical-align: top;
+}
+
+.imem {
+	display: flex;
+	gap: 2px;
+}
+
+.mem .type {
+	display: block;
+	margin-bottom: 8px;
+	color: #e09fd9;
+	font-size: 15px;
+	text-align: left;
+}
+
+.spaced {
+	margin-right: 30px;
+}
+
+.visual {
+	display: block;
+	padding: 5px;
+	border: 1px solid #a9a9a9;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	color: #212121;
+	text-align: center;
+}
+
+.bytes {
+	display: flex;
+	gap: 8px;
+	background-color: #90ee90;
+	color: #212121;
+}
+
+.ibytes {
+	display: flex;
+	gap: 8px;
+	background-color: #90ee90;
+	color: #212121;
+}
+
+.byte {
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+.byte,
+.bit {
+	display: inline-flex;
+	align-items: center;
+	height: 28px;
+	padding-inline: 4px;
+	border: 1px dashed #000000;
+	border-radius: 5px;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.type-boolean {
+	display: inline-block;
+	color: #212121;
+}
+
+.bit-enabled {
+	background-color: #eeeeee;
+}
+
+.bit-sign {
+	background-color: #e09fd9;
+}
+
+.mid {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+kbd {
+	display: inline-block;
+	margin: 0.25rem 0.25rem 0.4375rem;
+	padding: 0.1rem 0.4rem;
+	transform: translateZ(5px);
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	transition: all 0.25s cubic-bezier(0.2, 1, 0.2, 1);
+	border: 1px solid #e6e6e6;
+	border-radius: 0.25rem;
+	background-color: #ffffff;
+	box-shadow: 0 0 #d9d9d9, 0 0 #d9d9d9, 0 1px #d9d9d9, 0 2px #d9d9d9,
+		0 3px #d9d9d9, 0 4px #d9d9d9, 0 5px #d9d9d9, 2px 2.5px 4px #adb5bd,
+		0 -1px 2.5px #adb5bd;
+	color: #343a40;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
+	font-size: inherit;
+	font-weight: 400;
+	line-height: inherit;
+	text-align: left;
+}
+
+kbd::after {
+	inset: -3px -0.3125rem -9px;
+	transform: translateZ(-3px);
+	border-width: 0.125rem;
+	border-radius: 0.5rem;
+	border-color: #cccccc;
+}
+
+details summary {
+	position: sticky;
+	top: 0;
+	padding-block: 8px;
+	backdrop-filter: blur(5px);
+}
