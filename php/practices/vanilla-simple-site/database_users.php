@@ -26,7 +26,7 @@ $nav = "db_users";
 $title = "Tous les utilisateurs de la base de données";
 
 try {
-	$pdo = new PDO("mysql:dbname=coursmysql;host=localhost", "root", "");
+	$pdo = new PDO("mysql:dbname=cours_mysql;host=localhost", "root", "");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 	die("Erreur : " . $e->getMessage());

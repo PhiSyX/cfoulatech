@@ -4,7 +4,7 @@ require_once "./entities/Message.php";
 require_once "./entities/User.php";
 
 // A changer avec les informations du site sur Alwaysdata
-$databaseName = "onestensemble";
+$databaseName = "tp_onestensemble";
 $databaseHost = 'localhost';
 $databaseUser = 'root';
 $databasePass = '';

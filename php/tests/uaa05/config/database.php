@@ -6,5 +6,5 @@ return [
 	"port" => "3306",
 	"user" => "root",
 	"pass" => "",
-	"dbname" => "mike_cfitech"
+	"dbname" => "uaa_cfitech_mike"
 ];
