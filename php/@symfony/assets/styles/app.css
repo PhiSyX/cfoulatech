@@ -20,3 +20,35 @@ body {
 .alert-info {
 	background-color: blue;
 }
+
+
+.divider[text] {
+	--hr-surface: whitesmoke;
+	--hr-on-surface: #212121;
+	position: relative;
+	height: 1.5em;
+	border: none;
+	opacity: 50%;
+	text-align: center;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background: linear-gradient(to right, transparent, var(--hr-bordered, #cccccc), transparent);
+	}
+
+	&::after {
+		content: attr(text);
+		display: inline-block;
+		position: relative;
+		padding-inline: 0.5rem;
+		border-radius: 8px;
+		background: var(--hr-surface, transparent);
+		color: var(--hr-on-surface, transparent);
+		vertical-align: middle;
+	}
+}

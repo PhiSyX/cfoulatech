@@ -29,11 +29,44 @@
 			</ul>
 
 			<ul class="navbar-nav ms-auto">
-				<li>
+				<li class="nav-item">
 					<a href="{{ path('app_recipe_create') }}" class="btn btn-primary">
 						Nouvelle recette
 					</a>
 				</li>
+
+				{% if app.user %}
+					<li class="nav-item">
+						<a href="{{ path('app_login') }}"
+						   class="nav-link {{ app.current_route == 'app_login' ? 'active' : '' }}"
+						>
+							{{ app.user.firstname }} {{ app.user.lastname }}
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ path('app_logout') }}"
+						   class="btn btn-danger {{ app.current_route == 'app_logout' ? 'active' : '' }}"
+						>
+							Se déconnecter
+						</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a href="{{ path('app_login') }}"
+						   class="nav-link {{ app.current_route == 'app_login' ? 'active' : '' }}"
+						>
+							Se connecter
+						</a>
+					</li>
+
+					<li class="nav-item">
+{#						<a href="{{ path('app_auth_register') }}"#}
+{#						   class="nav-link {{ app.current_route == 'app_auth_register' ? 'active' : '' }}"#}
+{#						>#}
+{#							S'inscrire#}
+{#						</a>#}
+					</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
