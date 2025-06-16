@@ -15,15 +15,18 @@
 				class="card max-w-sm col-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 my-8 mr-4"
 				data-type="post"
 			>
-				<h1 class="h2">
+				<h1 class="h2 vertical-align-middle" style="min-height: 20%;">
 					<a href="{{ path('app_recipe_show', { id : recipe.id, slug : recipe.slug }) }}">
 						{{ recipe.title | u.truncate(20, "...", false) }}
 					</a>
 				</h1>
 				{% if recipe.imageName %}
-					<img src="{{ recipe.imageName }}" width="100%" height="100%" style="object-fit: cover">
+					<img src="{{ recipe.imageName }}" width="100%" height="300px" style="min-height: 300px; object-fit: cover">
 				{% endif %}
-				<p>Envoyé {{ recipe.createdAt | ago(locale = "fr") }}</p>
+				<p class="py-2">
+					Envoyé {{ recipe.createdAt | ago(locale = "fr") }} par
+					{{ recipe.user.firstname }} {{ recipe.user.lastname }}
+				</p>
 			</article>
 		{% else %}
 			<p>Pas encore de recette</p>

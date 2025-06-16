@@ -18,7 +18,8 @@
 
 		<p>
 			Envoyé le
-			<time>{{ recipe.createdAt | date('d/m/Y') }}</time>
+			<time>{{ recipe.createdAt | date('d/m/Y') }}</time>,
+			par {{ recipe.user.firstname }} {{ recipe.user.lastname }}
 		</p>
 		<p>
 			Mis à jour le
