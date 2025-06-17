@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ServiceComponent } from "./service/service.component";
 import { HomeComponent } from "./home/home.component";
@@ -7,7 +7,8 @@ import { DirectivesComponent } from './directives/directives.component';
 import { FormateurComponent } from './io/formateur/formateur.component';
 import { InputComponent } from './io/input/input.component';
 import { OutputComponent } from './io/output/output.component';
-import { StateComponent } from './state/state.component';
+import { ContactComponent } from './contact/contact.component';
+import { ListContactComponent } from './contact/list-contact.component';
 
 @Component({
 	selector: "app-root",
@@ -20,7 +21,8 @@ import { StateComponent } from './state/state.component';
 		FormateurComponent,
 		OutputComponent,
 		ServiceComponent,
-		StateComponent,
+		ContactComponent,
+		ListContactComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
@@ -29,7 +31,14 @@ import { StateComponent } from './state/state.component';
 export class AppComponent {
 	title = "Angular";
 
-	alert(name: string) {
+	@ViewChild('contacts') contactList!: ListContactComponent;
+
+	public alert(name: string) {
 		console.log(name);
+	}
+
+	public handleContactAdded() {
+		console.log("The contact has been added");
+		this.contactList.loadContacts();
 	}
 }

@@ -31,16 +31,17 @@
 
 	<hr>
 
-	<details open>
+	<details>
 		<summary>Service</summary>
 		<app-service/>
 	</details>
 
-	<br>
+	<hr>
 
-	<details>
-		<summary>State</summary>
-		<app-state/>
+	<details open>
+		<summary>Contact</summary>
+		<app-contact (contactAdded)="handleContactAdded()"/>
+		<app-list-contact #contacts />
 	</details>
 
 	<router-outlet/>
