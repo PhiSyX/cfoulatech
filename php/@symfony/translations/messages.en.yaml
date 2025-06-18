@@ -1,0 +1,15 @@
+nav:
+    home: "Home"
+    login: "Login"
+    logout: "Logout"
+
+recipe:
+    add: "Add a recipe"
+    form:
+        content: "Description of the recipe"
+        duration: "Duration in minute"
+        imageName: "Picture URL"
+        save: "Let's cook"
+        title: "Title of the recipe"
+    new: "New recipe"
+    text: "Recipe"

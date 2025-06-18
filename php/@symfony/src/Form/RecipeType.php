@@ -20,17 +20,16 @@ class RecipeType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options): void
 	{
-		$saveLabel = $options["label"]["save"] ?? "Envoyer";
 		$builder
-			->add("title", TextType::class, ["label" => "Titre"])
+			->add("title", TextType::class, ["label" => "recipe.form.title"])
 			->add("slug", HiddenType::class)
-			->add("content", TextareaType::class, ["label" => "Description de la recette"])
+			->add("content", TextareaType::class, ["label" => "recipe.form.content"])
 			->add("imageName", URLType::class, [
-				"label" => "URL de l'image",
-				"default_protocol" => "https"
+				"label" => "recipe.form.imageName",
+				"default_protocol" => "https",
 			])
-			->add("duration", NumberType::class, ["label" => "Durée de la préparation"])
-			->add("save", SubmitType::class, ["label" => $saveLabel . " la recette"])
+			->add("duration", NumberType::class, ["label" => "recipe.form.duration"])
+			->add("save", SubmitType::class, ["label" => "recipe.form.save"])
 			->addEventListener(FormEvents::PRE_SUBMIT, $this->preSubmit(...));
 	}
 
