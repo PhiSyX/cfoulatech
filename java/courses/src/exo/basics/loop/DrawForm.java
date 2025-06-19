@@ -1,11 +1,18 @@
 package exo.basics.loop;
 
+import java.util.Scanner;
+
 public class DrawForm
 {
 	public static void main(String[] args)
 	{
-		byte totalSize = 5;
-		int[][] grid = new int[totalSize][totalSize];
+		System.out.print("Entrer un hauteur : ");
+		Scanner userInput = new Scanner(System.in);
+		byte height = Byte.parseByte(
+			userInput.nextLine()
+				.replaceAll("[a-zA-Z\\s,.]+.*", "")
+		);
+		int[][] grid = new int[height][height];
 
 		// Carré
 		for (int i = 0; i < grid.length; i++) {
@@ -18,23 +25,22 @@ public class DrawForm
 		System.out.println();
 
 		// Triangle
-		/*
 		for (int i = 0; i <= grid.length; i++) {
 			for (int j = 0; j < i; j++) {
 				System.out.print("* ");
 			}
 			System.out.println();
 		}
-		*/
 
+		/*
 		for (int i = 0; i <= grid.length; i++) {
 			System.out.println("* ".repeat(i));
 		}
+		*/
 
 		System.out.println();
 
 		// Carré (outline)
-		/*
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
 				if (i == 0 || i == grid.length - 1 || j == 0 || j == grid[i].length - 1) {
@@ -45,8 +51,8 @@ public class DrawForm
 			}
 			System.out.println();
 		}
-		*/
 
+		/*
 		for (int i = 0; i < grid.length; i++) {
 			if (i == 0 || i == grid.length - 1) {
 				System.out.print("# ".repeat(grid.length));
@@ -57,6 +63,7 @@ public class DrawForm
 			}
 			System.out.println();
 		}
+		*/
 
 		System.out.println();
 
@@ -77,25 +84,7 @@ public class DrawForm
 		// Carré sans les diagonales
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
-				if (i == 0 || i == grid.length - 1) {
-					if (j >= 1 && j <= grid[i].length - 2) {
-						System.out.print("# ");
-					} else {
-						System.out.print("  ");
-					}
-					continue;
-				}
-
-				if (i % 2 == 1) {
-					if (j % 2 == 0) {
-						System.out.print("# ");
-					} else {
-						System.out.print("  ");
-					}
-					continue;
-				}
-
-				if (j != 2) {
+				if (!(i == j || i + j == grid.length - 1)) {
 					System.out.print("# ");
 				} else {
 					System.out.print("  ");
