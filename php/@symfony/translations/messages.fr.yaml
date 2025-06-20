@@ -2,6 +2,7 @@ nav:
     home: "Accueil"
     login: "Se connecter"
     logout: "Se déconnecter"
+    register: "S'inscrire"
 
 recipe:
     add: "Ajouter la recette"
@@ -13,3 +14,12 @@ recipe:
         title: "Titre de la recette"
     new: "Nouvelle recette"
     text: "Recette"
+
+registration:
+    form:
+        firstname: "Prénom"
+        lastname: "Nom"
+        email: "Adresse mail"
+        agreeTerms: "Accepter les termes"
+        plainPassword: "Mot de passe"
+        submit: "S'enregistrer"

@@ -2,6 +2,7 @@ nav:
     home: "Home"
     login: "Login"
     logout: "Logout"
+    register: "Register"
 
 recipe:
     add: "Add a recipe"
