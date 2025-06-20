@@ -4,29 +4,29 @@ import { Contact } from './models/contact';
 import { NgForOf } from '@angular/common';
 
 @Component({
-	selector: 'app-list-contact',
+	selector: 'app-contact-list',
 	imports: [
 		NgForOf,
 	],
-	templateUrl: './list-contact.component.html',
-	styleUrl: './list-contact.component.css',
+	templateUrl: './contact-list.component.html',
+	styleUrl: './contact-list.component.css',
 })
-export class ListContactComponent implements OnInit {
-	contacts: Contact[] = [];
+export class ContactListComponent implements OnInit {
+	public contacts: Contact[] = [];
 
 	constructor(private contactService: ContactService) {
 	}
 
-	ngOnInit() {
-		this.loadContacts();
-	}
-
-	loadContacts() {
+	public loadContacts() {
 		this.contacts = this.contactService.getContacts();
 	}
 
 	public deleteContact(index: number) {
 		this.contactService.deleteContact(index);
+		this.loadContacts();
+	}
+
+	ngOnInit() {
 		this.loadContacts();
 	}
 }

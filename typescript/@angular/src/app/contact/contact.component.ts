@@ -20,7 +20,7 @@ export class ContactComponent {
 	constructor(private contactService: ContactService) {
 	}
 
-	addContact(): void {
+	public addContact(): void {
 		let name = this.name.trim();
 		let email = this.email.trim();
 

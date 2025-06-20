@@ -8,7 +8,10 @@ import { FormateurComponent } from './io/formateur/formateur.component';
 import { InputComponent } from './io/input/input.component';
 import { OutputComponent } from './io/output/output.component';
 import { ContactComponent } from './contact/contact.component';
-import { ListContactComponent } from './contact/list-contact.component';
+import { ContactListComponent } from './contact/contact-list.component';
+import {
+	StagiaireListComponent
+} from './observable/pipe/components/stagiaire-list/stagiaire-list.component';
 
 @Component({
 	selector: "app-root",
@@ -22,16 +25,16 @@ import { ListContactComponent } from './contact/list-contact.component';
 		OutputComponent,
 		ServiceComponent,
 		ContactComponent,
-		ListContactComponent,
+		ContactListComponent,
+		StagiaireListComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
 	standalone: true,
 })
 export class AppComponent {
-	title = "Angular";
-
-	@ViewChild('contacts') contactList!: ListContactComponent;
+	@ViewChild("contacts")
+	public contactList!: ContactListComponent;
 
 	public alert(name: string) {
 		console.log(name);
