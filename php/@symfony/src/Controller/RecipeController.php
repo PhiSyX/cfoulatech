@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class RecipeController extends AbstractController
 {
@@ -134,9 +135,11 @@ final class RecipeController extends AbstractController
 	}
 
 	#[Route("/recette/create", name: "app_recipe_create", methods: ["GET", "POST"])]
+	#[IsGranted("ROLE_USER")]
 	public function add(Request $req, EntityManagerInterface $em): Response
 	{
 		$recipe = (new Recipe())
+			->setUser($this->getUser())
 			->setCreatedAt(new DateTimeImmutable())
 			->setUpdatedAt(new DateTimeImmutable());
 
