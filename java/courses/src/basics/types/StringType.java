@@ -24,9 +24,8 @@ public class StringType
 
 		System.out.println(strb.toString());
 
-		String fullname = String.format("%s '%s' %s", firstname, nickname, lastname);
-		System.out.println(fullname);
-
+		String fullName = String.format("%s '%s' %s", firstname, nickname, lastname);
+		System.out.println(fullName);
 
 		System.out.println("La taille de la chaîne est de : " + firstname.length());
 		System.out.println("La 1ère lettre de la chaîne est : " + firstname.charAt(0));
