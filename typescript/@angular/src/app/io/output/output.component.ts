@@ -6,16 +6,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 	templateUrl: './output.component.html',
 	styleUrl: './output.component.css',
 })
-export class OutputComponent {
+export class OutputComponent
+{
 	@Input()
 	public firstname: string = "";
 	@Input()
 	public group: string = "";
 
 	@Output()
-	prendrePresence = new EventEmitter<string>();
+	takeAttendance = new EventEmitter<string>();
 
-	public emitFirstname(): void {
-		this.prendrePresence.emit(this.firstname);
+	public emitFirstname(): void
+	{
+		this.takeAttendance.emit(this.firstname);
 	}
 }

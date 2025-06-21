@@ -10,7 +10,8 @@ import { FormsModule } from "@angular/forms";
 	styleUrl: "./data-bindings.component.css",
 	standalone: true,
 })
-export class DataBindingsComponent {
+export class DataBindingsComponent
+{
 	public firstname: string = "";
 
 	public imageSrc: string = "oeil.jpg";
@@ -23,7 +24,8 @@ export class DataBindingsComponent {
 
 	public toggleBtn: string = "Désactiver";
 
-	public toggleDisable(): void {
+	public toggleDisable(): void
+	{
 		this.isDisabled = !this.isDisabled;
 		if (this.isDisabled) {
 			this.toggleBtn = "Activer";
@@ -34,18 +36,20 @@ export class DataBindingsComponent {
 
 	public inputModel: string = "Mon message";
 
-	public showMessage(): void {
+	public showMessage(): void
+	{
 		alert(this.inputModel);
 	}
 
-	public showFirstname(): void {
+	public showFirstname(): void
+	{
 		alert(`Bonjour ${this.firstname} !`);
 	}
 
 	/* Ex checkbox */
-	public belgique: boolean = false;
+	public belgium: boolean = false;
 	public france: boolean = false;
-	public italie: boolean = true;
+	public italy: boolean = true;
 
 	/* Ex select */
 	public pays: string = "belgique";

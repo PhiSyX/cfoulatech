@@ -1,17 +1,15 @@
 import { Component, ViewChild } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { InternListComponent } from './observable/pipe/components/intern-list/intern-list.component';
 import { ServiceComponent } from "./service/service.component";
 import { HomeComponent } from "./home/home.component";
 import { DataBindingsComponent } from "./data-bindings/data-bindings.component";
 import { DirectivesComponent } from './directives/directives.component';
-import { FormateurComponent } from './io/formateur/formateur.component';
+import { TrainerComponent } from './io/trainer/trainer.component';
 import { InputComponent } from './io/input/input.component';
 import { OutputComponent } from './io/output/output.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact/contact-list.component';
-import {
-	StagiaireListComponent
-} from './observable/pipe/components/stagiaire-list/stagiaire-list.component';
 
 @Component({
 	selector: "app-root",
@@ -21,26 +19,29 @@ import {
 		DataBindingsComponent,
 		DirectivesComponent,
 		InputComponent,
-		FormateurComponent,
+		TrainerComponent,
 		OutputComponent,
 		ServiceComponent,
 		ContactComponent,
 		ContactListComponent,
-		StagiaireListComponent,
+		InternListComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
 	standalone: true,
 })
-export class AppComponent {
+export class AppComponent
+{
 	@ViewChild("contacts")
 	public contactList!: ContactListComponent;
 
-	public alert(name: string) {
+	public alert(name: string)
+	{
 		console.log(name);
 	}
 
-	public handleContactAdded() {
+	public handleContactAdded()
+	{
 		console.log("The contact has been added");
 		this.contactList.loadContacts();
 	}

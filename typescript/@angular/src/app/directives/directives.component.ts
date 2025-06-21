@@ -32,14 +32,17 @@ type RoleVariant = typeof Role[keyof typeof Role];
 	styleUrl: "./directives.component.css",
 	standalone: true,
 })
-export class DirectivesComponent {
+export class DirectivesComponent
+{
 	public isAway: boolean = false;
 
-	public markAsAway(): void {
+	public markAsAway(): void
+	{
 		this.isAway = true;
 	}
 
-	public markAsNoLongerAway(): void {
+	public markAsNoLongerAway(): void
+	{
 		this.isAway = false;
 	}
 
@@ -61,7 +64,8 @@ export class DirectivesComponent {
 	public internModel: string = "";
 	public interns: Array<string> = ["Say", "Carina", "Erica", "Mohamed-Ali", "Mona", "Josué"];
 
-	public addIntern(): void {
+	public addIntern(): void
+	{
 		let intern = this.internModel.trim();
 		if (intern.length === 0) {
 			alert("Entrez un nom de stagiaire.");
@@ -84,7 +88,8 @@ export class DirectivesComponent {
 	public trainingModel: string = "";
 	public trainings: Array<string> = ["Web", "HelpDesk", "Cyber Sécurité"];
 
-	public addTraining(): void {
+	public addTraining(): void
+	{
 		if (this.trainingModel.trim().length === 0) {
 			return;
 		}
@@ -100,7 +105,8 @@ export class DirectivesComponent {
 		{ nom: "Mike", note: 20 },
 	];
 
-	public addEvaluation(): void {
+	public addEvaluation(): void
+	{
 		if (this.evaluationNom.trim().length === 0) {
 			alert("Entrez un nom");
 			return;
@@ -122,7 +128,8 @@ export class DirectivesComponent {
 		this.evaluationNote = 0;
 	}
 
-	public get evaluationMoyenne(): number {
+	public get evaluationMoyenne(): number
+	{
 		let totalEval = this.evaluations.length;
 		return (
 			this.evaluations.reduce(
@@ -131,7 +138,8 @@ export class DirectivesComponent {
 		);
 	}
 
-	public delEvaluation(evaluation: { nom: string; note: number; }): void {
+	public delEvaluation(evaluation: { nom: string; note: number; }): void
+	{
 		this.evaluations = this.evaluations.filter((e) => e.nom !== evaluation.nom);
 	}
 
@@ -143,7 +151,8 @@ export class DirectivesComponent {
 
 	public myStyle = { color: 'red', fontSize: '16px' };
 
-	public changeStyle(color: string, fontSize: string): void {
+	public changeStyle(color: string, fontSize: string): void
+	{
 		this.myStyle.color = color;
 		this.myStyle.fontSize = fontSize;
 	}

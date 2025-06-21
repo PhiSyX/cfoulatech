@@ -11,13 +11,16 @@ import { ListRoomComponent } from './list-room/list-room.component';
 	standalone: true,
 	styleUrl: "./service.component.css",
 })
-export class ServiceComponent implements OnInit {
+export class ServiceComponent implements OnInit
+{
 	public internList: Array<string> = [];
 
-	constructor(private internService: InternService) {
+	constructor(private internService: InternService)
+	{
 	}
 
-	ngOnInit(): void {
+	ngOnInit(): void
+	{
 		this.internService.interns$.subscribe((data) => {
 			this.internList = data;
 		});

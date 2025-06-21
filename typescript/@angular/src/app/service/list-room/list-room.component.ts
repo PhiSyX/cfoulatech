@@ -10,13 +10,16 @@ import { RoomService } from '../room.service';
 	templateUrl: './list-room.component.html',
 	styleUrl: './list-room.component.css',
 })
-export class ListRoomComponent implements OnInit {
+export class ListRoomComponent implements OnInit
+{
 	listRooms: Array<string> = [];
 
-	constructor(private roomService: RoomService) {
+	constructor(private roomService: RoomService)
+	{
 	}
 
-	ngOnInit(): void {
+	ngOnInit(): void
+	{
 		this.roomService.rooms$.subscribe(((s) => {
 			this.listRooms = s;
 		}));

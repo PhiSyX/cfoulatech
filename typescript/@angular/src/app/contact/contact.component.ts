@@ -10,17 +10,20 @@ import { FormsModule } from '@angular/forms';
 	templateUrl: './contact.component.html',
 	styleUrl: './contact.component.css',
 })
-export class ContactComponent {
+export class ContactComponent
+{
 	public name: string = "";
 	public email: string = "";
 
 	@Output()
 	public contactAdded = new EventEmitter<void>();
 
-	constructor(private contactService: ContactService) {
+	constructor(private contactService: ContactService)
+	{
 	}
 
-	public addContact(): void {
+	public addContact(): void
+	{
 		let name = this.name.trim();
 		let email = this.email.trim();
 
@@ -35,7 +38,8 @@ export class ContactComponent {
 		this.reset();
 	}
 
-	private reset(): void {
+	private reset(): void
+	{
 		this.name = "";
 		this.email = "";
 	}

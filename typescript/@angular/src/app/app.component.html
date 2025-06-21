@@ -24,9 +24,9 @@
 		<summary>IO</summary>
 		<app-input firstname="Mike" group="Web"/>
 		<hr>
-		<app-output firstname="Erica" group="group" (prendrePresence)="alert($event)"/>
+		<app-output firstname="Erica" group="group" (takeAttendance)="alert($event)"/>
 		<hr>
-		<app-formateur/>
+		<app-trainer/>
 	</details>
 
 	<hr>
@@ -41,14 +41,14 @@
 	<details>
 		<summary>Contact</summary>
 		<app-contact (contactAdded)="handleContactAdded()"/>
-		<app-contact-list #contacts />
+		<app-contact-list #contacts/>
 	</details>
 
 	<hr>
 
 	<details open>
 		<summary>Observable Pipe</summary>
-		<app-stagiaire-list />
+		<app-intern-list/>
 	</details>
 
 	<router-outlet/>

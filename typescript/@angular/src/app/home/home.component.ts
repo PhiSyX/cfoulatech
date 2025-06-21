@@ -7,6 +7,6 @@ import { Component } from "@angular/core";
 	standalone: true,
 	styleUrl: "./home.component.css",
 })
-export class HomeComponent {
-
+export class HomeComponent
+{
 }

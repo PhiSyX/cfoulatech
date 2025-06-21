@@ -8,13 +8,16 @@ import { InternService } from '../intern.service';
 	templateUrl: './add-intern.component.html',
 	styleUrl: './add-intern.component.css',
 })
-export class AddInternComponent {
+export class AddInternComponent
+{
 	public newName: string = "";
 
-	constructor(private internService: InternService) {
+	constructor(private internService: InternService)
+	{
 	}
 
-	addIntern() {
+	addIntern()
+	{
 		if (this.newName.trim()) {
 			this.internService.addIntern(this.newName);
 		}

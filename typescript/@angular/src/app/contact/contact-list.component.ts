@@ -11,22 +11,27 @@ import { NgForOf } from '@angular/common';
 	templateUrl: './contact-list.component.html',
 	styleUrl: './contact-list.component.css',
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit
+{
 	public contacts: Contact[] = [];
 
-	constructor(private contactService: ContactService) {
+	constructor(private contactService: ContactService)
+	{
 	}
 
-	public loadContacts() {
+	public loadContacts()
+	{
 		this.contacts = this.contactService.getContacts();
 	}
 
-	public deleteContact(index: number) {
+	public deleteContact(index: number)
+	{
 		this.contactService.deleteContact(index);
 		this.loadContacts();
 	}
 
-	ngOnInit() {
+	ngOnInit()
+	{
 		this.loadContacts();
 	}
 }

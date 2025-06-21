@@ -1,18 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-	selector: 'app-stagiaire',
+	selector: 'app-intern',
 	imports: [
 		NgForOf,
 		FormsModule,
 	],
-	templateUrl: './stagiaire.component.html',
-	styleUrl: './stagiaire.component.css',
+	templateUrl: './intern.component.html',
+	styleUrl: './intern.component.css',
 	standalone: true,
 })
-export class StagiaireComponent {
+export class InternComponent
+{
 	@Input()
 	public studentName: string = "";
 
@@ -22,7 +23,8 @@ export class StagiaireComponent {
 	@Output()
 	public validerInscription = new EventEmitter<string>();
 
-	public emettreValidationInscription() {
+	public emettreValidationInscription()
+	{
 		this.validerInscription.emit(this.studentName);
 	}
 
@@ -32,7 +34,8 @@ export class StagiaireComponent {
 	@Output()
 	public prendreNote = new EventEmitter<number>();
 
-	public emettreNote() {
+	public emettreNote()
+	{
 		this.prendreNote.emit(this.note);
 	}
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StagiaireListComponent } from './stagiaire-list.component';
+import { InternListComponent } from './intern-list.component';
 
 describe('StagiaireListComponent', () => {
-	let component: StagiaireListComponent;
-	let fixture: ComponentFixture<StagiaireListComponent>;
+	let component: InternListComponent;
+	let fixture: ComponentFixture<InternListComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [StagiaireListComponent],
+			imports: [InternListComponent],
 		})
 			.compileComponents();
 
-		fixture = TestBed.createComponent(StagiaireListComponent);
+		fixture = TestBed.createComponent(InternListComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
