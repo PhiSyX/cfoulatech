@@ -1,6 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { InternListComponent } from './observable/pipe/components/intern-list/intern-list.component';
+import {
+	InternListComponent,
+} from './observable/pipe/components/intern-list/intern-list.component';
 import { ServiceComponent } from "./service/service.component";
 import { HomeComponent } from "./home/home.component";
 import { DataBindingsComponent } from "./data-bindings/data-bindings.component";
