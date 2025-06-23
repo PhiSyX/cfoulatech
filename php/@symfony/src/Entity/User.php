@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table("users")]
 #[ORM\UniqueConstraint(name: "UNIQ_IDENTIFIER_EMAIL", fields: ["email"])]
-#[UniqueEntity(fields: ['email'], message: "registration.form.validation.email.unique")]
+#[UniqueEntity(fields: ["email"], message: "registration.form.validation.email.unique")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 	use Timestampable;
@@ -27,7 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 	#[ORM\Column(length: 180)]
 	#[Assert\Email]
-	#[Assert\Length(min: 6)]
+	#[Assert\Length(min: 8)]
+	#[Assert\NotBlank]
 	private ?string $email = null;
 
 	/**
@@ -40,23 +41,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @var string The hashed password
 	 */
 	#[ORM\Column]
-	#[Assert\Length(min: 6)]
+	#[Assert\Length(min: 6, max: 4096)]
+	#[Assert\NotBlank]
 	private ?string $password = null;
 
 	#[ORM\Column(length: 255)]
-	#[Assert\NotBlank]
 	#[Assert\Length(min: 2, max: 35)]
+	#[Assert\NotBlank]
 	private ?string $firstname = null;
 
 	#[ORM\Column(length: 255)]
-	#[Assert\NotBlank]
 	#[Assert\Length(min: 2, max: 70)]
+	#[Assert\NotBlank]
 	private ?string $lastname = null;
 
 	/**
 	 * @var Collection<int, Recipe>
 	 */
-	#[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'user', orphanRemoval: true)]
+	#[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: "user", orphanRemoval: true)]
 	private Collection $recipes;
 
 	#[ORM\Column]

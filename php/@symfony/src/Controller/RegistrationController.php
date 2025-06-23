@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationForm;
 use App\Security\EmailVerifier;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,9 @@ class RegistrationController extends AbstractController
 	#[Route("/register", name: "app_register")]
 	public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
 	{
-		$user = (new User())->setCreatedAt(new \DateTimeImmutable())->setUpdatedAt(new \DateTimeImmutable());
+		$user = (new User())
+			->setCreatedAt(new DateTimeImmutable())
+			->setUpdatedAt(new DateTimeImmutable());
 		$form = $this->createForm(RegistrationForm::class, $user);
 		$form->handleRequest($request);
 
