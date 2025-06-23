@@ -32,8 +32,9 @@ public class MathHelpers
 
 	private static void displayMulTable(int n)
 	{
+		System.out.printf("%d: ", n);
 		for (int i = 1; i <= 10; i++) {
-			System.out.printf("%d x %d = %d%n", n, i, n * i);
+			System.out.printf("'%d x %d = %d',", n, i, n * i);
 		}
 	}
 }
