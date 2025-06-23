@@ -22,7 +22,8 @@ final class Version20250611075353 extends AbstractMigration
 		// this up() migration is auto-generated, please modify it to your needs
 		$this->addSql(<<<'SQL'
             CREATE UNIQUE INDEX UNIQ_A369E2B52B36786B ON recipes (title)
-        SQL);
+        SQL,
+		);
 	}
 
 	public function down(Schema $schema): void
@@ -30,6 +31,7 @@ final class Version20250611075353 extends AbstractMigration
 		// this down() migration is auto-generated, please modify it to your needs
 		$this->addSql(<<<'SQL'
             DROP INDEX UNIQ_A369E2B52B36786B ON recipes
-        SQL);
+        SQL,
+		);
 	}
 }

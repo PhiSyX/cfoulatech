@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use const FILTER_VALIDATE_INT;
 
 final class RecipeController extends AbstractController
 {
@@ -24,7 +25,7 @@ final class RecipeController extends AbstractController
 				(int)$req->query->filter(
 					"duration",
 					0,
-					\FILTER_VALIDATE_INT,
+					FILTER_VALIDATE_INT,
 					["flags" => FILTER_NULL_ON_FAILURE],
 				),
 			);

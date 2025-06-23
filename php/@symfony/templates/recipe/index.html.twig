@@ -22,7 +22,8 @@
 					</a>
 				</h1>
 				{% if recipe.imageName %}
-					<img src="{{ recipe.imageName }}" width="100%" height="300px" style="min-height: 300px; object-fit: cover">
+					<img src="{{ recipe.imageName }}" width="100%" height="300px"
+						 style="min-height: 300px; object-fit: cover">
 				{% endif %}
 				<p class="py-2">
 					{{ 'recipe.published_at_by' | trans({
