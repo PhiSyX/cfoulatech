@@ -2,8 +2,10 @@ package exo.basics.loop;
 
 import java.util.Scanner;
 
-public class DrawShape {
-	public static void main(String[] args) {
+public class DrawShape
+{
+	public static void main(String[] args)
+	{
 		a_square();
 		b_square_outline();
 		c_square_with_diagonals();
@@ -18,7 +20,8 @@ public class DrawShape {
 		l_triangles_bt();
 	}
 
-	private static byte askHeight() {
+	private static byte askHeight()
+	{
 		System.out.print("Entrer un hauteur (5): ");
 		Scanner scan = new Scanner(System.in);
 
@@ -39,7 +42,8 @@ public class DrawShape {
 		return height;
 	}
 
-	private static byte askDigit() {
+	private static byte askDigit()
+	{
 		System.out.print("Entrer un chiffre (5): ");
 		Scanner scan = new Scanner(System.in);
 
@@ -60,11 +64,13 @@ public class DrawShape {
 		return digit;
 	}
 
-	private static void a_square() {
+	private static void a_square()
+	{
 		System.out.println(a_square(askHeight()));
 	}
 
-	private static StringBuilder a_square(byte h) {
+	private static StringBuilder a_square(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		// Solution 1
@@ -83,11 +89,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void b_square_outline() {
+	private static void b_square_outline()
+	{
 		System.out.println(b_square_outline(askHeight()));
 	}
 
-	private static StringBuilder b_square_outline(byte h) {
+	private static StringBuilder b_square_outline(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		// Solution 1
@@ -120,11 +128,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void c_square_with_diagonals() {
+	private static void c_square_with_diagonals()
+	{
 		System.out.println(c_square_with_diagonals(askHeight()));
 	}
 
-	private static StringBuilder c_square_with_diagonals(byte h) {
+	private static StringBuilder c_square_with_diagonals(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		// Solution 1
@@ -157,11 +167,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void d_square_without_diagonals() {
+	private static void d_square_without_diagonals()
+	{
 		System.out.println(d_square_without_diagonals(askHeight()));
 	}
 
-	private static StringBuilder d_square_without_diagonals(byte h) {
+	private static StringBuilder d_square_without_diagonals(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		for (int i = 0; i < h; i++) {
@@ -178,11 +190,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void e_triangles_tlbr() {
+	private static void e_triangles_tlbr()
+	{
 		System.out.println(e_triangles_tlbr(askHeight()));
 	}
 
-	private static StringBuilder e_triangles_tlbr(byte h) {
+	private static StringBuilder e_triangles_tlbr(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		// Solution 1
 		for (int i = 0; i <= h; i++) {
@@ -202,11 +216,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void f_triangles_bltr() {
+	private static void f_triangles_bltr()
+	{
 		System.out.println(f_triangles_bltr(askHeight()));
 	}
 
-	private static StringBuilder f_triangles_bltr(byte h) {
+	private static StringBuilder f_triangles_bltr(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		// Solution 1
 		for (int i = 0; i < h; i++) {
@@ -226,11 +242,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void g_triangles_trbl() {
+	private static void g_triangles_trbl()
+	{
 		System.out.println(g_triangles_trbl(askHeight()));
 	}
 
-	private static StringBuilder g_triangles_trbl(byte h) {
+	private static StringBuilder g_triangles_trbl(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		// Solution 1
@@ -256,11 +274,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void h_triangles_brtl() {
+	private static void h_triangles_brtl()
+	{
 		System.out.println(h_triangles_brtl(askHeight()));
 	}
 
-	private static StringBuilder h_triangles_brtl(byte h) {
+	private static StringBuilder h_triangles_brtl(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		// Solution 1
 		for (int i = 0; i < h; i++) {
@@ -287,11 +307,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void i_triangles_tb() {
+	private static void i_triangles_tb()
+	{
 		System.out.println(i_triangles_tb(askHeight()));
 	}
 
-	private static StringBuilder i_triangles_tb(byte h) {
+	private static StringBuilder i_triangles_tb(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 
 		int half = Math.round((float) h / 2);
@@ -306,11 +328,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void j_hourglass() {
+	private static void j_hourglass()
+	{
 		System.out.println(j_hourglass(askHeight()));
 	}
 
-	private static StringBuilder j_hourglass(byte h) {
+	private static StringBuilder j_hourglass(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < h; j++) {
@@ -325,11 +349,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void k_bow_tie() {
+	private static void k_bow_tie()
+	{
 		System.out.println(k_bow_tie(askHeight()));
 	}
 
-	private static StringBuilder k_bow_tie(byte h) {
+	private static StringBuilder k_bow_tie(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < h; ++i) {
 			for (int j = 0; j < h; ++j) {
@@ -344,11 +370,13 @@ public class DrawShape {
 		return s;
 	}
 
-	private static void l_triangles_bt() {
+	private static void l_triangles_bt()
+	{
 		System.out.println(l_triangles_bt(askDigit()));
 	}
 
-	private static StringBuilder l_triangles_bt(byte h) {
+	private static StringBuilder l_triangles_bt(byte h)
+	{
 		StringBuilder s = new StringBuilder();
 		int half = Math.round((float) h / 2);
 
