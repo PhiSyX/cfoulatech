@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	Création d'une recette
+	{{ 'recipe.title.add' | trans }}
 {% endblock %}
 
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
-		<h1>Création d'une recette</h1>
+		<h1>{{ 'recipe.title.add' | trans }}</h1>
 		{{ form(myRecipeForm) }}
 	</article>
 {% endblock %}

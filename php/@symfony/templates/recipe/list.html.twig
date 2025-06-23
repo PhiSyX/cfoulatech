@@ -1,14 +1,14 @@
 {% extends "base.html.twig" %}
 
 {# {% block title %}Liste des recettes !{% endblock %} #}
-{% block title "Liste des recettes !" %}
+{% block title 'recipe.title.list' | trans %}
 
 {% block body %}
 
 	<h1>
-		Liste de recettes
+		{{ 'recipe.title.list' | trans }}
 		<a href="{{ path('app_recipe_create') }}" class="btn btn-primary float-end">
-			Créer une recette
+			{{ 'recipe.create' | trans }}
 		</a>
 	</h1>
 
@@ -18,7 +18,7 @@
 				<a href="{{ path('app_recipe_show', { id: recipe.id, slug: recipe.slug }) }}">{{ recipe.title }}</a>
 				-
 				<div class="d-flex align-items-center">
-					<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}">Éditer</a>
+					<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}">{{ 'actions.edit' | trans }}</a>
 					<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="post">
 						<input type="hidden" name="_method" value="DELETE">
 						<button
@@ -26,7 +26,7 @@
 							type="submit"
 							onclick="return confirm('Voulez-vous vraiment supprimer cette recette ?')"
 						>
-							Supprimer
+							{{ 'actions.delete' | trans }}
 						</button>
 					</form>
 				</div>

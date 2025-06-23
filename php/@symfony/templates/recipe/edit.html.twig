@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	Edition de la recette {{ recipe.id }}
+	{{ 'recipe.title.edit' | trans }} {{ recipe.id }}
 {% endblock %}
 
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
-		<h1>Edition de la recette n°{{ recipe.id }}</h1>
+		<h1>{{ 'recipe.title.edit' | trans }} n°{{ recipe.id }}</h1>
 		<h2>
 			<a href="{{ path('app_recipe_show', { id: recipe.id, slug: recipe.slug }) }}">
 				{{ recipe.title }}

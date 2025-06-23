@@ -1,3 +1,8 @@
+actions:
+    back: "Retour"
+    edit: "Editer"
+    delete: "Supprimer"
+
 nav:
     home: "Accueil"
     login: "Se connecter"
@@ -6,6 +11,7 @@ nav:
 
 recipe:
     add: "Ajouter la recette"
+    create: "Créer une recette"
     form:
         content: "Description de la recette"
         duration: "Durée en minute"
@@ -13,7 +19,15 @@ recipe:
         save: "En cuisine"
         title: "Titre de la recette"
     new: "Nouvelle recette"
+    norecord: "Pas encore de recette"
+    published_at_by: "Envoyé %relativeDate% par %user%"
+    updated_at: "Mis à jour %relativeDate%"
     text: "Recette"
+    title:
+        add: "Création d'une recette"
+        edit: "Edition de la recette"
+        list: "Liste des recettes"
+        welcome: "Bienvenue dans la liste des Recettes"
 
 registration:
     form:
