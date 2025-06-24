@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { InternService } from '../intern.service';
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { InternService } from "../intern.service";
 
 @Component({
-	selector: 'app-add-intern',
+	selector: "app-add-intern",
 	imports: [FormsModule],
-	templateUrl: './add-intern.component.html',
-	styleUrl: './add-intern.component.css',
+	templateUrl: "./add-intern.component.html",
+	styleUrl: "./add-intern.component.css",
 })
 export class AddInternComponent
 {

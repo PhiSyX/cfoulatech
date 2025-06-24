@@ -3,13 +3,11 @@ import { InternService } from "../../services/intern.service";
 import { Intern } from "../../models/intern";
 import { map, take, tap } from "rxjs";
 import { NgForOf } from "@angular/common";
-import { ReversePipe } from '../../pipes/reverse.pipe';
 
 @Component({
 	selector: "app-intern-list",
 	imports: [
 		NgForOf,
-		ReversePipe,
 	],
 	templateUrl: "./intern-list.component.html",
 	styleUrl: "./intern-list.component.css",

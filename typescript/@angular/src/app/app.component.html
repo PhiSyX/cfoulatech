@@ -46,9 +46,22 @@
 
 	<hr>
 
-	<details open>
-		<summary>Observable Pipe</summary>
+	<details>
+		<summary>Observable (.pipe)</summary>
 		<app-intern-list/>
+	</details>
+
+	<hr>
+
+	<details open>
+		<summary>Observable | Pipe</summary>
+
+		<p><strong>Reverse :</strong> {{ "Bonjour tout le monde" | reverse }}</p>
+		<p><strong>Truncate :</strong> {{ title | truncate:50 }}</p>
+		<p><strong>customDate :</strong> {{ currentDate | customDate }}</p>
+		<p><strong>customDate :</strong> {{ currentDate | customDate:"fullDate" }}</p>
+
+		<p><strong>Euro2Dollar :</strong> {{ 32 | euroToDollar }}</p>
 	</details>
 
 	<router-outlet/>

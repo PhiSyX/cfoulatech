@@ -12,6 +12,11 @@ import { InputComponent } from './io/input/input.component';
 import { OutputComponent } from './io/output/output.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact/contact-list.component';
+import { TruncatePipe } from './observable/pipe/pipes/truncate.pipe';
+import { ReversePipe } from './observable/pipe/pipes/reverse.pipe';
+import { CustomDatePipe } from './observable/pipe/pipes/custom-date.pipe';
+import { Intern } from './observable/pipe/models/intern';
+import { EuroToDollarPipe } from './observable/pipe/pipes/euro-to-dollar.pipe';
 
 @Component({
 	selector: "app-root",
@@ -27,6 +32,10 @@ import { ContactListComponent } from './contact/contact-list.component';
 		ContactComponent,
 		ContactListComponent,
 		InternListComponent,
+		ReversePipe,
+		TruncatePipe,
+		CustomDatePipe,
+		EuroToDollarPipe,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.css",
@@ -36,6 +45,14 @@ export class AppComponent
 {
 	@ViewChild("contacts")
 	public contactList!: ContactListComponent;
+
+	public title: string = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ 		Debitis eos error impedit, neque quidem reprehenderit tenetur veritatis!
+ 		Accusantium alias cupiditate error minus nesciunt officia possimus quisquam tenetur.
+		Aspernatur, labore quidem.`;
+	public currentDate = new Date();
+	public search = "";
+	public interns: Array<Intern> = [];
 
 	public alert(name: string)
 	{
