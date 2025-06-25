@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+    {% if app.user.id != article.user.id %}
+        <p>You can't edit this article</p>
+    {% else %}
+        <h1>Edit Article</h1>
+
+        {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_article_index') }}" class="btn btn-secondary">back to list</a>
+
+        {{ include('article/_delete_form.html.twig') }}
+    {% endif %}
+
+{% endblock %}

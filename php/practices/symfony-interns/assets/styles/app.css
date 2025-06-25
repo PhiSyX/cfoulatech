@@ -1,0 +1,20 @@
+body {
+    background-color: white;
+}
+
+[disabled] {
+    pointer-events: none;
+    opacity: .35;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+.alert-error,
+.alert-danger {
+    color: #e81c1c;
+}
+
+label {
+    display: inline-block;
+    width: 15%;
+}
