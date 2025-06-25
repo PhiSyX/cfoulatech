@@ -25,7 +25,15 @@ final class CategoryController extends AbstractController
     #[Route('/all', name: 'app_category_index_json', methods: ['GET'])]
     public function index_json(CategoryRepository $categoryRepository): Response
     {
-        return $this->json($categoryRepository->findAll());
+        $navMenu = array_map(function ($item) {
+            return [
+                "label" => $item->getCategoryName(),
+                "link" => $this->generateUrl("app_category_show", [
+                    "id" => $item->getId(),
+                ]),
+            ];
+        }, $categoryRepository->findAll());
+        return $this->json($navMenu);
     }
 
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]

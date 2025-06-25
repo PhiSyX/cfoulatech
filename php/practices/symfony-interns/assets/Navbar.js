@@ -1,17 +1,22 @@
 export class Navbar {
-    async dropdown() {
-        let categories = await fetch("/category/all", {
+    /**
+     * @param {string} path
+     * @param {string} selector
+     * @returns {Promise<void>}
+     */
+    async dropdown(path, selector) {
+        let items = await fetch(path, {
             headers: {
                 'Accept': 'application/json',
             }
         }).then((response) => response.json());
 
-        let $dropdown = document.querySelector(".js-dropdown");
-        for (const category of categories) {
+        let $dropdown = document.querySelector(selector);
+        for (const item of items) {
             let $link = document.createElement("a");
             $link.classList.add("dropdown-item");
-            $link.textContent = category.categoryName;
-            $link.href = "/category/" + category.id;
+            $link.textContent = item.label;
+            $link.href = item.link;
 
             let $li = document.createElement("li");
             $li.append($link);

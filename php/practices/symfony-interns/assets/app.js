@@ -9,6 +9,4 @@ import './styles/app.css';
 import {Navbar} from "./Navbar.js";
 
 const navbar = new Navbar();
-await navbar.dropdown();
-
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+await navbar.dropdown("/category/all", ".js-nav-categories-dropdown-menu");
