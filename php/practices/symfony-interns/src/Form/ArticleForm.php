@@ -22,8 +22,7 @@ class ArticleForm extends AbstractType
                 'class' => Category::class,
                 'label' => 'Catégorie',
                 'choice_label' => 'categoryName',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

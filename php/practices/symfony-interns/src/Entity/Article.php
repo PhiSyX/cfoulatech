@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,7 +23,7 @@ class Article
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?\DateTime $publishedAt = null;
+    private ?DateTime $publishedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
@@ -61,12 +62,12 @@ class Article
         return $this;
     }
 
-    public function getPublishedAt(): ?\DateTime
+    public function getPublishedAt(): ?DateTime
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): static
+    public function setPublishedAt(DateTime $publishedAt): static
     {
         $this->publishedAt = $publishedAt;
 

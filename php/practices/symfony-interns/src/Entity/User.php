@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -47,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $birthday = null;
+    private ?DateTime $birthday = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
@@ -91,7 +92,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     /**
@@ -164,12 +165,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBirthday(): ?\DateTime
+    public function getBirthday(): ?DateTime
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTime $birthday): static
+    public function setBirthday(DateTime $birthday): static
     {
         $this->birthday = $birthday;
 
