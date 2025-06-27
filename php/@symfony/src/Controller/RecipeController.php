@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Entity\User;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
@@ -20,6 +21,12 @@ final class RecipeController extends AbstractController
 	#[Route("/recette", name: "app_recipe_index")]
 	public function index(Request $req, RecipeRepository $recipeRepository): Response
 	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if (!$user?->isVerified()) {
+			$this->addFlash("info", "Your email address is not verified.");
+		}
+
 		if ($req->query->has("duration")) {
 			$recipes = $recipeRepository->findFromSmallerDuration(
 				(int)$req->query->filter(
@@ -32,6 +39,7 @@ final class RecipeController extends AbstractController
 		} else {
 			$recipes = $recipeRepository->findAll();
 		}
+
 		return $this->render("recipe/index.html.twig", [
 			"recipes" => $recipes,
 		]);
@@ -85,18 +93,20 @@ final class RecipeController extends AbstractController
 			]);
 		}
 
-		$user = [
-			"firstname" => "Mike",
-			"username" => "PhiSyX",
-		];
-
 		//		dump($slug);
 		//		dump($id);
-		//		dump($user);
+
+		/** @var ?User $user */
+		$user = $this->getUser();
+		$canAlter = (
+			$user !== null &&
+			$user->getEmail() === $recipe->getUser()->getEmail()
+		);
 
 		return $this->render("recipe/show.html.twig", [
-			"user" => $user,
 			"recipe" => $recipe,
+			"user" => $user,
+			"canAlter" => $canAlter,
 		]);
 	}
 
@@ -139,6 +149,18 @@ final class RecipeController extends AbstractController
 	#[IsGranted("ROLE_USER")]
 	public function add(Request $req, EntityManagerInterface $em): Response
 	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if ($user) {
+			if (!$user->isVerified()) {
+				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				return $this->redirectToRoute("app_recipe_index");
+			}
+		} else {
+			$this->addFlash("error", "You must login to create a recipe !");
+			return $this->redirectToRoute("app_login");
+		}
+
 		$recipe = (new Recipe())
 			->setUser($this->getUser())
 			->setCreatedAt(new DateTimeImmutable())
@@ -180,6 +202,23 @@ final class RecipeController extends AbstractController
 	)]
 	public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
 	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if ($user) {
+			if (!$user->isVerified()) {
+				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				return $this->redirectToRoute("app_recipe_index");
+			}
+
+			if ($user->getEmail() !== $recipe->getUser()->getEmail()) {
+				$this->addFlash("error", "This recipe belongs to " . $recipe->getUser()->getFirstname() . ", you can't alter it");
+				return $this->redirectToRoute("app_recipe_index");
+			}
+		} else {
+			$this->addFlash("error", "You must login to create a recipe !");
+			return $this->redirectToRoute("app_login");
+		}
+
 		$form = $this->createForm(
 			RecipeType::class,
 			$recipe,
@@ -231,6 +270,23 @@ final class RecipeController extends AbstractController
 		EntityManagerInterface $em,
 	): Response
 	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if ($user) {
+			if (!$user->isVerified()) {
+				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				return $this->redirectToRoute("app_recipe_index");
+			}
+
+			if ($user->getEmail() !== $recipe->getUser()->getEmail()) {
+				$this->addFlash("error", "This recipe belongs to " . $recipe->getUser()->getFirstname() . ", you can't alter it");
+				return $this->redirectToRoute("app_recipe_index");
+			}
+		} else {
+			$this->addFlash("error", "You must login to create a recipe !");
+			return $this->redirectToRoute("app_login");
+		}
+
 		$title = $recipe->getTitle();
 		$em->remove($recipe);
 		$em->flush();

@@ -29,28 +29,30 @@
 		</p>
 
 		<footer>
-			<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">
-				{{ 'actions.edit' | trans }}
-			</a>
+			{% if canAlter %}
+				<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">
+					{{ 'actions.edit' | trans }}
+				</a>
 
-			{# Attention Faille CSRF
-			<a
-				href="{{ path('app_recipe_delete', { id: recipe.id }) }}"
-				class="btn btn-danger"
-				onclick="return confirm('Voulez-vous vraiment supprimer cette recette?')"
-			>
-				{{ 'actions.delete' | trans }}
-			</a>
-			#}
+				{# Attention Faille CSRF
+				<a
+					href="{{ path('app_recipe_delete', { id: recipe.id }) }}"
+					class="btn btn-danger"
+					onclick="return confirm('Voulez-vous vraiment supprimer cette recette?')"
+				>
+					{{ 'actions.delete' | trans }}
+				</a>
+				#}
 
-			<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="POST" class="d-none"></form>
-			<a
-				href="#"
-				class="btn btn-danger"
-				onclick="return confirm('Voulez-vous vraiment supprimer cette recette?') && this.previousElementSibling.submit()"
-			>
-				{{ 'actions.delete' | trans }}
-			</a>
+				<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="POST" class="d-none"></form>
+				<a
+					href="#"
+					class="btn btn-danger"
+					onclick="return confirm('Voulez-vous vraiment supprimer cette recette?') && this.previousElementSibling.submit()"
+				>
+					{{ 'actions.delete' | trans }}
+				</a>
+			{% endif %}
 
 			<a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">
 				{{ 'actions.back' | trans }}
