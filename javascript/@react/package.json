@@ -18,12 +18,12 @@
 	"devDependencies": {
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
-		"@vitejs/plugin-react": "^4.4.1",
+		"@vitejs/plugin-react": "catalog:",
 		"globals": "^16.0.0",
 		"vite": "catalog:",
-		"@testing-library/react": "^14.1.2",
+		"@testing-library/react": "^16.3.0",
 		"@testing-library/jest-dom": "^6.1.4",
-		"jsdom": "^22.1.0",
-		"vitest": "^0.34.6"
+		"jsdom": "^26.1.0",
+		"vitest": "^3.2.4"
 	}
 }

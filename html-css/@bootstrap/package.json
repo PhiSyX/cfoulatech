@@ -11,10 +11,10 @@
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.10",
 		"sass-embedded": "catalog:",
-		"vite": "^6.3.5"
+		"vite": "catalog:"
 	},
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
-		"bootstrap": "5.3.6"
+		"bootstrap": "catalog:"
 	}
 }

@@ -9,9 +9,9 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"vite": "^6.3.5"
+		"vite": "catalog:"
 	},
 	"dependencies": {
-		"bootstrap": "5.3.6"
+		"bootstrap": "catalog:"
 	}
 }
