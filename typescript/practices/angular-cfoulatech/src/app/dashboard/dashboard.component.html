@@ -1,0 +1,48 @@
+<h1>Bienvenue sur le dashboard</h1>
+
+<p>Vous êtes connecté avec le role "{{ role }}"</p>
+
+<section *ngIf="role === 'admin'">
+	<h2>Menu admin</h2>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<a [routerLink]="'/admin/manage/interns'">Les stagiaires</a>
+		</li>
+		<li class="list-group-item">
+			<a [routerLink]="'/admin/manage/trainers'">Les formateurs</a>
+		</li>
+		<li class="list-group-item">
+			<a [routerLink]="'/admin/manage/training'">Les formations</a>
+		</li>
+	</ul>
+</section>
+
+<section *ngIf="role === 'trainer'">
+	<h2>Menu Formateur</h2>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<a [routerLink]="'/trainers/my-courses'">Mes cours</a>
+		</li>
+		<li class="list-group-item">
+			<a [routerLink]="'/trainers/my-interns'">Mes stagiaires</a>
+		</li>
+		<li class="list-group-item">
+			<a [routerLink]="'/trainers/my-profile'">Mon profil</a>
+		</li>
+	</ul>
+</section>
+
+<section *ngIf="role === 'intern'">
+	<h2>Menu admin</h2>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<a [routerLink]="'/intern/my-profile'">Mon profil</a>
+		</li>
+		<li class="list-group-item">
+			<a [routerLink]="'/intern/my-training'">Mes Formations</a>
+		</li>
+	</ul>
+</section>
