@@ -16,7 +16,7 @@ if ($maybe_user_amount === false || !is_numeric($maybe_user_amount)) {
 	exit("Tu DOIS entrer un montant valide (une valeur entière ou décimale).");
 }
 
-$user_amount = (float) $maybe_user_amount;
+$user_amount = (float)$maybe_user_amount;
 
 echo display_output();
 

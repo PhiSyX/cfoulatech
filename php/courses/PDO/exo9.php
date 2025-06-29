@@ -5,13 +5,13 @@ require_once "./utils.php";
 
 $success = false;
 
-switch (sqlDriver()) {
+switch (get_sql_driver()) {
 	//
 	// En MariaBD, on peut directement faire ça.
 	//
 	case "mariadb":
-	{
-		$success = executeQuery("
+		{
+			$success = exec_query("
 			DELETE FROM articles
 			WHERE id_article = (
 				SELECT id_article FROM articles
@@ -19,26 +19,28 @@ switch (sqlDriver()) {
 				LIMIT 1,1
 			)
 		");
-	} break;
+		}
+		break;
 
 	//
 	// En MySQL, il faut séparer les deux requêtes et les executer une à une.
 	//
 	case "mysql":
-	{
-		$penultimate = fetchOne("
+		{
+			$penultimate = fetch_one("
 			SELECT id_article FROM articles
 			ORDER BY id_article DESC
 			LIMIT 1,1
 		");
 
-		$success = executeQuery("
+			$success = exec_query("
 			DELETE FROM articles
 			WHERE id_article = :id_article
 		", [
-			"id_article" => $penultimate->id_article,
-		]);
-	} break;
+				"id_article" => $penultimate->id_article,
+			]);
+		}
+		break;
 }
 
 if ($success) {

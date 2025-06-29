@@ -23,16 +23,16 @@ notes des élèves.
 
 ## Sortie attendue
 
-1. > firstname : Julien  
-   > lastname : Dunia  
+1. > firstname : Julien
+   > lastname : Dunia
    > notes : Moyenne 11.666666666667
 
-2. > firstname : Hakima  
-   > lastname : Darmouch  
+2. > firstname : Hakima
+   > lastname : Darmouch
    > notes : Moyenne 11
 
-3. > firstname : Christian  
-   > lastname : Bale  
+3. > firstname : Christian
+   > lastname : Bale
    > notes : Moyenne 10.3333333333
 
 ## Réflexion
@@ -57,14 +57,14 @@ afin de récupérer automatiquement le total des notes par élève.
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle foreach sur le tableau `<classes>`  
-Et que je veux récupérer chaque valeur `<élève>`  
-Et étant donné que j'utilise une boucle foreach sur le tableau `<élève>`  
-Et que je veux récupérer chaque clé `<élève_clé>` et chaque valeur `<élève_valeur>`  
-Et que la valeur `<élève_valeur>` n'est pas un tableau  
-Alors je veux afficher "`<élève_clé>`: `<élève_valeur>`"  
-Sinon je renomme `<élève_valeur>` par `<notes>`  
-Et je fais la somme des `<notes>` en le parcourant avec un `foreach`  
-Ensuite je divise la somme par le total des éléments des `<notes>`  
-Afin d'obtenir la moyenne `<moyenne>`  
+Étant donné que j'utilise une boucle foreach sur le tableau `<classes>`
+Et que je veux récupérer chaque valeur `<élève>`
+Et étant donné que j'utilise une boucle foreach sur le tableau `<élève>`
+Et que je veux récupérer chaque clé `<élève_clé>` et chaque valeur `<élève_valeur>`
+Et que la valeur `<élève_valeur>` n'est pas un tableau
+Alors je veux afficher "`<élève_clé>`: `<élève_valeur>`"
+Sinon je renomme `<élève_valeur>` par `<notes>`
+Et je fais la somme des `<notes>` en le parcourant avec un `foreach`
+Ensuite je divise la somme par le total des éléments des `<notes>`
+Afin d'obtenir la moyenne `<moyenne>`
 Et j'affiche "`<élève_clé>`: moyenne `<moyenne>`"

@@ -1,32 +1,32 @@
 <?php
 
-require_once "./Personne.php";
+require_once "./Person.php";
 
-$personne1 = new Personne("Julien", gender: "M", age: 34);
-$personne2 = new Personne("Sarah", gender: "F", age: 27);
-$personne3 = new Personne("Mohamed", gender: "M", age: 15);
-$personne4 = new Personne("Konchita", gender: "X", age: 40);
-$personne5 = new Personne("Bruce", gender: "M", age: 45);
+$person1 = new Person("Julien", gender: "M", age: 34);
+$person2 = new Person("Sarah", gender: "F", age: 27);
+$person3 = new Person("Mohamed", gender: "M", age: 15);
+$person4 = new Person("Konchita", gender: "X", age: 40);
+$person5 = new Person("Bruce", gender: "M", age: 45);
 
-// echo $personne1;
-// echo $personne2;
-// echo $personne3;
-// echo $personne4;
-// echo $personne5;
+// echo $person1;
+// echo $person2;
+// echo $person3;
+// echo $person4;
+// echo $person5;
 
-$personnes = [$personne1, $personne2, $personne3, $personne4, $personne5];
-foreach ($personnes as $personne) {
+$persons = [$person1, $person2, $person3, $person4, $person5];
+foreach ($persons as $personne) {
 	echo $personne;
 }
 
 echo "<br>";
 
-$p1 = $personne1;
-$p2 = $personne2;
+$p1 = $person1;
+$p2 = $person2;
 
-if ($p1->estPlusAgé($p2)) {
-	echo $p1->getPrénom() . " a " . $p1->getAge() . " ans ";
+if ($p1->isOlderThan($p2)) {
+	echo $p1->getFirstname() . " a " . $p1->getAge() . " ans ";
 	echo " et est plus âgée que ";
-	echo $p2->getPrénom() . " qui a " . $p2->getAge() . " ans";
+	echo $p2->getFirstname() . " qui a " . $p2->getAge() . " ans";
 	echo "<br>";
 }

@@ -8,6 +8,6 @@ echo $value;
 
 echo PHP_EOL;
 
-$number = (int) $value;
+$number = (int)$value;
 echo $value;
 echo PHP_EOL;

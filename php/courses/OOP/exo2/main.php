@@ -1,28 +1,28 @@
 <?php
 
-require_once "./Voiture.php";
+require_once "./Car.php";
 
-$v1 = new Voiture("Audi", "Noire", 1750.4, 10_000);
-var_dump($v1);
+$car1 = new Car("Audi", "Noire", 1750.4, 10_000);
+var_dump($car1);
 
-$v2 = new Voiture(marque: "BMW", poids: 1500.0, couleur: "Rouge", prix: 35_000);
-var_dump($v2);
+$car2 = new Car(brand: "BMW", weight: 1500.0, color: "Rouge", price: 35_000);
+var_dump($car2);
 
-$diff = abs($v1->getPrix() - $v2->getPrix());
-if ($v1->plusChère($v2)) {
+$diff = abs($car1->getPrice() - $car2->getPrice());
+if ($car1->isMoreExpensive($car2)) {
 	echo "La voiture <strong>" .
-		$v1->getCouleur() .
+		$car1->getColor() .
 		"</strong> est plus chère " .
 		"que la voiture <strong>" .
-		$v2->getCouleur() .
+		$car2->getColor() .
 		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 } else {
 	echo "La voiture <strong>" .
-		$v2->getCouleur() .
+		$car2->getColor() .
 		"</strong> est plus chère " .
 		"que la voiture <strong>" .
-		$v1->getCouleur() .
+		$car1->getColor() .
 		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 }

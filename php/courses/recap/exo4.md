@@ -29,7 +29,7 @@ nouvelle boucle plus adéquate et le tour est joué.
    Cette variable va contenir tous les mots entrés par l'utilisateur.
 
 2. Je crée une variable `$is_running` à laquelle je lui attribue une valeur
-   booléenne `true`. 
+   booléenne `true`.
 
 3. Je crée une boucle "TANT QUE" `while` avec comme condition `$is_running`.
 
@@ -42,5 +42,5 @@ nouvelle boucle plus adéquate et le tour est joué.
 
       2. Sinon j'ajoute le mot à la liste des mots. Et la boucle recommence...
 
-4. Je parcours le tableau des mots via une boucle `foreach` et je l'affiche avec 
+4. Je parcours le tableau des mots via une boucle `foreach` et je l'affiche avec
    la fonction `echo`.

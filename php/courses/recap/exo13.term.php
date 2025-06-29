@@ -4,8 +4,8 @@ require_once __DIR__ . "/../utils/instruction.php";
 
 echo instruction(
 	"Inviter l'utilisateur à entrer des chiffres " .
-		"et les afficher de manière décroissante. " .
-		"Afficher les chiffres de multiple de 2, 3 et 5",
+	"et les afficher de manière décroissante. " .
+	"Afficher les chiffres de multiple de 2, 3 et 5",
 	input: true,
 );
 
@@ -21,7 +21,7 @@ while (true) {
 		continue;
 	}
 
-	$user_figure = (int) $user_maybe_figure;
+	$user_figure = (int)$user_maybe_figure;
 
 	$user_figures[] = $user_figure;
 

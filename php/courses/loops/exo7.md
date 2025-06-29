@@ -12,10 +12,10 @@ Afficher tous les éléments d'un tableau associatif avec `foreach`
 
 ## Sortie attendue
 
-> prénom: Lara  
-> nom: Croft  
-> genre: f  
-> date anniversaire: 15-03-1995  
+> prénom: Lara
+> nom: Croft
+> genre: f
+> date anniversaire: 15-03-1995
 > ville: Londres
 
 ## Réflexion
@@ -24,6 +24,6 @@ On a vu comment utiliser la structure de contrôle [foreach](https://www.php.net
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle foreach sur le tableau `<user>`  
-Et que je veux récupérer chaque clé `<clé>` et chaque valeur `<valeur>`  
+Étant donné que j'utilise une boucle foreach sur le tableau `<user>`
+Et que je veux récupérer chaque clé `<clé>` et chaque valeur `<valeur>`
 Alors je veux afficher "`<clé>`: `<valeur>`"

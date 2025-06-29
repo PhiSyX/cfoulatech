@@ -42,7 +42,7 @@ On a vu comment utiliser la structure de contrôle [foreach](https://www.php.net
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle foreach sur le tableau `<mois de l'année>`  
-Et que je veux récupérer chaque indice `<indice>` et chaque valeur `<mois>`  
+Étant donné que j'utilise une boucle foreach sur le tableau `<mois de l'année>`
+Et que je veux récupérer chaque indice `<indice>` et chaque valeur `<mois>`
 Alors je veux afficher le mois de l'année `<mois>`
 Et afficher un tiret uniquement si l'indice `<indice>` n'est pas égal à la `<taille des mois de l'année>`

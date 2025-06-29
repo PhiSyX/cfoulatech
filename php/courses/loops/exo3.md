@@ -20,9 +20,9 @@ mots à chaque entrée, le mot "stop" permet de quitter le programme.
 
 ## Sortie attendue
 
-1. > Voici votre mot : "hello"  
-   > Voici votre mot : "world"  
-   > Voici votre mot : "hey"  
+1. > Voici votre mot : "hello"
+   > Voici votre mot : "world"
+   > Voici votre mot : "hey"
    > Voici votre mot : "stop"
 
 2. > Voici votre mot : "stop"
@@ -38,5 +38,5 @@ On a vu comment utiliser la structure de contrôle [while](https://www.php.net/m
 
 ## Plan d'action
 
-Lorsqu'on invite utilisateur à entrer un mot `<mot>`  
+Lorsqu'on invite utilisateur à entrer un mot `<mot>`
 Alors je veux afficher le message "Voici votre mot : `<mot>`"

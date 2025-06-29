@@ -4,26 +4,26 @@ $x = 18; // number: 18
 $y = 20; // number: 20
 
 // Égalité (==, !=, ===, !==)
-$boolExpr = 12 == 12; // boolean: true
-$boolExpr = 12 != 12; // boolean: false
+$bool_expr = 12 == 12; // boolean: true
+$bool_expr = 12 != 12; // boolean: false
 
-$boolExpr = $x == 18; // boolean: true
-$boolExpr = 20 == $y; // boolean: true
-$boolExpr = $x == $y; // boolean: false
+$bool_expr = $x == 18; // boolean: true
+$bool_expr = 20 == $y; // boolean: true
+$bool_expr = $x == $y; // boolean: false
 
 // Inférieur à (<, <=), Supérieur à (>, >=)
-$boolExpr  = 1 < 2; // boolean: true
-$boolExpr  = 2 < 2; // boolean: false
-$boolExpr  = 2 <= 2; // boolean: true
+$bool_expr = 1 < 2; // boolean: true
+$bool_expr = 2 < 2; // boolean: false
+$bool_expr = 2 <= 2; // boolean: true
 
-$boolExpr  = 3 > 2; // boolean: true
-$boolExpr  = 2 > 2; // boolean: false
-$boolExpr  = 2 >= 2; // boolean: false
+$bool_expr = 3 > 2; // boolean: true
+$bool_expr = 2 > 2; // boolean: false
+$bool_expr = 2 >= 2; // boolean: false
 
-$boolExpr = $x < $y; // boolean: true
-$boolExpr = $x > $y; // boolean: false
-$boolExpr = $y < $x; // boolean: false
-$boolExpr = $y > $x; // boolean: true
+$bool_expr = $x < $y; // boolean: true
+$bool_expr = $x > $y; // boolean: false
+$bool_expr = $y < $x; // boolean: false
+$bool_expr = $y > $x; // boolean: true
 
 $x = 20; // number: 18
 $y = 20; // number: 20

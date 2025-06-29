@@ -23,7 +23,7 @@ natives de PHP.
 | ------------------------ | ------------- | --------------- |
 | 5                        | 55            | 11              |
 
-> La somme des notes est `<somme attendu>`  
+> La somme des notes est `<somme attendu>`
 > La moyenne des notes est de `<moyenne attendu>`
 
 ## Réflexion
@@ -41,9 +41,9 @@ qui nous permettent entre autres de diviser (`/`).
 
 ## Plan d'action
 
-Lorsqu'on utilise la fonction `array_sum` sur le tableau des `<notes>`  
-Et que ce résultat nous donne bien `<somme attendu>`  
-Alors je veux la diviser par la taille des `<notes>` en utilisant la fonction native `count`  
-Et que ce résultat nous donne bien `<taille des notes attendu>`  
-Afin d'obtenir la moyenne de `<moyenne attendu>`  
+Lorsqu'on utilise la fonction `array_sum` sur le tableau des `<notes>`
+Et que ce résultat nous donne bien `<somme attendu>`
+Alors je veux la diviser par la taille des `<notes>` en utilisant la fonction native `count`
+Et que ce résultat nous donne bien `<taille des notes attendu>`
+Afin d'obtenir la moyenne de `<moyenne attendu>`
 Alors j'affiche le messages de la sortie attendue

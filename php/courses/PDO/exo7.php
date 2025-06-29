@@ -3,7 +3,7 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-$users = fetchAll("
+$users = fetch_all("
 	SELECT
 		firstname,
 		date_of_birth,

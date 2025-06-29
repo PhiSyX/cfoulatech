@@ -1,100 +1,100 @@
 <?php
 
-require_once "./Voiture.php";
+require_once "./Car.php";
 
-$v1 = new Voiture();
-var_dump($v1);
+$car1 = new Car();
+var_dump($car1);
 
 // NOTE: mauvaise pratique
-// $v1->couleur = "Rouge";
-// $v1->poids = 3_500;
-// $v1->prix = 10_000;
+// $car1->color = "Rouge";
+// $car1->weight = 3_500;
+// $car1->price = 10_000;
 
 // NOTE: bonne pratique
-$v1->setCouleur("Rouge");
-$v1->setPoids(3500);
-$v1->setPrix(10_000);
-var_dump($v1);
+$car1->setColor("Rouge");
+$car1->setWeight(3500);
+$car1->setPrice(10_000);
+var_dump($car1);
 
 // 4) Essayer d’appeler les deux méthodes que vous avez crée et de les afficher
 //    dans le navigateur.
 
 echo "<hr>";
 
-$v1->demarrer();
-$v1->accelerer();
+$car1->start();
+$car1->accelerate();
 
 echo "<hr>";
 
 // 5)
 
 // NOTE: mauvaise pratique
-// echo "Ma voiture est de couleur : <strong>" . $v1->couleur . "</strong> <br>";
-// echo "Elle a un poids de : <strong>" . $v1->poids . "</strong>Kg <br>";
-// echo "Elle a un prix de : <strong>" . $v1->prix . "</strong>Kg <br>";
+// echo "Ma voiture est de couleur : <strong>" . $car1->color . "</strong> <br>";
+// echo "Elle a un poids de : <strong>" . $car1->weight . "</strong>Kg <br>";
+// echo "Elle a un prix de : <strong>" . $car1->price . "</strong>Kg <br>";
 
 // NOTE: bonne pratique
 echo "Ma voiture est de couleur : <strong>" .
-	$v1->getCouleur() .
+	$car1->getColor() .
 	"</strong> <br>";
-echo "Elle a un poids de : <strong>" . $v1->getPoids() . "</strong>Kg <br>";
-echo "Elle a un prix de : <strong>" . $v1->getPrix() . "</strong>Kg <br>";
+echo "Elle a un poids de : <strong>" . $car1->getWeight() . "</strong>Kg <br>";
+echo "Elle a un prix de : <strong>" . $car1->getPrice() . "</strong>Kg <br>";
 
 // NOTE: mauvaise pratique
-// $v1->couleur = "Noire";
-// echo "Ma nouvelle couleur de voiture est : <strong>" . $v1->couleur . "</strong> <br>";
+// $car1->color = "Noire";
+// echo "Ma nouvelle couleur de voiture est : <strong>" . $car1->color . "</strong> <br>";
 
 // NOTE: bonne pratique
-$v1->setCouleur("Jaune");
+$car1->setColor("Jaune");
 echo "Ma nouvelle couleur de voiture est : <strong>" .
-	$v1->getCouleur() .
+	$car1->getColor() .
 	"</strong> <br>";
 
 // 6)
-$v1->setPrix(11_000);
-$v1->setPoids(3_800);
-var_dump($v1);
+$car1->setPrice(11_000);
+$car1->setWeight(3_800);
+var_dump($car1);
 
 // 9)
 
-echo "L'ancien prix de ma voiture <strong>" . $v1->getPrix() . "</strong>€<br>";
+echo "L'ancien prix de ma voiture <strong>" . $car1->getPrice() . "</strong>€<br>";
 
-$v1->addPrix(200);
+$car1->addPrice(200);
 
 echo "Le nouveau prix de ma voiture <strong>" .
-	$v1->getPrix() .
+	$car1->getPrice() .
 	"</strong>€<br>";
 
 echo "<hr>";
 
 // 10)
 
-$v2 = new Voiture();
-$v2->setCouleur("Verte");
-$v2->setPrix(5000);
-$v2->setPoids(600.95);
+$v2 = new Car();
+$v2->setColor("Verte");
+$v2->setPrice(5000);
+$v2->setWeight(600.95);
 
 echo "Ma voiture est de couleur : <strong>" .
-	$v2->getCouleur() .
+	$v2->getColor() .
 	"</strong> <br>";
-echo "Elle a un poids de : <strong>" . $v2->getPoids() . "</strong>Kg <br>";
-echo "Elle a un prix de : <strong>" . $v2->getPrix() . "</strong>Kg <br>";
+echo "Elle a un poids de : <strong>" . $v2->getWeight() . "</strong>Kg <br>";
+echo "Elle a un prix de : <strong>" . $v2->getPrice() . "</strong>Kg <br>";
 
-$diff = abs($v1->getPrix() - $v2->getPrix());
-if ($v1->getPrix() > $v2->getPrix()) {
+$diff = abs($car1->getPrice() - $v2->getPrice());
+if ($car1->getPrice() > $v2->getPrice()) {
 	echo "La voiture <strong>" .
-		$v1->getCouleur() .
+		$car1->getColor() .
 		"</strong> est plus chère " .
 		"que la voiture <strong>" .
-		$v2->getCouleur() .
+		$v2->getColor() .
 		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 } else {
 	echo "La voiture <strong>" .
-		$v2->getCouleur() .
+		$v2->getColor() .
 		"</strong> est plus chère " .
 		"que la voiture <strong>" .
-		$v1->getCouleur() .
+		$car1->getColor() .
 		"</strong>";
 	echo ", Il y a une différence de <strong>$diff</strong>€. <br>";
 }

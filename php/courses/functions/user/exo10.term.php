@@ -12,10 +12,10 @@ $div = function (int $l, int $r): int|string {
 
 function prompt_operands(string $term)
 {
-	$left_operand = (int) readline(
+	$left_operand = (int)readline(
 		"[$term]:  Veuillez introduire un premier nombre : "
 	);
-	$right_operand = (int) readline(
+	$right_operand = (int)readline(
 		"[$term]: Veuillez introduire un deuxième nombre : "
 	);
 	return [$left_operand, $right_operand];

@@ -1,6 +1,6 @@
 <?php
 
-require_once "./Personne.php";
+require_once "./Person.php";
 
 $json_file = file_get_contents("exo01.json");
 if ($json_file === false) {
@@ -13,7 +13,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 $personnes = array_map(
-	fn($item) => new Personne($item->prenom, $item->age, $item->genre),
+	fn($item) => new Person($item->prenom, $item->age, $item->genre),
 	$json_data
 );
 
@@ -54,7 +54,7 @@ try {
 	// Version plus courte
 	$placeholders = join(",", array_map(fn($_) => '(?,?,?)', $personnes));
 	$data_to_insert = array_reduce(
-		array_map(fn($p) => [$p->getPrenom(), $p->getAge(), $p->getGenre()], $personnes),
+		array_map(fn($p) => [$p->getFirstname(), $p->getAge(), $p->getGender()], $personnes),
 		fn($acc, $p) => array_merge($acc, $p),
 		[]
 	);

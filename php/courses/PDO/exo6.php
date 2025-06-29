@@ -12,7 +12,7 @@ $user = [
 	"weight_kg" => 80
 ];
 
-$success = insertQuery("users", $user);
+$success = insert_query("users", $user);
 
 if ($success) {
 	echo "L'utilisateur ";

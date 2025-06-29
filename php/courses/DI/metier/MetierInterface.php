@@ -2,5 +2,5 @@
 
 interface MetierInterface
 {
-    public function calcul(): float;
+	public function calcul(): float;
 }

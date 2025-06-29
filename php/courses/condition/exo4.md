@@ -37,7 +37,7 @@ valeurs égales, comme une série de IF.
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre une `<action>`  
-Alors je vérifie que son action `<action>` se trouve dans un cas de switch  
-Et j'affiche le message `<message attendu>` si c'est le cas  
+Lorsque l'utilisateur entre une `<action>`
+Alors je vérifie que son action `<action>` se trouve dans un cas de switch
+Et j'affiche le message `<message attendu>` si c'est le cas
 Sinon j'affiche le message d'erreur `<erreur attendu>` par défaut

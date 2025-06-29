@@ -4,7 +4,7 @@ require_once "./pdo.php";
 require_once "./utils.php";
 
 // Récupère tous les utilisateurs n'ayant pas crée d'articles.
-$users = fetchAll("
+$users = fetch_all("
 	SELECT
 		a.id_article,
 		u.id_user,
@@ -20,9 +20,8 @@ if (isset($_GET["id_user"])) {
 	$idUser = filter_input(INPUT_GET, "id_user", FILTER_VALIDATE_INT);
 }
 
-
 if (isset($_GET["id_user"])) {
-	$user = fetchOne(
+	$user = fetch_one(
 		"
 		SELECT
 			firstname,
@@ -41,7 +40,7 @@ if (isset($_GET["id_user"])) {
 }
 
 if (isset($_POST["delete_user"])) {
-	$success = executeQuery(
+	$success = exec_query(
 		"
 		DELETE FROM users
 		WHERE id_user = :id_user
@@ -64,101 +63,101 @@ if (isset($_POST["delete_user"])) {
 </head>
 
 <body>
-	<h1>Supprimer un utilisateur</h1>
+<h1>Supprimer un utilisateur</h1>
 
-	<form action="" method="get">
-		<div class="form-group">
-			<label for="id_user">ID utilisateur</label>
-			<input
-				type="number"
-				name="id_user"
-				id="id_user"
-				list="users"
-				<?php if (isset($_GET["id_user"])): ?>
+<form action="" method="get">
+	<div class="form-group">
+		<label for="id_user">ID utilisateur</label>
+		<input
+			type="number"
+			name="id_user"
+			id="id_user"
+			list="users"
+			<?php if (isset($_GET["id_user"])): ?>
 				value="<?= $idUser ?>"
-				<?php endif; ?>>
+			<?php endif; ?>>
 
-			<datalist id="users">
-				<?php foreach ($users as $xuser): ?>
-					<?php if ($xuser->id_article === NULL): ?>
-						<option value="<?= $xuser->id_user ?>">
-							<?= $xuser->firstname ?> <?= $xuser->lastname ?>)
-						</option>
-					<?php endif; ?>
-				<?php endforeach; ?>
-			</datalist>
-		</div>
+		<datalist id="users">
+			<?php foreach ($users as $xuser): ?>
+				<?php if ($xuser->id_article === NULL): ?>
+					<option value="<?= $xuser->id_user ?>">
+						<?= $xuser->firstname ?> <?= $xuser->lastname ?>)
+					</option>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</datalist>
+	</div>
 
-		<button type="submit">Retrouver l'utilisateur</button>
-	</form>
+	<button type="submit">Retrouver l'utilisateur</button>
+</form>
 
-	<section>
-		<?php if (isset($_GET["id_user"])) : ?>
-			<?php if (!$user): ?>
+<section>
+	<?php if (isset($_GET["id_user"])) : ?>
+		<?php if (!$user): ?>
 
-				<p class="alert alert-error">
-					Erreur, l'utilisateur à l'ID demandé
-					"<?= htmlspecialchars($idUser) ?>"
-					n'existe pas.
-				</p>
+			<p class="alert alert-error">
+				Erreur, l'utilisateur à l'ID demandé
+				"<?= htmlspecialchars($idUser) ?>"
+				n'existe pas.
+			</p>
 
-			<?php else: ?>
+		<?php else: ?>
 
-				<?php if (!isset($success)): ?>
+		<?php if (!isset($success)): ?>
 
-					<dialog id="delete-dialog" popover>
+			<dialog id="delete-dialog" popover>
 
-						<form action="?id_user=<?= $idUser ?>" method="post">
-							<input
-								type="hidden"
-								name="id_user"
-								value="<?= $idUser ?>">
+				<form action="?id_user=<?= $idUser ?>" method="post">
+					<input
+						type="hidden"
+						name="id_user"
+						value="<?= $idUser ?>">
 
-							<p>
-								Voulez-vous vraiment supprimer
+					<p>
+						Voulez-vous vraiment supprimer
 
-								<strong>
-									<?= $user->firstname ?>
-									<?= $user->lastname ?>
-								</strong>
+						<strong>
+							<?= $user->firstname ?>
+							<?= $user->lastname ?>
+						</strong>
 
-								?
-							</p>
+						?
+					</p>
 
-							<button type="submit" name="delete_user">
-								Oui
-							</button>
+					<button type="submit" name="delete_user">
+						Oui
+					</button>
 
-							<button type="button" popovertarget="delete-dialog" popovertargetaction="hide">
-								Annuler
-							</button>
-						</form>
-					</dialog>
+					<button type="button" popovertarget="delete-dialog" popovertargetaction="hide">
+						Annuler
+					</button>
+				</form>
+			</dialog>
 
-					<script>
-						let dialog = document.querySelector("#delete-dialog");
-						dialog.showPopover();
-					</script>
-				<?php endif ?>
-
-				<?php if (isset($success)): ?>
-					<?php if ($success): ?>
-						<p style="color: green">
-							L'utilisateur
-							<?= $idUser ?>
-							a bien été supprimé
-						</p>
-					<?php else: ?>
-						<p style="color: red">
-							Impossible de supprimer l'utilisateur
-							<?= $idUser ?>
-						</p>
-					<?php endif ?>
-				<?php endif ?>
-
-			<?php endif ?>
+			<script>
+				let dialog = document.querySelector("#delete-dialog");
+				dialog.showPopover();
+			</script>
 		<?php endif ?>
-	</section>
+
+		<?php if (isset($success)): ?>
+		<?php if ($success): ?>
+			<p style="color: green">
+				L'utilisateur
+				<?= $idUser ?>
+				a bien été supprimé
+			</p>
+		<?php else: ?>
+			<p style="color: red">
+				Impossible de supprimer l'utilisateur
+				<?= $idUser ?>
+			</p>
+		<?php endif ?>
+		<?php endif ?>
+
+		<?php endif ?>
+	<?php endif ?>
+</section>
 
 </body>
 

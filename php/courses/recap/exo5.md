@@ -16,7 +16,7 @@ précédent, sauf que je dois avoir un compteur au lieu de sauvegarder les mots.
    (`int`) 0.
 
 2. Je crée une variable `$is_running` à laquelle je lui attribue une valeur
-   booléenne `true`. 
+   booléenne `true`.
 
 3. Je crée une boucle "TANT QUE" `while` avec comme condition `$is_running`.
 

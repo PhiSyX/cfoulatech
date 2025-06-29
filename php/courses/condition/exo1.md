@@ -37,6 +37,6 @@ Il me suffit de trouver le bon opérateur pour chaque cas.
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre un `<age>` correct  
-Alors je vérifie si l'age `<age>` correspond à la majorité avec l'opérateur de comparaison `<opérateur>`  
+Lorsque l'utilisateur entre un `<age>` correct
+Alors je vérifie si l'age `<age>` correspond à la majorité avec l'opérateur de comparaison `<opérateur>`
 Et j'affiche le message `<message attendu>`

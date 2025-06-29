@@ -1,6 +1,6 @@
 <?php
 
-$user_hour = (int) readline("Entrez une heure : ");
+$user_hour = (int)readline("Entrez une heure : ");
 
 $opening_hours = 8;
 $time_to_eat = 12;

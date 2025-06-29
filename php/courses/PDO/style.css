@@ -43,6 +43,7 @@ button[type="submit"] {
 	border-radius: 3px;
 	cursor: pointer;
 }
+
 button[type="button"] {
 	padding: 8px;
 	background: black;

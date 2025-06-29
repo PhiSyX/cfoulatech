@@ -1,6 +1,6 @@
 <?php
 
-$user_action = (int) readline(
+$user_action = (int)readline(
 	"Entrez une action : (1 : Attaquer, 2 : Défendre, 3 : Se soigner, 4 : Fuir, 5 : Ne rien faire) : "
 );
 

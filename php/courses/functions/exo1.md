@@ -23,7 +23,7 @@ les fonctions natives de PHP.
 | ---------------- | ---------------- |
 | 5                | 18               |
 
-> Voici la valeur min : `<minimale attendu>`  
+> Voici la valeur min : `<minimale attendu>`
 > Voici la valeur max : `<maximale attendu>`
 
 ## Réflexion
@@ -35,8 +35,8 @@ la valeur maximale.
 
 ## Plan d'action
 
-Lorsqu'on utilise la fonction min sur `<notes>`  
+Lorsqu'on utilise la fonction min sur `<notes>`
 Alors je veux afficher le message "Voici la valeur min : `<minimale attendu>`"
 
-Lorsqu'on utilise la fonction max sur `<notes>`  
+Lorsqu'on utilise la fonction max sur `<notes>`
 Alors je veux afficher le message "Voici la valeur max : `<minimale attendu>`"

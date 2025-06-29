@@ -43,6 +43,6 @@ sortie, qui serait que le compteur soit supérieur ou égal au nombre total des
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle for avec un compteur initial à `1`  
-Et que l'étape d'incrémentation se fait par `2`  
+Étant donné que j'utilise une boucle for avec un compteur initial à `1`
+Et que l'étape d'incrémentation se fait par `2`
 Alors je veux afficher le mois de l'année `<mois>` en fonction du compteur qui représente l'indice `<indice>` du tableau `<mois de l'année>`

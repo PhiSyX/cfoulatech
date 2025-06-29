@@ -24,7 +24,7 @@ for ($i = 1; $i < count($actions) + 1; $i++) {
 	$actions_str .= " $i: $action, ";
 }
 
-$user_action = (int) readline("Entrez une action ($actions_str): ");
+$user_action = (int)readline("Entrez une action ($actions_str): ");
 
 $action = $actions_sentences[0];
 

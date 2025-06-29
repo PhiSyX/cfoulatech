@@ -14,5 +14,5 @@ function display_adult_sentence(int $age)
 	}
 }
 
-$age_utilisateur = (int) readline("Entrez votre âge : ");
+$age_utilisateur = (int)readline("Entrez votre âge : ");
 display_adult_sentence($age_utilisateur);

@@ -57,9 +57,9 @@ qui nous permettent entre autres d'avoir le reste d'une division via le modulo (
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre le nombre `<nombre>` en chaîne de caractère  
-Alors je converti cette chaîne en entier  
-S'il n'est pas possible de convertir  
-Alors je retourne une erreur provoquant l'arrêt du programme avec le message `<message attendu>`  
-Sinon je vérifie que le nombre converti `<nombre>` soit bien pair  
+Lorsque l'utilisateur entre le nombre `<nombre>` en chaîne de caractère
+Alors je converti cette chaîne en entier
+S'il n'est pas possible de convertir
+Alors je retourne une erreur provoquant l'arrêt du programme avec le message `<message attendu>`
+Sinon je vérifie que le nombre converti `<nombre>` soit bien pair
 Et j'affiche le message de sortie attendu `<message attendu>` en fonction du résultat de la comparaison

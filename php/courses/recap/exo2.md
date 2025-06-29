@@ -40,15 +40,15 @@ Affichez les prénoms les-uns en dessous des autres avec une boucle.
 
 ---
 
-> Le prénom est Mike  
-> Le prénom est Say  
-> Le prénom est Erica  
-> Le prénom est Jérémie  
-> Le prénom est Timothy  
-> Le prénom est Carina  
-> Le prénom est Zakaria  
-> Le prénom est Maxime  
-> Le prénom est Clovis  
+> Le prénom est Mike
+> Le prénom est Say
+> Le prénom est Erica
+> Le prénom est Jérémie
+> Le prénom est Timothy
+> Le prénom est Carina
+> Le prénom est Zakaria
+> Le prénom est Maxime
+> Le prénom est Clovis
 > Le prénom est Mohamed-Ali
 
 ## Réflexion
@@ -77,9 +77,9 @@ des données c'est quelque chose que je sais déjà faire, alors let's go !
 
 ## Plan d'action
 
-Étant donné que j'ai en ma possession des variables `$variables` avec la valeur de `<prénom>`  
-Et que je veux regrouper ces variables dans un seul tableau se nommant `<prénoms>`  
-Alors je crée une variable se nommant `<prénoms>`  
-Et j'y mets toutes les variables `$variables` que j'ai en ma possession afin d'obtenir une liste de prénoms  
-Lorsque je parcours le tableau `<prénoms>` avec une boucle `foreach`, je veux récupérer la valeur `<prénom>`  
+Étant donné que j'ai en ma possession des variables `$variables` avec la valeur de `<prénom>`
+Et que je veux regrouper ces variables dans un seul tableau se nommant `<prénoms>`
+Alors je crée une variable se nommant `<prénoms>`
+Et j'y mets toutes les variables `$variables` que j'ai en ma possession afin d'obtenir une liste de prénoms
+Lorsque je parcours le tableau `<prénoms>` avec une boucle `foreach`, je veux récupérer la valeur `<prénom>`
 Ensuite je veux afficher le message de sortie attendue pour chaque prénom `<prénom>`

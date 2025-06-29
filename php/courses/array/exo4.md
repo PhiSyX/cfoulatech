@@ -36,10 +36,10 @@ en sachant qu'aujourd'hui nous somme `Vendredi`.
 | -------------- | ----------- | ------------- | ---------------------- | ----------------- | ------------- |
 | "James"        | "Bond"      | "M"           | "07-07-2007"           | "jeudi"           | "Londres"     |
 
-> Prénom: `<prénom attendu>`  
-> Nom: `<nom attendu>`  
-> Genre: `<genre attendu>`  
-> Date de naissance: `<date naissance attendu>`  
+> Prénom: `<prénom attendu>`
+> Nom: `<nom attendu>`
+> Genre: `<genre attendu>`
+> Date de naissance: `<date naissance attendu>`
 > Jour d'hier: `<jour hier attendu>`
 > Ville: `<ville attendu>`
 
@@ -58,30 +58,30 @@ On a également vu qu'un tableau peut contenir un tableau, et que pour accéder
 
 ## Plan d'action
 
-Étant donnée que l'indice du tableau `<tab2dim>` commence à `0`  
+Étant donnée que l'indice du tableau `<tab2dim>` commence à `0`
 Étant donnée que l'indice du tableau `<jours de la semaine>` commence à `0`
 
-Lorsque j'accède à l'indice `0` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
-Et que la valeur `<valeur>` corresponde bien `<prénom attendu>`  
+Lorsque j'accède à l'indice `0` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
+Et que la valeur `<valeur>` corresponde bien `<prénom attendu>`
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue
 
-Lorsque j'accède à l'indice `1` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
-Et que la valeur `<valeur>` corresponde bien `<nom attendu>`  
+Lorsque j'accède à l'indice `1` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
+Et que la valeur `<valeur>` corresponde bien `<nom attendu>`
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue
 
-Lorsque j'accède à l'indice `2` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
-Et que la valeur `<valeur>` corresponde bien `<genre attendu>`  
+Lorsque j'accède à l'indice `2` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
+Et que la valeur `<valeur>` corresponde bien `<genre attendu>`
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue
 
-Lorsque j'accède à l'indice `3` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
-Et que la valeur `<valeur>` corresponde bien `<date naissance attendu>`  
+Lorsque j'accède à l'indice `3` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
+Et que la valeur `<valeur>` corresponde bien `<date naissance attendu>`
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue
 
-Lorsque j'accède à l'indice `4` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
+Lorsque j'accède à l'indice `4` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
 Et que j'accède à l'indice `3` de cette valeur `<valeur>`
-Et que le jour `<jour>` correspond bien `<jour hier attendu>`  
+Et que le jour `<jour>` correspond bien `<jour hier attendu>`
 Alors je veux afficher la valeur `<jour>` au format de la sortie attendue
 
-Lorsque j'accède à l'indice `5` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`  
-Et que la valeur `<valeur>` corresponde bien `<ville attendu>`  
+Lorsque j'accède à l'indice `5` du tableau `<tab2dim>` j'obtiens une valeur `<valeur>`
+Et que la valeur `<valeur>` corresponde bien `<ville attendu>`
 Alors je veux afficher la valeur `<valeur>` au format de la sortie attendue

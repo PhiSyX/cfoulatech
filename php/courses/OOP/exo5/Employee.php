@@ -6,12 +6,12 @@ class Employee
 	// Propriété //
 	// --------- //
 
-	private string $matricule;
-	private string $nom;
-	private string $prenom;
-	private DateTimeInterface $dateNaissance;
-	private DateTimeInterface $dateEmbauche;
-	private float $salaire;
+	private string $registration_number;
+	private string $lastname;
+	private string $firstname;
+	private DateTimeInterface $birthday_date;
+	private DateTimeInterface $hiring_date;
+	private float $salary;
 	private DateTimeInterface $now;
 
 	// ----------- //
@@ -24,20 +24,21 @@ class Employee
 	 * devient plus testable.
 	 */
 	public function __construct(
-		string $matricule,
-		string $nom,
-		string $prenom,
-		DateTimeInterface $dateNaissance,
-		DateTimeInterface $dateEmbauche,
-		float $salaire,
+		string            $registration_number,
+		string            $lastname,
+		string            $firstname,
+		DateTimeInterface $birthday_date,
+		DateTimeInterface $hiring_date,
+		float             $salary,
 		DateTimeInterface $now = new DateTime("now")
-	) {
-		$this->matricule = $matricule;
-		$this->nom = $nom;
-		$this->prenom = $prenom;
-		$this->dateNaissance = $dateNaissance;
-		$this->dateEmbauche = $dateEmbauche;
-		$this->salaire = $salaire;
+	)
+	{
+		$this->registration_number = $registration_number;
+		$this->lastname = $lastname;
+		$this->firstname = $firstname;
+		$this->birthday_date = $birthday_date;
+		$this->hiring_date = $hiring_date;
+		$this->salary = $salary;
 		$this->now = $now;
 	}
 
@@ -50,101 +51,101 @@ class Employee
 		$this->now = $now;
 	}
 
-	public function getMatricule(): string
+	public function getRegistrationNumber(): string
 	{
-		return $this->matricule;
+		return $this->registration_number;
 	}
 
-	public function setMatricule(string $matricule): void
+	public function setRegistrationNumber(string $registration_number): void
 	{
-		$this->matricule = $matricule;
+		$this->registration_number = $registration_number;
 	}
 
-	public function getNom(): string
+	public function getLastname(): string
 	{
-		return $this->nom;
+		return $this->lastname;
 	}
 
-	public function setNom(string $nom): void
+	public function setLastname(string $lastname): void
 	{
-		$this->nom = $nom;
+		$this->lastname = $lastname;
 	}
 
 	public function getPrenom(): string
 	{
-		return $this->prenom;
+		return $this->firstname;
 	}
 
-	public function setPrenom(string $prenom): void
+	public function setFirstname(string $firstname): void
 	{
-		$this->prenom = $prenom;
+		$this->firstname = $firstname;
 	}
 
-	public function getDateNaissance(): DateTime
+	public function getBirthdayDate(): DateTimeInterface
 	{
-		return $this->dateNaissance;
+		return $this->birthday_date;
 	}
 
-	public function setDateNaissance(DateTimeInterface $dateNaissance): void
+	public function setBirthdayDate(DateTimeInterface $birthday_date): void
 	{
-		$this->dateNaissance = $dateNaissance;
+		$this->birthday_date = $birthday_date;
 	}
 
-	public function getDateEmbauche(): DateTime
+	public function getHiringDate(): DateTimeInterface
 	{
-		return $this->dateEmbauche;
+		return $this->hiring_date;
 	}
 
-	public function setDateEmbauche(DateTimeInterface $dateEmbauche): void
+	public function setHiringDate(DateTimeInterface $hiring_date): void
 	{
-		$this->dateEmbauche = $dateEmbauche;
+		$this->hiring_date = $hiring_date;
 	}
 
-	public function getSalaire(): float
+	public function getSalary(): float
 	{
-		return $this->salaire;
+		return $this->salary;
 	}
 
-	public function setSalaire(float $salaire): void
+	public function setSalary(float $salary): void
 	{
-		$this->salaire = $salaire;
+		$this->salary = $salary;
 	}
 
 	// ------- //
-	// Méthode // -> API Publique
+	// Méthode // -> Publique
 	// ------- //
 
-	public function getAge(): int
+	public function increaseSalary(float $salary): void
 	{
-		return $this->dateNaissance->diff($this->now)->y;
-	}
+		$seniority = $this->getSeniority();
 
-	public function getAnciennete(): int
-	{
-		return $this->dateEmbauche->diff($this->now)->y;
-	}
+		$this->salary += $salary;
 
-	public function augmentationDuSalaire(float $salaire): void
-	{
-		$anciennete = $this->getAnciennete();
-
-		$this->salaire += $salaire;
-
-		if ($anciennete < 5) {
-			$this->salaire *= 1 + 2 / 100;
-		} elseif ($anciennete < 10) {
-			$this->salaire *= 1 + 5 / 100;
+		if ($seniority < 5) {
+			$this->salary *= 1 + 2 / 100;
+		} elseif ($seniority < 10) {
+			$this->salary *= 1 + 5 / 100;
 		} else {
-			$this->salaire *= 1 + 10 / 100;
+			$this->salary *= 1 + 10 / 100;
 		}
 	}
 
-	public function afficherEmployé(): string
+	public function getSeniority(): int
 	{
-		return "• Matricule : " . $this->matricule . " <br>" .
-			   "• Nom complet : " . $this->nom . " " . $this->prenom . " <br>" .
-			   "• Age : " . $this->getAge() . " ans <br>" .
-			   "• Ancienneté : " . $this->getAnciennete() . " ans <br>" .
-			   "• Salaire : " . $this->salaire . "€ <br><br>";
+		return $this->hiring_date->diff($this->now)->y;
+	}
+
+	public function display(): string
+	{
+		return "• Matricule : " . $this->registration_number . " <br>" .
+			"• Nom complet : " . $this->lastname . " " . $this->firstname . " <br>" .
+			"• Age : " . $this->getAge() . " ans <br>" .
+			"• Ancienneté : " . $this->getSeniority() . " ans <br>" .
+			"• Salaire : " . $this->salary . "€ <br><br>";
+	}
+
+	public function getAge(): int
+	{
+		return $this->birthday_date->diff($this->now)->y;
 	}
 }

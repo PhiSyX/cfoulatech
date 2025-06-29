@@ -23,11 +23,11 @@ Chaque note DOIT être noté sur 20.
 
 ## Sortie attendue
 
-> prénom: Lara  
-> nom: Croft  
-> genre: f  
-> date anniversaire: 15-03-1995  
-> notes: [ 18/20 13/20 5/20 9/20 10/20 ]  
+> prénom: Lara
+> nom: Croft
+> genre: f
+> date anniversaire: 15-03-1995
+> notes: [ 18/20 13/20 5/20 9/20 10/20 ]
 > ville: Londres
 
 ## Réflexion
@@ -38,13 +38,13 @@ On a vu que l'on NE PEUT PAS afficher un tableau avec la fonction [`echo`](https
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle foreach sur le tableau `<user>`  
-Et que je veux récupérer chaque clé `<clé>` et chaque valeur `<valeur>`  
-Et que la `<valeur>` n'est pas un tableau  
-Alors je veux afficher "`<clé>`: `<valeur>`"  
-Sinon étant donné que j'utilise une boucle foreach sur le tableau `<valeur>`  
-Alors je renomme `<valeur>` par `<notes>`  
-Et que je veux récupérer chaque valeur `<note>`  
+Étant donné que j'utilise une boucle foreach sur le tableau `<user>`
+Et que je veux récupérer chaque clé `<clé>` et chaque valeur `<valeur>`
+Et que la `<valeur>` n'est pas un tableau
+Alors je veux afficher "`<clé>`: `<valeur>`"
+Sinon étant donné que j'utilise une boucle foreach sur le tableau `<valeur>`
+Alors je renomme `<valeur>` par `<notes>`
+Et que je veux récupérer chaque valeur `<note>`
 Alors je veux afficher "`<clé>`: [ "
 Et je veux afficher "`<note>` / 20 "
 Et je veux afficher "]"

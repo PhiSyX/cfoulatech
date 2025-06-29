@@ -50,7 +50,7 @@ On a vu comment utiliser la structure de contrôle [foreach](https://www.php.net
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle foreach sur le tableau `<notes>`  
-Et que je veux récupérer chaque valeur `<note>`  
-Alors je veux comparer la note `<note>` avec `<moitié du score>` avec l'opérateur `<opérateur>`  
+Étant donné que j'utilise une boucle foreach sur le tableau `<notes>`
+Et que je veux récupérer chaque valeur `<note>`
+Alors je veux comparer la note `<note>` avec `<moitié du score>` avec l'opérateur `<opérateur>`
 Et afficher le message de sortie en fonction du résultat de la comparaison

@@ -41,7 +41,7 @@ nous permettant d'itérer sur un tableau facilement.
 
 ## Plan d'action
 
-Étant donné que la fonction `array_reverse` sur le tableau des `<notes>` inverse les éléments d'un tableau  
-Lorsque j'affiche le `1er` élément du tableau `<notes_inversées>`  
-Alors je veux que cela correspond au dernier élément du tableau des `<notes>`  
+Étant donné que la fonction `array_reverse` sur le tableau des `<notes>` inverse les éléments d'un tableau
+Lorsque j'affiche le `1er` élément du tableau `<notes_inversées>`
+Alors je veux que cela correspond au dernier élément du tableau des `<notes>`
 Et j'affiche la sortie sortie attendue avec un `foreach`

@@ -3,7 +3,7 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-$user5 = fetchOne("
+$user5 = fetch_one("
 	SELECT id_user FROM users
 	LIMIT 4,1
 ");
@@ -13,7 +13,7 @@ $user = [
 	"id_user" => $user5->id_user,
 ];
 
-$success = executeQuery(
+$success = exec_query(
 	"
 		UPDATE users
 		SET

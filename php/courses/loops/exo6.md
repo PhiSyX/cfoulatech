@@ -45,11 +45,11 @@ En fonction du résultat de la comparaison via le modulo:
 
 ---
 
-> 18 est pair  
-> 65220 est pair  
-> 78 est pair  
-> 48 est pair  
-> 2 est pair  
+> 18 est pair
+> 65220 est pair
+> 78 est pair
+> 48 est pair
+> 2 est pair
 > 112 est pair
 
 ## Réflexion
@@ -72,7 +72,7 @@ notamment le modulo pour trouver chaque nombre pair.
 
 ## Plan d'action
 
-Étant donné que j'utilise une boucle for avec un compteur initial à `0`  
-Et que l'étape d'incrémentation se fait par `1`  
-Alors je veux afficher le nombre `<nombre>` en fonction du compteur qui représente l'indice `<indice>` du tableau `<nombres>`  
+Étant donné que j'utilise une boucle for avec un compteur initial à `0`
+Et que l'étape d'incrémentation se fait par `1`
+Alors je veux afficher le nombre `<nombre>` en fonction du compteur qui représente l'indice `<indice>` du tableau `<nombres>`
 Uniquement si le nombre `<nombre>` est un nombre PAIR.

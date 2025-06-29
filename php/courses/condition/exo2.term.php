@@ -2,8 +2,8 @@
 
 $user_gender = readline("Quel est votre genre (M, F ou X) : ");
 
-$male       = 'M';
-$female     = 'F';
+$male = 'M';
+$female = 'F';
 $non_binary = 'X';
 
 if ($user_gender == $male) {

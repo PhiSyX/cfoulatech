@@ -8,7 +8,7 @@ echo instruction(
 	input: true,
 );
 
-$user_number = (int) readline("Quel est votre nombre ? ");
+$user_number = (int)readline("Quel est votre nombre ? ");
 
 // Solution 1:
 

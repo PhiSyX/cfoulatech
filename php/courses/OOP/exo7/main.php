@@ -1,11 +1,11 @@
 <?php
 
-require "./Humain.php";
-require "./Femme.php";
-require "./Homme.php";
+require "./Human.php";
+require "./Women.php";
+require "./Man.php";
 
-$femme = new Femme("Bleus", 2, "Épaté", "90D");
-$homme = new Homme("Brun", 2, "Droit", "Bouc");
+$women1 = new Women("Bleus", 2, "Épaté", "90D");
+$man1 = new Man("Brun", 2, "Droit", "Bouc");
 
-var_dump($femme);
-var_dump($homme);
+var_dump($women1);
+var_dump($man1);

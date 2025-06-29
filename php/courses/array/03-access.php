@@ -2,7 +2,7 @@
 
 require "./03-associative.php";
 
-echo $personne1["prenom"] . " " . $personne1["nom"];
+echo $person1["prenom"] . " " . $person1["nom"];
 
 echo "<br>";
 

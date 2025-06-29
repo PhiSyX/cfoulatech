@@ -1,23 +1,107 @@
 [
-	{ "prenom": "Erica", "age": 21, "genre": "F" },
-	{ "prenom": "Olga", "age": 22, "genre": "F" },
-	{ "prenom": "Clovis", "age": 23, "genre": "M" },
-	{ "prenom": "Say", "age": 24, "genre": "M" },
-	{ "prenom": "Carina", "age": 25, "genre": "F" },
-	{ "prenom": "Mohamed-Ali", "age": 26, "genre": "M" },
-	{ "prenom": "Mona", "age": 27, "genre": "F" },
-	{ "prenom": "Aïcha", "age": 28, "genre": "F" },
-	{ "prenom": "Zakaria", "age": 29, "genre": "M" },
-	{ "prenom": "Saif", "age": 31, "genre": "M" },
-	{ "prenom": "Mike", "age": 32, "genre": "M" },
-	{ "prenom": "Maxime", "age": 33, "genre": "M" },
-	{ "prenom": "Myriam", "age": 34, "genre": "F" },
-	{ "prenom": "Timothy", "age": 35, "genre": "M" },
-	{ "prenom": "Jeanne", "age": 36, "genre": "F" },
-	{ "prenom": "Josué", "age": 37, "genre": "M" },
-	{ "prenom": "Didier", "age": 38, "genre": "M" },
-	{ "prenom": "Asmae", "age": 39, "genre": "F" },
-	{ "prenom": "Aimable", "age": 40, "genre": "M" },
-	{ "prenom": "Désiré", "age": 41, "genre": "M" },
-	{ "prenom": "Josiane", "age": 42, "genre": "F" }
+	{
+		"prenom": "Erica",
+		"age": 21,
+		"genre": "F"
+	},
+	{
+		"prenom": "Olga",
+		"age": 22,
+		"genre": "F"
+	},
+	{
+		"prenom": "Clovis",
+		"age": 23,
+		"genre": "M"
+	},
+	{
+		"prenom": "Say",
+		"age": 24,
+		"genre": "M"
+	},
+	{
+		"prenom": "Carina",
+		"age": 25,
+		"genre": "F"
+	},
+	{
+		"prenom": "Mohamed-Ali",
+		"age": 26,
+		"genre": "M"
+	},
+	{
+		"prenom": "Mona",
+		"age": 27,
+		"genre": "F"
+	},
+	{
+		"prenom": "Aïcha",
+		"age": 28,
+		"genre": "F"
+	},
+	{
+		"prenom": "Zakaria",
+		"age": 29,
+		"genre": "M"
+	},
+	{
+		"prenom": "Saif",
+		"age": 31,
+		"genre": "M"
+	},
+	{
+		"prenom": "Mike",
+		"age": 32,
+		"genre": "M"
+	},
+	{
+		"prenom": "Maxime",
+		"age": 33,
+		"genre": "M"
+	},
+	{
+		"prenom": "Myriam",
+		"age": 34,
+		"genre": "F"
+	},
+	{
+		"prenom": "Timothy",
+		"age": 35,
+		"genre": "M"
+	},
+	{
+		"prenom": "Jeanne",
+		"age": 36,
+		"genre": "F"
+	},
+	{
+		"prenom": "Josué",
+		"age": 37,
+		"genre": "M"
+	},
+	{
+		"prenom": "Didier",
+		"age": 38,
+		"genre": "M"
+	},
+	{
+		"prenom": "Asmae",
+		"age": 39,
+		"genre": "F"
+	},
+	{
+		"prenom": "Aimable",
+		"age": 40,
+		"genre": "M"
+	},
+	{
+		"prenom": "Désiré",
+		"age": 41,
+		"genre": "M"
+	},
+	{
+		"prenom": "Josiane",
+		"age": 42,
+		"genre": "F"
+	}
 ]

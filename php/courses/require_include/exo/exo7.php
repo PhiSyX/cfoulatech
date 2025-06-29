@@ -26,11 +26,11 @@ function calc(int $op, float $l, float $r): float
 if (yes_or_no("Voulez-vous faire un calcul?")) {
 	$op = readline(
 		"Veuillez introduire une opération entre 1 et 4 (" .
-			ADD . " = Addition, " .
-			SUB . " = Soustraction, " .
-			MUL . " = Multiplication, " .
-			DIV . " = Division" .
-			") : "
+		ADD . " = Addition, " .
+		SUB . " = Soustraction, " .
+		MUL . " = Multiplication, " .
+		DIV . " = Division" .
+		") : "
 	);
 
 	if (!($op >= ADD && $op <= DIV)) {

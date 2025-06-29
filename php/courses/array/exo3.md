@@ -26,8 +26,8 @@ qu'aujourd'hui nous somme `lundi`.
 | ---------------- | ----------------- | ------------------- |
 | "lundi"          | "dimanche"        | "mardi"             |
 
-> Aujourd'hui, nous somme `<jour ajd attendu>`  
-> Hier, nous étions `<jour hier attendu>`  
+> Aujourd'hui, nous somme `<jour ajd attendu>`
+> Hier, nous étions `<jour hier attendu>`
 > Demain, nous serons `<jour demain attendu>`
 
 ## Réflexion
@@ -44,11 +44,11 @@ une erreur se produit.
 
 Étant donnée que l'indice du tableau `<jours de la semaine>` commence à `0`
 
-Et que le jour d'aujourd'hui est de `lundi` à savoir l'indice `0`  
+Et que le jour d'aujourd'hui est de `lundi` à savoir l'indice `0`
 Alors je veux afficher le `<jour>` au format de la sortie attendue
 
-Et que le jour d'hier est `dimanche` à savoir l'indice `6`  
+Et que le jour d'hier est `dimanche` à savoir l'indice `6`
 Alors je veux afficher le `<jour>` au format de la sortie attendue
 
-Et que le jour de demain est `mardi` à savoir l'indice `1`  
+Et que le jour de demain est `mardi` à savoir l'indice `1`
 Alors je veux afficher le `<jour>` au format de la sortie attendue

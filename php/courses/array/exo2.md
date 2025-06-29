@@ -22,7 +22,7 @@ Afficher le 2ème `<animal>` et le 4ème `<animal>` de la liste des `<animaux>`.
 | "chat"         |
 | "tortue"       |
 
-> Le 2ème animal est : `<animal attendu>`  
+> Le 2ème animal est : `<animal attendu>`
 > Le 4ème animal est : `<animal attendu>`
 
 ## Réflexion
@@ -39,10 +39,10 @@ une erreur se produit.
 
 Étant donnée que l'indice du tableau `<animaux>` commence à `0`
 
-Et que je veux afficher le `2ème` `<animal>`  
-Alors je dois accéder l'indice `1` du tableau `<animaux>`  
+Et que je veux afficher le `2ème` `<animal>`
+Alors je dois accéder l'indice `1` du tableau `<animaux>`
 Et ensuite afficher au format de la sortie attendue.
 
-Et que je veux afficher le `4ème` `<animal>`  
-Alors je dois accéder l'indice `3` du tableau `<animaux>`  
+Et que je veux afficher le `4ème` `<animal>`
+Alors je dois accéder l'indice `3` du tableau `<animaux>`
 Et ensuite afficher au format de la sortie attendue.

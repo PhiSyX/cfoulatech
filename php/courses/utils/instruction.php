@@ -2,10 +2,11 @@
 
 function instruction(
 	string $text,
-	mixed $data = null,
-	bool $input = false,
-	bool $output = false
-) {
+	mixed  $data = null,
+	bool   $input = false,
+	bool   $output = false
+)
+{
 	$trimmed_text = trim($text);
 	$instruction = <<<INSTRUCTION
     .-------------.

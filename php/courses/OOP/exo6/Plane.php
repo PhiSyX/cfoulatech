@@ -1,18 +1,19 @@
 <?php
 
-class Avion extends VehiculeSansRoues
+class Plane extends VehicleWithoutWheels
 {
 	// ----------- //
 	// Constructor //
 	// ----------- //
 
 	public function __construct(
-		string $nom,
-		string $marque,
-		float $vitesseMax,
-		int $capacite
-	) {
-		parent::__construct($nom, $marque, $vitesseMax, $capacite);
+		string $name,
+		string $brand,
+		float  $max_speed,
+		int    $capacity
+	)
+	{
+		parent::__construct($name, $brand, $max_speed, $capacity);
 	}
 
 	// ------- //

@@ -14,6 +14,7 @@ function mul(float $l, float $r): float
 {
 	return $l * $r;
 }
+
 function div(float $l, float $r): float
 {
 	return $l / $r;

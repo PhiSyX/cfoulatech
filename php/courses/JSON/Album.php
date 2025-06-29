@@ -2,27 +2,16 @@
 
 class Album implements JsonSerializable
 {
-	// --------- //
-	// Propriété //
-	// --------- //
-
-	private string $nom;
-	private int $nbPiste;
-	private DateTime $dateDeSortie;
-
 	// ----------- //
 	// Constructor //
 	// ----------- //
 
 	public function __construct(
-		string   $nom,
-		int      $nbPiste,
-		DateTime $dateDeSortie,
+		private string   $name,
+		private int      $total_tracks,
+		private DateTime $release_date,
 	)
 	{
-		$this->nom = $nom;
-		$this->nbPiste = $nbPiste;
-		$this->dateDeSortie = $dateDeSortie;
 	}
 
 
@@ -33,9 +22,9 @@ class Album implements JsonSerializable
 	public function jsonSerialize(): array
 	{
 		return [
-			"nom" => $this->nom,
-			"nbPiste" => $this->nbPiste,
-			"dateDeSortie" => $this->dateDeSortie,
+			"name" => $this->name,
+			"total_tracks" => $this->total_tracks,
+			"release_date" => $this->release_date,
 		];
 	}
 
@@ -43,33 +32,33 @@ class Album implements JsonSerializable
 	// Getter | Setter //
 	// --------------- //
 
-	public function getNom(): string
+	public function getName(): string
 	{
-		return $this->nom;
+		return $this->name;
 	}
 
-	public function setNom(string $nom): void
+	public function setName(string $name): void
 	{
-		$this->nom = $nom;
+		$this->name = $name;
 	}
 
-	public function getNbPiste(): int
+	public function getTotalTracks(): int
 	{
-		return $this->nbPiste;
+		return $this->total_tracks;
 	}
 
-	public function setNbPiste(int $nbPiste): void
+	public function setTotalTracks(int $total_tracks): void
 	{
-		$this->nbPiste = $nbPiste;
+		$this->total_tracks = $total_tracks;
 	}
 
-	public function getDateDeSortie(): DateTime
+	public function getReleaseDate(): DateTime
 	{
-		return $this->dateDeSortie;
+		return $this->release_date;
 	}
 
-	public function setDateDeSortie(DateTime $dateDeSortie): void
+	public function setReleaseDate(DateTime $release_date): void
 	{
-		$this->dateDeSortie = $dateDeSortie;
+		$this->release_date = $release_date;
 	}
 }

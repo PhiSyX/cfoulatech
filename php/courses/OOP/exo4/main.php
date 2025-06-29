@@ -1,38 +1,38 @@
 <?php
 
-require_once "./Personnage.php";
+require_once "./Character.php";
 
-$personnages = [
-	new Personnage("Ryu", 70, 24),
-	new Personnage("Ken", 60, 20),
-	new Personnage("Sub-Zero", 80, 48),
-	new Personnage("Jin Kazama", 100, 46),
-	new Personnage("Mario", 60, 42),
+$characters = [
+	new Character("Ryu", 70, 24),
+	new Character("Ken", 60, 20),
+	new Character("Sub-Zero", 80, 48),
+	new Character("Jin Kazama", 100, 46),
+	new Character("Mario", 60, 42),
 ];
 
-foreach ($personnages as $personnage) {
-	echo $personnage;
+foreach ($characters as $character) {
+	echo $character;
 }
 
-$p1 = $personnages[3];
-$p2 = $personnages[0];
+$p1 = $characters[3];
+$p2 = $characters[0];
 
 $winner = null;
 $loser = null;
 
-$nb_attack = 0;
+$total_attacks = 0;
 
 while ($winner === null) {
-	$p1->lanceAttaque($p2);
-	$p2->lanceAttaque($p1);
+	$p1->attack($p2);
+	$p2->attack($p1);
 
-	$nb_attack += 1;
+	$total_attacks += 1;
 
-	if ($p1->getVie() <= 0) {
+	if ($p1->getHealthPoint() <= 0) {
 		$winner = $p2;
 		$loser = $p1;
 		break;
-	} elseif ($p2->getVie() <= 0) {
+	} elseif ($p2->getHealthPoint() <= 0) {
 		$winner = $p1;
 		$loser = $p2;
 		break;
@@ -40,13 +40,13 @@ while ($winner === null) {
 }
 
 echo "Le personnage " .
-	$winner->getNom() .
+	$winner->getName() .
 	" a battu le personnage " .
-	$loser->getNom() .
-	" en $nb_attack coups. <br>";
+	$loser->getName() .
+	" en $total_attacks coups. <br>";
 
-if ($winner->getVie() <= 0) {
+if ($winner->getHealthPoint() <= 0) {
 	echo "Et n'a plus de vie, donc ça veut dire qu'il est mort en même temps.";
 } else {
-	echo "Et lui reste " . $winner->getVie() . " de points de vie";
+	echo "Et lui reste " . $winner->getHealthPoint() . " de points de vie";
 }

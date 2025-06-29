@@ -2,5 +2,5 @@
 
 interface DaoInterface
 {
-    public function getData(): float;
+	public function getData(): float;
 }

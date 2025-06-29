@@ -3,8 +3,8 @@
 require_once "./pdo.php";
 require_once "./utils.php";
 
-$describesUsers = describe("users");
-$users = fetchAll("SELECT * FROM users");
+$describes_users = describe("users");
+$users = fetch_all("SELECT * FROM users");
 ?>
 
 <?php if (count($users) > 0): ?>
@@ -13,21 +13,21 @@ $users = fetchAll("SELECT * FROM users");
 
 		<table>
 			<thead>
-				<tr>
-					<?php foreach ($describesUsers as $describe): ?>
-						<th><?= capitalize($describe->Field) ?></th>
-					<?php endforeach ?>
-				</tr>
+			<tr>
+				<?php foreach ($describes_users as $describe): ?>
+					<th><?= capitalize($describe->Field) ?></th>
+				<?php endforeach ?>
+			</tr>
 			</thead>
 
 			<tbody>
-				<?php foreach ($users as $user): ?>
-					<tr>
-						<?php foreach ($user as $val): ?>
-							<td><?= $val ?></td>
-						<?php endforeach ?>
-					</tr>
-				<?php endforeach ?>
+			<?php foreach ($users as $user): ?>
+				<tr>
+					<?php foreach ($user as $val): ?>
+						<td><?= $val ?></td>
+					<?php endforeach ?>
+				</tr>
+			<?php endforeach ?>
 			</tbody>
 		</table>
 	</section>

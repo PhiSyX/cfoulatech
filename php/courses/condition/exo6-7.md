@@ -61,6 +61,6 @@ Il me suffit de trouver le bon opérateur pour chaque cas.
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre un `<heure>` correct  
-Alors je vérifie si l'heure `<heure>` correspond aux heures d'ouverture avec l'opérateur de comparaison `<opérateur>`  
+Lorsque l'utilisateur entre un `<heure>` correct
+Alors je vérifie si l'heure `<heure>` correspond aux heures d'ouverture avec l'opérateur de comparaison `<opérateur>`
 Et j'affiche le message `<message attendu>` en fonction du résultat de la comparaison

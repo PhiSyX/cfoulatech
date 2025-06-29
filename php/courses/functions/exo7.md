@@ -56,12 +56,12 @@ nous permettant d'itérer sur un tableau facilement.
 
 ## Plan d'action
 
-Étant donné que la fonction `sort` sur le tableau des `<notes>` trie les éléments d'un tableau  
-Lorsque j'affiche le `1er` élément du tableau `<notes_croissantes>`  
-Alors je veux que cela correspond au `3ème` élément du tableau des `<notes>`  
+Étant donné que la fonction `sort` sur le tableau des `<notes>` trie les éléments d'un tableau
+Lorsque j'affiche le `1er` élément du tableau `<notes_croissantes>`
+Alors je veux que cela correspond au `3ème` élément du tableau des `<notes>`
 Et j'affiche la sortie attendue avec un `foreach`
 
-Étant donné que la fonction `rsort` sur le tableau des `<notes>` trie les éléments d'un tableau  
-Lorsque j'affiche le `1er` élément du tableau `<notes_décroissantes>`  
-Alors je veux que cela correspond au `1er` élément du tableau des `<notes>`  
+Étant donné que la fonction `rsort` sur le tableau des `<notes>` trie les éléments d'un tableau
+Lorsque j'affiche le `1er` élément du tableau `<notes_décroissantes>`
+Alors je veux que cela correspond au `1er` élément du tableau des `<notes>`
 Et j'affiche la sortie attendue avec un `foreach`

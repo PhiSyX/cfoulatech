@@ -4,16 +4,16 @@
  * Coupe les caractères "_" du paramètre $text, ce qui nous donnera un tableau
  *
  * EXEMPLE :
- * 		$text = "id_user";
+ *        $text = "id_user";
  * Ca nous donnera :
- * 		["id", "user"]
+ *        ["id", "user"]
  *
  * Ensuite ce que je fais, c'est que je parcours le tableau et j'ajoute dans une
  * variable string, la première lettre de chaque élément en majuscule.
  *
  * Ce qui nous donnera pour l'exemple plus haut :
  *
- * 		$str = "Id User"
+ *        $str = "Id User"
  *
  * Et ensuite je retourne $str.
  */
@@ -152,13 +152,13 @@ function select(string $name, string $label = null, $options = [], $attrs = []):
  */
 function describe(string $table): mixed
 {
-	return fetchAll("DESCRIBE $table");
+	return fetch_all("DESCRIBE $table");
 }
 
 /**
  * Récupère tous les enregistrements d'une requête.
  */
-function fetchAll(string $req, array $bindings = []): mixed
+function fetch_all(string $req, array $bindings = []): mixed
 {
 	global $pdo; // NEVER USE THIS, THIS IS FOR EXEMPLE
 
@@ -184,7 +184,7 @@ function fetchAll(string $req, array $bindings = []): mixed
 /**
  * Récupère un seul enregistrement d'une requête.
  */
-function fetchOne(string $req, array $bindings = []): mixed
+function fetch_one(string $req, array $bindings = []): mixed
 {
 	global $pdo; // NEVER USE THIS, THIS IS FOR EXEMPLE
 
@@ -206,7 +206,7 @@ function fetchOne(string $req, array $bindings = []): mixed
 /**
  * Execute une requête
  */
-function executeQuery(string $req, array $bindings = []): bool
+function exec_query(string $req, array $bindings = []): bool
 {
 	global $pdo; // NEVER USE THIS, THIS IS FOR EXEMPLE
 
@@ -224,7 +224,7 @@ function executeQuery(string $req, array $bindings = []): bool
  *
  * Cette fonction va effectuer une requête SQL: INSERT INTO ...
  */
-function insertQuery(string $table, array $data): bool
+function insert_query(string $table, array $data): bool
 {
 	// Tous les champs à ajouter, ex: "firstname, lastname"
 	$fields = join(",", array_keys($data));
@@ -232,15 +232,15 @@ function insertQuery(string $table, array $data): bool
 	// Toutes les variables à mettre dans la requête, ex: ":firstname, :lastname"
 	$bindings = join(",", array_map(fn($k) => ":$k", array_keys($data)));
 
-	return executeQuery("INSERT INTO $table ($fields) VALUES ($bindings)", $data);
+	return exec_query("INSERT INTO $table ($fields) VALUES ($bindings)", $data);
 }
 
 /**
  * Retourne le driver de connexion SQL
  */
-function sqlDriver()
+function get_sql_driver(): string
 {
-	$v = fetchOne("SELECT VERSION() AS version");
+	$v = fetch_one("SELECT VERSION() AS version");
 
 	if (strpos(strtolower($v->version), "mariadb")) {
 		return "mariadb";

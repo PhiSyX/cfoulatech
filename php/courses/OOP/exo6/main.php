@@ -1,75 +1,75 @@
 <?php
 
-require_once "./Vehicule.php";
+require_once "./Vehicle.php";
 
-require_once "./Avion.php";
-require_once "./Bateau.php";
+require_once "./Plane.php";
+require_once "./Boat.php";
 require_once "./Moto.php";
-require_once "./Velo.php";
+require_once "./Bike.php";
 
 $moto1 = new Moto("M1", "MV1", 2000, "Belgique", false);
 $moto2 = new Moto("M2", "MV2", 3500, "France", true);
 $moto3 = new Moto("M3", "MV3", 3200, "France", false);
 $moto4 = new Moto("M4", "MV4", 2200, "Italie", true);
 
-$velo1 = new Velo("V1", "VV1", 100, "UK", true);
-$velo2 = new Velo("V2", "VV2", 120, "Allemagne", false);
+$bike1 = new Bike("V1", "VV1", 100, "UK", true);
+$bike2 = new Bike("V2", "VV2", 120, "Allemagne", false);
 
-$avion1 = new Avion("A1", "AV1", 15000, 300);
-$avion2 = new Avion("A2", "AV2", 30000, 270);
+$plane1 = new Plane("A1", "AV1", 15000, 300);
+$plane2 = new Plane("A2", "AV2", 30000, 270);
 
-$bateau1 = new Bateau("B1", "BV1", 15000, 600, true, false);
-$bateau2 = new Bateau("B2", "BV2", 30000, 1040, false, true);
+$boat1 = new Boat("B1", "BV1", 15000, 600, true, false);
+$boat2 = new Boat("B2", "BV2", 30000, 1040, false, true);
 
 // 1)
-$moto1->faireWheeling();
-$velo1->faireWheeling();
+$moto1->doWheeling();
+$bike1->doWheeling();
 
 echo "<hr>";
 
 // 2)
-$bateau1->demarrer();
-echo $bateau1->amarrer();
-$bateau1->arreter();
+$boat1->start();
+echo $boat1->moor();
+$boat1->stop();
 
 echo "<hr>";
 
 // 3)
-$bateau2->arreter();
-$bateau2->demarrer();
-echo $bateau2->amarrer();
+$boat2->stop();
+$boat2->start();
+echo $boat2->moor();
 
 echo "<hr>";
 
 // 4)
 
-$vitesseVeloDiff = abs($velo1->getVitesseMax() - $velo2->getVitesseMax());
-if ($velo1->getVitesseMax() > $velo2->getVitesseMax()) {
-	echo "Le vélo le plus rapide est " . $velo1->getNom();
+$bike_speed_diff = abs($bike1->getMaxSpeed() - $bike2->getMaxSpeed());
+if ($bike1->getMaxSpeed() > $bike2->getMaxSpeed()) {
+	echo "Le vélo le plus rapide est " . $bike1->getName();
 } else {
-	echo "Le vélo le plus rapide est " . $velo2->getNom();
+	echo "Le vélo le plus rapide est " . $bike2->getName();
 }
-echo " avec une différence de $vitesseVeloDiff";
-var_dump($velo1, $velo2);
+echo " avec une différence de $bike_speed_diff";
+var_dump($bike1, $bike2);
 
 echo "<hr>";
 
 // 5)
 
-$capaciteAvionDiff = abs($avion1->getCapacite() - $avion2->getCapacite());
-if ($avion1->getCapacite() > $avion2->getVitesseMax()) {
-	echo "L'avion avec le plus de capacité est " . $avion1->getNom();
+$plane_capacity_diff = abs($plane1->getCapacity() - $plane2->getCapacity());
+if ($plane1->getCapacity() > $plane2->getMaxSpeed()) {
+	echo "L'avion avec le plus de capacité est " . $plane1->getName();
 } else {
-	echo "L'avion avec le plus de capacité est " . $avion2->getNom();
+	echo "L'avion avec le plus de capacité est " . $plane2->getName();
 }
-echo " avec une différence de $capaciteAvionDiff";
-var_dump($avion1, $avion2);
+echo " avec une différence de $plane_capacity_diff";
+var_dump($plane1, $plane2);
 
 echo "<hr>";
 
 // 6
 
-function estUnVehiculeConnecte(array $vehicules): void
+function isConnectedVehicle(array $vehicules): void
 {
 	echo "<ul>";
 	foreach ($vehicules as $vehicule) {
@@ -80,26 +80,26 @@ function estUnVehiculeConnecte(array $vehicules): void
 	echo "</ul>";
 }
 
-estUnVehiculeConnecte([$moto1, $moto2, $moto3, $moto4, $velo1, $velo2]);
+isConnectedVehicle([$moto1, $moto2, $moto3, $moto4, $bike1, $bike2]);
 
 echo "<hr>";
 
 // 7)
 
-function montrerVehiculeDuMemePays(array $vehicules): void
+function displayVehicleOfSameCountry(array $vehicles): void
 {
-	$pays = [];
+	$countries = [];
 
-	foreach ($vehicules as $vehicule) {
-		$pays[$vehicule->getPays()][] = $vehicule;
+	foreach ($vehicles as $vehicle) {
+		$countries[$vehicle->getPays()][] = $vehicle;
 	}
 
 	echo "<ul>";
-	foreach ($pays as $nomPays => $vehicules) {
-		echo "<li>Véhicule de " . $nomPays . "<br>";
+	foreach ($countries as $country_name => $vehicles) {
+		echo "<li>Véhicule de " . $country_name . "<br>";
 		echo "<ol>";
-		foreach ($vehicules as $vehicule) {
-			echo "<li>" . $vehicule->getNom() . "</li>";
+		foreach ($vehicles as $vehicle) {
+			echo "<li>" . $vehicle->getNom() . "</li>";
 		}
 		echo "</ol>";
 		echo "</li>";
@@ -107,39 +107,39 @@ function montrerVehiculeDuMemePays(array $vehicules): void
 	echo "</ul>";
 }
 
-montrerVehiculeDuMemePays([$moto1, $moto2, $moto3, $moto4]);
+displayVehicleOfSameCountry([$moto1, $moto2, $moto3, $moto4]);
 
 echo "<hr>";
 
 // 8)
-function afficherNomCapaciteVehicule(array $vehicules): array
+function vehicleOrderedByCapacityName(array $vehicles): array
 {
-	$ordres = [];
+	$order = [];
 
-	foreach ($vehicules as $vehicule) {
-		if (!isset($ordres[0])) {
-			array_push($ordres, $vehicule);
+	foreach ($vehicles as $vehicle) {
+		if (!isset($order[0])) {
+			array_push($order, $vehicle);
 			continue;
 		}
 
-		if ($vehicule->getCapacite() >= $ordres[0]->getCapacite()) {
-			array_unshift($ordres, $vehicule);
+		if ($vehicle->getCapacite() >= $order[0]->getCapacite()) {
+			array_unshift($order, $vehicle);
 		} else {
-			array_push($ordres, $vehicule);
+			array_push($order, $vehicle);
 		}
 	}
 
-	return $ordres;
+	return $order;
 }
 
 foreach (
-	afficherNomCapaciteVehicule([$avion1, $avion2, $bateau1, $bateau2])
-	as $vehicule
+	vehicleOrderedByCapacityName([$plane1, $plane2, $boat1, $boat2])
+	as $vehicle
 ) {
 	echo "Le véhicule " .
-		$vehicule->getNom() .
+		$vehicle->getNom() .
 		" comporte " .
-		$vehicule->getCapacite() .
+		$vehicle->getCapacite() .
 		" places<br>";
 }
 
@@ -148,7 +148,7 @@ echo "<hr>";
 // 10) Créez une fonction qui reçoit un tableau de tous les véhicules et me renvoi le véhicule qui
 // est le plus rapide. Il affichera son nom et sa vitesseMax.
 
-function vehiculeLePlusRapide(array $vehicules): Vehicule
+function findFastestVehicle(array $vehicules): Vehicule
 {
 	$rapide = array_shift($vehicules);
 
@@ -161,18 +161,18 @@ function vehiculeLePlusRapide(array $vehicules): Vehicule
 	return $rapide;
 }
 
-$rv = vehiculeLePlusRapide([
+$fastest_vehicle = findFastestVehicle([
 	$moto1,
 	$moto2,
 	$moto3,
 	$moto4,
-	$velo1,
-	$velo2,
-	$avion1,
-	$avion2,
-	$bateau1,
-	$bateau2,
+	$bike1,
+	$bike2,
+	$plane1,
+	$plane2,
+	$boat1,
+	$boat2,
 ]);
-echo "Le véhicule le plus rapide est : " . $rv->getNom() . "<br>";
+echo "Le véhicule le plus rapide est : " . $fastest_vehicle->getName() . "<br>";
 
 echo "<hr>";

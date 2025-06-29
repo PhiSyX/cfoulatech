@@ -53,7 +53,7 @@ Je dois utiliser l'opérateur de comparaison `===`.
 
 ## Plan d'action
 
-Lorsque l'utilisateur entre le mot `<mot>`  
-Alors j'inverse le mot `<mot>` en le mettant en minuscule  
-Et je les compares en utilisant l'opérateur de comparaison `===`  
+Lorsque l'utilisateur entre le mot `<mot>`
+Alors j'inverse le mot `<mot>` en le mettant en minuscule
+Et je les compares en utilisant l'opérateur de comparaison `===`
 Et j'affiche le message `<message attendu>` en fonction du résultat de la comparaison
