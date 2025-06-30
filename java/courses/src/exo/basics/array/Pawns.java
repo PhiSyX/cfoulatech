@@ -132,6 +132,7 @@ public class Pawns
 				case "left", "l", "gauche", "g" -> moveToLeft(count);
 
 				case "quit", "q" -> {
+					input.close();
 					return false;
 				}
 
@@ -144,6 +145,7 @@ public class Pawns
 			displayGrid();
 		}
 
+		input.close();
 		return true;
 	}
 

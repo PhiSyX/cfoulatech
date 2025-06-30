@@ -27,5 +27,7 @@ public class ScannerClass
 		System.out.println("Âge : " + age + " ans");
 		System.out.println("Ville : " + city);
 		System.out.println("Bienvenue à Cfoulatech !");
+
+		scanner.close();
 	}
 }

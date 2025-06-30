@@ -16,6 +16,8 @@ public class SimpleCalc
 		int rightOp = Integer.parseInt(scan.nextLine());
 
 		System.out.printf("Le résultat de %d + %d = %d%n", leftOp, rightOp, add(leftOp, rightOp));
+
+		scan.close();
 	}
 
 	public static int add(int l, int r)

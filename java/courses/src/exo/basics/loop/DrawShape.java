@@ -39,6 +39,8 @@ public class DrawShape
 
 		System.out.printf("Hauteur utilisée : %d%n%n", height);
 
+		scan.close();
+
 		return height;
 	}
 
@@ -60,6 +62,8 @@ public class DrawShape
 		}
 
 		System.out.printf("Chiffre utilisée : %d%n%n", digit);
+
+		scan.close();
 
 		return digit;
 	}
