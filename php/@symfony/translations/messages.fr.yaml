@@ -12,6 +12,9 @@ nav:
 recipe:
     add: "Ajouter la recette"
     create: "Créer une recette"
+    error:
+        cant_alter: "This recipe belongs to %name%, you can't alter it"
+        need_auth_alter: "You must login to create, delete or modify a recipe !"
     form:
         content: "Description de la recette"
         duration: "Durée en minute"
@@ -21,6 +24,10 @@ recipe:
     new: "Nouvelle recette"
     norecord: "Pas encore de recette"
     published_at_by: "Envoyé %relativeDate% par %user%"
+    success:
+        create: "La recette a bien été crée"
+        edit: "La recette a bien été modifié"
+        delete: "La recette %title% a bien été supprimé"
     updated_at: "Mis à jour %relativeDate%"
     text: "Recette"
     title:
@@ -37,3 +44,26 @@ registration:
         agreeTerms: "Accepter les termes"
         plainPassword: "Mot de passe"
         submit: "S'enregistrer"
+
+auth:
+    already_connected: "Vous êtes déjà connecté."
+
+login:
+    title: "Veuillez vous connecter"
+    field:
+        email: "Adresse e-mail"
+        password: "Mot de passe"
+    submit: "Se connecter"
+    forgot_password: "Mot de passe oublié ?"
+    create_account: "Créer un compte"
+
+user:
+    confirm_email: "Veuillez confirmer votre adresse e-mail"
+    check_your_email: "Vérifiez vos mails pour confirmer votre inscription"
+    error:
+        need_verify_email_access_denied: "You tried to access a page where you must be a verified user, but you are not :"
+        need_verify_email: "Votre adresse email n'a pas été vérifiée."
+    success:
+        verified: "Your email address has been verified."
+
+or: "ou"

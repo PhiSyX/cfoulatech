@@ -33,6 +33,13 @@ class RecipeType extends AbstractType
 			->addEventListener(FormEvents::PRE_SUBMIT, $this->preSubmit(...));
 	}
 
+	public function configureOptions(OptionsResolver $resolver): void
+	{
+		$resolver->setDefaults([
+			"data_class" => Recipe::class,
+		]);
+	}
+
 	private function preSubmit(PreSubmitEvent $event): void
 	{
 		$data = $event->getData();
@@ -42,12 +49,5 @@ class RecipeType extends AbstractType
 			$data["slug"] = $slug;
 			$event->setData($data);
 		}
-	}
-
-	public function configureOptions(OptionsResolver $resolver): void
-	{
-		$resolver->setDefaults([
-			"data_class" => Recipe::class,
-		]);
 	}
 }

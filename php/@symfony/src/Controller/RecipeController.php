@@ -9,22 +9,26 @@ use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use const FILTER_VALIDATE_INT;
 
 final class RecipeController extends AbstractController
 {
+	public function __construct(private TranslatorInterface $translator)
+	{
+	}
+
 	#[Route("/recette", name: "app_recipe_index")]
 	public function index(Request $req, RecipeRepository $recipeRepository): Response
 	{
 		/** @var ?User $user */
 		$user = $this->getUser();
-		if (!$user?->isVerified()) {
-			$this->addFlash("info", "Your email address is not verified.");
+		if ($user && !$user->isVerified()) {
+			$this->addFlash("info", $this->translator->trans("user.error.need_verify_email"));
 		}
 
 		if ($req->query->has("duration")) {
@@ -153,11 +157,11 @@ final class RecipeController extends AbstractController
 		$user = $this->getUser();
 		if ($user) {
 			if (!$user->isVerified()) {
-				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				$this->addFlash("error", $this->translator->trans("user.error.need_verify_email_access_denied"));
 				return $this->redirectToRoute("app_recipe_index");
 			}
 		} else {
-			$this->addFlash("error", "You must login to create a recipe !");
+			$this->addFlash("error", $this->translator->trans("recipe.error.need_auth_alter"));
 			return $this->redirectToRoute("app_login");
 		}
 
@@ -170,7 +174,7 @@ final class RecipeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em->persist($recipe);
 			$em->flush();
-			$this->addFlash("success", "La recette a bien été crée");
+			$this->addFlash("success", $this->translator->trans("recipe.success.create"));
 			return $this->redirectToRoute("app_recipe_index");
 		}
 		return $this->render("recipe/add.html.twig", [
@@ -206,16 +210,18 @@ final class RecipeController extends AbstractController
 		$user = $this->getUser();
 		if ($user) {
 			if (!$user->isVerified()) {
-				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				$this->addFlash("error", $this->translator->trans("user.error.need_verify_email_access_denied"));
 				return $this->redirectToRoute("app_recipe_index");
 			}
 
 			if ($user->getEmail() !== $recipe->getUser()->getEmail()) {
-				$this->addFlash("error", "This recipe belongs to " . $recipe->getUser()->getFirstname() . ", you can't alter it");
+				$this->addFlash("error", $this->translator->trans("recipe.error.cant_alter", [
+					'%name%' => $recipe->getUser()->getFirstname(),
+				]));
 				return $this->redirectToRoute("app_recipe_index");
 			}
 		} else {
-			$this->addFlash("error", "You must login to create a recipe !");
+			$this->addFlash("error", $this->translator->trans("recipe.error.need_auth_alter"));
 			return $this->redirectToRoute("app_login");
 		}
 
@@ -228,7 +234,7 @@ final class RecipeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$recipe->setUpdatedAt(new DateTimeImmutable());
 			$em->flush();
-			$this->addFlash("success", "Le recette a bien été modifié");
+			$this->addFlash("success", $this->translator->trans("recipe.success.edit"));
 			return $this->redirectToRoute("app_recipe_show", [
 				"id" => $recipe->getId(),
 				"slug" => $recipe->getSlug(),
@@ -274,23 +280,27 @@ final class RecipeController extends AbstractController
 		$user = $this->getUser();
 		if ($user) {
 			if (!$user->isVerified()) {
-				$this->addFlash("error", "You tried to access a page where you must be a verified user, but you are not :");
+				$this->addFlash("error", $this->translator->trans("user.error.need_verify_email_access_denied"));
 				return $this->redirectToRoute("app_recipe_index");
 			}
 
 			if ($user->getEmail() !== $recipe->getUser()->getEmail()) {
-				$this->addFlash("error", "This recipe belongs to " . $recipe->getUser()->getFirstname() . ", you can't alter it");
+				$this->addFlash("error", $this->translator->trans("recipe.error.cant_alter", [
+					'%name%' => $recipe->getUser()->getFirstname(),
+				]));
 				return $this->redirectToRoute("app_recipe_index");
 			}
 		} else {
-			$this->addFlash("error", "You must login to create a recipe !");
+			$this->addFlash("error", $this->translator->trans("recipe.error.need_auth_alter"));
 			return $this->redirectToRoute("app_login");
 		}
 
 		$title = $recipe->getTitle();
 		$em->remove($recipe);
 		$em->flush();
-		$this->addFlash("info", "Le recette " . $title . " a bien été supprimé");
+		$this->addFlash("info", $this->translator->trans("recipe.success.delete", [
+			"%title%" => $title,
+		]));
 		return $this->redirectToRoute("app_recipe_index");
 	}
 
