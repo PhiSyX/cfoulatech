@@ -118,10 +118,18 @@ public class Pawns
 			String[] parts = input.nextLine().trim().split("\\s");
 
 			String movement = parts[0];
+
+			/* NOTE: n'existe qu'en activant la preview.
 			int count = switch (parts.length) {
 				case int n when n > 1 -> Integer.parseInt(parts[1]);
 				default -> 1;
 			};
+		    */
+
+			int count = 1;
+			if (parts.length>1) {
+				count = Integer.parseInt(parts[1]);
+			}
 
 			System.out.println();
 
