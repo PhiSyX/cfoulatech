@@ -1,0 +1,79 @@
+/* Conteneur principal */
+.dashboard-container {
+	max-width: 800px;
+	margin: 40px auto;
+	padding: 30px;
+	background-color: #f7f9fc;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+	color: #333;
+}
+
+/* Titre principal */
+h2 {
+	text-align: center;
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+
+/* Info utilisateur */
+p {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.1rem;
+}
+
+/* Menus par rôle */
+.menu-section {
+	margin-bottom: 30px;
+	padding: 15px;
+	background-color: #fff;
+	border-left: 5px solid #007acc;
+	border-radius: 8px;
+}
+
+/* Titres de menu */
+.menu-section h3 {
+	color: #007acc;
+	margin-bottom: 10px;
+}
+
+/* Liste des liens */
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+ul li {
+	margin-bottom: 8px;
+}
+
+/* Liens stylisés */
+a {
+	text-decoration: none;
+	color: #007acc;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Bouton de déconnexion */
+button {
+	display: block;
+	margin: 40px auto 0;
+	background-color: #d9534f;
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	font-size: 1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #c9302c;
+}

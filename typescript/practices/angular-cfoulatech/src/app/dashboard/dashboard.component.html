@@ -1,48 +1,54 @@
-<h1>Bienvenue sur le dashboard</h1>
+<div class="dashboard-container">
+	<h1>Bienvenue sur le dashboard</h1>
 
-<p>Vous êtes connecté avec le role "{{ role }}"</p>
+	<p>Vous êtes connecté avec le role "{{ role }}"</p>
 
-<section *ngIf="role === 'admin'">
-	<h2>Menu admin</h2>
 
-	<ul class="list-group">
-		<li class="list-group-item">
-			<a [routerLink]="'/admin/manage/interns'">Les stagiaires</a>
-		</li>
-		<li class="list-group-item">
-			<a [routerLink]="'/admin/manage/trainers'">Les formateurs</a>
-		</li>
-		<li class="list-group-item">
-			<a [routerLink]="'/admin/manage/training'">Les formations</a>
-		</li>
-	</ul>
-</section>
+	<section *ngIf="role === 'admin'" class="menu-section">
+		<h2>Menu admin</h2>
 
-<section *ngIf="role === 'trainer'">
-	<h2>Menu Formateur</h2>
+		<ul>
+			<li>
+				<a routerLink="/admin/manage/interns">Gérer les stagiaires</a>
+			</li>
+			<li>
+				<a routerLink="/admin/manage/trainers">Gérer les formateurs</a>
+			</li>
+			<li>
+				<a routerLink="/admin/manage/training">Gérer les formations</a>
+			</li>
+		</ul>
+	</section>
 
-	<ul class="list-group">
-		<li class="list-group-item">
-			<a [routerLink]="'/trainers/my-courses'">Mes cours</a>
-		</li>
-		<li class="list-group-item">
-			<a [routerLink]="'/trainers/my-interns'">Mes stagiaires</a>
-		</li>
-		<li class="list-group-item">
-			<a [routerLink]="'/trainers/my-profile'">Mon profil</a>
-		</li>
-	</ul>
-</section>
+	<section *ngIf="role === 'trainer'" class="menu-section">
+		<h2>Menu Formateur</h2>
 
-<section *ngIf="role === 'intern'">
-	<h2>Menu admin</h2>
+		<ul>
+			<li>
+				<a routerLink="/trainers/my-courses">Gérer mes cours</a>
+			</li>
+			<li>
+				<a routerLink="/trainers/my-interns">Gérer mes stagiaires</a>
+			</li>
+			<li>
+				<a routerLink="/trainers/my-profile">Mon profil</a>
+			</li>
+		</ul>
+	</section>
 
-	<ul class="list-group">
-		<li class="list-group-item">
-			<a [routerLink]="'/intern/my-profile'">Mon profil</a>
-		</li>
-		<li class="list-group-item">
-			<a [routerLink]="'/intern/my-training'">Mes Formations</a>
-		</li>
-	</ul>
-</section>
+	<section *ngIf="role === 'intern'" class="menu-section">
+		<h2>Menu admin</h2>
+
+		<ul>
+			<li>
+				<a routerLink="/intern/my-profile">Mon profil</a>
+			</li>
+			<li>
+				<a routerLink="/intern/my-training">Gérer mes Formations</a>
+			</li>
+		</ul>
+	</section>
+
+	<button (click)="logout()">Se déconnecter</button>
+
+</div>

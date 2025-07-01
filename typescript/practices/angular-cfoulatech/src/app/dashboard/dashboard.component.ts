@@ -1,6 +1,6 @@
 import { NgIf } from "@angular/common";
 import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
 	selector: "app-dashboard",
@@ -11,5 +11,15 @@ import { RouterLink } from "@angular/router";
 })
 export class DashboardComponent
 {
-	role = globalThis.localStorage?.getItem("role") ?? "invité";
+	public role = globalThis.localStorage?.getItem("role") ?? "invité";
+
+	constructor(private router: Router)
+	{
+	}
+
+	public async logout(): Promise<void>
+	{
+		localStorage.removeItem("role");
+		await this.router.navigate(["/login"]);
+	}
 }

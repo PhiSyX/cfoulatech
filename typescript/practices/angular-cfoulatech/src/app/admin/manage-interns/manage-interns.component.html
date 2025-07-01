@@ -1,1 +1,59 @@
-<p>gestion-stagiaires works!</p>
+<div class="container">
+	<h1 class="my-5">Gestion des stagiaires</h1>
+
+	<form (submit)="handleSave()" class="formulaire">
+		<div class="input-group-lg">
+			<label for="name" class="form-label">Nom :</label>
+			<input [(ngModel)]="newInternModel.name" id="name" type="text" name="name" required class="form-control">
+		</div>
+
+		<div class="input-group-lg">
+			<label for="email" class="form-label">Email :</label>
+			<input [(ngModel)]="newInternModel.email" id="email" type="text" name="email" required class="form-control">
+		</div>
+
+		<div class="input-group-lg">
+			<label for="tel" class="form-label">Téléphone :</label>
+			<input [(ngModel)]="newInternModel.phone" id="tel" type="tel" name="tel" required class="form-control">
+		</div>
+
+		<div class="d-inline-flex gap-2 mt-3">
+			<button type="submit" class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}">
+				{{ editMode ? 'Modifier' : 'Ajouter' }}
+			</button>
+
+			<button type="reset" (click)="handleCancel()" class="btn btn-outline-secondary">
+				Annuler
+			</button>
+		</div>
+	</form>
+
+	<hr>
+
+	<table class="table table-striped table-bordered border-secondary-subtle">
+		<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Email</th>
+			<th>Tél</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr *ngFor="let stagiaire of interns; let idx = index">
+			<td>{{ stagiaire.name }}</td>
+			<td>{{ stagiaire.email }}</td>
+			<td>{{ stagiaire.phone }}</td>
+			<td class="d-flex gap-2">
+				<button type="button" (click)="handleEdit(idx)" class="btn btn-info">Modifier</button>
+				<button type="button" (click)="handleDelete(idx)" class="btn btn-danger">Supprimer</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<br>
+
+	<a routerLink="/dashboard" class="btn btn-secondary">Retour au dashboard</a>
+</div>
