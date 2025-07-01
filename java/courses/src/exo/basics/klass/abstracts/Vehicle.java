@@ -2,7 +2,7 @@ package exo.basics.klass.abstracts;
 
 public abstract class Vehicle
 {
-	private String brand;
+	private final String brand;
 
 	private int speedMax;
 
