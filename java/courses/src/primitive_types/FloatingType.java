@@ -1,4 +1,4 @@
-package basics.primitive_types;
+package primitive_types;
 
 public class FloatingType
 {

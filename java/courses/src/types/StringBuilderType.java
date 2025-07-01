@@ -1,4 +1,4 @@
-package basics.types;
+package types;
 
 public class StringBuilderType
 {

@@ -1,4 +1,4 @@
-package basics.klass;
+package klass;
 
 public class ObjectClass extends InheritClass
 {
