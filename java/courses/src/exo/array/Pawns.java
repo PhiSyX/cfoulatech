@@ -1,4 +1,4 @@
-package exo.basics.array;
+package exo.array;
 
 import java.util.Random;
 import java.util.Scanner;
