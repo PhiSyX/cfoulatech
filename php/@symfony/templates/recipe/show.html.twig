@@ -8,7 +8,7 @@
 		<h1>{{ recipe.title }}!</h1>
 
 		{% if recipe.imageName %}
-			<img src="{{ recipe.imageName }}"
+			<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}"
 				 height="750%"
 				 class="img-fluid"
 				 alt="Illustration de la recette {{ recipe.title }}"

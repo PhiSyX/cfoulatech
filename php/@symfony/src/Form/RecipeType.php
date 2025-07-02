@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RecipeType extends AbstractType
 {
@@ -24,9 +25,15 @@ class RecipeType extends AbstractType
 			->add("title", TextType::class, ["label" => "recipe.form.title"])
 			->add("slug", HiddenType::class)
 			->add("content", TextareaType::class, ["label" => "recipe.form.content"])
-			->add("imageName", URLType::class, [
+			->add("imageFile", VichImageType::class, [
 				"label" => "recipe.form.imageName",
-				"default_protocol" => "https",
+				"required" => false,
+				"allow_delete" => true,
+				"delete_label" => "Delete recipe image",
+				"download_uri" => true,
+				"image_uri" => true,
+				"asset_helper" => true,
+				"imagine_pattern" => "avatar_thumbnail",
 			])
 			->add("duration", NumberType::class, ["label" => "recipe.form.duration"])
 			->add("save", SubmitType::class, ["label" => "recipe.form.save"])

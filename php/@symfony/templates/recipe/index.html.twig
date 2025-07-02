@@ -22,7 +22,8 @@
 					</a>
 				</h1>
 				{% if recipe.imageName %}
-					<img src="{{ recipe.imageName }}" width="100%" height="300px"
+					<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" width="100%" height="300px"
+						 alt="Photo recette"
 						 style="min-height: 300px; object-fit: cover">
 				{% endif %}
 				<p class="py-2">

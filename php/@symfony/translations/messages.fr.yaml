@@ -18,7 +18,7 @@ recipe:
     form:
         content: "Description de la recette"
         duration: "Durée en minute"
-        imageName: "Lien de l'image"
+        imageName: "Image"
         save: "En cuisine"
         title: "Titre de la recette"
     new: "Nouvelle recette"
