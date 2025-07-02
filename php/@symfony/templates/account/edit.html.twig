@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'account.title.edit' | trans }}{% endblock %}
+
+{% block body %}
+	<div class="account-page">
+		<div class="row">
+			<div class="col-md-6 mx-auto">
+				<h1 class="text-center my-5">
+					{{ 'account.title.edit' | trans }}
+				</h1>
+
+				{{ form_start(userForm) }}
+				{{ form_row(userForm.firstname) }}
+				{{ form_row(userForm.lastname) }}
+
+				<p>
+					<button type="submit" class="btn btn-primary">
+						{{ 'account.title.edit' | trans }}
+					</button>
+				</p>
+
+				{{ form_end(userForm) }}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

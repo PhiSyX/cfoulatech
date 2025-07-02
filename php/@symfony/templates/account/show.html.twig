@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}{{ 'account.title.show' | trans }}{% endblock %}
 
 {% block body %}
-	<div class="account-page">
-		<h1>Mon compte</h1>
+	<div class="account-pag row">
+		<div class="col-md-6 mx-auto text-center">
+			<h1>{{ 'account.title.show' | trans }}</h1>
+			<p>{{ app.user.email }}</p>
 
-		{{ app.user.firstname }}
+			<h2>{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+
+			<p>{{ 'created_at' | trans }} {{ app.user.createdAt | date('d/m/y') }}</p>
+			<p>
+				<a href="{{ path('app_account_edit') }}" class="btn btn-primary btn-sm">
+					{{ 'account.edit' | trans }}
+				</a>
+			</p>
+		</div>
 	</div>
 {% endblock %}

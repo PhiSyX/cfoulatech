@@ -60,10 +60,23 @@ login:
 user:
     confirm_email: "Veuillez confirmer votre adresse e-mail"
     check_your_email: "Vérifiez vos mails pour confirmer votre inscription"
+    form:
+        firstname: "Prénom"
+        lastname: "Nom"
     error:
         need_verify_email_access_denied: "You tried to access a page where you must be a verified user, but you are not :"
         need_verify_email: "Votre adresse email n'a pas été vérifiée."
     success:
         verified: "Your email address has been verified."
 
+account:
+    need_login: "Vous devez vous connecter pour pouvoir accéder à votre compte !"
+    title:
+        show: "Mon compte"
+        edit: "Éditer mon compte"
+    edit: "Modifier mon compte"
+    success:
+        edit: "Votre compte a correctement été mis à jour"
+
 or: "ou"
+created_at: "Crée le"
