@@ -6,6 +6,13 @@
 	<div class="account-pag row">
 		<div class="col-md-6 mx-auto text-center">
 			<h1>{{ 'account.title.show' | trans }}</h1>
+
+			{% if app.user.imageName %}
+				<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="Image profil" class="img-fluid">
+			{% else %}
+				<img src="{{ asset('images/default-avatar.png') }}" alt="Image profil" class="img-fluid">
+			{% endif %}
+
 			<p>{{ app.user.email }}</p>
 
 			<h2>{{ app.user.firstname }} {{ app.user.lastname }}</h2>
