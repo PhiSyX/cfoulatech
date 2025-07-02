@@ -19,6 +19,15 @@ class UserForm extends AbstractType
 			->add("lastname", options: [
 				"label" => "user.form.lastname",
 			])
+			->add("imageFile", VichImageType::class, [
+				"required" => false,
+				"allow_delete" => true,
+				"delete_label" => "Delete profile image",
+				"download_uri" => true,
+				"image_uri" => true,
+				"asset_helper" => true,
+				"imagine_pattern" => "avatar_thumbnail",
+			])
 		;
 	}
 
