@@ -10,6 +10,9 @@ nav:
     register: "S'inscrire"
 
 recipe:
+    actions:
+        hints:
+            delete: "Voulez-vous vraiment supprimer cette recette ?"
     add: "Ajouter la recette"
     create: "Créer une recette"
     error:
@@ -34,9 +37,11 @@ recipe:
         add: "Création d'une recette"
         edit: "Edition de la recette"
         list: "Liste des recettes"
+        title_illustration: "Illustration de la recette %recipe_title%"
         welcome: "Bienvenue dans la liste des Recettes"
 
 registration:
+    title: "Register"
     form:
         firstname: "Prénom"
         lastname: "Nom"
@@ -44,6 +49,10 @@ registration:
         agreeTerms: "Accepter les termes"
         plainPassword: "Mot de passe"
         submit: "S'enregistrer"
+    confirm_email:
+        title: "Hi! Please confirm your email!"
+        paragraph1: "Please confirm your email address by clicking the following link:"
+        paragraph2: "This link will expire in %expire_in%."
 
 auth:
     already_connected: "Vous êtes déjà connecté."
@@ -56,6 +65,22 @@ login:
     submit: "Se connecter"
     forgot_password: "Mot de passe oublié ?"
     create_account: "Créer un compte"
+
+reset_password:
+    check_email:
+        - "If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password."
+        - "This link will expire in %expire_in%"
+    check_email_spam: "If you don't receive an email please check your spam folder or <a href='%forgot_password_route%'>try again</a>."
+    email:
+        - "To reset your password, please visit the following link"
+        - "This link will expire in %expire_in%."
+    request:
+        title: "Reset your password"
+        invite_put_email: "Enter your email address, and we will send you a link to reset your password."
+        submit: "Send password reset email"
+    reset:
+        title: "Reset your password"
+        submit: "Reset password"
 
 user:
     confirm_email: "Veuillez confirmer votre adresse e-mail"

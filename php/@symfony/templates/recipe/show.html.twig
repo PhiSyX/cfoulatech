@@ -11,7 +11,9 @@
 			<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}"
 				 height="750%"
 				 class="img-fluid"
-				 alt="Illustration de la recette {{ recipe.title }}"
+				 alt="{{ 'recipe.title.title_illustration' | trans({
+					 '%recipe_title%': recipe.title
+				 }) }}"
 			>
 		{% endif %}
 
@@ -49,7 +51,7 @@
 				<a
 					href="#"
 					class="btn btn-danger"
-					onclick="return confirm('Voulez-vous vraiment supprimer cette recette?') && this.previousElementSibling.submit()"
+					onclick="return confirm({{ 'recipe.actions.hints.delete' | trans }}) && this.previousElementSibling.submit()"
 				>
 					{{ 'actions.delete' | trans }}
 				</a>

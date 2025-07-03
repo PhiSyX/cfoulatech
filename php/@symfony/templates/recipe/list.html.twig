@@ -24,7 +24,7 @@
 						<button
 							class="btn btn-link text-danger"
 							type="submit"
-							onclick="return confirm('Voulez-vous vraiment supprimer cette recette ?')"
+							onclick="return confirm({{ 'recipe.actions.hints.delete' | trans }})"
 						>
 							{{ 'actions.delete' | trans }}
 						</button>
