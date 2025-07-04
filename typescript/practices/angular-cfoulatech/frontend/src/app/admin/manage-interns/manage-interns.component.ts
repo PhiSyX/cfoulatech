@@ -20,7 +20,7 @@ export class ManageInternsComponent implements OnInit
 		email: "",
 	};
 	public editMode: boolean = false;
-	public currentIndexEdit = -1;
+	public currentIndexEdit: NonNullable<Intern["id"]> | -1 = -1;
 
 	constructor(
 		private router: Router,
@@ -31,16 +31,31 @@ export class ManageInternsComponent implements OnInit
 
 	ngOnInit(): void
 	{
-		this.interns = this.internService.all();
+		this.loadInterns();
+	}
+
+	loadInterns()
+	{
+		this.internService.all().subscribe((interns) => {
+			this.interns = interns;
+		});
 	}
 
 	handleSave(): void
 	{
 		if (this.editMode) {
-			this.internService.update(this.currentIndexEdit, this.newInternModel);
+			this.internService.update(
+				this.currentIndexEdit.toString(),
+				this.newInternModel,
+			).subscribe((intern) => this.interns.map((currentIntern) => {
+				if (currentIntern.id === intern.id) return intern;
+				return currentIntern;
+			}));
 			this.editMode = false;
 		} else {
-			this.internService.create(this.newInternModel);
+			this.internService.create(this.newInternModel).subscribe((intern) => {
+				this.interns.push(intern);
+			});
 		}
 
 		this.newInternModel = {
@@ -50,17 +65,19 @@ export class ManageInternsComponent implements OnInit
 		};
 	}
 
-	handleEdit(idx: number): void
+	handleEdit(id: NonNullable<Intern["id"]>): void
 	{
-		this.newInternModel = { ...this.interns[idx] };
+		this.newInternModel = this.interns.find((intern) => intern.id === id)!;
 		this.editMode = true;
-		this.currentIndexEdit = idx;
+		this.currentIndexEdit = id;
 	}
 
-	handleDelete(idx: number): void
+	handleDelete(id: NonNullable<Intern["id"]>): void
 	{
 		if (globalThis.confirm("Voulez-vous vraiment supprimer le stagiaire ?")) {
-			this.internService.delete(idx)
+			this.internService.delete(id).subscribe(() => {
+				this.loadInterns();
+			})
 		}
 	}
 

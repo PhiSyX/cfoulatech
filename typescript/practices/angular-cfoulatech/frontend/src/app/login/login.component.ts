@@ -14,10 +14,15 @@ export class LoginComponent
 	public email = "";
 	public password = "";
 
-	private emailRole: Record<string, string> = {
+	private dbEmailRole: Record<string, string> = {
 		"admin@cfoulatech.com": "admin",
 		"trainer@cfoulatech.com": "trainer",
 		"intern@cfoulatech.com": "intern",
+	};
+	private dbEmailPassword: Record<string, string> = {
+		"admin@cfoulatech.com": "admin12345",
+		"trainer@cfoulatech.com": "trainer12345",
+		"intern@cfoulatech.com": "intern12345",
 	};
 
 	constructor(private router: Router)
@@ -26,11 +31,15 @@ export class LoginComponent
 
 	async login()
 	{
-		if (this.emailRole[this.email]) {
-			window.localStorage.setItem("role", this.emailRole[this.email]);
+		if (
+			this.dbEmailRole[this.email] &&
+			this.dbEmailPassword[this.email] === this.password
+		) {
+			window.localStorage.setItem("role", this.dbEmailRole[this.email]);
 			await this.router.navigate(["/dashboard"]);
 		} else {
-			alert(`Le mail "${this.email}" est invalide`);
+			this.password = "";
+			alert(`Identifiant incorrect pour "${this.email}"`);
 		}
 	}
 }

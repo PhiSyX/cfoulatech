@@ -41,13 +41,13 @@
 		</thead>
 
 		<tbody>
-		<tr *ngFor="let stagiaire of interns; let idx = index">
+		<tr *ngFor="let stagiaire of interns">
 			<td>{{ stagiaire.name }}</td>
 			<td>{{ stagiaire.email }}</td>
 			<td>{{ stagiaire.phone }}</td>
 			<td class="d-flex gap-2">
-				<button type="button" (click)="handleEdit(idx)" class="btn btn-info">Modifier</button>
-				<button type="button" (click)="handleDelete(idx)" class="btn btn-danger">Supprimer</button>
+				<button type="button" (click)="handleEdit(stagiaire.id!)" class="btn btn-info">Modifier</button>
+				<button type="button" (click)="handleDelete(stagiaire.id!)" class="btn btn-danger">Supprimer</button>
 			</td>
 		</tr>
 		</tbody>
