@@ -9,6 +9,8 @@
         <section>
             <h1>{{ 'todos.actions.add' | trans }}</h1>
 
+            {{ form_errors(createTodo) }}
+
             {{ form(createTodo) }}
         </section>
 
@@ -16,6 +18,7 @@
 
         <section>
             <h1>{{ 'todos.list' | trans }}</h1>
+
 
             <ol class="list-group">
                 {% for taskName, todo in todos %}
@@ -25,5 +28,9 @@
                 {% endfor %}
             </ol>
         </section>
+
+        <hr>
+
+        {{ form(clearTodos) }}
     </div>
 {% endblock %}

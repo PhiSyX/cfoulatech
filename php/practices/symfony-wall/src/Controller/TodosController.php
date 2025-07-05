@@ -26,6 +26,15 @@ final class TodosController extends AbstractController
             'method' => 'POST'
         ])->handleRequest($request);
 
+        $clearTodos = $this->createFormBuilder([])
+            ->setAction($this->generateUrl('app_todos_clear'))
+            ->setMethod('DELETE')
+            ->add('Clear', SubmitType::class, [
+                'label' => 'todos.actions.remove_all',
+                'attr' => ['class' => 'btn btn-danger'],
+            ])
+            ->getForm();
+
         $session = $request->getSession();
 
         if (!$session->has(self::SESSION_KEY)) {
@@ -36,6 +45,7 @@ final class TodosController extends AbstractController
 
         return $this->render('todo/index.html.twig', [
             'createTodo' => $createTodo,
+            'clearTodos' => $clearTodos,
             'todos' => $todos,
         ]);
     }
@@ -70,5 +80,14 @@ final class TodosController extends AbstractController
         }
 
         return $this->forward(TodosController::class . '::index');
+    }
+
+    #[Route('/todos/clear', name: 'app_todos_clear', methods: ['DELETE'])]
+    public function clear(Request $request): Response
+    {
+        $session = $request->getSession();
+        $session->remove(self::SESSION_KEY);
+        $this->addFlash("info", $this->translator->trans('todos.success.cleared'));
+        return $this->redirectToRoute('app_todos');
     }
 }

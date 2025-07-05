@@ -4,6 +4,7 @@ actions:
 todos:
     actions:
         add: "Ajouter une tâche"
+        remove_all: "Supprimer toutes les tâches"
     form:
         taskName: "Nom de la tâche"
         todo: "Tâche"
@@ -11,5 +12,6 @@ todos:
         already_exists: "La tâche '%taskName%' existe déjà."
     success:
         created: "La tâche '%taskName%' a bien été ajoutée"
+        cleared: "Les tâches ont bien été nettoyées"
     list: "Liste des taches"
     title: "Tâches"
