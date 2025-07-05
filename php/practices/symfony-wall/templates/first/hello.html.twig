@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Hello {{ fullname | title }}!
+{% endblock %}
+
+{% block body %}
+    <div class="page-hello">
+{#        <h1>Hello {{ firstname | title }} {{ lastname | title }}!</h1>#}
+        <h1>Hello {{ fullname | title }}!</h1>
+    </div>
+{% endblock %}
