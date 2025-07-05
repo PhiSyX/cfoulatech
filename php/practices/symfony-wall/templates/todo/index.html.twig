@@ -22,8 +22,13 @@
 
             <ol class="list-group">
                 {% for taskName, todo in todos %}
-                    <li class="list-group-item">
-                        <strong>{{ taskName }}</strong>: {{ todo }}
+                    <li class="list-group-item d-flex">
+                        <div class="flex-grow-1">
+                            <strong>{{ taskName }}</strong>: {{ todo }}
+                        </div>
+                        <div>
+                            <a href="{{ path('app_todo_edit', {'taskName': taskName}) }}">Éditer</a>
+                        </div>
                     </li>
                 {% endfor %}
             </ol>

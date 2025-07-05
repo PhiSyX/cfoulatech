@@ -1,5 +1,6 @@
 actions:
     add: "Ajouter"
+    save: "Sauvegarder"
 
 todos:
     actions:
@@ -10,8 +11,10 @@ todos:
         todo: "Tâche"
     error:
         already_exists: "La tâche '%taskName%' existe déjà."
+        not_found: "La tâche n'existe pas."
     success:
-        created: "La tâche '%taskName%' a bien été ajoutée"
+        created: "La tâche '%taskName%' a bien été ajoutée."
+        updated: "La tâche '%taskName%' a bien été mis à jour."
         cleared: "Les tâches ont bien été nettoyées"
     list: "Liste des taches"
     title: "Tâches"

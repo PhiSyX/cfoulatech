@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\TodoCreateType;
+use App\Form\TodoEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,5 +90,38 @@ final class TodosController extends AbstractController
         $session->remove(self::SESSION_KEY);
         $this->addFlash("info", $this->translator->trans('todos.success.cleared'));
         return $this->redirectToRoute('app_todos');
+    }
+
+    #[Route('/todos/{taskName}', name: 'app_todo_edit', methods: ['GET', 'PUT'])]
+    public function edit(Request $request, string $taskName): Response
+    {
+        $session = $request->getSession();
+
+        $todos = $session->get(self::SESSION_KEY);
+
+        if (!isset($todos[$taskName])) {
+            throw $this->createNotFoundException(
+                $this->translator->trans('todos.error.not_found'),
+            );
+        }
+
+        $editTodo = $this
+            ->createForm(TodoEditType::class, ["todo" => $todos[$taskName]], ['method' => 'PUT'])
+            ->handleRequest($request);
+
+        if ($editTodo->isSubmitted() && $editTodo->isValid()) {
+            $this->addFlash("success", $this->translator->trans('todos.success.updated', [
+                '%taskName%' => $editTodo->get('todo')->getData()
+            ]));
+
+            $todos[$taskName] = $editTodo->get('todo')->getData();
+            $session->set(self::SESSION_KEY, $todos);
+            return $this->redirectToRoute('app_todo_edit', ["taskName" => $taskName]);
+        }
+
+        return $this->render('todo/edit.html.twig', [
+            'editTodo' => $editTodo,
+            'taskName' => $taskName,
+        ]);
     }
 }

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Édition de la tâche {{ taskName }}{% endblock %}
+
+{% block body %}
+    <div class="page-todo-edit">
+        <h1>Édition de la tâche {{ taskName }}</h1>
+
+        {{ form(editTodo) }}
+    </div>
+{% endblock %}
+
