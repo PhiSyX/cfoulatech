@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+#[Route('/todos')]
 final class TodosController extends AbstractController
 {
     private const SESSION_KEY = 'todos.app_todos';
@@ -19,7 +20,7 @@ final class TodosController extends AbstractController
     {
     }
 
-    #[Route('/todos', name: 'app_todos')]
+    #[Route('/', name: 'app_todos')]
     public function index(Request $request): Response
     {
         $createTodo = $this->createForm(TodoCreateType::class, options: [
@@ -51,7 +52,7 @@ final class TodosController extends AbstractController
         ]);
     }
 
-    #[Route('/todos/new', name: 'app_todo_new', methods: ['POST'])]
+    #[Route('/new', name: 'app_todo_new', methods: ['POST'])]
     public function add(Request $request): Response
     {
         $form = $this->createForm(TodoCreateType::class)->handleRequest($request);
@@ -83,7 +84,7 @@ final class TodosController extends AbstractController
         return $this->forward(TodosController::class . '::index');
     }
 
-    #[Route('/todos/clear', name: 'app_todos_clear', methods: ['DELETE'])]
+    #[Route('/clear', name: 'app_todos_clear', methods: ['DELETE'])]
     public function clear(Request $request): Response
     {
         $session = $request->getSession();
@@ -92,7 +93,14 @@ final class TodosController extends AbstractController
         return $this->redirectToRoute('app_todos');
     }
 
-    #[Route('/todos/{taskName}', name: 'app_todo_edit', methods: ['GET', 'PUT'])]
+    #[Route(
+        '/{taskName}',
+        name: 'app_todo_edit',
+        requirements: [
+            'taskName' => '[a-zA-Z-][\w\d-]+'
+        ],
+        methods: ['GET', 'PUT'],
+    )]
     public function edit(Request $request, string $taskName): Response
     {
         $session = $request->getSession();
@@ -125,7 +133,13 @@ final class TodosController extends AbstractController
         ]);
     }
 
-    #[Route('/todos/{taskName}', name: 'app_todo_remove', methods: ['DELETE'])]
+    #[Route(
+        '/{taskName}',
+        name: 'app_todo_remove',
+        requirements: [
+            'taskName' => '[a-zA-Z-][\w\d-]+'
+        ],
+        methods: ['DELETE'])]
     public function remove(Request $request, string $taskName): Response
     {
         $session = $request->getSession();
