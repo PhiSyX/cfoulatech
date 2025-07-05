@@ -1,0 +1,15 @@
+actions:
+    add: "Ajouter"
+
+todos:
+    actions:
+        add: "Ajouter une tâche"
+    form:
+        taskName: "Nom de la tâche"
+        todo: "Tâche"
+    error:
+        already_exists: "La tâche '%taskName%' existe déjà."
+    success:
+        created: "La tâche '%taskName%' a bien été ajoutée"
+    list: "Liste des taches"
+    title: "Tâches"

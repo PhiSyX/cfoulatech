@@ -27,6 +27,18 @@
 <body>
 
 <div class="container py-5">
+    <section class="flashes-messages">
+        {% for type, messages in app.flashes(['danger', 'info', 'success', 'warning']) %}
+            {% if messages is not empty %}
+                <div class="alert alert-{{ type }}">
+                    {% for message in messages %}
+                        <p class="mb-0">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+
     {% block body %}{% endblock %}
 </div>
 

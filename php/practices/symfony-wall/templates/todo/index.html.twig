@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{# {% form_theme createTodo 'bootstrap_5_layout.html.twig' %} #}
+
+{% block title %}{{ 'todos.title' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="page-todos">
+        <section>
+            <h1>{{ 'todos.actions.add' | trans }}</h1>
+
+            {{ form(createTodo) }}
+        </section>
+
+        <hr>
+
+        <section>
+            <h1>{{ 'todos.list' | trans }}</h1>
+
+            <ol class="list-group">
+                {% for taskName, todo in todos %}
+                    <li class="list-group-item">
+                        <strong>{{ taskName }}</strong>: {{ todo }}
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </div>
+{% endblock %}
