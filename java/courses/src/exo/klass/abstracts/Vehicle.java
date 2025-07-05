@@ -1,4 +1,4 @@
-package exo.basics.klass.abstracts;
+package exo.klass.abstracts;
 
 public abstract class Vehicle
 {

@@ -1,4 +1,4 @@
-package exo.basics.klass.abstracts;
+package exo.klass.abstracts;
 
 public class Car extends Vehicle
 {

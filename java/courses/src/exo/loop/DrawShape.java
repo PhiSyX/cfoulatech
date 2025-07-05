@@ -1,4 +1,4 @@
-package exo.basics.loop;
+package exo.loop;
 
 import java.util.Scanner;
 

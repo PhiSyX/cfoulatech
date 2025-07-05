@@ -1,4 +1,4 @@
-package exo.basics.klass;
+package exo.klass;
 
 import java.util.Scanner;
 

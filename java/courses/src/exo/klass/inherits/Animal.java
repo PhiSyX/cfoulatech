@@ -1,4 +1,4 @@
-package exo.basics.klass.inherits;
+package exo.klass.inherits;
 
 public class Animal
 {

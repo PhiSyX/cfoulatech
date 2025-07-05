@@ -1,4 +1,4 @@
-package exo.basics.klass.polymorphisms;
+package exo.klass.polymorphisms;
 
 public class Duck extends Animal implements Flying, Swim
 {
