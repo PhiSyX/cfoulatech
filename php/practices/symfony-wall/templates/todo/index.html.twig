@@ -22,12 +22,23 @@
 
             <ol class="list-group">
                 {% for taskName, todo in todos %}
-                    <li class="list-group-item d-flex">
+                    <li class="list-group-item d-flex align-items-center">
                         <div class="flex-grow-1">
                             <strong>{{ taskName }}</strong>: {{ todo }}
                         </div>
-                        <div>
-                            <a href="{{ path('app_todo_edit', {'taskName': taskName}) }}">Éditer</a>
+
+                        <div class="d-flex gap-1">
+                            <a href="{{ path('app_todo_edit', {'taskName': taskName}) }}" class="btn btn-info">
+                                {{ 'actions.edit' | trans }}
+                            </a>
+
+                            <form action="{{ path('app_todo_remove', {'taskName': taskName}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button type="submit" class="btn btn-danger">
+                                    {{ 'actions.remove' | trans }}
+                                </button>
+                            </form>
                         </div>
                     </li>
                 {% endfor %}

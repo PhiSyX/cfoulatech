@@ -124,4 +124,27 @@ final class TodosController extends AbstractController
             'taskName' => $taskName,
         ]);
     }
+
+    #[Route('/todos/{taskName}', name: 'app_todo_remove', methods: ['DELETE'])]
+    public function remove(Request $request, string $taskName): Response
+    {
+        $session = $request->getSession();
+
+        $todos = $session->get(self::SESSION_KEY);
+
+        if (!isset($todos[$taskName])) {
+            throw $this->createNotFoundException(
+                $this->translator->trans('todos.error.not_found'),
+            );
+        }
+
+        $todos = array_filter($todos, fn($key) => $key !== $taskName, ARRAY_FILTER_USE_KEY);
+        $session->set(self::SESSION_KEY, $todos);
+
+        $this->addFlash("success", $this->translator->trans('todos.success.removed', [
+            '%taskName%' => $taskName
+        ]));
+
+        return $this->redirectToRoute('app_todos');
+    }
 }
