@@ -8,6 +8,7 @@ use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,18 @@ use const FILTER_VALIDATE_INT;
 
 final class RecipeController extends AbstractController
 {
+	const int RECIPES_PER_PAGE = 9;
+
 	public function __construct(private TranslatorInterface $translator)
 	{
 	}
 
 	#[Route("/recette", name: "app_recipe_index")]
-	public function index(Request $req, RecipeRepository $recipeRepository): Response
+	public function index(
+		Request            $req,
+		RecipeRepository   $recipeRepository,
+		PaginatorInterface $paginator,
+	): Response
 	{
 		/** @var ?User $user */
 		$user = $this->getUser();
@@ -43,6 +50,12 @@ final class RecipeController extends AbstractController
 		} else {
 			$recipes = $recipeRepository->findAll();
 		}
+
+		$recipes = $paginator->paginate(
+			$recipes,
+			$req->query->getInt("page", 1),
+			self::RECIPES_PER_PAGE,
+		);
 
 		return $this->render("recipe/index.html.twig", [
 			"recipes" => $recipes,

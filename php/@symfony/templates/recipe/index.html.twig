@@ -37,4 +37,8 @@
 			<p>{{ 'recipe.norecord' | trans }}</p>
 		{% endfor %}
 	</section>
+
+	<br>
+
+	{{ knp_pagination_render(recipes, view_params: { align:'center' }) }}
 {% endblock %}
