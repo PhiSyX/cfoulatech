@@ -1,31 +1,51 @@
 <div class="container">
 	<h1 class="my-5">Gestion des stagiaires</h1>
 
-	<form (submit)="handleSave()" class="formulaire">
+	<form *ngIf="!assignTrainerMode" (submit)="handleSave()">
+		<fieldset>
+			<legend>{{ editionMode ? 'Modifier' : 'Ajouter' }} stagiaire</legend>
+		</fieldset>
 		<div class="input-group-lg">
 			<label class="form-label" for="name">Nom :</label>
-			<input [(ngModel)]="newInternModel.name" class="form-control" id="name" name="name" required type="text">
+			<input [(ngModel)]="internModel.name" class="form-control" id="name" name="name" required type="text">
 		</div>
 
 		<div class="input-group-lg">
 			<label class="form-label" for="email">Email :</label>
-			<input [(ngModel)]="newInternModel.email" class="form-control" id="email" name="email" required type="text">
+			<input [(ngModel)]="internModel.email" class="form-control" id="email" name="email" required type="text">
 		</div>
 
 		<div class="input-group-lg">
 			<label class="form-label" for="tel">Téléphone :</label>
-			<input [(ngModel)]="newInternModel.phone" class="form-control" id="tel" name="tel" required type="tel">
+			<input [(ngModel)]="internModel.phone" class="form-control" id="tel" name="tel" required type="tel">
 		</div>
 
 		<div class="d-inline-flex gap-2 mt-3">
-			<button class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}" type="submit">
-				{{ editMode ? 'Modifier' : 'Ajouter' }}
+			<button class="btn {{ editionMode ? 'btn-info' : 'btn-primary' }}" type="submit">
+				{{ editionMode ? 'Modifier' : 'Ajouter' }}
 			</button>
 
 			<button (click)="handleCancel()" class="btn btn-outline-secondary" type="reset">
 				Annuler
 			</button>
 		</div>
+	</form>
+
+	<form *ngIf="assignTrainerMode" (submit)="handleSaveAssignTrainer()">
+		<fieldset class="row gap-2">
+			<legend>Affecter un formateur à <code>{{ internModel.name }}</code></legend>
+
+			<select [(ngModel)]="internModel.trainerId" name="formateurs" id="formateurs" class="form-select">
+				<option *ngFor="let trainer of trainers" [value]="trainer.id">
+					{{ trainer.name }}
+				</option>
+			</select>
+
+			<div class="d-flex gap-2">
+				<button type="submit" class="btn btn-primary">Affecter</button>
+				<button (click)="handleCancel()" type="reset" class="btn btn-secondary">Annuler</button>
+			</div>
+		</fieldset>
 	</form>
 
 	<hr>
@@ -36,6 +56,7 @@
 			<th>Nom</th>
 			<th>Email</th>
 			<th>Tél</th>
+			<th>Formateur</th>
 			<th>Actions</th>
 		</tr>
 		</thead>
@@ -45,9 +66,20 @@
 			<td>{{ intern.name }}</td>
 			<td>{{ intern.email }}</td>
 			<td>{{ intern.phone }}</td>
+			<td>{{ intern.trainer?.name }}</td>
+
 			<td class="d-flex gap-2">
-				<button (click)="handleEdit(intern.id!)" class="btn btn-info" type="button">Modifier</button>
-				<button (click)="handleDelete(intern.id!)" class="btn btn-danger" type="button">Supprimer</button>
+				<button (click)="handleEdit(intern.id!)" class="btn btn-info" type="button">
+					Modifier
+				</button>
+
+				<button (click)="handleDelete(intern.id!)" class="btn btn-danger" type="button">
+					Supprimer
+				</button>
+
+				<button (click)="handleAssignTrainer(intern.id!)" class="btn btn-info">
+					Affecter formateur
+				</button>
 			</td>
 		</tr>
 		</tbody>

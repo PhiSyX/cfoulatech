@@ -1,9 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { Intern } from '../../models/intern';
-import { InternService } from '../../services/intern.service';
-import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+
+import { Intern } from "../../models/intern";
+import { InternService } from "../../services/intern.service";
+
+import { Trainer } from "../../models/trainer";
+import { TrainerService } from "../../services/trainer.service";
 
 @Component({
 	selector: "app-manage-interns",
@@ -14,53 +18,73 @@ import { CommonModule } from '@angular/common';
 export class ManageInternsComponent implements OnInit
 {
 	public interns: Array<Intern> = [];
-	public newInternModel: Intern = {
+	public trainers: Array<Trainer> = [];
+
+	public internModel: Intern = {
 		name: "",
 		phone: "",
 		email: "",
 	};
-	public editMode: boolean = false;
-	public currentIndexEdit: NonNullable<Intern["id"]> | -1 = -1;
+
+	public editionMode: boolean = false;
+	public assignTrainerMode: boolean = false;
+
+	public selectedInternId: Intern["id"];
 
 	constructor(
-		private router: Router,
 		private internService: InternService,
+		private trainerService: TrainerService,
 	)
 	{
 	}
 
 	ngOnInit(): void
 	{
+		this.loadTrainers();
 		this.loadInterns();
 	}
 
 	loadInterns()
 	{
 		this.internService.all().subscribe((interns) => {
-			this.interns = interns;
+			this.interns = interns.map((intern) => {
+				intern.trainer = this.trainers.find((t) => t.id === intern.trainerId);
+				return intern;
+			});
 		});
+	}
+
+	loadTrainers()
+	{
+		this.trainerService.all().subscribe((trainers) => {
+			this.trainers = trainers;
+		})
 	}
 
 	handleSave(): void
 	{
-		if (this.editMode) {
+		if (!this.selectedInternId) {
+			return;
+		}
+
+		if (this.editionMode) {
 			this.internService.update(
-				this.currentIndexEdit.toString(),
-				this.newInternModel,
+				this.selectedInternId.toString(),
+				this.internModel,
 			).subscribe((intern) => {
 				this.interns = this.interns.map((currentIntern) => {
 					if (currentIntern.id === intern.id) return intern;
 					return currentIntern;
 				});
 			});
-			this.editMode = false;
+			this.editionMode = false;
 		} else {
-			this.internService.create(this.newInternModel).subscribe((intern) => {
+			this.internService.create(this.internModel).subscribe((intern) => {
 				this.interns.push(intern);
 			});
 		}
 
-		this.newInternModel = {
+		this.internModel = {
 			name: "",
 			phone: "",
 			email: "",
@@ -69,9 +93,9 @@ export class ManageInternsComponent implements OnInit
 
 	handleEdit(id: NonNullable<Intern["id"]>): void
 	{
-		this.newInternModel = { ...this.interns.find((intern) => intern.id === id)! };
-		this.editMode = true;
-		this.currentIndexEdit = id;
+		this.internModel = { ...this.interns.find((intern) => intern.id === id)! };
+		this.editionMode = true;
+		this.selectedInternId = id;
 	}
 
 	handleDelete(id: NonNullable<Intern["id"]>): void
@@ -85,16 +109,32 @@ export class ManageInternsComponent implements OnInit
 
 	handleCancel()
 	{
-		this.newInternModel = {
+		this.internModel = {
 			name: "",
 			phone: "",
 			email: "",
 		};
-		this.editMode = false;
+		this.selectedInternId = undefined;
+		this.editionMode = false;
+		this.assignTrainerMode = false;
 	}
 
-	async gotoDashboard(): Promise<void>
+	handleAssignTrainer(internId: string): void
 	{
-		await this.router.navigate(["/dashboard"]);
+		this.assignTrainerMode = true;
+		this.selectedInternId = internId;
+		this.internModel = { ...this.interns.find((intern) => intern.id === internId)! };
 	}
+
+	handleSaveAssignTrainer(): void
+	{
+		this.internService.assignTrainer(
+			this.internModel.id!,
+			this.internModel.trainerId!,
+		).subscribe(() => {
+			this.loadInterns();
+			this.handleCancel();
+		});
+	}
+
 }

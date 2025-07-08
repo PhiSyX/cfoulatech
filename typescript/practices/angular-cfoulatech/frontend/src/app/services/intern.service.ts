@@ -21,16 +21,25 @@ export class InternService
 
 	create(intern: Intern): Observable<Intern>
 	{
+		delete intern.trainer;
 		return this.http.post<Intern>(this.apiUrl, intern);
 	}
 
 	update(id: NonNullable<Intern["id"]>, intern: Intern): Observable<Intern>
 	{
+		delete intern.trainer;
 		return this.http.put<Intern>(`${this.apiUrl}/${id}`, intern);
 	}
 
 	delete(id: NonNullable<Intern["id"]>): Observable<void>
 	{
 		return this.http.delete<void>(`${this.apiUrl}/${id}`);
+	}
+
+	assignTrainer(internId: string, trainerId: string): Observable<Intern>
+	{
+		return this.http.patch<Intern>(`${this.apiUrl}/${internId}`, {
+			trainerId: trainerId,
+		});
 	}
 }
