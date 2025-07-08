@@ -47,10 +47,12 @@ export class ManageInternsComponent implements OnInit
 			this.internService.update(
 				this.currentIndexEdit.toString(),
 				this.newInternModel,
-			).subscribe((intern) => this.interns.map((currentIntern) => {
-				if (currentIntern.id === intern.id) return intern;
-				return currentIntern;
-			}));
+			).subscribe((intern) => {
+				this.interns = this.interns.map((currentIntern) => {
+					if (currentIntern.id === intern.id) return intern;
+					return currentIntern;
+				});
+			});
 			this.editMode = false;
 		} else {
 			this.internService.create(this.newInternModel).subscribe((intern) => {
@@ -67,7 +69,7 @@ export class ManageInternsComponent implements OnInit
 
 	handleEdit(id: NonNullable<Intern["id"]>): void
 	{
-		this.newInternModel = this.interns.find((intern) => intern.id === id)!;
+		this.newInternModel = { ...this.interns.find((intern) => intern.id === id)! };
 		this.editMode = true;
 		this.currentIndexEdit = id;
 	}

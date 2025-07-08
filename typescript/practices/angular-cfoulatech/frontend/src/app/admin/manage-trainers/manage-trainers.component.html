@@ -1,1 +1,71 @@
-<p>gestion-formateurs works!</p>
+<div class="container">
+	<h1 class="my-5">Gestion des formateurs</h1>
+
+	<form (submit)="handleSave()" class="formulaire">
+		<div class="input-group-lg">
+			<label class="form-label" for="name">Nom :</label>
+			<input [(ngModel)]="newTrainerModel.name" class="form-control" id="name" name="name" required type="text">
+		</div>
+
+		<div class="input-group-lg">
+			<label class="form-label" for="email">Email :</label>
+			<input [(ngModel)]="newTrainerModel.email" class="form-control" id="email" name="email" required
+				   type="text">
+		</div>
+
+		<div class="input-group-lg">
+			<label class="form-label" for="tel">Téléphone :</label>
+			<input [(ngModel)]="newTrainerModel.phone" class="form-control" id="tel" name="tel" required type="tel">
+		</div>
+
+		<div class="input-group-lg">
+			<label class="form-label" for="tel">Spécialité :</label>
+			<select [(ngModel)]="newTrainerModel.speciality" class="form-select" name="speciality" required>
+				<option value="Web">Web</option>
+				<option value="Tech">Tech</option>
+				<option value="Réseau">Réseau</option>
+			</select>
+		</div>
+
+		<div class="d-inline-flex gap-2 mt-3">
+			<button class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}" type="submit">
+				{{ editMode ? 'Modifier' : 'Ajouter' }}
+			</button>
+
+			<button (click)="handleCancel()" class="btn btn-outline-secondary" type="reset">
+				Annuler
+			</button>
+		</div>
+	</form>
+
+	<hr>
+
+	<table class="table table-striped table-bordered border-secondary-subtle">
+		<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Email</th>
+			<th>Tél</th>
+			<th>Spécialité</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr *ngFor="let trainer of trainers">
+			<td>{{ trainer.name }}</td>
+			<td>{{ trainer.email }}</td>
+			<td>{{ trainer.phone }}</td>
+			<td>{{ trainer.speciality }}</td>
+			<td class="d-flex gap-2">
+				<button (click)="handleEdit(trainer.id!)" class="btn btn-info" type="button">Modifier</button>
+				<button (click)="handleDelete(trainer.id!)" class="btn btn-danger" type="button">Supprimer</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<br>
+
+	<a class="btn btn-secondary" routerLink="/dashboard">Retour au dashboard</a>
+</div>

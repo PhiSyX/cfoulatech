@@ -3,26 +3,26 @@
 
 	<form (submit)="handleSave()" class="formulaire">
 		<div class="input-group-lg">
-			<label for="name" class="form-label">Nom :</label>
-			<input [(ngModel)]="newInternModel.name" id="name" type="text" name="name" required class="form-control">
+			<label class="form-label" for="name">Nom :</label>
+			<input [(ngModel)]="newInternModel.name" class="form-control" id="name" name="name" required type="text">
 		</div>
 
 		<div class="input-group-lg">
-			<label for="email" class="form-label">Email :</label>
-			<input [(ngModel)]="newInternModel.email" id="email" type="text" name="email" required class="form-control">
+			<label class="form-label" for="email">Email :</label>
+			<input [(ngModel)]="newInternModel.email" class="form-control" id="email" name="email" required type="text">
 		</div>
 
 		<div class="input-group-lg">
-			<label for="tel" class="form-label">Téléphone :</label>
-			<input [(ngModel)]="newInternModel.phone" id="tel" type="tel" name="tel" required class="form-control">
+			<label class="form-label" for="tel">Téléphone :</label>
+			<input [(ngModel)]="newInternModel.phone" class="form-control" id="tel" name="tel" required type="tel">
 		</div>
 
 		<div class="d-inline-flex gap-2 mt-3">
-			<button type="submit" class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}">
+			<button class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}" type="submit">
 				{{ editMode ? 'Modifier' : 'Ajouter' }}
 			</button>
 
-			<button type="reset" (click)="handleCancel()" class="btn btn-outline-secondary">
+			<button (click)="handleCancel()" class="btn btn-outline-secondary" type="reset">
 				Annuler
 			</button>
 		</div>
@@ -41,13 +41,13 @@
 		</thead>
 
 		<tbody>
-		<tr *ngFor="let stagiaire of interns">
-			<td>{{ stagiaire.name }}</td>
-			<td>{{ stagiaire.email }}</td>
-			<td>{{ stagiaire.phone }}</td>
+		<tr *ngFor="let intern of interns">
+			<td>{{ intern.name }}</td>
+			<td>{{ intern.email }}</td>
+			<td>{{ intern.phone }}</td>
 			<td class="d-flex gap-2">
-				<button type="button" (click)="handleEdit(stagiaire.id!)" class="btn btn-info">Modifier</button>
-				<button type="button" (click)="handleDelete(stagiaire.id!)" class="btn btn-danger">Supprimer</button>
+				<button (click)="handleEdit(intern.id!)" class="btn btn-info" type="button">Modifier</button>
+				<button (click)="handleDelete(intern.id!)" class="btn btn-danger" type="button">Supprimer</button>
 			</td>
 		</tr>
 		</tbody>
@@ -55,5 +55,5 @@
 
 	<br>
 
-	<a routerLink="/dashboard" class="btn btn-secondary">Retour au dashboard</a>
+	<a class="btn btn-secondary" routerLink="/dashboard">Retour au dashboard</a>
 </div>

@@ -3,5 +3,5 @@ export interface Trainer {
 	name: string;
 	email: string;
 	phone: string;
-	cursus: string;
+	speciality: string;
 }
