@@ -63,9 +63,17 @@ class Recipe
 	#[ORM\OneToMany(targetEntity: RecipeComment::class, mappedBy: 'recipe', orphanRemoval: true)]
 	private Collection $comments;
 
+	/**
+	 * @var Collection<int, User>
+	 */
+	#[ORM\ManyToMany(targetEntity: User::class)]
+	#[ORM\JoinTable("user_recipe_likes")]
+	private Collection $likes;
+
 	public function __construct()
 	{
 		$this->comments = new ArrayCollection();
+		$this->likes = new ArrayCollection();
 	}
 
 	public function getId(): ?int
@@ -209,6 +217,33 @@ class Recipe
 			}
 		}
 
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, User>
+	 */
+	public function getLikes(): Collection
+	{
+		return $this->likes;
+	}
+
+	public function addLike(User $like): static
+	{
+		if (!$this->likes->contains($like)) {
+			$this->likes->add($like);
+		}
+		return $this;
+	}
+
+	public function hasLikeFrom(User $user): bool
+	{
+		return $this->likes->contains($user);
+	}
+
+	public function removeLike(User $like): static
+	{
+		$this->likes->removeElement($like);
 		return $this;
 	}
 }

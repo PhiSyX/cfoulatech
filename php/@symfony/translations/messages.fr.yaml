@@ -36,6 +36,12 @@ recipe:
         imageName: "Image"
         save: "En cuisine"
         title: "Titre de la recette"
+    like:
+        button:
+            title: "Appuyer pour appliquer le like"
+    unlike:
+        button:
+            title: "Appuyer pour retirer le like"
     new: "Nouvelle recette"
     norecord: "Pas encore de recette"
     published_at_by: "Envoyé %relativeDate% par %user%"
@@ -43,6 +49,8 @@ recipe:
         created: "La recette a bien été crée"
         edited: "La recette a bien été modifié"
         deleted: "La recette %title% a bien été supprimé"
+        created_like: "Le like a bien été appliqué à la recette %title%"
+        deleted_like: "Le like a bien été supprimé de la recette %title%"
     updated_at: "Mis à jour %relativeDate%"
     text: "Recette"
     title:

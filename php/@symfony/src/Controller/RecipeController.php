@@ -22,7 +22,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RecipeController extends AbstractController
 {
-	public function __construct(private TranslatorInterface $translator)
+	public function __construct(private TranslatorInterface $translator, private EntityManagerInterface $em)
 	{
 	}
 
@@ -145,9 +145,8 @@ final class RecipeController extends AbstractController
 		methods: ["POST"],
 	)]
 	public function createCommentFor(
-		Recipe                 $recipe,
-		Request                $req,
-		EntityManagerInterface $em
+		Recipe  $recipe,
+		Request $req,
 	): Response
 	{
 		/** @var ?User $user */
@@ -169,8 +168,8 @@ final class RecipeController extends AbstractController
 			->handleRequest($req);
 
 		if ($recipeCommentForm->isSubmitted() && $recipeCommentForm->isValid()) {
-			$em->persist($recipeComment);
-			$em->flush();
+			$this->em->persist($recipeComment);
+			$this->em->flush();
 			$this->addFlash("success", $this->translator->trans("comment.success.created"));
 		}
 
@@ -189,7 +188,6 @@ final class RecipeController extends AbstractController
 	)]
 	public function deleteCommentFor(
 		RecipeCommentRepository $recipeCommentRepository,
-		EntityManagerInterface  $em,
 		Request                 $req,
 		int                     $rid,
 		int                     $cid,
@@ -221,8 +219,8 @@ final class RecipeController extends AbstractController
 			return $this->redirectToRoute("app_recipe_show", $showParams);
 		}
 
-		$em->remove($comment);
-		$em->flush();
+		$this->em->remove($comment);
+		$this->em->flush();
 
 		$this->addFlash("success", $this->translator->trans("comment.success.deleted"));
 		return $this->forward(RecipeController::class . "::show", $showParams);
@@ -266,7 +264,7 @@ final class RecipeController extends AbstractController
 
 	#[Route("/recette/create", name: "app_recipe_create", methods: ["GET", "POST"])]
 	#[IsGranted("ROLE_USER")]
-	public function add(Request $req, EntityManagerInterface $em): Response
+	public function add(Request $req): Response
 	{
 		/** @var ?User $user */
 		$user = $this->getUser();
@@ -287,8 +285,8 @@ final class RecipeController extends AbstractController
 
 		$form = $this->createForm(RecipeType::class, $recipe)->handleRequest($req);
 		if ($form->isSubmitted() && $form->isValid()) {
-			$em->persist($recipe);
-			$em->flush();
+			$this->em->persist($recipe);
+			$this->em->flush();
 			$this->addFlash("success", $this->translator->trans("recipe.success.created"));
 			return $this->redirectToRoute("app_recipe_index");
 		}
@@ -319,7 +317,7 @@ final class RecipeController extends AbstractController
 		name: "app_recipe_edit",
 		requirements: ["id" => "\d+"],
 	)]
-	public function edit(Request $request, Recipe $recipe, EntityManagerInterface $em): Response
+	public function edit(Request $request, Recipe $recipe): Response
 	{
 		/** @var ?User $user */
 		$user = $this->getUser();
@@ -348,7 +346,7 @@ final class RecipeController extends AbstractController
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$recipe->setUpdatedAt(new DateTimeImmutable());
-			$em->flush();
+			$this->em->flush();
 			$this->addFlash("success", $this->translator->trans("recipe.success.edited"));
 			return $this->redirectToRoute("app_recipe_show", [
 				"id" => $recipe->getId(),
@@ -368,15 +366,14 @@ final class RecipeController extends AbstractController
 		methods: ["PUT"]
 	)]
 	public function update(
-		int                    $id,
-		RecipeRepository       $recipeRepository,
-		EntityManagerInterface $em,
+		int              $id,
+		RecipeRepository $recipeRepository,
 	): Response
 	{
 		$recipe = $recipeRepository->find($id);
 		$recipe->setTitle("Omelette");
-		$em->persist($recipe);
-		$em->flush();
+		$this->em->persist($recipe);
+		$this->em->flush();
 
 		return $this->json(compact("recipe"));
 	}
@@ -387,8 +384,7 @@ final class RecipeController extends AbstractController
 		requirements: ["id" => "\d+"],
 	)]
 	public function delete(
-		Recipe                 $recipe,
-		EntityManagerInterface $em,
+		Recipe $recipe,
 	): Response
 	{
 		/** @var ?User $user */
@@ -411,8 +407,8 @@ final class RecipeController extends AbstractController
 		}
 
 		$title = $recipe->getTitle();
-		$em->remove($recipe);
-		$em->flush();
+		$this->em->remove($recipe);
+		$this->em->flush();
 		$this->addFlash("info", $this->translator->trans("recipe.success.deleted", [
 			"%title%" => $title,
 		]));
@@ -466,4 +462,48 @@ final class RecipeController extends AbstractController
 		return new Response("Recette id 6 bien supprimé");
 	}
 	*/
+
+	#[Route('/recette/{id}/like', name: 'app_recipe_like', methods: ['POST'])]
+	public function like(Recipe $recipe): Response
+	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if (!$user || $recipe->hasLikeFrom($user)) {
+			throw $this->createAccessDeniedException();
+		}
+
+		$recipe->addLike($user);
+		$this->em->flush();
+
+		return $this->json([
+			"success" => $this->translator->trans("recipe.success.created_like", [
+				"%title%" => $recipe->getTitle(),
+			]),
+			"likes" => count($recipe->getLikes()),
+			"flow" => ["unlike", "like"],
+			"button_title" => $this->translator->trans("recipe.unlike.button.title"),
+		]);
+	}
+
+	#[Route('/recette/{id}/unlike', name: 'app_recipe_unlike', methods: ['DELETE'])]
+	public function unlike(Recipe $recipe): Response
+	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+		if (!$user || !$recipe->hasLikeFrom($user)) {
+			throw $this->createAccessDeniedException();
+		}
+
+		$recipe->removeLike($user);
+		$this->em->flush();
+
+		return $this->json([
+			"success" => $this->translator->trans("recipe.success.deleted_like", [
+				"%title%" => $recipe->getTitle(),
+			]),
+			"likes" => count($recipe->getLikes()),
+			"flow" => ["like", "unlike"],
+			"button_title" => $this->translator->trans("recipe.like.button.title"),
+		]);
+	}
 }

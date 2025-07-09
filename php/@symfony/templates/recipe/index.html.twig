@@ -14,7 +14,34 @@
 				style="min-height: 450px"
 				data-type="post"
 			>
+				<form action="{{ path('app_recipe_unlike', { id: recipe.id }) }}" method="post"
+					  class="d-inline-flex" id="recipe-{{ recipe.id }}-unlike" data-action="like">
+					<input type="hidden" name="_method" value="delete">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('recipe_like') }}">
+				</form>
+
+				<form action="{{ path('app_recipe_like', { id: recipe.id }) }}" method="post" class="d-inline-flex"
+					  id="recipe-{{ recipe.id }}-like" data-action="like">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('recipe_like') }}">
+				</form>
+
 				<h1 class="h2 vertical-align-middle" style="min-height: 20%;">
+					<button type="submit" class="btn"
+							form="recipe-{{ recipe.id }}-{{ recipe.hasLikeFrom(app.user) ? 'un' : '' }}like"
+							title="{{ (recipe.hasLikeFrom(app.user) ? 'recipe.unlike.button.title' : 'recipe.like.button.title') | trans }}"
+					>
+						<output>{{ recipe.likes | length }}</output>
+
+						<svg class="bi" width="16" height="32" aria-hidden="true">
+							{% if recipe.hasLikeFrom(app.user) %}
+								<use xlink:href="#like"></use>
+							{% else %}
+								<use xlink:href="#unlike"></use>
+							{% endif %}
+						</svg>
+					</button>
+
+
 					<a href="{{ path('app_recipe_show', { id : recipe.id, slug : recipe.slug }) }}">
 						{{ recipe.title | u.truncate(20, "...", false) }}
 					</a>
