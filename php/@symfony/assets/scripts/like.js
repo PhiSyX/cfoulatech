@@ -4,33 +4,58 @@ export class Like {
 	 */
 	$root;
 
-	constructor($like) {
-		this.$root = $like;
+	/**
+	 * @param {HTMLFormElement} $root
+	 */
+	constructor($root) {
+		this.$root = $root;
 	}
 
-	static fromElement($like) {
-		return new Like($like);
+	/**
+	 * @param {HTMLFormElement} $formElement
+	 */
+	static fromElement($formElement) {
+		return new Like($formElement);
 	}
 
 	addEventListeners() {
 		this.$root.addEventListener("submit", this.handleSubmit);
 	}
 
+	/**
+	 * @param {SubmitEvent} evt
+	 * @returns {Promise<void>}
+	 */
 	handleSubmit = async (evt) => {
 		evt.preventDefault();
 
-		const formAction = this.$root.getAttribute("action");
-		const formMethod = this.$root.querySelector("input[name='_method']")?.value || this.$root.getAttribute("method");
+		const formAction = this.$root.getAttribute("action") || "";
+		/**
+		 * @type {HTMLInputElement|null}
+		 */
+		const $inputMethod = this.$root.querySelector("input[name='_method']");
+		const formMethod = $inputMethod?.value || this.$root.getAttribute("method") || "POST";
 
+		/**
+		 * @type {{
+		 * 	success: string;
+		 * 	likes: number;
+		 * 	flow: string[];
+		 * 	button_title: string;
+		 * }}
+		 */
 		const body = await fetch(formAction, {method: formMethod})
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 
 		const $button = document.querySelector(`button[form='${this.$root.id}']`);
-		const $buttonOutput = $button.querySelector("output");
-		const $buttonSvg = $button.querySelector("svg use");
+		const $buttonOutput = $button?.querySelector("output");
+		const $buttonSvg = $button?.querySelector("svg use");
 
-		$buttonOutput.value = body.likes;
+		if (!$button || !$buttonOutput || !$buttonSvg) {
+			return;
+		}
 
+		$buttonOutput.value = body.likes.toFixed();
 		$button.setAttribute("form", this.$root.id.replace(/((?:un)?like)$/, body.flow[0]));
 		$button.setAttribute("title", body.button_title);
 		$buttonSvg.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", `#${body.flow[1]}`);
@@ -41,10 +66,10 @@ export class Like {
 			const $confetti = document.createElement("span");
 			$confetti.classList.add("confetti");
 
-			$confetti.style.transform = ` translate3d(${(random(500) - 250)}px, ${(random(225) - 150)}px, 0) `;
-			$confetti.style.transform += `rotate(${random(360)}deg)`;
+			$confetti.style.transform = ` translate3d(${(randomNumber(500) - 250)}px, ${(randomNumber(225) - 150)}px, 0) `;
+			$confetti.style.transform += `rotate(${randomNumber(360)}deg)`;
 
-			$confetti.style.background = `hsla(${random(360)}, 100%, 50%, 1)`;
+			$confetti.style.background = `hsla(${randomNumber(360)}, 100%, 50%, 1)`;
 
 			$fragment.append($confetti);
 
@@ -55,7 +80,11 @@ export class Like {
 	};
 }
 
-
-function random(max) {
-	return Math.random() * max;
+/**
+ * @param {number} max
+ * @param {number} min
+ * @returns {number}
+ */
+function randomNumber(max, min = 0) {
+	return Math.random() * (max - min) + min;
 }
