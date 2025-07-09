@@ -17,12 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use const FILTER_VALIDATE_INT;
 
 final class RecipeController extends AbstractController
 {
-	const int RECIPES_PER_PAGE = 9;
-
 	public function __construct(private TranslatorInterface $translator)
 	{
 	}
@@ -46,30 +43,19 @@ final class RecipeController extends AbstractController
 			->handleRequest($req);
 
 		if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-			$searchDTO->setPage($req->query->getInt("page", 1));
-			$recipes = $recipeRepository->findBySearch($searchDTO);
-		} else if ($req->query->has("duration")) {
-			$recipes = $recipeRepository->findFromSmallerDuration(
-				(int)$req->query->filter(
+			$recipes = $recipeRepository->filter(
+				$searchDTO,
+				$req->query->getInt("page", 1),
+			);
+		} else {
+			$recipes = $recipeRepository->all(
+				duration: $req->query->filter(
 					"duration",
-					0,
+					$req->query->has("duration") ? 0 : null,
 					FILTER_VALIDATE_INT,
 					["flags" => FILTER_NULL_ON_FAILURE],
 				),
-			);
-
-			$recipes = $paginator->paginate(
-				$recipes,
-				$req->query->getInt("page", 1),
-				self::RECIPES_PER_PAGE,
-			);
-		} else {
-			$recipes = $recipeRepository->findAll();
-
-			$recipes = $paginator->paginate(
-				$recipes,
-				$req->query->getInt("page", 1),
-				self::RECIPES_PER_PAGE,
+				page: $req->query->getInt("page", 1),
 			);
 		}
 

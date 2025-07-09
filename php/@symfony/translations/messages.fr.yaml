@@ -2,6 +2,7 @@ actions:
     back: "Retour"
     edit: "Editer"
     delete: "Supprimer"
+    search: "Rechercher"
 
 nav:
     home: "Accueil"

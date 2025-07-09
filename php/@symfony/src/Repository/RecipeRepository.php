@@ -14,6 +14,8 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class RecipeRepository extends ServiceEntityRepository
 {
+	const int RECIPES_PER_PAGE = 9;
+
 	public function __construct(
 		ManagerRegistry            $registry,
 		private PaginatorInterface $paginator,
@@ -43,6 +45,35 @@ class RecipeRepository extends ServiceEntityRepository
 			->getQuery()
 			->getResult();
 		return $this->paginator->paginate($recipes, $searchDTO->getPage(), 9);
+	}
+
+	public function all(
+		?int $duration = null,
+		?int $page = 1,
+	): PaginationInterface
+	{
+		$recipes = [];
+
+		if ($duration) {
+			$recipes = $this->findFromSmallerDuration($duration);
+		} else {
+			$recipes = $this->findAll();
+		}
+
+		$recipes = $this->paginator->paginate(
+			$recipes,
+			$page,
+			self::RECIPES_PER_PAGE,
+		);
+
+		return $recipes;
+	}
+
+	public function filter(SearchDTO $searchDTO, ?int $page = 1): PaginationInterface
+	{
+		$searchDTO->setPage($page);
+		$recipes = $this->findBySearch($searchDTO);
+		return $recipes;
 	}
 
 //    /**
