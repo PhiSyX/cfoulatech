@@ -51,6 +51,8 @@ final class RecipeController extends AbstractController
 			$recipes = $recipeRepository->findAll();
 		}
 
+		$totalRecipes = count($recipes);
+
 		$recipes = $paginator->paginate(
 			$recipes,
 			$req->query->getInt("page", 1),
@@ -59,6 +61,7 @@ final class RecipeController extends AbstractController
 
 		return $this->render("recipe/index.html.twig", [
 			"recipes" => $recipes,
+			"totalRecipes" => $totalRecipes,
 		]);
 	}
 
