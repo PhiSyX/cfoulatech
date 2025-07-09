@@ -16,8 +16,10 @@ comment:
         save: "Commenter"
     error:
         need_auth: "Vous avez besoin de vous connecter pour ajouter un commentaire"
+        not_found: "Impossible de supprimer ce commentaire"
     success:
         created: "Votre commentaire a bien été ajouté"
+        deleted: "Votre commentaire a bien été supprimé"
 
 recipe:
     actions:

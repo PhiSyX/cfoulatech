@@ -97,11 +97,22 @@
 						{{ comment.author.fullname }}
 					</h5>
 
-					<div class="d-flex gap-3">
+					<div class="d-flex gap-3 justify-content-between">
 						<time class="h6 card-subtitle mb-2 text-body-secondary"
 							  datetime="{{ comment.createdAt | date('Y-m-d\TH:i:sP') }}">
 							{{ comment.createdAt | ago | capitalize }}
 						</time>
+
+						{% if app.user.id == comment.author.id %}
+							<form action="{{ path('app_recipe_delete_comment', { cid: comment.id, rid: recipe.id }) }}"
+								  method="post">
+								<input type="hidden" name="_method" value="delete">
+								<input type="hidden" name="_csrf_token" data-controller="csrf-protection"
+									   value="{{ csrf_token('recipe_comment_delete') }}">
+								<button type="submit" class="btn btn-sm btn-outline-danger">Supprimer le commentaire
+								</button>
+							</form>
+						{% endif %}
 					</div>
 
 					<p class="card-text">

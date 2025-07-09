@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\RecipeCommentType;
 use App\Form\RecipeType;
 use App\Form\SearchForm;
+use App\Repository\RecipeCommentRepository;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RecipeController extends AbstractController
@@ -139,7 +139,7 @@ final class RecipeController extends AbstractController
 
 	// Ajout de commentaire pour la recette
 	#[Route(
-		"/recette/comment/{id}",
+		"/recette/{id}/comment",
 		name: "app_recipe_create_comment",
 		requirements: ["id" => "\d+"],
 		methods: ["POST"],
@@ -180,6 +180,54 @@ final class RecipeController extends AbstractController
 		]);
 	}
 
+	// Ajout de commentaire pour la recette
+	#[Route(
+		"/recette/{rid}/comment/{cid}",
+		name: "app_recipe_delete_comment",
+		requirements: ["rid" => "\d+", "cid" => "\d+"],
+		methods: ["DELETE"],
+	)]
+	public function deleteCommentFor(
+		RecipeCommentRepository $recipeCommentRepository,
+		EntityManagerInterface  $em,
+		Request                 $req,
+		int                     $rid,
+		int                     $cid,
+	): Response
+	{
+		$csrfToken = $req->getPayload()->get("_csrf_token");
+
+		if (!$this->isCsrfTokenValid("recipe_comment_delete", $csrfToken)) {
+			throw $this->createAccessDeniedException("Jeton CSRF Invalide.");
+		}
+
+		/** @var ?User $user */
+		$user = $this->getUser();
+
+		$showParams = [
+			"id" => $rid,
+			"slug" => "xxx",
+		];
+
+		if (!$user) {
+			$this->addFlash("error", $this->translator->trans("comment.error.need_auth"));
+			return $this->redirectToRoute("app_recipe_show", $showParams);
+		}
+
+		$comment = $recipeCommentRepository->findOne($rid, $user->getId(), $cid);
+
+		if (!$comment) {
+			$this->addFlash("error", $this->translator->trans("comment.error.not_found"));
+			return $this->redirectToRoute("app_recipe_show", $showParams);
+		}
+
+		$em->remove($comment);
+		$em->flush();
+
+		$this->addFlash("success", $this->translator->trans("comment.success.deleted"));
+		return $this->forward(RecipeController::class . "::show", $showParams);
+	}
+
 	/*
 	// Récupérer les chemins d'URL. Les associer à des noms.
 	//
@@ -199,15 +247,16 @@ final class RecipeController extends AbstractController
 	}
 	*/
 
-	// Récupérer les chemins d'URL. Les associer à des noms.
-	//
-	// Valider la valeur de ces chemins via leur nom, en utilisant les
-	// expressions régulières.
-	#[Route(
-		"/api/recette/{slug}-{id}",
-		name: "api_recipe_show",
-		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
-	)]
+// Récupérer les chemins d'URL. Les associer à des noms.
+//
+// Valider la valeur de ces chemins via leur nom, en utilisant les
+// expressions régulières.
+	#[
+		Route(
+			"/api/recette/{slug}-{id}",
+			name: "api_recipe_show",
+			requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
+		)]
 	public function api_show(Request $req, string $slug, int $id): Response
 	{
 		// La fonction `compact("id", "slug")` est un équivalent de faire
