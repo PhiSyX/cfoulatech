@@ -2,16 +2,22 @@
 
 namespace App\Repository;
 
+use App\DTO\SearchDTO;
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
  */
 class RecipeRepository extends ServiceEntityRepository
 {
-	public function __construct(ManagerRegistry $registry)
+	public function __construct(
+		ManagerRegistry            $registry,
+		private PaginatorInterface $paginator,
+	)
 	{
 		parent::__construct($registry, Recipe::class);
 	}
@@ -27,6 +33,16 @@ class RecipeRepository extends ServiceEntityRepository
 			->setParameter("duration", $duration)
 			->getQuery()
 			->getResult();
+	}
+
+	public function findBySearch(SearchDTO $searchDTO): PaginationInterface
+	{
+		$recipes = $this->createQueryBuilder("r")
+			->where("r.title LIKE :search")
+			->setParameter("search", "%{$searchDTO->getQuery()}%")
+			->getQuery()
+			->getResult();
+		return $this->paginator->paginate($recipes, $searchDTO->getPage(), 9);
 	}
 
 //    /**

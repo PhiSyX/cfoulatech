@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\DTO\SearchDTO;
 use App\Entity\Recipe;
 use App\Entity\User;
 use App\Form\RecipeType;
+use App\Form\SearchForm;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,7 +40,15 @@ final class RecipeController extends AbstractController
 			$this->addFlash("info", $this->translator->trans("user.error.need_verify_email"));
 		}
 
-		if ($req->query->has("duration")) {
+		$searchDTO = new SearchDTO();
+		$searchForm = $this
+			->createForm(SearchForm::class, $searchDTO)
+			->handleRequest($req);
+
+		if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+			$searchDTO->setPage($req->query->getInt("page", 1));
+			$recipes = $recipeRepository->findBySearch($searchDTO);
+		} else if ($req->query->has("duration")) {
 			$recipes = $recipeRepository->findFromSmallerDuration(
 				(int)$req->query->filter(
 					"duration",
@@ -47,19 +57,26 @@ final class RecipeController extends AbstractController
 					["flags" => FILTER_NULL_ON_FAILURE],
 				),
 			);
+
+			$recipes = $paginator->paginate(
+				$recipes,
+				$req->query->getInt("page", 1),
+				self::RECIPES_PER_PAGE,
+			);
 		} else {
 			$recipes = $recipeRepository->findAll();
+
+			$recipes = $paginator->paginate(
+				$recipes,
+				$req->query->getInt("page", 1),
+				self::RECIPES_PER_PAGE,
+			);
 		}
 
 		$totalRecipes = count($recipes);
 
-		$recipes = $paginator->paginate(
-			$recipes,
-			$req->query->getInt("page", 1),
-			self::RECIPES_PER_PAGE,
-		);
-
 		return $this->render("recipe/index.html.twig", [
+			"searchForm" => $searchForm->createView(),
 			"recipes" => $recipes,
 			"totalRecipes" => $totalRecipes,
 		]);
