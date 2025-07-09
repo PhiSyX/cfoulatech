@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Trait\Timestampable;
 use App\Repository\RecipeRepository;
 use App\Validator\Badwords;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -54,6 +56,17 @@ class Recipe
 
 	#[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'imageName', size: 'imageSize')]
 	private ?File $imageFile = null;
+
+	/**
+	 * @var Collection<int, RecipeComment>
+	 */
+	#[ORM\OneToMany(targetEntity: RecipeComment::class, mappedBy: 'recipe', orphanRemoval: true)]
+	private Collection $comments;
+
+	public function __construct()
+	{
+		$this->comments = new ArrayCollection();
+	}
 
 	public function getId(): ?int
 	{
@@ -165,6 +178,36 @@ class Recipe
 	public function setUser(?User $user): static
 	{
 		$this->user = $user;
+
+		return $this;
+	}
+
+	/**
+	 * @return Collection<int, RecipeComment>
+	 */
+	public function getComments(): Collection
+	{
+		return $this->comments;
+	}
+
+	public function addComment(RecipeComment $comment): static
+	{
+		if (!$this->comments->contains($comment)) {
+			$this->comments->add($comment);
+			$comment->setRecipe($this);
+		}
+
+		return $this;
+	}
+
+	public function removeComment(RecipeComment $comment): static
+	{
+		if ($this->comments->removeElement($comment)) {
+			// set the owning side to null (unless already changed)
+			if ($comment->getRecipe() === $this) {
+				$comment->setRecipe(null);
+			}
+		}
 
 		return $this;
 	}

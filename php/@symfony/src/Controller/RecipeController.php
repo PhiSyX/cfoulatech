@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\DTO\SearchDTO;
 use App\Entity\Recipe;
+use App\Entity\RecipeComment;
 use App\Entity\User;
+use App\Form\RecipeCommentType;
 use App\Form\RecipeType;
 use App\Form\SearchForm;
 use App\Repository\RecipeRepository;
@@ -102,9 +104,11 @@ final class RecipeController extends AbstractController
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
 	public function show(
-		RecipeRepository $recipeRepository,
-		int              $id,
-		string           $slug,
+		Request                $req,
+		EntityManagerInterface $em,
+		RecipeRepository       $recipeRepository,
+		int                    $id,
+		string                 $slug,
 	): Response
 	{
 		$recipe = $recipeRepository->find($id);
@@ -126,7 +130,21 @@ final class RecipeController extends AbstractController
 			$user->getEmail() === $recipe->getUser()->getEmail()
 		);
 
+		$comment = (new RecipeComment())
+			->setAuthor($user)
+			->setRecipe($recipe)
+			->setCreatedAt(new DateTimeImmutable());
+
+		$commentForm = $this->createForm(RecipeCommentType::class, $comment)
+			->handleRequest($req);
+
+		if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+			$em->persist($comment);
+			$em->flush();
+		}
+
 		return $this->render("recipe/show.html.twig", [
+			"commentForm" => $commentForm->createView(),
 			"recipe" => $recipe,
 			"user" => $user,
 			"canAlter" => $canAlter,

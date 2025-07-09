@@ -5,7 +5,38 @@
 
 {% block body %}
 	<article style="max-width: 80ch;" class="mx-auto">
-		<h1>{{ recipe.title }}!</h1>
+		<header class="mb-4">
+			<h1>{{ recipe.title }}!</h1>
+
+			<a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">
+				{{ 'actions.back' | trans }}
+			</a>
+
+			{% if canAlter %}
+				<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">
+					{{ 'actions.edit' | trans }}
+				</a>
+
+				{# Attention Faille CSRF
+				<a
+					href="{{ path('app_recipe_delete', { id: recipe.id }) }}"
+					class="btn btn-danger"
+					onclick="return confirm('Voulez-vous vraiment supprimer cette recette?')"
+				>
+					{{ 'actions.delete' | trans }}
+				</a>
+				#}
+
+				<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="POST" class="d-none"></form>
+				<a
+					href="#"
+					class="btn btn-danger"
+					onclick="return confirm({{ 'recipe.actions.hints.delete' | trans }}) && this.previousElementSibling.submit()"
+				>
+					{{ 'actions.delete' | trans }}
+				</a>
+			{% endif %}
+		</header>
 
 		{% if recipe.imageName %}
 			<img src="{{ vich_uploader_asset(recipe, 'imageFile') }}"
@@ -31,40 +62,34 @@
 			}) }}
 		</p>
 
-		<footer>
-			{% if canAlter %}
-				<a href="{{ path('app_recipe_edit', { id: recipe.id }) }}" class="btn btn-primary">
-					{{ 'actions.edit' | trans }}
-				</a>
-
-				{# Attention Faille CSRF
-				<a
-					href="{{ path('app_recipe_delete', { id: recipe.id }) }}"
-					class="btn btn-danger"
-					onclick="return confirm('Voulez-vous vraiment supprimer cette recette?')"
-				>
-					{{ 'actions.delete' | trans }}
-				</a>
-				#}
-
-				<form action="{{ path('app_recipe_delete', { id: recipe.id }) }}" method="POST" class="d-none"></form>
-				<a
-					href="#"
-					class="btn btn-danger"
-					onclick="return confirm({{ 'recipe.actions.hints.delete' | trans }}) && this.previousElementSibling.submit()"
-				>
-					{{ 'actions.delete' | trans }}
-				</a>
-			{% endif %}
-
-			<a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">
-				{{ 'actions.back' | trans }}
-			</a>
-		</footer>
-
 		<details>
 			<summary>Debug</summary>
 			{{ dump(recipe) }}
 		</details>
+	</article>
+
+	<article style="max-width: 80ch;" class="my-5 mx-auto">
+		<h2>Tous les commentaires</h2>
+
+		<hr>
+
+		{{ form_start(commentForm) }}
+			{{ form_widget(commentForm.content) }}
+			<button type="submit" class="btn btn-outline-primary my-2">
+				{{ 'Commenter' | trans }}
+			</button>
+		{{ form_end(commentForm) }}
+
+		<hr>
+
+		<ul>
+			{% for comment in recipe.comments %}
+				<li>
+					{{ comment.author.email }} a commenté:
+					<blockquote>{{ comment.content }}</blockquote>
+					<p>{{ comment.createdAt | ago }}</p>
+				</li>
+			{% endfor %}
+		</ul>
 	</article>
 {% endblock %}
