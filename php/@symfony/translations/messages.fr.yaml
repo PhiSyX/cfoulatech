@@ -10,6 +10,15 @@ nav:
     logout: "Se déconnecter"
     register: "S'inscrire"
 
+comment:
+    title: "Commentaire"
+    actions:
+        save: "Commenter"
+    error:
+        need_auth: "Vous avez besoin de vous connecter pour ajouter un commentaire"
+    success:
+        created: "Votre commentaire a bien été ajouté"
+
 recipe:
     actions:
         hints:
@@ -29,9 +38,9 @@ recipe:
     norecord: "Pas encore de recette"
     published_at_by: "Envoyé %relativeDate% par %user%"
     success:
-        create: "La recette a bien été crée"
-        edit: "La recette a bien été modifié"
-        delete: "La recette %title% a bien été supprimé"
+        created: "La recette a bien été crée"
+        edited: "La recette a bien été modifié"
+        deleted: "La recette %title% a bien été supprimé"
     updated_at: "Mis à jour %relativeDate%"
     text: "Recette"
     title:
@@ -102,7 +111,7 @@ account:
         edit: "Éditer mon compte"
     edit: "Modifier mon compte"
     success:
-        edit: "Votre compte a correctement été mis à jour"
+        edited: "Votre compte a correctement été mis à jour"
 
 or: "ou"
 created_at: "Crée le"

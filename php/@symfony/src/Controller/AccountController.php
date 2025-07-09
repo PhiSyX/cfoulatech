@@ -56,7 +56,7 @@ final class AccountController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$user->setUpdatedAt(new \DateTimeImmutable());
 			$em->flush();
-			$this->addFlash("success", $translator->trans("account.success.edit"));
+			$this->addFlash("success", $translator->trans("account.success.edited"));
 			return $this->redirectToRoute("app_account");
 		}
 

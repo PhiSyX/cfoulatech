@@ -68,28 +68,47 @@
 		</details>
 	</article>
 
-	<article style="max-width: 80ch;" class="my-5 mx-auto">
-		<h2>Tous les commentaires</h2>
+	<section style="max-width: 80ch;" class="my-5 mx-auto">
+		<h2>{{ 'comment.title' | trans | plural }}</h2>
 
-		<hr>
 
-		{{ form_start(commentForm) }}
+		{% if app.user %}
+			<hr>
+
+			{{ form_start(commentForm) }}
 			{{ form_widget(commentForm.content) }}
+			{{ form_errors(commentForm.content) }}
+
 			<button type="submit" class="btn btn-outline-primary my-2">
-				{{ 'Commenter' | trans }}
+				{{ 'comment.actions.save' | trans }}
 			</button>
-		{{ form_end(commentForm) }}
+
+			{{ form_end(commentForm) }}
+		{% endif %}
 
 		<hr>
 
-		<ul>
-			{% for comment in recipe.comments %}
-				<li>
-					{{ comment.author.email }} a commenté:
-					<blockquote>{{ comment.content }}</blockquote>
-					<p>{{ comment.createdAt | ago }}</p>
-				</li>
+		<div class="card">
+			{% for comment in recipe.comments | reverse %}
+				<article class="card-body">
+					<h5 class="card-title">
+						<img src="{{ vich_uploader_asset(comment.author, 'imageFile') }}" alt="Image profil"
+							 class="rounded-full" style="width: 32px; height: 32px;">
+						{{ comment.author.fullname }}
+					</h5>
+
+					<div class="d-flex gap-3">
+						<time class="h6 card-subtitle mb-2 text-body-secondary"
+							  datetime="{{ comment.createdAt | date('Y-m-d\TH:i:sP') }}">
+							{{ comment.createdAt | ago | capitalize }}
+						</time>
+					</div>
+
+					<p class="card-text">
+						{{ comment.content | nl2br }}
+					</p>
+				</article>
 			{% endfor %}
-		</ul>
-	</article>
+		</div>
+	</section>
 {% endblock %}

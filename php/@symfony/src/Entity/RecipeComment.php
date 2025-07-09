@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
+use App\Repository\RecipeCommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: "recipes_comments")]
-#[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[ORM\Entity(repositoryClass: RecipeCommentRepository::class)]
 class RecipeComment
 {
 	#[ORM\Id]
@@ -24,6 +25,8 @@ class RecipeComment
 	private ?User $author = null;
 
 	#[ORM\Column(type: Types::TEXT)]
+	#[Assert\NotBlank]
+	#[Assert\Length(min: 20, max: 255)]
 	private ?string $content = null;
 
 	#[ORM\Column]

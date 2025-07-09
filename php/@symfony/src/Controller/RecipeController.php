@@ -104,24 +104,17 @@ final class RecipeController extends AbstractController
 		requirements: ["slug" => "[\w\d-]+", "id" => "\d+"],
 	)]
 	public function show(
-		Request                $req,
-		EntityManagerInterface $em,
-		RecipeRepository       $recipeRepository,
-		int                    $id,
-		string                 $slug,
+		Recipe  $recipe,
+		Request $req,
+		string  $slug,
 	): Response
 	{
-		$recipe = $recipeRepository->find($id);
-
 		if ($slug !== $recipe->getSlug()) {
 			return $this->redirectToRoute("app_recipe_show", [
-				"id" => $id,
+				"id" => $recipe->getId(),
 				"slug" => $recipe->getSlug(),
 			]);
 		}
-
-		//		dump($slug);
-		//		dump($id);
 
 		/** @var ?User $user */
 		$user = $this->getUser();
@@ -130,24 +123,60 @@ final class RecipeController extends AbstractController
 			$user->getEmail() === $recipe->getUser()->getEmail()
 		);
 
-		$comment = (new RecipeComment())
-			->setAuthor($user)
-			->setRecipe($recipe)
-			->setCreatedAt(new DateTimeImmutable());
-
-		$commentForm = $this->createForm(RecipeCommentType::class, $comment)
+		$recipeCommentForm = $this
+			->createForm(RecipeCommentType::class, options: [
+				"action" => $this->generateUrl("app_recipe_create_comment", ["id" => $recipe->getId()]),
+			])
 			->handleRequest($req);
 
-		if ($commentForm->isSubmitted() && $commentForm->isValid()) {
-			$em->persist($comment);
-			$em->flush();
-		}
-
 		return $this->render("recipe/show.html.twig", [
-			"commentForm" => $commentForm->createView(),
+			"commentForm" => $recipeCommentForm->createView(),
 			"recipe" => $recipe,
 			"user" => $user,
 			"canAlter" => $canAlter,
+		]);
+	}
+
+	// Ajout de commentaire pour la recette
+	#[Route(
+		"/recette/comment/{id}",
+		name: "app_recipe_create_comment",
+		requirements: ["id" => "\d+"],
+		methods: ["POST"],
+	)]
+	public function createCommentFor(
+		Recipe                 $recipe,
+		Request                $req,
+		EntityManagerInterface $em
+	): Response
+	{
+		/** @var ?User $user */
+		$user = $this->getUser();
+
+		if (!$user) {
+			$this->addFlash("error", $this->translator->trans("comment.error.need_auth"));
+			return $this->redirectToRoute("app_recipe_show", [
+				"id" => $recipe->getId(),
+				"slug" => $recipe->getSlug(),
+			]);
+		}
+
+		$recipeComment = (new RecipeComment())
+			->setAuthor($user)
+			->setRecipe($recipe)
+			->setCreatedAt(new DateTimeImmutable());
+		$recipeCommentForm = $this->createForm(RecipeCommentType::class, $recipeComment)
+			->handleRequest($req);
+
+		if ($recipeCommentForm->isSubmitted() && $recipeCommentForm->isValid()) {
+			$em->persist($recipeComment);
+			$em->flush();
+			$this->addFlash("success", $this->translator->trans("comment.success.created"));
+		}
+
+		return $this->forward(RecipeController::class . "::show", [
+			"id" => $recipe->getId(),
+			"slug" => $recipe->getSlug(),
 		]);
 	}
 
@@ -211,7 +240,7 @@ final class RecipeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em->persist($recipe);
 			$em->flush();
-			$this->addFlash("success", $this->translator->trans("recipe.success.create"));
+			$this->addFlash("success", $this->translator->trans("recipe.success.created"));
 			return $this->redirectToRoute("app_recipe_index");
 		}
 		return $this->render("recipe/add.html.twig", [
@@ -271,7 +300,7 @@ final class RecipeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$recipe->setUpdatedAt(new DateTimeImmutable());
 			$em->flush();
-			$this->addFlash("success", $this->translator->trans("recipe.success.edit"));
+			$this->addFlash("success", $this->translator->trans("recipe.success.edited"));
 			return $this->redirectToRoute("app_recipe_show", [
 				"id" => $recipe->getId(),
 				"slug" => $recipe->getSlug(),
@@ -335,7 +364,7 @@ final class RecipeController extends AbstractController
 		$title = $recipe->getTitle();
 		$em->remove($recipe);
 		$em->flush();
-		$this->addFlash("info", $this->translator->trans("recipe.success.delete", [
+		$this->addFlash("info", $this->translator->trans("recipe.success.deleted", [
 			"%title%" => $title,
 		]));
 		return $this->redirectToRoute("app_recipe_index");
