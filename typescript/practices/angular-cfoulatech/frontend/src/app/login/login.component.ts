@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: "app-login",
@@ -25,7 +26,7 @@ export class LoginComponent
 		"intern@cfoulatech.com": "intern12345",
 	};
 
-	constructor(private router: Router)
+	constructor(private router: Router, private authService: AuthService)
 	{
 	}
 
@@ -37,9 +38,17 @@ export class LoginComponent
 		) {
 			window.localStorage.setItem("role", this.dbEmailRole[this.email]);
 			await this.router.navigate(["/dashboard"]);
-		} else {
-			this.password = "";
-			alert(`Identifiant incorrect pour "${this.email}"`);
 		}
+
+		this.authService.connect(this.email, this.password).subscribe((trainer) => {
+			if (!trainer) {
+				alert(`Identifiant incorrect pour "${this.email}"`);
+				return;
+			}
+			window.localStorage.setItem("role", "trainer");
+			window.localStorage.setItem("trainerId", trainer.id!);
+			this.router.navigate(["/dashboard"]);
+		});
+
 	}
 }

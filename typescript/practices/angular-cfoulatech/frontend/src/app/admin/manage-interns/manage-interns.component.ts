@@ -63,11 +63,10 @@ export class ManageInternsComponent implements OnInit
 
 	handleSave(): void
 	{
-		if (!this.selectedInternId) {
-			return;
-		}
-
 		if (this.editionMode) {
+			if (!this.selectedInternId) {
+				return;
+			}
 			this.internService.update(
 				this.selectedInternId.toString(),
 				this.internModel,

@@ -4,23 +4,28 @@
 	<form (submit)="handleSave()" class="formulaire">
 		<div class="input-group-lg">
 			<label class="form-label" for="name">Nom :</label>
-			<input [(ngModel)]="newTrainerModel.name" class="form-control" id="name" name="name" required type="text">
+			<input [(ngModel)]="trainerModel.name" class="form-control" id="name" name="name" required type="text">
+		</div>
+
+		<div class="input-group-lg">
+			<label class="form-label" for="password">Mot de passe :</label>
+			<input [(ngModel)]="trainerModel.password" class="form-control" id="password" name="password" required type="password">
 		</div>
 
 		<div class="input-group-lg">
 			<label class="form-label" for="email">Email :</label>
-			<input [(ngModel)]="newTrainerModel.email" class="form-control" id="email" name="email" required
-				   type="text">
+			<input [(ngModel)]="trainerModel.email" class="form-control" id="email" name="email" required
+                   type="text">
 		</div>
 
 		<div class="input-group-lg">
 			<label class="form-label" for="tel">Téléphone :</label>
-			<input [(ngModel)]="newTrainerModel.phone" class="form-control" id="tel" name="tel" required type="tel">
+			<input [(ngModel)]="trainerModel.phone" class="form-control" id="tel" name="tel" required type="tel">
 		</div>
 
 		<div class="input-group-lg">
 			<label class="form-label" for="tel">Spécialité :</label>
-			<select [(ngModel)]="newTrainerModel.speciality" class="form-select" name="speciality" required>
+			<select [(ngModel)]="trainerModel.speciality" class="form-select" name="speciality" required>
 				<option value="Web">Web</option>
 				<option value="Tech">Tech</option>
 				<option value="Réseau">Réseau</option>

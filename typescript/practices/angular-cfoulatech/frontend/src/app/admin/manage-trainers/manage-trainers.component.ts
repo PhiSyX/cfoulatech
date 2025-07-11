@@ -15,11 +15,12 @@ export class ManageTrainersComponent implements OnInit
 {
 	public trainers: Array<Trainer> = [];
 
-	public newTrainerModel: Trainer = {
+	public trainerModel: Trainer = {
 		name: "",
 		phone: "",
 		email: "",
 		speciality: "",
+		password: "",
 	};
 	public editMode: boolean = false;
 	public currentIndexEdit: NonNullable<Trainer["id"]> | -1 = -1;
@@ -48,7 +49,7 @@ export class ManageTrainersComponent implements OnInit
 		if (this.editMode) {
 			this.trainerService.update(
 				this.currentIndexEdit.toString(),
-				this.newTrainerModel,
+				this.trainerModel,
 			).subscribe((trainer) => {
 				this.trainers = this.trainers.map((currentTrainer) => {
 					if (currentTrainer.id === trainer.id) return trainer;
@@ -57,22 +58,23 @@ export class ManageTrainersComponent implements OnInit
 			});
 			this.editMode = false;
 		} else {
-			this.trainerService.create(this.newTrainerModel).subscribe((trainer) => {
+			this.trainerService.create(this.trainerModel).subscribe((trainer) => {
 				this.trainers.push(trainer);
 			});
 		}
 
-		this.newTrainerModel = {
+		this.trainerModel = {
 			name: "",
 			phone: "",
 			email: "",
 			speciality: "",
+			password: "",
 		};
 	}
 
 	handleEdit(id: NonNullable<Trainer["id"]>): void
 	{
-		this.newTrainerModel = { ...this.trainers.find((trainer) => trainer.id === id)! };
+		this.trainerModel = { ...this.trainers.find((trainer) => trainer.id === id)! };
 		this.editMode = true;
 		this.currentIndexEdit = id;
 	}
@@ -88,11 +90,12 @@ export class ManageTrainersComponent implements OnInit
 
 	handleCancel()
 	{
-		this.newTrainerModel = {
+		this.trainerModel = {
 			name: "",
 			phone: "",
 			email: "",
 			speciality: "",
+			password: "",
 		};
 		this.editMode = false;
 	}

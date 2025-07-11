@@ -1,1 +1,7 @@
-<p>mes-stagiaires works!</p>
+<h1>Mes stagiaires</h1>
+
+<ul class="list-group">
+	<li *ngFor="let intern of interns" class="list-group-item">
+		{{ intern.name }}
+	</li>
+</ul>

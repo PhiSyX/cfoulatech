@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import type { Intern } from '../models/intern';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import type { Intern } from "../models/intern";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Trainer } from "../models/trainer";
 
 @Injectable({
 	providedIn: "root",
@@ -23,6 +24,13 @@ export class InternService
 	{
 		delete intern.trainer;
 		return this.http.post<Intern>(this.apiUrl, intern);
+	}
+
+	filter(trainerId: NonNullable<Trainer["id"]>): Observable<Array<Intern>>
+	{
+		return this.http.get<Array<Intern>>(
+			`${this.apiUrl}/?trainerId=${trainerId}`,
+		);
 	}
 
 	update(id: NonNullable<Intern["id"]>, intern: Intern): Observable<Intern>
