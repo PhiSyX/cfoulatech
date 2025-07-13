@@ -54,3 +54,11 @@ body {
 		vertical-align: middle;
 	}
 }
+
+.cursor-default {
+	cursor: default;
+}
+
+.pointer-event {
+	pointer-events: none;
+}
