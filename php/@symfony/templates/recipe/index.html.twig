@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ 'recipe.title.welcome' | trans }} ({{ totalRecipes }})</h1>
+	<h1>{{ 'recipe.title.welcome' | trans }} ({{ recipes.total }})</h1>
 
 	<section class="row">
-		{% for recipe in recipes %}
+		{% for recipe in recipes.list %}
 			<article
 				class="card col-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 my-8 mr-4"
 				style="min-height: 450px"
@@ -77,5 +77,5 @@
 
 	<br>
 
-	{{ knp_pagination_render(recipes, view_params: { align: 'center' }) }}
+	{{ knp_pagination_render(recipes.list, view_params: { align: 'center' }) }}
 {% endblock %}

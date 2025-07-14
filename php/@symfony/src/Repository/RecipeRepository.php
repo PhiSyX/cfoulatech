@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\RecipeListDTO;
 use App\DTO\SearchDTO;
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -39,9 +40,10 @@ class RecipeRepository extends ServiceEntityRepository
 
 	public function findBySearch(SearchDTO $searchDTO): PaginationInterface
 	{
+		$q = urlencode($searchDTO->getQuery());
 		$recipes = $this->createQueryBuilder("r")
 			->where("r.title LIKE :search")
-			->setParameter("search", "%{$searchDTO->getQuery()}%")
+			->setParameter("search", "%{$q}%")
 			->getQuery()
 			->getResult();
 		return $this->paginator->paginate($recipes, $searchDTO->getPage(), 9);
@@ -50,7 +52,7 @@ class RecipeRepository extends ServiceEntityRepository
 	public function all(
 		?int $duration = null,
 		?int $page = 1,
-	): PaginationInterface
+	): RecipeListDTO
 	{
 		$recipes = [];
 
@@ -60,20 +62,22 @@ class RecipeRepository extends ServiceEntityRepository
 			$recipes = $this->findAll();
 		}
 
+		$totalRecipes = count($recipes);
+
 		$recipes = $this->paginator->paginate(
 			$recipes,
 			$page,
 			self::RECIPES_PER_PAGE,
 		);
 
-		return $recipes;
+		return new RecipeListDTO($recipes, $totalRecipes);
 	}
 
-	public function filter(SearchDTO $searchDTO, ?int $page = 1): PaginationInterface
+	public function filter(SearchDTO $searchDTO, ?int $page = 1): RecipeListDTO
 	{
 		$searchDTO->setPage($page);
 		$recipes = $this->findBySearch($searchDTO);
-		return $recipes;
+		return new RecipeListDTO($recipes, count($recipes));
 	}
 
 //    /**

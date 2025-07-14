@@ -13,7 +13,6 @@ use App\Repository\RecipeCommentRepository;
 use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,9 +27,8 @@ final class RecipeController extends AbstractController
 
 	#[Route("/recette", name: "app_recipe_index")]
 	public function index(
-		Request            $req,
-		RecipeRepository   $recipeRepository,
-		PaginatorInterface $paginator,
+		Request          $req,
+		RecipeRepository $recipeRepository,
 	): Response
 	{
 		/** @var ?User $user */
@@ -41,7 +39,11 @@ final class RecipeController extends AbstractController
 
 		$searchDTO = new SearchDTO();
 		$searchForm = $this
-			->createForm(SearchForm::class, $searchDTO)
+			->createForm(SearchForm::class, $searchDTO, [
+				"attr" => [
+					"placeholder" => "Recherche une recette...",
+				],
+			])
 			->handleRequest($req);
 
 		if ($searchForm->isSubmitted() && $searchForm->isValid()) {
@@ -61,12 +63,9 @@ final class RecipeController extends AbstractController
 			);
 		}
 
-		$totalRecipes = count($recipes);
-
 		return $this->render("recipe/index.html.twig", [
 			"searchForm" => $searchForm->createView(),
 			"recipes" => $recipes,
-			"totalRecipes" => $totalRecipes,
 		]);
 	}
 
