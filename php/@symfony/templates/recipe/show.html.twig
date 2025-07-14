@@ -48,7 +48,7 @@
 			>
 		{% endif %}
 
-		<p>{{ recipe.content | nl2br }}</p>
+		<p>{{ recipe.content | raw }}</p>
 
 		<p>
 			{{ 'recipe.published_at_by' | trans({

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Recipe;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -24,7 +25,8 @@ class RecipeType extends AbstractType
 		$builder
 			->add("title", TextType::class, ["label" => "recipe.form.title"])
 			->add("slug", HiddenType::class)
-			->add("content", TextareaType::class, ["label" => "recipe.form.content"])
+//			->add("content", TextareaType::class, ["label" => "recipe.form.content"])
+			->add("content", CKEditorType::class, ["label" => "recipe.form.content"])
 			->add("imageFile", VichImageType::class, [
 				"label" => "recipe.form.imageName",
 				"required" => false,
