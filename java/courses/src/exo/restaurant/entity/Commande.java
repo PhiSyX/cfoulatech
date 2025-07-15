@@ -49,7 +49,7 @@ public class Commande
 	public void changerStatus(StatusCommande nouveauStatus)
 	{
 		if (status == StatusCommande.ANNULEE) {
-			throw new CommandeImpossibleException("La commande est annulée");
+			throw new CommandeImpossibleException("La commande est déjà annulée");
 		}
 
 		status = nouveauStatus;
@@ -57,8 +57,6 @@ public class Commande
 
 	public double calculerTotal()
 	{
-		return plats.stream()
-			.map(Plat::getPrix)
-			.reduce(0.0, Double::sum);
+		return plats.stream().mapToDouble(Plat::getPrix).sum();
 	}
 }
