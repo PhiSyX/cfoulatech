@@ -38,6 +38,7 @@ export class LoginComponent
 		) {
 			window.localStorage.setItem("role", this.dbEmailRole[this.email]);
 			await this.router.navigate(["/dashboard"]);
+			return;
 		}
 
 		this.authService.connect(this.email, this.password).subscribe((trainer) => {

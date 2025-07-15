@@ -9,4 +9,5 @@ export interface Training
 	startDate: string;
 	endDate: string;
 	status: "brouillon" | "publiée" | "archivée";
+	interns: Array<string>;
 }

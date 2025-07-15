@@ -2,6 +2,11 @@
 
 <ul class="list-group">
 	<li *ngFor="let intern of interns" class="list-group-item">
-		{{ intern.name }}
+		{{ intern.name }} est inscrit(e) aux formations :
+		<ol>
+			<li *ngFor="let training of intern?.trainings">
+				{{ training.description }}
+			</li>
+		</ol>
 	</li>
 </ul>

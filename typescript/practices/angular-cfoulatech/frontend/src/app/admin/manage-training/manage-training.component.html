@@ -59,6 +59,20 @@
 			</select>
 		</div>
 
+
+		<div class="input-group-lg">
+			<label class="form-label" for="stagiaires">Stagiaires :</label>
+			<select [(ngModel)]="newTrainingModel.interns" multiple class="form-select " id="stagiaires" name="stagiaires">
+				<option
+					*ngFor="let intern of interns"
+					[value]="intern.id"
+					[selected]="newTrainingModel.interns.includes(intern.id!)"
+				>
+					{{ intern.name}}
+				</option>
+			</select>
+		</div>
+
 		<div class="d-inline-flex gap-2 mt-3">
 			<button class="btn {{ editMode ? 'btn-info' : 'btn-primary' }}" type="submit">
 				{{ editMode ? 'Modifier' : 'Ajouter' }}

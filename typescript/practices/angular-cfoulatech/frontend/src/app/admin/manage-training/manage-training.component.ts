@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Training } from '../../models/training';
 import { TrainingService } from '../../services/training.service';
+import { InternService } from '../../services/intern.service';
+import { Intern } from '../../models/intern';
 
 @Component({
 	selector: "app-manage-training",
@@ -23,26 +25,37 @@ export class ManageTrainingComponent implements OnInit
 		startDate: "",
 		status: "brouillon",
 		title: "",
+		interns: [],
 	};
 	public editMode: boolean = false;
 	public currentIndexEdit: NonNullable<Training["id"]> | -1 = -1;
+	public interns: Array<Intern> = [];
 
 	constructor(
 		private router: Router,
 		private trainingService: TrainingService,
+		private internService: InternService,
 	)
 	{
 	}
 
 	ngOnInit(): void
 	{
+		this.loadTrainings();
 		this.loadInterns();
+	}
+
+	loadTrainings()
+	{
+		this.trainingService.all().subscribe((trainings) => {
+			this.trainings = trainings;
+		});
 	}
 
 	loadInterns()
 	{
-		this.trainingService.all().subscribe((trainings) => {
-			this.trainings = trainings;
+		this.internService.all().subscribe((interns) => {
+			this.interns = interns;
 		});
 	}
 
@@ -74,6 +87,7 @@ export class ManageTrainingComponent implements OnInit
 			startDate: "",
 			status: "brouillon",
 			title: "",
+			interns: [],
 		};
 	}
 
@@ -88,7 +102,7 @@ export class ManageTrainingComponent implements OnInit
 	{
 		if (globalThis.confirm("Voulez-vous vraiment supprimer la formation ?")) {
 			this.trainingService.delete(id).subscribe(() => {
-				this.loadInterns();
+				this.loadTrainings();
 			})
 		}
 	}
@@ -104,6 +118,7 @@ export class ManageTrainingComponent implements OnInit
 			startDate: "",
 			status: "brouillon",
 			title: "",
+			interns: [],
 		};
 		this.editMode = false;
 	}

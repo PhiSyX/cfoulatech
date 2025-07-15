@@ -1,4 +1,5 @@
 import { Trainer } from './trainer';
+import { Training } from './training';
 
 export interface Intern
 {
@@ -8,4 +9,5 @@ export interface Intern
 	phone: string;
 	trainerId?: string;
 	trainer?: Trainer;
+	trainings?: Array<Training>;
 }

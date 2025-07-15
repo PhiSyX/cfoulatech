@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import type { Training } from '../models/training';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: "root",
@@ -17,6 +17,19 @@ export class TrainingService
 	all(): Observable<Array<Training>>
 	{
 		return this.http.get<Array<Training>>(this.apiUrl);
+	}
+
+	filter(internId: string): Observable<Training|undefined>
+	{
+		return this.http
+			.get<Array<Training>>(`${this.apiUrl}?interns=${internId}`)
+			.pipe(
+				filter((trainings) => {
+					return trainings.filter((t) => t.interns.includes(internId))
+						.length >= 1
+				}),
+				map((trainings) => trainings.at(0)),
+			);
 	}
 
 	create(training: Training): Observable<Training>
