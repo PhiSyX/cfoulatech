@@ -1,10 +1,8 @@
 package exo.annotations;
 
-import annotations.Author;
 import exo.annotations.validation.Configuration;
 import exo.annotations.validation.Important;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
