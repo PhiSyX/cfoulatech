@@ -30,8 +30,13 @@ export class LoginComponent
 	{
 	}
 
-	async login()
+	async login(): Promise<void>
 	{
+		if (this.email.trim().length === 0 || this.password.length === 0) {
+			alert("Please enter a valid email address or password");
+			return;
+		}
+
 		if (
 			this.dbEmailRole[this.email] &&
 			this.dbEmailPassword[this.email] === this.password
@@ -41,15 +46,28 @@ export class LoginComponent
 			return;
 		}
 
-		this.authService.connect(this.email, this.password).subscribe((trainer) => {
+		this.authService.connectTrainer(this.email, this.password).subscribe((trainer) => {
 			if (!trainer) {
+				this.connectIntern();
+				return;
+			}
+
+			window.localStorage.setItem("role", "trainer");
+			window.localStorage.setItem("trainerId", trainer.id!.toString());
+			this.router.navigate(["/dashboard"]);
+		});
+	}
+
+	private connectIntern(): void
+	{
+		this.authService.connectIntern(this.email, this.password).subscribe((intern) => {
+			if (!intern) {
 				alert(`Identifiant incorrect pour "${this.email}"`);
 				return;
 			}
-			window.localStorage.setItem("role", "trainer");
-			window.localStorage.setItem("trainerId", trainer.id!);
+			window.localStorage.setItem("role", "intern");
+			window.localStorage.setItem("internId", intern.id!.toString());
 			this.router.navigate(["/dashboard"]);
 		});
-
 	}
 }
