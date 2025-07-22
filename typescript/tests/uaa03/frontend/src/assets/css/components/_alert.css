@@ -1,0 +1,25 @@
+.alert {
+  display: inline-block;
+  padding: var(--space1);
+  border: 1px solid currentcolor;
+  border-radius: var(--default-radius);
+
+  p {
+    margin: 0;
+  }
+}
+
+.alert--error {
+  border-color: hsl(0 56.5% 53.1%);
+  background: hsl(0 93.4% 23.7%);
+}
+
+.alert--success {
+  border-color: hsl(120 62% 60%);
+  background: hsl(120 43.6% 32%);
+}
+
+.alert-message {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,19 @@
+/**
+ * Les règles de mises en pages.
+ */
+
+.l-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.l-main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.navigation-global {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}

@@ -1,0 +1,5 @@
+:host,
+:host > aside {
+  height: 100%;
+  flex-shrink: 0;
+}

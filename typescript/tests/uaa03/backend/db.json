@@ -1,0 +1,62 @@
+{
+  "admins": [
+    {
+      "id": "id01",
+      "nom": "Mike",
+      "email": "mike@cfoulatech.be",
+      "password": "12345"
+    }
+  ],
+  "medecins": [
+    {
+      "id": "id02",
+      "nom": "Derek Shepherd",
+      "email": "derek@shepherd.com",
+      "password": "56789",
+      "telephone": "0123456789",
+      "specialite": "Neurochirurgie"
+    },
+    {
+      "id": "id03",
+      "nom": "Aimable",
+      "email": "aimable@erasme.be",
+      "password": "12345",
+      "telephone": "0123456789",
+      "specialite": "Pneumologue"
+    }
+  ],
+  "patients": [
+    {
+      "id": "id04",
+      "nom": "Ericarina",
+      "email": "eric@rina.pt",
+      "password": "123erica",
+      "telephone": "0123456789"
+    },
+    {
+      "id": "id05",
+      "nom": "Mohamed Ali",
+      "email": "momo@ali.tu",
+      "password": "123momo",
+      "telephone": "0123456789"
+    }
+  ],
+  "rendezvous": [
+    {
+      "id": "id06",
+      "date": "2025-07-22",
+      "heure": "09:20:12",
+      "patientId": "id04",
+      "medecinId": "id02",
+      "etat": "En attente"
+    },
+    {
+      "id": "id07",
+      "date": "2025-07-27",
+      "heure": "15:10:12",
+      "patientId": "id05",
+      "medecinId": "id03",
+      "etat": "Confirmé"
+    }
+  ]
+}

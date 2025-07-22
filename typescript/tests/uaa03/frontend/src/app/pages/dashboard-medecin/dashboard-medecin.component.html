@@ -1,0 +1,38 @@
+<section class="center:i">
+  <article>
+    <h1>
+      Mes rendez-vous
+    </h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Patient</th>
+        <th>Etat</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let rdv of rendezvous">
+        <td>
+          {{ rdv.date }}
+        </td>
+
+        <td>
+          {{ rdv.heure }}
+        </td>
+
+        <td>
+          {{ rdv.patient?.nom }}
+        </td>
+
+        <td>
+          {{ rdv.etat }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </article>
+</section>

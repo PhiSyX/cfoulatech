@@ -1,0 +1,27 @@
+.btn {
+  padding: .5rem;
+  border: 1px solid transparent;
+  background: #cdaa2a;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #e3b735;
+  }
+}
+
+.btn-info {
+  background: #35b2e3;
+
+  &:hover {
+    background: #2bb8f0;
+  }
+}
+
+.btn-danger {
+  background: #f1402b;
+
+  &:hover {
+    background: #dc2f1c;
+  }
+}

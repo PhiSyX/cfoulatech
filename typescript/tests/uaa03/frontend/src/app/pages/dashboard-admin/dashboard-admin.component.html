@@ -1,0 +1,281 @@
+<section class="center:i">
+
+  <article>
+    <h1>
+      Les patients
+      <button (click)="beforeNewPatient()" class="btn float-end" popovertarget="admin-add-patient">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+        </svg>
+        Nouveau
+      </button>
+    </h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>
+          {{ patient.nom }}
+        </td>
+        <td>
+          {{ patient.email }}
+        </td>
+        <td>
+          {{ patient.telephone }}
+        </td>
+
+        <td class="d-flex gap=1">
+          <button (click)="beforeEditPatient(patient)" class="btn btn-info" popovertarget="admin-edit-patient"
+                  type="button">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"
+                    fill="currentColor"/>
+            </svg>
+            Modifier
+          </button>
+
+          <button (click)="deletePatient(patient)" class="btn btn-danger" type="button">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"
+                    fill="currentColor"/>
+            </svg>
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <dialog id="admin-add-patient" popover>
+      <h1>Ajouter un patient</h1>
+
+      <form (submit)="addPatient($event)" action="" class="form-grid" method="post">
+        <label for="nom1">Nom</label>
+        <input [(ngModel)]="patientModel.nom" id="nom1" name="nom" type="text">
+
+        <label for="email1">Adresse e-mail</label>
+        <input [(ngModel)]="patientModel.email" id="email1" name="email" type="email">
+
+        <label for="password1">Mot de passe</label>
+        <input [(ngModel)]="patientModel.password" id="password1" name="password" type="password">
+
+        <label for="tel1">Numéro de téléphone</label>
+        <input [(ngModel)]="patientModel.telephone" id="tel1" name="tel" type="tel">
+
+        <button class="btn" type="dialog">
+          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+          </svg>
+          Enregistrer
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="admin-edit-patient" popover>
+      <h1>Modifier le patient</h1>
+
+      <form (submit)="editPatient($event)" action="" class="form-grid" method="post">
+        <input [(ngModel)]="patientModel.id" [value]="patientModel.id" name="id" type="hidden">
+
+        <label for="nom2">Nom</label>
+        <input [(ngModel)]="patientModel.nom" id="nom2" name="nom" type="text">
+
+        <label for="email2">Adresse e-mail</label>
+        <input [(ngModel)]="patientModel.email" id="email2" name="email" type="email">
+
+        <label for="password2">Mot de passe</label>
+        <input [(ngModel)]="patientModel.password" id="password2" name="password" type="password">
+
+        <label for="tel2">Numéro de téléphone</label>
+        <input [(ngModel)]="patientModel.telephone" id="tel2" name="tel" type="tel">
+
+        <button class="btn btn-info" popovertarget="admin-edit-patient" popovertargetaction="hide" type="dialog">
+          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+          </svg>
+          Modifier
+        </button>
+      </form>
+    </dialog>
+  </article>
+
+  <br>
+  <br>
+  <br>
+
+  <article>
+    <h1>
+      Les médecins
+      <button (click)="beforeNewMedecin()" class="btn float-end" popovertarget="admin-add-medecin">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+        </svg>
+        Nouveau
+      </button>
+    </h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Spécialité</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let medecin of medecins">
+        <td>
+          {{ medecin.nom }}
+        </td>
+        <td>
+          {{ medecin.email }}
+        </td>
+        <td>
+          {{ medecin.telephone }}
+        </td>
+        <td>
+          {{ medecin.specialite }}
+        </td>
+
+        <td class="d-flex gap=1">
+          <button (click)="beforeEditMedecin(medecin)" class="btn btn-info" popovertarget="admin-edit-medecin"
+                  type="button">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"
+                    fill="currentColor"/>
+            </svg>
+            Modifier
+          </button>
+
+          <button (click)="deleteMedecin(medecin)" class="btn btn-danger" type="button">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"
+                    fill="currentColor"/>
+            </svg>
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <dialog id="admin-add-medecin" popover>
+      <h1>Ajouter un medecin</h1>
+
+      <form (submit)="addMedecin($event)" action="" class="form-grid" method="post">
+        <label for="nom3">Nom</label>
+        <input [(ngModel)]="medecinModel.nom" id="nom3" name="nom" type="text">
+
+        <label for="email3">Adresse e-mail</label>
+        <input [(ngModel)]="medecinModel.email" id="email3" name="email" type="email">
+
+        <label for="password3">Mot de passe</label>
+        <input [(ngModel)]="medecinModel.password" id="password3" name="password" type="password">
+
+        <label for="tel3">Numéro de téléphone</label>
+        <input [(ngModel)]="medecinModel.telephone" id="tel3" name="tel" type="tel">
+
+        <label for="specialite3">Spécialité</label>
+        <input [(ngModel)]="medecinModel.specialite" id="specialite3" name="specialite3" type="text">
+
+        <button class="btn" type="dialog">
+          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+          </svg>
+          Enregistrer
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="admin-edit-medecin" popover>
+      <h1>Modifier le medecin</h1>
+
+      <form (submit)="editMedecin($event)" action="" class="form-grid" method="post">
+        <input [(ngModel)]="medecinModel.id" [value]="medecinModel.id" name="id" type="hidden">
+
+        <label for="nom4">Nom</label>
+        <input [(ngModel)]="medecinModel.nom" id="nom4" name="nom" type="text">
+
+        <label for="email4">Adresse e-mail</label>
+        <input [(ngModel)]="medecinModel.email" id="email4" name="email" type="email">
+
+        <label for="password4">Mot de passe</label>
+        <input [(ngModel)]="medecinModel.password" id="password4" name="password" type="password">
+
+        <label for="tel4">Numéro de téléphone</label>
+        <input [(ngModel)]="medecinModel.telephone" id="tel4" name="tel" type="tel">
+
+        <label for="specialite4">Spécialité</label>
+        <input [(ngModel)]="medecinModel.specialite" id="specialite4" name="specialite" type="text">
+
+        <button class="btn btn-info" popovertarget="admin-edit-medecin" popovertargetaction="hide" type="dialog">
+          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" fill="currentColor"/>
+          </svg>
+          Modifier
+        </button>
+      </form>
+    </dialog>
+  </article>
+
+
+  <br>
+  <br>
+  <br>
+
+  <article>
+    <h1>
+      Les rendez-vous
+    </h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Médecin</th>
+        <th>Patient</th>
+        <th>Etat</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let rdv of rendezvous">
+        <td>
+          {{ rdv.date }}
+        </td>
+
+        <td>
+          {{ rdv.heure }}
+        </td>
+
+        <td>
+          {{ rdv.medecin?.nom }}
+        </td>
+
+        <td>
+          {{ rdv.patient?.nom }}
+        </td>
+
+        <td>
+          {{ rdv.etat }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </article>
+
+
+</section>
