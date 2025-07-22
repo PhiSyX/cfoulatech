@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from './contact.service';
-import { Contact } from './models/contact';
+import { Contact } from '../models/contact';
 import { NgForOf } from '@angular/common';
 
 @Component({

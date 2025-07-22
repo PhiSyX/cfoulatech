@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgFor } from "@angular/common";
-import { InternService } from "../../services/intern.service";
 import { Intern } from "../../models/intern";
+import { InternService } from "../../services/intern.service";
 import { TrainingService } from '../../services/training.service';
 
 @Component({

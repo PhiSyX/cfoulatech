@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import type { Trainer } from '../models/trainer';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import type { Trainer } from '../models/trainer';
 
 @Injectable({
 	providedIn: "root",

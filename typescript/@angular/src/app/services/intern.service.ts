@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import type { Intern } from "../models/intern";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import type { Intern } from "../models/intern";
 import { Trainer } from "../models/trainer";
 
 @Injectable({
