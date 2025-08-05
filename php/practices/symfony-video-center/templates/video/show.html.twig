@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ video.title }}
+{% endblock %}
+
+{% block navPrimary %}
+    {% if app.user == video.user %}
+        <li>
+            <a href="{{ path('app_video_edit', { id: video.id }) }}">
+                Éditer la vidéo
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('app_video_delete', { id: video.id }) }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete-video') }}">
+                <input type="hidden" name="_method" value="DELETE">
+            </form>
+            <a href="{{ path('app_video_delete', { id: video.id }) }}" onclick="return confirm('Voulez-vous vraiment supprimer la vidéo ?') && this.previousElementSibling.submit()">
+                Supprimer la vidéo
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if video.premium and not app.user %}
+        <div class="content">
+            {{ video.description | u.truncate(video.description | length / 15, '...') | markdown_to_html }}
+            <a href="{{ path('app_login') }}" class="btn btn-primary">Connecte toi pour lire la suite</a>
+        </div>
+    {% else %}
+        <div class="content">
+            {{ video.description | markdown_to_html }}
+        </div>
+    {% endif %}
+{% endblock %}

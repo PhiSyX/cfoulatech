@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Video Center{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h1 class="h1">Cours d'ingénierie fullstack</h1>
+        <h2 class="h3">Dernières vidéos</h2>
+
+        <div class="carousel">
+            <div class="carousel-content">
+                {% for video in videos %}
+                    <div class="carousel-item">
+                        {{ include('video/_course-item.html.twig', { video: video }) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

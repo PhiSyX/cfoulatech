@@ -1,0 +1,21 @@
+{
+  "name": "@phisyx/symfony-video-center",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-symfony": "^8.2"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@symfony/ux-react": "^2.27.0",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  }
+}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <section class="auth-page">
+        {% for flash_error in app.flashes %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        <h1>Inscris-toi</h1>
+
+        <form method="post" class="auth-form">
+            {{ form_label(registrationForm.firstname) }}
+            {{ form_widget(registrationForm.firstname) }}
+            <span></span>
+            <div class="form-error">{{ form_errors(registrationForm.firstname) }}</div>
+
+            {{ form_label(registrationForm.lastname) }}
+            {{ form_widget(registrationForm.lastname) }}
+            <span></span>
+            <div class="form-error">{{ form_errors(registrationForm.lastname) }}</div>
+
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+            <span></span>
+            <div class="form-error">{{ form_errors(registrationForm.email) }}</div>
+
+            {{ form_label(registrationForm.plainPassword) }}
+            {{ form_widget(registrationForm.plainPassword) }}
+            <span></span>
+            <div class="form-error">{{ form_errors(registrationForm.plainPassword) }}</div>
+
+            {{ form_label(registrationForm.agreeTerms) }}
+            <div class="flex">
+                {{ form_widget(registrationForm.agreeTerms) }}
+                <a href="#" class="link-hl" style="vertical-align: super">
+                    Lire les termes
+                </a>
+            </div>
+            <span></span>
+            <div class="form-error">{{ form_errors(registrationForm.agreeTerms) }}</div>
+
+            {{ form_widget(registrationForm.register) }}
+
+            {{ form_start(registrationForm) }}
+            {{ form_end(registrationForm) }}
+        </form>
+    </section>
+{% endblock %}

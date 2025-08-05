@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <section class="auth-page">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1>Connecte-toi</h1>
+
+        <form method="post" class="auth-form">
+            <label for="username">Adresse mail</label>
+            <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control"
+                   autocomplete="email" required autofocus placeholder="john@doe.org">
+            <label for="password">
+                Mot de passe
+                <a href="{{ path('app_forgot_password_request') }}" class="link-hl">
+                    oublié ?
+                </a>
+            </label>
+            <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password"
+                   required placeholder="MySecretPassword">
+            <input type="hidden" name="_csrf_token" data-controller="csrf-protection"
+                   value="{{ csrf_token('authenticate') }}">
+
+            <br>
+
+            <div class="flex">
+                <button class="btn btn-primary" type="submit">
+                    Se connecter
+                </button>
+
+                <a href="{{ path('app_register') }}" class="btn btn-secondary">
+                    Créer un compte
+                </a>
+            </div>
+        </form>
+
+    </section>
+{% endblock %}

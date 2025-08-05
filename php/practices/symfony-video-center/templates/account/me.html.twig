@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block navPrimary %}
+    <li>
+        <a href="#about">À propos de moi</a>
+        <a href="#videos">Mes vidéos</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <style>
+        main {
+            padding: 0;
+        }
+    </style>
+
+    <main role="main">
+        <header class="profile-heading">
+            <div class="center">
+                <h1 class="title">{{ app.user.firstname }} {{ app.user.lastname }}</h1>
+
+                <div {{ react_component('UploadImage', {
+                    src: vich_uploader_asset(app.user, 'imageFile'),
+                }) }}></div>
+            </div>
+        </header>
+
+        <main>
+            <section id="videos" role="tabpanel">
+                <h1>
+                    Mes vidéos
+
+                    <a href="{{ path('app_video_create') }}" class="btn btn-primary small float-right">
+                        Créer
+                    </a>
+                </h1>
+
+                <div class="carousel">
+                    <div class="carousel-content">
+                        {% for video in app.user.videos %}
+                            <div class="carousel-item">
+                                {{ include('video/_course-item.html.twig', { video: video }) }}
+                            </div>
+                        {% else %}
+                            <div>
+                                <h2>Je n'ai pas de vidéos</h2>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="about" role="tabpanel" {{ react_component('AboutDetailsForm', {
+                user: {
+                    lastname: app.user.lastname,
+                    firstname: app.user.firstname,
+                    email: app.user.email,
+                    isVerified: app.user.verified,
+                },
+                form: {
+                    action: path('app_account_me'),
+                    submit: "Mettre à jour",
+                    prefixName: detailsForm.vars.name,
+                },
+            }) }}></section>
+        </main>
+    </main>
+{% endblock %}

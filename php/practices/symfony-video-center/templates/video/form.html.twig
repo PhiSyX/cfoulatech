@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block navPrimary %}
+{% endblock %}
+
+{% block body %}
+    <div class="video-page content">
+        <h1>{{ title }}</h1>
+
+        {{ form_start(videoForm) }}
+        {{ form_row(videoForm.title) }}
+        {{ form_row(videoForm.description) }}
+        <div {{ react_component('VideoTube', { video: videoForm.videoYTID.vars.value }) }}>
+            {{ form_row(videoForm.videoYTID) }}
+        </div>
+
+        <section style="display: flex; gap: 1rem; width: max-content;">
+            {{ form_label(videoForm.premium) }}
+            {{ form_widget(videoForm.premium) }}
+        </section>
+
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+        {{ form_end(videoForm) }}
+    </div>
+{% endblock %}

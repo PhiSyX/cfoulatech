@@ -1,0 +1,52 @@
+<div class="course-item {{ video.premium ? 'course-item-premium' : '' }}">
+    <a class="course-item-image" href="{{ path('app_video_show', { id: video.id }) }}">
+        {% if video.premium %}
+            <span class="pos-a">
+                                        <span class="badge badge-gold badge-outline float-right">
+                                            PREMIUM
+                                        </span>
+                                    </span>
+        {% endif %}
+
+        <img
+            src="{{ video.thumbnailLink }}"
+            alt="{{ video.title }}"
+            loading="lazy"
+        />
+    </a>
+
+    <div class="course-item-detail">
+        <a href="{{ path('app_video_show', { id: video.id }) }}">
+            <h2 class="line-clamp" title="{{ video.title }}">
+                {{ video.title | u.truncate(20,'...',false) }}
+            </h2>
+        </a>
+
+        <div class="course-item-detail-bottom">
+            <a href="{{ path('app_video_show', { id: video.id }) }}" class="avatar">
+                <div class="wrap">
+                    <div class="thumbnail">
+                        <img
+                            src="{{ vich_uploader_asset(video.user, 'imageFile') }}"
+                            alt="{{ video.user.firstname }} {{ video.user.lastname }}"
+                            height="50px"
+                            width="50px"
+                        />
+                    </div>
+
+                    <div class="text">
+                        <p class="main"
+                           title="{{ video.user.firstname }} {{ video.user.lastname }}">
+                            {{ video.user.firstname }}
+                            {{ video.user.lastname | first }}.
+                        </p>
+
+                        <p class="secondary line-clamp">
+                            {{ video.description | markdown_to_html | striptags | u.truncate(25,'...',false) }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
