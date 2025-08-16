@@ -1,0 +1,155 @@
+'This value should be false.': falseである必要があります。
+'This value should be true.': trueである必要があります。
+'This value should be of type {{ type }}.': '{{ type }}型でなければなりません。'
+'This value should be blank.': 空でなければなりません。
+'The value you selected is not a valid choice.': 有効な選択肢ではありません。
+'You must select at least {{ limit }} choice.|You must select at least {{ limit }} choices.': '{{ limit }}個以上選択してください。'
+'You must select at most {{ limit }} choice.|You must select at most {{ limit }} choices.': '{{ limit }}個以内で選択してください。'
+'One or more of the given values is invalid.': 無効な値が含まれています。
+'This field was not expected.': このフィールドは不要です。
+'This field is missing.': このフィールドを入力してください。
+'This value is not a valid date.': 無効な日付です。
+'This value is not a valid datetime.': 無効な日時です。
+'This value is not a valid email address.': 無効なメールアドレスです。
+'The file could not be found.': ファイルが見つかりません。
+'The file is not readable.': ファイルが読み込めません。
+'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.': 'ファイルのサイズが大きすぎます({{ size }} {{ suffix }})。ファイルサイズは{{ limit }} {{ suffix }}以下にしてください。'
+'The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.': 'ファイルのMIMEタイプが無効です({{ type }})。有効なMIMEタイプは{{ types }}です。'
+'This value should be {{ limit }} or less.': '{{ limit }}以下でなければなりません。'
+'This value is too long. It should have {{ limit }} character or less.|This value is too long. It should have {{ limit }} characters or less.': 'この値は、{{ limit }}文字以内で入力してください。'
+'This value should be {{ limit }} or more.': '{{ limit }}以上でなければなりません。'
+'This value is too short. It should have {{ limit }} character or more.|This value is too short. It should have {{ limit }} characters or more.': 'この値は、{{ limit }}文字以上で入力してください。'
+'This value should not be blank.': 入力してください。
+'This value should not be null.': 入力してください。
+'This value should be null.': 入力しないでください。
+'This value is not valid.': 無効な値です。
+'This value is not a valid time.': 無効な時刻です。
+'This value is not a valid URL.': 無効なURLです。
+'The two values should be equal.': 2つの値が同じでなければなりません。
+'The file is too large. Allowed maximum size is {{ limit }} {{ suffix }}.': 'ファイルのサイズが大きすぎます。有効な最大サイズは{{ limit }} {{ suffix }}です。'
+'The file is too large.': ファイルのサイズが大きすぎます。
+'The file could not be uploaded.': ファイルをアップロードできませんでした。
+'This value should be a valid number.': 有効な数値ではありません。
+'This file is not a valid image.': ファイルが画像ではありません。
+'This is not a valid IP address.': 無効なIPアドレスです。
+'This value is not a valid language.': 無効な言語名です。
+'This value is not a valid locale.': 有効なロケールではありません。
+'This value is not a valid country.': 有効な国名ではありません。
+'This value is already used.': 既に使用されています。
+'The size of the image could not be detected.': 画像のサイズが検出できません。
+'The image width is too big ({{ width }}px). Allowed maximum width is {{ max_width }}px.': '画像の幅が大きすぎます({{ width }}ピクセル)。{{ max_width }}ピクセル以下にしてください。'
+'The image width is too small ({{ width }}px). Minimum width expected is {{ min_width }}px.': '画像の幅が小さすぎます({{ width }}ピクセル)。{{ min_width }}ピクセル以上にしてください。'
+'The image height is too big ({{ height }}px). Allowed maximum height is {{ max_height }}px.': '画像の高さが大きすぎます({{ height }}ピクセル)。{{ max_height }}ピクセル以下にしてください。'
+'The image height is too small ({{ height }}px). Minimum height expected is {{ min_height }}px.': '画像の高さが小さすぎます({{ height }}ピクセル)。{{ min_height }}ピクセル以上にしてください。'
+"This value should be the user's current password.": 現在のパスワードを入力してください。
+'This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.': '{{ limit }}文字ちょうどで入力してください。'
+'The file was only partially uploaded.': ファイルのアップロードに失敗しました。
+'No file was uploaded.': ファイルがアップロードされていません。
+'No temporary folder was configured in php.ini.': php.iniに一時フォルダが設定されていないか、設定されたフォルダが存在しません。
+'Cannot write temporary file to disk.': 一時ファイルをディスクに書き込むことができません。
+'A PHP extension caused the upload to fail.': PHP拡張が原因でアップロードに失敗しました。
+'This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.': '少なくとも{{ limit }}個の要素を含む必要があります。'
+'This collection should contain {{ limit }} element or less.|This collection should contain {{ limit }} elements or less.': '{{ limit }}個以下の要素を含む必要があります。'
+'This collection should contain exactly {{ limit }} element.|This collection should contain exactly {{ limit }} elements.': '要素はちょうど{{ limit }}個でなければなりません。'
+'Invalid card number.': 無効なカード番号です。
+'Unsupported card type or invalid card number.': 未対応のカード種類または無効なカード番号です。
+'This is not a valid International Bank Account Number (IBAN).': 有効な国際銀行勘定番号（IBAN）ではありません。
+'This value is not a valid ISBN-10.': 有効なISBN-10コードではありません。
+'This value is not a valid ISBN-13.': 有効なISBN-13コードではありません。
+'This value is neither a valid ISBN-10 nor a valid ISBN-13.': 有効なISBN-10コードまたはISBN-13コードではありません。
+'This value is not a valid ISSN.': 有効なISSNコードではありません。
+'This value is not a valid currency.': 有効な通貨ではありません。
+'This value should be equal to {{ compared_value }}.': '{{ compared_value }}と同じ値でなければなりません。'
+'This value should be greater than {{ compared_value }}.': '{{ compared_value }}より大きくなければなりません。'
+'This value should be greater than or equal to {{ compared_value }}.': '{{ compared_value }}以上でなければなりません。'
+'This value should be identical to {{ compared_value_type }} {{ compared_value }}.': 'この値は{{ compared_value_type }} {{ compared_value }}と同じでなければなりません。'
+'This value should be less than {{ compared_value }}.': '{{ compared_value }}未満でなければなりません。'
+'This value should be less than or equal to {{ compared_value }}.': '{{ compared_value }}以下でなければなりません。'
+'This value should not be equal to {{ compared_value }}.': '{{ compared_value }}と等しくてはいけません。'
+'This value should not be identical to {{ compared_value_type }} {{ compared_value }}.': 'この値は{{ compared_value_type }}の{{ compared_value }}と異なる値にしてください。'
+'The image ratio is too big ({{ ratio }}). Allowed maximum ratio is {{ max_ratio }}.': '画像のアスペクト比が大きすぎます({{ ratio }})。{{ max_ratio }}までにしてください。'
+'The image ratio is too small ({{ ratio }}). Minimum ratio expected is {{ min_ratio }}.': '画像のアスペクト比が小さすぎます({{ ratio }})。{{ min_ratio }}以上にしてください。'
+'The image is square ({{ width }}x{{ height }}px). Square images are not allowed.': '画像が正方形になっています({{ width }}x{{ height }}ピクセル)。正方形の画像は許可されていません。'
+'The image is landscape oriented ({{ width }}x{{ height }}px). Landscape oriented images are not allowed.': '画像が横向きになっています({{ width }}x{{ height }}ピクセル)。横向きの画像は許可されていません。'
+'The image is portrait oriented ({{ width }}x{{ height }}px). Portrait oriented images are not allowed.': '画像が縦向きになっています({{ width }}x{{ height }}ピクセル)。縦向きの画像は許可されていません。'
+'An empty file is not allowed.': 空のファイルは無効です。
+'The host could not be resolved.': ホストを解決できませんでした。
+'This value does not match the expected {{ charset }} charset.': '文字コードが{{ charset }}と一致しません。'
+'This is not a valid Business Identifier Code (BIC).': 有効なSWIFTコードではありません。
+Error: エラー
+'This is not a valid UUID.': 有効なUUIDではありません。
+'This value should be a multiple of {{ compared_value }}.': '{{ compared_value }}の倍数でなければなりません。'
+'This Business Identifier Code (BIC) is not associated with IBAN {{ iban }}.': 'このSWIFTコードはIBANコード（{{ iban }}）に関連付けられていません。'
+'This value should be valid JSON.': 有効なJSONでなければなりません。
+'This collection should contain only unique elements.': 要素は重複してはなりません。
+'This value should be positive.': 正の数でなければなりません。
+'This value should be either positive or zero.': 正の数、または0でなければなりません。
+'This value should be negative.': 負の数でなければなりません。
+'This value should be either negative or zero.': 負の数、または0でなければなりません。
+'This value is not a valid timezone.': 有効なタイムゾーンではありません。
+'This password has been leaked in a data breach, it must not be used. Please use another password.': このパスワードは漏洩しているため使用できません。
+'This value should be between {{ min }} and {{ max }}.': '{{ min }}以上{{ max }}以下でなければなりません。'
+'This value is not a valid hostname.': 有効なホスト名ではありません。
+'The number of elements in this collection should be a multiple of {{ compared_value }}.': '要素の数は{{ compared_value }}の倍数でなければなりません。'
+'This value should satisfy at least one of the following constraints:': '以下の制約のうち少なくとも1つを満たす必要があります:'
+'Each element of this collection should satisfy its own set of constraints.': コレクションの各要素は、それぞれの制約を満たす必要があります。
+'This value is not a valid International Securities Identification Number (ISIN).': この値は有効な国際証券識別番号（ISIN）ではありません。
+'This value should be a valid expression.': 有効な式でなければなりません。
+'This value is not a valid CSS color.': この値は有効なCSSカラーではありません。
+'This value is not a valid CIDR notation.': この値は有効なCIDR表記ではありません。
+'The value of the netmask should be between {{ min }} and {{ max }}.': 'ネットマスクは{{ min }}から{{ max }}の範囲で入力してください。'
+'The filename is too long. It should have {{ filename_max_length }} character or less.|The filename is too long. It should have {{ filename_max_length }} characters or less.': 'ファイル名が長すぎます。ファイル名は{{ filename_max_length }}文字以下でなければなりません。'
+'The password strength is too low. Please use a stronger password.': パスワードの強度が弱すぎます。より強いパスワードを使用してください。
+'This value contains characters that are not allowed by the current restriction-level.': 現在の設定では使用できない文字が含まれています。
+'Using invisible characters is not allowed.': 不可視文字は使用できません。
+'Mixing numbers from different scripts is not allowed.': 異なる種類の数字を使うことはできません。
+'Using hidden overlay characters is not allowed.': 隠れたオーバレイ文字は使用できません。
+'The extension of the file is invalid ({{ extension }}). Allowed extensions are {{ extensions }}.': 'ファイルの拡張子が無効です({{ extension }})。有効な拡張子は{{ extensions }}です。'
+'The detected character encoding is invalid ({{ detected }}). Allowed encodings are {{ encodings }}.': '検出された文字コードは無効です({{ detected }})。有効な文字コードは{{ encodings }}です。'
+'This value is not a valid MAC address.': 有効なMACアドレスではありません。
+'This URL is missing a top-level domain.': このURLはトップレベルドメインがありません。
+'This value is too short. It should contain at least one word.|This value is too short. It should contain at least {{ min }} words.': '短すぎます。{{ min }}単語以上にする必要があります。'
+'This value is too long. It should contain one word.|This value is too long. It should contain {{ max }} words or less.': '長すぎます。{{ max }}単語以下にする必要があります。'
+'This value does not represent a valid week in the ISO 8601 format.': '週の形式が正しくありません（ISO 8601形式）。'
+'This value is not a valid week.': 無効な週形式です。
+'This value should not be before week "{{ min }}".': '週 "{{ min }}" 以降を指定してください。'
+'This value should not be after week "{{ max }}".': '週 "{{ max }}" までを指定してください。'
+'This value is not a valid Twig template.': 有効なTwigテンプレートではありません。
+'This form should not contain extra fields.': フィールドグループに追加のフィールドを含んではなりません。
+'The uploaded file was too large. Please try to upload a smaller file.': アップロードされたファイルが大きすぎます。小さなファイルで再度アップロードしてください。
+'The CSRF token is invalid. Please try to resubmit the form.': CSRFトークンが無効です、再送信してください。
+'This value is not a valid HTML5 color.': 有効なHTML5の色ではありません。
+'Please enter a valid birthdate.': 有効な生年月日を入力してください。
+'The selected choice is invalid.': 選択した値は無効です。
+'The collection is invalid.': コレクションは無効です。
+'Please select a valid color.': 有効な色を選択してください。
+'Please select a valid country.': 有効な国を選択してください。
+'Please select a valid currency.': 有効な通貨を選択してください。
+'Please choose a valid date interval.': 有効な日付間隔を選択してください。
+'Please enter a valid date and time.': 有効な日時を入力してください。
+'Please enter a valid date.': 有効な日付を入力してください。
+'Please select a valid file.': 有効なファイルを選択してください。
+'The hidden field is invalid.': 隠しフィールドが無効です。
+'Please enter an integer.': 整数で入力してください。
+'Please select a valid language.': 有効な言語を選択してください。
+'Please select a valid locale.': 有効なロケールを選択してください。
+'Please enter a valid money amount.': 有効な金額を入力してください。
+'Please enter a number.': 数値で入力してください。
+'The password is invalid.': パスワードが無効です。
+'Please enter a percentage value.': パーセント値で入力してください。
+'The values do not match.': 値が一致しません。
+'Please enter a valid time.': 有効な時間を入力してください。
+'Please select a valid timezone.': 有効なタイムゾーンを選択してください。
+'Please enter a valid URL.': 有効なURLを入力してください。
+'Please enter a valid search term.': 有効な検索語を入力してください。
+'Please provide a valid phone number.': 有効な電話番号を入力してください。
+'The checkbox has an invalid value.': チェックボックスの値が無効です。
+'Please enter a valid email address.': 有効なメールアドレスを入力してください。
+'Please select a valid option.': 有効な値を選択してください。
+'Please select a valid range.': 有効な範囲を選択してください。
+'Please enter a valid week.': 有効な週を入力してください。
+'There is already an account with this email': 'このメールアドレスで既にアカウントが作成されています'
+'Please enter a password': 'パスワードを入力してください'
+'Your password should be at least {{ limit }} characters': 'パスワードは少なくとも{{ limit }}文字以上である必要があります'
+'You should agree to our terms.': '当社の利用規約に同意する必要があります。'
+'Please enter your email': 'メールアドレスを入力してください'

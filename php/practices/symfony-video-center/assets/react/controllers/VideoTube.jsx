@@ -1,10 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react';
 
 /**
- * @param {{video?: string}} props
+ * @param {{label: string; video?: string}} props
  */
 export default function VideoTube(props) {
-    const {video} = props;
+    const {label, video} = props;
 
     const [videoYT, setVideoYT] = useState(video);
 
@@ -29,7 +29,7 @@ export default function VideoTube(props) {
     return (
         <>
             <label htmlFor="video_videoYTID" className="required">
-                Vidéo YouTube
+                {label}
             </label>
             <input type="text" id="video_videoYTID"
                    name="video[videoYTID]"

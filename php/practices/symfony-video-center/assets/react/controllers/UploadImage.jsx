@@ -1,9 +1,9 @@
 import React, {useMemo, useRef, useState} from 'react';
 
 /**
- * @param {{src: string; csrfToken: string}} props
+ * @param {{src: string; title: {avatar: string; delete: string; upload: string}}} props
  */
-export default function UploadImage({src, csrfToken}) {
+export default function UploadImage({src, title}) {
     const [source, setSource] = useState(src);
     const isDefaultSrc = useMemo(() => source.indexOf("default-avatar.png") >= 0, [source]);
     const isDownloadable = useMemo(() => source.indexOf("blob:") >= 0, [source])
@@ -37,7 +37,7 @@ export default function UploadImage({src, csrfToken}) {
                             value="1"
                         />
 
-                        <button type="submit" title="Supprimer">
+                        <button type="submit" title={title.delete}>
                             <svg width="16" height="16" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none">
@@ -54,14 +54,14 @@ export default function UploadImage({src, csrfToken}) {
                 <img
                     src={source}
                     alt="Image"
-                    title="Cliquez pour changer votre image de profil"
+                    title={title.avatar}
                     onClick={onClickHandler}
                 />
 
                 <form method="post" className="right"
                       encType="multipart/form-data">
                     {isDownloadable &&
-                        <button type="submit" title="Téléverser">
+                        <button type="submit" title={title.upload}>
                             <svg width="15" height="15" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" fillRule="evenodd">

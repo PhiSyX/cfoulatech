@@ -2,10 +2,10 @@
     <a class="course-item-image" href="{{ path('app_video_show', { id: video.id }) }}">
         {% if video.premium %}
             <span class="pos-a">
-                                        <span class="badge badge-gold badge-outline float-right">
-                                            PREMIUM
-                                        </span>
-                                    </span>
+                <span class="badge badge-gold badge-outline float-right">
+                    {{ 'Premium' | trans | upper }}
+                </span>
+            </span>
         {% endif %}
 
         <img
@@ -42,7 +42,7 @@
                         </p>
 
                         <p class="secondary line-clamp">
-                            {{ video.description | markdown_to_html | striptags | u.truncate(25,'...',false) }}
+                            {{ video.description | markdown_to_html | striptags | u.truncate(25,'...', false) }}
                         </p>
                     </div>
                 </div>

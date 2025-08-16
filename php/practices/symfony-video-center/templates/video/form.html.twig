@@ -14,7 +14,10 @@
         {{ form_start(videoForm) }}
         {{ form_row(videoForm.title) }}
         {{ form_row(videoForm.description) }}
-        <div {{ react_component('VideoTube', { video: videoForm.videoYTID.vars.value }) }}>
+        <div {{ react_component('VideoTube', {
+            label: 'yt.video' | trans,
+            video: videoForm.videoYTID.vars.value
+        }) }}>
             {{ form_row(videoForm.videoYTID) }}
         </div>
 
@@ -23,7 +26,7 @@
             {{ form_widget(videoForm.premium) }}
         </section>
 
-        <button class="btn btn-primary" type="submit">Envoyer</button>
+        <button class="btn btn-primary" type="submit">{{ 'Send' | trans }}</button>
         {{ form_end(videoForm) }}
     </div>
 {% endblock %}

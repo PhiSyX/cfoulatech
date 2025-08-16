@@ -3,8 +3,53 @@
 'Email': 'Adresse mail'
 'Plain password': 'Mot de passe'
 'Agree terms': 'Accepter les termes'
+'Read terms': ' Lire les termes'
 'Register': "S'inscrire"
 'New password': 'Nouveau mot de passe'
 'Repeat Password': 'Répéter le mot de passe'
 'Title': 'Titre'
-'Video y t i d': 'Vidéo YouTube'
+'Delete': 'Supprimer'
+'Upload': 'Téléverser'
+
+'Create': 'Créer'
+'Send': 'Envoyer'
+'Send now': 'Envoyer maintenant'
+
+yt.video: 'Vidéo YouTube'
+
+hero.title: 'Cours approfondis sur le FullStack'
+hero.description: 'Code, rigole et progresse : nos vidéos rendent les cours funs et accessibles, car on est ensemble, les gars !'
+hero.cta: 'Explorez nos cours en vidéos'
+
+video.add: 'Ajouter une vidéo'
+video.edit: 'Éditer la vidéo'
+video.del: 'Supprimer la vidéo'
+video.confirm.del: 'Voulez-vous vraiment supprimer la vidéo ?'
+video.latest: 'Dernières vidéos'
+
+auth.connect: 'Connecte toi'
+auth.logout: 'Se déconnecter'
+auth.login: 'Se connecter'
+auth.need_logged_in_to_see_video: 'Vous devez être connecté pour voir la vidéo'
+auth.connect_to_read: 'Connecte toi pour lire la suite'
+auth.forgot: 'oublié ?'
+auth.register: 'Inscris-toi'
+
+account.create: 'Créer un compte'
+
+account.title: 'Mon compte'
+account.about_me: 'À propos de moi'
+account.my_videos: 'Mes vidéos'
+account.zeroed_videos: "Je n'ai pas de vidéos"
+account.edit.dblclick: 'Double cliquer pour modifier'
+
+account.avatar.click2change: 'Cliquez pour changer votre image de profil'
+
+account.about.lastname: 'Nom'
+account.about.firstname: 'Prénom'
+account.about.email: 'Adresse mail'
+account.about.is_verified: 'Compte Vérifié ?'
+account.about.update: 'Mettre à jour'
+
+password.reset: 'Réinitialise ton mot de passe'
+password.reset_put_your_email: 'Entrez votre adresse mail, et nous vous enverrons un lien pour réinitialiser votre mot de passe.'

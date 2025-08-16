@@ -1,11 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte{% endblock %}
+{% block title %}
+    {{ 'account.title' | trans }}
+{% endblock %}
 
 {% block navPrimary %}
     <li>
-        <a href="#about">À propos de moi</a>
-        <a href="#videos">Mes vidéos</a>
+        <a href="#about">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M12 2.00003C6.47719 2.00003 2.00002 6.47716 2.00002 12C2.00002 17.5228 6.47719 22 12 22C17.5229 22 22 17.5229 22 12C22 6.47716 17.5229 2.00003 12 2.00003ZM12 20C7.58883 20 4.00003 16.4112 4.00003 12C4.00003 7.5888 7.58878 4.00005 12 4.00005C16.4113 4.00005 20 7.5888 20 12C20 16.4112 16.4113 20 12 20ZM13.2522 8.00003C13.2522 8.72509 12.7243 9.25005 12.0102 9.25005C11.2672 9.25005 10.7522 8.72505 10.7522 7.98616C10.7522 7.276 11.2811 6.75006 12.0102 6.75006C12.7243 6.75006 13.2522 7.276 13.2522 8.00003ZM11.0022 11H13.0022V17H11.0022V11Z"
+                      fill="currentColor"/>
+            </svg>
+
+            {{ 'account.about_me' | trans }}
+        </a>
+        <a href="#videos">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15 8V16H5V8H15ZM16 6H4C3.73478 6 3.48043 6.10536 3.29289 6.29289C3.10536 6.48043 3 6.73478 3 7V17C3 17.2652 3.10536 17.5196 3.29289 17.7071C3.48043 17.8946 3.73478 18 4 18H16C16.2652 18 16.5196 17.8946 16.7071 17.7071C16.8946 17.5196 17 17.2652 17 17V13.5L21 17.5V6.5L17 10.5V7C17 6.73478 16.8946 6.48043 16.7071 6.29289C16.5196 6.10536 16.2652 6 16 6Z"
+                    fill="currentColor"/>
+            </svg>
+
+            {{ 'account.my_videos' | trans }}
+        </a>
     </li>
 {% endblock %}
 
@@ -23,6 +41,11 @@
 
                 <div {{ react_component('UploadImage', {
                     src: vich_uploader_asset(app.user, 'imageFile'),
+                    title: {
+                        avatar: 'account.avatar.click2change' | trans,
+                        delete: 'Delete' | trans,
+                        upload: 'Upload' | trans,
+                    }
                 }) }}></div>
             </div>
         </header>
@@ -30,10 +53,14 @@
         <main>
             <section id="videos" role="tabpanel">
                 <h1>
-                    Mes vidéos
+                    {{ 'account.my_videos' | trans }}
 
                     <a href="{{ path('app_video_create') }}" class="btn btn-primary small float-right">
-                        Créer
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 13H5V11H11V5H13V11H19V13H13V19H11V13Z" fill="currentColor"/>
+                        </svg>
+
+                        {{ 'Create' | trans }}
                     </a>
                 </h1>
 
@@ -45,7 +72,7 @@
                             </div>
                         {% else %}
                             <div>
-                                <h2>Je n'ai pas de vidéos</h2>
+                                <h2>{{ 'account.zeroed_videos' | trans }}</h2>
                             </div>
                         {% endfor %}
                     </div>
@@ -54,6 +81,14 @@
 
 
             <section id="about" role="tabpanel" {{ react_component('AboutDetailsForm', {
+                title: 'account.about_me' | trans,
+                dblclick_title: 'account.edit.dblclick' | trans,
+                label: {
+                    lastname: 'account.about.lastname' | trans,
+                    firstname: 'account.about.firstname' | trans,
+                    email: 'account.about.email' | trans,
+                    isVerified: 'account.about.is_verified' | trans,
+                },
                 user: {
                     lastname: app.user.lastname,
                     firstname: app.user.firstname,
@@ -62,7 +97,7 @@
                 },
                 form: {
                     action: path('app_account_me'),
-                    submit: "Mettre à jour",
+                    submit: 'account.about.update' | trans,
                     prefixName: detailsForm.vars.name,
                 },
             }) }}></section>

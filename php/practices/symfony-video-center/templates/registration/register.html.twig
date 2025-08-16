@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'auth.register' | trans }}{% endblock %}
 
 {% block body %}
     <section class="auth-page">
@@ -8,7 +8,7 @@
             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
         {% endfor %}
 
-        <h1>Inscris-toi</h1>
+        <h1>{{ 'auth.register' | trans }}</h1>
 
         <form method="post" class="auth-form">
             {{ form_label(registrationForm.firstname) }}
@@ -35,7 +35,7 @@
             <div class="flex">
                 {{ form_widget(registrationForm.agreeTerms) }}
                 <a href="#" class="link-hl" style="vertical-align: super">
-                    Lire les termes
+                    {{ 'Read terms' | trans }}
                 </a>
             </div>
             <span></span>

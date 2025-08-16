@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
 /**
- * @typedef {{name: string; formId?:string; text: string; onChange: (val: any) => void}} Props
+ * @typedef {{name: string; formId?:string; text: string; onChange: (val: any) => void; title?: string}} Props
  * @param {Props} props
  * @constructor
  */
-export default function ParagraphEditable({name, formId, text, onChange}) {
+export default function ParagraphEditable({name, formId, text, onChange, title}) {
     const [inputMode, setInputMode] = useState(false);
 
     const handleDoubleClick = () => setInputMode(true);
@@ -21,7 +21,10 @@ export default function ParagraphEditable({name, formId, text, onChange}) {
     return (
         <>
             {!inputMode &&
-                <span onDoubleClick={handleDoubleClick}>{text}</span>}
+                <span onDoubleClick={handleDoubleClick} className="can-update" title={title}>
+                    {text}
+                </span>
+            }
 
             <input
                 name={name}

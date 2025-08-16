@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Réinitialise ton mot de passe{% endblock %}
+{% block title %}{{ 'password.reset' | trans }}{% endblock %}
 
 {% block body %}
     <section class="auth-page">
@@ -9,17 +9,15 @@
             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
         {% endfor %}
 
-        <h1>Réinitialise ton mot de passe</h1>
+        <h1>{{ 'password.reset' | trans }}</h1>
 
         {{ form_start(requestForm, { attr: { class: 'auth-form' }}) }}
         {{ form_label(requestForm.email) }}
         {{ form_widget(requestForm.email) }}
         <span></span>
-        <small>
-            Entrez votre adresse mail, et nous vous enverrons un lien pour réinitialiser votre mot de passe.
-        </small>
+        <small>{{ 'password.reset_put_your_email' | trans }}</small>
 
-        <button class="btn btn-primary" type="submit">Envoyer maintenant</button>
+        <button class="btn btn-primary" type="submit">{{ 'Send now' | trans }}</button>
         {{ form_end(requestForm) }}
     </section>
 {% endblock %}
