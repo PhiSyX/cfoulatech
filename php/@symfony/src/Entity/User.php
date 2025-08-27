@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\Timestampable;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +20,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\UniqueConstraint(name: "UNIQ_IDENTIFIER_EMAIL", fields: ["email"])]
 #[UniqueEntity(fields: ["email"], message: "registration.form.validation.email.unique")]
 #[Vich\Uploadable]
+#[ApiResource]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 	use Timestampable;

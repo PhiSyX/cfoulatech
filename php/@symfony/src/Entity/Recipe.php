@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\Timestampable;
 use App\Repository\RecipeRepository;
 use App\Validator\Badwords;
@@ -14,10 +15,14 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: RecipeRepository::class)]
-#[ORM\Table(name: "recipes")]
+#[
+	ORM\Entity(repositoryClass: RecipeRepository::class),
+	ORM\Table(name: "recipes"),
+	ORM\HasLifecycleCallbacks
+]
 #[UniqueEntity("title")]
 #[Vich\Uploadable]
+#[ApiResource]
 class Recipe
 {
 	use Timestampable;

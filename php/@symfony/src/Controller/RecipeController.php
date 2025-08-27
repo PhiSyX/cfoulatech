@@ -277,10 +277,7 @@ final class RecipeController extends AbstractController
 			return $this->redirectToRoute("app_login");
 		}
 
-		$recipe = (new Recipe())
-			->setUser($this->getUser())
-			->setCreatedAt(new DateTimeImmutable())
-			->setUpdatedAt(new DateTimeImmutable());
+		$recipe = (new Recipe())->setUser($this->getUser());
 
 		$form = $this->createForm(RecipeType::class, $recipe)->handleRequest($req);
 		if ($form->isSubmitted() && $form->isValid()) {
