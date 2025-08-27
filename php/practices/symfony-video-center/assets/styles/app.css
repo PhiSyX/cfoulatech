@@ -782,3 +782,32 @@ img {
 .can-update {
     text-decoration: 1px underline #7eafc9 wavy;
 }
+
+.dropdown {
+    position: relative;
+    cursor: pointer;
+
+    ::marker {
+        color: var(--color);
+    }
+
+    svg {
+        vertical-align: sub;
+    }
+}
+
+.dropmenu {
+    position: absolute;
+    top: 25px;
+    left: -15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+
+    a,
+    a:hover {
+        padding: 8px !important;
+    }
+}

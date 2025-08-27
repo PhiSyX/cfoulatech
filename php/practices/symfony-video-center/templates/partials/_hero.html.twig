@@ -1,0 +1,50 @@
+{% if hero is defined %}
+    {% if video is defined and video.premium and not app.user %}
+        <a href="{{ path('app_login') }}" class="launch-video-btn"
+           title="{{ 'auth.need_logged_in_to_see_video' | trans }}">
+            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 30L90 60L40 90V30Z" fill="currentColor" fill-opacity="0.3" stroke="black"
+                      stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </a>
+    {% elseif hero.video is defined %}
+        <button type="button" class="launch-video-btn js-launch-video-btn" aria-label="Lancer la vidéo">
+            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 30L90 60L40 90V30Z" fill="currentColor" fill-opacity="0.3" stroke="black"
+                      stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+
+        <iframe
+            src="{{ hero.video }}?amp;controls=0&rel=0&enablejsapi=1"
+            hidden
+            title="YouTube video player"
+            allow="autoplay; encrypted-media;"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            class="js-yt-player"
+            style="width: 100%; height: 100%"
+        ></iframe>
+
+        <script type="module">
+            import {HeroVideo} from "{{ asset('scripts/hero.js') }}";
+
+            let heroVideo = new HeroVideo();
+            heroVideo.start();
+        </script>
+    {% else %}
+        <div class="content-text">
+            <h1 class="h3">{{ 'hero.title' | trans }}</h1>
+
+            <h2 class="h1">
+                {{ 'hero.description' | trans }}
+            </h2>
+
+            <a class="btn btn-primary" href="#latest-videos">
+                {{ 'hero.cta' | trans }}
+            </a>
+        </div>
+    {% endif %}
+{% endif %}
