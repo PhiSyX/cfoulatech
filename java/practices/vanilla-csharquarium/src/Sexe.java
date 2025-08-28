@@ -5,6 +5,8 @@ enum Sexe
 	@Override
 	public String toString()
 	{
-		return this == MALE ? "Mâle" : "Femelle";
+		return this == MALE
+			? "Mâle"
+			: "Femelle";
 	}
 }
