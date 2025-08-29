@@ -1,0 +1,29 @@
+meta {
+  name: Création d'une recette
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:8000/api/recipes
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+    "title": "Mon super titre via Bruno",
+    "content": "Ma superbe description via Bruno",
+    "slug": "mon-super-titre-via-bruno",
+    "user": "/api/users/2"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

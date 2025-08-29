@@ -1,0 +1,25 @@
+meta {
+  name: Mise à jour de données partielles d'un utilisateur
+  type: http
+  seq: 3
+}
+
+patch {
+  url: https://localhost:8000/api/users/1
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/merge-patch+json
+}
+
+body:json {
+  {
+    "firstname": "John"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

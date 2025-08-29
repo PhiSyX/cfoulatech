@@ -1,0 +1,15 @@
+meta {
+  name: Suppression d'un utilisateur
+  type: http
+  seq: 4
+}
+
+delete {
+  url: https://localhost:8000/api/users/12
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

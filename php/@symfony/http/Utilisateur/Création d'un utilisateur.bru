@@ -1,0 +1,30 @@
+meta {
+  name: Création d'un utilisateur
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:8000/api/users
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+    "email" : "zidane@cfitech.be",
+    "password" : "$2y$13$ATsTxnVbuEp8TNJnefyHOeNVNxM86PGxTjlE7zaMmP98P6.XCgLKq",
+    "firstname" : "Zinedine",
+    "lastname" : "Zidane",
+    "isVerified" : true
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Mise à jour de données partielles d'une recette
+  type: http
+  seq: 5
+}
+
+patch {
+  url: https://localhost:8000/api/recipes/19
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/merge-patch+json
+}
+
+body:json {
+  {
+    "duration": 90
+  }
+}
+
+settings {
+  encodeUrl: true
+}

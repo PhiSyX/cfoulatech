@@ -1,0 +1,15 @@
+meta {
+  name: Suppression d'une recette
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://localhost:8000/api/recipes/19
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

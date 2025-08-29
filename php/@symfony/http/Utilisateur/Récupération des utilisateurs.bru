@@ -1,0 +1,15 @@
+meta {
+  name: Récupération des utilisateurs
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://localhost:8000/api/users
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
