@@ -153,3 +153,4 @@ Error: Erreur
 'Please enter your email': "Merci d'entrer votre adresse mail"
 'You should agree to our terms.': 'Vous devez accepter nos termes'
 'There is already an account with this email': 'Il existe déjà un compte avec cette adresse mail'
+'This value {{ badword }} is a bad word': 'Le mot "{{ badword }}" est un injure'

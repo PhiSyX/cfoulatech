@@ -8,13 +8,15 @@
         <h2 class="h3" id="latest-videos">{{ 'video.latest' | trans }}</h2>
 
         <div class="carousel">
-            <div class="carousel-content">
-                {% for video in videos %}
-                    <div class="carousel-item">
-                        {{ include('video/_course-item.html.twig', { video: video }) }}
+                {% for videos in video_groups %}
+                    <div class="carousel-content">
+                        {% for video in videos %}
+                            <div class="carousel-item">
+                                {{ include('video/_course-item.html.twig', { video: video }) }}
+                            </div>
+                        {% endfor %}
                     </div>
                 {% endfor %}
-            </div>
         </div>
     </div>
 {% endblock %}

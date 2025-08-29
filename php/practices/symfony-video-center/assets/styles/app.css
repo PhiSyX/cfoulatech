@@ -234,6 +234,7 @@ main {
     overflow-x: scroll;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
+    margin-bottom: 1.5rem;
 }
 
 .carousel .carousel-content::-webkit-scrollbar {
@@ -392,11 +393,12 @@ main {
     display: grid;
     grid-template-columns: var(--col, auto) 1fr;
     align-items: center;
+    gap: 1rem;
     padding: 1.5rem;
     overflow: auto;
     border-radius: 10px;
     background: linear-gradient(90deg, #a4b9e9, #f18080);
-    gap: 1rem;
+    box-shadow: 6px 6px 12px #a7b8e6;
 }
 
 .auth-form button[type="submit"] {

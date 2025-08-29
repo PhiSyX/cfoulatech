@@ -37,18 +37,29 @@ final class VideoController extends AbstractController
         ];
         $hero = $heros[array_rand($heros)];
 
-        $videos = $repository->latest(
-            premium: (bool)$this->getUser(),
-            nb: 9,
-        );
-
         return $this->render('pages/home.html.twig', [
             'body' => [
                 'color' => $hero['color'],
                 'primary' => $hero['primary'],
             ],
             'hero' => $hero,
-            'videos' => $videos,
+            'video_groups' => [
+                $repository->latest(
+                    premium: (bool)$this->getUser(),
+                    from: 1,
+                    nb: 9,
+                ),
+                $repository->latest(
+                    premium: (bool)$this->getUser(),
+                    from: 2,
+                    nb: 9,
+                ),
+                $repository->latest(
+                    premium: (bool)$this->getUser(),
+                    from: 3,
+                    nb: 9,
+                ),
+            ],
         ]);
     }
 

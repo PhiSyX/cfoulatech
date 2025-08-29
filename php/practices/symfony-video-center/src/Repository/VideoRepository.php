@@ -16,13 +16,15 @@ class VideoRepository extends ServiceEntityRepository
         parent::__construct($registry, Video::class);
     }
 
-    public function latest(bool $premium, ?int $nb): array
+    public function latest(bool $premium, ?int $from, ?int $nb): array
     {
         $q = $this->createQueryBuilder('v');
 
         if (!$premium) {
             $q = $q->where("v.premium = 0");
         }
+
+        $q = $q->setFirstResult($nb * ($from -1));
 
         if ($nb) {
             $q = $q->setMaxResults($nb);

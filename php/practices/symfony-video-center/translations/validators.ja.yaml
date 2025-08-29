@@ -153,3 +153,4 @@ Error: エラー
 'Your password should be at least {{ limit }} characters': 'パスワードは少なくとも{{ limit }}文字以上である必要があります'
 'You should agree to our terms.': '当社の利用規約に同意する必要があります。'
 'Please enter your email': 'メールアドレスを入力してください'
+'This value {{ badword }} is a bad word': '「{{ badword }}」という言葉は侮辱です。'

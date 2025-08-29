@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Trait\Timestampable;
 use App\Repository\VideoRepository;
+use App\Validator\Badwords;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -20,11 +21,13 @@ class Video
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 3)]
+    #[Badwords(list: ["shit", "merde"])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 20)]
+    #[Badwords(list: ["callipyge", "callypige"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 50)]
