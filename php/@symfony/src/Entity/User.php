@@ -12,24 +12,33 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table("users")]
-#[ORM\UniqueConstraint(name: "UNIQ_IDENTIFIER_EMAIL", fields: ["email"])]
+#[
+	ORM\Entity(repositoryClass: UserRepository::class),
+	ORM\Table("users"),
+	ORM\HasLifecycleCallbacks,
+	ORM\UniqueConstraint(name: "UNIQ_IDENTIFIER_EMAIL", fields: ["email"])
+]
 #[UniqueEntity(fields: ["email"], message: "registration.form.validation.email.unique")]
 #[Vich\Uploadable]
-#[ApiResource]
+#[ApiResource(
+	normalizationContext: ['groups' => ['user:read']],
+	denormalizationContext: ['groups' => ['user:create', 'user:update']],
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 	use Timestampable;
 
+	#[Groups("user:read")]
 	#[ORM\Id]
 	#[ORM\GeneratedValue]
 	#[ORM\Column]
 	private ?int $id = null;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 180)]
 	#[Assert\Email]
 	#[Assert\Length(min: 8)]
@@ -45,34 +54,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	/**
 	 * @var string The hashed password
 	 */
+	#[Groups(["user:create", "user:update"])]
 	#[ORM\Column]
 	private ?string $password = null;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 255)]
 	#[Assert\Length(min: 2, max: 35)]
 	#[Assert\NotBlank]
 	private ?string $firstname = null;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 255)]
 	#[Assert\Length(min: 2, max: 70)]
 	#[Assert\NotBlank]
 	private ?string $lastname = null;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[Vich\UploadableField(mapping: 'profiles', fileNameProperty: 'imageName', size: 'imageSize')]
 	private ?File $imageFile = null;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(nullable: true)]
 	private ?string $imageName = "default-avatar.png";
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(nullable: true)]
 	private ?int $imageSize = null;
 
 	/**
 	 * @var Collection<int, Recipe>
 	 */
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: "user", orphanRemoval: true)]
 	private Collection $recipes;
 
+	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column]
 	private bool $isVerified = false;
 
