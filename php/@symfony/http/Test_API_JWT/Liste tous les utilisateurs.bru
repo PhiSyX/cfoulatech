@@ -1,0 +1,23 @@
+meta {
+  name: Liste tous les utilisateurs
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{API_URL}}/users
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NTY3MTg2OTcsImV4cCI6MTc1NjcyMjI5Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidmVuZHJlZGlAY2ZpdGVjaC5iZSJ9.bPbGjolQJw6rfREOzXt-tPD2oau3APxzC-_KQFu2feolNiLResVIGqw845-6C1A7d_oInW1i9FZWB_n8wt0o3ahTGcmk6fo8MJ8hh9ZjYf-6ZckvbE8A2bNCzJRstMjN9IBaCTKphORa9ZsP164oyLfZkw7HE19iqnkmdSVS5iPcBGYoSmUdLm5GvOUkDHTTZ2QN81SEVrZk-BeScRZjX6IrzmXXoybSDv2IoioAlBJYhezl6lDrNYjwCRNGmj5NtrUz9j_np09--WClQ-CQnNHFVb0lXQzajr8fjWQbGcgb6TLT4s4sVKXPHgm8ZhBOVRRFS_VRgANLNBbZeSLj-g
+}
+
+settings {
+  encodeUrl: true
+}

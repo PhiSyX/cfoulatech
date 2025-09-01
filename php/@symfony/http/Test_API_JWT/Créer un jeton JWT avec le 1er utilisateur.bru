@@ -1,0 +1,27 @@
+meta {
+  name: Créer un jeton JWT avec le 1er utilisateur
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{API_URL}}/login_check
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+      "username": "vendredi@cfitech.be",
+      "password": "testtest"
+  }
+
+}
+
+settings {
+  encodeUrl: true
+}

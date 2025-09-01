@@ -1,0 +1,30 @@
+meta {
+  name: Créer un 1er utilisateur
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{API_URL}}/users
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+    "email": "lundi@cfitech.be",
+    "password": "$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei",
+    "firstname": "Lundi",
+    "lastname": "Lundi",
+    "isVerified": true
+  }
+
+}
+
+settings {
+  encodeUrl: true
+}

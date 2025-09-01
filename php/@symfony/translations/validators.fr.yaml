@@ -149,7 +149,7 @@ Error: Erreur
 'Please select a valid range.': 'Veuillez sélectionner une plage valide.'
 'Please enter a valid week.': 'Veuillez entrer une semaine valide.'
 registration.form.validation.tos: 'Vous devez accepter nos termes'
-registration.form.validation.email.unique: 'Compte déjà existant avec cet email'
+registration.form.validation.email.unique: 'Compte déjà existant avec cette adresse mail'
 'Please enter a password': 'Veuillez entrer un mot de passe'
 'Your password should be at least {{ limit }} characters': 'Votre mot de passe doit contenir au moins {{ limit }} caractères'
 'Please enter your email': 'Veuillez entrer votre adresse e-mail'

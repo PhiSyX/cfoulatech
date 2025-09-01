@@ -1,0 +1,27 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:8000/api/login_check
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+    "username": "mail@cfoulatech.be",
+    "password": "testtest"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

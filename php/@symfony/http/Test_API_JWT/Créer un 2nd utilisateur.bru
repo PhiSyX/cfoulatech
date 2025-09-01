@@ -1,0 +1,30 @@
+meta {
+  name: Créer un 2nd utilisateur
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{API_URL}}/users
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+body:json {
+  {
+    "email": "mardi@cfitech.be",
+    "password": "$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei",
+    "firstname": "Mardi",
+    "lastname": "Mardi",
+    "isVerified": true
+  }
+
+}
+
+settings {
+  encodeUrl: true
+}

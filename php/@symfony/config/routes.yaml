@@ -21,3 +21,6 @@ redirect_to_locale:
     defaults:
         path: /fr/
         permanent: false
+
+api_login_check:
+    path: /api/login_check
