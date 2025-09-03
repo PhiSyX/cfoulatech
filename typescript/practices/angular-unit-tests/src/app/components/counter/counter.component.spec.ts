@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from "@angular/router";
 import { CounterComponent } from './counter.component';
 import { DebugElement } from '@angular/core';
+import { UnitTestElement } from '@angular/cdk/testing/testbed';
 
 describe('CounterComponent', () => {
   let component: CounterComponent;
@@ -34,8 +35,7 @@ describe('CounterComponent', () => {
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElement = fixture.nativeElement
-    router = TestBed.inject(Router);
+    nativeElement = fixture.nativeElement;
   });
 
   it('should create', () => {
@@ -54,7 +54,8 @@ describe('CounterComponent', () => {
     expect(component.count).toBe(-1);
   });
 
-  it('should be zero on the h1 element', () => {
-    expect(nativeElement.querySelector('h1')?.textContent).toBe('0');
+  it('should be zero on the h1 element', async () => {
+    const $h1 = new UnitTestElement(nativeElement.querySelector('h1')!, () => Promise.resolve());
+    expect(await $h1.text()).toBe('0');
   });
 });
