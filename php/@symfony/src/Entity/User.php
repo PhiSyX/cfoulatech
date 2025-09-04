@@ -25,20 +25,20 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[UniqueEntity(fields: ["email"], message: "registration.form.validation.email.unique")]
 #[Vich\Uploadable]
 #[ApiResource(
-	normalizationContext: ['groups' => ['user:read']],
-	denormalizationContext: ['groups' => ['user:create', 'user:update']],
+//	normalizationContext: ['groups' => ['user:read']],
+//	denormalizationContext: ['groups' => ['user:create', 'user:update']],
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 	use Timestampable;
 
-	#[Groups("user:read")]
+//	#[Groups("user:read")]
 	#[ORM\Id]
 	#[ORM\GeneratedValue]
 	#[ORM\Column]
 	private ?int $id = null;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 180)]
 	#[Assert\Email]
 	#[Assert\Length(min: 8)]
@@ -54,42 +54,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	/**
 	 * @var string The hashed password
 	 */
-	#[Groups(["user:create", "user:update"])]
+//	#[Groups(["user:create", "user:update"])]
 	#[ORM\Column]
 	private ?string $password = null;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 255)]
 	#[Assert\Length(min: 2, max: 35)]
 	#[Assert\NotBlank]
 	private ?string $firstname = null;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(length: 255)]
 	#[Assert\Length(min: 2, max: 70)]
 	#[Assert\NotBlank]
 	private ?string $lastname = null;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[Vich\UploadableField(mapping: 'profiles', fileNameProperty: 'imageName', size: 'imageSize')]
 	private ?File $imageFile = null;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(nullable: true)]
 	private ?string $imageName = "default-avatar.png";
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(nullable: true)]
 	private ?int $imageSize = null;
 
 	/**
 	 * @var Collection<int, Recipe>
 	 */
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: "user", orphanRemoval: true)]
 	private Collection $recipes;
 
-	#[Groups(["user:read", "user:create", "user:update"])]
+//	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column]
 	private bool $isVerified = false;
 
