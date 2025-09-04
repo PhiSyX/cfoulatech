@@ -1,0 +1,40 @@
+package be.cfoulatech.entities;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "commandes_produits")
+@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//@EqualsAndHashCode
+//@RequiredArgsConstructor
+@Data
+public class CommandeProduit
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Setter(AccessLevel.NONE)
+	private Integer id;
+
+	@Column(nullable = false)
+	private Integer quantite;
+
+	@Column(name = "prix_unitaire", nullable = false)
+	private Double prixUnitaire;
+
+	@ManyToOne
+	@JoinColumn(name = "commande_id")
+	private Commande commande;
+
+	@ManyToOne
+	@JoinColumn(name = "produit_id")
+	private Produit produit;
+}
