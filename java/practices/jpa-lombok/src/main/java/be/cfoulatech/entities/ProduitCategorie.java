@@ -23,11 +23,11 @@ public class ProduitCategorie
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "produit_id")
+	@JoinColumn(name = "produit_id", nullable = false)
 	private Produit produit;
 
 	@ManyToOne
-	@JoinColumn(name = "categorie_id")
+	@JoinColumn(name = "categorie_id", nullable = false)
 	private Categorie categorie;
 
 	public ProduitCategorie(Produit produit, Categorie categorie)

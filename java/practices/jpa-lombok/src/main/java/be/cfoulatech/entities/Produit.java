@@ -24,17 +24,24 @@ public class Produit
 	@Setter(AccessLevel.NONE)
 	private Integer id;
 
-	@Column(length = 225, nullable = false)
+	@Column(length = 225, unique = true, nullable = false)
 	private String nom;
 
 	@Column(length = 1500, unique = true)
 	private String description;
 
-	@Column(length = 10, nullable = false)
+	@Column(nullable = false)
 	private Double prix;
 
-	@Column(length = 10, nullable = false)
+	@Column(nullable = false)
 	private Integer stock;
+
+	public Produit(String nom, Double prix, Integer stock)
+	{
+		this.nom = nom;
+		this.prix = prix;
+		this.stock = stock;
+	}
 
 	public Produit(String nom, String description, Double prix, Integer stock)
 	{

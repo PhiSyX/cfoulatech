@@ -30,6 +30,11 @@ public class Categorie
 	@Column(length = 500, nullable = true)
 	private String description;
 
+	public Categorie(String nom)
+	{
+		this.nom = nom;
+	}
+
 	public Categorie(String nom, String description)
 	{
 		this.nom = nom;

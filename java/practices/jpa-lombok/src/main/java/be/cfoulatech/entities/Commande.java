@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "commandes")
@@ -32,17 +31,19 @@ public class Commande
 	private Double montantTotal;
 
 	@Column(nullable = false)
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private StatutCommande statut;
 
 	@ManyToOne
-	@JoinColumn(name = "client_id")
+	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
 
-	public Commande(LocalDateTime dateCommande, Double montantTotal, String status, Client client)
+	public Commande(LocalDateTime dateCommande, Double montantTotal, StatutCommande statut, Client client)
 	{
 		this.dateCommande = dateCommande;
 		this.montantTotal = montantTotal;
-		this.status = status;
+		this.statut = statut;
 		this.client = client;
 	}
 }
+

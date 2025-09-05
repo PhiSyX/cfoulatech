@@ -35,16 +35,11 @@ public class Client
 	@JoinColumn(name = "adresse_id")
 	private Adresse adresse;
 
-	@OneToOne
-	@JoinColumn(name = "client_id")
-	private Profil profil;
-
-	public Client(String nom, String email, LocalDate dateInscription, Adresse adresse, Profil profil)
+	public Client(String nom, String email, LocalDate dateInscription, Adresse adresse)
 	{
 		this.nom = nom;
 		this.email = email;
 		this.dateInscription = dateInscription;
 		this.adresse = adresse;
-		this.profil = profil;
 	}
 }

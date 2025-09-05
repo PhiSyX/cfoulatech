@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "commandes_produits")
 @NoArgsConstructor
@@ -31,10 +29,18 @@ public class CommandeProduit
 	private Double prixUnitaire;
 
 	@ManyToOne
-	@JoinColumn(name = "commande_id")
+	@JoinColumn(name = "commande_id", nullable = false)
 	private Commande commande;
 
 	@ManyToOne
-	@JoinColumn(name = "produit_id")
+	@JoinColumn(name = "produit_id", nullable = false)
 	private Produit produit;
+
+	public CommandeProduit(Integer quantite, Double prixUnitaire, Commande commande, Produit produit)
+	{
+		this.quantite = quantite;
+		this.prixUnitaire = prixUnitaire;
+		this.commande = commande;
+		this.produit = produit;
+	}
 }

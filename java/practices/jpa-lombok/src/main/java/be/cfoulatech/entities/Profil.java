@@ -31,7 +31,7 @@ public class Profil
 	private String preferences;
 
 	@OneToOne
-	@JoinColumn(name = "client_id")
+	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
 
 	public Profil(String avatar, String bio, String preferences, Client client)
@@ -39,6 +39,12 @@ public class Profil
 		this.avatar = avatar;
 		this.bio = bio;
 		this.preferences = preferences;
+		this.client = client;
+	}
+
+	public Profil(String bio, Client client)
+	{
+		this.bio = bio;
 		this.client = client;
 	}
 }

@@ -20,7 +20,6 @@ public class Adresse
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(AccessLevel.NONE)
-
 	private Long id;
 
 	@Column(length = 225, nullable = false)
@@ -37,9 +36,6 @@ public class Adresse
 
 	@Column(length = 80, nullable = false)
 	private String type;
-
-	@OneToMany(mappedBy = "client")
-	private List<Client> clients = new ArrayList<>();
 
 	public Adresse(String rue, String numero, Integer codePostal, String ville, String type)
 	{

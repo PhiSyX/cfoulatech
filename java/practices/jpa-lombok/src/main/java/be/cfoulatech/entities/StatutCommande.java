@@ -1,0 +1,18 @@
+package be.cfoulatech.entities;
+
+public enum StatutCommande
+{
+	PANIER,
+	EN_ATTENTE_PAIEMENT,
+	PAIEMENT_REFUSE,
+	PAYEE,
+	EN_PREPARATION,
+	PREPAREE,
+	EXPEDIEE,
+	EN_TRANSIT,
+	EN_LIVRAISON,
+	LIVREE,
+	ANNULEE,
+	RETOURNEE,
+	REMBOURSEE,
+}
