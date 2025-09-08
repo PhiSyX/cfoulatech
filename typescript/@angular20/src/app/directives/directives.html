@@ -1,0 +1,187 @@
+<article>
+	<h1>Directives structurelles</h1>
+
+	<div class="ng-if" hidden>
+		<label for="intern">Intern : </label>
+		<input type="text" list="interns" [(ngModel)]="internModel">
+
+		@if (interns.includes(internModel)) {
+			<div>
+				<button (click)="markAsAway()">Marquer absent</button>
+				<button (click)="markAsNoLongerAway()">Marquer présent</button>
+				@if (isAway) {
+					<p>Le stagiaire <strong>{{ internModel }}</strong> est absent</p>
+				}
+			</div>
+		}
+	</div>
+
+	<div class="ng-for" hidden>
+		<h2>Liste des formateurs</h2>
+		<ul>
+			@for (trainer of trainers; track trainer) {
+				<li>
+					{{ trainer }}
+				</li>
+			}
+		</ul>
+
+		<datalist id="trainers">
+			@for (trainer of trainers; track trainer) {
+				<option [value]="trainer">
+					{{ trainer }}
+				</option>
+			}
+		</datalist>
+	</div>
+
+	<div class="ng-switch" hidden>
+		<p>Choisir le role</p>
+		<select [(ngModel)]="role">
+			<option [value]="Role.Admin">Admin</option>
+			<option [value]="Role.Trainer">Formateur</option>
+			<option [value]="Role.Intern">Intern</option>
+		</select>
+
+		<ul>
+			@switch (role) {
+				@case (Role.Admin) {
+					<li>Tu es admin</li>
+				}
+				@case (Role.Trainer) {
+					<li>Tu es formateur</li>
+				}
+				@case (Role.Intern) {
+					<li>Tu es stagiaire</li>
+				}
+			}
+		</ul>
+
+	</div>
+
+	<div class="exo1" hidden>
+		@if (isLoggedIn) {
+			<p>Bienvenue sur votre espace stagiaire</p>
+		}
+	</div>
+
+	<div class="exo2" hidden>
+		<label>
+			État de la formation :
+			<input type="checkbox" [(ngModel)]="isTrainingActive">
+		</label>
+
+		@if (isTrainingActive) {
+			<p>Formation en cours</p>
+		} @else {
+			<p>En pause</p>
+		}
+	</div>
+
+	<div class="exo3" hidden>
+		<input [(ngModel)]="score" type="number" min="0" max="20">
+
+		@if (score >= 10) {
+			<p>Vous avez réussie</p>
+		} @else {
+			<p>Vous avez échoué</p>
+		}
+	</div>
+
+	<div class="exo4" hidden>
+		<label for="trainer-available">
+			À cocher :
+			<input [(ngModel)]="isTrainerAvailable" type="checkbox" id="trainer-available">
+		</label>
+
+		@if (isTrainerAvailable) {
+			<p>Formateur disponible</p>
+		}
+	</div>
+
+	<div class="exo5" hidden>
+		<h2>Liste des stagiaires</h2>
+		<ul>
+			@for (intern of interns; track intern) {
+				<li>{{ intern }}</li>
+			}
+		</ul>
+	</div>
+
+	<div class="exo6" hidden>
+		<input [(ngModel)]="internModel" type="text" placeholder="Timothy">
+		<button (click)="addIntern()">Ajouter le stagiaire</button>
+	</div>
+
+	<div class="exo7" hidden>
+		<div class="flex" style="--gap: 0;">
+			<input
+				[(ngModel)]="trainingModel"
+				type="text"
+				placeholder="Nom de formation"
+				class="card-input flex-full"
+			>
+			<button class="card-btn" (click)="addTraining()">Ajouter</button>
+		</div>
+		<div class="cards">
+			@for (training of trainings; track training) {
+				<article class="card">
+					<h1 class="card-title">{{ training }}</h1>
+				</article>
+			}
+		</div>
+	</div>
+
+	<div class="exo8" hidden>
+		<ul>
+			<li style="list-style: none;counter-reset:chapter-count 1;">
+				<input placeholder="Nom" type="text" [(ngModel)]="evaluationNom">
+				<input placeholder="Note" type="number" min="0" max="20" [(ngModel)]="evaluationNote">
+				<button (click)="addEvaluation()">Ajouter</button>
+			</li>
+
+			@for (evaluation of evaluations; track evaluation) {
+				<li>
+					Evaluation de {{ evaluation.nom }} : {{ evaluation.note }}/20
+					<button (click)="delEvaluation(evaluation)">x</button>
+				</li>
+			}
+		</ul>
+
+		@if (evaluationMoyenne >= 0) {
+			<p>
+				La moyenne des évaluations est de {{ evaluationMoyenne }}
+			</p>
+		}
+
+
+	</div>
+
+	<div class="ng-class">
+		<div [ngClass]="myClass">
+			hello
+		</div>
+
+		<div [ngClass]="{ hello: isHello, world: isWorld }">
+			hello world
+		</div>
+
+		<button (click)="isHello = true" class="btn btn-primary">Hello</button>
+		<button (click)="isWorld = true" class="btn btn-secondary">World</button>
+
+		<div [ngClass]="color">
+			hello color
+		</div>
+		<button (click)="color = 'red'" class="btn btn-danger">Changer couleur</button>
+	</div>
+
+	<div class="ng-style">
+		<div [ngStyle]="myStyle">
+			hello style
+		</div>
+
+		<button (click)="changeStyle('blue', '22px')">
+			changer
+		</button>
+	</div>
+</article>

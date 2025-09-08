@@ -1,0 +1,87 @@
+<section class="flex">
+	<article class="data-bindings">
+		<h1>Hello {{ firstname }}</h1>
+
+		<hr>
+
+		<img [src]="imageSrc" alt="Image source" width="200" height="200">
+
+		<hr>
+
+		<a [href]="githubUrl" target="_blank" rel="noopener noreferer">{{ githubLabel }}</a>
+
+		<hr>
+
+		<div>
+			<input type="checkbox" [checked]="isChecked" [(ngModel)]="isChecked" class="form-check-inline">
+			<label for="x">{{ isChecked ? 'Coché' : 'Décoché' }}</label>
+		</div>
+
+		<hr>
+
+		<button [disabled]="isDisabled" class="btn btn-primary">Envoyer</button>
+		<br>
+		<button (click)="toggleDisable()" class="btn btn-secondary">{{ toggleBtn }} le bouton envoyer</button>
+
+		<hr>
+
+		<input [(ngModel)]="inputModel" type="text" class="form-control">
+		<button (click)="showMessage()" class="btn btn-info">Afficher le message dans un alert</button>
+		<p>{{ inputModel }}</p>
+
+		<hr>
+
+		<label for="firstname">Prénom:</label>
+		<input [(ngModel)]="firstname" type="text" id="firstname" class="form-control">
+		<button
+			[disabled]="firstname.trim().length === 0"
+			(click)="showFirstname()"
+			class="btn btn-primary"
+		>
+			Valider
+		</button>
+
+	</article>
+
+	<article class="data-bindings">
+		<ul>
+			<li>
+				<input type="checkbox" name="be" id="be" [(ngModel)]="belgium" class="form-check-inline">
+				<label for="be">Belgique</label>
+			</li>
+			<li>
+				<input type="checkbox" name="fr" id="fr" [(ngModel)]="france" class="form-check-inline">
+				<label for="fr">France</label>
+			</li>
+			<li>
+				<input type="checkbox" name="it" id="it" [(ngModel)]="italy" class="form-check-inline">
+				<label for="it">Italie</label>
+			</li>
+		</ul>
+
+		<hr>
+
+		<label for="countries">Choisir pays</label>
+
+		<input type="text" name="countries" id="countries" list="countries-list" [(ngModel)]="pays"
+			   class="form-control">
+
+		ou
+
+		<select name="countries-select" [(ngModel)]="pays" class="form-select">
+			<option value="belgique">Belgique</option>
+			<option value="france">France</option>
+			<option value="italie">Italie</option>
+		</select>
+
+		<datalist id="countries-list">
+			<option value="belgique">Belgique</option>
+			<option value="france">France</option>
+			<option value="italie">Italie</option>
+		</datalist>
+
+		<p>Le pays sélectionné est :
+			<output>{{ pays }}</output>
+		</p>
+	</article>
+</section>

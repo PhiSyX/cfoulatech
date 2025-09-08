@@ -1,0 +1,12 @@
+<div class="input">
+	<strong>Stagiaire:</strong>
+	<ul>
+		<li><strong>Prénom</strong>: {{ firstname }}</li>
+		<li><strong>Groupe</strong>: {{ group }}</li>
+	</ul>
+
+	<button (click)="emitFirstname()" class="btn btn-primary">
+		Prendre la présence de {{ firstname }}
+	</button>
+</div>
+

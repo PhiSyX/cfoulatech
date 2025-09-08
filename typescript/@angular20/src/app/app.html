@@ -1,0 +1,47 @@
+<div class="container mt-5">
+	<details>
+		<summary>Data Bindings</summary>
+		<app-data-bindings/>
+	</details>
+
+	<hr>
+
+	<details>
+		<summary>Directives</summary>
+		<app-directives/>
+	</details>
+
+	<hr>
+
+	<details>
+		<summary>IO</summary>
+		<app-input firstname="Mike" group="Web"/>
+		<hr>
+		<app-output firstname="Erica" group="group" (takeAttendance)="alert($event)"/>
+		<hr>
+		<app-trainer/>
+	</details>
+
+	<hr>
+
+	<details>
+		<summary>Observable (.pipe)</summary>
+		<app-intern-list/>
+	</details>
+
+	<hr>
+
+	<details open>
+		<summary>Observable | Pipe</summary>
+
+		<p><strong>Reverse :</strong> {{ "Bonjour tout le monde" | reverse }}</p>
+		<p><strong>Truncate :</strong> {{ title | truncate:50 }}</p>
+		<p><strong>customDate :</strong> {{ currentDate | customDate }}</p>
+		<p><strong>customDate :</strong> {{ currentDate | customDate:"fullDate" }}</p>
+
+		<p><strong>Euro2Dollar :</strong> {{ 32 | euroToDollar }}</p>
+	</details>
+
+	<router-outlet/>
+
+</div>

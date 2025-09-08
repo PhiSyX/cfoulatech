@@ -1,0 +1,98 @@
+.ng-if,
+.ng-for,
+.ng-switch {
+	padding: 8px;
+}
+
+.ng-if {
+	background: rgba(255, 0, 0, 0.5);
+}
+
+.ng-switch {
+	background: rgba(255, 157, 0, 0.5);
+}
+
+.ng-for {
+	background: rgba(144, 255, 0, 0.5);
+}
+
+.cards {
+	display: grid;
+	gap: .5rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+	--gap: 1rem;
+	background: #ffffff70;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	padding: 1rem;
+	flex-grow: 1;
+	animation: anim-border 2s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes anim-border {
+	from {
+		border-color: #fcefff;
+	}
+	to {
+		border-color: #e43dff;
+	}
+}
+
+.card-title {
+	margin-block: 0;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+	Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+	sans-serif;
+	font-size: 2rem;
+}
+
+.card-btn,
+.card-input {
+	padding: 1rem;
+	margin-right: 0;
+	outline: none;
+}
+
+.card-input {
+	border-right: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	border-color: #c843df;
+}
+
+.card-btn {
+	border-left: none;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	cursor: pointer;
+	border-color: #c843df;
+	background-color: #3a223a;
+	color: #fff;
+}
+
+.ng-class-directive {
+	background: #f95a5a;
+}
+
+.ng-class-directive-2 {
+	padding: 8px;
+}
+
+.hello {
+	margin: 8px;
+}
+
+.world {
+	padding: 8px;
+}
+
+.red {
+	background: red;
+}
+
+.blue {
+	background: blue;
+}
