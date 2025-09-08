@@ -7,15 +7,15 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "@types/react": "catalog:",
-    "@vitejs/plugin-react": "catalog:",
-    "vite": "catalog:",
+    "@types/react": "19.1.12",
+    "@vitejs/plugin-react": "5.0.2",
+    "vite": "7.1.5",
     "vite-plugin-symfony": "^8.2"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@symfony/ux-react": "^2.27.0",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   }
 }

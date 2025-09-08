@@ -23,12 +23,13 @@
 		"oscarotero/env": "^2.1",
 		"roots/bedrock-autoloader": "^1.0",
 		"roots/bedrock-disallow-indexing": "^2.0",
-		"roots/wordpress": "6.8.1",
-		"roots/wp-config": "1.0.0",
+		"roots/wordpress": "^6.8.1",
+		"roots/wp-config": "^1.0.0",
 		"wpackagist-theme/twentytwentyfive": "^1.0",
-		"wpackagist-theme/zakra": "^4.1",
-		"wpackagist-plugin/akismet": "^4.1",
-		"wpackagist-plugin/bbpress": ">=2.5.12"
+		"wpackagist-plugin/akismet": "^5.5",
+		"wpackagist-plugin/advanced-custom-fields": "^6.5.0",
+		"wpackagist-plugin/classic-editor": "^1.6.7",
+		"wpackagist-plugin/wp-dummy-content-generator": "^4.0.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",

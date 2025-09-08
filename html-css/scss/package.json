@@ -7,6 +7,6 @@
 	},
 	"keywords": [],
 	"devDependencies": {
-		"sass-embedded": "catalog:"
+		"sass-embedded": "1.92.1"
 	}
 }

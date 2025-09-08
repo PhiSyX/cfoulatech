@@ -6,6 +6,6 @@
 	},
 	"license": "ISC",
 	"devDependencies": {
-		"parcel": "catalog:"
+		"parcel": "2.15.4"
 	}
 }
