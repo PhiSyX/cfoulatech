@@ -9,12 +9,6 @@
 		"js:react": "pnpm --filter @phisyx/cfoulatech-react dev"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "catalog:",
-		"stylelint": "catalog:",
-		"stylelint-config-html": "catalog:",
-		"stylelint-config-property-sort-order-smacss": "catalog:",
-		"stylelint-config-standard": "catalog:",
-		"stylelint-order": "catalog:"
 	},
 	"pnpm": {
 		"ignoredBuiltDependencies": [
