@@ -2,7 +2,7 @@
 	<h1>Directives structurelles</h1>
 
 	<div class="ng-if" hidden>
-		<label for="intern">Intern : </label>
+		<label for="intern">InternComponent : </label>
 		<input type="text" list="interns" [(ngModel)]="internModel">
 
 		@if (interns.includes(internModel)) {
@@ -40,7 +40,7 @@
 		<select [(ngModel)]="role">
 			<option [value]="Role.Admin">Admin</option>
 			<option [value]="Role.Trainer">Formateur</option>
-			<option [value]="Role.Intern">Intern</option>
+			<option [value]="Role.Intern">InternComponent</option>
 		</select>
 
 		<ul>

@@ -40,6 +40,6 @@ export class App
  		Accusantium alias cupiditate error minus nesciunt officia possimus quisquam tenetur.
 		Aspernatur, labore quidem.`;
 	public currentDate = new Date();
-	
+
 	protected readonly alert = window.alert;
 }

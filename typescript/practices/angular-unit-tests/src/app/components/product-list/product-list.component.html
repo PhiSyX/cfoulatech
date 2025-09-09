@@ -1,0 +1,19 @@
+<h2>Listes des produits</h2>
+
+<ul>
+	@for (product of products; track product.id) {
+<!--
+		<li *ngFor="let product of products">
+-->
+		<li>
+			{{ product.name }} - {{ product.price | price }} - Stock: {{ product.stock }}
+
+			<button
+				[disabled]="product.stock === 0"
+				(click)="buy(product)"
+			>
+				Acheter
+			</button>
+		</li>
+	}
+</ul>
