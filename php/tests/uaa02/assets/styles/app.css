@@ -4,7 +4,7 @@
 
 @import url("_vars.css");
 @import url("_font.css") layer(font);
-@import url("vendor/_normalizer.css") layer(base);
+@import url("vendors/_normalizer.css") layer(base);
 @import url("_base.css") layer(base);
 @import url("_utils.css") layer(utils);
 @import url("_layout.css") layer(layout);
@@ -16,6 +16,6 @@
 @import url("components/_navbar.css") layer(component);
 @import url("components/_pagination.css") layer(component);
 @import url("components/_topbar.css") layer(component);
-@import url("vendor/_symfony.css");
+@import url("vendors/_symfony.css");
 
 @layer font, base, layout, utils, component, pages;

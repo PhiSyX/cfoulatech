@@ -1,0 +1,56 @@
+
+.sf-toolbar-closed {
+    .sf-toolbarreset .sf-toolbar-toggle-button {
+        top: -42px !important;
+        right: 8px !important;
+        border-radius: 50%;
+    }
+
+    .sf-toolbarreset .sf-toolbar-toggle-button {
+        animation: move-border 1s infinite backwards ease;
+        background-color: var(--body-bg);
+        border: 2px solid transparent !important;
+    }
+}
+
+@keyframes move-border {
+    0% {
+        box-shadow: 2px -2px 2px #71a9bc;
+    }
+
+    11% {
+        box-shadow: 2px -2px 2px #71a9bc;
+    }
+
+    22% {
+        box-shadow: 2px -1px 2px #71a9bc;
+    }
+
+    33% {
+        box-shadow: 2px 2px 2px #71a9bc;
+    }
+
+    44% {
+        box-shadow: 0 2px 2px #71a9bc;
+    }
+
+    55% {
+        box-shadow: -2px 2px 2px #71a9bc;
+    }
+
+    66% {
+        box-shadow: -2px 0 2px #71a9bc;
+    }
+
+    77% {
+        box-shadow: -4px -2px 2px #71a9bc;
+    }
+
+    88% {
+        box-shadow: 0 -3px 2px #71a9bc;
+    }
+
+    100% {
+        box-shadow: 2px -2px 2px #71a9bc;
+    }
+}
