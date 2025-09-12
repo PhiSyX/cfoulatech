@@ -1,0 +1,227 @@
+/**
+ * Les règles de style des éléments en commun pour chaque page.
+ */
+
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background: var(--body-bg);
+    color: var(--text);
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+input {
+    font-family: Nunito, Arial, Helvetica, sans-serif;
+}
+
+form :read-only {
+    user-select: none;
+}
+
+form :disabled {
+    pointer-events: none;
+}
+
+.l-main {
+    overflow: auto;
+}
+
+main[role="main"] {
+    width: 100%;
+    overflow: auto;
+    border-radius: var(--default-radius);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: var(--body-bg-alt);
+    color: var(--text);
+
+    > *, > * > section {
+        overflow: auto;
+    }
+}
+
+textarea,
+input[type="password"],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"] {
+    padding: var(--space1);
+    border: none;
+    border-radius: var(--default-radius);
+    outline: none;
+    background: var(--body-bg);
+    color: var(--text);
+
+    &.error {
+        border: 1px solid red;
+    }
+
+    &::placeholder {
+        color: #aaa;
+    }
+}
+
+button[type="submit"] {
+    padding: var(--space1);
+    border: none;
+    border-radius: var(--default-radius);
+    background: var(--text);
+    color: var(--body-bg);
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    small {
+        padding: calc(var(--space1) / 2);
+        border-radius: 4px;
+        background: linear-gradient(to right, #3c4043, #383a3c);
+        color: #cdaa2a;
+        font-size: 0.75em;
+        line-height: 24px;
+        vertical-align: middle;
+    }
+}
+
+strong {
+    color: #cdaa2a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+thead,
+table > tbody > tr > th {
+    background: CanvasText;
+    color: Canvas;
+    font-weight: 700;
+}
+
+table > tbody > tr > th {
+    box-shadow: 1px 1px 1px CanvasText;
+}
+
+tbody > tr {
+    background: #56707c;
+    color: Canvas;
+}
+
+tbody > tr:nth-child(odd) {
+    background: #3b484e;
+}
+
+tbody > tr:hover {
+    background: Canvas;
+    color: CanvasText;
+}
+
+table > tbody > tr > td {
+    border-inline: 1px solid Canvas;
+    border-top: 2px solid Canvas;
+    border-bottom: 1px solid Canvas;
+}
+
+th,
+td {
+    padding: var(--space1);
+}
+
+img {
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+button[type="submit"],
+label[for] {
+    cursor: pointer;
+}
+
+svg {
+    overflow: visible;
+    vertical-align: middle;
+
+    & * {
+        transform-box: fill-box;
+    }
+}
+
+hr[text] {
+    position: relative;
+    height: 1.5em;
+    border: none;
+    opacity: 50%;
+    text-align: center;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--hr-bordered, #cccccc), transparent);
+    }
+
+    &::after {
+        content: attr(text);
+        display: inline-block;
+        position: relative;
+        padding-inline: 0.5rem;
+        border-radius: 8px;
+        background: var(--hr-surface, transparent);
+        color: var(--hr-on-surface, transparent);
+        vertical-align: middle;
+    }
+}
+
+.size-full {
+    width: var(--size-full);
+    height: var(--size-full);
+}
+
+.width-full {
+    width: var(--size-full);
+}
+
+.height-full {
+    height: var(--size-full);
+}
+
+.width-80 {
+    width: var(--size-80);
+}
+
+.size-full-vp {
+    width: 100dvw;
+    height: 100dvh;
+}
+
+.size-article {
+    width: var(--size-text);
+}
+
+.inline-center {
+    margin-inline: auto;
+}

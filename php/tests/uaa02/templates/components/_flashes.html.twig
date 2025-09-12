@@ -1,0 +1,6 @@
+{% for type, messages in app.flashes %}
+    <div class="alert alert-{{ type }}">
+        <p>{{ messages | join(". ") }}</p>
+        <button type='button' onclick='this.parentElement.remove()'>&times;</button>
+    </div>
+{% endfor %}

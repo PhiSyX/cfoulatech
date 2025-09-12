@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .input-container ul {
+            color: var(--danger);
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block body %}
+    <section class="d-flex! center:x size-full">
+        {% include 'components/_flashes.html.twig' %}
+
+        <div class="size-article full:center height-full">
+            <h2>Créer un nouveau Pin</h2>
+
+            {{ form_start(form, { attr: { class: 'd-flex! gap=2' }}) }}
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.imageName) }}
+                <div>
+                    {{ form_widget(form.imageName) }}
+                </div>
+                {{ form_errors(form.imageName) }}
+            </div>
+
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.title) }}
+
+                <div>
+                    {{ form_widget(form.title) }}
+                </div>
+
+                {{ form_errors(form.title, { class: 'alert alert-error' }) }}
+            </div>
+
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.description) }}
+                <div>
+                    {{ form_widget(form.description) }}
+                </div>
+                {{ form_errors(form.description) }}
+            </div>
+
+            {{ form_widget(form) }}
+            <button class="btn">Créer</button>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

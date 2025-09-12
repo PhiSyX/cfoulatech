@@ -1,0 +1,39 @@
+<section class="container flex:full height-full">
+    {% include 'components/_flashes.html.twig' %}
+
+    <div>
+        <h2>Liste de mes pins</h2>
+
+        <div class="card-list">
+            {% for pin in group.items %}
+                <article class="card">
+                    <div class="card-picture">
+                        <img src="{{ pin.imageName }}" width="300" height="200">
+                    </div>
+
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="#" class="card-link">
+                                {{ pin.title | u.truncate(30, '...') }}
+                            </a>
+                        </h3>
+
+                        <p class="card-content">
+                            {{ pin.description | u.truncate(250, '...') }}
+                        </p>
+
+                        <time class="card-time">{{ pin.createdAt | ago(locale: 'fr') }}</time>
+                        par
+                        <span class="card-time">{{ pin.user.firstname }} {{ pin.user.lastname }}</span>
+                    </div>
+
+                    <a href="{{ path('app_pin_show', {
+                        id: pin.id,
+                    }) }}"></a>
+                </article>
+            {% else  %}
+                <a href="{{ path('app_pin_create') }}" class="btn btn-info">Créer un nouveau Pin</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>

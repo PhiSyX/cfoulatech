@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        @import url("{{ asset('styles/pages/_account.css') }}");
+
+        button[type="submit"] {
+            font-size: 14px;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block navigationLeft %}
+    {{ knp_pagination_render(group.items) }}
+{% endblock navigationLeft %}
+
+{% block body %}
+
+    <div class="d-flex height-full">
+
+        {{ include('account/_content.html.twig', {
+            group: group,
+        }) }}
+
+        <section class="personal-info flex:shrink height-full">
+            <h2 class="d-flex gap=1">
+                <a href="{{ path('app_account') }}">
+                    <svg width="16" height="16" viewBox="0 0 16 16"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" fill-rule="evenodd"
+                              d="m2.87 7.75l1.97 1.97a.75.75 0 1 1-1.06 1.06L.53 7.53L0 7l.53-.53l3.25-3.25a.75.75 0 0 1 1.06 1.06L2.87 6.25h9.88a3.25 3.25 0 0 1 0 6.5h-2a.75.75 0 0 1 0-1.5h2a1.75 1.75 0 1 0 0-3.5z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+
+                <span class="flex:full">Mes informations</span>
+
+                <button type="submit" form="edit-form">Modifier</button>
+            </h2>
+
+            {{ form_errors(userDetailsForm) }}
+
+            {{ form_start(userDetailsForm, { attr: { id: 'edit-form' } }) }}
+            <dl>
+                <dt>
+                    Adresse e-mail
+                </dt>
+
+                <dd>
+                    {{ app.user.email }}
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>
+                    {{ form_label(userDetailsForm.lastname) }}
+                </dt>
+
+                <dd>
+                    {{ form_widget(userDetailsForm.lastname) }}
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>
+                    {{ form_label(userDetailsForm.firstname) }}
+                </dt>
+
+                <dd>
+                    {{ form_widget(userDetailsForm.firstname) }}
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>
+                    {{ form_label(userDetailsForm.avatarUrl) }}
+                </dt>
+
+                <dd>
+                    {{ form_widget(userDetailsForm.avatarUrl) }}
+                </dd>
+            </dl>
+
+            {{ form_end(userDetailsForm) }}
+        </section>
+
+    </div>
+
+{% endblock %}

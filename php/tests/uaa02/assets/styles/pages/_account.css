@@ -1,0 +1,41 @@
+.container {
+    padding: var(--space2);
+}
+
+.personal-info {
+    min-width: 30vw;
+    padding: var(--space2);
+    background: var(--aside-bg);
+
+    h2 {
+        padding: 0;
+        margin: 0;
+    }
+
+    dl {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 105px 1fr;
+    }
+
+    dt {
+        font-weight: bold;
+        font-variant: petite-caps;
+        color: #999999;
+    }
+
+    dd {
+        font-variant: all-petite-caps;
+        min-height: 35px;
+        vertical-align: middle;
+        align-content: center;
+
+        > * {
+            width: 100%;
+        }
+    }
+
+    a {
+        color: var(--link-color);
+    }
+}

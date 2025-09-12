@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Pin{% endblock %}
+
+{% block body %}
+    <section class="d-flex! center:x size-full">
+        {% include 'components/_flashes.html.twig' %}
+
+        <div class="size-article full:center height-full">
+            <h2>Éditer le Pin <small>{{ pin.title }}</small></h2>
+
+            {{ form_start(form, { attr: { class: 'd-flex! gap=2' }}) }}
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.imageName) }}
+                <div>
+                    {{ form_widget(form.imageName) }}
+                </div>
+                {{ form_errors(form.imageName) }}
+            </div>
+
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.title) }}
+
+                <div>
+                    {{ form_widget(form.title) }}
+                </div>
+
+                {{ form_errors(form.title, { class: 'alert alert-error' }) }}
+            </div>
+
+            <div class="input-container d-flex! gap=1">
+                {{ form_label(form.description) }}
+                <div>
+                    {{ form_widget(form.description) }}
+                </div>
+                {{ form_errors(form.description) }}
+            </div>
+
+            {{ form_widget(form) }}
+
+            <button class="btn">Sauvegarder</button>
+
+            <button class="btn btn-danger" form="form-delete">Supprimer</button>
+
+            {{ form_end(form) }}
+
+            <form method="post" action="{{ path('app_pin_delete', {'id': pin.id}) }}"
+                  onsubmit="return confirm('Are you sure you want to delete this item?');"
+                  id="form-delete"
+            >
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pin.id) }}">
+            </form>
+        </div>
+    </section>
+{% endblock %}

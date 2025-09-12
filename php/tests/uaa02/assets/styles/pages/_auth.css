@@ -1,0 +1,152 @@
+:root {
+    --auth-register-surface: transparent;
+    --auth-register-on-surface: var(--color-white);
+    --auth-register-account-on-surface: #d4d4d4;
+    --auth-register-account-note-on-surface: #efd162;
+    --auth-register-link: #fb5252;
+    --input-container-surface: #405663;
+    --input-container-surface-hover: #37474F;
+    --input-container-outline: #587a85;
+}
+
+main:has(#page-auth) {
+    place-content: center;
+    place-items: center;
+}
+
+.page-auth {
+    max-width: 45vw;
+    padding: 0;
+    transition: all 120ms ease-in-out;
+}
+
+@media screen and (width >= 768px) {
+    .page-auth {
+        padding: var(--spacing-8) var(--spacing-2);
+    }
+}
+
+@media screen and (width >= 1200px) {
+    .page-auth {
+        padding: var(--spacing-8) var(--spacing-10);
+    }
+}
+
+
+.page-auth {
+    padding: var(--spacing-1);
+    padding-top: var(--spacing-10) !important;
+    background: var(--auth-register-surface);
+    color: var(--auth-register-on-surface);
+
+    & > * + * {
+        margin-top: var(--spacing-3);
+    }
+}
+
+.auth-account-title {
+    font-size: 24px;
+}
+
+.page-auth > p {
+    color: var(--auth-register-account-on-surface);
+}
+
+.auth-account-note {
+    color: var(--auth-register-account-note-on-surface) !important;
+}
+
+.auth-form {
+    display: grid;
+    gap: var(--spacing-2);
+}
+
+.auth-form-actions {
+    display: grid;
+    place-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2);
+}
+
+.auth-form-actions button[type="submit"] {
+    width: max-content;
+    padding-block: var(--spacing-1);
+    padding-inline: var(--spacing-5);
+    border: none;
+    border-radius: var(--border-radius-m);
+    background: linear-gradient(to right, #3a94c1, #408e80);
+    color: var(--color-white);
+}
+
+.auth-form-actions hr {
+    --hr-bordered: #3a94c1;
+    --hr-surface: var(--auth-register-surface);
+    --hr-on-surface: var(--auth-register-on-surface);
+
+    width: var(--size-full);
+}
+
+.auth-form-actions a {
+    color: var(--auth-register-link);
+}
+
+.input-group {
+    display: grid;
+    gap: 1px;
+    overflow: clip;
+    border-radius: var(--border-radius-m);
+    transition: outline-color 200ms ease-in-out;
+    outline: 6px solid transparent;
+
+    &:focus-within,
+    &:hover {
+        outline-color: var(--input-container-outline);
+    }
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    padding: var(--spacing-1);
+    background: var(--input-container-surface-hover);
+
+    & > input:not([type='checkbox']) {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--color-white);
+    }
+
+    & > input[type="date"]:invalid {
+        opacity: 50%;
+    }
+
+    & > select {
+        flex-grow: 1;
+        border: 0;
+        outline: none;
+        appearance: none;
+        background: transparent;
+        color: var(--auth-register-on-surface);
+    }
+
+    & > select optgroup {
+        background: #3c4043;
+        color: var(--auth-register-on-surface);
+    }
+
+    & > select option {
+        background: #3c4043;
+        color: var(--auth-register-on-surface);
+    }
+
+    & > select option[placeholder] {
+        opacity: 50%;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

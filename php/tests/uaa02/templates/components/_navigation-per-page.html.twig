@@ -1,0 +1,26 @@
+{% set currentYear = 'now' | date('Y') %}
+{% set brand = 'PhiSyX' %}
+
+<footer class="navigation-per-page">
+    <div class="navbar--left-icon">
+        <label for="toggle-navigation-global"></label>
+    </div>
+
+    <nav class="navbar navbar--horizontal">
+        {% if navigationLeft is defined %}
+            {{ navigationLeft | raw }}
+        {% endif %}
+    </nav>
+
+    <p class="date">
+        <time>
+            © {{ currentYear }} {{ brand }}
+        </time>
+    </p>
+
+    <nav class="navbar navbar--horizontal">
+        {% if navigationRight is defined %}
+            {{ navigationRight | raw }}
+        {% endif %}
+    </nav>
+</footer>

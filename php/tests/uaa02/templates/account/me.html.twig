@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        @import url("{{ asset('styles/pages/_account.css') }}");
+    </style>
+{% endblock stylesheets %}
+
+{% block navigationLeft %}
+    {{ knp_pagination_render(group.items) }}
+{% endblock navigationLeft %}
+
+{% block body %}
+    <div class="d-flex height-full">
+        {{ include('account/_content.html.twig', {
+            group: group,
+        }) }}
+
+        {{ include('account/_details.html.twig', {
+            user: app.user,
+            isMe: true,
+        }) }}
+    </div>
+{% endblock %}

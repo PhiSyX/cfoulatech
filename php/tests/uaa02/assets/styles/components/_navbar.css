@@ -1,0 +1,220 @@
+.navbar {
+    display: flex;
+    gap: var(--space2);
+    padding-block: var(--space1);
+    padding-inline: var(--space1);
+}
+
+.navbar--vertical {
+    flex-direction: column;
+    justify-content: center;
+    max-width: calc(var(--space3) * 2);
+}
+
+.navbar--horizontal {
+    align-items: end;
+    min-height: calc(var(--space3) * 2);
+    max-height: calc(var(--space3) * 2);
+}
+
+.navbar > form,
+.navbar > a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--link-color);
+    font-size: 14px;
+    text-decoration: none;
+    gap: var(--space2);
+}
+
+.navbar--horizontal {
+    margin-top: -5px;
+    padding-left: 24px;
+}
+
+.navbar--horizontal > :has(svg, img) {
+    flex-direction: column-reverse;
+    width: 24px;
+}
+
+.navbar svg {
+    transition: opacity 250ms;
+
+    .navbar--vertical & {
+        width: 100%;
+    }
+}
+
+.navbar img,
+.navbar svg {
+    flex-shrink: 0;
+}
+
+.navbar > :not(.active) img,
+.navbar > :not(.active) svg {
+    opacity: 50%;
+}
+
+.navbar > .active img,
+.navbar > :hover img,
+.navbar > .active svg,
+.navbar > :hover svg {
+    animation: 1s bounce-active infinite alternate-reverse;
+    opacity: 100%;
+    filter: drop-shadow(0 0 0.45rem var(--link-color));
+}
+
+@keyframes bounce-active {
+    25% {
+        filter: drop-shadow(0 0 0.35rem var(--link-color));
+    }
+
+    75% {
+        filter: drop-shadow(0 0 0.45rem var(--link-color));
+    }
+}
+
+.navbar img ~ span,
+.navbar svg ~ span {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: var(--space1);
+    border-radius: var(--default-radius);
+    background: #ffffff;
+    box-shadow: 3px 2px 2px var(--aside-bg);
+    color: #000000;
+    font-size: 14px;
+}
+
+.navbar > :hover img ~ span::before,
+.navbar > :hover svg ~ span::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    padding: 4px;
+    transform: rotate(135deg);
+    border: solid #ffffff;
+    border-width: 0 4px 4px 0;
+    background: #ffffff;
+}
+
+.navbar--vertical.navbar > :hover img ~ span::before,
+.navbar--vertical.navbar > :hover svg ~ span::before {
+    top: calc(50% - 6px);
+    left: -6px;
+}
+
+.navbar--horizontal.navbar > :hover img ~ span::before,
+.navbar--horizontal.navbar > :hover svg ~ span::before {
+    bottom: -6px;
+    left: calc(50% - 6px);
+}
+
+.navbar > :hover img ~ span,
+.navbar > :hover svg ~ span {
+    position: relative;
+    z-index: 3;
+}
+
+.navbar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--text);
+    gap: var(--space2);
+
+    svg {
+        flex-shrink: 0;
+        width: unset !important;
+    }
+}
+
+/** navigation per page */
+
+.navigation-per-page {
+    display: flex;
+}
+
+.navigation-per-page .date {
+    margin-inline: auto;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.navigation-per-page button {
+    padding: 0;
+}
+
+/* Toggle nav */
+
+.navbar--left-icon {
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    margin-left: var(--space1);
+    padding-right: 40px;
+    border-right: 1px inset hsl(0 0% 13% / 75%);
+    text-align: center;
+}
+
+#toggle-navigation-global {
+    display: none;
+}
+
+#toggle-navigation-global:checked ~ .l-main .navbar--vertical {
+    max-width: max-content;
+
+    a > svg {
+        padding-left: var(--space1);
+    }
+
+    svg {
+        width: unset;
+    }
+
+    span {
+        all: unset;
+        width: 100%;
+        padding: var(--space1);
+
+        &::before {
+            all: unset;
+        }
+    }
+
+    > :not(.active, :hover) span {
+        opacity: 50%;
+    }
+}
+
+#toggle-navigation-global:checked ~ .navigation-per-page {
+    flex-shrink: 0;
+
+    .navbar--left-icon {
+        width: 160px;
+        padding-right: 178px;
+    }
+}
+
+label[for="toggle-navigation-global"] {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        content: "\203A";
+        font-size: 22px;
+    }
+
+    #toggle-navigation-global:checked ~ .navigation-per-page & {
+        &::before {
+            content: "\2039";
+            font-size: 22px;
+        }
+    }
+}
+
+main[role="main"] {
+    z-index: 2;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {% if title is defined %}
+                {{ title }}
+            {% endif %}
+        {% endblock %}
+    </title>
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+
+<div id="app">
+    <input type="checkbox" id="toggle-navigation-global">
+
+    {% include 'components/_topbar.html.twig' %}
+
+    <div class="l-main">
+        {% include 'components/_navigation-global.html.twig' %}
+
+        <main role="main">
+            {% block body %}{% endblock %}
+        </main>
+    </div>
+
+    {{
+        include(
+            'components/_navigation-per-page.html.twig',
+            {
+                navigationLeft: block('navigationLeft') is defined ? block('navigationLeft') : "",
+                navigationRight: block('navigationRight') is defined ? block('navigationRight') : "",
+            }
+        )
+    }}
+</div>
+
+</body>
+</html>

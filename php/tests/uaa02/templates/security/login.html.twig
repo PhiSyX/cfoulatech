@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        @import url("{{ asset('styles/pages/_auth.css') }}");
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section id="page-auth" class="page-auth">
+        {% include 'components/_flashes.html.twig' %}
+
+        <h1 class="auth-account-title">Se connecter</h1>
+
+        {% if error %}
+            <div class="alert alert-error">
+                <p>{{ error.messageKey | trans(error.messageData, 'security') }}</p>
+                <button type='button' onclick='this.parentElement.remove()'>&times;</button>
+            </div>
+        {% endif %}
+
+        <form action="{{ path('app_login') }}" method="post" class="auth-form" autocomplete="off">
+            <div class="input-group">
+                <div class="input-container">
+                    <label for="email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                  d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"></path>
+                        </svg>
+                    </label>
+                    <input type="email" name="_username" id="email" class="form-control"
+                           autocomplete="off" required autofocus placeholder="mike@cfitech.be">
+                </div>
+
+                <div class="input-container">
+                    <label for="password">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                  d="M2 12C2 8.229 2 6.343 3.172 5.172C4.344 4.001 6.229 4 10 4H14C17.771 4 19.657 4 20.828 5.172C21.999 6.344 22 8.229 22 12C22 15.771 22 17.657 20.828 18.828C19.656 19.999 17.771 20 14 20H10C6.229 20 4.343 20 3.172 18.828C2.001 17.656 2 15.771 2 12Z"
+                                  stroke="currentColor" stroke-width="1.5"></path>
+                            <path
+                                d="M12 10V14M10.268 11L13.732 13M13.732 11L10.267 13M6.732 10V14M5 11L8.464 13M8.464 11L5 13M17.268 10V14M15.536 11L19 13M19 11L15.535 13"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </label>
+                    <input type="password" name="_password" id="password" class="form-control"
+                           autocomplete="off" required placeholder="Secret12345">
+                </div>
+            </div>
+
+            <input type="hidden" name="_csrf_token" data-controller="csrf-protection"
+                   value="{{ csrf_token('authenticate') }}">
+
+            <div class="auth-form-actions">
+                <button type="submit">Je me connecte maintenant</button>
+                <hr text="ou">
+                <a href="{{ path('app_register') }}">Je souhaite créer un compte</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

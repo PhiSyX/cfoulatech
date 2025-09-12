@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="page-home" class="full:center">
+        {% include 'components/_flashes.html.twig' %}
+
+        <h1>Montrez vos talents de photographe</h1>
+
+        <a href="{{ path('app_pin_create') }}">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest"
+                 style="mix-blend-mode: luminosity;">
+        </a>
+    </div>
+{% endblock %}

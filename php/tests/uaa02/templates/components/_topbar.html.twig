@@ -1,0 +1,22 @@
+<header class="l-topbar topbar">
+    {% if app.user %}
+        <div class="logo">
+            <div class="avatar avatar--anim">
+                <a href="{{ path('app_account') }}" title="Accéder à mon profil">
+                    <img
+                        src="{{ app.user.avatarUrl }}"
+                        alt="Photo de profil"
+                        width="48" height="48">
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+    <p class="title">
+        {% if title is defined %}
+            {{ title }}
+        {% else %}
+            CFOULATECH
+        {% endif %}
+    </p>
+</header>
