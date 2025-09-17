@@ -1,0 +1,775 @@
+{
+	"info": {
+		"_postman_id": "40eab11e-7f6a-48f6-912d-087dc378d30b",
+		"name": "Test_API_JWT",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47947750",
+		"_collection_link": "https://phisyx-team.postman.co/workspace/Team-Workspace~b220d751-2b10-4cd8-8324-c226b0b96f7c/collection/47947750-40eab11e-7f6a-48f6-912d-087dc378d30b?action=share&source=collection_link&creator=47947750"
+	},
+	"item": [
+		{
+			"name": "Anonymous Land",
+			"item": [
+				{
+					"name": "Create User 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"vendredi@cfitech.be\",\n  \"password\" : \"$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei\",\n  \"firstname\" : \"Vendredi\",\n  \"lastname\" : \"Vendredi\",\n  \"isVerified\" : true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"vendredi@cfitech.be\",\n    \"password\": \"testtest\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/login_check",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"login_check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"samedi@cfitech.be\",\n  \"password\" : \"$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei\",\n  \"firstname\" : \"Samedi\",\n  \"lastname\" : \"Samedi\",\n  \"isVerified\" : true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recipe With User 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NTY3MTg2OTcsImV4cCI6MTc1NjcyMjI5Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidmVuZHJlZGlAY2ZpdGVjaC5iZSJ9.bPbGjolQJw6rfREOzXt-tPD2oau3APxzC-_KQFu2feolNiLResVIGqw845-6C1A7d_oInW1i9FZWB_n8wt0o3ahTGcmk6fo8MJ8hh9ZjYf-6ZckvbE8A2bNCzJRstMjN9IBaCTKphORa9ZsP164oyLfZkw7HE19iqnkmdSVS5iPcBGYoSmUdLm5GvOUkDHTTZ2QN81SEVrZk-BeScRZjX6IrzmXXoybSDv2IoioAlBJYhezl6lDrNYjwCRNGmj5NtrUz9j_np09--WClQ-CQnNHFVb0lXQzajr8fjWQbGcgb6TLT4s4sVKXPHgm8ZhBOVRRFS_VRgANLNBbZeSLj-g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Création de recette avec utilisateur 1 et JWT\",\n  \"slug\": \"creation-recette-jwt\",\n  \"content\": \"mon super content lorem impsum dolor sit amet\",\n  \"duration\": 60,\n  \"user\": \"/api/users/15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/recipes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User, Test and Save id/username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { id: userId, userIdentifier, \"@id\": apiUserId } = pm.response.json();",
+									"",
+									"pm.environment.set(\"@userId\", apiUserId);",
+									"pm.environment.set(\"userId\", userId);",
+									"pm.environment.set(\"userIdentifier\", userIdentifier);",
+									"",
+									"pm.test(\"the response status code should be 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"tokens@cfitech.be\",\n  \"password\" : \"$2y$13$Mp2m4/uluvy7gouaHZahKeN6OIVCinnCrMkqc27oj3K7pKE6Bi/nG\",\n  \"firstname\" : \"Tokens\",\n  \"lastname\" : \"Tokens\",\n  \"isVerified\" : true\n}\n"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User, Save token: env var",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { token: userToken } = pm.response.json();",
+									"",
+									"pm.environment.set(\"userToken\", userToken, \"secret\");",
+									"",
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{userIdentifier}}\",\n    \"password\": \"tokens\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/login_check",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"login_check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Recipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"vendredi@cfitech.be\",\n  \"password\" : \"$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei\",\n  \"firstname\" : \"Vendredi\",\n  \"lastname\" : \"Vendredi\",\n  \"isVerified\" : true\n}\n"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/recipes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Land",
+			"item": [
+				{
+					"name": "Create Recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { id: lastRecipeId } = pm.response.json();",
+									"",
+									"pm.environment.set(\"lastRecipeId\", lastRecipeId);",
+									"",
+									"pm.test(\"the response status code should be 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Création de recette depuis Postman et JWT + TOKEN3\",\n  \"slug\": \"creation-recette-postamn-jwt-token-3\",\n  \"content\": \"mon super contenu postman jwt token {{token}}, mon userId est {{userId}}, mon userIdentifier est {{userIdentifier}} ({{@userId}})\",\n  \"duration\": 60,\n  \"user\": \"{{@userId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/recipes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete last recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//pm.environment.set(\"lastRecipeId\", null);",
+									"pm.environment.unset(\"lastRecipeId\");",
+									"",
+									"pm.test(\"the response status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/recipes/{{lastRecipeId}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"{{lastRecipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update last recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"    ",
+									"    const { title, content } = pm.response.json();",
+									"    pm.expect(title).to.eq(\"HEEEEEEEEEEEELLLO1\");",
+									"    pm.expect(content).to.eq(\"WOOOOOOOOOOOOOOOOORLD1\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"HEEEEEEEEEEEELLLO1\",\n  \"content\": \"WOOOOOOOOOOOOOOOOORLD1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/recipes/{{lastRecipeId}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"{{lastRecipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update last user name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"    ",
+									"    const { firstname} = pm.response.json();",
+									"    pm.expect(firstname).to.eq(\"Mohamed-Ali\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Mohamed-Ali\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{userId}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete last user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"the response status code should be 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"",
+									"    pm.environment.unset(\"@userId\");",
+									"    pm.environment.unset(\"userId\");",
+									"    pm.environment.unset(\"userIdentifier\");",
+									"    pm.environment.unset(\"userToken\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{userId}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Land",
+			"item": [
+				{
+					"name": "Create Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { id: adminId, \"@id\": apiAdminId } = pm.response.json();",
+									"",
+									"pm.environment.set(\"@adminId\", apiAdminId);",
+									"pm.environment.set(\"adminId\", adminId);",
+									"",
+									"pm.test(\"the response status code should be 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"thanos@cfitech.be\",\n  \"password\" : \"$2y$13$QDWeVr9gekqy1jlwOT4SwuIW9i/H4ogW7ldYbGeYHd/pFP3PdyqnC\",\n  \"firstname\" : \"Thanos\",\n  \"lastname\" : \"Thanos\",\n  \"isVerified\" : true,\n  \"roles\": [\"ROLE_ADMIN\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin, Save token: env var",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { token: adminToken } = pm.response.json();",
+									"",
+									"pm.environment.set(\"adminToken\", adminToken, \"secret\");",
+									"",
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"thanos@cfitech.be\",\n    \"password\": \"thanos\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/login_check",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"login_check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"the response status code should be 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"vendredi@cfitech.be\",\n  \"password\" : \"$2y$13$XfrcPSmXNbgy7qopUxc1N.Ed4oxN7T4QQUe4LOS9ERMQQF2uUG6ei\",\n  \"firstname\" : \"Vendredi\",\n  \"lastname\" : \"Vendredi\",\n  \"isVerified\" : true\n}\n"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

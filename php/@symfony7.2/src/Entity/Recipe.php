@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\Timestampable;
 use App\Repository\RecipeRepository;
@@ -57,6 +58,7 @@ class Recipe
 
 	#[ORM\ManyToOne(inversedBy: 'recipes')]
 	#[ORM\JoinColumn(nullable: false)]
+	#[ApiProperty(types: ['https://schema.org/User'])]
 	private ?User $user = null;
 
 	#[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'imageName', size: 'imageSize')]

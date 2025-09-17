@@ -2,7 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\RequestBody;
 use App\Entity\Trait\Timestampable;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,7 +21,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -27,6 +35,34 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
 //	normalizationContext: ['groups' => ['user:read']],
 //	denormalizationContext: ['groups' => ['user:create', 'user:update']],
+	operations: [
+		new Delete(),
+		new Get(),
+		new GetCollection(),
+		new Post(),
+		new Put(),
+		new Patch(
+			inputFormats: ['multipart' => ['multipart/form-data']],
+			openapi: new Operation(
+				requestBody: new RequestBody(
+					content: new \ArrayObject([
+						'multipart/form-data' => [
+							'schema' => [
+								'type' => 'object',
+								'properties' => [
+									'imageFile' => [
+										'type' => 'string',
+										'format' => 'binary',
+									],
+								],
+							],
+						],
+					]),
+				),
+			),
+		),
+	],
+	outputFormats: ['jsonld' => ['application/ld+json']],
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -76,6 +112,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 //	#[Groups(["user:read", "user:create", "user:update"])]
 	#[ORM\Column(nullable: true)]
+	#[ApiProperty(writable: false, types: ['https://schema.org/contentUrl'])]
 	private ?string $imageName = "default-avatar.png";
 
 //	#[Groups(["user:read", "user:create", "user:update"])]
@@ -288,7 +325,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 		return [
 			"id" => $this->id,
 			"email" => $this->email,
-			"password" => $this->password
+			"password" => $this->password,
 		];
 	}
 }
