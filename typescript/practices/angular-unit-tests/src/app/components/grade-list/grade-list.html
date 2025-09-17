@@ -1,0 +1,24 @@
+<ul>
+	@for (note of notes; track note.student) {
+		<li>{{ note.student }} {{ note.grade | result }}</li>
+	}
+</ul>
+
+<div>
+	<div>
+		<label>Etudiant</label>
+		<input type="text" [(ngModel)]="newStudentModel">
+	</div>
+
+	<div>
+		<label>Note</label>
+		<input type="number" [(ngModel)]="newStudentGradeModel">
+	</div>
+
+	<button
+		[disabled]="newStudentGradeModel>= 0 && newStudentModel.length===0"
+		(click)="addNote()"
+	>
+		Ajouter le stagiaire
+	</button>
+</div>

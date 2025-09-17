@@ -8,8 +8,6 @@
 		"scss:archi71": "pnpm --filter @b3no1t/archi-7-1-starter-kit start",
 		"js:react": "pnpm --filter @phisyx/cfoulatech-react dev"
 	},
-	"devDependencies": {
-	},
 	"pnpm": {
 		"ignoredBuiltDependencies": [
 			"@parcel/watcher",
@@ -20,6 +18,10 @@
 		"onlyBuiltDependencies": [
 			"@biomejs/biome",
 			"esbuild"
-		]
+		],
+		"overrides": {
+			"webpack-dev-server@<=5.2.0": ">=5.2.1",
+			"vite@>=6.0.0 <=6.3.5": ">=6.3.6"
+		}
 	}
 }
