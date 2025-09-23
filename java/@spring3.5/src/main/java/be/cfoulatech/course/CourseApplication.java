@@ -1,7 +1,10 @@
 package be.cfoulatech.course;
 
-import be.cfoulatech.course.business.service.LangueService;
-import be.cfoulatech.course.domain.entity.Langue;
+import be.cfoulatech.course.business.service.LangService;
+import be.cfoulatech.course.business.service.PersonService;
+import be.cfoulatech.course.data_access.repository.LangRepository;
+import be.cfoulatech.course.domain.entity.Lang;
+import be.cfoulatech.course.domain.entity.Person;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,8 +22,7 @@ public class CourseApplication
 	@Bean
 	public CommandLineRunner showBeans(ApplicationContext applicationContext)
 	{
-		return args ->
-		{
+		return args -> {
 			System.out.println("=== BEANS CRÉÉS AUTOMATIQUEMENT ===");
 			String[] beans = applicationContext.getBeanDefinitionNames();
 			System.out.println("Nombre total de beans : " + beans.length);
@@ -33,16 +35,70 @@ public class CourseApplication
 	}
 
 	@Bean
-	public CommandLineRunner testRapide(LangueService langueService)
+	public CommandLineRunner testRepository(LangRepository langRepository)
 	{
-		return new CommandLineRunner()
-		{
-			@Override
-			public void run(String... args) throws Exception
-			{
-				System.out.println("Test rapide");
-				langueService.sauvegarder(new Langue("English", "EN"));
+		return args -> {
+			System.out.println("=== Test du Repository ===");
+			System.out.println("\tNombre de langues en base : " + langRepository.count());
+			System.out.println("\tRepository configuré correctement !");
+		};
+	}
+
+	@Bean
+	public CommandLineRunner testLang(LangService langService)
+	{
+		return args -> {
+			System.out.println("=== Test Langue Service ===");
+
+			// Créer quelques langues
+			langService.save(new Lang("Français", "FR"));
+			langService.save(new Lang("Anglais", "EN"));
+//			langService.save(new Lang("Dialecte", null)); // Sans code
+			// Test 1 : Recherche
+			System.out.println("Recherche 'fran' : " + langService.findByName("fran").size());
+			// Test 2 : Comptage
+			System.out.println("Langues avec code : " + langService.compterLanguesAvecCode());
+			// Test 3 : Existence
+			System.out.println("Code 'FR' existe : " + langService.codeExiste("FR"));
+			System.out.println("Test terminé !");
+		};
+	}
+
+	@Bean
+	public CommandLineRunner testPerson(PersonService personService)
+	{
+		return args -> {
+			System.out.println("=== Test Personne Service ===");
+			try {
+				var personne = personService.save(new Person("Doe", "John", "john@doe.fr", 42));
+
+				System.out.printf(
+					"La personne %s %s a été ajouté en base de données à l'ID : %s.%n",
+					personne.getName(),
+					personne.getFirstname(),
+					personne.getId()
+				);
+			} catch (Exception e) {
+				System.err.println("Erreur :");
+				System.err.print("  ");
+				System.err.print(e.getMessage());
+				System.err.println();
+
+				var jd = personService.findByName("Doe");
+
+				jd.ifPresent(person -> {
+					System.out.printf(
+						"La personne %s %s a est présente en base de données à l'ID : %s.%n",
+						person.getName(),
+						person.getFirstname(),
+						person.getId()
+					);
+				});
 			}
+
+			Thread.sleep(500);
+
+//			personService.deleteByEmail("john@doe.fr");
 		};
 	}
 }

@@ -3,11 +3,9 @@ package be.cfoulatech.course.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "Langues")
-@Data
 @NoArgsConstructor
-public class Langue
+@Table(name = "langs") @Entity @Data
+public class Lang
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,16 +13,14 @@ public class Langue
 	private Integer id;
 
 	@Column(nullable = false, length = 100)
-	private String nom;
+	private String name;
 
-	@Column(length = 3)
+	@Column(nullable = false, length = 3)
 	private String code;
 
-	public Langue(String nom, String code)
+	public Lang(String name, String code)
 	{
-		this.nom = nom;
+		this.name = name;
 		this.code = code;
 	}
-
-
 }

@@ -16,7 +16,6 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
                 format_sql: true
-
 server:
     port: 8080
     error:
@@ -26,3 +25,5 @@ logging:
     level:
         be.cfoulatech.course: DEBUG
         org.hibernate.sql: DEBUG
+
+debug: true
