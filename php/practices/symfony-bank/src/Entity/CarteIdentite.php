@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Enum\Sexe;
 use App\Repository\CarteIdentiteRepository;
 use Doctrine\DBAL\Types\Types;
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: '`cartes_identite`')]
 #[ORM\Entity(repositoryClass: CarteIdentiteRepository::class)]
+#[ApiResource]
 class CarteIdentite
 {
     #[ORM\Id]

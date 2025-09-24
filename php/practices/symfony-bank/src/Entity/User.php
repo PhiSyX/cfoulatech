@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\Timestampable;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -11,9 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Table(name: '`users`')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ApiResource]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -36,11 +40,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(inversedBy: 'owner', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'proprietaire', cascade: ['persist', 'remove'])]
     private ?CarteIdentite $carte_identite = null;
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    /**
+     * @var Collection<int, CarteBancaire>
+     */
+    #[ORM\OneToMany(targetEntity: CarteBancaire::class, mappedBy: 'proprietaire')]
+    private Collection $carteBancaires;
+
+    public function __construct()
+    {
+        $this->carteBancaires = new ArrayCollection();
+    }
 
     use Timestampable;
 
@@ -145,6 +160,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CarteBancaire>
+     */
+    public function getCarteBancaires(): Collection
+    {
+        return $this->carteBancaires;
+    }
+
+    public function addCarteBancaire(CarteBancaire $carteBancaire): static
+    {
+        if (!$this->carteBancaires->contains($carteBancaire)) {
+            $this->carteBancaires->add($carteBancaire);
+            $carteBancaire->setProprietaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCarteBancaire(CarteBancaire $carteBancaire): static
+    {
+        if ($this->carteBancaires->removeElement($carteBancaire)) {
+            // set the owning side to null (unless already changed)
+            if ($carteBancaire->getProprietaire() === $this) {
+                $carteBancaire->setProprietaire(null);
+            }
+        }
 
         return $this;
     }

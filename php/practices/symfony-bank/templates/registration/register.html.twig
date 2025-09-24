@@ -13,7 +13,7 @@
 
     {{ form_start(registrationForm, { attr: { 'x-data': '{ step: 1 }' } }) }}
 
-    <div x-show="step >= 1">
+    <div x-show="step === 1">
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password',
@@ -36,6 +36,10 @@
     </div>
 
     <hr>
+
+    <div x-show="step === 2">
+        <button type="button" class="btn" x-on:click="step = 1">Prev</button>
+    </div>
 
     <div x-show="step === 1">
         <button type="button" class="btn" x-on:click="step = 2">Next</button>

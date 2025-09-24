@@ -101,9 +101,7 @@ class RegistrationFormType extends AbstractType
             ->add('type_titre', TextType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new Length([
-                        'min' => 3,
-                    ]),
+                    new Length(['min' => 3]),
                 ],
             ])
             ->add('expire_le', DateType::class, [
@@ -117,9 +115,7 @@ class RegistrationFormType extends AbstractType
             ->add('delivre_endroit', TextType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new Length([
-                        'min' => 3,
-                    ]),
+                    new Length(['min' => 3]),
                 ],
             ]);
     }
