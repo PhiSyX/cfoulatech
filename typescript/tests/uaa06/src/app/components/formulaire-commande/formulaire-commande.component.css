@@ -1,0 +1,21 @@
+form {
+  display: grid;
+  gap: .5rem;
+  max-width: 80ch;
+}
+
+form div {
+  width: 100%;
+}
+
+form div > label {
+  display: inline-block;
+  width: 20%;
+}
+
+form div > input {
+  width: 75%;
+}
+
+form div > button {
+}

@@ -1,0 +1,28 @@
+<h1>Ajouter une nouvelle commande</h1>
+
+<form (submit)="ajouterCommande()" method="post">
+  <div class="input-group">
+    <label for="nomClient" class="form-label">Nom du client :</label>
+    <input type="text" [(ngModel)]="commandeModel.nomClient" name="nomClient" id="nomClient" class="form-control">
+  </div>
+
+  <div class="input-group">
+    <label for="produit">Produit :</label>
+    <input type="text" [(ngModel)]="commandeModel.produit" name="produit" id="produit" class="form-control">
+  </div>
+
+  <div class="input-group">
+    <label for="quantite">Quantité :</label>
+    <input type="number" [(ngModel)]="commandeModel.quantite" name="quantite" id="quantite" class="form-control">
+  </div>
+
+  <div class="input-group">
+    <label for="prix">Prix :</label>
+    <input type="number" [(ngModel)]="commandeModel.prix" name="prix" id="prix" class="form-control">
+  </div>
+
+  <div>
+    <button class="btn btn-primary" type="submit">Soumettre</button>
+  </div>
+
+</form>

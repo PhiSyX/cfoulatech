@@ -1,0 +1,14 @@
+<h1>
+  Toutes les commandes
+  <small>({{ commandes.length }})</small>
+</h1>
+
+<section>
+  <ul class="list-group">
+    <li *ngFor="let commande of commandes" class="list-group-item">
+      {{ commande.nomClient }} &mdash;
+      {{ commande.produit }} &mdash;
+      {{ commande.quantite }} x {{ commande.prix }} = {{ commande | total }}
+    </li>
+  </ul>
+</section>
