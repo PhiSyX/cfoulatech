@@ -1,8 +1,10 @@
 package be.cfoulatech.course;
 
+import be.cfoulatech.course.business.service.AuthorService;
 import be.cfoulatech.course.business.service.LangService;
 import be.cfoulatech.course.business.service.PersonService;
 import be.cfoulatech.course.data_access.repository.LangRepository;
+import be.cfoulatech.course.domain.entity.Author;
 import be.cfoulatech.course.domain.entity.Lang;
 import be.cfoulatech.course.domain.entity.Person;
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class CourseApplication
@@ -57,7 +61,7 @@ public class CourseApplication
 			// Test 1 : Recherche
 			System.out.println("Recherche 'fran' : " + langService.findByName("fran").size());
 			// Test 2 : Comptage
-			System.out.println("Langues avec code : " + langService.compterLanguesAvecCode());
+			System.out.println("Langues avec code : " + langService.countWithCode());
 			// Test 3 : Existence
 			System.out.println("Code 'FR' existe : " + langService.codeExiste("FR"));
 			System.out.println("Test terminé !");
@@ -99,6 +103,30 @@ public class CourseApplication
 			Thread.sleep(500);
 
 //			personService.deleteByEmail("john@doe.fr");
+		};
+	}
+
+	@Bean
+	public CommandLineRunner testAuthor(AuthorService authorService)
+	{
+		return args -> {
+			System.out.println("\n=== TEST AUTEURS ===");
+
+			var hugo = authorService.create(new Author("Hugo", "Victor", LocalDate.of(1802, 2, 26), "Française"));
+			var tolkien = authorService.create(new Author("Tolkien", "J.R.R.", LocalDate.of(1892, 1, 3), "Britannique"));
+
+			System.out.println("Hugo ID: " + hugo.getId());
+
+			var maybeAuthor = authorService.findById(hugo.getId());
+			maybeAuthor.ifPresent(author -> System.out.println("Trouvé: " + author.getFirstname() + " " + author.getLastname()));
+
+			var lastnames = authorService.findByLastname("HUGO");
+			System.out.println("Recherche 'HUGO': " + lastnames.size() + " résultat(s)");
+
+			var britanniques = authorService.findByNationality("Britannique");
+			System.out.println("Auteurs britanniques: " + britanniques.size());
+
+			System.out.println("Total: " + authorService.findAll().size());
 		};
 	}
 }

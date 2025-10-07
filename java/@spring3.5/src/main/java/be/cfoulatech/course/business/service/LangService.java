@@ -49,15 +49,12 @@ public class LangService
 		return langRepository.existsById(id);
 	}
 
-	// ... vos méthodes existantes
-
-	// Juste ces 3 nouvelles méthodes pour tester
 	public List<Lang> findByName(String recherche)
 	{
 		return langRepository.searchFromName(recherche);
 	}
 
-	public long compterLanguesAvecCode()
+	public long countWithCode()
 	{
 		return langRepository.countLanguages();
 	}
