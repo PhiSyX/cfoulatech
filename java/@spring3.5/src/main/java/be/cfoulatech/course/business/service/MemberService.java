@@ -14,61 +14,61 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor // Génère un constructeur avec tous les champs final pour l'injection de dépendances
+@RequiredArgsConstructor
 @Transactional
 public class MemberService
 {
-	private final MemberRepository membreRepository;
+	private final MemberRepository memberRepository;
 
 	public Member create(Member member) throws EmailAlreadyExistsException
 	{
-		if (membreRepository.existsByEmailIgnoreCase(member.getEmail())) {
+		if (memberRepository.existsByEmailIgnoreCase(member.getEmail())) {
 			throw new EmailAlreadyExistsException();
 		}
 
-		return membreRepository.save(member);
+		return memberRepository.save(member);
 	}
 
 	public Optional<Member> findById(UUID id)
 	{
-		return membreRepository.findById(id);
+		return memberRepository.findById(id);
 	}
 
 	public List<Member> findAll()
 	{
-		return membreRepository.findAll();
+		return memberRepository.findAll();
 	}
 
 	public Optional<Member> findByEmail(String email)
 	{
-		return membreRepository.findByEmailIgnoreCase(email);
+		return memberRepository.findByEmailIgnoreCase(email);
 	}
 
 	public List<Member> findByStatus(MemberStatus status)
 	{
-		return membreRepository.findByStatus(status);
+		return memberRepository.findByStatus(status);
 	}
 
 	public List<Member> findAllExpires()
 	{
-		return membreRepository.findByStatusIn(
+		return memberRepository.findByStatusIn(
 			List.of(MemberStatus.SUSPENDED, MemberStatus.EXPIRED)
 		);
 	}
 
 	public List<Member> findByLibrary(UUID bibliothequeId)
 	{
-		return membreRepository.findByLibrary_Id(bibliothequeId);
+		return memberRepository.findByLibrary_Id(bibliothequeId);
 	}
 
 	public List<Member> findByCity(String city)
 	{
-		return membreRepository.findByLibrary_CityIgnoreCase(city);
+		return memberRepository.findByLibrary_CityIgnoreCase(city);
 	}
 
 	public Member suspend(UUID id)
 	{
-		var member = membreRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(id));
+		var member = memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(id));
 
 		if (member.isSuspended()) {
 			return member;

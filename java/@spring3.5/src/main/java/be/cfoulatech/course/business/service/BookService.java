@@ -15,60 +15,60 @@ import java.util.UUID;
 @Transactional
 public class BookService
 {
-	private final BookRepository livreRepository;
+	private final BookRepository bookRepository;
 
 	public Book create(Book book)
 	{
-		return livreRepository.save(book);
+		return bookRepository.save(book);
 	}
 
 	public Optional<Book> findById(UUID id)
 	{
-		return livreRepository.findById(id);
+		return bookRepository.findById(id);
 	}
 
 	public List<Book> findAll()
 	{
-		return livreRepository.findAll();
+		return bookRepository.findAll();
 	}
 
 	public List<Book> searchTitle(String title)
 	{
-		return livreRepository.findByTitleContainingIgnoreCase(title);
+		return bookRepository.findByTitleContainingIgnoreCase(title);
 	}
 
 	public Optional<Book> findByIsbn(Long isbn)
 	{
-		return livreRepository.findByIsbn(isbn);
+		return bookRepository.findByIsbn(isbn);
 	}
 
 	public List<Book> findByLang(String lang)
 	{
-		return livreRepository.findByLang(lang);
+		return bookRepository.findByLang(lang);
 	}
 
 	public List<Book> findVoliminousBooks(Integer min)
 	{
-		return livreRepository.findByTotalPagesGreaterThan(min);
+		return bookRepository.findByTotalPagesGreaterThan(min);
 	}
 
 	public List<Book> findByLangAndTotalPages(String langue, Integer nbPagesMin)
 	{
-		return livreRepository.findByLangAndTotalPagesGreaterThan(langue, nbPagesMin);
+		return bookRepository.findByLangAndTotalPagesGreaterThan(langue, nbPagesMin);
 	}
 
 	public List<Book> findByAuthor(UUID authorId)
 	{
-		return livreRepository.findByAuthor_Id(authorId);
+		return bookRepository.findByAuthor_Id(authorId);
 	}
 
 	public List<Book> findByLibrary(UUID libraryId)
 	{
-		return livreRepository.findByLibrary_Id(libraryId);
+		return bookRepository.findByLibrary_Id(libraryId);
 	}
 
 	public List<Book> findByCity(String city)
 	{
-		return livreRepository.findByLibrary_CityIgnoreCase(city);
+		return bookRepository.findByLibrary_CityIgnoreCase(city);
 	}
 }

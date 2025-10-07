@@ -16,35 +16,35 @@ import java.util.UUID;
 public class LibraryService
 {
 
-	private final LibraryRepository bibliothequeRepository;
+	private final LibraryRepository libraryRepository;
 
 	public Library create(Library bibliotheque)
 	{
-		return bibliothequeRepository.save(bibliotheque);
+		return libraryRepository.save(bibliotheque);
 	}
 
 	public Optional<Library> findById(UUID id)
 	{
-		return bibliothequeRepository.findById(id);
+		return libraryRepository.findById(id);
 	}
 
 	public List<Library> findAll()
 	{
-		return bibliothequeRepository.findAll();
+		return libraryRepository.findAll();
 	}
 
 	public List<Library> findByCity(String ville)
 	{
-		return bibliothequeRepository.findByCityIgnoreCase(ville);
+		return libraryRepository.findByCityIgnoreCase(ville);
 	}
 
 	public Optional<Library> findByName(String nom)
 	{
-		return bibliothequeRepository.findByName(nom);
+		return libraryRepository.findByName(nom);
 	}
 
 	public List<Library> searchName(String nom)
 	{
-		return bibliothequeRepository.findByNameContainingIgnoreCase(nom);
+		return libraryRepository.findByNameContainingIgnoreCase(nom);
 	}
 }
