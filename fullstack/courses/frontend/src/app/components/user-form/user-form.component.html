@@ -1,0 +1,8 @@
+<h2>Ajouter un utilisateur</h2>
+
+<form [formGroup]="form" (submit)="onSubmit()">
+  <input formControlName="name" placeholder="Nom"/>
+  <input formControlName="email" placeholder="Email"/>
+
+  <button type="submit">Ajouter</button>
+</form>
