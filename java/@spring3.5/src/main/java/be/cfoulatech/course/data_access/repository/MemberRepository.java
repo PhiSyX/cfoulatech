@@ -1,6 +1,7 @@
 package be.cfoulatech.course.data_access.repository;
 
 import be.cfoulatech.course.domain.entity.Member;
+import be.cfoulatech.course.domain.enums.MemberStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +16,9 @@ public interface MemberRepository extends JpaRepository<Member, UUID>
 
 	Optional<Member> findByEmailIgnoreCase(String email);
 
-	List<Member> findByStatus(String status);
+	List<Member> findByStatus(MemberStatus status);
 
-	List<Member> findByStatusIn(List<String> status);
+	List<Member> findByStatusIn(List<MemberStatus> status);
 
 	List<Member> findByLibrary_Id(UUID bibliothequeId);
 
@@ -28,4 +29,6 @@ public interface MemberRepository extends JpaRepository<Member, UUID>
 	List<Member> findByLastnameContainingIgnoreCase(String lastname);
 
 	List<Member> findByEmailContainingIgnoreCase(String email);
+
+	boolean existsByEmailIgnoreCase(String email);
 }

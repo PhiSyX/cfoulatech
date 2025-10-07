@@ -1,5 +1,6 @@
 package be.cfoulatech.course.domain.entity;
 
+import be.cfoulatech.course.domain.enums.MemberStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -36,7 +37,8 @@ public class Member
 	private LocalDate registeredAt;
 
 	@Column(length = 255)
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private MemberStatus status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "library_id")
@@ -44,7 +46,7 @@ public class Member
 
 	public Member(
 		String lastname, String firstname, String email,
-		LocalDate registeredAt, String status,
+		LocalDate registeredAt, MemberStatus status,
 		Library library
 	)
 	{
@@ -54,5 +56,10 @@ public class Member
 		this.registeredAt = registeredAt;
 		this.status = status;
 		this.library = library;
+	}
+
+	public boolean isSuspended()
+	{
+		return status.equals(MemberStatus.SUSPENDED);
 	}
 }

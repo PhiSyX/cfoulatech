@@ -3,6 +3,7 @@ package be.cfoulatech.course;
 import be.cfoulatech.course.business.service.*;
 import be.cfoulatech.course.data_access.repository.LangRepository;
 import be.cfoulatech.course.domain.entity.*;
+import be.cfoulatech.course.domain.enums.MemberStatus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -174,6 +175,28 @@ public class CourseApplication
 
 			var authoredBooks = livreService.findByAuthor(tolkien.getId());
 			System.out.println("Livres de Tolkien: " + authoredBooks.size());
+		};
+	}
+
+	@Bean
+	public CommandLineRunner testMembers(MemberService membreService, LibraryService bibliothequeService)
+	{
+		return args -> {
+			System.out.println("\n=== TEST MEMBRES ===");
+
+			var koekelberg = bibliothequeService.create(new Library("Bibliothèque de Koekelberg", "Avenue de l'Exposition", "Koekelberg", 100));
+
+			var jean = membreService.create(new Member("Dupont", "Jean", "jean@email.com", LocalDate.now(), MemberStatus.ACTIVE, koekelberg));
+			var sophie = membreService.create(new Member("Martin", "Sophie", "sophie@email.com", LocalDate.now(), MemberStatus.SUSPENDED, koekelberg));
+
+			var maybeMember = membreService.findByEmail("jean@email.com");
+			maybeMember.ifPresent(member -> System.out.println("Par email: " + member.getFirstname()));
+
+			var issuers = membreService.findAllExpires();
+			System.out.println("Suspendus/Expirés: " + issuers.size());
+
+			var membres = membreService.findByLibrary(koekelberg.getId());
+			System.out.println("Membres à Koekelberg: " + membres.size());
 		};
 	}
 

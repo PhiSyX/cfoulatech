@@ -2,6 +2,9 @@ package be.cfoulatech.course.business.service;
 
 import be.cfoulatech.course.data_access.repository.MemberRepository;
 import be.cfoulatech.course.domain.entity.Member;
+import be.cfoulatech.course.domain.enums.MemberStatus;
+import be.cfoulatech.course.domain.exception.EmailAlreadyExistsException;
+import be.cfoulatech.course.domain.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +20,13 @@ public class MemberService
 {
 	private final MemberRepository membreRepository;
 
-	public Member create(Member membre)
+	public Member create(Member member) throws EmailAlreadyExistsException
 	{
-		return membreRepository.save(membre);
+		if (membreRepository.existsByEmailIgnoreCase(member.getEmail())) {
+			throw new EmailAlreadyExistsException();
+		}
+
+		return membreRepository.save(member);
 	}
 
 	public Optional<Member> findById(UUID id)
@@ -37,7 +44,7 @@ public class MemberService
 		return membreRepository.findByEmailIgnoreCase(email);
 	}
 
-	public List<Member> findByStatus(String status)
+	public List<Member> findByStatus(MemberStatus status)
 	{
 		return membreRepository.findByStatus(status);
 	}
@@ -45,7 +52,7 @@ public class MemberService
 	public List<Member> findAllExpires()
 	{
 		return membreRepository.findByStatusIn(
-			List.of("SUSPENDU", "EXPIRE")
+			List.of(MemberStatus.SUSPENDED, MemberStatus.EXPIRED)
 		);
 	}
 
@@ -57,5 +64,18 @@ public class MemberService
 	public List<Member> findByCity(String city)
 	{
 		return membreRepository.findByLibrary_CityIgnoreCase(city);
+	}
+
+	public Member suspend(UUID id)
+	{
+		var member = membreRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(id));
+
+		if (member.isSuspended()) {
+			return member;
+		}
+
+		member.setStatus(MemberStatus.SUSPENDED);
+//		return membreRepository.save(member); // non obligatoire avec @Transactional
+		return member;
 	}
 }
