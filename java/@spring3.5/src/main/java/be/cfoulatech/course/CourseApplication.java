@@ -1,12 +1,8 @@
 package be.cfoulatech.course;
 
-import be.cfoulatech.course.business.service.AuthorService;
-import be.cfoulatech.course.business.service.LangService;
-import be.cfoulatech.course.business.service.PersonService;
+import be.cfoulatech.course.business.service.*;
 import be.cfoulatech.course.data_access.repository.LangRepository;
-import be.cfoulatech.course.domain.entity.Author;
-import be.cfoulatech.course.domain.entity.Lang;
-import be.cfoulatech.course.domain.entity.Person;
+import be.cfoulatech.course.domain.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -129,5 +125,57 @@ public class CourseApplication
 			System.out.println("Total: " + authorService.findAll().size());
 		};
 	}
+
+	@Bean
+	public CommandLineRunner testLibrary(LibraryService libraryService, BookService bookService, MemberService memberService)
+	{
+		return args -> {
+			System.out.println("\n=== TEST BIBLIOTHEQUES ===");
+
+			var molenbeek = libraryService.create(new Library("Bibliothèque de Molenbeek", "Rue du Comte de Flandre", "Molenbeek", 150));
+			var koekelberg = libraryService.create(new Library("Bibliothèque de Koekelberg", "Avenue de l'Exposition", "Koekelberg", 100));
+
+			var libs_mol = libraryService.findByCity("Molenbeek");
+			System.out.println("Bibliothèques à Molenbeek: " + libs_mol.size());
+
+			var livres = bookService.findByCity("Molenbeek");
+			System.out.println("Livres à Molenbeek: " + livres.size());
+
+			var members = memberService.findByCity("Koekelberg");
+			System.out.println("Membres à Koekelberg: " + members.size());
+
+			System.out.println("Total bibliothèques: " + libraryService.findAll().size());
+		};
+	}
+
+	@Bean
+	public CommandLineRunner testBooks(
+		BookService livreService, AuthorService auteurService,
+		LibraryService bibliothequeService
+	)
+	{
+		return args -> {
+			System.out.println("\n=== TEST LIVRES ===");
+
+			var tolkien = auteurService.create(new Author("Tolkien", "J.R.R.", LocalDate.of(1892, 1, 3), "Britannique"));
+			var molenbeek = bibliothequeService.create(new Library("Bibliothèque de Molenbeek", "Rue du Comte de Flandre", "Molenbeek", 150));
+
+			var hobbit = livreService.create(new Book("The Hobbit", 9780261102217L, LocalDate.of(1937, 9, 21), 310, "Anglais", tolkien, molenbeek));
+			var lotr = livreService.create(new Book("The Lord of the Rings", 9780261102354L, LocalDate.of(1954, 7, 29), 1178, "Anglais", tolkien, molenbeek));
+
+			var titles = livreService.searchTitle("hobbit");
+			System.out.println("Recherche 'hobbit': " + titles.size() + " livre(s)");
+
+			var isbnBooks = livreService.findByIsbn(9780261102217L);
+			isbnBooks.ifPresent(l -> System.out.println("Par ISBN: " + l.getTitle()));
+
+			var voluminousBooks = livreService.findVoliminousBooks(500);
+			System.out.println("Livres > 500 pages: " + voluminousBooks.size());
+
+			var authoredBooks = livreService.findByAuthor(tolkien.getId());
+			System.out.println("Livres de Tolkien: " + authoredBooks.size());
+		};
+	}
+
 }
 
