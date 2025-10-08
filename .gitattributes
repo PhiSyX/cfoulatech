@@ -1,5 +1,5 @@
-
-*.scss linguist-language=CSS
+*.css linguist-language=SCSS
+*.scss linguist-language=SCSS
 *.html.twig linguist-language=Twig
 *.twig linguist-language=Twig
 *.sql linguist-language=SQL
