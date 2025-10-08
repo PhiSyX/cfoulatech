@@ -1,0 +1,5 @@
+
+*.scss linguist-language=CSS
+*.html.twig linguist-language=Twig
+*.twig linguist-language=Twig
+*.sql linguist-language=SQL
