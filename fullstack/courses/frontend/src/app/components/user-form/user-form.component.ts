@@ -22,7 +22,7 @@ export class UserFormComponent implements OnInit
   {
   }
 
-  ngOnInit()
+  ngOnInit(): void
   {
     this.form = this.fb.group({
       name: [''],
@@ -41,7 +41,7 @@ export class UserFormComponent implements OnInit
     });
   }
 
-  onCreateSubmit()
+  onCreateSubmit(): void
   {
     if (!this.form.valid) {
       return;
@@ -57,7 +57,7 @@ export class UserFormComponent implements OnInit
     this.form.reset();
   }
 
-  onEditSubmit()
+  onEditSubmit(): void
   {
     if (!this.form.valid || !this.selectedUser) {
       return;
@@ -69,6 +69,26 @@ export class UserFormComponent implements OnInit
       ...this.selectedUser,
       name,
       email,
+    });
+
+    this.form.reset();
+    this.userService.unselectUser();
+  }
+
+  onDeleteSubmit(): void
+  {
+    if (!this.selectedUser) {
+      return;
+    }
+
+    const canProcess = confirm(`Are you sure you want to delete this user "${this.selectedUser.email}"?`);
+
+    if (!canProcess) {
+      return;
+    }
+
+    this.userService.deleteUser({
+      ...this.selectedUser,
     });
 
     this.form.reset();

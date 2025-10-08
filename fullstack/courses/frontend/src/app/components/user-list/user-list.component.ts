@@ -27,12 +27,7 @@ export class UserListComponent implements OnInit
     });
   }
 
-  onUpdate(user: User): void
-  {
-    this.userService.selectUser(user);
-  }
-
-  onDelete(user: User): void
+  onSelect(user: User): void
   {
     this.userService.selectUser(user);
   }

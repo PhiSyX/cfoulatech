@@ -86,4 +86,15 @@ export class UserService
       this.users.next(newUsers);
     });
   }
+
+  deleteUser(user: User): void
+  {
+    this.http.delete<User>(
+      `${this.usersApiEndpoint}/${user.id}`,
+      { headers: this.defaultHeaders },
+    ).subscribe(() => {
+      const filteredUsers = this.users.value.filter((cUser) => cUser.id !== user.id);
+      this.users.next(filteredUsers);
+    });
+  }
 }
