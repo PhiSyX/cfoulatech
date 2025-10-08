@@ -1,8 +1,21 @@
-<h2>Ajouter un utilisateur</h2>
+<div *ngIf="!selectedUser">
+  <h2>Ajouter un utilisateur</h2>
 
-<form [formGroup]="form" (submit)="onSubmit()">
-  <input formControlName="name" placeholder="Nom"/>
-  <input formControlName="email" placeholder="Email"/>
+  <form [formGroup]="form" (submit)="onCreateSubmit()">
+    <input formControlName="name" placeholder="Nom"/>
+    <input formControlName="email" placeholder="Email"/>
 
-  <button type="submit">Ajouter</button>
-</form>
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
+
+<div *ngIf="selectedUser">
+  <h2>Modifier {{ selectedUser.name }}</h2>
+
+  <form [formGroup]="form" (submit)="onEditSubmit()">
+    <input formControlName="name" placeholder="Nom"/>
+    <input formControlName="email" placeholder="Email"/>
+
+    <button type="submit">Modifier</button>
+  </form>
+</div>
