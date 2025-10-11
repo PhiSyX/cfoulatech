@@ -9,7 +9,7 @@
 	<ul>
 		<li th:each="member : ${members}">
 			<a
-				th:href="${#mvc.url('member_detail').arg(0, member.email).build()}"
+				th:href="${#mvc.url('member_details').arg(0, member.email).build()}"
 				th:text="|See informations about ${member.email}|"
 			>
 			</a>
