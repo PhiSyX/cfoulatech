@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Member Details</title>
+</head>
+<body>
+
+<a th:href="${#mvc.url('member_index').build()}">Back to the member list</a>
+
+<table>
+	<thead>
+	<tr>
+		<th>Lastname</th>
+		<th>Firstname</th>
+		<th>Email</th>
+		<th>Status</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	<tr>
+		<td th:text="${member.lastname}">Lastname</td>
+		<td th:text="${member.firstname}">Firstname</td>
+		<td th:text="${member.email}">Email</td>
+		<td th:text="${member.status}">Status</td>
+	</tr>
+	</tbody>
+</table>
+
+</body>
+</html>

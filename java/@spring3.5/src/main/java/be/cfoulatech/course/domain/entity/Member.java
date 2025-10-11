@@ -46,6 +46,18 @@ public class Member
 
 	public Member(
 		String lastname, String firstname, String email,
+		LocalDate registeredAt, MemberStatus status
+	)
+	{
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.email = email;
+		this.registeredAt = registeredAt;
+		this.status = status;
+	}
+
+	public Member(
+		String lastname, String firstname, String email,
 		LocalDate registeredAt, MemberStatus status,
 		Library library
 	)
