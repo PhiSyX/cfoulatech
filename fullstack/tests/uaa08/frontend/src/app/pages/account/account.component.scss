@@ -1,0 +1,86 @@
+.page\:account {
+  overflow: auto;
+  height: 100%;
+  padding: var(--spacing-lg);
+  background: var(--color-black-darker);
+}
+
+.container {
+  max-width: 540px;
+}
+
+ui-avatar {
+  margin-inline: auto;
+}
+
+.account-btn--edition-mode,
+.account-btn--view {
+  padding: var(--spacing-sm);
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  font-weight: bold;
+  font-size: var(--text-normal);
+}
+
+.account-btn--edition-mode {
+  background: var(--color-black-ultra-dark);
+  color: var(--color-yellow);
+}
+
+.account-btn--view {
+  background: var(--color-cyan);
+  color: var(--color-white);
+}
+
+.account-personal-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.account-personal-info .key {
+  padding: var(--spacing-xs);
+  font-weight: bold;
+}
+
+.account-personal-info .value {
+  padding: var(--spacing-xs);
+}
+
+.account-personal-info input {
+  --outline: var(--color-yellow);
+  border: 1px solid var(--color-yellow-opa25);
+  border-radius: var(--radius-md);
+  background: var(--color-black-darker);
+  color: var(--color-white);
+}
+
+.dialog\:account\:edit-password {
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-orange);
+  outline: 4px solid var(--color-yellow);
+
+  form {
+    gap: var(--spacing-md);
+  }
+
+  button[type="submit"] {
+    grid-column: span 2;
+  }
+}
+
+.opacity {
+  opacity: .2;
+  transition: opacity 300ms linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.vHidden {
+  visibility: hidden;
+}

@@ -1,0 +1,30 @@
+:host {
+  --avatar-rounded: var(--radius-full);
+  --avatar-btn-delete-on-surface: var(--danger);
+}
+
+.avatar {
+  position: relative;
+}
+
+.avatar--rounded {
+  border-radius: var(--avatar-rounded);
+}
+
+.avatar--editable {
+  cursor: pointer;
+}
+
+.avatar-input-file-hidden {
+  display: contents;
+
+  visibility: hidden;
+}
+
+.avatar-btn--delete {
+  position: absolute;
+
+  border: none;
+  background: transparent;
+  color: var(--avatar-btn-delete-on-surface);
+}

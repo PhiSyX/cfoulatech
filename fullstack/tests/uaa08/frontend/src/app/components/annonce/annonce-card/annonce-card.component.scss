@@ -1,0 +1,126 @@
+:host {
+  --annonce-card-outline: #302e2e;
+  --annonce-card-spacing: var(--spacing-md);
+  --annonce-card-height: 350px;
+  --annonce-card-min-width: 400px;
+  --annonce-card-radius: var(--radius-xxl);
+  --annonce-card-shadow: inset 0 0 150px 40px var(--color-black-ultra-dark);
+
+  --annonce-card-types-gap: var(--gap-sm);
+  --annonce-card-types-item-spacing: var(--spacing-sm);
+  --annonce-card-types-item-radius: var(--radius-xxl);
+  --annonce-card-types-item-surface: var(--color-white);
+  --annonce-card-types-item-on-surface: var(--color-black);
+
+  --annonce-card-body-min-height: 145px;
+  --annonce-card-body-spacing: var(--spacing-md);
+  --annonce-card-body-radius: var(--radius-xxl);
+  --annonce-card-body-surface: var(--color-white);
+  --annonce-card-body-on-surface: var(--color-black);
+
+  --annonce-card-message-spacing: var(--spacing-sm);
+  --annonce-card-address-on-surface: #998989;
+
+  --annonce-card-creation-date: #a5a5a5;
+
+  flex-grow: 1;
+}
+
+.annonce-card {
+  /* 1. Positionnement */
+  position: relative;
+
+  /* 2. Modèle de boîte */
+  display: grid;
+  padding: var(--annonce-card-spacing);
+  height: var(--annonce-card-height);
+  align-content: space-between;
+  justify-items: start;
+
+  /* 3. Décoration */
+  border: 1px solid var(--annonce-card-outline);
+  border-radius: var(--annonce-card-radius);
+  background-image: var(--annonce-card-url);
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--annonce-card-shadow);
+}
+
+.annonce-card-types {
+  /* 1. Modèle de boîte */
+  display: inline-flex;
+  gap: var(--annonce-card-types-gap);
+}
+
+.annonce-card-types-item {
+  /* 1. Modèle de boîte */
+  display: inline-block;
+  padding: var(--annonce-card-types-item-spacing);
+
+  /* 2. Décoration */
+  border-radius: var(--annonce-card-types-item-radius);
+  background: var(--annonce-card-types-item-surface);
+  color: var(--annonce-card-types-item-on-surface);
+}
+
+.annonce-card-body {
+  /* 1. Héritage */
+  justify-self: normal;
+
+  /* 2. Modèle de boîte */
+  display: grid;
+  padding: var(--annonce-card-body-spacing);
+  min-height: var(--annonce-card-body-min-height);
+  align-items: center;
+
+  /* 3. Décoration */
+  border-radius: var(--annonce-card-body-radius);
+  background: var(--annonce-card-body-surface);
+  color: var(--annonce-card-body-on-surface);
+}
+
+.annonce-card-title {
+  /* 1. Modèle de boîte */
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.annonce-card-btn {
+  /* 1. Positionnement */
+  position: relative;
+  z-index: 99;
+
+  /* 2. Décoration */
+  border: none;
+  background: transparent;
+}
+
+.annonce-card-message {
+  /* 1. Modèle de boîte */
+  margin-block: var(--annonce-card-message-spacing);
+}
+
+.annonce-card-address {
+  /* 1. Décoration */
+  color: var(--annonce-card-address-on-surface);
+}
+
+.annonce-card-full-link {
+  /* 1. Positionnement */
+  position: absolute;
+  inset: 0;
+
+  /* 2. Décoration */
+  opacity: 0;
+}
+
+.annonce-card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.annonce-card-date {
+  color: var(--annonce-card-creation-date);
+}

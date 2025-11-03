@@ -1,0 +1,25 @@
+<main class="page">
+  <ui-header></ui-header>
+
+  <section class="page:dashboard">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li>
+            <a routerLink="/admin/users">Gérer les clients et propriétaires</a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/contact-messages">
+              Gérer les messages
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>

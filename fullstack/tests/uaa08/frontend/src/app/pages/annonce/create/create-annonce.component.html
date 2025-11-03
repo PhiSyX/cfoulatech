@@ -1,0 +1,247 @@
+<layout-page
+  [title]="`${editAnnonce ? 'Modifier' : 'Créer'} une annonce (${currentStep + 1}/${forms.length})`"
+  [withContainerFull]="true"
+>
+  @if (currentStep > 0) {
+    <button class="title-actions-left" (click)="prevStep()">&lt;</button>
+  }
+
+  <form class="annonce-form" [formGroup]="forms[currentStep]" (submit)="handleSubmit()">
+    @switch (currentStep) {
+      @case (0) {
+        <fieldset class="annonce-group">
+          <legend>À propos du bien</legend>
+
+          <div class="input-group">
+            <label for="typeDeBien">Type de bien</label>
+            <input
+              type="text"
+              formControlName="typeDeBien"
+              id="typeDeBien"
+              list="typesDeBien"
+            />
+            <datalist id="typesDeBien">
+              <option value="appartement">Appartement</option>
+              <option value="maison">Maison</option>
+            </datalist>
+          </div>
+
+          <div class="input-group">
+            <label for="titre">Titre de la propriété</label>
+            <input
+              formControlName="titre"
+              id="titre"
+              placeholder="Maison de rêve"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="description">Description</label>
+            <textarea
+              formControlName="description"
+              id="description"
+              required
+            ></textarea>
+          </div>
+
+          <div class="input-group">
+            <label for="prix">Prix</label>
+            <input
+              formControlName="prix"
+              id="prix"
+              placeholder="300000"
+              type="number"
+              inputmode="decimal"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="surfaceM2">Surface en mètres carrés</label>
+            <input
+              formControlName="surfaceM2"
+              id="surfaceM2"
+              placeholder="146"
+              type="number"
+              inputmode="decimal"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="nombrePieces">Nombre de pièces</label>
+            <input
+              formControlName="nombrePieces"
+              id="nombrePieces"
+              placeholder="3"
+              type="number"
+              inputmode="numeric"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="nombreChambres">Nombre de chambres</label>
+            <input
+              formControlName="nombreChambres"
+              id="nombreChambres"
+              placeholder="3"
+              type="number"
+              inputmode="numeric"
+              required
+            />
+          </div>
+        </fieldset>
+      }
+      @case (1) {
+        <fieldset class="annonce-group">
+          <legend>Dites-nous en plus sur l'adresse du bien</legend>
+
+          <div class="input-group">
+            <label for="rue">Rue</label>
+            <input
+              formControlName="rue"
+              id="rue"
+              placeholder="Rue de la formation CFITECH"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="numero">Numéro</label>
+            <input
+              formControlName="numero"
+              id="numero"
+              placeholder="42"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="codePostal">Code Postal</label>
+            <input
+              formControlName="codePostal"
+              id="codePostal"
+              placeholder="1081"
+              type="number"
+              inputmode="numeric"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="ville">Ville</label>
+            <input
+              formControlName="ville"
+              id="ville"
+              placeholder="Bruxelles"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="pays">Pays</label>
+            <input
+              formControlName="pays"
+              id="pays"
+              placeholder="Belgique"
+              type="text"
+              required
+            />
+          </div>
+        </fieldset>
+      }
+      @case (2) {
+        <fieldset class="annonce-group">
+          <legend>Montrez-nous votre bien</legend>
+
+          <ul class="annonce-photos">
+            <label for="annonce-photos" class="annonce-photos-item annonce-photos-item--add">
+              <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 7C19.7167 7 19.4793 6.904 19.288 6.712C19.0967 6.52 19.0007 6.28267 19 6V5H18C17.7167 5 17.4793 4.904 17.288 4.712C17.0967 4.52 17.0007 4.28267 17 4C16.9993 3.71734 17.0953 3.48 17.288 3.288C17.4807 3.096 17.718 3 18 3H19V2C19 1.71667 19.096 1.47934 19.288 1.288C19.48 1.09667 19.7173 1.00067 20 1C20.2827 0.999337 20.5203 1.09534 20.713 1.288C20.9057 1.48067 21.0013 1.718 21 2V3H22C22.2833 3 22.521 3.096 22.713 3.288C22.905 3.48 23.0007 3.71734 23 4C22.9993 4.28267 22.9033 4.52034 22.712 4.713C22.5207 4.90567 22.2833 5.00134 22 5H21V6C21 6.28334 20.904 6.521 20.712 6.713C20.52 6.905 20.2827 7.00067 20 7ZM11 17.5C12.25 17.5 13.3127 17.0627 14.188 16.188C15.0633 15.3133 15.5007 14.2507 15.5 13C15.4993 11.7493 15.062 10.687 14.188 9.813C13.314 8.939 12.2513 8.50134 11 8.5C9.74867 8.49867 8.68633 8.93634 7.813 9.813C6.93967 10.6897 6.502 11.752 6.5 13C6.498 14.248 6.93567 15.3107 7.813 16.188C8.69033 17.0653 9.75267 17.5027 11 17.5ZM11 15.5C10.3 15.5 9.70833 15.2583 9.225 14.775C8.74167 14.2917 8.5 13.7 8.5 13C8.5 12.3 8.74167 11.7083 9.225 11.225C9.70833 10.7417 10.3 10.5 11 10.5C11.7 10.5 12.2917 10.7417 12.775 11.225C13.2583 11.7083 13.5 12.3 13.5 13C13.5 13.7 13.2583 14.2917 12.775 14.775C12.2917 15.2583 11.7 15.5 11 15.5ZM3 21C2.45 21 1.97933 20.8043 1.588 20.413C1.19667 20.0217 1.00067 19.5507 1 19V7C1 6.45 1.196 5.97934 1.588 5.588C1.98 5.19667 2.45067 5.00067 3 5H6.15L7.4 3.65C7.58333 3.45 7.80433 3.29167 8.063 3.175C8.32167 3.05834 8.59233 3 8.875 3H14C14.2833 3 14.521 3.096 14.713 3.288C14.905 3.48 15.0007 3.71734 15 4V5.5C15 5.91667 15.146 6.271 15.438 6.563C15.73 6.855 16.084 7.00067 16.5 7H17V7.5C17 7.91667 17.146 8.271 17.438 8.563C17.73 8.855 18.084 9.00067 18.5 9H20C20.2833 9 20.521 9.096 20.713 9.288C20.905 9.48 21.0007 9.71734 21 10V19C21 19.55 20.8043 20.021 20.413 20.413C20.0217 20.805 19.5507 21.0007 19 21H3Z"
+                    fill="currentColor"
+                  />
+                </svg>
+
+              <input
+                id="annonce-photos"
+                class="annonce-photos-input-file"
+                type="file"
+                accept="image/jpeg,image/png"
+                multiple
+                (change)="handleImage($event)"
+              />
+            </label>
+
+            @for (photo of photosSrc; track photo; let photoIndex = $index) {
+              <li class="annonce-photos-item">
+                <img [src]="photo" alt="Photo du bien" width="150" height="150"/>
+
+                <button
+                  class="annonce-photos-item-btn--delete"
+                  type="button"
+                  (click)="deletePhoto(photoIndex)"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.1898 2.98027V3.20952H8.48233V2.98027C8.48233 2.67626 8.36156 2.3847 8.14659 2.16974C7.93163 1.95477 7.64007 1.834 7.33606 1.834C7.03205 1.834 6.7405 1.95477 6.52553 2.16974C6.31056 2.3847 6.1898 2.67626 6.1898 2.98027ZM5.27279 3.20952V2.98027C5.27279 2.43305 5.49017 1.90825 5.87711 1.52131C6.26404 1.13437 6.78885 0.916992 7.33606 0.916992C7.88328 0.916992 8.40808 1.13437 8.79502 1.52131C9.18196 1.90825 9.39934 2.43305 9.39934 2.98027V3.20952H12.8381C12.9597 3.20952 13.0764 3.25783 13.1623 3.34381C13.2483 3.4298 13.2966 3.54642 13.2966 3.66803C13.2966 3.78963 13.2483 3.90625 13.1623 3.99224C13.0764 4.07822 12.9597 4.12653 12.8381 4.12653H12.1467L11.2792 11.7231C11.2152 12.2825 10.9476 12.7989 10.5273 13.1736C10.1071 13.5484 9.56354 13.7554 9.00044 13.7551H5.67169C5.10858 13.7554 4.56507 13.5484 4.14479 13.1736C3.72452 12.7989 3.45688 12.2825 3.39291 11.7231L2.52542 4.12653H1.83399C1.71239 4.12653 1.59577 4.07822 1.50978 3.99224C1.42379 3.90625 1.37549 3.78963 1.37549 3.66803C1.37549 3.54642 1.42379 3.4298 1.50978 3.34381C1.59577 3.25783 1.71239 3.20952 1.83399 3.20952H5.27279ZM6.41905 6.18981C6.41905 6.0682 6.37074 5.95158 6.28476 5.86559C6.19877 5.77961 6.08215 5.7313 5.96054 5.7313C5.83894 5.7313 5.72232 5.77961 5.63633 5.86559C5.55035 5.95158 5.50204 6.0682 5.50204 6.18981V10.7749C5.50204 10.8965 5.55035 11.0131 5.63633 11.0991C5.72232 11.1851 5.83894 11.2334 5.96054 11.2334C6.08215 11.2334 6.19877 11.1851 6.28476 11.0991C6.37074 11.0131 6.41905 10.8965 6.41905 10.7749V6.18981ZM8.71158 5.7313C8.58998 5.7313 8.47335 5.77961 8.38737 5.86559C8.30138 5.95158 8.25307 6.0682 8.25307 6.18981V10.7749C8.25307 10.8965 8.30138 11.0131 8.38737 11.0991C8.47335 11.1851 8.58998 11.2334 8.71158 11.2334C8.83318 11.2334 8.9498 11.1851 9.03579 11.0991C9.12178 11.0131 9.17008 10.8965 9.17008 10.7749V6.18981C9.17008 6.0682 9.12178 5.95158 9.03579 5.86559C8.9498 5.77961 8.83318 5.7313 8.71158 5.7313Z"
+                      fill="#D92023"
+                    />
+                  </svg>
+                </button>
+              </li>
+            }
+          </ul>
+        </fieldset>
+      }
+      @case (3) {
+        <fieldset class="annonce-group">
+          <div class="input-group">
+            <label for="annonce">Votre annonce</label>
+            <textarea
+              formControlName="annonce"
+              id="annonce"
+              required
+            ></textarea>
+          </div>
+
+          <div class="input-group">
+            <label for="typeAchat">Type d'achat</label>
+            <select formControlName="typeAchat" id="typeAchat">
+              <option disabled></option>
+              <option value="location">Location</option>
+              <option value="vente">Vente</option>
+            </select>
+          </div>
+        </fieldset>
+      }
+    }
+
+    <button type="submit" class="btn btn--primary">
+      @if (currentStep !== forms.length - 1) {
+        <span>Prochaine étape</span>
+      } @else {
+        <span>Envoyer</span>
+      }
+    </button>
+  </form>
+
+</layout-page>

@@ -1,0 +1,66 @@
+<layout-page [withPadding]="false">
+  <div class="hero">
+    <h1>Cherche le bien de tes rêves sur ImmauWeb</h1>
+
+    <form class="annonce-form" [formGroup]="form" (submit)="handleSubmit()">
+      <div>
+        <label for="localite">Ville</label>
+        <input
+          formControlName="ville"
+          type="text"
+          id="ville"
+          placeholder="Bruxelles"
+        />
+      </div>
+
+      <div>
+        <label for="typeAchat">Type d'achat</label>
+        <input
+          formControlName="typeAchat"
+          type="text"
+          id="typeAchat"
+          placeholder="Vente"
+        />
+      </div>
+
+      <div>
+        <label for="typeBien">Type de bien</label>
+        <input
+          formControlName="typeBien"
+          type="text"
+          id="typeBien"
+          placeholder="Maison"
+        />
+      </div>
+
+      <button type="submit">Rechercher</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h1>Les 10 dernières annonces</h1>
+
+    <div class="annonce-list">
+      @defer (when annonceCollection) {
+        @if (annonceCollection && annonceCollection.total !== 0) {
+          @for (annonce of annonceCollection.annonces; track annonce.id) {
+            <ui-annonce-card
+              [annonce]="annonce"
+              [favorite]="annonce.utilisateur.id !== currentUser?.id"
+              [delete]="annonce.utilisateur.id === currentUser?.id"
+              (deleted)="onDeleteAnnonce(annonce)"
+            ></ui-annonce-card>
+          }
+        } @else {
+          <ui-alert variant="error">
+            Il n'y a pas d'annonces @if (withFilter) {
+            avec ces filtres
+          } ...
+          </ui-alert>
+        }
+      } @placeholder {
+        <ui-loader></ui-loader>
+      }
+    </div>
+  </div>
+</layout-page>

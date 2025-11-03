@@ -1,0 +1,64 @@
+@use "../../../assets/scss/abstracts/mixins" as mx;
+
+.page\:contact {
+  overflow: auto;
+  padding-block: var(--spacing-lg);
+}
+
+.immauweb-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.immauweb-info .key {
+  padding: var(--spacing-xs);
+  font-weight: bold;
+}
+
+.immauweb-info .value {
+  padding: var(--spacing-xs);
+}
+
+.contact-us-maps {
+  width: 100%;
+}
+
+.contact-us-form {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.contact-us-form-group {
+  display: grid;
+  padding-inline: 0;
+  gap: var(--spacing-sm);
+
+  border: none;
+}
+
+@include mx.use-breakpoint-from-md {
+  .contact-us-form .col2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-us-form .input-group {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.contact-us-form .input-group input,
+.contact-us-form .input-group textarea {
+  padding: var(--spacing-sm);
+
+  border: 2px solid var(--color-black-ultra-dark);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.contact-us-form .input-group textarea {
+  min-height: 150px;
+  resize: none;
+}

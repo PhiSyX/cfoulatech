@@ -1,0 +1,33 @@
+
+.btn {
+  padding: var(--spacing-md);
+  border: none;
+  font-weight: bold;
+  border-radius: var(--radius-sm);
+  background-color: var(--btn-on-surface, var(--color-white));
+}
+
+.btn--small {
+  padding: var(--spacing-sm);
+}
+
+.btn--ultra-small {
+  padding: var(--spacing-xs);
+}
+
+.btn--primary {
+  --outline: var(--color-orange);
+  --btn-on-surface: var(--primary);
+}
+
+.btn--danger {
+  --outline: #b63333;
+  --btn-on-surface: var(--danger);
+  color: inherit;
+}
+
+.btn--info {
+  --outline: #1d57aa;
+  --btn-on-surface: #336fc5;
+  color: inherit;
+}

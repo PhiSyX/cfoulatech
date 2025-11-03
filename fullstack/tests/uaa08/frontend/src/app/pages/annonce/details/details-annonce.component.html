@@ -1,0 +1,123 @@
+<layout-page>
+  @if (annonce !== null) {
+    @if (annonce.propriete.photoPrincipale) {
+      <div class="annonce-gallery">
+        <div class="annonce-photo--main">
+          <img data-fancybox="gallery" [src]="annonce.propriete.photoPrincipale.chemin" alt="Photo principale"/>
+        </div>
+
+        <div class="annonce-photo-list">
+          @for (proprietePhoto of annonce.propriete.photos; track proprietePhoto.id) {
+            <div class="annonce-photo">
+              <img data-fancybox="gallery" [src]="proprietePhoto.photo.chemin" alt="Photo du bien"/>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <h1 class="annonce-titre title">
+      <span>{{ annonce.propriete.titre }}</span>
+      <ui-badge variant="primary">
+        {{ annonce.propriete.prix | price:'standard' }}
+      </ui-badge>
+    </h1>
+
+    <div>
+      <p class="annonce-adresse">
+        {{ annonce.propriete.adresse | address }}
+      </p>
+
+      <p>
+        <strong>{{ annonce.propriete.surfaceM2 }}</strong> mètres carrés
+      </p>
+
+      <p>
+        <strong>{{ annonce.propriete.nombrePieces }}</strong> pièces,
+        <strong>{{ annonce.propriete.nombreChambres }}</strong> chambres
+      </p>
+    </div>
+
+    <div class="annonce-message">
+      @for (line of annonce.propriete.description | nl2br; track $index) {
+        <p>{{ line }}</p>
+      }
+    </div>
+
+    @if (annonce.utilisateur.id !== currentUser?.id && !currentUser?.roles?.includes('ROLE_ADMIN')) {
+      @if (currentUser) {
+        <div class="center">
+          <button class="btn" popovertarget="dialog-contact">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.9184 0C16.5264 0 17.3304 1.0944 17.3304 2.3484C17.3304 3.9144 15.9336 5.3628 14.1156 5.3628C12.5928 5.3628 11.7048 4.4628 11.7468 2.9748C11.7468 1.7232 12.804 0 14.9184 0ZM9.97078 24C8.70118 24 7.77118 23.2176 8.65918 19.7712L10.116 13.6608C10.3692 12.684 10.4112 12.2916 10.116 12.2916C9.73558 12.2916 8.08918 12.966 7.11358 13.632L6.47998 12.576C9.56638 9.9528 13.1172 8.4156 14.6412 8.4156C15.9096 8.4156 16.1208 9.9432 15.4872 12.2916L13.818 18.714C13.5228 19.848 13.6488 20.2392 13.9452 20.2392C14.3256 20.2392 15.5736 19.7688 16.8 18.7908L17.52 19.7676C14.5176 22.824 11.238 24 9.97078 24Z"
+                fill="#3878C7"
+              />
+            </svg>
+
+            Prendre contact avec le propriétaire
+          </button>
+        </div>
+
+        <dialog class="dialog:annonce-contact" id="dialog-contact" popover>
+          <h1 class="title">Information de contact</h1>
+          <br/>
+
+          <p>Nom complet</p>
+          <p>{{ annonce.utilisateur.prenom }} {{ annonce.utilisateur.nom }}</p>
+
+          <p>Numéro de téléphone</p>
+          <p>
+            <a [href]="`tel:${annonce.utilisateur.telephone}`">
+              {{ annonce.utilisateur.telephone }}
+            </a>
+          </p>
+
+          <p>Adresse électronique</p>
+          <p>
+            <a [href]="`mailto:${annonce.utilisateur.email}`">
+              {{ annonce.utilisateur.email }}
+            </a>
+          </p>
+        </dialog>
+      } @else {
+        <div class="center">
+          <button class="btn" (click)="handleClickContact()">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.9184 0C16.5264 0 17.3304 1.0944 17.3304 2.3484C17.3304 3.9144 15.9336 5.3628 14.1156 5.3628C12.5928 5.3628 11.7048 4.4628 11.7468 2.9748C11.7468 1.7232 12.804 0 14.9184 0ZM9.97078 24C8.70118 24 7.77118 23.2176 8.65918 19.7712L10.116 13.6608C10.3692 12.684 10.4112 12.2916 10.116 12.2916C9.73558 12.2916 8.08918 12.966 7.11358 13.632L6.47998 12.576C9.56638 9.9528 13.1172 8.4156 14.6412 8.4156C15.9096 8.4156 16.1208 9.9432 15.4872 12.2916L13.818 18.714C13.5228 19.848 13.6488 20.2392 13.9452 20.2392C14.3256 20.2392 15.5736 19.7688 16.8 18.7908L17.52 19.7676C14.5176 22.824 11.238 24 9.97078 24Z"
+                fill="#3878C7"
+              />
+            </svg>
+
+            Prendre contact avec le propriétaire
+          </button>
+        </div>
+      }
+    } @else {
+      <div class="annonce-actions">
+        <button class="btn btn--info" (click)="handleEditAnnonce()">
+          Éditer l'annonce
+        </button>
+
+        <button class="btn btn--danger" (click)="handleDeleteAnnonce()">
+          Supprimer l'annonce
+        </button>
+      </div>
+    }
+  } @else {
+    <ui-loader></ui-loader>
+  }
+</layout-page>

@@ -1,0 +1,20 @@
+/** Navigation clavier (tab, a11y) */
+
+:is(a, .link):focus,
+:is(a, .link):focus-visible {
+  position: relative;
+  outline: none;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    outline: 4px solid var(--outline, currentColor);
+    border-radius: var(--radius-sm);
+  }
+}
+
+:is(:not(a)):focus {
+  outline: 4px solid var(--outline, currentColor);
+}

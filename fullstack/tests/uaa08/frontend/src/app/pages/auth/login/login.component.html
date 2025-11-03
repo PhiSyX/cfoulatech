@@ -1,0 +1,154 @@
+<main class="page page-center page:auth">
+  @if (!rememberMe) {
+    <h1>Connexion</h1>
+
+    <form
+      [formGroup]="form"
+      [ngClass]="{ 'invalid-credentials': !form.valid }"
+      (submit)="handleSubmit()"
+    >
+      <div class="input-group">
+        <label for="email">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.5295 14.6064C17.5295 15.6144 17.8163 16.0164 18.5663 16.0164C20.2379 16.0164 21.3023 13.8864 21.3023 10.344C21.3023 4.92956 17.3567 2.33756 12.4307 2.33756C7.36314 2.33756 2.75394 5.73596 2.75394 12.1584C2.75394 18.2928 6.78594 21.6336 12.9779 21.6336C15.0803 21.6336 16.4915 21.4032 18.6503 20.6832L19.1135 22.6116C16.9823 23.304 14.7047 23.5044 12.9491 23.5044C4.82754 23.5044 0.477539 19.0404 0.477539 12.1572C0.477539 5.21636 5.51874 0.493164 12.4595 0.493164C19.6883 0.493164 23.5175 4.81316 23.5175 10.1124C23.5175 14.6052 22.1075 18.0324 17.6723 18.0324C15.6551 18.0324 14.3315 17.226 14.1587 15.4392C13.6403 17.4264 12.2579 18.0324 10.3847 18.0324C7.87914 18.0324 5.77674 16.1016 5.77674 12.2148C5.77674 8.29796 7.62114 5.87876 10.9331 5.87876C12.6899 5.87876 13.7843 6.56996 14.2715 7.66436L15.1079 6.13796H17.5271V14.6064H17.5295ZM13.9883 10.8048C13.9883 9.22196 12.8063 8.55836 11.8271 8.55836C10.7615 8.55836 9.58194 9.42116 9.58194 11.9568C9.58194 13.9728 10.4747 15.096 11.8271 15.096C12.7775 15.096 13.9883 14.4912 13.9883 12.8208V10.8048Z"
+              fill="currentColor"
+            />
+          </svg>
+        </label>
+        <input
+          formControlName="email"
+          id="email"
+          placeholder="Entre ton adresse mail"
+          type="email"
+        />
+
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15.395 21.9C13.9213 21.968 12.4462 22.0014 10.971 22C9.49576 22.001 8.02069 21.9677 6.547 21.9C4.869 21.824 3.491 20.515 3.267 18.845C3.12 17.755 3 16.638 3 15.5C3 14.362 3.12 13.245 3.267 12.155C3.491 10.485 4.869 9.176 6.547 9.099C7.958 9.034 9.392 9 10.97 9C12.548 9 13.983 9.034 15.394 9.1C16.454 9.148 17.394 9.688 17.999 10.5"
+            stroke="transparent" stroke-width="1.5" stroke-linecap="round"/>
+          <path
+            d="M17 14.978C17.0032 14.4506 17.2156 13.946 17.5906 13.5751C17.9656 13.2042 18.4726 12.9973 19 13C20.105 13 21 13.886 21 14.978C21 15.372 20.884 15.738 20.683 16.047C20.085 16.966 19 17.842 19 18.934V19.429M19 22H19.012M6.5 9V6.5C6.5 5.30653 6.97411 4.16193 7.81802 3.31802C8.66193 2.47411 9.80653 2 11 2C12.1935 2 13.3381 2.47411 14.182 3.31802C15.0259 4.16193 15.5 5.30653 15.5 6.5V9"
+            stroke="transparent" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 15.49V15.5M8 15.49V15.5" stroke="transparent" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="input-group">
+        <label for="password">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              opacity="0.5"
+              d="M2 12C2 8.229 2 6.343 3.172 5.172C4.344 4.001 6.229 4 10 4H14C17.771 4 19.657 4 20.828 5.172C21.999 6.344 22 8.229 22 12C22 15.771 22 17.657 20.828 18.828C19.656 19.999 17.771 20 14 20H10C6.229 20 4.343 20 3.172 18.828C2.001 17.656 2 15.771 2 12Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12 10V14M10.268 11L13.732 13M13.732 11L10.267 13M6.732 10V14M5 11L8.464 13M8.464 11L5 13M17.268 10V14M15.536 11L19 13M19 11L15.535 13"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+
+        <input
+          formControlName="password"
+          id="password"
+          placeholder="Entre ton mot de passe"
+          type="password"
+        />
+
+        <a routerLink="/reset-password" title="Mot de passe oublié ?">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.395 21.9C13.9213 21.968 12.4462 22.0014 10.971 22C9.49576 22.001 8.02069 21.9677 6.547 21.9C4.869 21.824 3.491 20.515 3.267 18.845C3.12 17.755 3 16.638 3 15.5C3 14.362 3.12 13.245 3.267 12.155C3.491 10.485 4.869 9.176 6.547 9.099C7.958 9.034 9.392 9 10.97 9C12.548 9 13.983 9.034 15.394 9.1C16.454 9.148 17.394 9.688 17.999 10.5"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path
+              d="M17 14.978C17.0032 14.4506 17.2156 13.946 17.5906 13.5751C17.9656 13.2042 18.4726 12.9973 19 13C20.105 13 21 13.886 21 14.978C21 15.372 20.884 15.738 20.683 16.047C20.085 16.966 19 17.842 19 18.934V19.429M19 22H19.012M6.5 9V6.5C6.5 5.30653 6.97411 4.16193 7.81802 3.31802C8.66193 2.47411 9.80653 2 11 2C12.1935 2 13.3381 2.47411 14.182 3.31802C15.0259 4.16193 15.5 5.30653 15.5 6.5V9"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 15.49V15.5M8 15.49V15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <a routerLink="/register">Je n'ai pas de compte</a>
+    <a routerLink="/annonces">
+      Je veux juste voir les annonces
+    </a>
+  } @else {
+    <h1>
+      Hello
+      <span class="hl">{{ currentUser?.prenom }} {{ currentUser?.nom }}</span>,
+      content de te revoir
+    </h1>
+
+    @if (currentUser?.photo) {
+      <img [ngSrc]="currentUser!.photo!" alt="Avatar" width="133" height="133"/>
+    }
+
+    <form
+      [formGroup]="form"
+      [ngClass]="{ 'invalid-credentials': !form.valid }"
+      (submit)="handleSubmit()"
+    >
+      <div class="input-group">
+        <label for="password">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              opacity="0.5"
+              d="M2 12C2 8.229 2 6.343 3.172 5.172C4.344 4.001 6.229 4 10 4H14C17.771 4 19.657 4 20.828 5.172C21.999 6.344 22 8.229 22 12C22 15.771 22 17.657 20.828 18.828C19.656 19.999 17.771 20 14 20H10C6.229 20 4.343 20 3.172 18.828C2.001 17.656 2 15.771 2 12Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12 10V14M10.268 11L13.732 13M13.732 11L10.267 13M6.732 10V14M5 11L8.464 13M8.464 11L5 13M17.268 10V14M15.536 11L19 13M19 11L15.535 13"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+
+        <input
+          formControlName="password"
+          id="password"
+          placeholder="Entre ton mot de passe"
+          type="password"
+        />
+
+        <button type="submit">Ok</button>
+      </div>
+    </form>
+
+    <button class="link link:disconnect" (click)="logout()">
+      Se déconnecter de
+      <span class="text-underline">
+        {{ currentUser?.prenom }} {{ currentUser?.nom }}
+      </span>
+    </button>
+  }
+</main>

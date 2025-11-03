@@ -1,0 +1,11 @@
+<h1>Salut !</h1>
+
+<p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant</p>
+
+<a href="http://localhost:4200/reset-password?token={{ resetToken.token }}">
+    http://localhost:4200/reset-password?token={{ resetToken.token }}
+</a>
+
+<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>乾杯！</p>

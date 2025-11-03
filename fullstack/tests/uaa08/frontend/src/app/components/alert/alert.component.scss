@@ -1,0 +1,40 @@
+:host {
+  --alert-spacing: var(--spacing-md);
+  --alert-radius: var(--radius-md);
+
+  --alert-error-outline: darkred;
+  --alert-error-surface: indianred;
+  --alert-error-on-surface: #efb3a0;
+
+  --alert-success-outline: darkgreen;
+  --alert-success-surface: darkseagreen;
+  --alert-success-on-surface: green;
+
+  --alert-warning-outline: #e8771c;
+  --alert-warning-surface: darkorange;
+  --alert-warning-on-surface: #e8771c;
+}
+
+.alert {
+  padding: var(--alert-spacing);
+  border: 4px solid currentColor;
+  border-radius: var(--alert-radius);
+}
+
+.alert--error {
+  border-color: var(--alert-error-outline);
+  background: var(--alert-error-surface);
+  color: var(--alert-error-on-surface);
+}
+
+.alert--success {
+  border-color: var(--alert-success-outline);
+  background: var(--alert-success-surface);
+  color: var(--alert-success-on-surface);
+}
+
+.alert--warning {
+  border-color: var(--alert-warning-outline);
+  background: var(--alert-warning-surface);
+  color: var(--alert-warning-on-surface);
+}

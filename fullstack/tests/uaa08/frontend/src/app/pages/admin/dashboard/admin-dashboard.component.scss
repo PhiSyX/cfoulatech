@@ -1,0 +1,15 @@
+.page\:admin {
+  height: 100%;
+  position: relative;
+}
+
+h1 {
+  font-family: "DM Sans", sans-serif;
+}
+
+svg {
+  position: absolute;
+  top: var(--spacing-xl);
+  left: var(--spacing-xl);
+  width: 200px;
+}

@@ -1,0 +1,21 @@
+:host {
+  --font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+main {
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: 6rem;
+  letter-spacing: var(--spacing-sm);
+  color: var(--primary);
+}
+
+p {
+  font-size: var(--text-lg);
+}
+
+a {
+  font-weight: 600;
+}

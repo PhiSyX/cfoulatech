@@ -1,0 +1,17 @@
+@use "../../../assets/scss/abstracts/mixins" as mx;
+
+.mobile-only {
+  display: block;
+}
+
+@include mx.use-breakpoint-from-md {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@include mx.use-breakpoint-under-md {
+  .no-mobile {
+    display: none !important;
+  }
+}

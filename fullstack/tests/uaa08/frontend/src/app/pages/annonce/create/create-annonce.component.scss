@@ -1,0 +1,78 @@
+@use "../../../../assets/scss/abstracts/mixins" as mx;
+
+.annonce-form {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.annonce-group {
+  display: grid;
+  padding-inline: 0;
+  gap: var(--spacing-sm);
+
+  border: none;
+}
+
+@include mx.use-breakpoint-from-md {
+  .annonce-form .col2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.annonce-form .input-group {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  padding: var(--spacing-sm);
+
+  border: 2px solid var(--color-black-ultra-dark);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.input-group textarea {
+  min-height: 150px;
+  resize: none;
+}
+
+.annonce-photos {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+
+  list-style: none;
+}
+
+.annonce-photos-item {
+  position: relative;
+  align-content: center;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius-lg);
+}
+
+.annonce-photos-item--add {
+  border: 4px dashed var(--color-yellow);
+  cursor: pointer;
+}
+
+.annonce-photos-item-btn--delete {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  border: none;
+  background: transparent;
+}
+
+.annonce-photos-input-file {
+  display: contents;
+  visibility: hidden;
+}

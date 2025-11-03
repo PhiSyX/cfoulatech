@@ -1,0 +1,452 @@
+<layout-page
+  [autoflow]="true"
+  [lockScroll]="true"
+  [withBackground]="false"
+  [withContainer]="false"
+  [withContainerFull]="true"
+  [withPadding]="false"
+  [bodyFullHeight]="true"
+>
+  <aside class="annonce-filter">
+    <div class="annonce-filter-label mobile-only">
+      <p>Filtre avancé</p>
+
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.5 7H19.5M7 12H17M10 17H14"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <form class="annonce-filter-form no-mobile" (submit)="preventAndStop($event)" (change)="handleChange($event)">
+      @if (withFilter || formFilters.pays.length > 0) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <input
+              class="annonce-filter-search"
+              autocomplete="off"
+              type="search"
+              name="user_pays"
+              placeholder="Pays"
+              (keyup.enter)="addChoice($event, formFilters.pays, 'pays[]')"
+              (change)="preventAndStop($event)"
+            >
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (item of formFilters.pays; track item.value) {
+              <div>
+                <label [for]="`pays-${item.value}`">
+                  <input
+                    type="checkbox"
+                    name="pays"
+                    [id]="`pays-${item.value}`"
+                    [defaultValue]="item.value"
+                    [defaultChecked]="item.checked"
+                  />
+
+                  {{ item.value | titlecase }}
+                </label>
+              </div>
+            }
+          </div>
+
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton"></ng-container>
+      }
+
+      @if (withFilter || formFilters.villes.length > 0) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <input
+              class="annonce-filter-search"
+              autocomplete="off"
+              type="search"
+              name="user_ville"
+              placeholder="Ville"
+              (keyup.enter)="addChoice($event, formFilters.villes, 'ville[]')"
+              (change)="preventAndStop($event)"
+            >
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (item of formFilters.villes; track item.value) {
+              <div>
+                <label [for]="`ville-${item.value}`">
+                  <input
+                    type="checkbox"
+                    name="villes"
+                    [id]="`ville-${item.value}`"
+                    [defaultValue]="item.value"
+                    [defaultChecked]="item.checked"
+                  />
+
+                  {{ item.value | titlecase }}
+                </label>
+              </div>
+            }
+          </div>
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton; context: { $implicit: '50ms' }"></ng-container>
+      }
+
+      @if (withFilter || formFilters.codePostaux.length > 0) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <input
+              class="annonce-filter-search"
+              autocomplete="off"
+              type="search"
+              name="user_codepostal"
+              placeholder="Code Postal"
+              (keyup.enter)="addChoice($event, formFilters.codePostaux, 'codePostal[]')"
+              (change)="preventAndStop($event)"
+            >
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (item of formFilters.codePostaux; track item.value) {
+              <div>
+                <label [for]="`cp-${item.value}`">
+                  <input
+                    type="checkbox"
+                    name="codePostaux"
+                    [id]="`cp-${item.value}`"
+                    [defaultValue]="item.value"
+                    [defaultChecked]="item.checked"
+                  />
+
+                  {{ item.value | titlecase }}
+                </label>
+              </div>
+            }
+          </div>
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton; context: { $implicit: '150ms' }"></ng-container>
+      }
+
+      @if (withFilter || (annonceCollection && annonceCollection.total > 0)) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <span>Prix</span>
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (prix of formFilters.presetPrix; track prix.name) {
+              <div>
+                <label [for]="prix.name">
+                  <input
+                    type="radio"
+                    name="prix"
+                    [id]="prix.name"
+                    [defaultValue]="prix.value"
+                    [defaultChecked]="prix.selected"
+                    (click)="handleRadioClick($event)"
+                  />
+                  {{ prix.text }}
+                </label>
+              </div>
+            }
+
+            <div>
+              <label for="customPrix">
+                <input
+                  type="radio"
+                  name="prix"
+                  id="customPrix"
+                  [defaultChecked]="formFilters.customPrix.selected"
+                  (click)="handleRadioClick($event)"
+                />
+
+                Personnalisé
+              </label>
+            </div>
+
+            @if (formFilters.customPrix.selected) {
+              <div class="annonce-filter-choices--price">
+                <label for="customPrixMin">
+                  Min
+                  <input
+                    type="number"
+                    id="customPrixMin"
+                    name="customPrix"
+                    [defaultValue]="formFilters.customPrix.min"
+                  />
+                </label>
+
+                <label for="customPrixMax">
+                  Max
+                  <input
+                    type="number"
+                    id="customPrixMax"
+                    name="customPrix"
+                    [defaultValue]="formFilters.customPrix.max"
+                  />
+                </label>
+              </div>
+            }
+          </div>
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton; context: { $implicit: '200ms' }"></ng-container>
+      }
+
+      @if (withFilter || formFilters.typesAchat.length > 0) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <span></span>
+            <input
+              class="annonce-filter-search"
+              autocomplete="off"
+              type="search"
+              name="user_typeAchat"
+              placeholder="Type d'achat"
+              (keyup.enter)="addChoice($event, formFilters.typesBien, 'type[]')"
+              (change)="preventAndStop($event)"
+            >
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (item of formFilters.typesAchat; track item.value) {
+              <div>
+                <label [for]="`ta-${item.value}`">
+                  <input
+                    type="checkbox"
+                    name="typesAchat"
+                    [id]="`ta-${item.value}`"
+                    [defaultValue]="item.value"
+                    [defaultChecked]="item.checked"
+                  />
+
+                  {{ item.value | titlecase }}
+                </label>
+              </div>
+            }
+          </div>
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton; context: { $implicit: '150ms' }"></ng-container>
+      }
+
+      @if (withFilter || formFilters.typesBien.length > 0) {
+        <fieldset class="annonce-filter-form-group">
+          <div class="annonce-filter-search-by">
+            <input
+              class="annonce-filter-search"
+              autocomplete="off"
+              type="search"
+              name="user_typeBien"
+              placeholder="Type de bien"
+              (keyup.enter)="addChoice($event, formFilters.typesBien, 'bien[]')"
+              (change)="preventAndStop($event)"
+            >
+
+            @if (currentUser) {
+              <div class="annonce-actions">
+                <button type="button" title="Sauvegarder vos filtres">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                      fill="var(--color-cyan)"/>
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="annonce-filter-choices">
+            @for (item of formFilters.typesBien; track item.value) {
+              <div>
+                <label [for]="`tb-${item.value}`">
+                  <input
+                    type="checkbox"
+                    name="typesBien"
+                    [id]="`tb-${item.value}`"
+                    [defaultValue]="item.value"
+                    [defaultChecked]="item.checked"
+                  />
+
+                  {{ item.value | titlecase }}
+                </label>
+              </div>
+            }
+          </div>
+        </fieldset>
+      } @else {
+        <ng-container *ngTemplateOutlet="skeleton; context: { $implicit: '100ms' }"></ng-container>
+      }
+    </form>
+  </aside>
+
+  <div class="annonce-body">
+    <div class="annonce-list">
+      @defer (when annonceCollection) {
+        @if (annonceCollection && annonceCollection.total !== 0) {
+          @for (annonce of annonceCollection.annonces; track annonce.id) {
+            <ui-annonce-card
+              [annonce]="annonce"
+              [favorite]="currentUser !== null && annonce.utilisateur.id !== currentUser.id"
+              [delete]="annonce.utilisateur.id === currentUser?.id"
+              (deleted)="onDeleteAnnonce(annonce)"
+            ></ui-annonce-card>
+          }
+        } @else {
+          <ui-alert variant="error">
+            Il n'y a pas d'annonces @if (withFilter) { avec ces filtres }...
+          </ui-alert>
+        }
+      } @placeholder {
+        <ui-loader></ui-loader>
+      }
+    </div>
+
+
+    @if (annonceCollection && annonceCollection.pagination) {
+      <div class="annonce-pagination">
+        <nav aria-label="Pagination">
+          <ul class="pagination">
+            @if (annonceCollection.pagination.previous) {
+              <li><a (click)="paginateToPrev()">Page précédente</a></li>
+            } @else {
+              <li><a disabled>Page précédente</a></li>
+            }
+
+            @if (annonceCollection.pagination.next) {
+              <li><a (click)="paginateToNext()">Page suivante</a></li>
+            } @else {
+              <li><a disabled>Page suivante</a></li>
+            }
+          </ul>
+        </nav>
+      </div>
+    }
+  </div>
+</layout-page>
+
+<ng-template #skeleton let-delay>
+  <fieldset class="annonce-filter-form-group" [style]="`--skeleton-delay: ${delay}`">
+    <div class="annonce-filter-search-by">
+      <input
+        class="annonce-filter-search skeleton"
+        autocomplete="off"
+        type="search"
+        disabled
+      >
+
+      <div class="annonce-actions">
+        @if (currentUser) {
+          <button type="button" title="Sauvegarder vos filtres">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14.8 9C14.9 8.7 15 8.4 15 8C15 5.8 13.2 4 11 4C9.5 4 8.1 4.9 7.5 6.2C7.2 6.1 6.8 6 6.5 6C5.1 6 4 7.1 4 8.5C4 8.7 4 8.9 4.1 9C2.3 9.3 1 10.7 1 12.5C1 14.4 2.6 16 4.5 16H14.5C16.4 16 18 14.4 18 12.5C18 10.7 16.6 9.2 14.8 9ZM8.5 14.9L5.3 11.7L6.7 10.3L8.5 12.1L12.3 8.3L13.7 9.7L8.5 14.9Z"
+                fill="#000"/>
+            </svg>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="annonce-filter-choices">
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            disabled
+            class="skeleton"
+          />
+
+          <span class="skeleton">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            disabled
+            class="skeleton"
+          />
+
+          <span class="skeleton">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</ng-template>

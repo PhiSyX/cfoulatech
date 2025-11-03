@@ -1,0 +1,72 @@
+@if (contactMessage) {
+  <main class="container admin-container">
+    <header class="admin-contact-title">
+      <h1>{{ contactMessage.sujet }}</h1>
+    </header>
+
+    @if (contactMessage.utilisateur) {
+      <section class="admin-contact-section">
+        <h2>Informations sur l'utilisateur enregistré</h2>
+
+        <api-user-card [api]="contactMessage.utilisateur" [withAuthorization]="true"/>
+      </section>
+    }
+
+    <section class="admin-contact-section">
+      <h2>Détails du message</h2>
+
+      @if (!contactMessage.utilisateur) {
+        <div class="admin-contact-message-detail">
+          <strong>Nom complet :</strong>
+          <span>{{ contactMessage.nomComplet }}</span>
+        </div>
+
+        <div class="admin-contact-message-detail">
+          <strong>Email :</strong>
+          <span>
+            <a [href]="`mailto:${contactMessage.email}`">
+              {{ contactMessage.email }}
+            </a>
+          </span>
+        </div>
+
+        <div class="admin-contact-message-detail">
+          <strong>Téléphone :</strong>
+          <span>
+            <a [href]="`tel:${contactMessage.telephone}`">
+              {{ contactMessage.telephone }}
+            </a>
+          </span>
+        </div>
+      }
+
+      <div class="admin-contact-message-detail">
+        <strong>Sujet :</strong>
+        <span>{{ contactMessage.sujet }}</span>
+      </div>
+
+      <div class="admin-contact-message-detail">
+        <strong>Date d'envoi :</strong>
+        <span>{{ contactMessage.createdAt }}</span>
+      </div>
+
+      <div class="admin-contact-message">
+        @for (message of contactMessage.message | nl2br; track $index) {
+          <p>{{ message }}</p>
+        }
+      </div>
+    </section>
+
+    <footer class="admin-footer">
+      <a routerLink="/admin/contact-messages" class="btn btn--small btn--info">
+        ← Retour à la liste
+      </a>
+
+      <button type="button" (click)="archive(contactMessage)" class="btn btn--small btn--danger">
+        Archiver
+      </button>
+    </footer>
+  </main>
+} @else {
+  <ui-loader></ui-loader>
+}

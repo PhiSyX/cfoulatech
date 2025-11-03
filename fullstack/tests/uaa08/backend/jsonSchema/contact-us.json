@@ -1,0 +1,8 @@
+{
+    "$schema": "./contact-us.schema.json",
+    "nomComplet": "John Doe",
+    "email": "john@doe.org",
+    "telephone": "0123456789",
+    "sujet": "Hello World",
+    "message": "Bonjour tout le monde, comment ça va aujourd'hui ?"
+}

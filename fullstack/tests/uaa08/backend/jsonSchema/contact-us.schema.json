@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "required": [
+        "nomComplet",
+        "email",
+        "telephone",
+        "sujet",
+        "message"
+    ],
+    "properties": {
+        "nomComplet": {
+            "minLength": 2,
+            "maxLength": 255,
+            "type": "string",
+            "description": "Cela représente le nom et le prénom d'un personne"
+        },
+        "email": {
+            "format": "email",
+            "type": "string",
+            "description": "Cela représente l'adresse électronique d'un mail d'une personne"
+        },
+        "telephone": {
+            "minLength": 10,
+            "type": "string",
+            "description": "Numéro de GSM ou téléphone d'une personne"
+        },
+        "sujet": {
+            "minLength": 10,
+            "type": "string",
+            "description": "Cela représente le sujet du message de contact",
+            "not": {
+                "anyOf": [
+                    {
+                        "pattern": "merde"
+                    },
+                    {
+                        "pattern": "pourri"
+                    },
+                    {
+                        "pattern": "caca"
+                    }
+                ]
+            }
+        },
+        "message": {
+            "minLength": 50,
+            "type": "string",
+            "description": "Cela représente le message de contact",
+            "not": {
+                "anyOf": [
+                    {
+                        "pattern": "merde"
+                    },
+                    {
+                        "pattern": "pourri"
+                    },
+                    {
+                        "pattern": "caca"
+                    }
+                ]
+            }
+        }
+    }
+}

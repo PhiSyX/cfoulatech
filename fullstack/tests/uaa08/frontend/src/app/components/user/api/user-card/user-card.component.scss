@@ -1,0 +1,19 @@
+.user-edit-card {
+  display: flex;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+.user-info {
+  display: grid;
+  gap: var(--gap-sm);
+}
+
+.user-info-name {
+  font-size: var(--text-lg);
+}
+
+.user-info-roles {
+  display: inline-flex;
+  gap: var(--gap-sm);
+}

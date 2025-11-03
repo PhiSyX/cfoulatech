@@ -1,0 +1,53 @@
+@if (user) {
+  <div class="user-card">
+    @if (user.photo) {
+      <ui-avatar [avatar]="user.photo" width="80" height="80"></ui-avatar>
+    }
+
+    <div class="user-info">
+      <strong class="user-info-name">
+        {{ user.prenom }} {{ user.nom }}
+      </strong>
+
+      <div class="user-info-roles">
+        @for (role of user.roles | roles; track role) {
+          <ui-user-badge [role]="role"></ui-user-badge>
+        }
+      </div>
+
+      <div>
+        Adresse mail :
+        <a [href]="`mailto:${user.email}`">
+          {{ user.email }}
+        </a>
+      </div>
+
+      <div>
+        Téléphone :
+        <a [href]="`tel:${user.telephone}`">
+          {{ user.telephone }}
+        </a>
+      </div>
+
+      <div>
+        Statut :
+
+        @if (user.verified) {
+          <ui-badge variant="success">
+            Vérifié
+          </ui-badge>
+        } @else {
+          <ui-badge variant="warning">
+            Non vérifié
+          </ui-badge>
+        }
+      </div>
+
+      <time [attr.datetime]="user.createdAt.toISOString()">
+        Date d'inscription : {{ user.createdAt | date:'dd MMM. yyyy \'à\' HH:mm' }}
+      </time>
+    </div>
+  </div>
+} @else if (withLoader) {
+  <ui-loader></ui-loader>
+}

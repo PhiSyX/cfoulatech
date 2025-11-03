@@ -1,0 +1,29 @@
+.page\:dashboard {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  height: 100%;
+
+  ul {
+    display: grid;
+    gap: var(--spacing-md);
+    padding-inline: var(--spacing-md);
+    list-style: none;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  overflow: auto;
+  border-top-left-radius: 8px;
+  background: #ffffff;
+  color: #212121;
+}
+
+.container {
+  width: 100%;
+}

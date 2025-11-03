@@ -1,0 +1,159 @@
+<layout-page title="Mon compte">
+  @if (editMode) {
+    <button type="button" class="title-actions-right account-btn--view" (click)="disableEditMode()">
+      Passer en mode <br/>
+      Vue
+    </button>
+  } @else {
+    <button type="button" class="title-actions-right account-btn--edition-mode" (click)="enableEditMode()">
+      Passer en mode <br/>
+      Edition
+    </button>
+  }
+
+  @if (currentUser && currentUser.photo) {
+    <ui-avatar
+      [avatar]="currentUser.photo"
+      [width]="128"
+      [height]="128"
+      [editable]="editMode"
+      (uploaded)="handleAvatarUpdate($event)"
+      (deleted)="handleAvatarDelete()"
+    ></ui-avatar>
+  } @else {
+    <ui-avatar
+      avatar="/img/upload-avatar.png"
+      [width]="128"
+      [height]="128"
+      [editable]="editMode"
+      (uploaded)="handleAvatarUpdate($event)"
+    ></ui-avatar>
+  }
+
+  @if (currentUser) {
+    @if (!editMode) {
+      <div class="account-personal-info">
+        <span class="key">Nom</span>
+        <span class="value">{{ currentUser.nom }} </span>
+
+        <span class="key">Prénom</span>
+        <span class="value">{{ currentUser.prenom }} </span>
+
+        <span class="key">Adresse mail</span>
+        <span class="value">{{ currentUser.email }} </span>
+
+        <span class="key">Téléphone</span>
+        <span class="value">{{ currentUser.telephone }} </span>
+      </div>
+    } @else {
+      <form id="account-form" [formGroup]="form" (submit)="handleSubmit()" class="account-personal-info">
+        <label for="lastname" class="key">Nom</label>
+        <input
+          formControlName="lastname"
+          id="lastname"
+          placeholder="Ton nom"
+          type="text"
+        />
+
+        <label for="firstname" class="key">Prénom</label>
+        <input
+          formControlName="firstname"
+          id="firstname"
+          placeholder="Ton prénom"
+          type="text"
+        />
+
+        <label for="email" class="key">Adresse mail</label>
+        <input
+          formControlName="email"
+          id="email"
+          placeholder="Ton adresse mail"
+          type="text"
+        />
+
+        <label for="phone" class="key">Téléphone</label>
+        <input
+          formControlName="phone"
+          id="phone"
+          placeholder="Ton numéro de téléphone"
+          type="tel"
+          inputmode="tel"
+        />
+
+      </form>
+
+      <dialog class="dialog:account:edit-password" id="edit-password" popover>
+        <form
+          [formGroup]="formPassword"
+          (submit)="handleSubmitPassword()"
+          class="account-personal-info"
+        >
+          <label for="plainPassword" class="key">Mot de passe</label>
+          <input
+            formControlName="plainPassword"
+            id="plainPassword"
+            placeholder="Secret12345"
+            type="password"
+          />
+
+          <button
+            type="submit"
+            class="btn btn--small btn--primary"
+            popovertarget="edit-password"
+            popovertargetaction="hide"
+          >
+            Modifier
+          </button>
+        </form>
+      </dialog>
+    }
+
+    <button form="account-form" type="submit" class="btn btn--primary" [ngClass]="{ vHidden: !editMode }">
+      Mettre à jour
+    </button>
+
+    <button type="button" class="btn" popovertarget="edit-password" [ngClass]="{ vHidden: !editMode }">
+      Je veux modifier mon mot de passe
+    </button>
+  }
+
+  @if (annonceCollection && annonceCollection.total > 0) {
+    <h2 [ngClass]="{ 'opacity': editMode }">Mes annonces</h2>
+
+    @for (annonce of annonceCollection.annonces; track annonce.id) {
+      @defer (on viewport) {
+        <ui-annonce-card
+          [annonce]="annonce"
+          [updateLink]="true"
+          [delete]="true"
+          (deleted)="onDeleteAnnonce(annonce)"
+          [ngClass]="{
+            'opacity': editMode
+          }"
+        ></ui-annonce-card>
+      } @placeholder {
+        <ui-loader></ui-loader>
+      }
+    }
+  }
+
+  @if (favorisAnnonceCollection && favorisAnnonceCollection.total > 0) {
+    <h2 [ngClass]="{ 'opacity': editMode }">Mes favoris</h2>
+
+    @for (annonce of favorisAnnonceCollection.annonces; track annonce.id) {
+      @defer (on viewport) {
+        <ui-annonce-card
+          [annonce]="annonce"
+          [updateLink]="true"
+          [favorite]="true"
+          [ngClass]="{
+            'opacity': editMode
+          }"
+        ></ui-annonce-card>
+      } @placeholder {
+        <ui-loader></ui-loader>
+      }
+    }
+  }
+
+</layout-page>

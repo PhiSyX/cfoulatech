@@ -1,0 +1,25 @@
+@if (user) {
+  <a [routerLink]="`/admin/users/edit/${user.id}`">
+    @if (user.photo) {
+      <ui-avatar
+        [avatar]="user.photo"
+        [width]="width"
+        [height]="height"
+        [rounded]="true"
+        [editable]="false"
+      ></ui-avatar>
+    } @else {
+      <ng-content>
+        <ui-avatar
+          avatar="/img/default-avatar.png"
+          [width]="width"
+          [height]="height"
+          [rounded]="true"
+          [editable]="false"
+        ></ui-avatar>
+      </ng-content>
+    }
+  </a>
+} @else {
+  <ui-loader></ui-loader>
+}

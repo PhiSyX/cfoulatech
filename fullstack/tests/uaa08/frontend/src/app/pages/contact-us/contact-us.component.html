@@ -1,0 +1,115 @@
+<layout-page title="Nous contacter">
+  <div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+      consequuntur cumque delectus dolores enim eos error est eum iste,
+      labore minus molestias nesciunt nihil possimus quaerat quibusdam
+      tempora tenetur ut.
+    </p>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eum
+      facere illum incidunt ipsam iure maiores necessitatibus perferendis,
+      quasi qui, reprehenderit sunt! Accusantium dolor dolore, doloremque id
+      impedit laborum unde.
+    </p>
+  </div>
+
+  <div class="immauweb-info">
+    <span class="key">Appelez-nous</span>
+    <span class="value">
+          <a href="tel:+32123456789">(+32) 123 45 67 89</a>
+        </span>
+
+    <span class="key">Adresse mail</span>
+    <span class="value">
+          <a href="mailto:contact@immauweb.local">{{ "contact@immauweb.local" }}</a>
+        </span>
+  </div>
+
+  <div class="immauweb-maps">
+    <iframe
+      class="contact-us-maps"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2518.430919008736!2d4.328291576779008!3d50.86022167167335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c3ed9387d17f%3A0x5423c6b5dd28a3cb!2sCfiTech%3A%20Centre%20de%20Formation%20Informatique!5e0!3m2!1sfr!2sbe!4v1761403877996!5m2!1sfr!2sbe"
+      width="600"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <div class="title">
+    <h2>Nous écrire</h2>
+  </div>
+
+  <form class="contact-us-form" [formGroup]="form" (submit)="handleSubmit()">
+    @if (!currentUser) {
+      <fieldset class="contact-us-form-group col2">
+        <div class="input-group">
+          <label for="name">Nom complet</label>
+          <input
+            formControlName="name"
+            id="name"
+            placeholder="John Doe"
+            type="text"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Adresse mail</label>
+          <input
+            formControlName="email"
+            id="email"
+            placeholder="john@doe.org"
+            type="email"
+            inputmode="email"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="phone">Numéro de téléphone</label>
+          <input
+            formControlName="phone"
+            id="phone"
+            placeholder="+32 123 45 67 89"
+            type="tel"
+            inputmode="tel"
+            required
+          />
+        </div>
+      </fieldset>
+    }
+
+    <fieldset class="contact-us-form-group">
+      <div class="input-group">
+        <label for="subject">Sujet</label>
+        <input
+          formControlName="sujet"
+          id="subject"
+          placeholder="J'ai des petits problèmes dans ma plantation"
+          type="text"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          formControlName="message"
+          placeholder="Pourquoi ça pousse pas?"
+          required
+        ></textarea>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn--primary">
+      Envoyer le message
+    </button>
+  </form>
+
+</layout-page>

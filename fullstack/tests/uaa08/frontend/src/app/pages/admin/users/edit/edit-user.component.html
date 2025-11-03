@@ -1,0 +1,82 @@
+<div class="container">
+  @if (user) {
+    <div class="admin-container">
+      <section class="user-edit-card">
+        <header class="user-edit-card-header">
+          <h2>Modifier un utilisateur</h2>
+
+          <span class="user-edit-card-meta">
+            Créé le :
+            <time [attr.datetime]="user.createdAt.toISOString()">
+              {{ user.createdAt | date }}
+            </time> • Mis à jour :
+            <time [attr.datetime]="user.updatedAt.toISOString()">
+              {{ user.updatedAt | date }}
+            </time>
+          </span>
+        </header>
+
+        <form class="user-edit-form" [formGroup]="form" (submit)="handleSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input id="prenom" type="text" formControlName="prenom"/>
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input id="nom" type="text" formControlName="nom"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Adresse mail</label>
+              <input id="email" type="email" formControlName="email"/>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input id="telephone" type="tel" formControlName="telephone"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="roles">Rôles</label>
+
+              <select id="roles" name="roles" formControlName="roles" multiple>
+                @for (role of defaultRoles | roles; track role; let i = $index) {
+                  <option
+                    [value]="defaultRoles[i]"
+                    [selected]="user.roles.includes(defaultRoles[i])"
+                  >
+                    {{ role }}
+                  </option>
+                }
+              </select>
+            </div>
+          </div>
+
+          @if (user.photo) {
+            <div class="form-group">
+              <label>Avatar</label>
+
+              <ui-avatar
+                [avatar]="user.photo"
+                [editable]="true"
+                (deleted)="deleteAvatar()"
+                width="70"
+                height="70"
+              ></ui-avatar>
+            </div>
+          }
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn--primary">Enregistrer</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  } @else {
+    <ui-loader></ui-loader>
+  }
+</div>

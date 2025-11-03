@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "./assets/scss/vars" as *;
+
+@use "./assets/scss/bases/reset";
+
+@use "./assets/scss/a11y/tabs";
+@use "./assets/scss/bases/document";
+@use "./assets/scss/bases/layout";
+
+@use "./assets/scss/helpers/mq";
+@use "./assets/scss/helpers/text";
+
+@use "./assets/scss/anims/border-shadow";
+@use "./assets/scss/anims/shake";
+
+@use "./assets/scss/components/btn";
+@use "./assets/scss/components/dialog";
+@use "./assets/scss/components/skeleton";
+@use "./assets/scss/components/toast";
+
+@use "./assets/scss/bases/table";

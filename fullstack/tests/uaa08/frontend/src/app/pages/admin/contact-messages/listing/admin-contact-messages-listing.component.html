@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Tous les messages</h1>
+
+  <div class="admin-table">
+    <table>
+      @if (contactMessageCollection?.totalItems === 0) {
+        <caption>Aucun message reçu par le formulaire de contact</caption>
+      }
+
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Utilisateur</th>
+        <th>Nom complet</th>
+        <th>Sujet</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (contactMessageResource of contactMessageCollection?.member; track contactMessageResource.id) {
+          <app-admin-row-contact-message
+            [contactMessageResource]="contactMessageResource"
+            (archived)="archive(contactMessageResource)"
+          ></app-admin-row-contact-message>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

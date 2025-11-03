@@ -1,0 +1,38 @@
+:host {
+  --badge-surface: inherit;
+  --badge-on-surface: inherit;
+  --badge-spacing: var(--spacing-xs);
+  --badge-outline: currentColor;
+  --badge-radius: var(--radius-md);
+  --badge-text: var(--text-sm);
+  --badge-font: var(--font-dm-sans);
+}
+
+.badge {
+  display: inline-block;
+  padding: var(--badge-spacing);
+
+  font-family: var(--badge-font);
+  font-size: var(--badge-text);
+  font-variant: all-petite-caps;
+  font-weight: bold;
+
+  border: 1px solid var(--badge-outline);
+  border-radius: var(--badge-radius);
+  background: var(--badge-surface);
+  color: var(--badge-on-surface);
+}
+
+.badge--primary {
+  --badge-outline: var(--primary);
+}
+
+.badge--success {
+  --badge-outline: var(--success);
+  --badge-on-surface: var(--success);
+}
+
+.badge--warning {
+  --badge-outline: var(--warning);
+  --badge-on-surface: var(--warning);
+}

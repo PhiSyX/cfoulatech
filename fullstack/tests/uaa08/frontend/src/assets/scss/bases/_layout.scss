@@ -1,0 +1,87 @@
+@use "../../../assets/scss/abstracts/mixins" as mx;
+
+.container {
+  box-sizing: border-box;
+  max-width: min(80ch, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+@include mx.use-breakpoint-from-lg {
+  .lg\:container {
+    box-sizing: border-box;
+    max-width: min(80ch, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page-col {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.page-row {
+  display: flex;
+}
+
+.page-autoflow {
+  display: flex;
+  flex-direction: column;
+
+  @include mx.use-breakpoint-from-md {
+    flex-direction: row;
+  }
+}
+
+.page-center {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 2rem;
+}
+
+.title {
+  display: flex;
+  padding-inline: var(--spacing-sm);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  font-family: var(--font-dm-sans);
+}
+
+.title small {
+  font-size: var(--text-lg);
+}
+
+.title h1,
+.title h2 {
+  margin: 0;
+
+  font-size: var(--text-xxl);
+}
+
+@layer base {
+  .title button {
+    flex-shrink: 0;
+
+    font-size: var(--text-xxl);
+    font-family: var(--font-dm-sans);
+    font-weight: bold;
+
+    border: none;
+    background: transparent;
+    color: inherit;
+  }
+}

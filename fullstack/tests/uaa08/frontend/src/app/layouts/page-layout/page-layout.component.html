@@ -1,0 +1,37 @@
+<main class="page">
+  <ui-header></ui-header>
+
+  <section
+    class="page:body"
+    [ngClass]="{
+      'page:body--padded': withPadding,
+      'page:body--bg': withBackground,
+      'page:full-height': bodyFullHeight,
+    }"
+  >
+    <ng-content select=".hero"></ng-content>
+
+    <div
+      [ngClass]="{
+        'container': withContainer,
+        'container-full': withContainerFull,
+        'page-col': !row && !autoflow,
+        'page-row': row && !autoflow,
+        'page-autoflow': autoflow,
+        'no-scroll': lockScroll,
+      }"
+    >
+      <ng-content select=".heading">
+        @if (title) {
+          <header class="title">
+            <ng-content select=".title-actions-left"></ng-content>
+            <h1>{{ title }}</h1>
+            <ng-content select=".title-actions-right"></ng-content>
+          </header>
+        }
+      </ng-content>
+
+      <ng-content></ng-content>
+    </div>
+  </section>
+</main>

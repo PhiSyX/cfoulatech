@@ -1,0 +1,22 @@
+.skeleton {
+  all: unset;
+
+  line-height: 1;
+
+  border-radius: 4px;
+  background-color: var(--color-black-ultra-dark) !important;
+  background-image: linear-gradient(90deg, var(--color-black), var(--color-black-darker), var(--color-black)) !important;
+  background-size: 200px 100% !important;
+  background-repeat: no-repeat !important;
+  animation: skeleton-animation 1.5s ease-in-out infinite;
+  animation-delay: var(--skeleton-delay);
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}

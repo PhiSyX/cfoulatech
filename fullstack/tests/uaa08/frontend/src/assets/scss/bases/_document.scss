@@ -1,0 +1,68 @@
+@use "../../../assets/scss/abstracts/mixins" as mx;
+
+html,
+body,
+app-root {
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+app-root {
+  display: block;
+
+  > *:not(router-outlet) {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+body {
+  background: var(--body-surface);
+  color: var(--body-on-surface);
+}
+
+input,
+textarea {
+  font-family: var(--font-nunito);
+}
+
+menu * {
+  user-select: none;
+}
+
+label[for] {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+img {
+  object-fit: cover;
+}
+
+a,
+.link {
+  display: inline-block;
+  color: var(--link);
+  transition: color 250ms ease-in-out;
+
+  &:hover {
+    color: var(--link-hover);
+  }
+}
+
+button.link {
+  padding: 0;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+}

@@ -1,0 +1,14 @@
+<h1>
+    Vous avez reçu un message de la part de
+    <strong>{{ contactUsForm.nomComplet }}</strong>
+</h1>
+
+<h2>
+    Adresse mail: {{ contactUsForm.email }}
+    &mdash;
+    Téléphone: {{ contactUsForm.telephone }}
+</h2>
+
+<hr>
+
+<p>{{ contactUsForm.message | nl2br }}</p>
